@@ -1,4 +1,3 @@
-
 ----------------------------------
 -- Custom Level mod example
 --
@@ -41,37 +40,20 @@ local AddTask = GLOBAL.AddTask
 local AddRoom = GLOBAL.AddRoom
 local CAMPAIGN_LENGTH = 5
 
+--This also does the following.
 local TRANSLATE_TO_PREFABS = GLOBAL.require("map/forest_map").TRANSLATE_TO_PREFABS
-TRANSLATE_TO_PREFABS["carrot"] = {"beanstalk"}
+TRANSLATE_TO_PREFABS["skymushrooms"] = {"orange_mushroom", "purple_mushroom", "yellow_mushroom"}
 
 local Forest = GLOBAL.require("map/forest_map")
 
 --[[
-Forest.MULTIPLY = 
-{
-	["never"] = 0,
-	["rare(0.1)"] = 0.1,
-	["rare(0.15)"] = 0.15,
-	["rare(0.2)"] = 0.2,
-	["rare(0.3)"] = 0.3,
-	["rare"] = 0.5,
-	["default"] = 1,
-	["often"] = 1.5,
-	["mostly"] = 2.2,
-	["always"] = 3,		
-}
-
 Forest.TRANSLATE_TO_PREFABS = 
 {
     ["skymushrooms"] = {"orange_mushroom", "purple_mushroom", "yellow_mushroom"},
 	["beanstalks"] = {"beanstalk"},
-}
---]]
+}--]]
 
---This also does the following.
-
-
---This is the preset version.
+--This is the preset for testing purposes.
 AddLevel(LEVELTYPE.SURVIVAL, {
 		id="SKY_LEVEL_1",
 		name="Sky",
@@ -128,7 +110,6 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 		
 		set_pieces = {
 				["ResurrectionStone"] = { count=1, tasks={ "Speak to the king", "Forest hunters" } },
-				["WormholeGrass"] = { count=8, tasks={"Tentacle-Blocked The Deep Forest", "Speak to the king", "Forest hunters", "Befriend the pigs", "The hunters", "Magic meadow", "Frogs and bugs"} },
 		},
 		
 		override_triggers = {
@@ -141,7 +122,7 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 		},		
 })
 
---This is the preset for testing purposes.
+--This is the level that is generated.
 AddLevel(LEVELTYPE.ADVENTURE, {
 		id="SKY_LEVEL_1",
 		name="Sky",
@@ -198,7 +179,6 @@ AddLevel(LEVELTYPE.ADVENTURE, {
 		
 		set_pieces = {
 				["ResurrectionStone"] = { count=1, tasks={ "Speak to the king", "Forest hunters" } },
-				["WormholeGrass"] = { count=8, tasks={"Tentacle-Blocked The Deep Forest", "Speak to the king", "Forest hunters", "Befriend the pigs", "The hunters", "Magic meadow", "Frogs and bugs"} },
 		},
 		
 		override_triggers = {
@@ -216,7 +196,7 @@ AddLevel(LEVELTYPE.ADVENTURE, {
 		locks=LOCKS.NONE,
 		keys_given=KEYS.NONE,
 		room_choices={
-			["Beanstalk"] = 1,
+			["BeanstalkDown"] = 1,
 		 }, 
 		room_bg=GROUND.GRASS,
 		background_room="BGGrass",
