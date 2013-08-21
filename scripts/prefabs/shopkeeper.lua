@@ -1,11 +1,6 @@
 local assets =
 {
-	--Asset("ANIM", "anim/maxwell_build.zip"),
-    --Asset("ANIM", "anim/max_fx.zip"),
-    --Asset("ANIM", "anim/maxwell_basic.zip"),
-	--Asset("ANIM", "anim/maxwell_adventure.zip"),
 	Asset("ANIM", "anim/shop_basic.zip"),
-	--Asset("ANIM", "anim/shop_
 	Asset("SOUND", "sound/maxwell.fsb"),
 }
 
