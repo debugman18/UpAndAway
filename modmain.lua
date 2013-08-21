@@ -4,7 +4,7 @@ GetPlayer = GLOBAL.GetPlayer
 
 local STRINGS = GLOBAL.STRINGS
 
-GLOBAL.STRINGS.NAMES.SHOPKEEPER = "Shady Stranger"
+GLOBAL.STRINGS.NAMES.SHOPKEEPER = "Shopkeeper"
 
 GLOBAL.STRINGS.NAMES.DATURA = "Datura"
 GLOBAL.STRINGS.NAMES.DATURA_PETALS = "Datura Petals"
@@ -73,16 +73,26 @@ GLOBAL.STRINGS.NAMES.DUCKRAPTOR_BABY = "Duckling"
 GLOBAL.STRINGS.NAMES.LIONANT = "Lionant"
 
 --These are descriptions for the new things.
+
 --For the beanstalk.
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.BEANSTALK = "It reaches the clouds."
 STRINGS.CHARACTERS.WILLOW.DESCRIBE.BEANSTALK = "That would make a spectacular fire."
 STRINGS.CHARACTERS.WENDY.DESCRIBE.BEANSTALK = "All I'd need to do is let go."
 STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BEANSTALK = "Is big beanstalk. Reminds Wolfgang of home."
-STRINGS.CHARACTERS.WX-78.DESCRIBE.BEANSTALK = "IT HAS GROWN OUT OF CONTROL."
+STRINGS.CHARACTERS.WX78.DESCRIBE.BEANSTALK = "IT HAS GROWN OUT OF CONTROL."
 STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BEANSTALK = "The end of the stalk is covered by a layer of cumulonimbus clouds."
 STRINGS.CHARACTERS.WOODIE.DESCRIBE.BEANSTALK = "Even Lucy can't chop through it."
 STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BEANSTALK = "Some things were too big to fit in the caves. "
 
+--For the shopkeeper.
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHOPKEEPER = "Odd place to set up a store."
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHOPKEEPER = "I like the flag on his umbrella."
+STRINGS.CHARACTERS.WENDY.DESCRIBE.SHOPKEEPER = "A deceiver at heart."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHOPKEEPER = "He sells no potatoes."
+STRINGS.CHARACTERS.WX78.DESCRIBE.SHOPKEEPER = "A PEDDLER OF GOODS."
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHOPKEEPER = "Perhaps he has some books for sale."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHOPKEEPER = "Men like this ran my lumber yard."
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHOPKEEPER = "I thought I got rid of you."
 
 --These assets are for all of the added inventory items.
 
@@ -161,6 +171,8 @@ Assets = {
 --This loads all of the new prefabs.
 
 PrefabFiles = {
+    "shopkeeper",
+
 	--"datura",
 	--"datura_petals",	
 	--"crystal_deposit",
