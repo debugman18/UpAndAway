@@ -46,13 +46,6 @@ TRANSLATE_TO_PREFABS["skymushrooms"] = {"orange_mushroom", "purple_mushroom", "y
 
 local Forest = GLOBAL.require("map/forest_map")
 
---[[
-Forest.TRANSLATE_TO_PREFABS = 
-{
-    ["skymushrooms"] = {"orange_mushroom", "purple_mushroom", "yellow_mushroom"},
-	["beanstalks"] = {"beanstalk"},
-}--]]
-
 --This is the preset for testing purposes.
 AddLevel(LEVELTYPE.SURVIVAL, {
 		id="SKY_LEVEL_1",
