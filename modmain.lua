@@ -1,4 +1,5 @@
 GetPlayer = GLOBAL.GetPlayer
+Sleep = GLOBAL.Sleep
 
 --These give names to all of the new things.
 

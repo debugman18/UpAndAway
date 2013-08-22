@@ -10,7 +10,7 @@ local function test_ground(inst, pt)
 						tiletype ~= GROUND.CARPET and tiletype ~= GROUND.CHECKER and tiletype < GROUND.UNDERGROUND
 	
 	if ground_OK then
-	    local ents = TheSim:FindEntities(pt.x,pt.y,pt.z, 4) -- or we could include a flag to the search?
+	    local ents = TheSim:FindEntities(pt.x,pt.y,pt.z, 4)
 		local min_spacing = inst.components.deployable.min_spacing or 2
 
 	    for k, v in pairs(ents) do
