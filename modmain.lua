@@ -263,6 +263,20 @@ end
 AddPrefabPostInit('evergreen', evergreens_ret)	 
 
 
+AddSimPostInit(function(inst)
+	local oldactionstringoverride = inst.ActionStringOverride
+	function inst:ActionStringOverride(bufaction)
+		if bufaction.action == GLOBAL.ACTIONS.ACTIVATE and bufaction.target and bufaction.target.prefab == "shopkeeper" then
+			return "Talk to"
+		end
+		if oldactionstringoverride then
+			return oldactionstringoverride(inst, bufaction)
+		end
+	end
+end)
+
+
+
 --[[This is messy mess of ideas.
 
 inst.task = inst:DoPeriodicTask(1, function() onUp(inst, owner) end)
