@@ -13,7 +13,7 @@ local SPEECH =
 	{
 	    
 		delay = 2,
-		disableplayer = true,
+		disableplayer = false,
 		skippable = true,
 		
 		{
@@ -35,7 +35,7 @@ local SPEECH =
 	{
 	    
 		delay = 1,
-		disableplayer = true,
+		disableplayer = false,
 		skippable = true,
 		
 		{
@@ -75,7 +75,7 @@ local SPEECH =
 			sound = nil,			
 		},
 		{
-			string = "I have need of some Beefalo.",
+			string = "I have need of a Beefalo.",
 			wait = 3,
 			anim = nil,
 			sound = nil,			
@@ -87,19 +87,13 @@ local SPEECH =
 			sound = nil,			
 		},
 		{
-			string = "Bring me a few...",
+			string = "Bring me one...",
 			wait = 3,
 			anim = nil,
 			sound = nil,			
 		},
 		{
-			string = "...Let's say three.",
-			wait = 2,
-			anim = nil,
-			sound = nil,			
-		},
-		{
-			string = "And I'll give you the ticket out.",
+			string = "...And I'll give you the ticket out.",
 			wait = 3,
 			anim = nil,
 			sound = nil,			
@@ -120,13 +114,31 @@ local SPEECH =
 		skippable = false,
 		
 		{
-			string = "Best of luck, (fella/darling).",
+			string = "You fulfilled your end of the bargain.",
+			wait = 3,
+			anim = nil,
+			sound = "dontstarve/common/destroy_metal",		
+		},
+		{
+			string = "Now for me to keep mine.",
 			wait = 2,
 			anim = nil,
 			sound = "dontstarve/common/destroy_metal",		
 		},
+		{
+			string = "Your ticket out of here.",
+			wait = 2,
+			anim = nil,
+			sound = "dontstarve/common/destroy_metal",		
+		},
+		{
+			string = "Best of luck, (fella/darling).",
+			wait = 2,
+			anim = nil,
+			sound = "dontstarve/common/destroy_metal",		
+		},		
 	},
-	
+
 	--This is for when the player attacks the shopkeeper.	
 	HIT =
 	{
@@ -173,7 +185,47 @@ local SPEECH =
 			anim = nil,
 			sound = "dontstarve/common/destroy_metal",			
 		},
-	},			
+	},		
+
+	--This gives the player a hint about the beans.	
+	BEANS_HINT =
+	{
+	    
+		delay = 2,
+		disableplayer = false,
+		skippable = true,
+		
+		{
+			string = "Now, you can't just plant those beans in any old soil.",
+			wait = 3,
+			anim = nil,
+			sound = "dontstarve/common/destroy_metal",			
+		},
+		{
+			string = "They require a powerful fertilizer.",
+			wait = 3,
+			anim = nil,
+			sound = "dontstarve/common/destroy_metal",			
+		},
+		{
+			string = "Bonemeal, perhaps.",
+			wait = 3,
+			anim = nil,
+			sound = "dontstarve/common/destroy_metal",			
+		},
+		{
+			string = "Then...",
+			wait = 3,
+			anim = nil,
+			sound = "dontstarve/common/destroy_metal",			
+		},
+		{
+			string = "...Just let the moon do the rest.",
+			wait = 3,
+			anim = nil,
+			sound = "dontstarve/common/destroy_metal",			
+		},		
+	},		
 }
 
 -------------------------------------------------------------------------------------------------
@@ -181,21 +233,21 @@ local SPEECH =
 --These are various functions which play speeches.
 local function activatebeanquest(inst)
 	
-			if GetPlayer():HasTag("return_customer") and not GetPlayer():HasTag("recieved_beans") then
+		if GetPlayer():HasTag("return_customer") and not GetPlayer():HasTag("recieved_beans") then
+
+		TheCamera:SetDistance(14)
 	
-			local conv_index = 1
-			TheCamera:SetDistance(14)
-	
-			inst:DoTaskInTime(1.5, function()	
-				if inst.components.maxwelltalker then
-					if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
-					inst.components.maxwelltalker.speech = "BEAN_REMINDER"
-					inst.components.maxwelltalker:SetSpeech("BEAN_REMINDER")
-					inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
-					inst:RemoveComponent("playerprox")
-					inst.components.activatable.inactive = true
-				end
-			end) 			
+		inst:DoTaskInTime(1.5, function()	
+			if inst.components.maxwelltalker then
+				if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
+				inst.components.maxwelltalker.speech = "BEAN_REMINDER"
+				inst.components.maxwelltalker:SetSpeech("BEAN_REMINDER")
+				inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
+				inst:RemoveComponent("playerprox")
+				inst.components.activatable.inactive = true
+				if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
+			end
+		end) 			
 		
 		elseif not GetPlayer():HasTag("recieved_beans") then 
 	
@@ -206,6 +258,7 @@ local function activatebeanquest(inst)
 				inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
 				GetPlayer():AddTag("return_customer")
 				inst.components.activatable.inactive = true
+				if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
 			end	
 		
 		else end		
@@ -215,9 +268,6 @@ end
 local function flagplayer(inst)
 	if GetPlayer():HasTag("return_customer") and not GetPlayer():HasTag("recieved_beans") then
 	
-    local conv_index = 1
-	TheCamera:SetDistance(9)
-	
     inst:DoTaskInTime(1.5, function()	
 		if inst.components.maxwelltalker then
 			if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
@@ -225,6 +275,8 @@ local function flagplayer(inst)
 			inst.components.maxwelltalker:SetSpeech("BEAN_REMINDER")
 			inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
             inst:RemoveComponent("playerprox")
+			inst.components.activatable.inactive = true
+			if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
         end
     end) 			
 		
@@ -235,6 +287,19 @@ local function flagplayer(inst)
 			inst.components.maxwelltalker.speech = "FLAG_PLAYER"
 			inst.components.maxwelltalker:SetSpeech("FLAG_PLAYER")
 			inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
+			inst.components.activatable.inactive = true
+			if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
+		end	
+		
+	elseif GetPlayer():HasTag("recieved_beans") then
+		
+		if inst.components.maxwelltalker then
+			if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
+			inst.components.maxwelltalker.speech = "BEANS_HINT"
+			inst.components.maxwelltalker:SetSpeech("BEANS_HINT")
+			inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
+			inst.components.activatable.inactive = true
+			if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
 		end	
 		
 	else end	
@@ -271,6 +336,63 @@ local function OnHit(inst, attacker)
     
 end
 
+local beef = 1
+local function beefalocheck(inst)
+	local owner = GetPlayer()
+	if owner and owner.components.leader then
+		local x,y,z = owner.Transform:GetWorldPosition()
+		local ents = TheSim:FindEntities(x,y,z, 12, {"beefalo"})
+		
+		for k,v in pairs(ents) do
+			if v.components.follower and owner.components.leader:IsFollower(v) and not GetPlayer():HasTag("recieved_beans") and GetPlayer():HasTag("return_customer") then
+				print "Happy shopkeeper"
+			
+				if inst.updatetask then
+					inst.updatetask:Cancel()
+					inst.updatetask = nil
+				end
+				
+				--This knows what to spawn.
+				local beanprize = SpawnPrefab("magic_beans") 
+				local fx = SpawnPrefab("maxwell_smoke")
+
+				if v.prefab == "beefalo" then
+					v:AddTag("beefalofortrade")	
+				end
+				
+				--Happily removes the beefalo from your possesion.
+				local beefalofortrade = TheSim:FindFirstEntityWithTag("beefalofortrade")	
+				fx.Transform:SetPosition(beefalofortrade.Transform:GetWorldPosition())
+				beefalofortrade:Remove()
+				inst.SoundEmitter:PlaySound("dontstarve/maxwell/disappear")
+			
+				--Gives the player the magic beans.				
+				beanprize.Transform:SetPosition(GetPlayer().Transform:GetWorldPosition())
+		
+				--Creates smoke for effect.
+				inst.SoundEmitter:PlaySound("dontstarve/maxwell/disappear")		
+				fx.Transform:SetPosition(GetPlayer().Transform:GetWorldPosition())	
+				print "This should be a pause."		
+		
+				--Confirms the trade via short dialogue.
+				inst:DoTaskInTime(1.5, function()
+					if inst.components.maxwelltalker then
+						if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
+						inst.components.maxwelltalker.speech = "BEAN_SUCCESS"
+						inst.components.maxwelltalker:SetSpeech("BEAN_SUCCESS")
+						inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
+						GetPlayer():AddTag("recieved_beans")
+					end
+				end)			
+			end
+		end
+	end
+end
+
+local function beefalotrade(inst)
+	inst.updatetask = inst:DoPeriodicTask(beef, beefalocheck, 1)
+end
+
 -------------------------------------------------------------------------------------------------
 
 --This knows what to do if the player doesn't do the trades requirements.
@@ -291,6 +413,7 @@ end
 --This knows what to do if the player successfully gives us a particular item.
 local function OnGetItemFromPlayer(inst, giver, item)
     
+	--This gives you magic beans in exchange for gold. For testing purposes only.
     if item.prefab == "goldnugget" then
 	
 	    --This knows what to spawn.
@@ -338,7 +461,7 @@ local function fn(Sim)
 	
     anim:SetBank("shop")
     anim:SetBuild("shop_basic")
-	anim:PlayAnimation("idle", "loop")
+	anim:PlayAnimation("idle", true)
  
     inst:AddComponent("talker")
     inst.entity:AddLabel()
@@ -366,8 +489,9 @@ local function fn(Sim)
     inst.components.maxwelltalker.speeches = SPEECH
 	
     inst:AddComponent("playerprox")
-    inst.components.playerprox:SetDist(12, 15)
-    inst.components.playerprox:SetOnPlayerNear(flagplayer)  	
+    inst.components.playerprox:SetDist(10, 10)
+    inst.components.playerprox:SetOnPlayerFar(flagplayer)
+	inst.components.playerprox:SetOnPlayerNear(beefalotrade)  	
 	
 	------------------------------------------------------
 	
