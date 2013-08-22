@@ -34,7 +34,7 @@ local SPEECH =
 	BEAN_QUEST =
 	{
 	    
-		delay = 2,
+		delay = 1,
 		disableplayer = true,
 		skippable = true,
 		
@@ -46,7 +46,7 @@ local SPEECH =
 		},
 		{
 			string = "You look tired.",
-			wait = 3,
+			wait = 2,
 			anim = nil,
 			sound = nil,			
 		},		
@@ -64,12 +64,12 @@ local SPEECH =
 		},
 		{
 			string = "Interested?",
-			wait = 3,
+			wait = 2,
 			anim = nil,
 			sound = nil,			
 		},
 		{
-			string = "Then lets make a deal.",
+			string = "Then let's make a deal.",
 			wait = 3,
 			anim = nil,
 			sound = nil,			
@@ -93,8 +93,8 @@ local SPEECH =
 			sound = nil,			
 		},
 		{
-			string = "...Lets say three.",
-			wait = 3,
+			string = "...Let's say three.",
+			wait = 2,
 			anim = nil,
 			sound = nil,			
 		},
@@ -106,7 +106,7 @@ local SPEECH =
 		},
 		{
 			string = "Get to it, (fella/darling).",
-			wait = 3,
+			wait = 2,
 			anim = nil,
 			sound = "dontstarve/common/destroy_metal",		
 		},		
@@ -121,7 +121,7 @@ local SPEECH =
 		
 		{
 			string = "Best of luck, (fella/darling).",
-			wait = 3,
+			wait = 2,
 			anim = nil,
 			sound = "dontstarve/common/destroy_metal",		
 		},
@@ -137,7 +137,7 @@ local SPEECH =
 		
 		{
 			string = "...",
-			wait = 3,
+			wait = 2,
 			anim = nil,
 			sound = "dontstarve/common/destroy_metal",			
 		},
@@ -193,6 +193,7 @@ local function activatebeanquest(inst)
 					inst.components.maxwelltalker:SetSpeech("BEAN_REMINDER")
 					inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
 					inst:RemoveComponent("playerprox")
+					inst.components.activatable.inactive = true
 				end
 			end) 			
 		
@@ -204,11 +205,11 @@ local function activatebeanquest(inst)
 				inst.components.maxwelltalker:SetSpeech("BEAN_QUEST")
 				inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
 				GetPlayer():AddTag("return_customer")
+				inst.components.activatable.inactive = true
 			end	
 		
 		else end		
 	
-	inst.components.activatable.inactive = false
 end
 
 local function flagplayer(inst)
@@ -244,6 +245,8 @@ end
 --This makes it so that you cannot kill the shopkeeper.
 local function OnHit(inst, attacker)
 
+	local fx = SpawnPrefab("maxwell_smoke")
+
     local doer = attacker
     if doer then
         local pos = Vector3( doer.Transform:GetWorldPosition() )
@@ -263,7 +266,7 @@ local function OnHit(inst, attacker)
     inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
 	
 	inst.SoundEmitter:PlaySound("dontstarve/maxwell/disappear")		
-	fx.Transform:SetPosition(beanprize.Transform:GetWorldPosition())	
+	fx.Transform:SetPosition(inst.Transform:GetWorldPosition())	
 	inst:Remove()
     
 end
@@ -370,11 +373,14 @@ local function fn(Sim)
 	
     inst:AddComponent("inspectable")
 	
-    --inst:ListenForEvent( "ontalk", function(inst, data) inst.AnimState:PlayAnimation("dialog_pre") inst.AnimState:PushAnimation("dial_loop", true) end)
-    --inst:ListenForEvent( "donetalking", function(inst, data) inst.AnimState:PlayAnimation("dialog_pst") inst.AnimState:PushAnimation("idle", true) end)
+    --inst:ListenForEvent( "ontalk", function(inst, data) anim:PushAnimation("dial_loop", "loop") end)
+    --inst:ListenForEvent( "donetalking", function(inst, data) anim:PushAnimation("idle", "loop") end)
 	
     inst:AddComponent("combat")
     inst.components.combat.onhitfn = OnHit	
+	
+	inst:AddComponent("health")
+	inst.components.health:SetMaxHealth(10000000)
 	
 	inst:AddComponent("activatable")
 	inst.components.activatable.OnActivate = activatebeanquest	

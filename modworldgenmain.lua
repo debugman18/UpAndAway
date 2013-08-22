@@ -73,17 +73,16 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 			{"roads", 			"never"},	
 			{"creepyeyes", 		"always"},
 			{"rabbits",         "never"},
-			{"trees",           "always"},
-			{"rocks",           "always"},	
+			{"trees",           "never"},
+			{"rocks",           "never"},	
 			{"carrots",         "never"},	
 			{"beefalo",         "never"},	
 			{"grass",           "never"},	
-			{"world_complexity", ""},	
+			{"world_complexity", "verycomplex"},	
 			{"pigs",            "never"},
 			
 			--This is custom content.
 			{"skymushrooms",    "always"},
-			{"beanstalks",      "always"},
 			
 			{"start_setpeice", 	"DefaultPlusStart"},				
 		},
