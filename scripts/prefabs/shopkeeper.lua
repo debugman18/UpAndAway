@@ -1,4 +1,3 @@
-SLEEP = "sleep"
 
 local assets =
 {
@@ -159,12 +158,60 @@ local SPEECH =
 			sound = "dontstarve/common/destroy_metal",			
 		},
 	},		
+	
+	--This is to flag the player down.	
+	FLAG_PLAYER =
+	{
+	    
+		delay = 2,
+		disableplayer = false,
+		skippable = true,
+		
+		{
+			string = "Hey you! Yes, you there!",
+			wait = 3,
+			anim = nil,
+			sound = "dontstarve/common/destroy_metal",			
+		},
+	},			
 }
 
 -------------------------------------------------------------------------------------------------
 
 --These are various functions which play speeches.
 local function activatebeanquest(inst)
+	
+			if GetPlayer():HasTag("return_customer") and not GetPlayer():HasTag("recieved_beans") then
+	
+			local conv_index = 1
+			TheCamera:SetDistance(14)
+	
+			inst:DoTaskInTime(1.5, function()	
+				if inst.components.maxwelltalker then
+					if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
+					inst.components.maxwelltalker.speech = "BEAN_REMINDER"
+					inst.components.maxwelltalker:SetSpeech("BEAN_REMINDER")
+					inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
+					inst:RemoveComponent("playerprox")
+				end
+			end) 			
+		
+		elseif not GetPlayer():HasTag("recieved_beans") then 
+	
+			if inst.components.maxwelltalker then
+				if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
+				inst.components.maxwelltalker.speech = "BEAN_QUEST"
+				inst.components.maxwelltalker:SetSpeech("BEAN_QUEST")
+				inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
+				GetPlayer():AddTag("return_customer")
+			end	
+		
+		else end		
+	
+	inst.components.activatable.inactive = false
+end
+
+local function flagplayer(inst)
 	if GetPlayer():HasTag("return_customer") and not GetPlayer():HasTag("recieved_beans") then
 	
     local conv_index = 1
@@ -184,41 +231,12 @@ local function activatebeanquest(inst)
 	
 		if inst.components.maxwelltalker then
 			if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
-			inst.components.maxwelltalker.speech = "BEAN_QUEST"
-			inst.components.maxwelltalker:SetSpeech("BEAN_QUEST")
+			inst.components.maxwelltalker.speech = "FLAG_PLAYER"
+			inst.components.maxwelltalker:SetSpeech("FLAG_PLAYER")
 			inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
 		end	
 		
 	else end	
-end
-
-local function maketalkable(inst)
-    if inst.components.playerprox then
-        inst:RemoveComponent("playerprox")
-    end
-
-    if inst.components.maxwelltalker then
-        if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
-        inst.components.maxwelltalker.speech = "BEAN_QUEST"
-        inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
-    end
-	
-    if not inst.components.talkable then
-        local conv_index = 1
-        inst:DoTaskInTime(4, function()
-            if inst.components.maxwelltalker then
-                inst.components.maxwelltalker.speech = conv_index
-                inst:AddComponent("talkable")
-            end
-        end)
-
-        inst:ListenForEvent("talkedto", function()
-            if inst.components.maxwelltalker then
-                conv_index = math.min( table.getn(SPEECH), conv_index + 1 )
-                inst.components.maxwelltalker.speech = conv_index
-            end
-        end)  
-    end
 end
 
 -------------------------------------------------------------------------------------------------
@@ -293,6 +311,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
 				inst.components.maxwelltalker.speech = "BEAN_SUCCESS"
 				inst.components.maxwelltalker:SetSpeech("BEAN_SUCCESS")
 				inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
+				GetPlayer():AddTag("recieved_beans")
 			end
 		end)	
     end
@@ -332,27 +351,20 @@ local function fn(Sim)
     inst.components.trader.onaccept = OnGetItemFromPlayer
     inst.components.trader.onrefuse = OnRefuseItem	
 	
-	
-	--[[
-	inst:AddComponent("activatable")
-	inst.components.activatable.OnActivate = OnActivate	
-	inst.components.activatable.quickaction = true 
-	--]]
-	
 	------------------------------------------------------
 
     inst:AddComponent("named")
     inst.components.named:SetName("Shopkeeper")	
 
+	--inst:AddComponent("talkable")
+	
 	--All of this is related to the speeches.	
     inst:AddComponent("maxwelltalker")
     inst.components.maxwelltalker.speeches = SPEECH
 	
     inst:AddComponent("playerprox")
     inst.components.playerprox:SetDist(12, 15)
-    inst.components.playerprox:SetOnPlayerNear(activatebeanquest)  	
-	
-	inst.talkable = maketalkable
+    inst.components.playerprox:SetOnPlayerNear(flagplayer)  	
 	
 	------------------------------------------------------
 	
@@ -363,6 +375,10 @@ local function fn(Sim)
 	
     inst:AddComponent("combat")
     inst.components.combat.onhitfn = OnHit	
+	
+	inst:AddComponent("activatable")
+	inst.components.activatable.OnActivate = activatebeanquest	
+	inst.components.activatable.quickaction = true
 
     return inst
 end
