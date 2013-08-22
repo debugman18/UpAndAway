@@ -35,6 +35,7 @@ GLOBAL.STRINGS.NAMES.PURPLE_CAP = "Purple Cap"
 GLOBAL.STRINGS.NAMES.PURPLE_CAP_COOKED = "Cooked Purple Cap"
 
 GLOBAL.STRINGS.NAMES.BEANSTALK = "Beanstalk"
+GLOBAL.STRINGS.NAMES.BEANSTALK_EXIT = "Beanstalk"
 GLOBAL.STRINGS.NAMES.BEANSTALK_WALL = "Beanstalk Wall"
 GLOBAL.STRINGS.NAMES.BEANSTALK_CHUNK = "Beanstalk Chunk"
 
@@ -188,6 +189,7 @@ PrefabFiles = {
 	
 	"new_mushrooms",
 	"beanstalk",
+	"beanstalk_exit",
 	
 	--"beanstalk_wall",	
 	
@@ -262,7 +264,7 @@ end
 
 AddPrefabPostInit('evergreen', evergreens_ret)	 
 
-
+--Changes "activate" to "talk to" for "shopkeeper".
 AddSimPostInit(function(inst)
 	local oldactionstringoverride = inst.ActionStringOverride
 	function inst:ActionStringOverride(bufaction)
@@ -275,7 +277,18 @@ AddSimPostInit(function(inst)
 	end
 end)
 
-
+--Changes "activate" to "climb down" for "beanstalk_exit".
+AddSimPostInit(function(inst)
+	local oldactionstringoverride = inst.ActionStringOverride
+	function inst:ActionStringOverride(bufaction)
+		if bufaction.action == GLOBAL.ACTIONS.ACTIVATE and bufaction.target and bufaction.target.prefab == "beanstalk_exit" then
+			return "Climb down"
+		end
+		if oldactionstringoverride then
+			return oldactionstringoverride(inst, bufaction)
+		end
+	end
+end)
 
 --[[This is messy mess of ideas.
 

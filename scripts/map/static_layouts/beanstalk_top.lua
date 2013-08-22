@@ -76,7 +76,7 @@ return {
 		
         {
           name = "",
-          type = "beanstalk",
+          type = "beanstalk_exit",
           shape = "rectangle",
           x = 170,
           y = 170,

@@ -118,7 +118,7 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 		
 		override_triggers = {
 
-			["DefaultPlusStart"] = {	
+			["BeanstalkTop"] = {	
 			
 				{"ColourCube", "fungus_cc"}, 
 				
@@ -128,13 +128,14 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 
 --This is the level that is generated.
 AddLevel(LEVELTYPE.ADVENTURE, {
+
 		id="SKY_LEVEL_1",
 		name="Sky",
 		nomaxwell=true,
 		hideminimap = true,
 		desc="Up and Away.",
-		min_playlist_position=CAMPAIGN_LENGTH+1,
-		max_playlist_position=CAMPAIGN_LENGTH+1,		
+		--min_playlist_position=CAMPAIGN_LENGTH+1,
+		--max_playlist_position=CAMPAIGN_LENGTH+1,		
 
 		overrides={
 			{"world_size", 		"huge"},
@@ -146,23 +147,24 @@ AddLevel(LEVELTYPE.ADVENTURE, {
 			{"season_start", 	"summer"},
 			{"season", 			"onlywinter"},
 			{"weather", 		"never"},
+			{"roads", 			"never"},	
+			
 			{"boons",			"always"},
 			{"spiders", 		"never"},
 			{"deerclops", 		"never"},
 			{"hounds", 			"never"},	
-			{"roads", 			"never"},	
-			{"creepyeyes", 		"always"},
 			{"rabbits",         "never"},
 			{"trees",           "never"},
-			{"rocks",           "always"},	
+			{"rocks",           "never"},	
 			{"carrots",         "never"},	
 			{"beefalo",         "never"},	
 			{"grass",           "never"},	
-			{"world_complexity", ""},	
 			{"pigs",            "never"},
 			
+			{"world_complexity", "verycomplex"},	
+						
 			--This is custom content.
-			{"skymushrooms",    "always"},
+			{"skymushrooms",    "everywhere"},
 			
 			{"start_setpeice", 	"BeanstalkTop"},				
 		},

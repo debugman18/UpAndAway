@@ -19,38 +19,65 @@ local assets =
     Asset("SOUND", "sound/tentacle.fsb"),
 }
 
+local function onsave(inst, data)
+	data.chopped = inst.chopped
+end           
+
+local function onload(inst, data)
+	inst.chopped = data and data.chopped
+
+	if data and data.chopped then
+		chopped(inst)
+	end
+end  
+
 --Fixes silly string.
 local function GetVerb(inst)
 	return STRINGS.ACTIONS.ACTIVATE.CLIMB
 end
 
+local function BeanstalkAdventure(cb, slot, start_world)
+	local playerdata = {}
+	local player = GetPlayer()
+	local self = SaveGameIndex
+	if player then
+		playerdata = player:GetSaveRecord().data
+		playerdata.leader = nil
+		playerdata.sanitymonsterspawner = nil
+        
+	end 
+		
+	self.data.slots[self.current_slot].current_mode = "adventure"
+	
+	if self.data.slots[self.current_slot].modes.adventure then
+		self.data.slots[self.current_slot].modes.adventure.playerdata = playerdata
+	end
+		
+	self.data.slots[slot].modes.adventure = {world = start_world}
+	self:Save(cb)
+end
 
 --Makes the beanstalk climbable.
 local function OnActivate(inst)
-
-	--GetPlayer():DoTaskInTime(2, function()
 	
 	SetHUDPause(true)
+
 	
 	local function startadventure()
 		
 		local function onsaved()
 		    StartNextInstance({reset_action=RESET_ACTION.LOAD_SLOT, save_slot = SaveGameIndex:GetCurrentSaveSlot()}, true)
-			SaveGameIndex.data.slots[SaveGameIndex:GetCurrentSaveSlot()].modes.adventure = {world = 1}
+			SaveGameIndex.data.slots[SaveGameIndex:GetCurrentSaveSlot()].modes.adventure = {world = 8}
 		end
-		
-	
+
 		local level = 8
-		local slot = SaveGameIndex:GetCurrentSaveSlot()		
-		local customoptions = {
-			preset = {"SKY_LEVEL_1"},
-		}
-
-		local character = GetPlayer().prefab		
-		SetHUDPause(false)	
+		local slot = SaveGameIndex:GetCurrentSaveSlot()
+		local character = GetPlayer().prefab
 		
-		SaveGameIndex:FakeAdventure(onsaved, slot, level)	
-
+		SetHUDPause(false)	
+				
+		--SaveGameIndex:SaveCurrent(function() SaveGameIndex:FakeAdventure(onsaved, slot, level) end)
+		SaveGameIndex:SaveCurrent(function() BeanstalkAdventure(onsaved, slot, level) end)
 	end
 	
 	local function rejectadventure()
@@ -64,7 +91,6 @@ local function OnActivate(inst)
 		{text="NO", cb = rejectadventure},  
 	}
 
-
 	TheFrontEnd:PushScreen(PopupDialogScreen(
 	
 	"Up and Away", 
@@ -72,73 +98,48 @@ local function OnActivate(inst)
 	
 	options))
 	
-	--end)
-	
 end
 
---Beanstalks drop loot.
-local function DropLoot(inst) 
-
-    if inst.isChopped == true then
-
-        local loot = {}
-				
-		--Remove any previous (random) loot table.
-        inst.components.lootdropper:SetLoot(loot)
-		
-		--Beanstalk chunk drops.
-		inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 1.0)	
-		inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 0.75)
-		inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 0.5)
-		inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 0.5)
-		inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 0.5)
-		inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 0.5)
-		inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 0.5)
-		inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 0.5)
-		inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 0.5)
-		inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 0.5)
-
-		--Skeleton drops.
-		inst.components.lootdropper:AddChanceLoot("skeleton", 0.6)
-		inst.components.lootdropper:AddChanceLoot("skeleton", 0.2)
-		
-		--Gold nugget drops.
-		inst.components.lootdropper:AddChanceLoot("goldnugget", 0.7)
-		inst.components.lootdropper:AddChanceLoot("goldnugget", 0.5)
-		
-		--Marble drops.
-		inst.components.lootdropper:AddChanceLoot("marble", 0.8)
-		inst.components.lootdropper:AddChanceLoot("marble", 0.8)
-		
-		--Cloud turf drops.
-		inst.components.lootdropper:AddChanceLoot("cloud_turf", 0.5)
-		inst.components.lootdropper:AddChanceLoot("cloud_turf", 0.5)
-		inst.components.lootdropper:AddChanceLoot("cloud_turf", 0.5)
-		
-		--Magic bean drops.
-		inst.components.lootdropper:AddChanceLoot("magic_beans", 0.21)
-		inst.components.lootdropper:AddChanceLoot("magic_beans", 0.18)
-
-    end
-	
-end
 
 --This changes the screen some if the player is far.
 local function onfar(inst)
-	TheCamera:SetDistance(100)
+	--TheCamera:SetDistance(100)
 end
 
 --This changes the screen some if the player is near.
 local function onnear(inst)
-	TheCamera:SetDistance(100)
+	--TheCamera:SetDistance(100)
 end
 
-local function OnWork(inst, worker, workleft)
-	local pt = Point(inst.Transform:GetWorldPosition())
-	if workleft <= 0 then
-		--inst.SoundEmitter:PlaySound("dontstarve/wilson/rock_break")
-		inst.components.lootdropper:DropLoot(pt)
+local function chopbeanstalk(inst, chopper, chops)
+    if chopper and chopper.components.beaverness and chopper.components.beaverness:IsBeaver() then
+		inst.SoundEmitter:PlaySound("dontstarve/characters/woodie/beaver_chop_tree")          
+	else
+		inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree")          
 	end
+end
+
+chopped = function(inst)
+    inst:RemoveComponent("workable")
+	inst:RemoveComponent("activatable")
+    inst.AnimState:PushAnimation("idle_hole","loop")
+	inst.chopped = true	
+end
+
+local function chopdownbeanstalk(inst, chopper)
+    inst:RemoveComponent("workable")
+	inst:RemoveComponent("activatable")
+    local pt = Vector3(inst.Transform:GetWorldPosition())
+
+    inst:DoTaskInTime(.4, function() 
+		local sz = 10
+		GetPlayer().components.playercontroller:ShakeCamera(inst, "FULL", 0.25, 0.03, sz, 6)
+    end)
+
+    inst.AnimState:PlayAnimation("retract",false)
+    inst.AnimState:PushAnimation("idle_hole","loop")	
+	inst.components.lootdropper:DropLoot(pt)
+	inst.chopped = true
 end
 
 local function fn(Sim)
@@ -161,7 +162,6 @@ local function fn(Sim)
 	anim:SetBank("tentaclepillar")
 	anim:SetBuild("beanstalk")
 	
-	inst.AnimState:PlayAnimation("emerge") 
     inst.AnimState:PushAnimation("idle", "loop")	
 
 	light.Transform:SetPosition(inst.Transform:GetWorldPosition())	
@@ -180,14 +180,50 @@ local function fn(Sim)
 	
 	inst:AddComponent("workable")
 	inst.components.workable:SetWorkAction(ACTIONS.CHOP)
-	inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE)
-	inst.components.workable:SetOnWorkCallback(OnWork)	
+    inst.components.workable:SetOnWorkCallback(chopbeanstalk)
+    inst.components.workable:SetOnFinishCallback(chopdownbeanstalk)
 	
     inst:AddComponent("inspectable")
 	
     -------------------
     inst:AddComponent("lootdropper")
+		
+	--Beanstalk chunk drops.
+	inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 1.0)	
+	inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 0.75)
+	inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 0.5)
+	inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 0.5)
+	inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 0.5)
+	inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 0.5)
+	inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 0.5)
+	inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 0.5)
+	inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 0.5)
+	inst.components.lootdropper:AddChanceLoot("beanstalk_chunk", 0.5)
+
+	--Skeleton drops.
+	inst.components.lootdropper:AddChanceLoot("skeleton", 0.6)
+	inst.components.lootdropper:AddChanceLoot("skeleton", 0.2)
+		
+	--Gold nugget drops.
+	inst.components.lootdropper:AddChanceLoot("goldnugget", 0.7)
+	inst.components.lootdropper:AddChanceLoot("goldnugget", 0.5)
+		
+	--Marble drops.
+	inst.components.lootdropper:AddChanceLoot("marble", 0.8)
+	inst.components.lootdropper:AddChanceLoot("marble", 0.8)
+		
+	--Cloud turf drops.
+	inst.components.lootdropper:AddChanceLoot("cloud_turf", 0.5)
+	inst.components.lootdropper:AddChanceLoot("cloud_turf", 0.5)
+	inst.components.lootdropper:AddChanceLoot("cloud_turf", 0.5)
+		
+	--Magic bean drops.
+	inst.components.lootdropper:AddChanceLoot("magic_beans", 0.21)
+	inst.components.lootdropper:AddChanceLoot("magic_beans", 0.18)	
 	
+	inst.chopped = false
+	inst.OnSave = onsave
+	inst.OnLoad = onload	
     return inst		
 end
 
