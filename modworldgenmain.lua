@@ -31,6 +31,9 @@
 --
 -----------------------------------
 
+GLOBAL.require("constants")
+local GROUND = GLOBAL.GROUND
+
 GLOBAL.require("map/levels")
 GLOBAL.require("map/tasks")
 GLOBAL.require("map/rooms")
@@ -44,7 +47,15 @@ local CAMPAIGN_LENGTH = 5
 local TRANSLATE_TO_PREFABS = GLOBAL.require("map/forest_map").TRANSLATE_TO_PREFABS
 TRANSLATE_TO_PREFABS["skymushrooms"] = {"orange_mushroom", "purple_mushroom", "yellow_mushroom"}
 
+local MULTIPLY = GLOBAL.require("map/forest_map").MULTIPLY
+MULTIPLY["everywhere"] = 100
+
 local Forest = GLOBAL.require("map/forest_map")
+
+--Controls setpeices.
+local Layouts = GLOBAL.require("map/layouts").Layouts
+local StaticLayout = GLOBAL.require("map/static_layout")
+Layouts["BeanstalkTop"] = StaticLayout.Get("map/static_layouts/beanstalk_top")
 
 --This is the preset for testing purposes.
 AddLevel(LEVELTYPE.SURVIVAL, {
@@ -66,25 +77,26 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 			{"season_start", 	"summer"},
 			{"season", 			"onlywinter"},
 			{"weather", 		"never"},
+			{"roads", 			"never"},	
+			
 			{"boons",			"always"},
 			{"spiders", 		"never"},
 			{"deerclops", 		"never"},
 			{"hounds", 			"never"},	
-			{"roads", 			"never"},	
-			{"creepyeyes", 		"always"},
 			{"rabbits",         "never"},
 			{"trees",           "never"},
 			{"rocks",           "never"},	
 			{"carrots",         "never"},	
 			{"beefalo",         "never"},	
 			{"grass",           "never"},	
-			{"world_complexity", "verycomplex"},	
 			{"pigs",            "never"},
 			
+			{"world_complexity", "verycomplex"},	
+						
 			--This is custom content.
-			{"skymushrooms",    "always"},
+			{"skymushrooms",    "everywhere"},
 			
-			{"start_setpeice", 	"DefaultPlusStart"},				
+			{"start_setpeice", 	"BeanstalkTop"},				
 		},
 		
 		tasks = {
@@ -141,7 +153,7 @@ AddLevel(LEVELTYPE.ADVENTURE, {
 			{"roads", 			"never"},	
 			{"creepyeyes", 		"always"},
 			{"rabbits",         "never"},
-			{"trees",           "always"},
+			{"trees",           "never"},
 			{"rocks",           "always"},	
 			{"carrots",         "never"},	
 			{"beefalo",         "never"},	
@@ -151,9 +163,8 @@ AddLevel(LEVELTYPE.ADVENTURE, {
 			
 			--This is custom content.
 			{"skymushrooms",    "always"},
-			{"beanstalks",      "always"},
 			
-			{"start_setpeice", 	"DefaultPlusStart"},				
+			{"start_setpeice", 	"BeanstalkTop"},				
 		},
 		
 		tasks = {
@@ -175,7 +186,7 @@ AddLevel(LEVELTYPE.ADVENTURE, {
 		
 		override_triggers = {
 
-			["DefaultPlusStart"] = {	
+			["BeanstalkTop"] = {	
 			
 				{"ColourCube", "fungus_cc"}, 
 				
@@ -183,8 +194,32 @@ AddLevel(LEVELTYPE.ADVENTURE, {
 		},		
 })
 
+AddRoom("BeanstalkSpawn", {
+	colour={r=.010,g=.010,b=.10,a=.50},
+	value = GROUND.MARSH,
+	contents =  {
+		distributepercent = 1,
+		distributeprefabs = {
+			skeleton = 1,
+		}
+	}
+})
 
---[[AddTask("BeanstalkStart", {
+AddTask("BeanstalkSpawn", {
+	room_choices={
+		["BeefalowPlain"] = 5,
+	},
+	room_bg=GROUND.MARSH,
+	background_room="BGMarsh",
+	colour={r=0.0,g=0,b=0.0,a=0.5},
+})
+
+local function SurvivalLevelInit(level)
+	table.insert(level.tasks, "BeanstalkSpawn")
+end
+
+--[[
+AddTask("BeanstalkStart", {
 		locks=LOCKS.NONE,
 		keys_given=KEYS.NONE,
 		room_choices={
