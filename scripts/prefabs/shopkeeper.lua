@@ -6,11 +6,261 @@ local assets =
 	Asset("SOUND", "sound/maxwell.fsb"),
 }
 
+--These are the shopkeeper's speeches.
+local SPEECH =
+{
+	--This is the speech that is loaded if no speech is defined.
+	NULL_SPEECH=
+	{
+	    
+		delay = 2,
+		disableplayer = true,
+		skippable = true,
+		
+		{
+			string = "You... You shouldn't be here.",
+			wait = 2,
+			anim = nil,
+			sound = nil,
+		},
+		{
+			string = "Really. Something is off in this universe.",
+			wait = 1,
+			anim = nil,
+			sound = nil,			
+		},
+	},
+	
+	--This is the speech where he asks for beefalo in exchange for magic beans.
+	BEAN_QUEST =
+	{
+	    
+		delay = 2,
+		disableplayer = true,
+		skippable = true,
+		
+		{
+			string = "Hello there, (fella/darling).",
+			wait = 3,
+			anim = nil,
+			sound = "dontstarve/common/destroy_metal",		
+		},
+		{
+			string = "You look tired.",
+			wait = 3,
+			anim = nil,
+			sound = nil,			
+		},		
+		{
+			string = "What if I told you I had something that could get you out?",
+			wait = 3,
+			anim = nil,
+			sound = nil,
+		},
+		{
+			string = "That could whisk you away from this miserable plane?",
+			wait = 3,
+			anim = nil,
+			sound = nil,			
+		},
+		{
+			string = "Interested?",
+			wait = 3,
+			anim = nil,
+			sound = nil,			
+		},
+		{
+			string = "Then lets make a deal.",
+			wait = 3,
+			anim = nil,
+			sound = nil,			
+		},
+		{
+			string = "I have need of some Beefalo.",
+			wait = 3,
+			anim = nil,
+			sound = nil,			
+		},
+		{
+			string = "Those hairy beasts you've seen roaming the grasslands.",
+			wait = 3,
+			anim = nil,
+			sound = nil,			
+		},
+		{
+			string = "Bring me a few...",
+			wait = 3,
+			anim = nil,
+			sound = nil,			
+		},
+		{
+			string = "...Lets say three.",
+			wait = 3,
+			anim = nil,
+			sound = nil,			
+		},
+		{
+			string = "And I'll give you the ticket out.",
+			wait = 3,
+			anim = nil,
+			sound = nil,			
+		},
+		{
+			string = "Get to it, (fella/darling).",
+			wait = 3,
+			anim = nil,
+			sound = "dontstarve/common/destroy_metal",		
+		},		
+	},	
+		
+	--This is for when a trade is successful.	
+	BEAN_SUCCESS =
+	{
+	    
+		disableplayer = false,
+		skippable = false,
+		
+		{
+			string = "Best of luck, (fella/darling).",
+			wait = 3,
+			anim = nil,
+			sound = "dontstarve/common/destroy_metal",		
+		},
+	},
+	
+	--This is for when the player attacks the shopkeeper.	
+	HIT =
+	{
+	    
+		delay = 2,
+		disableplayer = false,
+		skippable = false,
+		
+		{
+			string = "...",
+			wait = 3,
+			anim = nil,
+			sound = "dontstarve/common/destroy_metal",			
+		},
+	},	
+	
+	--This is for when the player keeps bugging the shopkeeper about the beans.	
+	BEAN_REMINDER =
+	{
+	    
+		delay = 2,
+		disableplayer = false,
+		skippable = false,
+		
+		{
+			string = "Get to it, (fella/darling).",
+			wait = 3,
+			anim = nil,
+			sound = "dontstarve/common/destroy_metal",			
+		},
+	},		
+}
+
+-------------------------------------------------------------------------------------------------
+
+--These are various functions which play speeches.
+local function activatebeanquest(inst)
+	if GetPlayer():HasTag("return_customer") and not GetPlayer():HasTag("recieved_beans") then
+	
+    local conv_index = 1
+	TheCamera:SetDistance(9)
+	
+    inst:DoTaskInTime(1.5, function()	
+		if inst.components.maxwelltalker then
+			if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
+			inst.components.maxwelltalker.speech = "BEAN_REMINDER"
+			inst.components.maxwelltalker:SetSpeech("BEAN_REMINDER")
+			inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
+            inst:RemoveComponent("playerprox")
+        end
+    end) 			
+		
+	elseif not GetPlayer():HasTag("recieved_beans") then 
+	
+		if inst.components.maxwelltalker then
+			if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
+			inst.components.maxwelltalker.speech = "BEAN_QUEST"
+			inst.components.maxwelltalker:SetSpeech("BEAN_QUEST")
+			inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
+		end	
+		
+	else end	
+end
+
+local function maketalkable(inst)
+    if inst.components.playerprox then
+        inst:RemoveComponent("playerprox")
+    end
+
+    if inst.components.maxwelltalker then
+        if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
+        inst.components.maxwelltalker.speech = "BEAN_QUEST"
+        inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
+    end
+	
+    if not inst.components.talkable then
+        local conv_index = 1
+        inst:DoTaskInTime(4, function()
+            if inst.components.maxwelltalker then
+                inst.components.maxwelltalker.speech = conv_index
+                inst:AddComponent("talkable")
+            end
+        end)
+
+        inst:ListenForEvent("talkedto", function()
+            if inst.components.maxwelltalker then
+                conv_index = math.min( table.getn(SPEECH), conv_index + 1 )
+                inst.components.maxwelltalker.speech = conv_index
+            end
+        end)  
+    end
+end
+
+-------------------------------------------------------------------------------------------------
+
+--This makes it so that you cannot kill the shopkeeper.
+local function OnHit(inst, attacker)
+
+    local doer = attacker
+    if doer then
+        local pos = Vector3( doer.Transform:GetWorldPosition() )
+        GetSeasonManager():DoLightningStrike(pos)	
+		
+        if doer.components.combat then
+			doer.components.combat:GetAttacked(nil, 0)
+		end
+    end
+    inst.components.maxwelltalker.speech = "HIT"
+    inst.components.maxwelltalker:SetSpeech("HIT")
+    
+    if inst.components.maxwelltalker:IsTalking() then
+        inst.components.maxwelltalker:StopTalking()
+    end
+    
+    inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
+	
+	inst.SoundEmitter:PlaySound("dontstarve/maxwell/disappear")		
+	fx.Transform:SetPosition(beanprize.Transform:GetWorldPosition())	
+	inst:Remove()
+    
+end
+
+-------------------------------------------------------------------------------------------------
+
+--This knows what to do if the player doesn't do the trades requirements.
+local function OnRefuseItem(inst, item)
+    print "Item refused."
+end
+
 -------------------------------------------------------------------------------------------------
 
 --This checks if the item fulfils particular requirements, and if it does, it returns true.
 local function ShouldAcceptItem(inst, item)
-
 	--Example trade. Gold nugget is what we give the shopkeep.
     if item.prefab == "goldnugget" then
         return true
@@ -21,174 +271,36 @@ end
 local function OnGetItemFromPlayer(inst, giver, item)
     
     if item.prefab == "goldnugget" then
+	
 	    --This knows what to spawn.
         local beanprize = SpawnPrefab("magic_beans") 
 		local fx = SpawnPrefab("maxwell_smoke")
 		
-		inst:ListenForEvent("turnedon", function() phonographon(inst) end, inst.phonograph)
+		--onTalk(inst)
 		
 		--Gives the player the magic beans.
-        beanprize.Transform:SetPosition(inst.Transform:GetWorldPosition())
+        beanprize.Transform:SetPosition(GetPlayer().Transform:GetWorldPosition())
 		
 		--Creates smoke for effect.
 		inst.SoundEmitter:PlaySound("dontstarve/maxwell/disappear")		
 		fx.Transform:SetPosition(beanprize.Transform:GetWorldPosition())	
         print "This should be a pause."		
+		
+		--Confirms the trade via short dialogue.
+		inst:DoTaskInTime(1.5, function()
+			if inst.components.maxwelltalker then
+				if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
+				inst.components.maxwelltalker.speech = "BEAN_SUCCESS"
+				inst.components.maxwelltalker:SetSpeech("BEAN_SUCCESS")
+				inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
+			end
+		end)	
     end
 end
 
---This knows what to do if the player doesn't do those requirement things.
-local function OnRefuseItem(inst, item)
-    print "Item refused."
-end
-
 -------------------------------------------------------------------------------------------------
-
---This is the act of speaking.
-local function onTalk(inst)
-	inst.speech = speeches[speech or "SPEECH_1"]	
-	inst:Show()
 	
-	if inst.speech then
-		if inst.speech.delay then
-			print "This should be a pause."
-		end
-
-		canskip = true
-		
-		local length = #inst.speech or 1
-		
-		--the loop that goes on while the speech is happening.
-		for k, section in ipairs(inst.speech) do 
-			local wait = section.wait or 1
-
-			--Make with the talking, but not the moving of the lips.
-	        if section.string then 
-		        inst.SoundEmitter:PlaySound(inst.speech.voice or defaultvoice, "talk")
-		        if inst.components.talker then
-					inst.components.talker:Say(section.string, wait)
-				end
-			end
-
-			--If there's an extra sound to be played it plays here.
-			if section.sound then
-				inst.SoundEmitter:PlaySound(section.sound)
-			end
-
-			--Patience, young shopkeeper.
-			Sleep(wait)
-
-			--It shuts the face hole.
-			if section.string then	
-				inst.SoundEmitter:KillSound("talk")
-	        end
-			
-			--More patience, young shopkeeper.
-        	Sleep(section.waitbetweenlines or 0.5)
-		end
-		
-		--Talking sounds will stop.
-		inst.SoundEmitter:KillSound("talk")	
-
-		--This gives control back to the player.
-		if inst.speech.disableplayer and inst.wilson and inst.wilson.sg.currentstate.name == "sleep" then		
-			inst.wilson.sg:GoToState("wakeup") 
-			inst.wilson:DoTaskInTime(1.5, function() 
-				inst.wilson.components.playercontroller:Enable(true)			
-				GetPlayer().HUD:Show()
-				TheCamera:SetDefault()
-			end)
-		end
-		
-		--Reset the speech to nothing.
-		inst.speech = nil
-	end
-	
-	--[[
-	for k,v in pairs(inputhandlers) do
-	        v:Remove()
-	end
-	--]]
-	
-end	
-
---These are the shopkeeper's speeches.
-local SPEECH =
-{
-	NULL_SPEECH=
-	{
-	    --The player can skip the dialogue, and is practically non-existent until the dialogue is finished or skipped.
-		disableplayer = true,
-		skippable = true,
-		
-		{
-			string = "You... You shouldn't be here.",
-			wait = 2
-		},
-		{
-			string = "Really. Something is off in this universe.",
-			wait = 1
-		},
-	},
-	
-	SPEECH_1 =
-	{
-	    --The player can skip the dialogue, and is practically non-existent until the dialogue is finished or skipped.
-		disableplayer = true,
-		skippable = true,
-		
-		{
-			string = "Hello there, (fella/darling).",
-			wait = 3
-		},
-		{
-			string = "You look tired.",
-			wait = 3
-		},		
-		{
-			string = "What if I told you I had something that could get you out?",
-			wait = 3
-		},
-		{
-			string = "That could whisk you away from this miserable plane?",
-			wait = 3
-		},
-		{
-			string = "Interested?",
-			wait = 3
-		},
-		{
-			string = "Then lets make a deal.",
-			wait = 3
-		},
-		{
-			string = "I have need of some Beefalo.",
-			wait = 3
-		},
-		{
-			string = "Those hairy beasts you've seen roaming the grasslands.",
-			wait = 3
-		},
-		{
-			string = "Bring me a few...",
-			wait = 3
-		},
-		{
-			string = "...Lets say three.",
-			wait = 3
-		},
-		{
-			string = "And I'll give you the ticket out.",
-			wait = 3
-		},
-		{
-			string = "Get to it, (fella/darling).",
-			wait = 3
-		},		
-	},
-}
-	
---This is the constructor for the shopkeeper.
+--This is the constructor for the shopkeeper prefab.
 local function fn(Sim)
 	local inst = CreateEntity()
 	local trans = inst.entity:AddTransform()
@@ -198,26 +310,28 @@ local function fn(Sim)
 	shadow:SetSize( 1.75, .75 )
     inst.Transform:SetTwoFaced()
 	
+	MakeObstaclePhysics(inst, 2)
+	
 	------------------------------------------------------
 	
     anim:SetBank("shop")
     anim:SetBuild("shop_basic")
 	anim:PlayAnimation("idle", "loop")
  
+    inst:AddComponent("talker")
     inst.entity:AddLabel()
-    inst.Label:SetFontSize(28)
+    inst.Label:SetFontSize(35)
     inst.Label:SetFont(TALKINGFONT)
     inst.Label:SetPos(0,5,0)
-    inst.Label:Enable(false) 
  
     ------------------------------------------------------
     --All of this is related to trading.
-	
 	
     inst:AddComponent("trader")
     inst.components.trader:SetAcceptTest(ShouldAcceptItem)
     inst.components.trader.onaccept = OnGetItemFromPlayer
     inst.components.trader.onrefuse = OnRefuseItem	
+	
 	
 	--[[
 	inst:AddComponent("activatable")
@@ -226,16 +340,29 @@ local function fn(Sim)
 	--]]
 	
 	------------------------------------------------------
- 
-	--All of this is related to the speeches.
+
+    inst:AddComponent("named")
+    inst.components.named:SetName("Shopkeeper")	
+
+	--All of this is related to the speeches.	
+    inst:AddComponent("maxwelltalker")
+    inst.components.maxwelltalker.speeches = SPEECH
 	
-    inst:AddComponent("talker")
-	inst.components.talker.ontalk = onTalk	
+    inst:AddComponent("playerprox")
+    inst.components.playerprox:SetDist(12, 15)
+    inst.components.playerprox:SetOnPlayerNear(activatebeanquest)  	
+	
+	inst.talkable = maketalkable
+	
+	------------------------------------------------------
 	
     inst:AddComponent("inspectable")
 	
     --inst:ListenForEvent( "ontalk", function(inst, data) inst.AnimState:PlayAnimation("dialog_pre") inst.AnimState:PushAnimation("dial_loop", true) end)
     --inst:ListenForEvent( "donetalking", function(inst, data) inst.AnimState:PlayAnimation("dialog_pst") inst.AnimState:PushAnimation("idle", true) end)
+	
+    inst:AddComponent("combat")
+    inst.components.combat.onhitfn = OnHit	
 
     return inst
 end
