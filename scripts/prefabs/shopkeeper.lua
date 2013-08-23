@@ -233,7 +233,7 @@ local SPEECH =
 --These are various functions which play speeches.
 local function activatebeanquest(inst)
 	
-		if GetPlayer():HasTag("return_customer") and not GetPlayer():HasTag("recieved_beans") then
+		if GetPlayer():HasTag("return_customer") and not GetPlayer():HasTag("received_beans") then
 
 		TheCamera:SetDistance(14)
 	
@@ -249,7 +249,7 @@ local function activatebeanquest(inst)
 			end
 		end) 			
 		
-		elseif not GetPlayer():HasTag("recieved_beans") then 
+		elseif not GetPlayer():HasTag("received_beans") then 
 	
 			if inst.components.maxwelltalker then
 				if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
@@ -266,7 +266,7 @@ local function activatebeanquest(inst)
 end
 
 local function flagplayer(inst)
-	if GetPlayer():HasTag("return_customer") and not GetPlayer():HasTag("recieved_beans") then
+	if GetPlayer():HasTag("return_customer") and not GetPlayer():HasTag("received_beans") then
 	
     inst:DoTaskInTime(1.5, function()	
 		if inst.components.maxwelltalker then
@@ -280,7 +280,7 @@ local function flagplayer(inst)
         end
     end) 			
 		
-	elseif not GetPlayer():HasTag("recieved_beans") then 
+	elseif not GetPlayer():HasTag("received_beans") then 
 	
 		if inst.components.maxwelltalker then
 			if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
@@ -291,7 +291,7 @@ local function flagplayer(inst)
 			if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
 		end	
 		
-	elseif GetPlayer():HasTag("recieved_beans") then
+	elseif GetPlayer():HasTag("received_beans") then
 		
 		if inst.components.maxwelltalker then
 			if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
@@ -344,7 +344,7 @@ local function beefalocheck(inst)
 		local ents = TheSim:FindEntities(x,y,z, 12, {"beefalo"})
 		
 		for k,v in pairs(ents) do
-			if v.components.follower and owner.components.leader:IsFollower(v) and not GetPlayer():HasTag("recieved_beans") and GetPlayer():HasTag("return_customer") then
+			if v.components.follower and owner.components.leader:IsFollower(v) and not GetPlayer():HasTag("received_beans") and GetPlayer():HasTag("return_customer") then
 				print "Happy shopkeeper"
 			
 				if inst.updatetask then
@@ -381,7 +381,7 @@ local function beefalocheck(inst)
 						inst.components.maxwelltalker.speech = "BEAN_SUCCESS"
 						inst.components.maxwelltalker:SetSpeech("BEAN_SUCCESS")
 						inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
-						GetPlayer():AddTag("recieved_beans")
+						GetPlayer():AddTag("received_beans")
 					end
 				end)			
 			end
@@ -437,7 +437,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
 				inst.components.maxwelltalker.speech = "BEAN_SUCCESS"
 				inst.components.maxwelltalker:SetSpeech("BEAN_SUCCESS")
 				inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
-				GetPlayer():AddTag("recieved_beans")
+				GetPlayer():AddTag("received_beans")
 			end
 		end)	
     end
