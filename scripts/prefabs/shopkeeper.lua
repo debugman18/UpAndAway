@@ -315,12 +315,12 @@ local function onload(inst, data)
 	inst.gavebeans = data and data.gavebeans
 
 	if data and data.gavebeans then
-		function(inst) inst.gavebeans = true end
+		function beangiver(inst) inst.gavebeans = true end
 	end
 	inst.customer = data and data.customer
 
 	if data and data.customer then
-		function(inst) inst.customer = true end
+		function customergiver(inst) inst.customer = true end
 	end	
 end 
 
