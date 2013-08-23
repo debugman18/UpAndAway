@@ -168,7 +168,7 @@ AddLevel(LEVELTYPE.ADVENTURE, {
 			{"world_complexity", "verycomplex"},	
 						
 			--This is custom content.
-			{"skymushrooms",    "everywhere"},
+			{"skyflowers",    "everywhere"},
 			
 			{"start_setpeice", 	"BeanstalkTop"},				
 		},

@@ -267,21 +267,6 @@ end
 
 AddPrefabPostInit('evergreen', evergreens_ret)	 
 
---Makes the world above persistent.
-AddGlobalClassPostConstruct("saveindex", "SaveIndex", function(self)
-  function SaveIndex:OnFailAdventure(cb)
-    local filename = self.data.slots[self.current_slot].modes.adventure.file
- 
-    local function onsavedindex()
-      --EraseFiles(cb, {filename})
-      cb()
-    end
-    self.data.slots[self.current_slot].current_mode = "survival"
-    --self.data.slots[self.current_slot].modes.adventure = {}
-    self:Save(onsavedindex)
-  end
-end)
-
 --Changes the title displayed on the main menu.
 local function UpdateMainScreen(self)
 	self.updatename:SetString("Up and Away")
