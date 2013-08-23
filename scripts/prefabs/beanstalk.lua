@@ -65,7 +65,7 @@ end
 --
 -- The test for duplicacy is not quite efficient (it's quadratic), but
 -- since this will only run once per "game instance" (once on menu, once on
--- the actual game, once on world generation, etc.) it doesn't really matter.
+-- the actual game, once on each world generation) it doesn't really matter.
 --]]
 for _, l in ipairs(loot) do
 	local name = l[1]
@@ -128,10 +128,8 @@ local AddLoot = NewLootAdder()
 -- 
 -- @param item The item entity
 -- @param center The center (on the ground) of the falling area.
--- @param min_radius Minimum radius from pt it will fall on.
--- @param max_radius Maximum radius from pt it will fall on.
---
--- @note The loot may fall on water, etc. (I think that's nice ;)
+-- @param min_radius Minimum radius from center it will fall on.
+-- @param max_radius Maximum radius from center it will fall on.
 --
 -- @returns item
 local function DropItemFromTheSky(item, center, min_radius, max_radius)
