@@ -256,6 +256,7 @@ local function activatebeanquest(inst)
 				inst.components.maxwelltalker:SetSpeech("BEAN_QUEST")
 				inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
 				GetPlayer():AddTag("return_customer")
+				inst.customer = true
 				inst.components.activatable.inactive = true
 				if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
 			end	
@@ -311,27 +312,31 @@ local function onsave(inst, data)
 	data.customer  = inst.customer
 end
 
-local function onload(inst, data)
-	inst.gavebeans = data and data.gavebeans
-
-	if data and data.gavebeans then
-		function beangiver(inst) inst.gavebeans = true end
-	end
-	inst.customer = data and data.customer
-
-	if data and data.customer then
-		function customergiver(inst) inst.customer = true end
-	end	
-end 
-
-overtime = function(inst) 
-	if inst.gavebeans = true and not GetPlayer():HasTag("received_beans") then
+local function overtime(inst)
+	if inst.gavebeans and not GetPlayer():HasTag("received_beans") then
 		GetPlayer():AddTag("received_beans")
-	end	
-	if inst.customer = true and not GetPlayer():HasTag("return_customer") then
+	end		
+	if inst.customer and not GetPlayer():HasTag("return_customer") then
 		GetPlayer():AddTag("return_customer")
 	end	
 end
+
+local function onload(inst, data)
+	inst.gavebeans = data and data.gavebeans
+
+	if data and data.gavebeans == true then
+		inst.gavebeans = true
+	end
+	inst.customer = data and data.customer
+
+	if data and data.customer == true then
+		inst.customer = true
+	end
+	
+	if data then
+		overtime(inst)
+	end	
+end 
 
 --This makes it so that you cannot kill the shopkeeper.
 local function OnHit(inst, attacker)
@@ -408,6 +413,7 @@ local function beefalocheck(inst)
 						inst.components.maxwelltalker:SetSpeech("BEAN_SUCCESS")
 						inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
 						GetPlayer():AddTag("received_beans")
+						inst.beans = true
 					end
 				end)			
 			end
@@ -509,6 +515,10 @@ local function fn(Sim)
     inst.components.named:SetName("Shopkeeper")	
 
 	--inst:AddComponent("talkable")
+    inst.OnLoad = onload
+    inst.OnSave = onsave
+    
+    overtime(inst)
 	
 	--All of this is related to the speeches.	
     inst:AddComponent("maxwelltalker")
@@ -536,10 +546,6 @@ local function fn(Sim)
 	inst.components.activatable.OnActivate = activatebeanquest	
 	inst.components.activatable.quickaction = true
     
-    inst.OnLoad = onload
-    inst.OnSave = onsave
-    
-    overtime(inst)
     return inst
 end
 
