@@ -1,5 +1,5 @@
 GetPlayer = GLOBAL.GetPlayer
-
+SaveIndex = GLOBAL.SaveIndex
 modimport 'configloader.lua'
 LoadConfigurationFile 'rc.lua'
 
@@ -25,17 +25,17 @@ GLOBAL.STRINGS.NAMES.SUNFLOWER_SEEDS = "Golden Sunflower Seeds"
 GLOBAL.STRINGS.NAMES.MOONFLOWER = "Moonflower"
 GLOBAL.STRINGS.NAMES.MOONFLOWER_SEEDS = "Moonflower Seeds"
 
-GLOBAL.STRINGS.NAMES.YELLOW_MUSHROOM = "Yellow Mushroom"
-GLOBAL.STRINGS.NAMES.YELLOW_CAP = "Yellow Cap"
-GLOBAL.STRINGS.NAMES.YELLOW_CAP_COOKED = "Cooked Yellow Cap"
+GLOBAL.STRINGS.NAMES.YELLOW_SKYFLOWER = "Yellow Skyflower"
+GLOBAL.STRINGS.NAMES.YELLOW_CAP = "Yellow Skyflower"
+GLOBAL.STRINGS.NAMES.YELLOW_CAP_COOKED = "Cooked Yellow Skyflower"
 
-GLOBAL.STRINGS.NAMES.ORANGE_MUSHROOM = "Orange Mushroom"
-GLOBAL.STRINGS.NAMES.ORANGE_CAP = "Orange Cap"
-GLOBAL.STRINGS.NAMES.ORANGE_CAP_COOKED = "Cooked Orange Cap"
+GLOBAL.STRINGS.NAMES.ORANGE_SKYFLOWER = "Orange Skyflower"
+GLOBAL.STRINGS.NAMES.ORANGE_CAP = "Orange Skyflower"
+GLOBAL.STRINGS.NAMES.ORANGE_CAP_COOKED = "Cooked Orange Skyflower"
 
-GLOBAL.STRINGS.NAMES.PURPLE_MUSHROOM = "Purple Mushroom"
-GLOBAL.STRINGS.NAMES.PURPLE_CAP = "Purple Cap"
-GLOBAL.STRINGS.NAMES.PURPLE_CAP_COOKED = "Cooked Purple Cap"
+GLOBAL.STRINGS.NAMES.PURPLE_SKYFLOWER= "Purple Skyflower"
+GLOBAL.STRINGS.NAMES.PURPLE_CAP = "Purple Skyflower"
+GLOBAL.STRINGS.NAMES.PURPLE_CAP_COOKED = "Cooked Purple Skyflower"
 
 GLOBAL.STRINGS.NAMES.BEANSTALK = "Beanstalk"
 GLOBAL.STRINGS.NAMES.BEANSTALK_EXIT = "Beanstalk"
@@ -190,7 +190,7 @@ PrefabFiles = {
 	--"moonflower",
 	--"moonflower_seeds",	
 	
-	"new_mushrooms",
+	"skyflowers",
 	"beanstalk",
 	"beanstalk_exit",
 	
@@ -267,6 +267,27 @@ end
 
 AddPrefabPostInit('evergreen', evergreens_ret)	 
 
+--Makes the world above persistent.
+AddGlobalClassPostConstruct("saveindex", "SaveIndex", function(self)
+  function SaveIndex:OnFailAdventure(cb)
+    local filename = self.data.slots[self.current_slot].modes.adventure.file
+ 
+    local function onsavedindex()
+      --EraseFiles(cb, {filename})
+      cb()
+    end
+    self.data.slots[self.current_slot].current_mode = "survival"
+    --self.data.slots[self.current_slot].modes.adventure = {}
+    self:Save(onsavedindex)
+  end
+end)
+
+--Changes the title displayed on the main menu.
+local function UpdateMainScreen(self)
+	self.updatename:SetString("Up and Away")
+end
+AddGlobalClassPostConstruct("screens/mainscreen", "MainScreen", UpdateMainScreen)
+
 --Changes "activate" to "talk to" for "shopkeeper".
 AddSimPostInit(function(inst)
 	local oldactionstringoverride = inst.ActionStringOverride
@@ -285,27 +306,10 @@ AddSimPostInit(function(inst)
 	local oldactionstringoverride = inst.ActionStringOverride
 	function inst:ActionStringOverride(bufaction)
 		if bufaction.action == GLOBAL.ACTIONS.ACTIVATE and bufaction.target and bufaction.target.prefab == "beanstalk_exit" then
-			return "Climb down"
+			return "Climb Down"
 		end
 		if oldactionstringoverride then
 			return oldactionstringoverride(inst, bufaction)
 		end
 	end
 end)
-
---[[This is messy mess of ideas.
-
-inst.task = inst:DoPeriodicTask(1, function() onUp(inst, owner) end)
-
-if inst.task then inst.task:Cancel() inst.task = nil end
-
-GetPlayer():ListenForEvent("goneUp", function(inst,data) onsacrifice(data.victim) end )
-
-mushrooms
-berrybush
-evergreen
-spikytree
-spikybush
-rocks
-
---]]
