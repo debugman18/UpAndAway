@@ -159,7 +159,7 @@ local function DropItemFromTheSky(item, center, min_radius, max_radius)
 	-- We try to find a valid position within the range.
 	for _ = 1, 4 do
 		local tentative_radius = min_radius + math.random()*(max_radius - min_radius)
-		offset, theta = FindWalkableOffset(center, theta, tentative_radius, 16)
+		offset = FindWalkableOffset(center, theta, tentative_radius, 16)
 		if offset then break end
 	end
 
