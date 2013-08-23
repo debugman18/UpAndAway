@@ -31,6 +31,10 @@
 --
 -----------------------------------
 
+modimport 'configloader.lua'
+LoadConfigurationFile 'rc.lua'
+
+
 GLOBAL.require("constants")
 local GROUND = GLOBAL.GROUND
 

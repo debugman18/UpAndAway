@@ -1,5 +1,8 @@
 GetPlayer = GLOBAL.GetPlayer
 
+modimport 'configloader.lua'
+LoadConfigurationFile 'rc.lua'
+
 --These give names to all of the new things.
 
 local STRINGS = GLOBAL.STRINGS
