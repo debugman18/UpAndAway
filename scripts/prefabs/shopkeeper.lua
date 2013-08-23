@@ -267,48 +267,6 @@ local function OnHit(inst, attacker)
 	inst:Remove()
 end
 
-local beef = 1
-local function beefalocheck(inst)
-	local owner = GetPlayer()
-	if owner and owner.components.leader then
-		local x,y,z = owner.Transform:GetWorldPosition()
-		local ents = TheSim:FindEntities(x,y,z, 12, {"beefalo"})
-		
-		for k,v in pairs(ents) do
-			if v.components.follower and owner.components.leader:IsFollower(v) and not GetPlayer():HasTag("received_beans") and GetPlayer():HasTag("return_customer") then
-				print "Happy shopkeeper"
-			
-				if inst.updatetask then
-					inst.updatetask:Cancel()
-					inst.updatetask = nil
-				end
-				
-				--This knows what to spawn.
-				local beanprize = SpawnPrefab("magic_beans")
-				local fx = SpawnPrefab("maxwell_smoke")
-
-				if v.prefab == "beefalo" then
-					v:AddTag("beefalofortrade")
-				end
-				
-				--Happily removes the beefalo from your possesion.
-				local beefalofortrade = TheSim:FindFirstEntityWithTag("beefalofortrade")
-				fx.Transform:SetPosition(beefalofortrade.Transform:GetWorldPosition())
-				beefalofortrade:Remove()
-				inst.SoundEmitter:PlaySound("dontstarve/maxwell/disappear")
-			
-				--Gives the player the magic beans.
-				beanprize.Transform:SetPosition(GetPlayer().Transform:GetWorldPosition())
-		
-							end
-		end
-	end
-end
-
-local function beefalotrade(inst)
-	inst.updatetask = inst:DoPeriodicTask(beef, beefalocheck, 1)
-end
-
 
 -------------------------------------------------------------------------------------------------
 -- Functions for trading cows for beans.
