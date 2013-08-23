@@ -194,8 +194,8 @@ local data = {
 local prefabs = {}
 
 for k,v in pairs(data) do
-    local shroom, cap, cooked = MakeSkyflower(v)
-    table.insert(prefabs, shroom)
+    local skyflower, cap, cooked = MakeSkyflower(v)
+    table.insert(prefabs, skyflower)
     table.insert(prefabs, cap)
     table.insert(prefabs, cooked)
 end

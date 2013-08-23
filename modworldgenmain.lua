@@ -49,7 +49,7 @@ local CAMPAIGN_LENGTH = 5
 
 --This also does the following.
 local TRANSLATE_TO_PREFABS = GLOBAL.require("map/forest_map").TRANSLATE_TO_PREFABS
-TRANSLATE_TO_PREFABS["skyflowers"] = {"orange_skyflower", "purple_skyflower", "yellow_skyflower"}
+TRANSLATE_TO_PREFABS["sky_flowers"] = {"orange_skyflower", "purple_skyflower", "yellow_skyflower"}
 
 local MULTIPLY = GLOBAL.require("map/forest_map").MULTIPLY
 MULTIPLY["everywhere"] = 100
