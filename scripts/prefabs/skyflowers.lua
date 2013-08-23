@@ -47,6 +47,8 @@ local function MakeSkyflower(data)
     	inst.entity:AddAnimState()
         inst.AnimState:SetBank("mushrooms")
         inst.AnimState:SetBuild("new_mushrooms")
+        inst.AnimState:PlayAnimation("open_inground")
+        inst.AnimState:PushAnimation("open_"..data.animname) 		
         inst.AnimState:PlayAnimation(data.animname)
         inst.AnimState:SetRayTestOnBB(true);
         inst:AddComponent("inspectable")

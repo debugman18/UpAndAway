@@ -49,7 +49,9 @@ local CAMPAIGN_LENGTH = 5
 
 --This also does the following.
 local TRANSLATE_TO_PREFABS = GLOBAL.require("map/forest_map").TRANSLATE_TO_PREFABS
-TRANSLATE_TO_PREFABS["sky_flowers"] = {"orange_skyflower", "purple_skyflower", "yellow_skyflower"}
+TRANSLATE_TO_PREFABS["purpleskyflower"] = {"purple_skyflower"}
+TRANSLATE_TO_PREFABS["yellowskyflower"] = {"yellow_skyflower"}
+TRANSLATE_TO_PREFABS["orangeskyflower"] = {"orange_skyflower"}
 
 local MULTIPLY = GLOBAL.require("map/forest_map").MULTIPLY
 MULTIPLY["everywhere"] = 100
@@ -98,7 +100,9 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 			{"world_complexity", "verycomplex"},	
 						
 			--This is custom content.
-			{"skyflowers",    "everywhere"},
+			{"purpleskyflower",    "everywhere"},
+			{"orangeskyflower",    "everywhere"},
+			{"yellowskyflower",    "everywhere"},
 			
 			{"start_setpeice", 	"BeanstalkTop"},				
 		},
@@ -138,8 +142,8 @@ AddLevel(LEVELTYPE.ADVENTURE, {
 		nomaxwell=true,
 		hideminimap = true,
 		desc="Up and Away.",
-		--min_playlist_position=CAMPAIGN_LENGTH+1,
-		--max_playlist_position=CAMPAIGN_LENGTH+1,		
+		min_playlist_position=CAMPAIGN_LENGTH+1,
+		max_playlist_position=CAMPAIGN_LENGTH+1,		
 
 		overrides={
 			{"world_size", 		"huge"},
@@ -168,7 +172,9 @@ AddLevel(LEVELTYPE.ADVENTURE, {
 			{"world_complexity", "verycomplex"},	
 						
 			--This is custom content.
-			{"skyflowers",    "everywhere"},
+			{"purpleskyflower",    "everywhere"},
+			{"orangeskyflower",    "everywhere"},
+			{"yellowskyflower",    "everywhere"},
 			
 			{"start_setpeice", 	"BeanstalkTop"},				
 		},
