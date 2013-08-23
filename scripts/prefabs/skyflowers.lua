@@ -20,6 +20,24 @@ local function MakeSkyflower(data)
         data.pickloot
     }    
 
+    local function open(inst)
+        if inst.components.pickable and inst.components.pickable:CanBePicked() then
+            if inst.growtask then
+                inst.growtask:Cancel()
+            end
+            inst.growtask = inst:DoTaskInTime(3+math.random()*6, function() 
+                    inst.AnimState:PlayAnimation("open_inground")
+                    inst.AnimState:PushAnimation("open_"..data.animname)
+                    inst.AnimState:PushAnimation(data.animname)
+                    inst.SoundEmitter:PlaySound("dontstarve/common/mushroom_up")
+                    inst.growtask = nil
+                    if inst.components.pickable then
+                        inst.components.pickable.caninteractwith = true
+                    end
+                end)
+        end        
+    end	
+	
 	local function dig_up(inst, chopper)
 		if inst.components.pickable and inst.components.pickable:CanBePicked() then
 			inst.components.lootdropper:SpawnLootPrefab(data.pickloot)
@@ -47,10 +65,13 @@ local function MakeSkyflower(data)
     	inst.entity:AddAnimState()
         inst.AnimState:SetBank("mushrooms")
         inst.AnimState:SetBuild("new_mushrooms")
-        inst.AnimState:PlayAnimation("open_inground")
-        inst.AnimState:PushAnimation("open_"..data.animname) 		
-        inst.AnimState:PlayAnimation(data.animname)
-        inst.AnimState:SetRayTestOnBB(true);
+		
+        --inst.AnimState:PlayAnimation("open_inground")
+        --inst.AnimState:PushAnimation("open_"..data.animname)
+        --inst.AnimState:PushAnimation(data.animname) 	
+		
+		inst.AnimState:PlayAnimation(data.animname)
+		
         inst:AddComponent("inspectable")
 
         inst:AddComponent("pickable")
@@ -58,8 +79,7 @@ local function MakeSkyflower(data)
         inst.components.pickable:SetUp(data.pickloot, nil)
         inst.components.pickable.onpickedfn = onpickedfn
         inst.components.pickable:SetMakeEmptyFn(makeemptyfn)
-        
-        inst.rain = 0
+		inst.components.pickable.caninteractwith = true
 
 		inst:AddComponent("lootdropper")
 		inst:AddComponent("workable")
@@ -69,9 +89,8 @@ local function MakeSkyflower(data)
 
     	MakeSmallBurnable(inst)
         MakeSmallPropagator(inst)
-
-        inst.SoundEmitter:PlaySound("dontstarve/common/mushroom_up")
-		
+		inst.growtask = nil
+		open(inst) 
         return inst
     end
 
@@ -196,8 +215,8 @@ local data = {
 local prefabs = {}
 
 for k,v in pairs(data) do
-    local skyflower, cap, cooked = MakeSkyflower(v)
-    table.insert(prefabs, skyflower)
+    local shroom, cap, cooked = MakeSkyflower(v)
+    table.insert(prefabs, shroom)
     table.insert(prefabs, cap)
     table.insert(prefabs, cooked)
 end
