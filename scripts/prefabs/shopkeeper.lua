@@ -1,4 +1,3 @@
-
 local assets =
 {
 	Asset("ANIM", "anim/shop_basic.zip"),
@@ -306,6 +305,33 @@ local function flagplayer(inst)
 end
 
 -------------------------------------------------------------------------------------------------
+--This handles the remembering.
+local function onsave(inst, data)
+	data.gavebeans = inst.gavebeans
+	data.customer  = inst.customer
+end
+
+local function onload(inst, data)
+	inst.gavebeans = data and data.gavebeans
+
+	if data and data.gavebeans then
+		function(inst) inst.gavebeans = true end
+	end
+	inst.customer = data and data.customer
+
+	if data and data.customer then
+		function(inst) inst.customer = true end
+	end	
+end 
+
+overtime = function(inst) 
+	if inst.gavebeans = true and not GetPlayer():HasTag("received_beans") then
+		GetPlayer():AddTag("received_beans")
+	end	
+	if inst.customer = true and not GetPlayer():HasTag("return_customer") then
+		GetPlayer():AddTag("return_customer")
+	end	
+end
 
 --This makes it so that you cannot kill the shopkeeper.
 local function OnHit(inst, attacker)
@@ -509,7 +535,11 @@ local function fn(Sim)
 	inst:AddComponent("activatable")
 	inst.components.activatable.OnActivate = activatebeanquest	
 	inst.components.activatable.quickaction = true
-
+    
+    inst.OnLoad = onload
+    inst.OnSave = onsave
+    
+    overtime(inst)
     return inst
 end
 
