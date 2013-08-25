@@ -13,5 +13,4 @@ end
 -- Maximum distance for a cow to be negotiated.
 SHOPKEEPER.MAX_COW_DIST = 12
 
-
 DEBUG = true

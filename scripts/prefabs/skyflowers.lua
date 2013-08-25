@@ -8,6 +8,24 @@ local cookedassets =
 	Asset("ANIM", "anim/new_mushrooms.zip"),
 }
 
+local function skyvalues(inst)
+	local SKYHUNGER = GLOBAL.GetPlayer().components.hunger.current or 0
+	local SKYSANITY = GLOBAL.GetPlayer().components.sanity.current or 0
+	local SKYHEALTH = GLOBAL.GetPlayer().components.health.current or 0
+end
+
+local function skyvaluescap(inst)
+	local SKYHUNGER = GLOBAL.GetPlayer().components.hunger.current or 0
+	local SKYSANITY = GLOBAL.GetPlayer().components.sanity.current or 0
+	local SKYHEALTH = GLOBAL.GetPlayer().components.health.current or 0
+end
+
+local function skyvaluescooked(inst)
+	local SKYHUNGER = GLOBAL.GetPlayer().components.hunger.current or 0
+	local SKYSANITY = GLOBAL.GetPlayer().components.sanity.current or 0
+	local SKYHEALTH = GLOBAL.GetPlayer().components.health.current or 0
+end
+
 local function MakeSkyflower(data)
 
     local capassets = 
@@ -19,7 +37,7 @@ local function MakeSkyflower(data)
     {
         data.pickloot
     }    
-
+	
     local function open(inst)
         if inst.components.pickable and inst.components.pickable:CanBePicked() then
             if inst.growtask then
@@ -87,6 +105,9 @@ local function MakeSkyflower(data)
 		inst.components.workable:SetOnFinishCallback(dig_up)
 		inst.components.workable:SetWorkLeft(1)
 
+		--This will eventually be an oneat function.
+		skyvalues(inst)
+		
     	MakeSmallBurnable(inst)
         MakeSmallPropagator(inst)
 		inst.growtask = nil
@@ -129,6 +150,8 @@ local function MakeSkyflower(data)
         inst:AddComponent("cookable")
         inst.components.cookable.product = data.pickloot.."_cooked"
 
+		skyvaluescap(inst)
+		
         return inst
     end
     
@@ -165,55 +188,35 @@ local function MakeSkyflower(data)
         inst.components.perishable:SetPerishTime(TUNING.PERISH_MED)
         inst.components.perishable:StartPerishing()
         inst.components.perishable.onperishreplacement = "spoiled_food"
-
+		
+		skyvaluescooked(inst)
+		
         return inst
-    end    
-
+    end    	
+	
     return Prefab( "forest/objects/"..data.name, mushfn, mushassets, prefabs),
            Prefab( "common/inventory/"..data.pickloot, capfn, capassets),
            Prefab( "common/inventory/"..data.pickloot.."_cooked", cookedfn, cookedassets)
-end
-
---Pseudocode, does not work.
-local function replaceSanityHunger(swapsanityhunger)
-	local oldsanity = GetPlayer().components.sanity.current
-	local oldhunger = GetPlayer().components.hunger.current
-	
-	local newsanity = oldhunger
-	local newhunger = oldsanity
-	
-	local swapsanityhunger = 0
-	swapsanityhunger = newhunger - oldhunger
-end
-
---Pseudocode, does not work.
-local function replaceHungerSanity(swaphungersanity)
-	local oldsanity = GetPlayer().components.sanity.current
-	local oldhunger = GetPlayer().components.hunger.current
-	
-	local newsanity = oldhunger
-	local newhunger = oldsanity
-	
-	local swaphungersanity = 0
-	swaphungersanity = newhunger - oldhunger
+		   
 end
 
 local data = { 
+	
 	{name = "yellow_skyflower", animname="red", pickloot="yellow_cap", open_time = "time",	
-	sanity = 0, health = -TUNING.HEALING_MED, hunger = 0,																							
-	cookedsanity = -TUNING.SANITY_SMALL, cookedhealth = TUNING.HEALING_TINY, cookedhunger = 0}, 
+	sanity = 0, health = 0, hunger = 0,																							
+	cookedsanity = 0, cookedhealth = 0, cookedhunger = 0}, 
 																								
     {name = "orange_skyflower", animname="green", pickloot="orange_cap", open_time = "time",	
-	sanity = -TUNING.SANITY_HUGE, health= 0, hunger = TUNING.CALORIES_SMALL,
-	cookedsanity = TUNING.SANITY_MED, cookedhealth = -TUNING.HEALING_TINY, cookedhunger = 0},
+	sanity = 0, health= 0, hunger = 0,
+	cookedsanity = 0, cookedhealth = 0, cookedhunger = 0},
 																										
     {name = "purple_skyflower", animname="blue", pickloot="purple_cap", open_time = "time",	
-	sanity = 0, health= TUNING.HEALING_MED, hunger = TUNING.CALORIES_SMALL, 
-	cookedsanity = TUNING.SANITY_SMALL, cookedhealth = -TUNING.HEALING_SMALL, cookedhunger = 0}
+	sanity = 0, health= 0, hunger = 0, 
+	cookedsanity = 0, cookedhealth = 0, cookedhunger = 0}
 	}
 	
 local prefabs = {}
-
+		
 for k,v in pairs(data) do
     local shroom, cap, cooked = MakeSkyflower(v)
     table.insert(prefabs, shroom)

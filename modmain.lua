@@ -76,6 +76,9 @@ GLOBAL.STRINGS.NAMES.DUCKRAPTOR_BABY = "Duckling"
 
 GLOBAL.STRINGS.NAMES.LIONANT = "Lionant"
 
+GLOBAL.STRINGS.NAMES.SHEEP = "Sheep"
+GLOBAL.STRINGS.NAMES.SHEEP_ELECTRIC = "Electric Sheep"
+
 --These are descriptions for the new things.
 
 --For the beanstalk.
@@ -97,6 +100,26 @@ STRINGS.CHARACTERS.WX78.DESCRIBE.SHOPKEEPER = "A PEDDLER OF GOODS."
 STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHOPKEEPER = "Perhaps he has some books for sale."
 STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHOPKEEPER = "Men like this ran my lumber yard."
 STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHOPKEEPER = "I thought I got rid of you."
+
+--For the sheep.
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEEP = "Odd place to set up a store."
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEEP = "I like the flag on his umbrella."
+STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEEP = "A deceiver at heart."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEEP = "He sells no potatoes."
+STRINGS.CHARACTERS.WX78.DESCRIBE.SHEEP = "A PEDDLER OF GOODS."
+STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEEP = "Perhaps he has some books for sale."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEEP = "Men like this ran my lumber yard."
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEEP = "I thought I got rid of you."
+
+--For the electric sheep.
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEEP_ELECTRIC = "Odd place to set up a store."
+STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEEP_ELECTRIC = "I like the flag on his umbrella."
+STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEEP_ELECTRIC = "A deceiver at heart."
+STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEEP_ELECTRIC = "He sells no potatoes."
+STRINGS.CHARACTERS.WX78.DESCRIBE.SHEEP_ELECTRIC = "A PEDDLER OF GOODS."
+STRINGS.CHARACTERS.WICKERBOTTOM.SHEEP_ELECTRIC = "Perhaps he has some books for sale."
+STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEEP_ELECTRIC = "Men like this ran my lumber yard."
+STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEEP_ELECTRIC = "I thought I got rid of you."
 
 --These assets are for all of the added inventory items.
 
@@ -176,7 +199,9 @@ Assets = {
 
 PrefabFiles = {
     "shopkeeper",
-
+	"sheep",
+	
+	--"sheep_electric",
 	--"datura",
 	--"datura_petals",	
 	--"crystal_deposit",
