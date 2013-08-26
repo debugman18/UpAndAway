@@ -7,7 +7,7 @@ local cookedassets =
 {
 	Asset("ANIM", "anim/new_mushrooms.zip"),
 }
-
+--[[
 local function skyvalues(inst)
 	local SKYHUNGER = GLOBAL.GetPlayer().components.hunger.current or 0
 	local SKYSANITY = GLOBAL.GetPlayer().components.sanity.current or 0
@@ -25,6 +25,7 @@ local function skyvaluescooked(inst)
 	local SKYSANITY = GLOBAL.GetPlayer().components.sanity.current or 0
 	local SKYHEALTH = GLOBAL.GetPlayer().components.health.current or 0
 end
+--]]
 
 local function MakeSkyflower(data)
 
@@ -106,7 +107,7 @@ local function MakeSkyflower(data)
 		inst.components.workable:SetWorkLeft(1)
 
 		--This will eventually be an oneat function.
-		skyvalues(inst)
+		--skyvalues(inst)
 		
     	MakeSmallBurnable(inst)
         MakeSmallPropagator(inst)
@@ -150,7 +151,7 @@ local function MakeSkyflower(data)
         inst:AddComponent("cookable")
         inst.components.cookable.product = data.pickloot.."_cooked"
 
-		skyvaluescap(inst)
+		--skyvaluescap(inst)
 		
         return inst
     end
@@ -189,7 +190,7 @@ local function MakeSkyflower(data)
         inst.components.perishable:StartPerishing()
         inst.components.perishable.onperishreplacement = "spoiled_food"
 		
-		skyvaluescooked(inst)
+		--skyvaluescooked(inst)
 		
         return inst
     end    	
