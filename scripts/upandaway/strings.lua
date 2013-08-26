@@ -1,113 +1,99 @@
-STRINGS.NAMES.SHOPKEEPER = "Shopkeeper"
+local Add = require 'upandaway.addstrings'
 
-STRINGS.NAMES.DATURA = "Datura"
-STRINGS.NAMES.DATURA_PETALS = "Datura Petals"
 
-STRINGS.NAMES.CRYSTAL_DEPOSIT = "Crystal Deposit"
-STRINGS.NAMES.CRYSTAL_SHARD = "Crystal Shard"
-STRINGS.NAMES.CRYSTAL_MOSS = "Crystal Moss"
-STRINGS.NAMES.CRYSTAL_WALL = "Crystal Wall"
-STRINGS.NAMES.CRYSTAL_CAP = "Crystal Cap"
-STRINGS.NAMES.CRYSTAL_LAMP = "Crystal Lamp"
+Add.Names {
+	beanstalk = "Beanstalk",
+	beanstalk_chunk = "Beanstalk Chunk",
+	beanstalk_exit = "Beanstalk",
+	beanstalk_wall = "Beanstalk Wall",
+	cloud_bomb = "Cloud Bomb",
+	cloud_fluff = "Cloud Fluff",
+	cloud_storage = "Cloud Chest",
+	cloud_turf = "Cloud Turf",
+	crystal_cap = "Crystal Cap",
+	crystal_deposit = "Crystal Deposit",
+	crystal_lamp = "Crystal Lamp",
+	crystal_moss = "Crystal Moss",
+	crystal_shard = "Crystal Shard",
+	crystal_wall = "Crystal Wall",
+	cushion_fruit = "Cloud Fruit",
+	cushion_plant = "Cloud Bush",
+	datura = "Datura",
+	datura_petals = "Datura Petals",
+	duckraptor = "Duckraptor",
+	duckraptor_baby = "Duckling",
+	duckraptor_mother = "Mother Duckraptor",
+	golden_amulet = "Golden Amulet",
+	golden_egg = "Golden Egg",
+	golden_golem = "Golden Golem",
+	kite = "Kite",
+	lionant = "Lionant",
+	magic_beans = "Magic Beans",
+	magic_bean_giant = "Bean Giant",
+	magic_bean_sprout = "Bean Sprout",
+	monolith = "Monolith",
+	moonflower = "Moonflower",
+	moonflower_seeds = "Moonflower Seeds",
+	orange_cap = "Orange Skyflower",
+	orange_cap_cooked = "Cooked Orange Skyflower",
+	orange_skyflower = "Orange Skyflower",
+	pineapple_bush = "Pineapple Bush",
+	pineapple_fruit = "Pineapple",
+	purple_cap = "Purple Skyflower",
+	purple_cap_cooked = "Cooked Purple Skyflower",
+	purple_skyflower = "Purple Skyflower",
+	research_lectern = "Research Lectern",
+	sheep = "Sheep",
+	sheep_electric = "Electric Sheep",
+	shopkeeper = "Shopkeeper",
+	sunflower = "Golden Sunflower",
+	sunflower_seeds = "Golden Sunflower Seeds",
+	wind_axe = "Wind Axe",
+	yellow_cap = "Yellow Skyflower",
+	yellow_cap_cooked = "Cooked Yellow Skyflower",
+	yellow_skyflower = "Yellow Skyflower",
+}
 
-STRINGS.NAMES.SUNFLOWER = "Golden Sunflower"
-STRINGS.NAMES.SUNFLOWER_SEEDS = "Golden Sunflower Seeds"
 
-STRINGS.NAMES.MOONFLOWER = "Moonflower"
-STRINGS.NAMES.MOONFLOWER_SEEDS = "Moonflower Seeds"
+Add.QuotesFor "beanstalk" {
+	GENERIC = "It reaches the clouds.",
+	waxwell = "Some things were too big to fit in the caves.",
+	wendy = "All I'd need to do is let go.",
+	wickerbottom = "The end of the stalk is covered by a layer of cumulonimbus clouds.",
+	willow = "That would make a spectacular fire.",
+	wolfgang = "Is big beanstalk. Reminds Wolfgang of home.",
+	woodie = "Even Lucy can't chop through it.",
+	wx78 = "IT HAS GROWN OUT OF CONTROL.",
+}
 
-STRINGS.NAMES.YELLOW_SKYFLOWER = "Yellow Skyflower"
-STRINGS.NAMES.YELLOW_CAP = "Yellow Skyflower"
-STRINGS.NAMES.YELLOW_CAP_COOKED = "Cooked Yellow Skyflower"
+Add.QuotesFor "sheep" {
+	GENERIC = "They make me feel sleepy.",
+	waxwell = "I'd hate to be near them when they're in a bad mood.",
+	wendy = " Ignorance. The worst kind of darkness.",
+	wickerbottom = "Ovis Aris. Reminds me of farms.",
+	willow = "Cotton. Very flammable.",
+	wolfgang = "Puny baby animal.",
+	woodie = "Ooh! Lambchops!",
+	wx78 = "DOCILE MAMMAL. HARD TO FRIGHTEN.",
+}
 
-STRINGS.NAMES.ORANGE_SKYFLOWER = "Orange Skyflower"
-STRINGS.NAMES.ORANGE_CAP = "Orange Skyflower"
-STRINGS.NAMES.ORANGE_CAP_COOKED = "Cooked Orange Skyflower"
+Add.QuotesFor "sheep_electric" {
+	GENERIC = "Electrifying!",
+	waxwell = " I should keep a distance back from that animal.",
+	wendy = "Their cup hath runneth over.",
+	willow = "Shouldn't have charged him up.",
+	wolfgang = "Baby animal mad!",
+	woodie = "Looks like I'm in trouble now. Oops.",
+	wx78 = "APPARENTLY EASY TO ANGER.",
+}
 
-STRINGS.NAMES.PURPLE_SKYFLOWER= "Purple Skyflower"
-STRINGS.NAMES.PURPLE_CAP = "Purple Skyflower"
-STRINGS.NAMES.PURPLE_CAP_COOKED = "Cooked Purple Skyflower"
-
-STRINGS.NAMES.BEANSTALK = "Beanstalk"
-STRINGS.NAMES.BEANSTALK_EXIT = "Beanstalk"
-STRINGS.NAMES.BEANSTALK_WALL = "Beanstalk Wall"
-STRINGS.NAMES.BEANSTALK_CHUNK = "Beanstalk Chunk"
-
-STRINGS.NAMES.MAGIC_BEANS = "Magic Beans"
-STRINGS.NAMES.MAGIC_BEAN_SPROUT = "Bean Sprout"
-STRINGS.NAMES.MAGIC_BEAN_GIANT = "Bean Giant"
-
-STRINGS.NAMES.CLOUD_FLUFF = "Cloud"
-STRINGS.NAMES.CLOUD_FLUFF = "Cloud Fluff"
-STRINGS.NAMES.CLOUD_BOMB = "Cloud Bomb"
-STRINGS.NAMES.CLOUD_STORAGE = "Cloud Chest"
-STRINGS.NAMES.CLOUD_TURF = "Cloud Turf"
-
-STRINGS.NAMES.CUSHION_PLANT = "Cloud Bush"
-STRINGS.NAMES.CUSHION_FRUIT = "Cloud Fruit"
-
-STRINGS.NAMES.PINEAPPLE_BUSH = "Pineapple Bush"
-STRINGS.NAMES.PINEAPPLE_FRUIT = "Pineapple"
-
-STRINGS.NAMES.GOLDEN_EGG = "Golden Egg"
-STRINGS.NAMES.GOLDEN_AMULET = "Golden Amulet"
-STRINGS.NAMES.GOLDEN_GOLEM = "Golden Golem"
-
-STRINGS.NAMES.MONOLITH = "Monolith"
-
-STRINGS.NAMES.RESEARCH_LECTERN = "Research Lectern"
-
-STRINGS.NAMES.WIND_AXE = "Wind Axe"
-
-STRINGS.NAMES.KITE = "Kite"
-
-STRINGS.NAMES.DUCKRAPTOR = "Duckraptor"
-STRINGS.NAMES.DUCKRAPTOR_MOTHER = "Mother Duckraptor"
-STRINGS.NAMES.DUCKRAPTOR_BABY = "Duckling"
-
-STRINGS.NAMES.LIONANT = "Lionant"
-
-STRINGS.NAMES.SHEEP = "Sheep"
-STRINGS.NAMES.SHEEP_ELECTRIC = "Electric Sheep"
-
---These are descriptions for the new things.
-
---For the beanstalk.
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.BEANSTALK = "It reaches the clouds."
-STRINGS.CHARACTERS.WILLOW.DESCRIBE.BEANSTALK = "That would make a spectacular fire."
-STRINGS.CHARACTERS.WENDY.DESCRIBE.BEANSTALK = "All I'd need to do is let go."
-STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.BEANSTALK = "Is big beanstalk. Reminds Wolfgang of home."
-STRINGS.CHARACTERS.WX78.DESCRIBE.BEANSTALK = "IT HAS GROWN OUT OF CONTROL."
-STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.BEANSTALK = "The end of the stalk is covered by a layer of cumulonimbus clouds."
-STRINGS.CHARACTERS.WOODIE.DESCRIBE.BEANSTALK = "Even Lucy can't chop through it."
-STRINGS.CHARACTERS.WAXWELL.DESCRIBE.BEANSTALK = "Some things were too big to fit in the caves. "
-
---For the shopkeeper.
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHOPKEEPER = "Odd place to set up a store."
-STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHOPKEEPER = "I like the flag on his umbrella."
-STRINGS.CHARACTERS.WENDY.DESCRIBE.SHOPKEEPER = "A deceiver at heart."
-STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHOPKEEPER = "He sells no potatoes."
-STRINGS.CHARACTERS.WX78.DESCRIBE.SHOPKEEPER = "A PEDDLER OF GOODS."
-STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHOPKEEPER = "Perhaps he has some books for sale."
-STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHOPKEEPER = "Men like this ran my lumber yard."
-STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHOPKEEPER = "I thought I got rid of you."
-
---For the sheep.
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEEP = "They make me feel sleepy."
-STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEEP = "Cotton. Very flammable."
-STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEEP = " Ignorance. The worst kind of darkness."
-STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEEP = "Puny baby animal."
-STRINGS.CHARACTERS.WX78.DESCRIBE.SHEEP = "DOCILE MAMMAL. HARD TO FRIGHTEN."
-STRINGS.CHARACTERS.WICKERBOTTOM.DESCRIBE.SHEEP = "Ovis Aris. Reminds me of farms."
-STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEEP = "Ooh! Lambchops!"
-STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEEP = "I'd hate to be near them when they're in a bad mood."
-
---For the electric sheep.
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.SHEEP_ELECTRIC = "Electrifying!"
-STRINGS.CHARACTERS.WILLOW.DESCRIBE.SHEEP_ELECTRIC = "Shouldn't have charged him up."
-STRINGS.CHARACTERS.WENDY.DESCRIBE.SHEEP_ELECTRIC = "Their cup hath runneth over."
-STRINGS.CHARACTERS.WOLFGANG.DESCRIBE.SHEEP_ELECTRIC = "Baby animal mad!"
-STRINGS.CHARACTERS.WX78.DESCRIBE.SHEEP_ELECTRIC = "APPARENTLY EASY TO ANGER."
-STRINGS.CHARACTERS.WICKERBOTTOM.SHEEP_ELECTRIC = "The ambient static seems to cause aggression."
-STRINGS.CHARACTERS.WOODIE.DESCRIBE.SHEEP_ELECTRIC = "Looks like I'm in trouble now. Oops."
-STRINGS.CHARACTERS.WAXWELL.DESCRIBE.SHEEP_ELECTRIC = " I should keep a distance back from that animal."
+Add.QuotesFor "shopkeeper" {
+	GENERIC = "Odd place to set up a store.",
+	waxwell = "I thought I got rid of you.",
+	wendy = "A deceiver at heart.",
+	wickerbottom = "Perhaps he has some books for sale.",
+	willow = "I like the flag on his umbrella.",
+	wolfgang = "He sells no potatoes.",
+	woodie = "Men like this ran my lumber yard.",
+	wx78 = "A PEDDLER OF GOODS.",
+}

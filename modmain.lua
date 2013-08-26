@@ -4,8 +4,8 @@ modimport 'configloader.lua'
 LoadConfigurationFile 'rc.lua'
 
 GLOBAL.require 'upandaway.strings'
---These assets are for all of the added inventory items.
 
+--These assets are for all of the added inventory items.
 Assets = {
 
 	--Asset( "ATLAS", "images/inventoryimages/datura_petals.xml" ),
