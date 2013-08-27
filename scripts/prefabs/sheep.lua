@@ -1,10 +1,10 @@
 local assets=
 {
-	Asset("ANIM", "anim/beefalo_basic.zip"),
-	Asset("ANIM", "anim/beefalo_actions.zip"),
-	Asset("ANIM", "anim/beefalo_build.zip"),
-	Asset("ANIM", "anim/beefalo_heat_build.zip"),
-	Asset("ANIM", "anim/beefalo_shaved_build.zip"),
+	--Asset("ANIM", "anim/beefalo_basic.zip"),
+	--Asset("ANIM", "anim/beefalo_actions.zip"),
+	Asset("ANIM", "anim/sheep_baby_build.zip"),
+	--Asset("ANIM", "anim/beefalo_heat_build.zip"),
+	--Asset("ANIM", "anim/beefalo_shaved_build.zip"),
 	Asset("SOUND", "sound/beefalo.fsb"),
 }
 
@@ -30,14 +30,14 @@ local sounds =
 
 local function OnEnterMood(inst)
     if inst.components.beard and inst.components.beard.bits > 0 then
-        inst.AnimState:SetBuild("beefalo_heat_build")
+        inst.AnimState:SetBuild("sheep_baby_build")
         inst:AddTag("scarytoprey")
     end
 end
 
 local function OnLeaveMood(inst)
     if inst.components.beard and inst.components.beard.bits > 0 then
-        inst.AnimState:SetBuild("beefalo_build")
+        inst.AnimState:SetBuild("sheep_baby_build")
         inst:RemoveTag("scarytoprey")
     end
 end
@@ -103,7 +103,7 @@ local function fn(Sim)
     
     inst:AddTag("sheep")
     anim:SetBank("beefalo")
-    anim:SetBuild("beefalo_build")
+    anim:SetBuild("sheep_baby_build")
     anim:PlayAnimation("idle_loop", true)
     
     inst:AddTag("animal")
@@ -154,15 +154,15 @@ local function fn(Sim)
     
     inst:AddComponent("knownlocations")
     inst:AddComponent("herdmember")
-    inst:ListenForEvent("entermood", OnEnterMood)
-    inst:ListenForEvent("leavemood", OnLeaveMood)
+    --inst:ListenForEvent("entermood", OnEnterMood)
+    --inst:ListenForEvent("leavemood", OnLeaveMood)
     
     inst:AddComponent("leader")
     inst:AddComponent("follower")
     inst.components.follower.maxfollowtime = TUNING.BEEFALO_FOLLOW_TIME
     inst.components.follower.canaccepttarget = false
-    inst:ListenForEvent("newcombattarget", OnNewTarget)
-    inst:ListenForEvent("attacked", OnAttacked)
+    --inst:ListenForEvent("newcombattarget", OnNewTarget)
+    --inst:ListenForEvent("attacked", OnAttacked)
 
     inst:AddComponent("periodicspawner")
     inst.components.periodicspawner:SetPrefab("poop")

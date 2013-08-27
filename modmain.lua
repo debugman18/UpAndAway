@@ -28,24 +28,6 @@ Assets = {
 
 	--Asset( "ATLAS", "images/inventoryimages/moonflower_seeds.xml" ),
 	--Asset( "IMAGE", "images/inventoryimages/moonflower_seeds.tex" ),
-
-	--Asset( "ATLAS", "images/inventoryimages/yellow_cap.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/yellow_cap.tex" ),
-
-	--Asset( "ATLAS", "images/inventoryimages/orange_cap.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/orange_cap.tex" ),
-
-	--Asset( "ATLAS", "images/inventoryimages/purple_cap.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/purple_cap.tex" ),
-
-	--Asset( "ATLAS", "images/inventoryimages/yellow_cap_cooked.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/yellow_cap_cooked.tex" ),
-
-	--Asset( "ATLAS", "images/inventoryimages/orange_cap_cooked.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/orange_cap_cooked.tex" ),
-
-	--Asset( "ATLAS", "images/inventoryimages/purple_cap_cooked.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/purple_cap_cooked.tex" ),
 	
 	--Asset( "ATLAS", "images/inventoryimages/beanstalk_wall.xml" ),
 	--Asset( "IMAGE", "images/inventoryimages/beanstalk_wall.tex" ),
@@ -82,9 +64,9 @@ Assets = {
 
 PrefabFiles = {
     "shopkeeper",
-	"sheep",
+	"sheep",	
+	"sheep_electric",
 	
-	--"sheep_electric",
 	--"datura",
 	--"datura_petals",	
 	--"crystal_deposit",

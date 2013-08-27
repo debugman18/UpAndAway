@@ -34,14 +34,8 @@ Add.Names {
 	monolith = "Monolith",
 	moonflower = "Moonflower",
 	moonflower_seeds = "Moonflower Seeds",
-	orange_cap = "Orange Skyflower",
-	orange_cap_cooked = "Cooked Orange Skyflower",
-	orange_skyflower = "Orange Skyflower",
 	pineapple_bush = "Pineapple Bush",
 	pineapple_fruit = "Pineapple",
-	purple_cap = "Purple Skyflower",
-	purple_cap_cooked = "Cooked Purple Skyflower",
-	purple_skyflower = "Purple Skyflower",
 	research_lectern = "Research Lectern",
 	sheep = "Sheep",
 	sheep_electric = "Electric Sheep",
@@ -49,9 +43,7 @@ Add.Names {
 	sunflower = "Golden Sunflower",
 	sunflower_seeds = "Golden Sunflower Seeds",
 	wind_axe = "Wind Axe",
-	yellow_cap = "Yellow Skyflower",
-	yellow_cap_cooked = "Cooked Yellow Skyflower",
-	yellow_skyflower = "Yellow Skyflower",
+	skyflowers = "Skyflower",
 }
 
 
