@@ -1,12 +1,12 @@
 local assets=
 {
-	Asset("ANIM", "anim/skyflowers.zip"),
+	Asset("ANIM", "anim/datura.zip"),
 }
 
 
 local prefabs =
 {
-    "skyflower_petals",
+    "datura_petals",
 }    
 
 
@@ -40,7 +40,7 @@ local function fn(Sim)
 	inst.entity:AddAnimState()
     inst.AnimState:SetBank("flowers")
     inst.animname = names[math.random(#names)]
-    inst.AnimState:SetBuild("skyflowers")
+    inst.AnimState:SetBuild("datura")
     inst.AnimState:PlayAnimation(inst.animname)
     inst.AnimState:SetRayTestOnBB(true);
     
@@ -50,7 +50,7 @@ local function fn(Sim)
     
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
-    inst.components.pickable:SetUp("skyflower_petals", 10)
+    inst.components.pickable:SetUp("datura_petals", 10)
 	inst.components.pickable.onpickedfn = onpickedfn
     inst.components.pickable.quickpick = true
     
@@ -65,4 +65,4 @@ local function fn(Sim)
     return inst
 end
 
-return Prefab( "forest/objects/skyflowers", fn, assets, prefabs) 
+return Prefab( "forest/objects/datura", fn, assets, prefabs) 

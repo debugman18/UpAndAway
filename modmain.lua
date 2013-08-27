@@ -8,6 +8,9 @@ GLOBAL.require 'upandaway.strings'
 --These assets are for all of the added inventory items.
 Assets = {
 
+	--Asset( "ATLAS", "images/inventoryimages/skyflower_petals.xml" ),
+	--Asset( "IMAGE", "images/inventoryimages/skyflower_petals.tex" ),
+
 	--Asset( "ATLAS", "images/inventoryimages/datura_petals.xml" ),
 	--Asset( "IMAGE", "images/inventoryimages/datura_petals.tex" ),
 	
@@ -57,7 +60,7 @@ Assets = {
 	--Asset( "IMAGE", "images/inventoryimages/golden_amulet.tex" ),
 
 	--Asset( "ATLAS", "images/inventoryimages/kite.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/kite.tex" ),	
+	--Asset( "IMAGE", "images/inventoryimages/kite.tex" ),
 }
 
 --This loads all of the new prefabs.
@@ -67,8 +70,8 @@ PrefabFiles = {
 	"sheep",	
 	"sheep_electric",
 	
-	--"datura",
-	--"datura_petals",	
+	"datura",
+	"datura_petals",	
 	--"crystal_deposit",
 	--"crystal_shard",
 	--"crystal_moss",
@@ -81,6 +84,7 @@ PrefabFiles = {
 	--"moonflower_seeds",	
 	
 	"skyflowers",
+	"skyflower_petals",
 	"beanstalk",
 	"beanstalk_exit",
 	

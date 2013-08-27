@@ -1,7 +1,7 @@
 local assets=
 {
-	Asset("ANIM", "anim/datura_petals.zip"),
-	--Asset("ANIM", "anim/swap_datura_petals.zip"),
+	Asset("ANIM", "anim/skyflower_petals.zip"),
+	--Asset("ANIM", "anim/swap_Skyflower_petals.zip"),
 	
 	Asset( "ATLAS", "images/inventoryimages/void_placeholder.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/void_placeholder.tex" ),	
@@ -23,7 +23,7 @@ local function fn(Sim)
     RemovePhysicsColliders(inst)
     
     anim:SetBank("flower_petals")
-    anim:SetBuild("datura_petals")
+    anim:SetBuild("skyflower_petals")
     anim:PlayAnimation("idle")
     anim:SetRayTestOnBB(true);
 
@@ -38,4 +38,4 @@ local function fn(Sim)
     return inst
 end
 
-return Prefab("common/inventory/datura_petals", fn, assets) 
+return Prefab("common/inventory/skyflower_petals", fn, assets) 

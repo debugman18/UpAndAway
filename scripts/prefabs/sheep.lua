@@ -98,6 +98,7 @@ local function fn(Sim)
 	local shadow = inst.entity:AddDynamicShadow()
 	shadow:SetSize( 6, 2 )
     inst.Transform:SetFourFaced()
+	inst.Transform:SetScale(0.65, 0.75, 0.65)
 
     MakeCharacterPhysics(inst, 100, .5)
     
@@ -161,8 +162,8 @@ local function fn(Sim)
     inst:AddComponent("follower")
     inst.components.follower.maxfollowtime = TUNING.BEEFALO_FOLLOW_TIME
     inst.components.follower.canaccepttarget = false
-    --inst:ListenForEvent("newcombattarget", OnNewTarget)
-    --inst:ListenForEvent("attacked", OnAttacked)
+    inst:ListenForEvent("newcombattarget", OnNewTarget)
+    inst:ListenForEvent("attacked", OnAttacked)
 
     inst:AddComponent("periodicspawner")
     inst.components.periodicspawner:SetPrefab("poop")

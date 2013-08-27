@@ -50,10 +50,12 @@ local CAMPAIGN_LENGTH = 5
 --This also does the following.
 local TRANSLATE_TO_PREFABS = GLOBAL.require("map/forest_map").TRANSLATE_TO_PREFABS
 TRANSLATE_TO_PREFABS["skyflowers"] = {"skyflowers"}
+TRANSLATE_TO_PREFABS["sheep"] = {"sheep"}
 
 
 local MULTIPLY = GLOBAL.require("map/forest_map").MULTIPLY
 MULTIPLY["everywhere"] = 100
+MULTIPLY["mostplaces"] = 5
 
 local Forest = GLOBAL.require("map/forest_map")
 
@@ -84,7 +86,7 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 			{"weather", 		"never"},
 			{"roads", 			"never"},	
 			
-			{"boons",			"always"},
+			{"boons",			"never"},
 			{"spiders", 		"never"},
 			{"deerclops", 		"never"},
 			{"hounds", 			"never"},	
@@ -94,12 +96,13 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 			{"carrots",         "never"},	
 			{"beefalo",         "never"},	
 			{"grass",           "never"},	
-			{"pigs",            "never"},
+			{"pigs",            "never"},		
 			
 			{"world_complexity", "verycomplex"},	
 						
 			--This is custom content.
 			{"skyflowers",    "everywhere"},
+			{"sheep",         "mostplaces"},
 			
 			{"start_setpeice", 	"BeanstalkTop"},				
 		},
@@ -229,8 +232,8 @@ end
 
 --[[
 AddTask("BeanstalkStart", {
-		locks=LOCKS.NONE,
-		keys_given=KEYS.NONE,
+		locks=LOCKS.never,
+		keys_given=KEYS.never,
 		room_choices={
 			["BeanstalkDown"] = 1,
 		 }, 

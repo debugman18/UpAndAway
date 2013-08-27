@@ -1,6 +1,5 @@
 local Add = require 'upandaway.addstrings'
 
-
 Add.Names {
 	beanstalk = "Beanstalk",
 	beanstalk_chunk = "Beanstalk Chunk",
@@ -16,7 +15,7 @@ Add.Names {
 	crystal_moss = "Crystal Moss",
 	crystal_shard = "Crystal Shard",
 	crystal_wall = "Crystal Wall",
-	cushion_fruit = "Cloud Fruit",
+	cushion_fruit = "Cloudfruit",
 	cushion_plant = "Cloud Bush",
 	datura = "Datura",
 	datura_petals = "Datura Petals",
@@ -26,6 +25,8 @@ Add.Names {
 	golden_amulet = "Golden Amulet",
 	golden_egg = "Golden Egg",
 	golden_golem = "Golden Golem",
+	golden_rose = "Golden Rose",
+	golden_petals = "Golden Petals",
 	kite = "Kite",
 	lionant = "Lionant",
 	magic_beans = "Magic Beans",
@@ -88,4 +89,48 @@ Add.QuotesFor "shopkeeper" {
 	wolfgang = "He sells no potatoes.",
 	woodie = "Men like this ran my lumber yard.",
 	wx78 = "A PEDDLER OF GOODS.",
+}
+
+Add.QuotesFor "skyflowers" {
+	GENERIC = "They smell of dreams.",
+	waxwell = "A memory from my more foolish days.",
+	wendy = "A pretty flower to bring brief pleasure. Smells like decay.",
+	wickerbottom = "Their pollen smells different to each person. For me, it is like a new book.",
+	willow = "Mmm. Smells like ashes.",
+	wolfgang = "Pretty flower smells like beef.",
+	woodie = "Ahh. Freshly fallen timber and pine needles.",
+	wx78 = "YOUR TRICKS SHALL NOT WORK ON ME.",
+}
+
+Add.QuotesFor "skyflower_petals" {
+	GENERIC = "They smell of dreams.",
+	waxwell = "A memory from my more foolish days.",
+	wendy = "A pretty flower to bring brief pleasure. Smells like decay.",
+	wickerbottom = "Their pollen smells different to each person. For me, it is like a new book.",
+	willow = "Mmm. Smells like ashes.",
+	wolfgang = "Pretty flower smells like beef.",
+	woodie = "Ahh. Freshly fallen timber and pine needles.",
+	wx78 = "YOUR TRICKS SHALL NOT WORK ON ME.",
+}
+
+Add.QuotesFor "datura" {
+	GENERIC = "It smells of nightmares.",
+	waxwell = "It smells like innocence. Ripe for the taking. ",
+	wendy = "A flower to fuel hatred. Smells like a rose.",
+	wickerbottom = "This one is designed to trigger a hate response. Smells like a burned book.",
+	willow = "The stupid thing smells like winter mint.",
+	wolfgang = "Smells like wimpy tears.",
+	woodie = " It smells of wet fur and old pine.",
+	wx78 = "IT OVERLOADS MY SENSORS WITH LIFE.",
+}
+
+Add.QuotesFor "datura_petals" {
+	GENERIC = "It smells of nightmares.",
+	waxwell = "It smells like innocence. Ripe for the taking. ",
+	wendy = "A flower to fuel hatred. Smells like a rose.",
+	wickerbottom = "This one is designed to trigger a hate response. Smells like a burned book.",
+	willow = "The stupid thing smells like winter mint.",
+	wolfgang = "Smells like wimpy tears.",
+	woodie = " It smells of wet fur and old pine.",
+	wx78 = "IT OVERLOADS MY SENSORS WITH LIFE.",
 }
