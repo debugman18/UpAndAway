@@ -3,10 +3,16 @@ SaveIndex = GLOBAL.SaveIndex
 modimport 'configloader.lua'
 LoadConfigurationFile 'rc.lua'
 
+local CFG = TUNING.UPANDAWAY
+
 GLOBAL.require 'upandaway.strings'
 
+
+local new_tiles = CFG.NEW_TILES
+
+
 --These assets are for all of the added inventory items.
-Assets = {
+local RawAssets = {
 
 	--Asset( "ATLAS", "images/inventoryimages/skyflower_petals.xml" ),
 	--Asset( "IMAGE", "images/inventoryimages/skyflower_petals.tex" ),
@@ -63,10 +69,20 @@ Assets = {
 	--Asset( "IMAGE", "images/inventoryimages/kite.tex" ),
 }
 
+for _, v in ipairs(new_tiles) do
+	table.insert(RawAssets, Asset( "IMAGE", "levels/textures/noise_" .. v .. ".tex" ))
+	table.insert(RawAssets, Asset( "IMAGE", "levels/textures/mini_noise_" .. v .. ".tex" ))
+	table.insert(RawAssets, Asset( "FILE", "levels/tiles/" .. v .. ".xml" ))
+	table.insert(RawAssets, Asset( "IMAGE", "levels/tiles/" .. v .. ".tex" ))
+end
+
+Assets = RawAssets
+
+
 --This loads all of the new prefabs.
 
-PrefabFiles = {
-    "shopkeeper",
+local RawPrefabFiles = {
+	"shopkeeper",
 	"sheep",	
 	"sheep_electric",
 	
@@ -119,12 +135,28 @@ PrefabFiles = {
 	--"duckraptor_mother",	
 	--"duckraptor_baby",		
 	--"lionant",	
+	
+
+	"turf_test",
 }
 
-local prefabs = {
 
-}
+if CFG.DEBUG then
+	table.insert(RawPrefabFiles, "turf_test")
 
+	AddSimPostInit(function(inst)
+		local inv = inst.components.inventory
+		
+		for _, v in ipairs(new_tiles) do
+			if inv and not inv:Has("turf_" .. v, 1) then
+				inv:GiveItem( GLOBAL.SpawnPrefab("turf_" .. v) )
+			end
+		end
+	end)
+end
+
+
+PrefabFiles = RawPrefabFiles
 
 
 local function evergreens_ret(inst)
@@ -179,6 +211,8 @@ AddSimPostInit(function(inst)
 		end
 	end
 end)
+
+
 
 --Changes "activate" to "climb down" for "beanstalk_exit".
 AddSimPostInit(function(inst)

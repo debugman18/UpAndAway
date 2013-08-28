@@ -1,4 +1,5 @@
-local Add = require 'upandaway.addstrings'
+-- simplex note: I moved addstrings to a lib/ subdir.
+local Add = require 'upandaway.lib.addstrings'
 
 Add.Names {
 	beanstalk = "Beanstalk",

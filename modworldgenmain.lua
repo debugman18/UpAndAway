@@ -33,10 +33,24 @@
 
 modimport 'configloader.lua'
 LoadConfigurationFile 'rc.lua'
+local CFG =  TUNING.UPANDAWAY
+local new_tiles = CFG.NEW_TILES
 
 
 GLOBAL.require("constants")
 local GROUND = GLOBAL.GROUND
+
+
+--[[
+-- Addition of custom tiles
+--]]
+
+modimport 'lib/tile_adder.lua'
+
+for i, v in ipairs(new_tiles) do
+	AddTile(v:upper(), 64 + i, "" .. v .. "", {noise_texture = "levels/textures/noise_" .. v .. ".tex"}, {noise_texture = "levels/textures/mini_noise_" .. v .. ".tex"})
+end
+
 
 GLOBAL.require("map/levels")
 GLOBAL.require("map/tasks")
