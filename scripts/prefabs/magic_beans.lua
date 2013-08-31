@@ -47,8 +47,8 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("void_placeholder")
+	inst.AnimState:SetBank("seeds")
+	inst.AnimState:SetBuild("magic_beans")
 	inst.AnimState:PlayAnimation("anim")
 
 	inst:AddComponent("stackable")
