@@ -5,7 +5,7 @@ local assets =
 
 local prefabs = 
 {
-    "twigs",
+    "cloud_cotton",
     "dug_marsh_bush",
 }
 
@@ -15,7 +15,7 @@ end
 
 local function dig_up(inst, chopper)
 	if inst.components.pickable and inst.components.pickable:CanBePicked() then
-		inst.components.lootdropper:SpawnLootPrefab("twigs")
+		inst.components.lootdropper:SpawnLootPrefab("cloud_cotton")
 	end
 	inst:Remove()
 	local bush = inst.components.lootdropper:SpawnLootPrefab("dug_marsh_bush")
@@ -24,10 +24,11 @@ end
 local function onpickedfn(inst, picker)
 	inst.AnimState:PlayAnimation("picking") 
 	inst.AnimState:PushAnimation("picked", false)
+	--[[
 	if picker.components.combat then
         picker.components.combat:GetAttacked(nil, TUNING.MARSHBUSH_DAMAGE)
-        picker:PushEvent("thorns")
 	end
+	--]]
 end
 
 local function onregenfn(inst)
@@ -56,7 +57,7 @@ local function fn(Sim)
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/harvest_sticks"
     
-    inst.components.pickable:SetUp("twigs", TUNING.MARSHBUSH_REGROW_TIME)
+    inst.components.pickable:SetUp("cloud_cotton", TUNING.MARSHBUSH_REGROW_TIME)
 	inst.components.pickable.onregenfn = onregenfn
 	inst.components.pickable.onpickedfn = onpickedfn
     inst.components.pickable.makeemptyfn = makeemptyfn

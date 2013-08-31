@@ -8,6 +8,7 @@ local prefabs =
 {
     "skyflower_petals",
 	"datura_petals",
+	"cloud_cotton",
 }    
 
 local names = {"f1","f2","f3","f4","f5","f6","f7","f8","f9","f10"}
@@ -28,7 +29,8 @@ local function onpickedfn(inst, picker)
 	if picker and picker.components.sanity then
 		picker.components.sanity:DoDelta(TUNING.SANITY_TINY)
 	end	
-	
+	local cotton = SpawnPrefab("cloud_cotton")
+	cotton.Transform:SetPosition(inst.Transform:GetWorldPosition())
 	inst:Remove()
 end
 
@@ -52,6 +54,9 @@ local function fncommon(Sim)
     inst.components.pickable:SetUp("skyflower_petals", 10)
 	inst.components.pickable.onpickedfn = onpickedfn
     inst.components.pickable.quickpick = true
+	
+    inst:AddComponent("sanityaura")
+    inst.components.sanityaura.aura = TUNING.SANITYAURA_LARGE	
     
 	MakeSmallBurnable(inst)
     MakeSmallPropagator(inst)
@@ -84,6 +89,8 @@ local function fndatura(Sim)
     inst.components.pickable:SetUp("datura_petals", 10)
 	inst.components.pickable.onpickedfn = onpickedfn
     inst.components.pickable.quickpick = true
+	
+    inst.components.sanityaura.aura = -TUNING.SANITYAURA_LARGE		
     
 	--MakeSmallBurnable(inst)
     --MakeSmallPropagator(inst)

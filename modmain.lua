@@ -112,7 +112,9 @@ local RawPrefabFiles = {
 	--"magic_beanlet",
 	
 	--"cloud_rock",
-	--"cloud_fluff",	
+	
+	"cloud_cotton",	
+	
 	--"cloud_bomb",	
 	--"cloud_storage",	
 	

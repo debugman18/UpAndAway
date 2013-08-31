@@ -1,10 +1,7 @@
 local assets=
 {
-	--Asset("ANIM", "anim/beefalo_basic.zip"),
-	--Asset("ANIM", "anim/beefalo_actions.zip"),
 	Asset("ANIM", "anim/sheep_baby_build.zip"),
 	Asset("ANIM", "anim/sheep_electric.zip"),	
-	--Asset("ANIM", "anim/beefalo_heat_build.zip"),
 	--Asset("ANIM", "anim/beefalo_shaved_build.zip"),
 	Asset("SOUND", "sound/beefalo.fsb"),
 }
@@ -13,11 +10,10 @@ local prefabs =
 {
     "meat",
     "skyflower",
-    "beefalowool",
-	--"cotton",
+	"cloud_cotton",
 }
 
-local loot = {"meat","meat","meat","meat","beefalowool","beefalowool","beefalowool"}
+local loot = {"meat","meat","cloud_cotton","cloud_cotton"}
 
 local sounds = 
 {
@@ -171,7 +167,7 @@ local function fncommon(Sim)
     
     local brain = require "brains/sheepbrain"
     inst:SetBrain(brain)
-    inst:SetStateGraph("SGBeefalo")
+    inst:SetStateGraph("SGSheep")
     return inst
 end
 
@@ -268,9 +264,9 @@ local function fnelectric(Sim)
     --inst:AddComponent("sleeper")
     inst.components.sleeper:SetResistance(3)
     
-    local brain = require "brains/sheepbrain"
+    local brain = require "brains/rambrain"
     inst:SetBrain(brain)
-    inst:SetStateGraph("SGBeefalo")
+    inst:SetStateGraph("SGSheep")
     return inst	
 end
 

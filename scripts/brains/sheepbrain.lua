@@ -3,14 +3,14 @@ require "behaviours/runaway"
 require "behaviours/doaction"
 require "behaviours/panic"
 
-local STOP_RUN_DIST = 10
-local SEE_PLAYER_DIST = 5
+local STOP_RUN_DIST = 2
+local SEE_PLAYER_DIST = 10
 
-local AVOID_PLAYER_DIST = 3
-local AVOID_PLAYER_STOP = 6
+local AVOID_PLAYER_DIST = 2
+local AVOID_PLAYER_STOP = 2
 
 local SEE_BAIT_DIST = 20
-local MAX_WANDER_DIST = 20
+local MAX_WANDER_DIST = 50
 
 
 local SheepBrain = Class(Brain, function(self, inst)
@@ -42,6 +42,8 @@ function SheepBrain:OnStart()
     local root = PriorityNode(
     {
         WhileNode( function() return self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst)),
+        RunAway(self.inst, "scarytoprey", AVOID_PLAYER_DIST, AVOID_PLAYER_STOP),
+        RunAway(self.inst, "scarytoprey", SEE_PLAYER_DIST, STOP_RUN_DIST, nil, true),		
         DoAction(self.inst, EatFoodAction),
         Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST)
     }, .25)
