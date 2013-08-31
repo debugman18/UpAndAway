@@ -65,11 +65,13 @@ local CAMPAIGN_LENGTH = 5
 local TRANSLATE_TO_PREFABS = GLOBAL.require("map/forest_map").TRANSLATE_TO_PREFABS
 TRANSLATE_TO_PREFABS["skyflowers"] = {"skyflower"}
 TRANSLATE_TO_PREFABS["sheep"] = {"sheep"}
+TRANSLATE_TO_PREFABS["cloudbush"] = {"cloud_bush"}
 
 
 local MULTIPLY = GLOBAL.require("map/forest_map").MULTIPLY
 MULTIPLY["everywhere"] = 60
-MULTIPLY["fewplaces"] = 5
+MULTIPLY["moreplaces"] = 15
+MULTIPLY["fewplaces"] = 3
 
 local Forest = GLOBAL.require("map/forest_map")
 
@@ -117,6 +119,7 @@ AddLevel(LEVELTYPE.SURVIVAL, {
 			--This is custom content.
 			{"skyflowers",    "everywhere"},
 			{"sheep",         "fewplaces"},
+			{"cloudbush",     "moreplaces"},
 			
 			{"start_setpeice", 	"BeanstalkTop"},				
 		},

@@ -117,9 +117,10 @@ local RawPrefabFiles = {
 	--"cloud_storage",	
 	
 	"cloud_turf",	
+	"cloud_bush",
 	
-	--"cushion_plant",
-	--"cushion_fruit",	
+	--"cloud_berries",
+
 	--"pineapple_bush",
 	--"pineapple_fruit",
 	
