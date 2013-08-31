@@ -26,16 +26,13 @@ local sounds =
 }
 
 local function Retarget(inst)
-    if inst.components.herdmember
-       and inst.components.herdmember:GetHerd()
-       and inst.components.herdmember:GetHerd().components.mood
-       and inst.components.herdmember:GetHerd().components.mood:IsInMood() then
-        return FindEntity(inst, TUNING.BEEFALO_TARGET_DIST, function(guy)
-            return not guy:HasTag("sheep") and 
-					inst.components.combat:CanTarget(guy) and 
-					not guy:HasTag("wall")
-        end)
-    end
+    local newtarget = FindEntity(inst, TUNING.MINOTAUR_TARGET_DIST, function(guy)
+            return (guy:HasTag("character") or guy:HasTag("monster"))
+                   and not (inst.components.follower and inst.components.follower.leader == guy)
+                   and not guy:HasTag("sheep")
+                   and inst.components.combat:CanTarget(guy)
+    end)
+    return newtarget
 end
 
 local function KeepTarget(inst, target)
@@ -70,6 +67,16 @@ local function GetStatus(inst)
     elseif inst.components.beard and inst.components.beard.bits == 0 then
         return "NAKED"
     end
+end
+
+local function dostaticsparks(inst, dt)
+
+	local pos = Vector3(inst.Transform:GetWorldPosition())
+	pos.y = pos.y + 1 + math.random()*1.5
+	local spark = SpawnPrefab("sparks")
+	spark.Transform:SetPosition(pos:Get())
+	spark.Transform:SetScale(0.5, 0.5, 0.5)
+	
 end
 
 local function fncommon(Sim)
@@ -226,7 +233,11 @@ local function fnelectric(Sim)
     inst.components.combat:SetDefaultDamage(TUNING.BEEFALO_DAMAGE)
     inst.components.combat:SetRetargetFunction(1, Retarget)
     inst.components.combat:SetKeepTargetFunction(KeepTarget)
+	
+	inst:AddTag("hostile")
      
+	inst:DoPeriodicTask(1/10, function() dostaticsparks(inst, 1/10) end)
+	 
     --inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.BEEFALO_HEALTH)
 

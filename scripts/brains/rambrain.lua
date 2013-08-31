@@ -14,7 +14,7 @@ local AVOID_PLAYER_STOP = 0
 local SEE_BAIT_DIST = 20
 local MAX_WANDER_DIST = 50
 
-local START_FACE_DIST = 14
+local START_FACE_DIST = 6
 local KEEP_FACE_DIST = 16
 
 local GO_HOME_DIST = 40
@@ -81,11 +81,11 @@ function RamBrain:OnStart()
     
     local root = PriorityNode(
     {
-        WhileNode( function() return self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst)),
-		ChaseAndAttack(self.inst, MAX_CHASE_TIME, MAX_CHASE_DIST),
         WhileNode( function() return self.inst.components.combat.target == nil end,
             "RamAttack",
-            ChaseAndRam(self.inst, MAX_CHASE_TIME, CHASE_GIVEUP_DIST, MAX_CHARGE_DIST) ),	
+            ChaseAndRam(self.inst, MAX_CHASE_TIME, CHASE_GIVEUP_DIST, MAX_CHARGE_DIST) ),		
+        WhileNode( function() return self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst)),		
+		ChaseAndAttack(self.inst, MAX_CHASE_TIME, MAX_CHASE_DIST),
 		IfNode( function() return self.inst.components.combat.target ~= nil end, "hastarget", AttackWall(self.inst)),			
         DoAction(self.inst, EatFoodAction),
         Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST)
