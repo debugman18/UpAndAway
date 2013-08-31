@@ -1,6 +1,6 @@
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/magic_beans.zip"),
 }
 
 local function test_ground(inst, pt)

@@ -11,6 +11,7 @@ local prefabs =
 }    
 
 local names = {"f1","f2","f3","f4","f5","f6","f7","f8","f9","f10"}
+local daturanames = {"f1","f2","f3","f4","f5","f6","f7","f8"}
 
 local function onsave(inst, data)
 	data.anim = inst.animname
@@ -69,7 +70,7 @@ local function fndatura(Sim)
 	
 	inst.entity:AddAnimState()
     inst.AnimState:SetBank("flowers_evil")
-    inst.animname = names[math.random(#names)]
+    inst.animname = daturanames[math.random(#daturanames)]
     inst.AnimState:SetBuild("datura")
     inst.AnimState:PlayAnimation(inst.animname)
     inst.AnimState:SetRayTestOnBB(true);
