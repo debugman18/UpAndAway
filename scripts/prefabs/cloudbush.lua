@@ -179,7 +179,7 @@ local function createbush(bushname)
 		    inst.components.workable:SetWorkLeft(1)
 		    
 		    inst:AddComponent("inspectable")
-			inst.components.inspectable.nameoverride = "cloudbush"
+			inst.components.inspectable.nameoverride = "cloud_bush"
 		    
 		    inst:ListenForEvent("onwenthome", shake)			
 		    return inst
