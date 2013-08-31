@@ -84,10 +84,7 @@ Assets = RawAssets
 local RawPrefabFiles = {
 	"shopkeeper",
 	"sheep",	
-	"sheep_electric",
 	
-	"datura",
-	"datura_petals",	
 	--"crystal_deposit",
 	--"crystal_shard",
 	--"crystal_moss",
@@ -99,7 +96,7 @@ local RawPrefabFiles = {
 	--"moonflower",
 	--"moonflower_seeds",	
 	
-	"skyflowers",
+	"skyflower",
 	"skyflower_petals",
 	"beanstalk",
 	"beanstalk_exit",
@@ -110,7 +107,10 @@ local RawPrefabFiles = {
 	"magic_beans",	
 	
 	--"magic_bean_sprout",	
+	
 	--"magic_bean_giant",
+	--"magic_beanlet",
+	
 	--"cloud_rock",
 	--"cloud_fluff",	
 	--"cloud_bomb",	
@@ -136,6 +136,9 @@ local RawPrefabFiles = {
 	--"duckraptor_baby",		
 	--"lionant",	
 	
+	--"rainbowcoon",
+	--"cotton_candy",
+	--"cotton_vest",
 
 	"turf_test",
 }

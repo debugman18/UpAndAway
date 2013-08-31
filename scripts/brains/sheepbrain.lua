@@ -42,12 +42,6 @@ function SheepBrain:OnStart()
     local root = PriorityNode(
     {
         WhileNode( function() return self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst)),
-        RunAway(self.inst, "scarytoprey", AVOID_PLAYER_DIST, AVOID_PLAYER_STOP),
-        RunAway(self.inst, "scarytoprey", SEE_PLAYER_DIST, STOP_RUN_DIST, nil, true),
-        EventNode(self.inst, "gohome", 
-            DoAction(self.inst, GoHomeAction, "go home", true )),
-        WhileNode(function() return clock and not clock:IsDay() end, "IsNight",
-            DoAction(self.inst, GoHomeAction, "go home", true )),
         DoAction(self.inst, EatFoodAction),
         Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST)
     }, .25)

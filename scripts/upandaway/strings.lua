@@ -45,7 +45,8 @@ Add.Names {
 	sunflower = "Golden Sunflower",
 	sunflower_seeds = "Golden Sunflower Seeds",
 	wind_axe = "Wind Axe",
-	skyflowers = "Skyflower",
+	skyflower = "Skyflower",
+	skyflower_petals = "Skyflower Petals",
 }
 
 
@@ -92,7 +93,7 @@ Add.QuotesFor "shopkeeper" {
 	wx78 = "A PEDDLER OF GOODS.",
 }
 
-Add.QuotesFor "skyflowers" {
+Add.QuotesFor "skyflower" {
 	GENERIC = "They smell of dreams.",
 	waxwell = "A memory from my more foolish days.",
 	wendy = "A pretty flower to bring brief pleasure. Smells like decay.",
