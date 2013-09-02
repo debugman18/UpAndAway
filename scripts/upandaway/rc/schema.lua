@@ -1,0 +1,3 @@
+module(...)
+
+return _M
