@@ -10,6 +10,10 @@ local CAMPAIGN_LENGTH = 5
 local LEVELTYPE = GLOBAL.LEVELTYPE
 
 
+-- This embeds all entries in the standard table, so nothing is lost.
+local table = wickerrequire 'utils.table'
+
+
 -- Copies a table t into a table u.
 local function DeepInject(t, u)
 	for k, v in pairs(t) do
@@ -99,8 +103,20 @@ local sky_level_1 = {
 }
 
 
---This is the preset for testing purposes.
-TheMod:AddLevel(LEVELTYPE.SURVIVAL, DeepCopy(sky_level_1))
 
 --This is the level that is generated.
-TheMod:AddLevel(LEVELTYPE.ADVENTURE, DeepCopy(sky_level_1))
+
+local adventure_sky_level_1 = DeepCopy(sky_level_1)
+
+TheMod:AddLevel(LEVELTYPE.ADVENTURE, adventure_sky_level_1)
+
+
+
+--This is the preset for testing purposes.
+
+local survival_sky_level_1 = DeepCopy(sky_level_1)
+
+-- Removes the start set "peice".
+table.TrimArray(survival_sky_level_1.overrides, function(v) return v[1] ~= "start_setpeice" end)
+
+TheMod:AddLevel(LEVELTYPE.SURVIVAL, survival_sky_level_1)
