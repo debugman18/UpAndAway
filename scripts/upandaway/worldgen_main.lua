@@ -7,6 +7,9 @@ module( ..., require(_modname .. '.booter') )
 -- This just enables syntax conveniences.
 BindTheMod()
 
+-- These embed the corresponding methods in TheMod.
+wickerrequire 'api.plugins.addtile'
+wickerrequire 'api.plugins.addsaveindexpostinit'
 
 ----------------------------------
 -- Custom Level mod example

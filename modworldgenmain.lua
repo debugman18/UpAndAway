@@ -1,5 +1,3 @@
-modimport 'lib/tile_adder.lua'
-
 TheMod = GLOBAL.require("upandaway" .. '.wicker.init')(env)
 
 -- This enables us to access configurations through TUNING.UPANDAWAY (for backwards compatibility)
