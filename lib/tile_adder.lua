@@ -1,5 +1,9 @@
+GLOBAL.require 'map/terrain'
+
 local tiledefs = GLOBAL.require 'worldtiledefs'
 local GROUND = GLOBAL.GROUND
+local GROUND_NAMES = GLOBAL.GROUND_NAMES
+
 local resolvefilepath = GLOBAL.resolvefilepath
 
 local assert = GLOBAL.assert
@@ -78,6 +82,7 @@ function AddTile(id, numerical_id, name, specs, minispecs)
 
 
 	GROUND[id] = numerical_id
+	GROUND_NAMES[id] = name
 
 
 	local real_specs = { name = name }

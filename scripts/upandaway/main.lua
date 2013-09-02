@@ -14,8 +14,7 @@ SaveIndex = GLOBAL.SaveIndex
 
 local CFG = TUNING.UPANDAWAY
 
-GLOBAL.require 'upandaway.strings'
-
+modrequire 'strings'
 
 
 local function evergreens_ret(inst)
