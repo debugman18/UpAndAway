@@ -3,11 +3,11 @@ local assets=
 	Asset("ANIM", "anim/skyflower_petals.zip"),
 	Asset("ANIM", "anim/datura_petals.zip"),
 	
-	Asset( "ATLAS", "images/inventoryimages/void_placeholder.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/void_placeholder.tex" ),
+	Asset( "ATLAS", "images/inventoryimages/skyflower_petals.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/skyflower_petals.tex" ),
 	
-	Asset( "ATLAS", "images/inventoryimages/void_placeholder.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/void_placeholder.tex" ),		
+	Asset( "ATLAS", "images/inventoryimages/datura_petals.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/datura_petals.tex" ),		
 }
    
 local prefabs =
@@ -15,7 +15,7 @@ local prefabs =
 }
 
 local function OnDropped(inst)
-    inst.AnimState:PlayAnimation("idle")
+    inst.AnimState:PlayAnimation("anim")
 end
 
 local function fncommon(Sim)
@@ -25,9 +25,9 @@ local function fncommon(Sim)
     MakeInventoryPhysics(inst)
     RemovePhysicsColliders(inst)
     
-    anim:SetBank("flower_petals")
+    anim:SetBank("petals")
     anim:SetBuild("skyflower_petals")
-    anim:PlayAnimation("idle")
+    anim:PlayAnimation("anim")
     anim:SetRayTestOnBB(true);
 
     -------
@@ -36,7 +36,15 @@ local function fncommon(Sim)
   
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
-	--inst.components.inventoryitem.atlasname = "images/inventoryimages/datura_petals.xml"
+	
+	inst:AddComponent("stackable")
+	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+	
+	inst:AddComponent("edible")
+	inst.components.edible.healthvalue = -1
+    inst.components.edible.hungervalue = 3
+    inst.components.edible.sanityvalue = 1	
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/skyflower_petals.xml"
 
     return inst
 end
@@ -48,18 +56,21 @@ local function fndatura(Sim)
     MakeInventoryPhysics(inst)
     RemovePhysicsColliders(inst)
     
-    anim:SetBank("flower_petals")
+    anim:SetBank("flower__evil_petals")
     anim:SetBuild("datura_petals")
-    anim:PlayAnimation("idle")
+    anim:PlayAnimation("anim")
     anim:SetRayTestOnBB(true);
 
     -------
+	inst.components.edible.healthvalue = -3
+    inst.components.edible.hungervalue = 6
+    inst.components.edible.sanityvalue = -8
+	
+	inst:AddComponent("stackable")
+	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM	
 
-    --inst:AddComponent("inspectable")
-  
-    --inst:AddComponent("inventoryitem")
     inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
-	--inst.components.inventoryitem.atlasname = "images/inventoryimages/datura_petals.xml"
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/datura_petals.xml"
 
     return inst
 end

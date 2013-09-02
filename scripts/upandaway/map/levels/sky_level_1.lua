@@ -62,18 +62,20 @@ local sky_level_1 = {
 		{"hounds", 			"never"},	
 		{"rabbits",         "never"},
 		{"trees",           "never"},
-		{"rocks",           "never"},	
-		{"carrots",         "never"},	
+		{"rock",           "never"},	
+		{"carrot",         "never"},	
+		{"berrybush", 		"never"},				
 		{"beefalo",         "never"},	
 		{"grass",           "never"},	
 		{"pigs",            "never"},
+		{"sapling",        "never"},
 		
 		{"world_complexity", "verycomplex"},	
 					
 		--This is custom content.
-		{"purpleskyflower",    "everywhere"},
-		{"orangeskyflower",    "everywhere"},
-		{"yellowskyflower",    "everywhere"},
+		{"skyflower",     "up_everywhere"},
+		{"cloud_bush",    "up_moreplaces"},
+		{"sheep",         "up_fewplaces"},
 		
 		{"start_setpeice", 	"BeanstalkTop"},				
 	},

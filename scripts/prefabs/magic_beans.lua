@@ -1,6 +1,17 @@
 local assets =
 {
 	Asset("ANIM", "anim/magic_beans.zip"),
+	
+	Asset( "ATLAS", "images/inventoryimages/magic_beans.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/magic_beans.tex" ),
+
+	Asset( "ATLAS", "images/inventoryimages/magic_beans_cooked.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/magic_beans_cooked.tex" ),	
+}
+
+local prefabs =
+{
+	"magic_beans_cooked",
 }
 
 local function test_ground(inst, pt)
@@ -34,13 +45,13 @@ local function ondeploy(inst, pt)
 		tree.Transform:SetPosition(pt.x, pt.y, pt.z)
 		inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentapiller_emerge") 
 		inst.AnimState:PlayAnimation("emerge")		
-        inst.AnimState:PushAnimation("idle", "loop")		
+        --inst.AnimState:PushAnimation("idle", "loop")		
 		inst.components.stackable:Get():Remove()
 		GetPlayer().AnimState:PlayAnimation("wakeup")
 	end 
 end
 
-local function fn(Sim)
+local function common(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
@@ -61,9 +72,25 @@ local function fn(Sim)
 	inst:AddComponent("deployable")
 	inst.components.deployable.ondeploy = ondeploy
 	inst.components.deployable.test = test_ground
-	inst.components.deployable.min_spacing = 2	
+	inst.components.deployable.min_spacing = 4	
+	
+    inst:AddComponent("cookable")
+    inst.components.cookable.product = "magic_beans_cooked"	
 
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/magic_beans.xml"
 	return inst
 end
 
-return Prefab ("common/inventory/magic_beans", fn, assets) 
+local function cooked()
+    local inst = common()
+    inst.AnimState:PlayAnimation("cooked")
+	inst.components.edible.healthvalue = 100
+    inst.components.edible.hungervalue = 100
+    inst.components.edible.sanityvalue = -100
+	inst:RemoveComponent("deployable")	
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/magic_beans_cooked.xml"
+    return inst
+end
+
+return Prefab ("common/inventory/magic_beans", common, assets, prefabs), 
+       Prefab ("common/inventory/magic_beans_cooked", cooked, assets, prefabs) 

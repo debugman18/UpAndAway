@@ -9,11 +9,11 @@ local new_tiles = CFG.NEW_TILES
 --These assets are for all of the added inventory items.
 local RawAssets = {
 
-	--Asset( "ATLAS", "images/inventoryimages/skyflower_petals.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/skyflower_petals.tex" ),
+	Asset( "ATLAS", "images/inventoryimages/skyflower_petals.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/skyflower_petals.tex" ),
 
-	--Asset( "ATLAS", "images/inventoryimages/datura_petals.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/datura_petals.tex" ),
+	Asset( "ATLAS", "images/inventoryimages/datura_petals.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/datura_petals.tex" ),
 	
 	--Asset( "ATLAS", "images/inventoryimages/crystal_shard.xml" ),
 	--Asset( "IMAGE", "images/inventoryimages/crystal_shard.tex" ),
@@ -41,9 +41,12 @@ local RawAssets = {
 
 	Asset( "ATLAS", "images/inventoryimages/magic_beans.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/magic_beans.tex" ),
+	
+	Asset( "ATLAS", "images/inventoryimages/magic_beans_cooked.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/magic_beans_cooked.tex" ),	
 
-	--Asset( "ATLAS", "images/inventoryimages/cloud_fluff.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/cloud_fluff.tex" ),
+	--Asset( "ATLAS", "images/inventoryimages/cloud_cotton.xml" ),
+	--Asset( "IMAGE", "images/inventoryimages/cloud_cotton.tex" ),
 
 	Asset( "ATLAS", "images/inventoryimages/golden_egg.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/golden_egg.tex" ),
@@ -99,7 +102,7 @@ local RawPrefabFiles = {
 	--"beanstalk_wall",	
 	
 	"beanstalk_chunk",	
-	"magic_beans",	
+	"magic_beans",
 	
 	--"magic_bean_sprout",	
 	

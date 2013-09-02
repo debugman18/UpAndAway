@@ -57,11 +57,13 @@ TRANSLATE_TO_PREFABS["skyflowers"] = {"skyflower"}
 TRANSLATE_TO_PREFABS["sheep"] = {"sheep"}
 TRANSLATE_TO_PREFABS["cloudbush"] = {"cloud_bush"}
 
-
 -- Should we really change the MULTIPLY table for all map generation?!
---[[
+
+-- It is part of the API now, and these values are only called when the level is created. I'll change the values for testing purposes until
+-- realm_map is implemented, or whatever is decided on.
+
 local MULTIPLY = GLOBAL.require("map/forest_map").MULTIPLY
-MULTIPLY["everywhere"] = 60
-MULTIPLY["moreplaces"] = 15
-MULTIPLY["fewplaces"] = 3
-]]--
+MULTIPLY["up_everywhere"] = 60
+MULTIPLY["up_moreplaces"] = 15
+MULTIPLY["up_fewplaces"] = 3
+

@@ -28,9 +28,11 @@ end
 local function onpickedfn(inst, picker)
 	if picker and picker.components.sanity then
 		picker.components.sanity:DoDelta(TUNING.SANITY_TINY)
-	end	
-	local cotton = SpawnPrefab("cloud_cotton")
-	cotton.Transform:SetPosition(inst.Transform:GetWorldPosition())
+	end
+	if picker then
+		local cotton = SpawnPrefab("cloud_cotton")
+		cotton.Transform:SetPosition(inst.Transform:GetWorldPosition())
+	end
 	inst:Remove()
 end
 
