@@ -48,7 +48,7 @@ local sky_level_1 = {
 
 		--{"world_size", 		"huge"},
 		{"world_size", 		"tiny"},
-		{"day", 			"onlyday"}, 
+		{"day", 			"onlydusk"}, 
 		{"waves", 			"on"},
 		{"branching",		"never"},
 		{"looping",		    "always"},

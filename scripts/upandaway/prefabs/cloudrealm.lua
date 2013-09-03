@@ -56,8 +56,8 @@ local essential_assets =
 local essential_prefabs = 
 {
 	"world",
-	"mist",
-	"snow",
+	"cloud_mist",
+	--"snow",
 	--"rain",
 	
 	"beanstalk_exit",

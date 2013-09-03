@@ -33,10 +33,12 @@ end
 AddGamePostInit(function()
 	local ground = GetWorld()
 	if ground and Pred.IsCloudLevel() then
-		local AddMist = modrequire 'addmist'
-
 		for _, node in ipairs(ground.topology.nodes) do
-			AddMist(node)
+			local mist = SpawnPrefab("cloud_mist")
+			mist:AddToNode(node)
+			if mist:IsValid() and mist.components.emitter then
+				mist.components.emitter:Emit()
+			end
 		end
 	end
 end)

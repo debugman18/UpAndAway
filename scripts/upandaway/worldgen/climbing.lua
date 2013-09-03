@@ -157,7 +157,12 @@ function GetLevelHeight()
 end
 
 function IsCloudLevel()
-	return GetLevelHeight() >= 1
+	local ground = GetWorld()
+	if ground and ground:HasTag("cloudrealm") then
+			return true
+	else
+		return GetLevelHeight() >= 1
+	end
 end
 Pred.IsCloudLevel = IsCloudLevel
 
