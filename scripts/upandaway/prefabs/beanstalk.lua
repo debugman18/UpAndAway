@@ -279,7 +279,17 @@ chopped = function(inst)
 	inst.chopped = true	
 
 	inst:RemoveComponent("workable")
-	inst:RemoveComponent("activatable")
+
+	-- Removing this component was causing a crash sometimes by a race condition.
+	-- (the crash was caused by the game attempting to get the "verb" for the activation)
+	--
+	-- The issue is with non-instant buffered actions that only run later.
+	--inst:RemoveComponent("activatable")
+	
+	inst.components.activatable.inactive = true
+	inst:DoTaskInTime(2, function(inst)
+			inst:RemoveComponent("activatable")
+	end
 
 	-- This destroys the cloud level savedata, if any.
 	inst:RemoveComponent("climbable")
