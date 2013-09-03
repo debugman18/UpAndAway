@@ -24,6 +24,12 @@ for quite some time.
 
 ### Current Version: Pre-Alpha
 
+#### Update: 2013-09-03
+
+The Cloud Realm is now implemented on top of caves. The world transition/generation
+is organized by height: caves have negative height, the surface has zero height and
+the cloud realms (currently just one, though) have positive height.
+
 #### Update: 2013-09-02
 
 Things listed here have both art and functional code assets.
