@@ -19,7 +19,6 @@ TheMod:AddRoom("BGCloud", {
 TheMod:AddRoom("BeanstalkSpawn", {
 	colour={r=.7,g=.7,b=.8,a=1},
 	value = GROUND.POOPCLOUD,
-	tags = {"Town"},
 	contents =  {
 		distributepercent = 0.2,
 		distributeprefabs = {

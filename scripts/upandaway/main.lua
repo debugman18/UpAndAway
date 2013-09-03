@@ -8,10 +8,25 @@ module( ..., require(_modname .. '.booter') )
 BindTheMod()
 
 
+local Pred = wickerrequire 'lib.predicates'
+
+
 modrequire 'strings'
 
 
 local CFG = TUNING.UPANDAWAY
+
+
+AddGamePostInit(function()
+	local ground = GetWorld()
+	if ground and Pred.IsCloudLevel() then
+		local AddMist = modrequire 'addmist'
+
+		for _, node in ipairs(ground.topology.nodes) do
+			AddMist(node)
+		end
+	end
+end)
 
 
 --[[

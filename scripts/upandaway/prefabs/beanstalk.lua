@@ -289,7 +289,7 @@ chopped = function(inst)
 	inst.components.activatable.inactive = true
 	inst:DoTaskInTime(2, function(inst)
 			inst:RemoveComponent("activatable")
-	end
+	end)
 
 	-- This destroys the cloud level savedata, if any.
 	inst:RemoveComponent("climbable")
