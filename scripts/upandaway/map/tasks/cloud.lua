@@ -5,7 +5,7 @@ module( ..., require(_modname .. '.booter') )
 --@@END ENVIRONMENT BOOTUP
 
 
-TheMod:AddTask("Disbrave the Sky", {
+TheMod:AddTask("Explore the Realm", {
 	locks = LOCKS.NONE,
 	keys_given = {KEYS.TIER1, KEYS.TIER2},
 

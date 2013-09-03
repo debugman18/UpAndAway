@@ -90,7 +90,7 @@ local sky_level_1 = {
 	},
 	
 	tasks = {
-		"Disbrave the Sky",
+		"Explore the Realm",
 	},
 	
 	numoptionaltasks = 0,
