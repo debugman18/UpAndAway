@@ -24,6 +24,10 @@ for quite some time.
 
 ### Current Version: Pre-Alpha
 
+### Update: 2013-09-03
+
+Now there is a cloudrealm world entity.
+
 #### Update: 2013-09-03
 
 The Cloud Realm is now implemented on top of caves. The world transition/generation
