@@ -45,7 +45,7 @@ local function ondeploy(inst, pt)
 		tree.Transform:SetPosition(pt.x, pt.y, pt.z)
 		inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentapiller_emerge") 
 		inst.AnimState:PlayAnimation("emerge")		
-        --inst.AnimState:PushAnimation("idle", "loop")		
+        inst.AnimState:PushAnimation("idle", "loop")		
 		inst.components.stackable:Get():Remove()
 		GetPlayer().AnimState:PlayAnimation("wakeup")
 	end 
@@ -84,9 +84,10 @@ end
 local function cooked()
     local inst = common()
     inst.AnimState:PlayAnimation("cooked")
+	inst:AddComponent("edible")
 	inst.components.edible.healthvalue = 100
     inst.components.edible.hungervalue = 100
-    inst.components.edible.sanityvalue = -100
+    inst.components.edible.sanityvalue = -50
 	inst:RemoveComponent("deployable")	
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/magic_beans_cooked.xml"
     return inst
