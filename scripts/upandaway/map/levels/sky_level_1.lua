@@ -5,7 +5,8 @@ module( ..., require(_modname .. '.booter') )
 --@@END ENVIRONMENT BOOTUP
 
 
-local CAMPAIGN_LENGTH = 5
+modrequire 'worldgen.climbing'
+
 
 local LEVELTYPE = GLOBAL.LEVELTYPE
 
@@ -41,8 +42,6 @@ local sky_level_1 = {
 	nomaxwell=true,
 	hideminimap = true,
 	desc="Up and Away.",
-	min_playlist_position=CAMPAIGN_LENGTH+1,
-	max_playlist_position=CAMPAIGN_LENGTH+1,		
 
 	overrides={
 		{"world_size", 		"huge"},
@@ -106,12 +105,17 @@ local sky_level_1 = {
 
 
 
+--[[
 --This is the level that is generated.
 
 local adventure_sky_level_1 = DeepCopy(sky_level_1)
 
 TheMod:AddLevel(LEVELTYPE.ADVENTURE, adventure_sky_level_1)
+]]--
 
+
+local cave_sky_level_1 = DeepCopy(sky_level_1)
+TheMod:AddCloudLevel(cave_sky_level_1)
 
 
 --This is the preset for testing purposes.

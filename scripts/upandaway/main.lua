@@ -8,13 +8,27 @@ module( ..., require(_modname .. '.booter') )
 BindTheMod()
 
 
+modrequire 'strings'
 
-GetPlayer = GLOBAL.GetPlayer
-SaveIndex = GLOBAL.SaveIndex
 
 local CFG = TUNING.UPANDAWAY
 
-modrequire 'strings'
+
+--[[
+-- This is just to prevent changes in out implementation breaking old saves.
+--]]
+AddPrefabPostInit("world", function(inst)
+	local Climbing = modrequire 'worldgen.climbing'
+
+	local metadata_key = GetModname() .. "_metadata"
+	if not inst.components[metadata_key] then
+		inst:AddComponent(metadata_key)
+	end
+	
+	if inst.components[metadata_key]:Get("height") == nil then
+		inst.components[metadata_key]:Set("height", Climbing.GetLevelHeight())
+	end
+end)
 
 
 local function evergreens_ret(inst)

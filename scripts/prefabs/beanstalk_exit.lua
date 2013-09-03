@@ -13,7 +13,7 @@ local function onfar(inst)
     inst.AnimState:PlayAnimation("up")
     inst.SoundEmitter:PlaySound("dontstarve/cave/rope_up")
 end
-
+--[[
 local function LeaveSky(onsavedcb)
 	local playerdata = {}
 	local player = GetPlayer()
@@ -31,14 +31,15 @@ local function LeaveSky(onsavedcb)
 	end
 	self:Save(onsavedcb)
 end
-
+]]--
 local function OnActivate(inst)
 	SetHUDPause(true)
 	
-	local character = GetPlayer().prefab
+	--local character = GetPlayer().prefab
 	
-	local level = GetWorld().topology.level_number or 8
+	--local level = GetWorld().topology.level_number or 8
 	local function startadventure()
+		--[[
 		local function onsaved()
 		    StartNextInstance({reset_action=RESET_ACTION.LOAD_SLOT, save_slot = SaveGameIndex:GetCurrentSaveSlot()}, true)
 		end
@@ -46,10 +47,14 @@ local function OnActivate(inst)
 		local saveslot = SaveGameIndex:GetCurrentSaveSlot()
 		local character = GetPlayer().prefab		
 		
-		SetHUDPause(false)		
 		
 		SaveGameIndex:SaveCurrent(function() LeaveSky(onsaved) end)
+		]]--
 
+		SetHUDPause(false)		
+		if inst.components.climbable then
+			inst.components.climbable:Climb()
+		end
 	end
 
 	local function rejectadventure()
@@ -87,6 +92,9 @@ local function fn(Sim)
 
     --anim:PlayAnimation("down")
     --anim:PushAnimation("idle_loop", true)
+
+    inst:AddComponent("climbable")
+    inst.components.climbable:SetDirection("DOWN")
 
     inst:AddComponent("playerprox")
     inst.components.playerprox:SetDist(5,7)
