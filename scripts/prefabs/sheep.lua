@@ -77,7 +77,7 @@ local function dostaticsparks(inst, dt)
 	pos.y = pos.y + 1 + math.random()*1.5
 	local spark = SpawnPrefab("sparks")
 	spark.Transform:SetPosition(pos:Get())
-	spark.Transform:SetScale(0.5, 0.5, 0.5)
+	spark.Transform:SetScale(0.9, 0.5, 0.5)
 	
 end
 

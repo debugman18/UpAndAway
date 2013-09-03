@@ -78,6 +78,7 @@ local RawPrefabFiles = {
 	
 	"shopkeeper",
 	"sheep",	
+	"eel",
 	
 	--"crystal_deposit",
 	--"crystal_shard",
