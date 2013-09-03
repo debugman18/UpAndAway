@@ -13,5 +13,5 @@ local new_tiles = TheMod:GetConfig("NEW_TILES")
 --]]
 
 for i, v in ipairs(new_tiles) do
-	TheMod:AddTile(v:upper(), 64 + i, "" .. v .. "", {noise_texture = "levels/textures/noise_" .. v .. ".tex"}, {noise_texture = "levels/textures/mini_noise_" .. v .. ".tex"})
+	TheMod:AddTile(v:upper(), 64 + i, "" .. v .. "", {noise_texture = "noise_" .. v .. ".tex"}, {noise_texture = "mini_noise_" .. v .. ".tex"})
 end

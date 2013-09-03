@@ -67,13 +67,6 @@ local RawAssets = {
 	--Asset( "IMAGE", "images/inventoryimages/kite.tex" ),
 }
 
-for _, v in ipairs(new_tiles) do
-	table.insert(RawAssets, Asset( "IMAGE", "levels/textures/noise_" .. v .. ".tex" ))
-	table.insert(RawAssets, Asset( "IMAGE", "levels/textures/mini_noise_" .. v .. ".tex" ))
-	table.insert(RawAssets, Asset( "FILE", "levels/tiles/" .. v .. ".xml" ))
-	table.insert(RawAssets, Asset( "IMAGE", "levels/tiles/" .. v .. ".tex" ))
-end
-
 Assets = RawAssets
 
 
