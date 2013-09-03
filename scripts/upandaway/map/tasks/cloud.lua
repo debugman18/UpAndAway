@@ -6,13 +6,13 @@ module( ..., require(_modname .. '.booter') )
 
 
 TheMod:AddTask("Disbrave the Sky", {
-	locks = LOCKS.TIER1,
-	keys_given = KEYS.TIER2,
+	locks = LOCKS.NONE,
+	keys_given = {KEYS.TIER1, KEYS.TIER2},
 
 	room_choices={
-		["BGCloud"] = math.random(4),
-		["SkyflowerGarden"] = math.random(3),
-		["SheepHerd"] = math.random(2),
+		--["BGCloud"] = math.random(2),
+		["SkyflowerGarden"] = math.random(2, 4),
+		["SheepHerd"] = math.random(2, 3),
 	},
 
 	room_bg=GROUND.POOPCLOUD,

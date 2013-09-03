@@ -11,10 +11,23 @@ BindTheMod()
 local Pred = wickerrequire 'lib.predicates'
 
 
+require 'mainfunctions'
+
+
 modrequire 'strings'
 
 
 local CFG = TUNING.UPANDAWAY
+
+do
+	local oldSpawnPrefab = _G.SpawnPrefab
+	function _G.SpawnPrefab(name)
+		if name == "cave" and Pred.IsCloudLevel() then
+				name = "cloudrealm"
+		end
+		return oldSpawnPrefab(name)
+	end
+end
 
 
 AddGamePostInit(function()

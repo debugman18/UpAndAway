@@ -73,6 +73,8 @@ Assets = RawAssets
 --This loads all of the new prefabs.
 
 local RawPrefabFiles = {
+	"cloudrealm",
+	
 	"shopkeeper",
 	"sheep",	
 	
@@ -133,8 +135,6 @@ local RawPrefabFiles = {
 	--"rainbowcoon",
 	--"cotton_candy",
 	--"cotton_vest",
-
-	"turf_test",
 }
 
 

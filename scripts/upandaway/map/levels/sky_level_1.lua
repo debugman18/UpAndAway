@@ -52,7 +52,11 @@ local sky_level_1 = {
 		{"waves", 			"on"},
 		{"branching",		"never"},
 		{"looping",		    "always"},
-		{"season_start", 	"winter"},
+
+		-- The only effect the following has is preventing snow on the
+		-- ground.
+		{"season_start", 	"summer"},
+
 		{"season", 			"onlywinter"},
 		{"weather", 		"never"},
 		{"boons",			"never"},
@@ -60,6 +64,7 @@ local sky_level_1 = {
 		{"islands", 		"never"},				
 		{"deerclops", 		"never"},
 		{"hounds", 			"never"},	
+		{"rain",			"never"},
 
 		--[[
 		{"spiders", 		"never"},
