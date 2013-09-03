@@ -44,21 +44,23 @@ local sky_level_1 = {
 	desc="Up and Away.",
 
 	overrides={
-		{"world_size", 		"huge"},
+		--{"world_size", 		"huge"},
+		{"world_size", 		"tiny"}, -- For testing worldgen.
 		{"day", 			"onlyday"}, 
-		{"waves", 			"off"},
+		{"waves", 			"on"},
 		{"branching",		"never"},
 		{"looping",		    "always"},
-		{"islands", 		"always"},				
-		{"season_start", 	"summer"},
+		{"season_start", 	"winter"},
 		{"season", 			"onlywinter"},
 		{"weather", 		"never"},
+		{"boons",			"never"},
 		{"roads", 			"never"},	
-		
-		{"boons",			"always"},
-		{"spiders", 		"never"},
+		{"islands", 		"never"},				
 		{"deerclops", 		"never"},
 		{"hounds", 			"never"},	
+
+		--[[
+		{"spiders", 		"never"},
 		{"rabbits",         "never"},
 		{"trees",           "never"},
 		{"rock",           "never"},	
@@ -68,8 +70,8 @@ local sky_level_1 = {
 		{"grass",           "never"},	
 		{"pigs",            "never"},
 		{"sapling",        "never"},
-		
 		{"world_complexity", "verycomplex"},	
+		]]--
 					
 		--This is custom content.
 		{"skyflower",     "up_everywhere"},
@@ -77,30 +79,19 @@ local sky_level_1 = {
 		{"sheep",         "up_fewplaces"},
 		
 		{"start_setpeice", 	"BeanstalkTop"},				
+		{"start_node",		"BeanstalkSpawn"},
 	},
 	
 	tasks = {
-		"Speak to the king",
-		"Tentacle-Blocked The Deep Forest",
+		"Disbrave the Sky",
 	},
 	
-	numoptionaltasks = 4,
+	numoptionaltasks = 0,
 	optionaltasks = {
-		"Forest hunters",
-		"The hunters",
-		"Magic meadow",
-		"Hounded Greater Plains",
 	},
 	
 	set_pieces = {
-		["ResurrectionStone"] = { count=1, tasks={ "Speak to the king", "Forest hunters" } },
 	},
-	
-	override_triggers = {
-		["BeanstalkTop"] = {	
-			{"ColourCube", "fungus_cc"}, 
-		},
-	},		
 }
 
 

@@ -2,7 +2,9 @@ local assets=
 {
 	Asset("ANIM", "anim/sheep_baby_build.zip"),
 	Asset("ANIM", "anim/sheep_electric.zip"),	
-	--Asset("ANIM", "anim/beefalo_shaved_build.zip"),
+
+	Asset("ANIM", "anim/beefalo_basic.zip"),
+	Asset("ANIM", "anim/beefalo_actions.zip"),
 	Asset("SOUND", "sound/beefalo.fsb"),
 }
 

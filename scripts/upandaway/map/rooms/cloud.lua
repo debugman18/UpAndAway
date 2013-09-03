@@ -4,14 +4,50 @@ module( ..., require(_modname .. '.booter') )
 
 --@@END ENVIRONMENT BOOTUP
 
+TheMod:AddRoom("BGCloud", {
+	colour={r=.6,g=.6,b=.7,a=1},
+	value = GROUND.POOPCLOUD,
+	contents = {
+		distributepercent = 0.1,
+		distributeprefabs = {
+			skyflower = 1,
+			sheep = 0.1,
+		},
+	}
+})
 
 TheMod:AddRoom("BeanstalkSpawn", {
-	colour={r=.010,g=.010,b=.10,a=.50},
-	value = GROUND.MARSH,
+	colour={r=.7,g=.7,b=.8,a=1},
+	value = GROUND.POOPCLOUD,
 	contents =  {
-		distributepercent = 1,
+		distributepercent = 0.4,
 		distributeprefabs = {
-			skeleton = 1,
+			skeleton = 0.4,
+			skyflower = 4,
+			sheep = 1,
 		}
 	}
+})
+
+TheMod:AddRoom("SkyflowerGarden", {
+	colour={r=.4,g=.7,b=.4,a=1},
+	value = GROUND.POOPCLOUD,
+	contents = {
+		distributepercent = 0.5,
+		distributeprefabs = {
+			skyflower = 1,
+		},
+	},
+})
+
+TheMod:AddRoom("SheepHerd", {
+	colour={r=.7,g=.7,b=.5,a=1},
+	value = GROUND.POOPCLOUD,
+	contents = {
+		distributepercent = 0.3,
+		distributeprefabs = {
+			sheep = 1,
+			skyflower = 0.1,
+		},
+	},
 })
