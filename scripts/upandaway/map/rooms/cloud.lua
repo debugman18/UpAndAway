@@ -11,7 +11,7 @@ TheMod:AddRoom("BGCloud", {
 		distributepercent = 0.1,
 		distributeprefabs = {
 			skyflower = 1,
-			sheep = 0.1,
+			--sheep = 0.1,
 		},
 	}
 })
@@ -20,11 +20,11 @@ TheMod:AddRoom("BeanstalkSpawn", {
 	colour={r=.7,g=.7,b=.8,a=1},
 	value = GROUND.POOPCLOUD,
 	contents =  {
-		distributepercent = 0.4,
+		distributepercent = 0.2,
 		distributeprefabs = {
-			skeleton = 0.4,
-			skyflower = 4,
-			sheep = 1,
+			skeleton = 0.1,
+			skyflower = 5,
+			--sheep = 0.3,
 		}
 	}
 })
@@ -33,7 +33,7 @@ TheMod:AddRoom("SkyflowerGarden", {
 	colour={r=.4,g=.7,b=.4,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
-		distributepercent = 0.5,
+		distributepercent = 0.4,
 		distributeprefabs = {
 			skyflower = 1,
 		},
@@ -44,7 +44,7 @@ TheMod:AddRoom("SheepHerd", {
 	colour={r=.7,g=.7,b=.5,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
-		distributepercent = 0.3,
+		distributepercent = 0.08,
 		distributeprefabs = {
 			sheep = 1,
 			skyflower = 0.1,

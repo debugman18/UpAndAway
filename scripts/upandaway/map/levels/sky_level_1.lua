@@ -40,12 +40,14 @@ local sky_level_1 = {
 	id="SKY_LEVEL_1",
 	name="Sky",
 	nomaxwell=true,
-	hideminimap = true,
+	--hideminimap = true,
 	desc="Up and Away.",
 
 	overrides={
+		{"location",		"cave"},
+
 		--{"world_size", 		"huge"},
-		{"world_size", 		"tiny"}, -- For testing worldgen.
+		{"world_size", 		"tiny"},
 		{"day", 			"onlyday"}, 
 		{"waves", 			"on"},
 		{"branching",		"never"},
