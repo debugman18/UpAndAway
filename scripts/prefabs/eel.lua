@@ -34,7 +34,8 @@ local function fn(Sim)
     inst.entity:AddPhysics()
     inst.Physics:SetCylinder(0.50,2)
 	trans:SetScale(.6, .7, 0.5)
-    
+    MakeGhostPhysics(inst, 1, .5)
+	
     anim:SetBank("tentacle")
     anim:SetBuild("tentacle")
     anim:PlayAnimation("idle")
@@ -66,7 +67,7 @@ local function fn(Sim)
     inst.components.lootdropper:SetLoot({"monstermeat", "monstermeat"})
 	
     inst:AddComponent("locomotor")
-    inst.components.locomotor.walkspeed = 9
+    inst.components.locomotor.walkspeed = 7.6
 	inst.components.locomotor.runspeed = 9	
 	inst.components.locomotor.directdrive = true
     
