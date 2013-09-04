@@ -136,6 +136,9 @@ local states=
         },
     },
     
+    State{
+        name = "start_run",
+    },  
     
 	State{
         name = "death",
@@ -176,6 +179,7 @@ local states=
     },    
     
 }
+
 CommonStates.AddFrozenStates(states)
 CommonStates.AddWalkStates(
     states,
@@ -186,6 +190,7 @@ CommonStates.AddWalkStates(
             TimeEvent(40*FRAMES, function(inst) inst.SoundEmitter:PlaySound(inst.sounds.walk) end),
         }
     })
+	
     
 return StateGraph("eel", states, events, "idle")
 
