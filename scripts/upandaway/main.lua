@@ -29,6 +29,12 @@ do
 	end
 end
 
+AddSimPostInit(function(inst)
+	local alphawarning = inst.HUD and inst.HUD.controls and inst.HUD.controls.alphawarning
+	if alphawarning then
+		alphawarning:SetString("Up and Away is a work in progress!")
+	end
+end)
 
 AddGamePostInit(function()
 	local ground = GetWorld()
