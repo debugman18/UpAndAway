@@ -15,6 +15,10 @@ local MarkovChain = modrequire 'markovchain'
 -- In seconds.
 local UPDATING_PERIOD = 2
 
+local COOLDOWN = TheMod:GetConfig("STATIC", "COOLDOWN")
+assert( Pred.IsPositiveNumber(COOLDOWN) )
+
+
 local events_map = {
 	charged = { uncharged = "upandaway_uncharge" },
 	uncharged = { charged = "upandaway_charge" },
@@ -34,6 +38,12 @@ local StaticGenerator = Class(Debuggable, function(self, inst)
 		local event = assert( events_map[old][new] )
 		self:DebugSay("Pushing event ", event)
 		self.inst:PushEvent(event)
+		self:StopGenerating()
+		self.inst:DoTaskInTime(COOLDOWN, function(inst)
+			if inst:IsValid() and inst.components.staticgenerator then
+				inst.components.staticgenerator:StartGenerating()
+			end
+		end)
 	end)
 	self.chain = chain
 
