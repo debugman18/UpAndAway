@@ -166,6 +166,14 @@ local function fn(Sim)
 
 	inst:AddComponent("colourcubemanager")
 	--inst.Map:SetOverlayTexture( "levels/textures/snow.tex" )
+	
+	inst:AddComponent("staticgenerator")
+	local staticgen = inst.components.staticgenerator
+	staticgen:SetAverageUnchargedTime( TheMod:GetConfig("STATIC", "AVERAGE_UNCHARGED_TIME") )
+	staticgen:SetAverageChargedTime( TheMod:GetConfig("STATIC", "AVERAGE_CHARGED_TIME") )
+	staticgen:StartGenerating()
+
+	TheMod:DebugSay("Built cloudrealm entity [", inst, "]")
 
 	return inst
 end

@@ -10,6 +10,7 @@
 --]]
 NEW_TILES = {"poopcloud"}
 
+
 SHOPKEEPER = {}
 
 -- Number of beans the Shopkeeper has.
@@ -24,5 +25,16 @@ end
 
 -- Maximum distance for a cow to be negotiated.
 SHOPKEEPER.MAX_COW_DIST = 12
+
+
+STATIC = {}
+
+-- In seconds.
+-- Note that the static generator only updates itself every 2 seconds, so
+-- using too low of a value will give low precision.
+STATIC.AVERAGE_UNCHARGED_TIME = 120
+
+STATIC.AVERAGE_CHARGED_TIME = 30
+
 
 DEBUG = true
