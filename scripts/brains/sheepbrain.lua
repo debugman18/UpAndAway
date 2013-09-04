@@ -43,9 +43,9 @@ function SheepBrain:OnStart()
     {
         WhileNode( function() return self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst)),
         RunAway(self.inst, "scarytoprey", AVOID_PLAYER_DIST, AVOID_PLAYER_STOP),
-        RunAway(self.inst, "scarytoprey", SEE_PLAYER_DIST, STOP_RUN_DIST, nil, true),		
-        DoAction(self.inst, EatFoodAction),
-        Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST)
+        RunAway(self.inst, "scarytoprey", SEE_PLAYER_DIST, STOP_RUN_DIST, nil, true),
+        Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST),		
+        DoAction(self.inst, EatFoodAction)
     }, .25)
     self.bt = BT(self.inst, root)
 end
