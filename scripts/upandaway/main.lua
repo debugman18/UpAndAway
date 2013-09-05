@@ -111,7 +111,7 @@ end
 
 -- This works under both game versions (due to api_abstractions.lua)
 -- It will actually call AddGenericClassPostConstruct defined there.
-AddGlobalClassPostConstruct("screens/mainscreen", "MainScreen", UpdateMainScreen)
+AddClassPostConstruct("screens/mainscreen", UpdateMainScreen)
 
 --Changes "activate" to "talk to" for "shopkeeper".
 AddSimPostInit(function(inst)
