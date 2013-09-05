@@ -65,6 +65,9 @@ local RawAssets = {
 
 	--Asset( "ATLAS", "images/inventoryimages/kite.xml" ),
 	--Asset( "IMAGE", "images/inventoryimages/kite.tex" ),
+	
+	Asset("SOUNDPACKAGE", "sound/project.fev"),
+	Asset("SOUND", "sound/project_bank00.fsb"),
 }
 
 Assets = RawAssets
