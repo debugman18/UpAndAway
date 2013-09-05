@@ -61,13 +61,24 @@ Add.QuotesFor "beanstalk" {
 	wx78 = "IT HAS GROWN OUT OF CONTROL.",
 }
 
+Add.QuotesFor "magic_beans" {
+	GENERIC = "",
+	waxwell = "",
+	wendy = "",
+	wickerbottom = "",
+	willow = "",
+	wolfgang = "Not enough for my mighty belly.",
+	woodie = "",
+	wx78 = "",
+}
+
 Add.QuotesFor "sheep" {
 	GENERIC = "They make me feel sleepy.",
 	waxwell = "I'd hate to be near them when they're in a bad mood.",
 	wendy = " Ignorance. The worst kind of darkness.",
 	wickerbottom = "Ovis Aris. Reminds me of farms.",
 	willow = "Cotton. Very flammable.",
-	wolfgang = "Puny baby animal.",
+	wolfgang = "Little sheep is made of soft.",
 	woodie = "Ooh! Lambchops!",
 	wx78 = "DOCILE MAMMAL. HARD TO FRIGHTEN.",
 }
@@ -77,7 +88,7 @@ Add.QuotesFor "sheep_electric" {
 	waxwell = " I should keep a distance back from that animal.",
 	wendy = "Their cup hath runneth over.",
 	willow = "Shouldn't have charged him up.",
-	wolfgang = "Baby animal mad!",
+	wolfgang = "Sheep is mighty now!",
 	woodie = "Looks like I'm in trouble now. Oops.",
 	wx78 = "APPARENTLY EASY TO ANGER.",
 }
@@ -88,7 +99,7 @@ Add.QuotesFor "shopkeeper" {
 	wendy = "A deceiver at heart.",
 	wickerbottom = "Perhaps he has some books for sale.",
 	willow = "I like the flag on his umbrella.",
-	wolfgang = "He sells no potatoes.",
+	wolfgang = "Is talking umbrella.",
 	woodie = "Men like this ran my lumber yard.",
 	wx78 = "A PEDDLER OF GOODS.",
 }
