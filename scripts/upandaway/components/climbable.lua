@@ -48,12 +48,18 @@ function Climbable:DestroyCave(callback)
 end
 
 --[[
+-- The below behaviour was changed, at least provisionally.
+-- Otherwise, save files for higher levels would not be properly deleted
+-- if a lower beanstalk is chopped (this issue also affects vanilla, with
+-- ruins' save files being left behind).
+--
 -- This will only return true if either:
 -- 1) The direction is up and we are not below ground.
 -- 2) The direction is down and we are not above ground.
 --]]
 local function should_have_cavenum(self)
-	return self.direction and self.direction*Climbing.GetLevelHeight() >= 0
+	--return self.direction and self.direction*Climbing.GetLevelHeight() >= 0
+	return self.direction and Climbing.GetLevelHeight() == 0
 end
 
 
