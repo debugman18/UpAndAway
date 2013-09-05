@@ -105,9 +105,13 @@ AddPrefabPostInit('evergreen', evergreens_ret)
 local function UpdateMainScreen(self)
 	self.updatename:SetString("Up and Away")
 end
-_G.package.loaded["widgets/SavingIndicator"] = require "widgets/savingindicator"
-_G.package.loaded["widgets/StatusDisplays"] = require "widgets/statusdisplays"
-AddClassPostConstruct("screens/mainscreen", UpdateMainScreen)
+pcall(function() _G.package.loaded["widgets/SavingIndicator"] = require "widgets/savingindicator" end)
+pcall(function() _G.package.loaded["widgets/StatusDisplays"] = require "widgets/statusdisplays" end)
+if type(require "screens/mainscreen") == "table" then
+	AddClassPostConstruct("screens/mainscreen", UpdateMainScreen)
+else
+	AddGlobalClassPostConstruct("screens/mainscreen", "MainScreen", UpdateMainScreen)
+end
 
 --Changes "activate" to "talk to" for "shopkeeper".
 AddSimPostInit(function(inst)
