@@ -7,6 +7,7 @@ local assets=
 	Asset("ANIM", "anim/beefalo_actions.zip"),
 	Asset("SOUND", "sound/beefalo.fsb"),
 	Asset("SOUND", "sound/project_bank00.fsb"),
+	Asset("SOUND", "sound/sheep_bank01.fsb"),		
 }
 
 local prefabs =
@@ -21,11 +22,11 @@ local loot = {"meat","meat","cloud_cotton","cloud_cotton"}
 local sounds = 
 {
     walk = "dontstarve/beefalo/walk",
-    grunt = "project/testsound/baa",
-    yell = "project/testsound/baa",
-    swish = "project/testsound/baa",
-    curious = "project/testsound/baa",
-    angry = "project/testsound/baa",
+    grunt = "sheep/sheep/baa",
+    yell = "sheep/sheep/baa",
+    swish = "sheep/sheep/baa",
+    curious = "sheep/sheep/baa",
+    angry = "sheep/sheep/baa",
 }
 
 local function Retarget(inst)
