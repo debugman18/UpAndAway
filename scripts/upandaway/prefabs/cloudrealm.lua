@@ -160,6 +160,10 @@ local function fn(Sim)
 
 	SetupLevelTypeFix(inst)
 
+	if not inst.components.clock then
+		inst:AddComponent("clock")
+	end
+
 	inst:AddComponent("seasonmanager")
 
 	--AddNeutralComponent(inst, "quaker")
@@ -187,6 +191,7 @@ return Prefab("cloudrealm", fn, assets, prefabs)
 
 --[[
 -- Forest and cave constructors, for reference.
+-- (as in Nightmares, not public preview!)
 
 -- Forest
 local function fn(Sim)

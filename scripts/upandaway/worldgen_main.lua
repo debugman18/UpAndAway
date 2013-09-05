@@ -11,6 +11,10 @@ BindTheMod()
 wickerrequire 'api.plugins.addtile'
 wickerrequire 'api.plugins.addsaveindexpostinit'
 
+
+modrequire('api_abstractions')()
+
+
 ----------------------------------
 -- Custom Level mod example
 --

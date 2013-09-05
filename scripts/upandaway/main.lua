@@ -14,6 +14,9 @@ local Pred = wickerrequire 'lib.predicates'
 require 'mainfunctions'
 
 
+modrequire('api_abstractions')()
+
+
 modrequire 'strings'
 
 
@@ -78,7 +81,7 @@ end
 
 local function onUp(inst)
 
-		SetHUDPause(true)
+		SetPause(true)
 		--Define the new world objects we are placing.
 		local beanstalk = SpawnPrefab("beanstalk")
 
@@ -95,7 +98,7 @@ local function onUp(inst)
 			evergreens_ret:Remove()
 		end	
 		
-		SetHUDPause(false)
+		SetPause(false)
 		GetPlayer().goneUpRemember = true
 end
 
@@ -105,13 +108,10 @@ AddPrefabPostInit('evergreen', evergreens_ret)
 local function UpdateMainScreen(self)
 	self.updatename:SetString("Up and Away")
 end
-pcall(function() _G.package.loaded["widgets/SavingIndicator"] = require "widgets/savingindicator" end)
-pcall(function() _G.package.loaded["widgets/StatusDisplays"] = require "widgets/statusdisplays" end)
-if type(require "screens/mainscreen") == "table" then
-	AddClassPostConstruct("screens/mainscreen", UpdateMainScreen)
-else
-	AddGlobalClassPostConstruct("screens/mainscreen", "MainScreen", UpdateMainScreen)
-end
+
+-- This works under both game versions (due to api_abstractions.lua)
+-- It will actually call AddGenericClassPostConstruct defined there.
+AddGlobalClassPostConstruct("screens/mainscreen", "MainScreen", UpdateMainScreen)
 
 --Changes "activate" to "talk to" for "shopkeeper".
 AddSimPostInit(function(inst)

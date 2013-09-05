@@ -5,6 +5,9 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 --@@END ENVIRONMENT BOOTUP
 
 
+local PopupDialogScreen = require "screens/popupdialog"
+
+
 local Logic = wickerrequire 'paradigms.logic'
 local game = wickerrequire 'utils.game'
 
@@ -228,16 +231,16 @@ end
 --Makes the beanstalk climbable.
 local function OnActivate(inst)
 	
-	SetHUDPause(true)
+	SetPause(true)
 
 	
 	local function startadventure()
-		SetHUDPause(false)	
+		SetPause(false)	
 		inst.components.climbable:Climb()
 	end
 	
 	local function rejectadventure()
-		SetHUDPause(false) 
+		SetPause(false) 
 		inst.components.activatable.inactive = true
 		TheFrontEnd:PopScreen()
 	end		
