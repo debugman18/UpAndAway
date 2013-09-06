@@ -77,7 +77,7 @@ local function dostaticsparks(inst, dt)
 
 	local pos = Vector3(inst.Transform:GetWorldPosition())
 	pos.y = pos.y + 1 + math.random()*1.5
-	local spark = SpawnPrefab("sparks")
+	local spark = SpawnPrefab("sparks_fx")
 	spark.Transform:SetPosition(pos:Get())
 	spark.Transform:SetScale(0.9, 0.5, 0.5)
 	
@@ -167,9 +167,15 @@ local function sheeptransform_uncharge(inst)
     inst:SetStateGraph("SGSheep")
 	inst:AddComponent("named")
 	inst.components.named:SetName("Sheep")
+    if inst.brain then
+		inst.brain:Start()
+	end
+	if inst.sg then
+	    inst.sg:Start()
+	end	
 	inst:ListenForEvent("upandaway_charge", function()
 		print "Charged!"
-		sheeptransform_charge(inst)	
+		self.sheeptransform_charge(inst)	
 		return inst
 	end, GetWorld())	
 	return inst		
@@ -216,7 +222,7 @@ local function sheeptransform_charge(inst)
 	
 	inst:AddTag("hostile")
      
-	--inst:DoPeriodicTask(1/10, function() dostaticsparks(inst, 1/10) end)
+	inst:DoPeriodicTask(1/10, function() dostaticsparks(inst, 1/10) end)
 	 
 	inst.components.health:SetMaxHealth(TUNING.BEEFALO_HEALTH)
 		
@@ -244,9 +250,15 @@ local function sheeptransform_charge(inst)
 	inst:SetStateGraph("SGSheep")
 	inst:AddComponent("named")
 	inst.components.named:SetName("Electric Sheep")
+    if inst.brain then
+		inst.brain:Start()
+	end
+	if inst.sg then
+	    inst.sg:Start()
+	end	
 	inst:ListenForEvent("upandaway_uncharge", function()
 		print "Uncharged!"
-		sheeptransform_uncharge(inst)	
+		self.sheeptransform_uncharge(inst)	
 		return inst
 	end, GetWorld())		
 	return inst		

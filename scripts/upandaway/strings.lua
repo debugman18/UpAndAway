@@ -23,6 +23,7 @@ Add.Names {
 	duckraptor = "Duckraptor",
 	duckraptor_baby = "Duckling",
 	duckraptor_mother = "Mother Duckraptor",
+	aetheel = "Aetheel",
 	golden_amulet = "Golden Amulet",
 	golden_egg = "Golden Egg",
 	golden_golem = "Golden Golem",

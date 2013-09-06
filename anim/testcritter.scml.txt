@@ -1,2 +1,0 @@
-Building 'C:\Program Files (x86)\Steam\SteamApps\common\dont_starve\mods\UpAndAway\anim\testcritter.scml'.
-ERROR: Invalid number of arguments!

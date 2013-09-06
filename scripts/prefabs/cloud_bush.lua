@@ -1,6 +1,6 @@
 local assets =
 {
-	Asset("ANIM", "anim/berrybush.zip"),
+	Asset("ANIM", "anim/cloudbush.zip"),
 }
 
 local prefabs = 
@@ -31,9 +31,8 @@ local function onpickedfn(inst, picker)
 	--]]
 end
 
-local function onregenfn(inst)
-	inst.AnimState:PlayAnimation("grow") 
-	inst.AnimState:PushAnimation("idle", true)
+local function onstaticfn(inst)
+	inst.AnimState:PlayAnimation("berriesmost", false) 
 end
 
 local function makeemptyfn(inst)
@@ -45,10 +44,10 @@ local function fn(Sim)
 	local trans = inst.entity:AddTransform()
 	local anim = inst.entity:AddAnimState()
 
-    anim:SetBuild("berrybush")
     anim:SetBank("berrybush")
+    anim:SetBuild("cloudbush")	
 	anim:PlayAnimation("empty")
-    --anim:PlayAnimation("idle", true)
+    anim:PlayAnimation("idle", true)
     anim:SetTime(math.random()*2)
 
     local color = 0.5 + math.random() * 0.5
@@ -57,11 +56,12 @@ local function fn(Sim)
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/harvest_sticks"
     
-    inst.components.pickable:SetUp("cloud_cotton", TUNING.MARSHBUSH_REGROW_TIME)
-	inst.components.pickable.onregenfn = onregenfn
+    inst.components.pickable:SetUp("candy_fruit", TUNING.MARSHBUSH_REGROW_TIME, 2)
+	inst.components.pickable.onregenfn = onstaticfn
 	inst.components.pickable.onpickedfn = onpickedfn
     inst.components.pickable.makeemptyfn = makeemptyfn
 	inst.components.pickable.ontransplantfn = ontransplantfn
+	inst.components.pickable:MakeEmpty()
 
 	inst:AddComponent("lootdropper")
 	inst:AddComponent("workable")
@@ -70,6 +70,12 @@ local function fn(Sim)
     inst.components.workable:SetWorkLeft(1)
     
     inst:AddComponent("inspectable")
+	
+	inst:ListenForEvent("upandaway_charge", function()
+		print "Charged!"
+		onstaticfn(inst)	
+		return inst
+	end, GetWorld())	
     
     MakeLargeBurnable(inst)
     MakeLargePropagator(inst)

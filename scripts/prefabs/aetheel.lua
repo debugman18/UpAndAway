@@ -77,4 +77,4 @@ local function fn(Sim)
     return inst
 end
 
-return Prefab( "marsh/monsters/eel", fn, assets, prefabs) 
+return Prefab( "marsh/monsters/aetheel", fn, assets, prefabs) 

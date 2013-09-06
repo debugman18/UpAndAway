@@ -11,9 +11,9 @@ local function fn(Sim)
     
     --anim:SetBank("testcritter") -- name of the animation root
     --anim:SetBuild("testcritter")  -- name of the file
-    --anim:PlayAnimation("anim0", true) -- name of the animation
+    --anim:PlayAnimation("bounce", true) -- name of the animation
     
     return inst
 end
 
-return Prefab( "common/anim_test", fn, assets) 
+return Prefab("common/anim_test", fn, assets) 
