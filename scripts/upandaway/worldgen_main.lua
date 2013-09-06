@@ -15,6 +15,9 @@ wickerrequire 'api.plugins.addsaveindexpostinit'
 modrequire('api_abstractions')()
 
 
+LoadConfiguration "rc.lua"
+
+
 ----------------------------------
 -- Custom Level mod example
 --
