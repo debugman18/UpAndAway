@@ -13,6 +13,9 @@ local run_handler = (function()
 end)()
 
 
+local traceback = GLOBAL.pcall(function() return GLOBAL.require("debug").traceback end)
+
+
 local status, err = run_handler(function()
 	TheMod = GLOBAL.require("upandaway" .. '.wicker.init')(env)
 
@@ -21,18 +24,16 @@ local status, err = run_handler(function()
 	GLOBAL.assert( TUNING.UPANDAWAY )
 
 	TheMod:Run("worldgen_main")
-end, GLOBAL.require("debug").traceback)
+end, traceback)
 
 
-if IS_WGEN and not status then pcall(function()
+if IS_WGEN and not status then GLOBAL.pcall(function()
 	local io = GLOBAL.require("io")
 	local os = GLOBAL.require("os")
 	
 	local now = os.date("%x %X")
 	
-	local f = io.open(MODROOT .. "upandaway_log.txt", "w")
-
-	io.stderr:write(tostring(f))
+	local f = io.open(MODROOT .. "worldgen_log.txt", "w")
 
 	if status then
 		f:write("[", now, "] The mod ran successfully.\n")
