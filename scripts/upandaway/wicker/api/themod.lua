@@ -31,17 +31,52 @@ local Pred = wickerrequire 'lib.predicates'
 
 local Debuggable = wickerrequire 'gadgets.debuggable'
 
+local FunctionQueue = wickerrequire 'gadgets.functionqueue'
+
 
 -- Key, used as an index to a Mod object, leading to a table with a field
 -- 'add', storing the direct Add methods (such as AddLevel) specs, and 
 -- 'hook', storing the AddPostInit and AddPreInit methods specs.
 local initspec_key = {}
 
+local raw_Run
 
 local Mod = Class(Debuggable, function(self)
 	Debuggable._ctor(self, 'TheMod', false)
 
 	self[initspec_key] = { add = {}, hook = {} }
+
+
+	local postruns = FunctionQueue()
+
+	function Mod:AddPostRun(f)
+		ModCheck(self)
+		assert( Lambda.IsFunctional(f) )
+		table.insert( postruns, f )
+	end
+
+	local ran_set = {}
+
+	function self:Ran(mainname)
+		ModCheck(self)
+		assert( Pred.IsWordable(mainname), "The main's name should be a string." )
+		mainname = tostring(mainname)
+
+		return ran_set[mainname]
+	end
+
+	function self:Run(mainname, ...)
+		ModCheck(self)
+		assert( Pred.IsWordable(mainname), "The main's name should be a string." )
+		mainname = tostring(mainname)
+
+		local Rets = {raw_Run(mainname, ...)}
+
+		ran_set[mainname] = true
+		postruns(mainname, ...)
+
+		return unpack(Rets)
+	end
 end)
 
 Pred.IsMod = Pred.IsInstanceOf(Mod)
@@ -131,7 +166,7 @@ function Mod:EmbedHook(id, fn, when)
 	elseif when:lower() == "pre" then
 		when = "Pre"
 	else
-		return error(("Invalid `when' parameter %q given to AddHook."):format(when))
+		return error(("Invalid `when' parameter %q given to EmbedHook."):format(when), 2)
 	end
 
 	local specs_table = self[initspec_key].hook
@@ -212,17 +247,8 @@ local function do_main(mainname, ...)
 	return main(...)
 end
 
-local function raw_Run(self, mainname, ...)
-	ModCheck(self)
-
-	assert( Pred.IsWordable(mainname), "The main's name should be a string." )
-	mainname = tostring(mainname)
-
+raw_Run = function(self, mainname, ...)
 	return do_main(mainname, ...)
-end
-
-function Mod:Run(mainname, ...)
-	return RobustlyCall(raw_Run, self, mainname, ...)
 end
 
 
@@ -247,7 +273,7 @@ end
 function Mod:Add(id, ...)
 	ModCheck(self)
 	local spec = get_add_spec( self, normalize_id(id) )
-	if not spec then return error(("Invalid Add- id %q"):format(id)) end
+	if not spec then return error(("Invalid Add- id %q"):format(id), 2) end
 	return call_add_fn(self, spec, ...)
 end
 
@@ -297,7 +323,7 @@ end
 function Mod:AddHook(id, ...)
 	ModCheck(self)
 	local spec = get_hook_spec( self, normalize_id(id) )
-	if not spec then return error(("Invalid hook id %q"):format(id)) end
+	if not spec then return error(("Invalid hook id %q"):format(id), 2) end
 	return Mod_HookAdder(self, spec, {})(...)
 end
 
@@ -307,7 +333,7 @@ for _, when in ipairs{"Pre", "Post"} do
 	Mod["Add" .. when .. "Init"] = function(self, id, ...)
 		ModCheck(self)
 		local spec = get_hook_spec( self, normalize_id(id) )
-		if not spec or spec.when ~= when_low then return error(("Invalid %sInit id %q"):format(when, id)) end
+		if not spec or spec.when ~= when_low then return error(("Invalid %sInit id %q"):format(when, id), 2) end
 		return Mod_HookAdder(self, spec, {})(...)
 	end
 end
