@@ -13,9 +13,6 @@ local run_handler = (function()
 end)()
 
 
-local traceback = GLOBAL.pcall(function() return GLOBAL.require("debug").traceback end)
-
-
 local status, err = run_handler(function()
 	TheMod = GLOBAL.require("upandaway" .. '.wicker.init')(env)
 
@@ -24,7 +21,7 @@ local status, err = run_handler(function()
 	GLOBAL.assert( TUNING.UPANDAWAY )
 
 	TheMod:Run("worldgen_main")
-end, traceback)
+end, GLOBAL.require("debug").traceback)
 
 
 if IS_WGEN and not status then GLOBAL.pcall(function()
