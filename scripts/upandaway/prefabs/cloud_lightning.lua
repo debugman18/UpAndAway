@@ -64,6 +64,8 @@ local function fn()
 	local inst = CreateEntity()
 	inst.persists = false
 
+	inst:AddTag("FX")
+
 	inst.entity:AddTransform()
 	inst.entity:AddSoundEmitter()
 	inst.entity:AddLight()
