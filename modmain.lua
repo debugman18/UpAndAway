@@ -84,7 +84,18 @@ local RawPrefabFiles = {
 	
 	"shopkeeper",
 	"sheep",	
-	"eel",
+	"aetheel",
+
+	"bee_marshmallow",
+	"hive_marshmallow",
+	
+	"candy_fruit",
+	"marshmallow",
+	
+	"skyflies",
+	"flying_fish",
+	
+	"goose",	
 	
 	--"crystal_deposit",
 	--"crystal_shard",
@@ -121,8 +132,7 @@ local RawPrefabFiles = {
 	
 	"cloud_turf",	
 	"cloud_bush",
-	
-	--"cloud_berries",
+	"cloudcrag",
 
 	--"pineapple_bush",
 	--"pineapple_fruit",

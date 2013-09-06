@@ -72,7 +72,11 @@ end
 local TRANSLATE_TO_PREFABS = GLOBAL.require("map/forest_map").TRANSLATE_TO_PREFABS
 TRANSLATE_TO_PREFABS["skyflowers"] = {"skyflower"}
 TRANSLATE_TO_PREFABS["sheep"] = {"sheep"}
-TRANSLATE_TO_PREFABS["cloudbush"] = {"cloud_bush"}
+TRANSLATE_TO_PREFABS["cloud_bush"] = {"cloud_bush"}
+TRANSLATE_TO_PREFABS["hive_marshmallow"] = {"hive_marshmallow"}
+TRANSLATE_TO_PREFABS["bee_marshmallow"] = {"bee_marshmallow"}
+TRANSLATE_TO_PREFABS["goose"] = {"goose"}
+TRANSLATE_TO_PREFABS["cloudcrag"] = {"cloudcrag"}
 
 -- Should we really change the MULTIPLY table for all map generation?!
 

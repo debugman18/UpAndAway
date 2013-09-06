@@ -85,7 +85,13 @@ local custom_prefabs = {
 	"cloud_cotton",
 	"cloud_turf",
 	"cloud_bush",
-	--"cloudcrag",
+	"cloudcrag",
+	
+	"cloud_bush",
+	"bee_marshmallow",
+	"hive_marshmallow",
+	"flying_fish",
+	"goose",
 
 	"golden_egg",
 }
