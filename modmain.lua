@@ -80,6 +80,7 @@ Assets = RawAssets
 local RawPrefabFiles = {
 	"cloudrealm",
 	"cloud_mist",
+	"cloud_lightning",
 	
 	"shopkeeper",
 	"sheep",	
