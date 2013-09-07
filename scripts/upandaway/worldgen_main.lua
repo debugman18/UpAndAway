@@ -15,6 +15,7 @@ wickerrequire 'api.plugins.addsaveindexpostinit'
 modrequire('api_abstractions')()
 
 
+LoadConfiguration "tuning.lua"
 LoadConfiguration "rc.lua"
 
 

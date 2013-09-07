@@ -1,42 +1,7 @@
 --[[
--- List here the new tile names, in lowercase.
+-- Main configuration file.
 --
--- All the asset insertion, tile adding, etc. is done automagically by
--- inserting a new entry. Each entry is assumed to have a tile texture, a tile
--- atlas, a noise texture and a minimap noise texture.
---
--- For now, avoid removing entries and/or reordering them, otherwise savedata
--- for new tiles will get messed up (creating a new save will fix it, though).
+-- For parameters that should be exposed to the user.
 --]]
-NEW_TILES = {"poopcloud"}
-
-
-SHOPKEEPER = {}
-
--- Number of beans the Shopkeeper has.
--- (should we make it regen with time?)
-SHOPKEEPER.NUMBEANS = 3
-
--- Defining functions in the cfg file should be limited for very simple things,
--- since the environment is very slim.
-SHOPKEEPER.IS_A_COW = function(inst)
-	return inst.prefab == "beefalo"
-end
-
--- Maximum distance for a cow to be negotiated.
-SHOPKEEPER.MAX_COW_DIST = 12
-
-
-STATIC = {}
-
--- In seconds.
--- Note that the static generator only updates itself every 2 seconds, so
--- using too low of a value will give low precision.
-STATIC.AVERAGE_UNCHARGED_TIME = 120
-
-STATIC.AVERAGE_CHARGED_TIME = 30
-
-STATIC.COOLDOWN = 20
-
 
 DEBUG = true
