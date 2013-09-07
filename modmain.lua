@@ -96,6 +96,7 @@ local RawPrefabFiles = {
 	"flying_fish",
 	
 	"goose",	
+	"longbill",
 	
 	--"crystal_deposit",
 	--"crystal_shard",
@@ -147,14 +148,14 @@ local RawPrefabFiles = {
 	--"kite",
 	--"duckraptor",
 	--"duckraptor_mother",	
-	--"duckraptor_baby",		
-	--"lionant",	
+	--"duckraptor_baby",
+	
+	"antlion",	
 	
 	--"rainbowcoon",
 	--"cotton_candy",
 	--"cotton_vest",
 }
-
 
 local new_tiles = CFG.NEW_TILES
 

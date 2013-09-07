@@ -66,11 +66,25 @@ local function OnAttacked(inst, data)
 end
 
 local function GetStatus(inst)
-    if inst.components.follower.leader ~= nil then
-        return "FOLLOWER"
-    elseif inst.components.beard and inst.components.beard.bits == 0 then
-        return "NAKED"
-    end
+    if inst:HasTag("sheep") then
+        return "UNCHARGED"
+    else return "CHARGED" end
+end
+
+local function OnSave(inst, data)
+	data.charged = inst.charged
+end
+
+local function OnLoad(inst, data)
+	if data and data.charged then
+		inst.charged = data.charged
+	end
+	
+	if inst.charged then
+		set_stormram(inst)
+	else
+		set_electricsheep(inst)
+	end
 end
 
 local function dostaticsparks(inst, dt)
@@ -83,14 +97,19 @@ local function dostaticsparks(inst, dt)
 	
 end
 
-local function set_sheepnormal(inst)	
+local function set_electricsheep(inst)
+
+	inst:RemoveTag("storm_ram")
+	inst:AddTag("electric_sheep")	
 	local trans = inst.entity:AddTransform()
 	local anim = inst.entity:AddAnimState()
 	local sound = inst.entity:AddSoundEmitter()
 	inst.sounds = sounds
 	local shadow = inst.entity:AddDynamicShadow()	
 	shadow:SetSize(3, 2)
-
+	
+	inst.Light:Enable(false)
+	
 	inst.Transform:SetScale(0.65, 0.75, 0.65)
 
     MakeCharacterPhysics(inst, 100, .5)
@@ -130,17 +149,27 @@ local function set_sheepnormal(inst)
     local brain = require "brains/sheepbrain"
     inst:SetBrain(brain)   
 	
+	inst.charged = false
 	return inst
 end
 
-local function set_sheepelectric(inst)
+local function set_stormram(inst)
 
+	inst:RemoveTag("electric_sheep")
+	inst:AddTag("storm_ram")
+	
 	local trans = inst.entity:AddTransform()
 	local anim = inst.entity:AddAnimState()
 	local sound = inst.entity:AddSoundEmitter()
 	inst.sounds = sounds
 	local shadow = inst.entity:AddDynamicShadow()
 
+    inst.Light:Enable(true)
+    inst.Light:SetRadius(2)
+    inst.Light:SetFalloff(1)
+    inst.Light:SetIntensity(.9)
+    inst.Light:SetColour(235/255,121/255,12/255)	
+	
 	shadow:SetSize(6, 2)
 	
 	inst.Transform:SetScale(1, 1, 1)	
@@ -189,6 +218,7 @@ local function set_sheepelectric(inst)
     local brain = require "brains/rambrain"
     inst:SetBrain(brain)
 	
+	inst.charged = true
     return inst	
 end
 
@@ -199,6 +229,8 @@ local function fn()
 	local sound = inst.entity:AddSoundEmitter()
 	inst.sounds = sounds
 	local shadow = inst.entity:AddDynamicShadow()
+	
+	inst.entity:AddLight()
 	
     inst.Transform:SetFourFaced()
 	
@@ -245,14 +277,17 @@ local function fn()
 	
 	inst:ListenForEvent("upandaway_charge", function()
 		print "Charged!"
-		set_sheepelectric(inst)
+		set_stormram(inst)
 	end, GetWorld())
 
 	inst:ListenForEvent("upandaway_uncharge", function()
 		print "Uncharged!"
-		set_sheepnormal(inst)
+		set_electricsheep(inst)
 	end, GetWorld())
 	
+    inst.OnSave = OnSave
+    inst.OnLoad = OnLoad	
+
     return inst	
 end
 
