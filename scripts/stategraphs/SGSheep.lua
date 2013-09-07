@@ -27,7 +27,6 @@ local states=
         tags = {"idle", "canrotate"},
         
         onenter = function(inst, pushanim)
-            inst.components.locomotor:StopMoving()
             if inst.hairGrowthPending then
                 inst.sg:GoToState("hair_growth")
             else

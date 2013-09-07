@@ -23,10 +23,10 @@ local sounds =
 {
     walk = "dontstarve/beefalo/walk",
     grunt = "sheep/sheep/baa",
-    yell = "sheep/sheep/baa",
-    swish = "sheep/sheep/baa",
-    curious = "sheep/sheep/baa",
-    angry = "sheep/sheep/baa",
+    yell = "dontstarve/beefalo/yell",
+    swish = "dontstarve/beefalo/tail_swish",
+    curious = "dontstarve/beefalo/curious",
+    angry = "dontstarve/beefalo/angry",
 }
 
 local function Retarget(inst)
@@ -83,301 +83,128 @@ local function dostaticsparks(inst, dt)
 	
 end
 
-local function sheeptransform_uncharge(inst)
-	inst.prefab = "sheep"
-	inst.components.combat:SetTarget(nil)
+local function fn()
 	local inst = CreateEntity()
 	local trans = inst.entity:AddTransform()
 	local anim = inst.entity:AddAnimState()
 	local sound = inst.entity:AddSoundEmitter()
 	inst.sounds = sounds
 	local shadow = inst.entity:AddDynamicShadow()
-	shadow:SetSize(3, 2)
+	
     inst.Transform:SetFourFaced()
-	inst.Transform:SetScale(0.65, 0.75, 0.65)
-
-    MakeCharacterPhysics(inst, 100, .5)
-    
+	
+    inst:AddComponent("eater")	
+    inst.components.eater:SetVegetarian()	
+	
     inst:AddTag("sheep")
     anim:SetBank("beefalo")
-    anim:SetBuild("sheep_baby_build")
-    anim:PlayAnimation("idle_loop", true)
-    
+	
     inst:AddTag("animal")
     inst:AddTag("largecreature")
 
-    local hair_growth_days = 3
-
-    inst:AddComponent("beard")
-    -- assume the beefalo has already grown its hair
-    inst.components.beard.bits = 3
-    inst.components.beard.daysgrowth = hair_growth_days + 1 
-    inst.components.beard.onreset = function()
-        inst.sg:GoToState("shaved")
-    end
+	--inst:AddComponent("beard")
+    --local hair_growth_days = 3	
+    
+    inst:AddComponent("combat")	
 	
-    inst:AddComponent("eater")
-    inst.components.eater:SetVegetarian()
-    
-    inst:AddComponent("combat")
-    inst.components.combat.hiteffectsymbol = "beefalo_body"
-    inst.components.combat:SetDefaultDamage(TUNING.BEEFALO_DAMAGE)
-    inst.components.combat:SetRetargetFunction(1, Retarget)
-    inst.components.combat:SetKeepTargetFunction(KeepTarget)
-     
-    inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(TUNING.BEEFALO_HEALTH)
-
-    inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot(loot)
-    --inst.components.lootdropper:AddChanceLoot("cotton", 0.70)
-    
+    inst:AddComponent("health")	
+	
     inst:AddComponent("inspectable")
-    inst.components.inspectable.getstatus = GetStatus
-    
+
     inst:AddComponent("knownlocations")
     inst:AddComponent("herdmember")
     
     inst:AddComponent("leader")
     inst:AddComponent("follower")
-    inst.components.follower.maxfollowtime = TUNING.BEEFALO_FOLLOW_TIME
-    inst.components.follower.canaccepttarget = false
-    inst:ListenForEvent("newcombattarget", OnNewTarget)
-    inst:ListenForEvent("attacked", OnAttacked)
 
     inst:AddComponent("periodicspawner")
-    inst.components.periodicspawner:SetPrefab("skyflower")
-    inst.components.periodicspawner:SetRandomTimes(20, 100)
-    inst.components.periodicspawner:SetDensityInRange(10, 1)
-    inst.components.periodicspawner:SetMinimumSpacing(10)
-    inst.components.periodicspawner:Start()
 
     MakeLargeBurnableCharacter(inst, "beefalo_body")
     MakeLargeFreezableCharacter(inst, "beefalo_body")
     
-    inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
-    inst.components.locomotor.walkspeed = 1.5
+    inst:AddComponent("locomotor")	
+    inst.components.locomotor.walkspeed = 2
     inst.components.locomotor.runspeed = 7
-    
-    inst:AddComponent("sleeper")
-    inst.components.sleeper:SetResistance(3)
-    
-    local brain = require "brains/sheepbrain"
-    inst:SetBrain(brain)
-    inst:SetStateGraph("SGSheep")
-	inst:AddComponent("named")
-	inst.components.named:SetName("Sheep")
-    if inst.brain then
-		inst.brain:Start()
-	end
-	if inst.sg then
-	    inst.sg:Start()
-	end	
+	
+    inst:AddComponent("lootdropper")
+	
+    inst:AddComponent("sleeper")	
+	
+	inst:SetStateGraph("SGSheep")
+	
 	inst:ListenForEvent("upandaway_charge", function()
 		print "Charged!"
-		self.sheeptransform_charge(inst)	
-		return inst
-	end, GetWorld())	
-	return inst		
-end
+		fnsheepelectric(inst)
+	end, GetWorld())
 
-local function sheeptransform_charge(inst)
-	inst.prefab = "sheep_electric"
-	inst.components.combat:SetTarget(nil)
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
-	local sound = inst.entity:AddSoundEmitter()
-	inst.sounds = sounds
-	local shadow = inst.entity:AddDynamicShadow()
-	shadow:SetSize(6, 2)
-    inst.Transform:SetFourFaced()
-	inst.Transform:SetScale(1, 1, 1)	
-
-	inst.sg:GoToState("idle")
-	
-    MakeCharacterPhysics(inst, 100, .5)
-    
-    inst:AddTag("sheep")
-    anim:SetBank("beefalo")
-    anim:SetBuild("sheep_electric")
-    anim:PlayAnimation("idle_loop", true)
-    
-    inst:AddTag("animal")
-    inst:AddTag("largecreature")
-
-    local hair_growth_days = 3	
-	
-	inst.components.eater:SetVegetarian()
-    
-	inst:RemoveComponent("locomotor")
-	inst:AddComponent("locomotor")
-	inst.components.locomotor.walkspeed = 1.5
-	inst.components.locomotor.runspeed = 7
-    inst.components.locomotor:StopMoving()	
-	
-	inst.components.combat.hiteffectsymbol = "beefalo_body"
-	inst.components.combat:SetDefaultDamage(TUNING.BEEFALO_DAMAGE)
-	inst.components.combat:SetRetargetFunction(1, Retarget)
-	inst.components.combat:SetKeepTargetFunction(KeepTarget)
-	
-	inst:AddTag("hostile")
-     
-	inst:DoPeriodicTask(1/10, function() dostaticsparks(inst, 1/10) end)
-	 
-	inst.components.health:SetMaxHealth(TUNING.BEEFALO_HEALTH)
-		
-	inst.components.lootdropper:SetLoot(loot)
-
-	inst.components.inspectable.getstatus = GetStatus
-
-	inst.components.follower.maxfollowtime = TUNING.BEEFALO_FOLLOW_TIME
-	inst.components.follower.canaccepttarget = false
-	inst:ListenForEvent("newcombattarget", OnNewTarget)
-	inst:ListenForEvent("attacked", OnAttacked)
-
-
-	inst.components.periodicspawner:SetPrefab("datura")
-	inst.components.periodicspawner:SetRandomTimes(40, 60)
-	inst.components.periodicspawner:SetDensityInRange(20, 2)
-	inst.components.periodicspawner:SetMinimumSpacing(8)
-	inst.components.periodicspawner:Start()
-   
-	--inst:AddComponent("sleeper")
-	inst.components.sleeper:SetResistance(3)
-    
-	local brain = require "brains/rambrain"
-	inst:SetBrain(brain)
-	inst:SetStateGraph("SGSheep")
-	inst:AddComponent("named")
-	inst.components.named:SetName("Electric Sheep")
-    if inst.brain then
-		inst.brain:Start()
-	end
-	if inst.sg then
-	    inst.sg:Start()
-	end	
 	inst:ListenForEvent("upandaway_uncharge", function()
 		print "Uncharged!"
-		self.sheeptransform_uncharge(inst)	
-		return inst
-	end, GetWorld())		
-	return inst		
+		fnsheepnormal(inst)
+	end, GetWorld())
+	
+    return inst	
 end
 
-local function fncommon(Sim)
-	local inst = CreateEntity()
+local function fnsheepnormal(inst)	
+	local inst = fn()
 	local trans = inst.entity:AddTransform()
 	local anim = inst.entity:AddAnimState()
 	local sound = inst.entity:AddSoundEmitter()
 	inst.sounds = sounds
-	local shadow = inst.entity:AddDynamicShadow()
+	local shadow = inst.entity:AddDynamicShadow()	
 	shadow:SetSize(3, 2)
-    inst.Transform:SetFourFaced()
+
 	inst.Transform:SetScale(0.65, 0.75, 0.65)
 
     MakeCharacterPhysics(inst, 100, .5)
     
-    inst:AddTag("sheep")
-    anim:SetBank("beefalo")
     anim:SetBuild("sheep_baby_build")
     anim:PlayAnimation("idle_loop", true)
-    
-    inst:AddTag("animal")
-    inst:AddTag("largecreature")
-
-    local hair_growth_days = 3
-
-    inst:AddComponent("beard")
-    -- assume the beefalo has already grown its hair
-    inst.components.beard.bits = 3
-    inst.components.beard.daysgrowth = hair_growth_days + 1 
-    inst.components.beard.onreset = function()
-        inst.sg:GoToState("shaved")
-    end
-    
-	--[[
-    inst.components.beard.canshavetest = function() if not inst.components.sleeper:IsAsleep() then return false, "AWAKEBEEFALO" end return true end
-    
-    inst.components.beard.prize = "beefalowool"
-    inst.components.beard:AddCallback(0, function()
-        if inst.components.beard.bits == 0 then
-            anim:SetBuild("beefalo_shaved_build")
-        end
-    end)
-    inst.components.beard:AddCallback(hair_growth_days, function()
-        if inst.components.beard.bits == 0 then
-            inst.hairGrowthPending = true
-        end
-    end)
-    --]]
 	
-    inst:AddComponent("eater")
-    inst.components.eater:SetVegetarian()
-    
-    inst:AddComponent("combat")
+    --inst.components.beard.bits = 3
+    --inst.components.beard.daysgrowth = hair_growth_days + 1 
+    --inst.components.beard.onreset = function() inst.sg:GoToState("shaved") end
+	
     inst.components.combat.hiteffectsymbol = "beefalo_body"
     inst.components.combat:SetDefaultDamage(TUNING.BEEFALO_DAMAGE)
     inst.components.combat:SetRetargetFunction(1, Retarget)
     inst.components.combat:SetKeepTargetFunction(KeepTarget)
      
-    inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.BEEFALO_HEALTH)
 
-    inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot(loot)
     --inst.components.lootdropper:AddChanceLoot("cotton", 0.70)
-    
-    inst:AddComponent("inspectable")
+
     inst.components.inspectable.getstatus = GetStatus
     
-    inst:AddComponent("knownlocations")
-    inst:AddComponent("herdmember")
-    
-    inst:AddComponent("leader")
-    inst:AddComponent("follower")
     inst.components.follower.maxfollowtime = TUNING.BEEFALO_FOLLOW_TIME
     inst.components.follower.canaccepttarget = false
     inst:ListenForEvent("newcombattarget", OnNewTarget)
     inst:ListenForEvent("attacked", OnAttacked)
 
-    inst:AddComponent("periodicspawner")
     inst.components.periodicspawner:SetPrefab("skyflower")
     inst.components.periodicspawner:SetRandomTimes(20, 100)
     inst.components.periodicspawner:SetDensityInRange(10, 1)
     inst.components.periodicspawner:SetMinimumSpacing(10)
     inst.components.periodicspawner:Start()
-
-    MakeLargeBurnableCharacter(inst, "beefalo_body")
-    MakeLargeFreezableCharacter(inst, "beefalo_body")
     
-    inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
-    inst.components.locomotor.walkspeed = 1.5
-    inst.components.locomotor.runspeed = 7
-    
-    inst:AddComponent("sleeper")
     inst.components.sleeper:SetResistance(3)
     
     local brain = require "brains/sheepbrain"
-    inst:SetBrain(brain)
-    inst:SetStateGraph("SGSheep")
+    inst:SetBrain(brain)   
 	
-	inst:ListenForEvent("upandaway_charge", function()
-		print "Charged!"
-		sheeptransform_charge(inst)	
-		return inst
-	end, GetWorld())	
-    return inst
+	return inst
 end
 
-local function fnelectric(Sim)
-	local inst = fncommon(Sim)
+local function fnsheepelectric(inst)
+	local inst = fn()
 	local trans = inst.entity:AddTransform()
 	local anim = inst.entity:AddAnimState()
 	local sound = inst.entity:AddSoundEmitter()
 	inst.sounds = sounds
-	local shadow = inst.entity:AddDynamicShadow()
+	local shadow = inst.entity:AddDynamicShadow()	
 	shadow:SetSize(6, 2)
-    inst.Transform:SetFourFaced()
+	
 	inst.Transform:SetScale(1, 1, 1)	
 
     MakeCharacterPhysics(inst, 100, .5)
@@ -389,37 +216,9 @@ local function fnelectric(Sim)
     
     inst:AddTag("animal")
     inst:AddTag("largecreature")
-
-    local hair_growth_days = 3
-
-	--[[
-    inst:AddComponent("beard")
-    -- assume the beefalo has already grown its hair
-    inst.components.beard.bits = 3
-    inst.components.beard.daysgrowth = hair_growth_days + 1 
-    inst.components.beard.onreset = function()
-        inst.sg:GoToState("shaved")
-    end
     
-    inst.components.beard.canshavetest = function() if not inst.components.sleeper:IsAsleep() then return false, "AWAKEBEEFALO" end return true end
-    
-    inst.components.beard.prize = "beefalowool"
-    inst.components.beard:AddCallback(0, function()
-        if inst.components.beard.bits == 0 then
-            anim:SetBuild("beefalo_shaved_build")
-        end
-    end)
-    inst.components.beard:AddCallback(hair_growth_days, function()
-        if inst.components.beard.bits == 0 then
-            inst.hairGrowthPending = true
-        end
-    end)
-	--]]
-    
-    --inst:AddComponent("eater")
     inst.components.eater:SetVegetarian()
     
-    --inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "beefalo_body"
     inst.components.combat:SetDefaultDamage(TUNING.BEEFALO_DAMAGE)
     inst.components.combat:SetRetargetFunction(1, Retarget)
@@ -429,53 +228,31 @@ local function fnelectric(Sim)
      
 	inst:DoPeriodicTask(1/10, function() dostaticsparks(inst, 1/10) end)
 	 
-    --inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.BEEFALO_HEALTH)
 
-    --inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot(loot)
     --inst.components.lootdropper:AddChanceLoot("cotton", 0.33)
     
-    --inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus
     
-    --inst:AddComponent("knownlocations")
-    --inst:AddComponent("herdmember")
-    
-    --inst:AddComponent("leader")
-    --inst:AddComponent("follower")
     inst.components.follower.maxfollowtime = TUNING.BEEFALO_FOLLOW_TIME
     inst.components.follower.canaccepttarget = false
     inst:ListenForEvent("newcombattarget", OnNewTarget)
     inst:ListenForEvent("attacked", OnAttacked)
 
-    --inst:AddComponent("periodicspawner")
     inst.components.periodicspawner:SetPrefab("datura")
     inst.components.periodicspawner:SetRandomTimes(40, 60)
     inst.components.periodicspawner:SetDensityInRange(20, 2)
     inst.components.periodicspawner:SetMinimumSpacing(8)
     inst.components.periodicspawner:Start()
-
-    --MakeLargeBurnableCharacter(inst, "beefalo_body")
-    --MakeLargeFreezableCharacter(inst, "beefalo_body")
     
-    --inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
-    inst.components.locomotor.walkspeed = 1.5
-    inst.components.locomotor.runspeed = 7
-    
-    --inst:AddComponent("sleeper")
     inst.components.sleeper:SetResistance(3)
     
     local brain = require "brains/rambrain"
     inst:SetBrain(brain)
-    inst:SetStateGraph("SGSheep")
-	inst:ListenForEvent("upandaway_uncharge", function()
-		print "Uncharged!"
-		sheeptransform_uncharge(inst)
-		return inst
-	end, GetWorld())	
+	
     return inst	
 end
 
-return Prefab( "forest/animals/sheep", fncommon, assets, prefabs),
-	   Prefab( "forest/animals/sheep_electric", fnelectric, assets, prefabs)  
+return Prefab( "forest/animals/sheep", fnsheepnormal, assets, prefabs),
+	   Prefab( "forest/animals/sheep_electric", fnsheepelectric, assets, prefabs)  
