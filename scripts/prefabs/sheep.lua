@@ -83,70 +83,7 @@ local function dostaticsparks(inst, dt)
 	
 end
 
-local function fn()
-	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
-	local sound = inst.entity:AddSoundEmitter()
-	inst.sounds = sounds
-	local shadow = inst.entity:AddDynamicShadow()
-	
-    inst.Transform:SetFourFaced()
-	
-    inst:AddComponent("eater")	
-    inst.components.eater:SetVegetarian()	
-	
-    inst:AddTag("sheep")
-    anim:SetBank("beefalo")
-	
-    inst:AddTag("animal")
-    inst:AddTag("largecreature")
-
-	--inst:AddComponent("beard")
-    --local hair_growth_days = 3	
-    
-    inst:AddComponent("combat")	
-	
-    inst:AddComponent("health")	
-	
-    inst:AddComponent("inspectable")
-
-    inst:AddComponent("knownlocations")
-    inst:AddComponent("herdmember")
-    
-    inst:AddComponent("leader")
-    inst:AddComponent("follower")
-
-    inst:AddComponent("periodicspawner")
-
-    MakeLargeBurnableCharacter(inst, "beefalo_body")
-    MakeLargeFreezableCharacter(inst, "beefalo_body")
-    
-    inst:AddComponent("locomotor")	
-    inst.components.locomotor.walkspeed = 2
-    inst.components.locomotor.runspeed = 7
-	
-    inst:AddComponent("lootdropper")
-	
-    inst:AddComponent("sleeper")	
-	
-	inst:SetStateGraph("SGSheep")
-	
-	inst:ListenForEvent("upandaway_charge", function()
-		print "Charged!"
-		fnsheepelectric(inst)
-	end, GetWorld())
-
-	inst:ListenForEvent("upandaway_uncharge", function()
-		print "Uncharged!"
-		fnsheepnormal(inst)
-	end, GetWorld())
-	
-    return inst	
-end
-
-local function fnsheepnormal(inst)	
-	local inst = fn()
+local function set_sheepnormal(inst)	
 	local trans = inst.entity:AddTransform()
 	local anim = inst.entity:AddAnimState()
 	local sound = inst.entity:AddSoundEmitter()
@@ -196,13 +133,14 @@ local function fnsheepnormal(inst)
 	return inst
 end
 
-local function fnsheepelectric(inst)
-	local inst = fn()
+local function set_sheepelectric(inst)
+
 	local trans = inst.entity:AddTransform()
 	local anim = inst.entity:AddAnimState()
 	local sound = inst.entity:AddSoundEmitter()
 	inst.sounds = sounds
-	local shadow = inst.entity:AddDynamicShadow()	
+	local shadow = inst.entity:AddDynamicShadow()
+
 	shadow:SetSize(6, 2)
 	
 	inst.Transform:SetScale(1, 1, 1)	
@@ -254,5 +192,68 @@ local function fnsheepelectric(inst)
     return inst	
 end
 
-return Prefab( "forest/animals/sheep", fnsheepnormal, assets, prefabs),
-	   Prefab( "forest/animals/sheep_electric", fnsheepelectric, assets, prefabs)  
+local function fn()
+	local inst = CreateEntity()
+	local trans = inst.entity:AddTransform()
+	local anim = inst.entity:AddAnimState()
+	local sound = inst.entity:AddSoundEmitter()
+	inst.sounds = sounds
+	local shadow = inst.entity:AddDynamicShadow()
+	
+    inst.Transform:SetFourFaced()
+	
+    inst:AddComponent("eater")	
+    inst.components.eater:SetVegetarian()	
+	
+    inst:AddTag("sheep")
+    anim:SetBank("beefalo")
+	
+    inst:AddTag("animal")
+    inst:AddTag("largecreature")
+
+	--inst:AddComponent("beard")
+    --local hair_growth_days = 3	
+    
+    inst:AddComponent("combat")	
+	
+    inst:AddComponent("health")	
+	
+    inst:AddComponent("inspectable")
+
+    inst:AddComponent("knownlocations")
+    inst:AddComponent("herdmember")
+    
+    inst:AddComponent("leader")
+    inst:AddComponent("follower")
+
+    inst:AddComponent("periodicspawner")
+
+    MakeLargeBurnableCharacter(inst, "beefalo_body")
+    MakeLargeFreezableCharacter(inst, "beefalo_body")
+    
+    inst:AddComponent("locomotor")	
+    inst.components.locomotor.walkspeed = 2
+    inst.components.locomotor.runspeed = 7
+	
+    inst:AddComponent("lootdropper")
+	
+    inst:AddComponent("sleeper")	
+	
+	inst:SetStateGraph("SGSheep")
+	
+	set_sheepnormal(inst)
+	
+	inst:ListenForEvent("upandaway_charge", function()
+		print "Charged!"
+		set_sheepelectric(inst)
+	end, GetWorld())
+
+	inst:ListenForEvent("upandaway_uncharge", function()
+		print "Uncharged!"
+		set_sheepnormal(inst)
+	end, GetWorld())
+	
+    return inst	
+end
+
+return Prefab( "forest/animals/sheep", fn, assets, prefabs)
