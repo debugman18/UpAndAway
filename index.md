@@ -1,3 +1,8 @@
+---
+layout: index
+---
+
+
 # Up and Away
 
 Up and Away is the current title of a large collaborative mod for Klei Entertainment's Don't Starve. It sets to add a multitude of new content to Don't Starve, including, but not limited to, a new world type, new monsters, new structures, new fauna, and whatever else happens to end up in the final version of the mod.
