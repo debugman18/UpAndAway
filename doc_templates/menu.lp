@@ -8,7 +8,7 @@ else
 end
 %>
 
-<h1>LuaDoc</h1>
+<h1>Up and Away</h1>
 <ul>
 	<%if not module_doc and not file_doc then%>
 	<li><strong>Index</strong></li>
