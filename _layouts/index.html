@@ -6,9 +6,12 @@
 		<meta http-equiv="X-UA-Compatible" content="chrome=1" />
 		<meta name="description" content="Up and Away : " />
 
-		<link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ site.path }}/stylesheets/stylesheet.css">
 
 		<title>Up and Away</title>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+		<script src="{{site.path}}/javascripts/process-rel-links.js" type="text/javascript"></script>
 	</head>
 
 	<body>
@@ -31,16 +34,13 @@
 		<!-- MAIN CONTENT -->
 		<div id="main_content_wrap" class="outer">
 			<section id="main_content" class="inner">
-				<h1>
-<a name="up-and-away" class="anchor" href="#up-and-away"><span class="octicon octicon-link"></span></a>Up and Away</h1>
-
-<p>Up and Away is the current title of a large collaborative mod for Klei Entertainment's Don't Starve. It sets to add a multitude of new content to Don't Starve, including, but not limited to, a new world type, new monsters, new structures, new fauna, and whatever else happens to end up in the final version of the mod.</p>
-
-<p>It resembles the "Jack and the Beanstalk" story, with quite a few twists to the normal tales.</p>
-
-<p>The mod is currently in Pre-Alpha. This means that the mod is still in its infancy, and most of its content is not implemented yet.</p>
-
-<p>For more information, check its <a href="https://docs.google.com/presentation/d/1tdbs-30BDY8eGRQKWfLx-UIFSJZjYPIUBligpdjf_pU/pub?start=false&amp;loop=false&amp;delayms=3000">slide presentation</a> and its <a href="http://forums.kleientertainment.com/index.php?/topic/26501-up-and-away-mod-collaboration-thread">thread page</a> in Klei's forums.</p>
+				{{ content }}
+			</section>
+		</div>
+		<div id="doc_content_wrap" class="outer">
+			<section id="doc_content" class="inner">
+				<h3>For contributors</h3>
+				The project documentation is available <a href="{{ site.path }}/doc/">here</a>.
 			</section>
 		</div>
 
@@ -54,8 +54,6 @@
 				<p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
 			</footer>
 		</div>
-
-		
 
 	</body>
 </html>
