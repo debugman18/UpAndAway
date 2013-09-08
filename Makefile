@@ -12,8 +12,10 @@ FORUM_DOWNLOAD_ID:=1
 
 # Base dir for generating doc.
 DOC_BASE:=scripts
-# Dir with doc templates.
-DOC_TEMPLATE_DIR:=doc_templates
+# Base dir for LuaDoc customization.
+LUADOC_CUSTOM_BASE:=luadoc
+# Dir with doc templates, relative to LUADOC_CUSTOM_BASE
+DOC_TEMPLATE_DIR:=templates
 # Doc output dir.
 DOC_DIR:=doc
 
@@ -49,8 +51,8 @@ IMAGE_FILES:=
 FILES+=$(LICENSE_FILES) $(IMAGE_FILES)
 
 
-.PHONY: none doc
 
+.PHONY: none doc
 
 
 
@@ -62,9 +64,9 @@ doc:
 	rm -rf $(DOC_DIR)/*
 	(\
 		cd $(DOC_BASE); \
-		LUA_PATH="$(realpath $(DOC_TEMPLATE_DIR))/?.lua;;" \
+		LUA_PATH="$(realpath $(LUADOC_CUSTOM_BASE))/?.lua;;" \
 		export LUA_PATH; \
-		luadoc --nomodules -d $(realpath $(DOC_DIR)) -t . `find . -path '**/wicker/*' -prune -o -type f -name '*.lua' -exec git ls-files --error-unmatch -- {} \;` \
+		luadoc --doclet upandaway_doclet --nomodules -d $(realpath $(DOC_DIR)) -t "$(DOC_TEMPLATE_DIR)" `find . -path '**/wicker/*' -prune -o -type f -name '*.lua' -exec git ls-files --error-unmatch -- {} \;` \
 	)
 	git add --all $(DOC_DIR)
 
