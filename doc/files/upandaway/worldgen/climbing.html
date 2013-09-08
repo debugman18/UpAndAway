@@ -470,7 +470,7 @@ Climbs to the given height. It should be an integer.
 
 <dt><a name="GetLevelHeight"></a><strong>GetLevelHeight</strong>&nbsp;()</dt>
 <dd>
-Returns the height of the level we are currently in.  The height is 0 for a survival map, 1 for the first cloud level, 2 for the second one, etc. For the first cave level, it is -1, for the second one it is -2, etc. <br /><br /> This is primarily meant to be used as a test for whether we are in a cloud level or not. <br /><br /> Works both under normal game and under worldgen (using different methods). <br /><br /> At worldgen, the level number is used. At normal game, the level number is used except when we are at a cloud level, where the level id is used instead. The level id is given preference because the level number can possibly change for compatibility reasons, so this allows us to keep our system compatible with older saves. 
+Returns the height of the level we are currently in.  The height is 0 for a survival map, 1 for the first cloud level, 2 for the second one, etc. For the first cave level, it is -1, for the second one it is -2, etc. <br /><br /> This is primarily meant to be used as a test for whether we are in a cloud level or not. <br /><br /> Works both under normal game and under worldgen (using different methods). <br /><br /> At worldgen, the level number is used. At normal game, we check for the existence of the upandaway_metadata component in the world entity. If it exists and has a field "height" stored, that value is adopted, otherwise the level number is used as in worldgen. <br /> Savedata is given preference because the level number can possibly change, so this allows us to keep our system compatible with older saves. 
 
 
 
