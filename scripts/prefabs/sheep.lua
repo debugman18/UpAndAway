@@ -179,7 +179,7 @@ local function set_stormram(inst, force)
 		local task
 		task = inst:DoPeriodicTask(delay, function(inst)
 			if inst.charged then
-				dostaticsparks(inst, math.random(1, 2))
+				dostaticsparks(inst)
 			else
 				task:Cancel()
 			end
