@@ -77,7 +77,7 @@ local function dostaticsparks(inst)
 
 	local cosphi, sinphi = math.cos(phi), math.sin(phi)
 
-	local pos = inst:GetPosition() + Vector3( radius*math.cos(theta)*cosphi, 1 + radius*sinphi, radius*math.sin(theta)*cosphi )
+	local pos = inst:GetPosition() + Vector3( radius*math.cos(theta)*sinphi, 1 + radius*cosphi, radius*math.sin(theta)*sinphi )
 	local spark = SpawnPrefab("sparks_fx")
 	spark.Transform:SetPosition(pos:Get())
 	spark.Transform:SetScale(0.9, 0.5, 0.5)
