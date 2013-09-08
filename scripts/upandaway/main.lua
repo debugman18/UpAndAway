@@ -1,5 +1,5 @@
 ---
--- Main file. Ran through modmain.lua
+-- Main file. Run through modmain.lua
 --
 -- @author debugman18
 -- @author simplex

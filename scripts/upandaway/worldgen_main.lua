@@ -1,5 +1,5 @@
 ---
--- Main worldgen file. Ran through modworldgenmain.lua.
+-- Main worldgen file. Run through modworldgenmain.lua.
 --
 -- @author debugman18
 -- @author simplex
