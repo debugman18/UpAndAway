@@ -66,43 +66,40 @@ local function OnAttacked(inst, data)
 end
 
 local function GetStatus(inst)
-    if inst:HasTag("sheep") then
-        return "UNCHARGED"
-    else return "CHARGED" end
+	return inst.charged and "CHARGED" or "UNCHARGED"
 end
 
-local function dostaticsparks(inst, dt)
+local function dostaticsparks(inst)
+	local radius = 2*(inst.Physics and inst.Physics:GetRadius() or 1)
 
-	local pos = Vector3(inst.Transform:GetWorldPosition())
-	pos.y = pos.y + 1 + math.random()*1.5
+	local theta = 2*math.pi*math.random()
+	local phi = math.pi*math.random()
+
+	local cosphi, sinphi = math.cos(phi), math.sin(phi)
+
+	local pos = inst:GetPosition() + Vector3( radius*math.cos(theta)*cosphi, 1 + radius*sinphi, radius*math.sin(theta)*cosphi )
 	local spark = SpawnPrefab("sparks_fx")
 	spark.Transform:SetPosition(pos:Get())
 	spark.Transform:SetScale(0.9, 0.5, 0.5)
-	
 end
 
-local function set_electricsheep(inst)
+local function set_electricsheep(inst, force)
+	if not inst.charged and not force then return end
 
 	inst:RemoveTag("storm_ram")
 	inst:AddTag("electric_sheep")	
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
-	local sound = inst.entity:AddSoundEmitter()
-	inst.sounds = sounds
-	local shadow = inst.entity:AddDynamicShadow()	
-	shadow:SetSize(3, 2)
-	
-    local color = 0.5 + math.random() * 0.5
-    anim:SetMultColour(color, color, color, 1)	
+	inst:RemoveTag("largecreature")
+	inst:RemoveTag("hostile")
+
+	inst.DynamicShadow:SetSize(3, 2)
 	
 	inst.Light:Enable(false)
 	
 	inst.Transform:SetScale(0.65, 0.75, 0.65)
-
-    MakeCharacterPhysics(inst, 100, .5)
     
-    anim:SetBuild("sheep_baby_build")
-    anim:PlayAnimation("idle_loop", true)
+    inst.AnimState:SetBuild("sheep_baby_build")
+    inst.AnimState:PlayAnimation("idle_loop", true)
+
 	
     --inst.components.beard.bits = 3
     --inst.components.beard.daysgrowth = hair_growth_days + 1 
@@ -118,131 +115,121 @@ local function set_electricsheep(inst)
     inst.components.lootdropper:SetLoot(loot)
     --inst.components.lootdropper:AddChanceLoot("cotton", 0.70)
 
-    inst.components.inspectable.getstatus = GetStatus
-    
     inst.components.follower.maxfollowtime = TUNING.BEEFALO_FOLLOW_TIME
     inst.components.follower.canaccepttarget = false
-    inst:ListenForEvent("newcombattarget", OnNewTarget)
-    inst:ListenForEvent("attacked", OnAttacked)
 
+	inst.components.periodicspawner:Stop()
     inst.components.periodicspawner:SetRandomTimes(20, 100)
     inst.components.periodicspawner:SetDensityInRange(10, 1)
     inst.components.periodicspawner:SetMinimumSpacing(10)
     inst.components.periodicspawner:Start()
     
-    inst.components.sleeper:SetResistance(3)
+    inst.components.sleeper:SetResistance(2)
     
     local brain = require "brains/sheepbrain"
     inst:SetBrain(brain)   
 	
 	inst.charged = false
-	return inst
 end
 
-local function set_stormram(inst)
+local function set_stormram(inst, force)
+	if inst.charged and not force then return end
 
 	inst:RemoveTag("electric_sheep")
 	inst:AddTag("storm_ram")
+    inst:AddTag("largecreature")
+	inst:AddTag("hostile")
 	
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
-	local sound = inst.entity:AddSoundEmitter()
-	inst.sounds = sounds
-	local shadow = inst.entity:AddDynamicShadow()
-
     inst.Light:Enable(true)
-    inst.Light:SetRadius(2)
-    inst.Light:SetFalloff(1)
-    inst.Light:SetIntensity(.9)
-    inst.Light:SetColour(235/255,121/255,12/255)	
-	
-	shadow:SetSize(6, 2)
+    	
+	inst.DynamicShadow:SetSize(6, 2)
 	
 	inst.Transform:SetScale(1, 1, 1)	
 
-    MakeCharacterPhysics(inst, 100, .5)
+    inst.AnimState:SetBuild("sheep_electric")
+    inst.AnimState:PlayAnimation("idle_loop", true)
     
-    inst:AddTag("sheep")
-    anim:SetBank("beefalo")
-    anim:SetBuild("sheep_electric")
-    anim:PlayAnimation("idle_loop", true)
-    
-    inst:AddTag("animal")
-    inst:AddTag("largecreature")
-    
-    inst.components.eater:SetVegetarian()
-    
+
     inst.components.combat.hiteffectsymbol = "beefalo_body"
     inst.components.combat:SetDefaultDamage(TUNING.BEEFALO_DAMAGE)
     inst.components.combat:SetRetargetFunction(1, Retarget)
     inst.components.combat:SetKeepTargetFunction(KeepTarget)
 	
-	inst:AddTag("hostile")
-     
-	inst:DoPeriodicTask(1/10, function() dostaticsparks(inst, 1/10) end)
-	 
     inst.components.health:SetMaxHealth(TUNING.BEEFALO_HEALTH)
 
     inst.components.lootdropper:SetLoot(loot)
     --inst.components.lootdropper:AddChanceLoot("cotton", 0.33)
     
-    inst.components.inspectable.getstatus = GetStatus
-    
     inst.components.follower.maxfollowtime = TUNING.BEEFALO_FOLLOW_TIME
     inst.components.follower.canaccepttarget = false
-    inst:ListenForEvent("newcombattarget", OnNewTarget)
-    inst:ListenForEvent("attacked", OnAttacked)
 
+	inst.components.periodicspawner:Stop()
     inst.components.periodicspawner:SetRandomTimes(40, 60)
     inst.components.periodicspawner:SetDensityInRange(20, 2)
     inst.components.periodicspawner:SetMinimumSpacing(8)
     inst.components.periodicspawner:Start()
     
-    inst.components.sleeper:SetResistance(3)
+    inst.components.sleeper:SetResistance(4)
     
     local brain = require "brains/rambrain"
     inst:SetBrain(brain)
+
+
+	;(function(delay)
+		local task
+		task = inst:DoPeriodicTask(delay, function(inst)
+			if inst.charged then
+				dostaticsparks(inst, math.random(1, 2))
+			else
+				task:Cancel()
+			end
+		end)
+	end)(1/2)
 	
 	inst.charged = true
-    return inst	
 end
 
 local function OnSave(inst, data)
-	data.charged = inst.charged
+	data.charged = inst.charged or nil
 end
 
 local function OnLoad(inst, data)
 	if data and data.charged then
-		inst.charged = data.charged
-	end
-	
-	if inst.charged then
 		set_stormram(inst)
-	else
-		set_electricsheep(inst)
 	end
 end
 
 local function fn()
 	local inst = CreateEntity()
+    inst:AddTag("sheep")
+
 	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
+	trans:SetFourFaced()
+
 	local sound = inst.entity:AddSoundEmitter()
 	inst.sounds = sounds
+
 	local shadow = inst.entity:AddDynamicShadow()
+
+	local anim = inst.entity:AddAnimState()
+	anim:SetBank("beefalo")
+    ;(function(color) anim:SetMultColour(color, color, color, 1) end)(0.5 + 0.5*math.random())
 	
-	inst.entity:AddLight()
+	local light = inst.entity:AddLight()
+	light:SetRadius(2)
+    light:SetFalloff(1)
+    light:SetIntensity(.9)
+    light:SetColour(235/255,121/255,12/255)	
+	light:Enable(false)
+
+    MakeCharacterPhysics(inst, 100, .5)
 	
-    inst.Transform:SetFourFaced()
+
+    inst:AddTag("animal")
+
 	
     inst:AddComponent("eater")	
     inst.components.eater:SetVegetarian()	
-	
-    inst:AddTag("sheep")
-    anim:SetBank("beefalo")
-	
-    inst:AddTag("animal")
-    inst:AddTag("largecreature")
 
 	--inst:AddComponent("beard")
     --local hair_growth_days = 3	
@@ -252,6 +239,7 @@ local function fn()
     inst:AddComponent("health")	
 	
     inst:AddComponent("inspectable")
+    inst.components.inspectable.getstatus = GetStatus
 
     inst:AddComponent("knownlocations")
     inst:AddComponent("herdmember")
@@ -275,7 +263,12 @@ local function fn()
 	
 	inst:SetStateGraph("SGSheep")
 	
-	set_electricsheep(inst)
+
+	set_electricsheep(inst, true)
+
+
+    inst:ListenForEvent("newcombattarget", OnNewTarget)
+    inst:ListenForEvent("attacked", OnAttacked)
 	
 	inst:ListenForEvent("upandaway_charge", function()
 		print "Charged!"
@@ -293,4 +286,4 @@ local function fn()
     return inst	
 end
 
-return Prefab( "forest/animals/sheep", fn, assets, prefabs)
+return Prefab( "cloudrealm/animals/sheep", fn, assets, prefabs)
