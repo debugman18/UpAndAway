@@ -1,5 +1,10 @@
--- simplex note: I moved addstrings to a lib/ subdir.
-local Add = require 'upandaway.lib.addstrings'
+--@@ENVIRONMENT BOOTUP
+local _modname = assert( (assert(..., 'This file should be loaded through require.')):match('^[%a_][%w_%s]*') , 'Invalid path.' )
+module( ..., require(_modname .. '.booter') )
+
+--@@END ENVIRONMENT BOOTUP
+
+local Add = modrequire 'lib.addstrings'
 
 Add.Names {
 	beanstalk = "Beanstalk",
@@ -73,6 +78,7 @@ Add.QuotesFor "magic_beans" {
 	wx78 = "",
 }
 
+-- Regular sheep
 Add.QuotesFor "sheep" {
 	GENERIC = "They make me feel sleepy.",
 	waxwell = "I'd hate to be near them when they're in a bad mood.",
@@ -84,7 +90,8 @@ Add.QuotesFor "sheep" {
 	wx78 = "DOCILE MAMMAL. HARD TO FRIGHTEN.",
 }
 
-Add.QuotesFor "sheep_electric" {
+-- Ram
+Add.QuotesFor "sheep.ram" {
 	GENERIC = "Electrifying!",
 	waxwell = " I should keep a distance back from that animal.",
 	wendy = "Their cup hath runneth over.",
