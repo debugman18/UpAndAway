@@ -151,11 +151,13 @@ end
 -- <br /><br />
 -- Works both under normal game and under worldgen (using different methods).
 -- <br /><br />
--- At worldgen, the level number is used. At normal game, the level number is
--- used except when we are at a cloud level, where the level id is used instead.
--- The level id is given preference because the level number can possibly change
--- for compatibility reasons, so this allows us to keep our system compatible
--- with older saves.
+-- At worldgen, the level number is used. At normal game, we check for the
+-- existence of the upandaway_metadata component in the world entity. If it
+-- exists and has a field "height" stored, that value is adopted, otherwise
+-- the level number is used as in worldgen.
+-- <br />
+-- Savedata is given preference because the level number can possibly change,
+-- so this allows us to keep our system compatible with older saves.
 --
 function GetLevelHeight()
 	if not Pred.IsWorldGen() then
