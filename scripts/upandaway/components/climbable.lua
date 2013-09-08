@@ -20,6 +20,8 @@ local Debuggable = wickerrequire 'gadgets.debuggable'
 ---
 -- The Climbable component.
 --
+-- @author simplex
+--
 -- @class table
 -- @name Climbable
 --

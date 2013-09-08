@@ -7,6 +7,8 @@ module( ..., require(_modname .. '.booter') )
 ---
 -- Simple component for storing arbitrary data as savedata.
 --
+-- @author simplex
+--
 -- @class table
 -- @name Metadata
 local Metadata = Class(function(self, inst)

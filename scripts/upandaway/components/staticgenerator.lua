@@ -27,12 +27,14 @@ local events_map = {
 
 ---
 --
--- The StaticGenerator component. Pushes the events "upandaway_charge" and "upandaway_uncharge".
+-- The StaticGenerator component.
+-- <br />
+-- Pushes the events "upandaway_charge" and "upandaway_uncharge".
+--
+-- @author simplex
 --
 -- @class table
 -- @name StaticGenerator
---
--- @see upandaway.markovchain
 local StaticGenerator = Class(Debuggable, function(self, inst)
 	self.inst = inst
 

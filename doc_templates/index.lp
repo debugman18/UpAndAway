@@ -48,7 +48,7 @@
 <%for _, filepath in ipairs(doc.files) do%>
 	<tr>
 		<td class="name"><a href="<%=luadoc.doclet.html.file_link(filepath)%>"><%=filepath%></a></td>
-		<td class="summary"></td>
+		<td class="summary"><%=doc.files[filepath].description or ""%></td>
 	</tr>
 <%end%>
 </table>

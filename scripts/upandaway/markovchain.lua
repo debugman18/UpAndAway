@@ -1,9 +1,6 @@
 ---
--- Implements a discrete Markov Chain over a finite set of states.
---
--- @class module
+-- @description Implements a discrete Markov Chain over a finite set of states.
 -- @author simplex
--- @name upandaway.markovchain
 
 --@@ENVIRONMENT BOOTUP
 local _modname = assert( (assert(..., 'This file should be loaded through require.')):match('^[%a_][%w_%s]*') , 'Invalid path.' )
