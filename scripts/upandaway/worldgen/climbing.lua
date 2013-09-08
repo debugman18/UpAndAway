@@ -1,7 +1,10 @@
---[[
+---
 -- Functions for adding, entering, exiting and failing (dying in) a cloud realm,
 -- as well as a few utility functions.
---]]
+--
+-- @class module
+-- @name upandaway.worldgen.climbing
+--
 
 --@@GLOBAL ENVIRONMENT BOOTUP
 local _modname = assert( (assert(..., 'This file should be loaded through require.')):match('^[%a_][%w_%s]*') , 'Invalid path.' )
@@ -49,6 +52,11 @@ local function is_cloud_level_number(level_number)
 end
 
 
+---
+-- Adds a new cloud level. Also embedded as TheMod:AddCloudLevel().
+--
+-- @param data A table describing the level, as in the second parameter of AddLevel.
+--
 function AddCloudLevel(data)
 	TheMod:AddLevel(LEVELTYPE.CAVE, data)
 
@@ -63,27 +71,6 @@ end
 TheMod:EmbedAdder("CloudLevel", AddCloudLevel)
 
 
---[[
--- GetLevelHeight() returns the "height" of the level we are currently in. The height is 0 for
--- a survival map, 1 for the first cloud level, 2 for the second one, etc. For
--- the first cave level, it is -1, for the second one it is -2, etc.
---
--- This is primarily meant to be used as a test for whether we are in a cloud
--- level or not.
---
--- Works both under normal game and under worldgen (using different methods).
---
--- At worldgen, the level number is used. At normal game, the level number is
--- used except when we are at a cloud level, where the level id is used instead.
--- The level id is given preference because the level number can possibly change
--- for compatibility reasons, so this allows us to keep our system compatible
--- with older saves.
---
--- GetRawLevelHeight() gives the value based on the level number alone.
---
--- level_to_height is a utility function which maps a cave level number to its height.
---]]
-
 local function get_default_height()
 	-- wicker imports the SaveGameIndex.
 	if SaveGameIndex:GetCurrentMode() == "cave" then
@@ -94,6 +81,7 @@ local function get_default_height()
 
 end
 
+-- Maps a cave level number to its height.
 local function level_to_height(lvl)
 	if is_cloud_level_number(lvl) then
 		return 1 + (lvl - start_level)*LEVEL_NUMBER_DIRECTION
@@ -119,11 +107,16 @@ local function height_to_level(h)
 	end
 end
 
+---
+-- @description Returns the maximum height among all registered levels.
+--
 -- This works even if there are no cloud levels (returning 0).
 function GetMaxHeight()
 	return level_to_height(current_level)
 end
 
+---
+-- Returns the minimum height among all registered levels (including default ones).
 function GetMinHeight()
 	if LEVEL_NUMBER_DIRECTION > 0 then
 		-- This case relies quite a bit on the implementation.
@@ -133,6 +126,10 @@ function GetMinHeight()
 	end
 end
 
+---
+-- As GetLevelHeight(), but based on the level number alone.
+--
+-- @see GetLevelHeight
 function GetRawLevelHeight()
 	-- wicker imports the SaveGameIndex.
 	if SaveGameIndex:GetCurrentMode() == "cave" then
@@ -142,6 +139,24 @@ function GetRawLevelHeight()
 	end
 end
 
+---
+-- @description Returns the height of the level we are currently in.
+--
+-- The height is 0 for a survival map, 1 for the first cloud level, 2 for the
+-- second one, etc. For the first cave level, it is -1, for the second one it
+-- is -2, etc.
+-- <br /><br />
+-- This is primarily meant to be used as a test for whether we are in a cloud
+-- level or not.
+-- <br /><br />
+-- Works both under normal game and under worldgen (using different methods).
+-- <br /><br />
+-- At worldgen, the level number is used. At normal game, the level number is
+-- used except when we are at a cloud level, where the level id is used instead.
+-- The level id is given preference because the level number can possibly change
+-- for compatibility reasons, so this allows us to keep our system compatible
+-- with older saves.
+--
 function GetLevelHeight()
 	if not Pred.IsWorldGen() then
 		local world = rawget(_G, "GetWorld") and GetWorld()
@@ -156,6 +171,13 @@ function GetLevelHeight()
 	return GetRawLevelHeight()
 end
 
+---
+-- @description Returns whether we are in a cloud level or not.
+--
+-- First, it checks if the world entity has the "cloudrealm" tag. If it does, returns
+-- true. If not, checks if the level height is positive.
+--
+-- @return A boolean
 function IsCloudLevel()
 	local ground = GetWorld()
 	if ground and ground:HasTag("cloudrealm") then
@@ -166,7 +188,9 @@ function IsCloudLevel()
 end
 Pred.IsCloudLevel = IsCloudLevel
 
--- Returns the next level number (for climbing up).
+---
+-- @description Returns the next level number (for climbing up).
+--
 -- Returns nil if there are none.
 -- 0 means survival map.
 function GetNextLevel()
@@ -176,7 +200,9 @@ function GetNextLevel()
 	end
 end
 
--- Returns the previous level number (for climbing down).
+---
+--@description Returns the previous level number (for climbing down).
+--
 -- Returns nil if there are none.
 -- 0 means survival map.
 function GetPreviousLevel()
@@ -187,12 +213,14 @@ function GetPreviousLevel()
 end
 
 
---[[
--- Climbs to the given height (see also Climb() below). It should be an integer.
+---
+-- @description Climbs to the given height. It should be an integer.
 --
--- cavenum is the number of the TARGET "cave". If not given, the current cave
--- number is used.
-]]--
+-- @param height The target height.
+-- @param cavenum The number of the target "cave". If not given, the current cave
+-- number is used, raising an error if we're not in a cave level.
+--
+-- @see Climb
 function ClimbTo(height, cavenum)
 	assert( Pred.IsNumber(height), "The given height is not a number." )
 	assert( height == math.floor(height), "The given height is not an integer." )
@@ -240,9 +268,14 @@ function ClimbTo(height, cavenum)
 	end
 end
 
---[[
--- Direction should be a number. Its sign dictates the direction.
---]]
+---
+-- @description Climbs in a direction.
+--
+-- @param direction A number. Its sign dictates the direction.
+--
+-- Calls ClimbTo to do the actual work.
+--
+-- @see ClimbTo
 function Climb(direction, cavenum)
 	assert( Pred.IsNumber(direction), "The climbing direction should be a number." )
 

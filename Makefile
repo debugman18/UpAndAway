@@ -10,6 +10,13 @@ endef
 FORUM_THREAD:=26501
 FORUM_DOWNLOAD_ID:=1
 
+# Base dir for generating doc.
+DOC_BASE:=scripts
+# Dir with doc templates.
+DOC_TEMPLATE_DIR:=doc_templates
+# Doc output dir.
+DOC_DIR:=doc
+
 
 PROJECT_lc:=$(shell echo "$(PROJECT)" | tr A-Z a-z | tr -d ' ')
 SCRIPT_DIR:=scripts/$(PROJECT_lc)
@@ -41,7 +48,23 @@ IMAGE_FILES:=
 
 FILES+=$(LICENSE_FILES) $(IMAGE_FILES)
 
+
+.PHONY: none doc
+
+
+
+
 none:
 	-true
+
+doc:
+	mkdir -p $(DOC_DIR)
+	(\
+		cd $(DOC_BASE); \
+		LUA_PATH="$(realpath $(DOC_TEMPLATE_DIR))/?.lua;;" \
+		export LUA_PATH; \
+		luadoc -d $(realpath $(DOC_DIR)) -t . `find . -path '**/wicker/*' -prune -o -type f -name '*.lua' -exec git ls-files --error-unmatch -- {} \;` \
+	)
+
 
 include $(SCRIPT_DIR)/wicker/make/rules.mk

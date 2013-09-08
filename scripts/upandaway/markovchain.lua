@@ -1,3 +1,10 @@
+---
+-- Implements a discrete Markov Chain over a finite set of states.
+--
+-- @class module
+-- @author simplex
+-- @name upandaway.markovchain
+
 --@@ENVIRONMENT BOOTUP
 local _modname = assert( (assert(..., 'This file should be loaded through require.')):match('^[%a_][%w_%s]*') , 'Invalid path.' )
 module( ..., require(_modname .. '.booter') )
@@ -9,7 +16,12 @@ local Lambda = wickerrequire 'paradigms.functional'
 local Pred = wickerrequire 'lib.predicates'
 local table = wickerrequire 'utils.table'
 
-
+---
+-- The markov chain class.
+--
+-- @class table
+-- @name MarkovChain
+--
 local MarkovChain = Class(function(self)
 	-- Current state.
 	self.state = nil
@@ -29,41 +41,59 @@ local function _(self)
 end
 
 
--- Transition function.
--- Called on a state change, receiving the old state followed by the new.
+---
+-- @class function
+--
+-- Returns the transition function, which is called on a state change,
+-- receiving the old state followed by the new.
+--
+-- @return the transition function.
 function MarkovChain:GetTransitionFn()
 	_(self)
 	return self.transitionfn or Lambda.Nil
 end
 
+---
+-- Sets the transition function.
+-- 
+-- @param fn The new transition function.
 function MarkovChain:SetTransitionFn(fn)
 	_(self)
 	self.transitionfn = fn
 end
 
 
--- Returns an iterator triple.
+---
+-- @return An iterator triple over the states.
 function MarkovChain:States()
 	_(self)
 	return table.keys(self.P)
 end
 
+---
+-- @return The current state.
 function MarkovChain:GetState()
 	_(self)
 	return self.state
 end
 MarkovChain.GetCurrentState = MarkovChain.GetState
 
+---
+-- Returns whether the argument is a state.
 function MarkovChain:IsState(s)
 	_(self)
 	return self.P[s] ~= nil
 end
 
+---
+-- Adds a new state.
 function MarkovChain:AddState(s)
 	_(self)
 	self.P[s] = self.P[s] or {}
 end
 
+---
+-- Removes a given state.
 function MarkovChain:RemoveState(s)
 	_(self)
 	for _, edges in pairs(Q) do
@@ -72,12 +102,17 @@ function MarkovChain:RemoveState(s)
 	Q[s] = nil
 end
 
+---
+-- Sets the initial state. If not present already, it is added.
 function MarkovChain:SetInitialState(s)
 	_(self)
 	self:AddState(s)
 	self.state = s
 end
 
+---
+-- Goes to a target state, calling the transition function if the target
+-- state differs from the current one.
 function MarkovChain:GoTo(t)
 	_(self)
 	local s = self.state
@@ -87,10 +122,23 @@ function MarkovChain:GoTo(t)
 		self.state = t
 	end
 end
+
+---
+-- @class function
+-- 
+-- GoTo alias.
+--
+-- @see Goto
 MarkovChain.GoToState = MarkovChain.GoTo
 
 
+---
 -- Sets the transition probability (for a single step) from u to v.
+--
+-- @param u The initial state.
+-- @param v The target state.
+-- @param p The probability of going from u to v.
+-- @param symmetric Whether the same probability should be attached to going from v to u.
 function MarkovChain:SetTransitionProbability(u, v, p, symmetric)
 	_(self)
 	assert( self:IsState(u), "Invalid origin state." )
@@ -106,7 +154,8 @@ function MarkovChain:SetTransitionProbability(u, v, p, symmetric)
 	end
 end
 
-
+---
+-- Processes a chain specification in table format.
 function MarkovChain:ProcessSpecs(specs)
 	_(self)
 
@@ -124,6 +173,8 @@ function MarkovChain:ProcessSpecs(specs)
 end
 
 
+---
+-- Steps the markov chain.
 function MarkovChain:Step()
 	_(self)
 

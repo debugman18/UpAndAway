@@ -25,6 +25,14 @@ local events_map = {
 }
 
 
+---
+--
+-- The StaticGenerator component. Pushes the events "upandaway_charge" and "upandaway_uncharge".
+--
+-- @class table
+-- @name StaticGenerator
+--
+-- @see upandaway.markovchain
 local StaticGenerator = Class(Debuggable, function(self, inst)
 	self.inst = inst
 
@@ -57,19 +65,34 @@ local function average_time_to_probability(dt)
 end
 
 
+---
+-- Sets the average duration of the charged state.
+--
+-- @param dt Average duration, in seconds.
 function StaticGenerator:SetAverageChargedTime(dt)
 	self.chain:SetTransitionProbability( "charged", "uncharged", average_time_to_probability(dt) )
 end
+
+---
+-- Sets the average duration of the uncharged state.
+--
+-- @param dt Average duration, in seconds.
 
 function StaticGenerator:SetAverageUnchargedTime(dt)
 	self.chain:SetTransitionProbability( "uncharged", "charged", average_time_to_probability(dt) )
 end
 
 
+---
+-- Returns whether the prefab is charged.
+--
+-- @return A boolean, representing the state.
 function StaticGenerator:IsCharged()
 	return self.chain:GetState() == "charged"
 end
 
+---
+-- Starts updating the state transition.
 function StaticGenerator:StartGenerating()
 	if not self.task and self.inst:IsValid() then
 		self.task = self.inst:DoPeriodicTask(UPDATING_PERIOD, function(inst)
@@ -80,6 +103,8 @@ function StaticGenerator:StartGenerating()
 	end
 end
 
+---
+-- Halts the updating of the state transition.
 function StaticGenerator:StopGenerating()
 	if self.task then
 		self.task:Cancel()
@@ -87,6 +112,8 @@ function StaticGenerator:StopGenerating()
 	end
 end
 
+---
+-- Handles long updates by simply going to the uncharged state.
 function StaticGenerator:LongUpdate(dt)
 	self.chain:GoTo("uncharged")
 end
@@ -96,21 +123,28 @@ end
 -- These are just convenience functions, mostly for testing.
 --]]
 
+---
+-- Goes to the charged state.
 function StaticGenerator:Charge()
 	self.chain:GoTo("charged")
 end
 
+---
+-- Goes to the uncharged state.
 function StaticGenerator:Uncharge()
 	self.chain:GoTo("uncharged")
 end
 
-
+---
+-- Saves the current state.
 function StaticGenerator:OnSave()
 	return {
 		state = self.chain:GetState(),
 	}
 end
 
+---
+-- Loads the saved state and goes to it.
 function StaticGenerator:OnLoad(data)
 	if data.state ~= nil and self.chain:IsState(data.state) then
 		self.chain:GoTo(data.state)

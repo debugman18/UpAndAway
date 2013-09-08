@@ -1,3 +1,9 @@
+---
+-- Abstracts the Don't Starve API to increase compatibility across several game versions.
+--
+-- @class module
+-- @name upandaway.api_abstractions
+
 --@@GLOBAL ENVIRONMENT BOOTUP
 local _modname = assert( (assert(..., 'This file should be loaded through require.')):match('^[%a_][%w_%s]*') , 'Invalid path.' )
 module( ..., package.seeall, require(_modname .. '.booter') )
@@ -8,7 +14,6 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 local Pred = wickerrequire 'lib.predicates'
 
 local FunctionQueue = wickerrequire 'gadgets.functionqueue'
-
 
 local TODO_LIST = FunctionQueue()
 
@@ -78,10 +83,10 @@ local function find_global_fibermatch(y, f)
 end
 
 
---[[
+--
 -- Call it like AddGlobalClassPostConstruct or like AddClassPostConstruct
 -- (in the latter, the "fn" actually goes in the "classname" position.
---]]
+--
 function AddGenericClassPostConstruct(pkgname, classname, fn)
 	if not fn then
 		classname, fn = fn, classname
