@@ -59,11 +59,12 @@ none:
 
 doc:
 	mkdir -p $(DOC_DIR)
+	rm -rf $(DOC_DIR)/*
 	(\
 		cd $(DOC_BASE); \
 		LUA_PATH="$(realpath $(DOC_TEMPLATE_DIR))/?.lua;;" \
 		export LUA_PATH; \
-		luadoc -d $(realpath $(DOC_DIR)) -t . `find . -path '**/wicker/*' -prune -o -type f -name '*.lua' -exec git ls-files --error-unmatch -- {} \;` \
+		luadoc --nomodules -d $(realpath $(DOC_DIR)) -t . `find . -path '**/wicker/*' -prune -o -type f -name '*.lua' -exec git ls-files --error-unmatch -- {} \;` \
 	)
 
 
