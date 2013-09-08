@@ -71,22 +71,6 @@ local function GetStatus(inst)
     else return "CHARGED" end
 end
 
-local function OnSave(inst, data)
-	data.charged = inst.charged
-end
-
-local function OnLoad(inst, data)
-	if data and data.charged then
-		inst.charged = data.charged
-	end
-	
-	if inst.charged then
-		set_stormram(inst)
-	else
-		set_electricsheep(inst)
-	end
-end
-
 local function dostaticsparks(inst, dt)
 
 	local pos = Vector3(inst.Transform:GetWorldPosition())
@@ -107,6 +91,9 @@ local function set_electricsheep(inst)
 	inst.sounds = sounds
 	local shadow = inst.entity:AddDynamicShadow()	
 	shadow:SetSize(3, 2)
+	
+    local color = 0.5 + math.random() * 0.5
+    anim:SetMultColour(color, color, color, 1)	
 	
 	inst.Light:Enable(false)
 	
@@ -138,7 +125,6 @@ local function set_electricsheep(inst)
     inst:ListenForEvent("newcombattarget", OnNewTarget)
     inst:ListenForEvent("attacked", OnAttacked)
 
-    inst.components.periodicspawner:SetPrefab("skyflower")
     inst.components.periodicspawner:SetRandomTimes(20, 100)
     inst.components.periodicspawner:SetDensityInRange(10, 1)
     inst.components.periodicspawner:SetMinimumSpacing(10)
@@ -207,7 +193,6 @@ local function set_stormram(inst)
     inst:ListenForEvent("newcombattarget", OnNewTarget)
     inst:ListenForEvent("attacked", OnAttacked)
 
-    inst.components.periodicspawner:SetPrefab("datura")
     inst.components.periodicspawner:SetRandomTimes(40, 60)
     inst.components.periodicspawner:SetDensityInRange(20, 2)
     inst.components.periodicspawner:SetMinimumSpacing(8)
@@ -220,6 +205,22 @@ local function set_stormram(inst)
 	
 	inst.charged = true
     return inst	
+end
+
+local function OnSave(inst, data)
+	data.charged = inst.charged
+end
+
+local function OnLoad(inst, data)
+	if data and data.charged then
+		inst.charged = data.charged
+	end
+	
+	if inst.charged then
+		set_stormram(inst)
+	else
+		set_electricsheep(inst)
+	end
 end
 
 local function fn()
@@ -259,6 +260,7 @@ local function fn()
     inst:AddComponent("follower")
 
     inst:AddComponent("periodicspawner")
+    inst.components.periodicspawner:SetPrefab("skyflower")	
 
     MakeLargeBurnableCharacter(inst, "beefalo_body")
     MakeLargeFreezableCharacter(inst, "beefalo_body")
@@ -273,7 +275,7 @@ local function fn()
 	
 	inst:SetStateGraph("SGSheep")
 	
-	set_sheepnormal(inst)
+	set_electricsheep(inst)
 	
 	inst:ListenForEvent("upandaway_charge", function()
 		print "Charged!"

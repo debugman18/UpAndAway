@@ -24,6 +24,28 @@ for quite some time.
 
 ### Current Version: Pre-Alpha
 
+### Update: 2013-09-07
+
+Things listed here now have both art and functional code assets.
++ Added skyflies.
++ Added cloud bushes.
++ Added cloud cotton.
++ Added (currently uncatchable) flying fish.
+
+Things listed here are barely functional, but have art assets.
++ Began goose.
++ Began candy fruit.
++ Began longbill.
++ Began cloud crags.
++ Began marshmallow bees.
++ Began marshmallow hives.
+
+Things listed here are in-progress, but have no/minimum art assets.
++ Base antlion.
++ Base aetheel.
++ Base goose.
++ Base marshmallow.
+
 ### Update: 2013-09-03
 
 Now there is a cloudrealm world entity.

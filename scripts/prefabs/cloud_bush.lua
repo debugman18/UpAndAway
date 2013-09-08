@@ -23,20 +23,57 @@ end
 
 local function onpickedfn(inst, picker)
 	inst.AnimState:PlayAnimation("picking") 
-	inst.AnimState:PushAnimation("picked", false)
-	--[[
+	inst.AnimState:PlayAnimation("empty")
+	
 	if picker.components.combat then
-        picker.components.combat:GetAttacked(nil, TUNING.MARSHBUSH_DAMAGE)
+        picker.components.combat:GetAttacked(nil, 2)
 	end
-	--]]
-end
-
-local function onstaticfn(inst)
-	inst.AnimState:PlayAnimation("berriesmost", false) 
 end
 
 local function makeemptyfn(inst)
-	inst.AnimState:PlayAnimation("idle_dead")
+	local anim = inst.entity:AddAnimState()
+	--inst.components.pickable:MakeEmpty()
+end
+
+local function onunchargefn(inst)
+	local anim = inst.entity:AddAnimState()
+	inst:RemoveComponent("pickable")
+	anim:PlayAnimation("idle_dead")
+	
+	inst.charged = false
+	
+	return inst
+end
+
+local function onstaticfn(inst)
+	inst.AnimState:PlayAnimation("berriesmost", true) 
+    inst:AddComponent("pickable")
+    inst.components.pickable.picksound = "dontstarve/wilson/harvest_sticks"
+    
+    inst.components.pickable:SetUp("candy_fruit", TUNING.MARSHBUSH_REGROW_TIME, 2)
+	inst.components.pickable.onregenfn = onstaticfn
+	inst.components.pickable.onpickedfn = onpickedfn
+    inst.components.pickable.makeemptyfn = makeemptyfn
+
+	inst.charged = true
+	
+	return inst
+end
+
+local function onsave(inst, data)
+	data.charged = inst.charged	
+end
+
+local function onload(inst, data)
+	if data and data.charged then
+		inst.charged = data.charged
+	end
+	
+	if inst.charged then
+		onstaticfn(inst)
+	else
+		onunchargefn(inst)
+	end
 end
 
 local function fn(Sim)
@@ -46,24 +83,16 @@ local function fn(Sim)
 
     anim:SetBank("berrybush")
     anim:SetBuild("cloudbush")	
-	anim:PlayAnimation("empty")
-    anim:PlayAnimation("idle", true)
     anim:SetTime(math.random()*2)
 
     local color = 0.5 + math.random() * 0.5
     anim:SetMultColour(color, color, color, 1)
-
-    inst:AddComponent("pickable")
-    inst.components.pickable.picksound = "dontstarve/wilson/harvest_sticks"
-    
-    inst.components.pickable:SetUp("candy_fruit", TUNING.MARSHBUSH_REGROW_TIME, 2)
-	inst.components.pickable.onregenfn = onstaticfn
-	inst.components.pickable.onpickedfn = onpickedfn
-    inst.components.pickable.makeemptyfn = makeemptyfn
-	inst.components.pickable.ontransplantfn = ontransplantfn
-	inst.components.pickable:MakeEmpty()
+	
+	--inst.components.pickable.ontransplantfn = ontransplantfn
+	--inst.charged = false
 
 	inst:AddComponent("lootdropper")
+	
 	inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.DIG)
     inst.components.workable:SetOnFinishCallback(dig_up)
@@ -75,11 +104,21 @@ local function fn(Sim)
 		print "Charged!"
 		onstaticfn(inst)	
 		return inst
+	end, GetWorld())
+
+	inst:ListenForEvent("upandaway_uncharge", function()
+		print "Uncharged!"
+		onunchargefn(inst)	
+		return inst
 	end, GetWorld())	
     
     MakeLargeBurnable(inst)
     MakeLargePropagator(inst)
 
+    --------SaveLoad
+    inst.OnSave = onsave 
+    inst.OnLoad = onload 	
+	
     return inst
 end
 

@@ -79,31 +79,6 @@ local function evergreens_ret(inst)
 	
 end
 
-local function onUp(inst)
-
-		SetPause(true)
-		--Define the new world objects we are placing.
-		local beanstalk = SpawnPrefab("beanstalk")
-
-		--Define the old world objects we are replacing.
-		local evergreens_ret = TheSim:FindFirstEntityWithTag("evergreen_ret")
-		
-		--Make sure that the player climbed the beanstalk.
-		if GetPlayer().goneUp == true and GetPlayer().goneUpRemember == false then
-			
-			--Place the new world objects.			
-			beanstalk.Transform:SetPosition(evergreens_ret.Transform:GetWorldPosition())
-			
-			--Remove the old world objects.
-			evergreens_ret:Remove()
-		end	
-		
-		SetPause(false)
-		GetPlayer().goneUpRemember = true
-end
-
-AddPrefabPostInit('evergreen', evergreens_ret)	 
-
 --Changes the title displayed on the main menu.
 local function UpdateMainScreen(self)
 	self.updatename:SetString("Up and Away")
