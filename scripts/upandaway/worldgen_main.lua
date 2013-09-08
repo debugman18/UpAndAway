@@ -1,3 +1,10 @@
+---
+-- Main worldgen file. Ran through modworldgenmain.lua.
+--
+-- @author debugman18
+-- @author simplex
+
+
 --@@ENVIRONMENT BOOTUP
 local _modname = assert( (assert(..., 'This file should be loaded through require.')):match('^[%a_][%w_%s]*') , 'Invalid path.' )
 module( ..., require(_modname .. '.booter') )
