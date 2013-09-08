@@ -66,6 +66,7 @@ doc:
 		export LUA_PATH; \
 		luadoc --nomodules -d $(realpath $(DOC_DIR)) -t . `find . -path '**/wicker/*' -prune -o -type f -name '*.lua' -exec git ls-files --error-unmatch -- {} \;` \
 	)
+	git add --all $(DOC_DIR)
 
 
 include $(SCRIPT_DIR)/wicker/make/rules.mk
