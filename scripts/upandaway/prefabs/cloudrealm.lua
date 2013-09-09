@@ -160,10 +160,6 @@ local function fn(Sim)
 	inst.prefab = "cave"
 	inst:AddTag("cloudrealm")
 
-	-- This is needed so that the clock's ambient color updating is prevented.
-	-- We need this for the static mechanic.
-	inst:AddTag("cave")
-
 	SetupLevelTypeFix(inst)
 
 	if not inst.components.clock then
