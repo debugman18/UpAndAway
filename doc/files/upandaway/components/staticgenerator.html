@@ -58,6 +58,10 @@
 		<a href="../../../files/upandaway/components/climbable.html">upandaway/components/climbable.lua</a>
 	</li>
 
+	<li>
+		<a href="../../../files/upandaway/components/cloudambientmanager.html">upandaway/components/cloudambientmanager.lua</a>
+	</li>
+
 	<li><strong>upandaway/components/staticgenerator.lua</strong></li>
 	
 	<li>
@@ -286,7 +290,7 @@
 <h1>File <code>upandaway/components/staticgenerator.lua</code></h1>
 
 
-<p>The StaticGenerator component. <br /> Pushes the events "upandaway_charge" and "upandaway_uncharge". </p>
+<p>The StaticGenerator component. <br /> Pushes the events "upandaway_charge", "upandaway_uncharge" and "upandaway_chargechange". </p>
 
 
 <p><b>Author:</b>
@@ -306,17 +310,17 @@
 
 	<tr>
 	<td class="name" nowrap><a href="#StaticGenerator:Charge">StaticGenerator:Charge</a>&nbsp;()</td>
-	<td class="summary">Goes to the charged state.</td>
+	<td class="summary">Goes to the CHARGED state.</td>
 	</tr>
 
 	<tr>
 	<td class="name" nowrap><a href="#StaticGenerator:IsCharged">StaticGenerator:IsCharged</a>&nbsp;()</td>
-	<td class="summary">Returns whether the prefab is charged.</td>
+	<td class="summary">Returns whether the prefab is CHARGED.</td>
 	</tr>
 
 	<tr>
 	<td class="name" nowrap><a href="#StaticGenerator:LongUpdate">StaticGenerator:LongUpdate</a>&nbsp;(dt)</td>
-	<td class="summary">Handles long updates by simply going to the uncharged state.</td>
+	<td class="summary">Handles long updates by simply going to the UNCHARGED state.</td>
 	</tr>
 
 	<tr>
@@ -331,12 +335,12 @@
 
 	<tr>
 	<td class="name" nowrap><a href="#StaticGenerator:SetAverageChargedTime">StaticGenerator:SetAverageChargedTime</a>&nbsp;(dt)</td>
-	<td class="summary">Sets the average duration of the charged state.</td>
+	<td class="summary">Sets the average duration of the CHARGED state.</td>
 	</tr>
 
 	<tr>
 	<td class="name" nowrap><a href="#StaticGenerator:SetAverageUnchargedTime">StaticGenerator:SetAverageUnchargedTime</a>&nbsp;(dt)</td>
-	<td class="summary">Sets the average duration of the uncharged state.</td>
+	<td class="summary">Sets the average duration of the UNCHARGED state.</td>
 	</tr>
 
 	<tr>
@@ -351,7 +355,7 @@
 
 	<tr>
 	<td class="name" nowrap><a href="#StaticGenerator:Uncharge">StaticGenerator:Uncharge</a>&nbsp;()</td>
-	<td class="summary">Goes to the uncharged state.</td>
+	<td class="summary">Goes to the UNCHARGED state.</td>
 	</tr>
 
 </table>
@@ -384,7 +388,7 @@
 
 <dt><a name="StaticGenerator:Charge"></a><strong>StaticGenerator:Charge</strong>&nbsp;()</dt>
 <dd>
-Goes to the charged state.
+Goes to the CHARGED state.
 
 
 
@@ -401,7 +405,7 @@ Goes to the charged state.
 
 <dt><a name="StaticGenerator:IsCharged"></a><strong>StaticGenerator:IsCharged</strong>&nbsp;()</dt>
 <dd>
-Returns whether the prefab is charged. 
+Returns whether the prefab is CHARGED. 
 
 
 
@@ -421,7 +425,7 @@ A boolean, representing the state.
 
 <dt><a name="StaticGenerator:LongUpdate"></a><strong>StaticGenerator:LongUpdate</strong>&nbsp;(dt)</dt>
 <dd>
-Handles long updates by simply going to the uncharged state.
+Handles long updates by simply going to the UNCHARGED state.
 
 
 <h3>Parameters</h3>
@@ -490,7 +494,7 @@ Saves the current state.
 
 <dt><a name="StaticGenerator:SetAverageChargedTime"></a><strong>StaticGenerator:SetAverageChargedTime</strong>&nbsp;(dt)</dt>
 <dd>
-Sets the average duration of the charged state. 
+Sets the average duration of the CHARGED state. 
 
 
 <h3>Parameters</h3>
@@ -516,7 +520,7 @@ Sets the average duration of the charged state.
 
 <dt><a name="StaticGenerator:SetAverageUnchargedTime"></a><strong>StaticGenerator:SetAverageUnchargedTime</strong>&nbsp;(dt)</dt>
 <dd>
-Sets the average duration of the uncharged state. 
+Sets the average duration of the UNCHARGED state. 
 
 
 <h3>Parameters</h3>
@@ -576,7 +580,7 @@ Halts the updating of the state transition.
 
 <dt><a name="StaticGenerator:Uncharge"></a><strong>StaticGenerator:Uncharge</strong>&nbsp;()</dt>
 <dd>
-Goes to the uncharged state.
+Goes to the UNCHARGED state.
 
 
 
@@ -598,7 +602,7 @@ Goes to the uncharged state.
 <dl class="table">
 
 <dt><a name="StaticGenerator"></a><strong>StaticGenerator</strong></dt>
-<dd>The StaticGenerator component. <br /> Pushes the events "upandaway_charge" and "upandaway_uncharge". 
+<dd>The StaticGenerator component. <br /> Pushes the events "upandaway_charge", "upandaway_uncharge" and "upandaway_chargechange". 
 
 
 
