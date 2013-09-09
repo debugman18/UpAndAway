@@ -46,7 +46,7 @@ local essential_assets =
     Asset("ANIM", "anim/splash_ocean.zip"),
     Asset("ANIM", "anim/frozen.zip"),
 
-	--Asset("IMAGE", "images/wave.tex"),
+	Asset("IMAGE", "images/cloudwave.tex"),
 
     Asset("SOUND", "sound/forest_stream.fsb"),
     Asset("SOUND", "sound/cave_AMB.fsb"),
@@ -173,7 +173,19 @@ local function fn(Sim)
 	inst:AddComponent("seasonmanager")
 
 	--AddNeutralComponent(inst, "quaker")
-
+   
+    --Populates the world with skyflies.
+    inst:AddComponent("butterflyspawner")
+    inst.components.butterflyspawner:SetButterfly("skyflies")
+ 
+    --Uses our cloudwaves.
+    local waves = inst.entity:AddWaveComponent()
+    waves:SetRegionSize(32,16)
+    waves:SetRegionNumWaves(4)
+    waves:SetWaveTexture(GLOBAL.resolvefilepath("images/cloudwave.tex"))   
+    waves:SetWaveEffect("shaders/waves.ksh" ) -- texture.ksh    
+	waves:SetWaveSize(1024, 1024)
+   
 	inst:AddComponent("colourcubemanager")
 	--inst.Map:SetOverlayTexture( "levels/textures/snow.tex" )
 	
