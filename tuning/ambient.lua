@@ -20,3 +20,14 @@ CLOUD_AMBIENT.CHARGED_COLOUR = dusk_colour*0.6
 
 -- Transition time between ambient colours.
 CLOUD_AMBIENT.COLOUR_TRANSITION_TIME = 5
+
+
+SKYFLYSPAWNER.MAX_FLIES = 5
+-- Range, (min, max)
+SKYFLYSPAWNER.SPAWN_DELAY = {5, 12}
+-- Distance from player allowed for spawning, (min, max)
+SKYFLYSPAWNER.PLAYER_DISTANCE = {3, 14}
+-- Minimum distance between spawned flies.
+SKYFLYSPAWNER.MIN_FLY2FLY_DISTANCE = 2
+-- Should skyflies be preserved across saves?
+SKYFLYSPAWNER.PERSISTENT = true

@@ -16,6 +16,8 @@ module( ..., require(_modname .. '.booter') )
 --local Logic = wickerrequire 'paradigms.logic'
 --local Pred = wickerrequire 'lib.predicates'
 
+local Configurable = wickerrequire 'adjectives.configurable'
+
 
 require 'util'
 
@@ -176,10 +178,6 @@ local function fn(Sim)
 
 	--AddNeutralComponent(inst, "quaker")
    
-    --Populates the world with skyflies.
-    inst:AddComponent("butterflyspawner")
-    inst.components.butterflyspawner:SetButterfly("skyflies")
- 
     --Uses our cloudwaves.
     local waves = inst.entity:AddWaveComponent()
     waves:SetRegionSize(32,16)
@@ -192,15 +190,42 @@ local function fn(Sim)
 	--inst.Map:SetOverlayTexture( "levels/textures/snow.tex" )
 	
 	inst:AddComponent("staticgenerator")
-	local staticgen = inst.components.staticgenerator
-	staticgen:SetAverageUnchargedTime( TheMod:GetConfig("STATIC", "AVERAGE_UNCHARGED_TIME") )
-	staticgen:SetAverageChargedTime( TheMod:GetConfig("STATIC", "AVERAGE_CHARGED_TIME") )
-	staticgen:StartGenerating()
+	do
+		local staticgen = inst.components.staticgenerator
+		local cfg = Configurable("STATIC")
+
+		staticgen:SetAverageUnchargedTime( cfg:GetConfig "AVERAGE_UNCHARGED_TIME" )
+		staticgen:SetAverageChargedTime( cfg:GetConfig "AVERAGE_CHARGED_TIME" )
+
+		staticgen:StartGenerating()
+	end
 
 	inst:AddComponent("cloudambientmanager")
 
-	TheMod:DebugSay("Built cloudrealm entity [", inst, "]")
+	inst:AddComponent("skyflyspawner")
+	do
+		local flyspawner = inst.components.skyflyspawner
+		local cfg = Configurable("SKYFLYSPAWNER")
 
+		flyspawner:SetFlyPrefab("skyflies")
+		flyspawner:SetMaxFlies( cfg:GetConfig "MAX_FLIES" )
+		do
+			local min, max = unpack(cfg:GetConfig "SPAWN_DELAY")
+			local dt = max - min
+			flyspawner:SetDelay( function() return min + dt*math.random() end )
+		end
+		do
+			local min, max = unpack(cfg:GetConfig "PLAYER_DISTANCE")
+			flyspawner:SetMinDistance(min)
+			flyspawner:SetMaxDistance(max)
+		end
+		flyspawner:SetMinFlySpread(cfg:GetConfig "MIN_FLY2FLY_DISTANCE")
+		flyspawner:SetPersistence( cfg:GetConfig "PERSISTENT" )
+
+		flyspawner:Touch()
+	end
+
+	TheMod:DebugSay("Built cloudrealm entity [", inst, "]")
 	return inst
 end
 
