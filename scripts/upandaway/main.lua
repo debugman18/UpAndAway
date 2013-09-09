@@ -23,6 +23,7 @@ require 'mainfunctions'
 
 modrequire('api_abstractions')()
 
+modrequire 'debugtools'
 
 modrequire 'strings'
 

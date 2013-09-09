@@ -68,14 +68,6 @@ modrequire 'map.tasks'
 modrequire 'map.levels'
 
 
---[[
--- Type ClimbTo(0) in the console to return to the surface.
---]]
-if TheMod:Debug() then
-	GLOBAL.ClimbTo = (modrequire 'worldgen.climbing').ClimbTo
-end
-
-
 --This also does the following.
 local TRANSLATE_TO_PREFABS = GLOBAL.require("map/forest_map").TRANSLATE_TO_PREFABS
 TRANSLATE_TO_PREFABS["skyflowers"] = {"skyflower"}
