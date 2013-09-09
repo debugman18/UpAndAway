@@ -62,10 +62,8 @@
 		<a href="../../../files/upandaway/components/cloudambientmanager.html">upandaway/components/cloudambientmanager.lua</a>
 	</li>
 
-	<li>
-		<a href="../../../files/upandaway/components/skyflyspawner.html">upandaway/components/skyflyspawner.lua</a>
-	</li>
-
+	<li><strong>upandaway/components/skyflyspawner.lua</strong></li>
+	
 	<li>
 		<a href="../../../files/upandaway/components/staticgenerator.html">upandaway/components/staticgenerator.lua</a>
 	</li>
@@ -262,8 +260,10 @@
 		<a href="../../../files/upandaway/scenarios/skylevel.html">upandaway/scenarios/skylevel.lua</a>
 	</li>
 
-	<li><strong>upandaway/stategraphs/SGSheep.lua</strong></li>
-	
+	<li>
+		<a href="../../../files/upandaway/stategraphs/SGSheep.html">upandaway/stategraphs/SGSheep.lua</a>
+	</li>
+
 	<li>
 		<a href="../../../files/upandaway/stategraphs/SGeel.html">upandaway/stategraphs/SGeel.lua</a>
 	</li>
@@ -291,16 +291,116 @@
 
 <div id="content">
 
-<h1>File <code>upandaway/stategraphs/SGSheep.lua</code></h1>
+<h1>File <code>upandaway/components/skyflyspawner.lua</code></h1>
+
+
+<p>Component for spawning things on flowers. </p>
+
+
+<p><b>Author:</b>
+<table class="authors_list">
+
+	<tr><td class="name">simplex </td></tr>
+
+</table>
+</p>
 
 
 
 
 
+<h2>Functions</h2>
+<table class="function_list">
+
+	<tr>
+	<td class="name" nowrap><a href="#SkyflySpawner:GetDelay">SkyflySpawner:GetDelay</a>&nbsp;()</td>
+	<td class="summary">Returns the delay, possibly calling the configured one.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#SkyflySpawner:GetSpawnFlower">SkyflySpawner:GetSpawnFlower</a>&nbsp;()</td>
+	<td class="summary">Gets a flower to spawn a fly on.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#SkyflySpawner:Reboot">SkyflySpawner:Reboot</a>&nbsp;()</td>
+	<td class="summary">Stops spawning and then calls Touch().</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#SkyflySpawner:SetDelay">SkyflySpawner:SetDelay</a>&nbsp;(dt)</td>
+	<td class="summary">Sets the delay between spawns.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#SkyflySpawner:SetFlyPrefab">SkyflySpawner:SetFlyPrefab</a>&nbsp;(prefab)</td>
+	<td class="summary">Sets the fly prefab.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#SkyflySpawner:SetMaxDistance">SkyflySpawner:SetMaxDistance</a>&nbsp;(ds)</td>
+	<td class="summary">Maximum distance from player to spawn.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#SkyflySpawner:SetMaxFlies">SkyflySpawner:SetMaxFlies</a>&nbsp;(n)</td>
+	<td class="summary">Sets the fly cap.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#SkyflySpawner:SetMinDistance">SkyflySpawner:SetMinDistance</a>&nbsp;(ds)</td>
+	<td class="summary">Minimum distance from player to spawn.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#SkyflySpawner:SetMinFlySpread">SkyflySpawner:SetMinFlySpread</a>&nbsp;(ds)</td>
+	<td class="summary">Minimum distance between flies.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#SkyflySpawner:SetPersistence">SkyflySpawner:SetPersistence</a>&nbsp;(b)</td>
+	<td class="summary">Sets whether entities spawned should be kept across reloading.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#SkyflySpawner:StartSpawning">SkyflySpawner:StartSpawning</a>&nbsp;()</td>
+	<td class="summary">Sets up the spawning task.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#SkyflySpawner:StopSpawning">SkyflySpawner:StopSpawning</a>&nbsp;()</td>
+	<td class="summary">Stops the spawning task, if any.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#SkyflySpawner:Touch">SkyflySpawner:Touch</a>&nbsp;()</td>
+	<td class="summary">Starts or stops spawning according to the number of flies already tracked.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#SkyflySpawner:Track">SkyflySpawner:Track</a>&nbsp;(fly)</td>
+	<td class="summary">Adds a fly to the tracking list, if it's not there already.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#SkyflySpawner:Untrack">SkyflySpawner:Untrack</a>&nbsp;(fly)</td>
+	<td class="summary">Removes a fly from the tracking list.</td>
+	</tr>
+
+</table>
 
 
 
 
+<h2>Tables</h2>
+<table class="table_list">
+
+	<tr>
+	<td class="name" nowrap><a href="#SkyflySpawner">SkyflySpawner</a></td>
+	<td class="summary">Component for spawning things on flowers.</td>
+	</tr>
+
+</table>
 
 
 
@@ -310,8 +410,362 @@
 
 
 
+<h2><a name="functions"></a>Functions</h2>
+<dl class="function">
 
 
+
+<dt><a name="SkyflySpawner:GetDelay"></a><strong>SkyflySpawner:GetDelay</strong>&nbsp;()</dt>
+<dd>
+Returns the delay, possibly calling the configured one.
+
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="SkyflySpawner:GetSpawnFlower"></a><strong>SkyflySpawner:GetSpawnFlower</strong>&nbsp;()</dt>
+<dd>
+Gets a flower to spawn a fly on.
+
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="SkyflySpawner:Reboot"></a><strong>SkyflySpawner:Reboot</strong>&nbsp;()</dt>
+<dd>
+Stops spawning and then calls Touch().
+
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="SkyflySpawner:SetDelay"></a><strong>SkyflySpawner:SetDelay</strong>&nbsp;(dt)</dt>
+<dd>
+Sets the delay between spawns. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  dt: A positive number or a function, receiving self.inst and returning the delay.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="SkyflySpawner:SetFlyPrefab"></a><strong>SkyflySpawner:SetFlyPrefab</strong>&nbsp;(prefab)</dt>
+<dd>
+Sets the fly prefab.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  prefab: 
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="SkyflySpawner:SetMaxDistance"></a><strong>SkyflySpawner:SetMaxDistance</strong>&nbsp;(ds)</dt>
+<dd>
+Maximum distance from player to spawn.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  ds: 
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="SkyflySpawner:SetMaxFlies"></a><strong>SkyflySpawner:SetMaxFlies</strong>&nbsp;(n)</dt>
+<dd>
+Sets the fly cap.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  n: 
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="SkyflySpawner:SetMinDistance"></a><strong>SkyflySpawner:SetMinDistance</strong>&nbsp;(ds)</dt>
+<dd>
+Minimum distance from player to spawn.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  ds: 
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="SkyflySpawner:SetMinFlySpread"></a><strong>SkyflySpawner:SetMinFlySpread</strong>&nbsp;(ds)</dt>
+<dd>
+Minimum distance between flies.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  ds: 
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="SkyflySpawner:SetPersistence"></a><strong>SkyflySpawner:SetPersistence</strong>&nbsp;(b)</dt>
+<dd>
+Sets whether entities spawned should be kept across reloading. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  b: A boolean.
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="SkyflySpawner:StartSpawning"></a><strong>SkyflySpawner:StartSpawning</strong>&nbsp;()</dt>
+<dd>
+Sets up the spawning task.
+
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="SkyflySpawner:StopSpawning"></a><strong>SkyflySpawner:StopSpawning</strong>&nbsp;()</dt>
+<dd>
+Stops the spawning task, if any.
+
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="SkyflySpawner:Touch"></a><strong>SkyflySpawner:Touch</strong>&nbsp;()</dt>
+<dd>
+Starts or stops spawning according to the number of flies already tracked.
+
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="SkyflySpawner:Track"></a><strong>SkyflySpawner:Track</strong>&nbsp;(fly)</dt>
+<dd>
+Adds a fly to the tracking list, if it's not there already.  Sets up "entitysleep" and "enterlimbo" callbacks for removing it.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  fly: 
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="SkyflySpawner:Untrack"></a><strong>SkyflySpawner:Untrack</strong>&nbsp;(fly)</dt>
+<dd>
+Removes a fly from the tracking list.  Removes the event listeners.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  fly: 
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+</dl>
+
+
+
+
+<h2><a name="tables"></a>Tables</h2>
+<dl class="table">
+
+<dt><a name="SkyflySpawner"></a><strong>SkyflySpawner</strong></dt>
+<dd>Component for spawning things on flowers. 
+
+
+
+</dd>
+
+
+</dl>
 
 
 
