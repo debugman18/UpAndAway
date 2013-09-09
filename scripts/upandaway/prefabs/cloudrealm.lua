@@ -84,21 +84,14 @@ local custom_prefabs = {
 
 	"cloud_cotton",
 	"cloud_turf",
+	"cloud_bush",
+	"cloudcrag",
 	
 	"cloud_bush",
-	"candy_fruit",
-	
-	"cloudcrag",
-	"cloudcrag2",
-	"cloudcrag3",
-
 	"bee_marshmallow",
 	"hive_marshmallow",
-	
 	"flying_fish",
-	
 	"goose",
-	"longbill",
 
 	"golden_egg",
 }
@@ -180,17 +173,7 @@ local function fn(Sim)
 	inst:AddComponent("seasonmanager")
 
 	--AddNeutralComponent(inst, "quaker")
-	
-	--Populates the world with skyflies.
-	inst:AddComponent("butterflyspawner")
-	inst.components.butterflyspawner:SetButterfly("skyflies")
 
-	--Uses our cloudwaves.
-	local waves = inst.entity:AddWaveComponent()
-	waves:SetRegionSize( 32, 16 )
-	waves:SetRegionNumWaves( 6 )
-	waves:SetWaveTexture(resolvefilepath("images/cloudwave.tex") )	
-	
 	inst:AddComponent("colourcubemanager")
 	--inst.Map:SetOverlayTexture( "levels/textures/snow.tex" )
 	
