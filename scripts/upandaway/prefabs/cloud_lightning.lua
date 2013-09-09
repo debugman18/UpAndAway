@@ -7,6 +7,11 @@ module( ..., require(_modname .. '.booter') )
 
 local Lambda = wickerrequire 'paradigms.functional'
 
+local Configurable = wickerrequire 'adjectives.configurable'
+
+
+local cfg = Configurable("CLOUD_LIGHTNING")
+
 
 local assets = {
 }
@@ -16,18 +21,24 @@ local prefabs = {
 }
 
 
-local LIFETIME = 0.6
-local RADIUS = 2
-local LIGHT_INTENSITY = 0.9
+local ENABLED = cfg:GetConfig "ENABLED"
 
-local UPDATE_PERIOD = 0.05
-
+local COLOUR = cfg:GetConfig "COLOUR"
+local LIFETIME = cfg:GetConfig "LIFETIME"
+local RADIUS = cfg:GetConfig "RADIUS"
+local LIGHT_INTENSITY = cfg:GetConfig "LIGHT_INTENSITY"
+local UPDATE_PERIOD = cfg:GetConfig "UPDATE_PERIOD"
 
 local INTENSITY_DROP_RATE = LIGHT_INTENSITY/LIFETIME
 local INTENSITY_DROP_STEP = INTENSITY_DROP_RATE*UPDATE_PERIOD
 
 
 local function perform(inst)
+	if not ENABLED then
+		inst:Remove()
+		return
+	end
+
 	local sound = inst.SoundEmitter
 	local light = inst.Light
 
@@ -44,7 +55,7 @@ local function perform(inst)
 	light:SetRadius(RADIUS)
 	light:SetFalloff(1)
 	light:SetIntensity(LIGHT_INTENSITY)
-        light:SetColour(0.5,0.7,0.7)
+    light:SetColour(COLOUR:Get())
 
 	local intensity = LIGHT_INTENSITY
 

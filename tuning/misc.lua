@@ -1,0 +1,11 @@
+--[[
+-- List here the new tile names, in lowercase.
+--
+-- All the asset insertion, tile adding, etc. is done automagically by
+-- inserting a new entry. Each entry is assumed to have a tile texture, a tile
+-- atlas, a noise texture and a minimap noise texture.
+--
+-- For now, avoid removing entries and/or reordering them, otherwise savedata
+-- for new tiles will get messed up (creating a new save will fix it, though).
+--]]
+NEW_TILES = {"poopcloud"}

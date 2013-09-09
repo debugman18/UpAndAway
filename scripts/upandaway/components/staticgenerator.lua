@@ -20,16 +20,17 @@ assert( Pred.IsPositiveNumber(COOLDOWN) )
 
 
 local events_map = {
-	charged = { uncharged = "upandaway_uncharge" },
-	uncharged = { charged = "upandaway_charge" },
+	CHARGED = { UNCHARGED = "upandaway_uncharge" },
+	UNCHARGED = { CHARGED = "upandaway_charge" },
 }
 
+local generic_event = "upandaway_chargechange"
 
 ---
 --
 -- The StaticGenerator component.
 -- <br />
--- Pushes the events "upandaway_charge" and "upandaway_uncharge".
+-- Pushes the events "upandaway_charge", "upandaway_uncharge" and "upandaway_chargechange".
 --
 -- @author simplex
 --
@@ -41,13 +42,15 @@ local StaticGenerator = Class(Debuggable, function(self, inst)
 	Debuggable._ctor(self)
 
 	local chain = MarkovChain()
-	chain:AddState("charged")
-	chain:AddState("uncharged")
-	chain:SetInitialState("uncharged")
+	chain:AddState("CHARGED")
+	chain:AddState("UNCHARGED")
+	chain:SetInitialState("UNCHARGED")
 	chain:SetTransitionFn(function(old, new)
 		local event = assert( events_map[old][new] )
 		self:DebugSay("Pushing event ", event)
 		self.inst:PushEvent(event)
+		self:DebugSay("Pushing generic event (", generic_event, ", ", ("{state = %q}"):format(new), ")")
+		self.inst:PushEvent(generic_event, {state = new})
 		self:StopGenerating()
 		self.inst:DoTaskInTime(COOLDOWN, function(inst)
 			if inst:IsValid() and inst.components.staticgenerator then
@@ -68,29 +71,29 @@ end
 
 
 ---
--- Sets the average duration of the charged state.
+-- Sets the average duration of the CHARGED state.
 --
 -- @param dt Average duration, in seconds.
 function StaticGenerator:SetAverageChargedTime(dt)
-	self.chain:SetTransitionProbability( "charged", "uncharged", average_time_to_probability(dt) )
+	self.chain:SetTransitionProbability( "CHARGED", "UNCHARGED", average_time_to_probability(dt) )
 end
 
 ---
--- Sets the average duration of the uncharged state.
+-- Sets the average duration of the UNCHARGED state.
 --
 -- @param dt Average duration, in seconds.
 
 function StaticGenerator:SetAverageUnchargedTime(dt)
-	self.chain:SetTransitionProbability( "uncharged", "charged", average_time_to_probability(dt) )
+	self.chain:SetTransitionProbability( "UNCHARGED", "CHARGED", average_time_to_probability(dt) )
 end
 
 
 ---
--- Returns whether the prefab is charged.
+-- Returns whether the prefab is CHARGED.
 --
 -- @return A boolean, representing the state.
 function StaticGenerator:IsCharged()
-	return self.chain:GetState() == "charged"
+	return self.chain:GetState() == "CHARGED"
 end
 
 ---
@@ -115,9 +118,9 @@ function StaticGenerator:StopGenerating()
 end
 
 ---
--- Handles long updates by simply going to the uncharged state.
+-- Handles long updates by simply going to the UNCHARGED state.
 function StaticGenerator:LongUpdate(dt)
-	self.chain:GoTo("uncharged")
+	self.chain:GoTo("UNCHARGED")
 end
 
 
@@ -126,15 +129,15 @@ end
 --]]
 
 ---
--- Goes to the charged state.
+-- Goes to the CHARGED state.
 function StaticGenerator:Charge()
-	self.chain:GoTo("charged")
+	self.chain:GoTo("CHARGED")
 end
 
 ---
--- Goes to the uncharged state.
+-- Goes to the UNCHARGED state.
 function StaticGenerator:Uncharge()
-	self.chain:GoTo("uncharged")
+	self.chain:GoTo("UNCHARGED")
 end
 
 ---
@@ -148,8 +151,12 @@ end
 ---
 -- Loads the saved state and goes to it.
 function StaticGenerator:OnLoad(data)
-	if data.state ~= nil and self.chain:IsState(data.state) then
-		self.chain:GoTo(data.state)
+	local state = data and data.state
+	if type(state) == "string" then
+		state = state:upper()
+		if self.chain:IsState(state) then
+			self.chain:GoTo(state)
+		end
 	end
 end
 

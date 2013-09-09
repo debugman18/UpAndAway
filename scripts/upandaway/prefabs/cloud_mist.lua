@@ -7,6 +7,11 @@ module( ..., require(_modname .. '.booter') )
 
 local Lambda = wickerrequire 'paradigms.functional'
 
+local Configurable = wickerrequire 'adjectives.configurable'
+
+
+local cfg = Configurable("CLOUD_MIST")
+
 
 local assets = {}
 
@@ -15,10 +20,15 @@ local prefabs = {
 }
 
 
+local ENABLED = cfg:GetConfig "ENABLED"
+local DENSITY = cfg:GetConfig "DENSITY"
+local GROUND_HEIGHT = cfg:GetConfig "GROUND_HEIGHT"
+
+
 local AddToNodeError = Lambda.Error("Mist entity already added to a node!")
 
 local function AddToNode(inst, node)
-	if node.area_emitter ~= nil then
+	if not ENABLED or DENSITY <= 0 or node.area_emitter ~= nil then
 			inst:Remove()
 			return
 	end
@@ -32,9 +42,7 @@ local function AddToNode(inst, node)
 		node.area = 1
 	end
 
-	inst.components.emitter.density_factor = node.area/30
-
-	TheMod:DebugSay("adding mist! area=", node.area, "; density_factor=", inst.components.emitter.density_factor)
+	inst.components.emitter.density_factor = node.area*DENSITY
 
 	if inst.AddToNode == AddToNode then
 			inst.AddToNode = AddToNodeError
@@ -44,7 +52,7 @@ end
 local function fn()
 	local inst = SpawnPrefab("mist")
 
-	inst.components.emitter.ground_height = 0.8
+	inst.components.emitter.ground_height = GROUND_HEIGHT
 
 	inst.AddToNode = AddToNode
 

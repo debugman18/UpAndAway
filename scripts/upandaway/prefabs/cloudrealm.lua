@@ -191,6 +191,8 @@ local function fn(Sim)
 	staticgen:SetAverageChargedTime( TheMod:GetConfig("STATIC", "AVERAGE_CHARGED_TIME") )
 	staticgen:StartGenerating()
 
+	inst:AddComponent("cloudambientmanager")
+
 	TheMod:DebugSay("Built cloudrealm entity [", inst, "]")
 
 	return inst
