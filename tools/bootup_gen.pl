@@ -105,7 +105,7 @@ if( $disabled ) {
 	} else {
 		print $temp "--\@\@ENVIRONMENT BOOTUP\n";
 		print $temp $bootup_code;
-		print $temp "--\@\@END ENVIRONMENT BOOTUP\n";
+		print $temp "--\@\@END ENVIRONMENT BOOTUP\n\n";
 	}
 }
 dump_byte_range($temp, $end_pos, -1);
