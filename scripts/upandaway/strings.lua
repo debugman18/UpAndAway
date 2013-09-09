@@ -23,7 +23,7 @@ Add.Names {
 	crystal_moss = "Crystal Moss",
 	crystal_shard = "Crystal Shard",
 	crystal_wall = "Crystal Wall",
-	datura = "Datura",
+	--skyflower.datura = "Datura",
 	datura_petals = "Datura Petals",
 	duckraptor = "Duckraptor",
 	duckraptor_baby = "Duckling",
@@ -46,7 +46,7 @@ Add.Names {
 	pineapple_fruit = "Pineapple",
 	research_lectern = "Research Lectern",
 	sheep = "Sheep",
-	sheep_electric = "Electric Sheep",
+	--sheep.ram = "Electric Sheep",
 	shopkeeper = "Shopkeeper",
 	sunflower = "Golden Sunflower",
 	sunflower_seeds = "Golden Sunflower Seeds",
@@ -134,7 +134,7 @@ Add.QuotesFor "skyflower_petals" {
 	wx78 = "YOUR TRICKS SHALL NOT WORK ON ME.",
 }
 
-Add.QuotesFor "datura" {
+Add.QuotesFor "skyflower.datura" {
 	GENERIC = "It smells of nightmares.",
 	waxwell = "It smells like innocence. Ripe for the taking. ",
 	wendy = "A flower to fuel hatred. Smells like a rose.",

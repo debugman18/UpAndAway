@@ -85,23 +85,4 @@ TRANSLATE_TO_PREFABS["hive_marshmallow"] = {"hive_marshmallow"}
 TRANSLATE_TO_PREFABS["bee_marshmallow"] = {"bee_marshmallow"}
 TRANSLATE_TO_PREFABS["goose"] = {"goose"}
 TRANSLATE_TO_PREFABS["cloudcrag"] = {"cloudcrag"}
-
--- Should we really change the MULTIPLY table for all map generation?!
-
--- It is part of the API now, and these values are only called when the level is created. I'll change the values for testing purposes until
--- realm_map is implemented, or whatever is decided on.
-
---[[
--- They are used on EVERY level creation, not just ours. And it screws up the
--- parameters for testing real worldgen.
---
--- Anyway, I commented them out again since I'm working on the worldgen.
--- They are meant as a tweak on existing maps, not on new ones! They may help
--- with testing, I guess, but I think editing the rooms directly is better.
---]]
---[[
-local MULTIPLY = GLOBAL.require("map/forest_map").MULTIPLY
-MULTIPLY["up_everywhere"] = 60
-MULTIPLY["up_moreplaces"] = 15
-MULTIPLY["up_fewplaces"] = 3
-]]--
+TRANSLATE_TO_PREFABS["skyflies"] = {"skyflies"}

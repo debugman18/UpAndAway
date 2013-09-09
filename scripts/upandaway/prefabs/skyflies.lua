@@ -11,6 +11,16 @@ local assets =
 
 local INTENSITY = .7
 
+local colours=
+{
+	{198/255,43/255,43/255},
+	{79/255,153/255,68/255},
+	{35/255,105/255,235/255},
+	{233/255,208/255,69/255},
+	{109/255,50/255,163/255},
+	{222/255,126/255,39/255},
+}
+
 local function fadein(inst)
     inst.components.fader:StopAll()
     inst.AnimState:PlayAnimation("swarm_pre")
@@ -50,6 +60,20 @@ local function onnear(inst)
 	updatelight(inst) 
 end
 
+local function onsave(inst, data)
+    data.colour_idx = inst.colour_idx
+end
+
+local function onload(inst, data)
+    if data then
+        if data.colour_idx then
+            inst.colour_idx = math.min(#colours, data.colour_idx)
+            inst.AnimState:SetMultColour(colours[inst.colour_idx][1],colours[inst.colour_idx][2],colours[inst.colour_idx][3],1)
+			inst.Light:SetColour(colours[inst.colour_idx][1],colours[inst.colour_idx][2],colours[inst.colour_idx][3])
+        end
+    end
+end
+
 local function fn(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
@@ -59,16 +83,22 @@ local function fn(Sim)
  
     local light = inst.entity:AddLight()
     light:SetFalloff(1)
-    light:SetIntensity(INTENSITY)
-    light:SetRadius(1)
-    light:SetColour(180/255, 195/255, 150/255)
-    light:Enable(false)
+
+	inst.colour_idx = math.random(#colours)
+    inst.AnimState:SetMultColour(colours[inst.colour_idx][1],colours[inst.colour_idx][2],colours[inst.colour_idx][3],1)
+    light:SetRadius(.5)
+	light:SetColour(colours[inst.colour_idx][1],colours[inst.colour_idx][2],colours[inst.colour_idx][3])
+    inst.Light:Enable(true)
+    inst.Light:SetIntensity(.5)	
     
     inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
     
     inst.AnimState:SetBank("fireflies")
     inst.AnimState:SetBuild("skyflies")
 
+    inst.AnimState:PlayAnimation("swarm_pre")
+    inst.AnimState:PushAnimation("swarm_loop", true)
+	
     inst.AnimState:SetRayTestOnBB(true);
     
     inst:AddComponent("playerprox")
@@ -100,16 +130,19 @@ local function fn(Sim)
     inst.components.playerprox:SetOnPlayerNear(onnear)
     inst.components.playerprox:SetOnPlayerFar(onfar)
 
-
+	--[[
     inst:ListenForEvent( "daytime", function()
         inst:DoTaskInTime(2+math.random()*1, function() updatelight(inst) end)
     end, GetWorld())
     inst:ListenForEvent( "nighttime", function()
         inst:DoTaskInTime(2+math.random()*1, function() updatelight(inst) end)
     end, GetWorld())
+	--]]
+	
 
     updatelight(inst)
-    
+    inst.OnSave = onsave
+    inst.OnLoad = onload   
     return inst
 end
 

@@ -72,15 +72,15 @@ local custom_prefabs = {
 	"beanstalk",
 	"beanstalk_exit",
 	"beanstalk_chunk",
+	
 	"magic_beans",
 
 	"skyflower",
-	"datura",
+
 	"skyflower_petals",
 	"datura_petals",
 
 	"sheep",
-	"sheep_electric",
 
 	"cloud_cotton",
 	"cloud_turf",
@@ -90,8 +90,14 @@ local custom_prefabs = {
 	"cloud_bush",
 	"bee_marshmallow",
 	"hive_marshmallow",
+	
 	"flying_fish",
 	"goose",
+	
+	"longbill",
+	"skyflies",
+	
+	"antlion",
 
 	"golden_egg",
 }

@@ -20,6 +20,10 @@ local prefabs =
 local names = {"f1","f2","f3","f4","f5","f6","f7","f8","f9","f10"}
 local daturanames = {"f1","f2","f3","f4","f5","f6","f7","f8"}
 
+local function GetStatus(inst)
+	return inst.charged and "DATURA" or "SKYFLOWER"
+end
+
 local function onpickedfn(inst, picker)
 	if picker and picker.components.sanity then
 		picker.components.sanity:DoDelta(TUNING.SANITY_TINY)
@@ -115,7 +119,8 @@ local function fn(inst)
     inst:AddTag("flower")
     
     inst:AddComponent("inspectable")
-    
+    inst.components.inspectable.getstatus = GetStatus
+	
     inst:AddComponent("pickable")
 	
     inst:AddComponent("sanityaura")

@@ -58,7 +58,7 @@ TheMod:AddRoom("GooseChase", {
 	contents = {
 		distributepercent = 0.1,
 		distributeprefabs = {
-			goose = 1,
+			goose = 0.2,
 		},
 	},
 })
