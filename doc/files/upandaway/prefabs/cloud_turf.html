@@ -58,8 +58,10 @@
 		<a href="../../../files/upandaway/components/climbable.html">upandaway/components/climbable.lua</a>
 	</li>
 
-	<li><strong>upandaway/components/staticgenerator.lua</strong></li>
-	
+	<li>
+		<a href="../../../files/upandaway/components/staticgenerator.html">upandaway/components/staticgenerator.lua</a>
+	</li>
+
 	<li>
 		<a href="../../../files/upandaway/components/upandaway_metadata.html">upandaway/components/upandaway_metadata.lua</a>
 	</li>
@@ -160,10 +162,8 @@
 		<a href="../../../files/upandaway/prefabs/cloud_mist.html">upandaway/prefabs/cloud_mist.lua</a>
 	</li>
 
-	<li>
-		<a href="../../../files/upandaway/prefabs/cloud_turf.html">upandaway/prefabs/cloud_turf.lua</a>
-	</li>
-
+	<li><strong>upandaway/prefabs/cloud_turf.lua</strong></li>
+	
 	<li>
 		<a href="../../../files/upandaway/prefabs/cloudcrag.html">upandaway/prefabs/cloudcrag.lua</a>
 	</li>
@@ -283,91 +283,16 @@
 
 <div id="content">
 
-<h1>File <code>upandaway/components/staticgenerator.lua</code></h1>
-
-
-<p>The StaticGenerator component. <br /> Pushes the events "upandaway_charge" and "upandaway_uncharge". </p>
-
-
-<p><b>Author:</b>
-<table class="authors_list">
-
-	<tr><td class="name">simplex </td></tr>
-
-</table>
-</p>
+<h1>File <code>upandaway/prefabs/cloud_turf.lua</code></h1>
 
 
 
 
 
-<h2>Functions</h2>
-<table class="function_list">
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticGenerator:Charge">StaticGenerator:Charge</a>&nbsp;()</td>
-	<td class="summary">Goes to the charged state.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticGenerator:IsCharged">StaticGenerator:IsCharged</a>&nbsp;()</td>
-	<td class="summary">Returns whether the prefab is charged.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticGenerator:LongUpdate">StaticGenerator:LongUpdate</a>&nbsp;(dt)</td>
-	<td class="summary">Handles long updates by simply going to the uncharged state.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticGenerator:OnLoad">StaticGenerator:OnLoad</a>&nbsp;(data)</td>
-	<td class="summary">Loads the saved state and goes to it.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticGenerator:OnSave">StaticGenerator:OnSave</a>&nbsp;()</td>
-	<td class="summary">Saves the current state.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticGenerator:SetAverageChargedTime">StaticGenerator:SetAverageChargedTime</a>&nbsp;(dt)</td>
-	<td class="summary">Sets the average duration of the charged state.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticGenerator:SetAverageUnchargedTime">StaticGenerator:SetAverageUnchargedTime</a>&nbsp;(dt)</td>
-	<td class="summary">Sets the average duration of the uncharged state.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticGenerator:StartGenerating">StaticGenerator:StartGenerating</a>&nbsp;()</td>
-	<td class="summary">Starts updating the state transition.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticGenerator:StopGenerating">StaticGenerator:StopGenerating</a>&nbsp;()</td>
-	<td class="summary">Halts the updating of the state transition.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticGenerator:Uncharge">StaticGenerator:Uncharge</a>&nbsp;()</td>
-	<td class="summary">Goes to the uncharged state.</td>
-	</tr>
-
-</table>
 
 
 
 
-<h2>Tables</h2>
-<table class="table_list">
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticGenerator">StaticGenerator</a></td>
-	<td class="summary">The StaticGenerator component.</td>
-	</tr>
-
-</table>
 
 
 
@@ -377,235 +302,8 @@
 
 
 
-<h2><a name="functions"></a>Functions</h2>
-<dl class="function">
 
 
-
-<dt><a name="StaticGenerator:Charge"></a><strong>StaticGenerator:Charge</strong>&nbsp;()</dt>
-<dd>
-Goes to the charged state.
-
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="StaticGenerator:IsCharged"></a><strong>StaticGenerator:IsCharged</strong>&nbsp;()</dt>
-<dd>
-Returns whether the prefab is charged. 
-
-
-
-
-
-
-
-<h3>Return value:</h3>
-A boolean, representing the state.
-
-
-
-</dd>
-
-
-
-
-<dt><a name="StaticGenerator:LongUpdate"></a><strong>StaticGenerator:LongUpdate</strong>&nbsp;(dt)</dt>
-<dd>
-Handles long updates by simply going to the uncharged state.
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  dt: 
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="StaticGenerator:OnLoad"></a><strong>StaticGenerator:OnLoad</strong>&nbsp;(data)</dt>
-<dd>
-Loads the saved state and goes to it.
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  data: 
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="StaticGenerator:OnSave"></a><strong>StaticGenerator:OnSave</strong>&nbsp;()</dt>
-<dd>
-Saves the current state.
-
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="StaticGenerator:SetAverageChargedTime"></a><strong>StaticGenerator:SetAverageChargedTime</strong>&nbsp;(dt)</dt>
-<dd>
-Sets the average duration of the charged state. 
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  dt: Average duration, in seconds.
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="StaticGenerator:SetAverageUnchargedTime"></a><strong>StaticGenerator:SetAverageUnchargedTime</strong>&nbsp;(dt)</dt>
-<dd>
-Sets the average duration of the uncharged state. 
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  dt: Average duration, in seconds.
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="StaticGenerator:StartGenerating"></a><strong>StaticGenerator:StartGenerating</strong>&nbsp;()</dt>
-<dd>
-Starts updating the state transition.
-
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="StaticGenerator:StopGenerating"></a><strong>StaticGenerator:StopGenerating</strong>&nbsp;()</dt>
-<dd>
-Halts the updating of the state transition.
-
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="StaticGenerator:Uncharge"></a><strong>StaticGenerator:Uncharge</strong>&nbsp;()</dt>
-<dd>
-Goes to the uncharged state.
-
-
-
-
-
-
-
-
-
-</dd>
-
-
-</dl>
-
-
-
-
-<h2><a name="tables"></a>Tables</h2>
-<dl class="table">
-
-<dt><a name="StaticGenerator"></a><strong>StaticGenerator</strong></dt>
-<dd>The StaticGenerator component. <br /> Pushes the events "upandaway_charge" and "upandaway_uncharge". 
-
-
-
-</dd>
-
-
-</dl>
 
 
 
