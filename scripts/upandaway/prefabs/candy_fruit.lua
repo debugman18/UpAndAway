@@ -8,8 +8,8 @@ local assets =
 {
 	Asset("ANIM", "anim/cloudcotton.zip"),
 	
-	Asset( "ATLAS", "images/inventoryimages/cloudcotton.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/cloudcotton.tex" ),	
+	Asset( "ATLAS", "images/inventoryimages/candy_fruit.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/candy_fruit.tex" ),	
 }
 
 local function fn(Sim)
@@ -19,8 +19,8 @@ local function fn(Sim)
 
     MakeInventoryPhysics(inst)
     
-    anim:SetBank("gears")
-    anim:SetBuild("cloudcotton")
+    anim:SetBank("berries")
+    anim:SetBuild("candy_fruit")
     anim:PlayAnimation("idle")
 	trans:SetScale(0.4, 0.6, 0.6)
     
@@ -30,7 +30,7 @@ local function fn(Sim)
     inst:AddComponent("inspectable")  
     
     inst:AddComponent("inventoryitem") 
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/cloudcotton.xml"
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/candy_fruit.xml"
     
 	--Is not filling.
     inst:AddComponent("edible")

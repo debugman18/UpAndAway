@@ -45,8 +45,11 @@ local RawAssets = {
 	Asset( "ATLAS", "images/inventoryimages/magic_beans_cooked.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/magic_beans_cooked.tex" ),	
 
-	--Asset( "ATLAS", "images/inventoryimages/cloud_cotton.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/cloud_cotton.tex" ),
+	Asset( "ATLAS", "images/inventoryimages/cloud_cotton.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/cloud_cotton.tex" ),
+	
+	Asset( "ATLAS", "images/inventoryimages/candy_fruit.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/candy_fruit.tex" ),	
 
 	Asset( "ATLAS", "images/inventoryimages/golden_egg.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/golden_egg.tex" ),

@@ -41,10 +41,14 @@ local function makeemptyfn(inst)
 	--inst.components.pickable:MakeEmpty()
 end
 
+
 local function onunchargefn(inst)
 	local anim = inst.entity:AddAnimState()
 	inst:RemoveComponent("pickable")
-	anim:PlayAnimation("idle_dead")
+	anim:PlayAnimation("berries_more")
+	anim:PlayAnimation("berries", true)
+	anim:PlayAnimation("idle", true)
+	anim:PlayAnimation("idle_dead", true)
 	
 	inst.charged = false
 	
@@ -60,7 +64,7 @@ local function onstaticfn(inst)
 	inst.components.pickable.onregenfn = onstaticfn
 	inst.components.pickable.onpickedfn = onpickedfn
     inst.components.pickable.makeemptyfn = makeemptyfn
-
+	
 	inst.charged = true
 	
 	return inst

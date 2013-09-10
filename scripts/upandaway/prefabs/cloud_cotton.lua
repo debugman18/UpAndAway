@@ -8,8 +8,8 @@ local assets =
 {
 	Asset("ANIM", "anim/cloudcotton.zip"),
 	
-	Asset( "ATLAS", "images/inventoryimages/cloudcotton.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/cloudcotton.tex" ),	
+	Asset( "ATLAS", "images/inventoryimages/cloud_cotton.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/cloud_cotton.tex" ),	
 }
 
 local function fn(Sim)
@@ -30,7 +30,7 @@ local function fn(Sim)
     inst:AddComponent("inspectable")  
     
     inst:AddComponent("inventoryitem") 
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/cloudcotton.xml"
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/cloud_cotton.xml"
     
 	--Is not filling.
     inst:AddComponent("edible")

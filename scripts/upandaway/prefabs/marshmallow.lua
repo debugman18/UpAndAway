@@ -8,8 +8,8 @@ local assets =
 {
 	Asset("ANIM", "anim/cloudcotton.zip"),
 	
-	Asset( "ATLAS", "images/inventoryimages/cloudcotton.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/cloudcotton.tex" ),	
+	Asset( "ATLAS", "images/inventoryimages/cloud_cotton.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/cloud_cotton.tex" ),	
 }
 
 local function fn(Sim)
