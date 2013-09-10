@@ -9,7 +9,7 @@ local Pred = wickerrequire 'lib.predicates'
 
 local Debuggable = wickerrequire 'gadgets.debuggable'
 
-local MarkovChain = modrequire 'markovchain'
+local MarkovChain = wickerrequire 'math.probability.markovchain'
 
 
 -- In seconds.
