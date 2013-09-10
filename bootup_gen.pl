@@ -8,17 +8,17 @@ use File::Temp qw( :POSIX );
 use File::Copy qw/ cp mv /;
 
 my $essential_bootup_code = <<EOS
-local modname = assert( (assert(..., 'This file should be loaded through require.')):match('^[%a_][%w_%s]*') , 'Invalid path.' )
+local _modname = assert( (assert(..., 'This file should be loaded through require.')):match('^[%a_][%w_%s]*') , 'Invalid path.' )
 EOS
 ;
 
 my $bootup_code = $essential_bootup_code . <<EOS
-module( ..., require(modname .. '.booter') )
+module( ..., require(_modname .. '.booter') )
 EOS
 ;
 
 my $global_bootup_code = $essential_bootup_code . <<EOS
-module( ..., package.seeall, require(modname .. '.booter') )
+module( ..., package.seeall, require(_modname .. '.booter') )
 EOS
 ;
 
