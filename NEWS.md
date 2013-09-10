@@ -24,7 +24,13 @@ for quite some time.
 
 ### Current Version: Pre-Alpha
 
-### Update: 2013-09-07
+#### Update: 2013-09-09
+
++ Ambient color shift according to the static mechanic.
++ "Cloud lightning" during the charged static state.
++ Skyflies now spawn from skyflowers.
+
+#### Update: 2013-09-07
 
 Things listed here now have both art and functional code assets.
 + Added skyflies.
@@ -46,7 +52,7 @@ Things listed here are in-progress, but have no/minimum art assets.
 + Base goose.
 + Base marshmallow.
 
-### Update: 2013-09-03
+#### Update: 2013-09-03
 
 Now there is a cloudrealm world entity.
 
