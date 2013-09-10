@@ -1,4 +1,5 @@
-
+--@@NO ENVIRONMENT BOOTUP
+local _modname = assert( (assert(..., 'This file should be loaded through require.')):match('^[%a_][%w_%s]*') , 'Invalid path.' )
 return {
   version = "1.1",
   luaversion = "5.1",

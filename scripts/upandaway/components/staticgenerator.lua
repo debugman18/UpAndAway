@@ -1,22 +1,18 @@
 --@@ENVIRONMENT BOOTUP
 local _modname = assert( (assert(..., 'This file should be loaded through require.')):match('^[%a_][%w_%s]*') , 'Invalid path.' )
 module( ..., require(_modname .. '.booter') )
-
 --@@END ENVIRONMENT BOOTUP
 
 
 local Pred = wickerrequire 'lib.predicates'
 
-local Debuggable = wickerrequire 'gadgets.debuggable'
+local Debuggable = wickerrequire 'adjectives.debuggable'
 
 local MarkovChain = wickerrequire 'math.probability.markovchain'
 
 
 -- In seconds.
 local UPDATING_PERIOD = 2
-
-local COOLDOWN = TheMod:GetConfig("STATIC", "COOLDOWN")
-assert( Pred.IsPositiveNumber(COOLDOWN) )
 
 
 local events_map = {
@@ -38,8 +34,12 @@ local generic_event = "upandaway_chargechange"
 -- @name StaticGenerator
 local StaticGenerator = Class(Debuggable, function(self, inst)
 	self.inst = inst
-
 	Debuggable._ctor(self)
+
+	self:SetConfigurationKey("STATIC")
+
+	local COOLDOWN = self:GetConfig "COOLDOWN"
+	assert( Pred.IsPositiveNumber(COOLDOWN) )
 
 	local chain = MarkovChain()
 	chain:AddState("CHARGED")
@@ -47,9 +47,9 @@ local StaticGenerator = Class(Debuggable, function(self, inst)
 	chain:SetInitialState("UNCHARGED")
 	chain:SetTransitionFn(function(old, new)
 		local event = assert( events_map[old][new] )
-		self:DebugSay("Pushing event ", event)
+		self:DebugSay("Pushing event ", ("%q"):format(event))
 		self.inst:PushEvent(event)
-		self:DebugSay("Pushing generic event (", generic_event, ", ", ("{state = %q}"):format(new), ")")
+		self:DebugSay("Pushing generic event ",("(%q, {state = %q})"):format(generic_event, new))
 		self.inst:PushEvent(generic_event, {state = new})
 		self:StopGenerating()
 		self.inst:DoTaskInTime(COOLDOWN, function(inst)
@@ -138,6 +138,16 @@ end
 -- Goes to the UNCHARGED state.
 function StaticGenerator:Uncharge()
 	self.chain:GoTo("UNCHARGED")
+end
+
+---
+-- Goes to the other state.
+function StaticGenerator:Toggle()
+	if self:IsCharged() then
+		self:Uncharge()
+	else
+		self:Charge()
+	end
 end
 
 ---

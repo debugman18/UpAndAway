@@ -1,7 +1,6 @@
 --@@GLOBAL ENVIRONMENT BOOTUP
 local _modname = assert( (assert(..., 'This file should be loaded through require.')):match('^[%a_][%w_%s]*') , 'Invalid path.' )
 module( ..., package.seeall, require(_modname .. '.booter') )
-
 --@@END ENVIRONMENT BOOTUP
 
 local assets=
@@ -35,38 +34,35 @@ local function onpickedfn(inst, picker)
 	inst:Remove()
 end
 
-local function onunchargefn(inst)
-	inst.entity:AddTransform()	
-	inst.entity:AddAnimState()
+local function onunchargefn(inst, force)
+	if not inst.charged and not force then return end
+
     inst.AnimState:SetBank("flowers")
-    inst.animname = names[math.random(#names)]
     inst.AnimState:SetBuild("skyflowers")
+    inst.animname = names[math.random(#names)]
     inst.AnimState:PlayAnimation(inst.animname)
-    inst.AnimState:SetRayTestOnBB(true);
 	
 	inst:RemoveTag("flower_datura")
     inst:AddTag("flower")	
 	
-    inst.components.sanityaura.aura = TUNING.SANITYAURA_LARGE		
-	
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
     inst.components.pickable:SetUp("skyflower_petals", 10)
 	inst.components.pickable.onpickedfn = onpickedfn
-    inst.components.pickable.quickpick = true
+
+    inst.components.sanityaura.aura = TUNING.SANITYAURA_LARGE		
 	
 	inst.charged = false
 	
 	return inst
 end
 
-local function onstaticfn(inst)
-	inst.entity:AddTransform()	
-	inst.entity:AddAnimState()
+local function onchargefn(inst, force)
+	if inst.charged and not force then return end
+
     inst.AnimState:SetBank("flowers_evil")
-    inst.animname = daturanames[math.random(#daturanames)]
     inst.AnimState:SetBuild("datura")
+    inst.animname = daturanames[math.random(#daturanames)]
     inst.AnimState:PlayAnimation(inst.animname)
-    inst.AnimState:SetRayTestOnBB(true);
     
 	inst:RemoveTag("flower")
     inst:AddTag("flower_datura")
@@ -74,7 +70,6 @@ local function onstaticfn(inst)
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
     inst.components.pickable:SetUp("datura_petals", 10)
 	inst.components.pickable.onpickedfn = onpickedfn
-    inst.components.pickable.quickpick = true
 	
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_LARGE		
     
@@ -84,22 +79,20 @@ local function onstaticfn(inst)
 end
 
 local function onsave(inst, data)
-	data.charged = inst.charged
+	data.charged = inst.charged or nil
 	data.anim = inst.animname	
 end
 
 local function onload(inst, data)
-	if data and data.charged then
-		inst.charged = data.charged
-	end
-	
-	if inst.charged then
-		onstaticfn(inst)
+	if not data then return end
+
+	if data.charged then
+		onchargefn(inst)
 	else
 		onunchargefn(inst)
 	end
 	
-    if data and data.anim then
+    if data.anim then
         inst.animname = data.anim
 	    inst.AnimState:PlayAnimation(inst.animname)
 	end	
@@ -110,18 +103,13 @@ local function fn(inst)
 	inst.entity:AddTransform()
 	
 	inst.entity:AddAnimState()
-    inst.AnimState:SetBank("flowers")
-    inst.animname = names[math.random(#names)]
-    inst.AnimState:SetBuild("skyflowers")
-    inst.AnimState:PlayAnimation(inst.animname)
     inst.AnimState:SetRayTestOnBB(true);
-    
-    inst:AddTag("flower")
     
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus
 	
     inst:AddComponent("pickable")
+    inst.components.pickable.quickpick = true
 	
     inst:AddComponent("sanityaura")
     
@@ -130,7 +118,7 @@ local function fn(inst)
 
 	inst:ListenForEvent("upandaway_charge", function()
 		print "Charged!"
-		onstaticfn(inst)	
+		onchargefn(inst)	
 		return inst
 	end, GetWorld())
 
@@ -143,6 +131,10 @@ local function fn(inst)
     --------SaveLoad
     inst.OnSave = onsave 
     inst.OnLoad = onload 
+
+
+	onunchargefn(inst, true)
+
     
     return inst
 end

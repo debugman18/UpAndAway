@@ -1,3 +1,9 @@
+--@@GLOBAL ENVIRONMENT BOOTUP
+local _modname = assert( (assert(..., 'This file should be loaded through require.')):match('^[%a_][%w_%s]*') , 'Invalid path.' )
+module( ..., package.seeall, require(_modname .. '.booter') )
+--@@END ENVIRONMENT BOOTUP
+
+
 --[[
 -- We generate the speech through a function so that it may tweak it according
 -- to dynamic data (i.e., player gender).
