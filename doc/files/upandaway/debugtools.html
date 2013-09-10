@@ -55,6 +55,10 @@
 	</li>
 
 	<li>
+		<a href="../../files/upandaway/brains/skyflybrain.html">upandaway/brains/skyflybrain.lua</a>
+	</li>
+
+	<li>
 		<a href="../../files/upandaway/components/climbable.html">upandaway/components/climbable.lua</a>
 	</li>
 
@@ -74,6 +78,8 @@
 		<a href="../../files/upandaway/components/upandaway_metadata.html">upandaway/components/upandaway_metadata.lua</a>
 	</li>
 
+	<li><strong>upandaway/debugtools.lua</strong></li>
+	
 	<li>
 		<a href="../../files/upandaway/lib/addstrings.html">upandaway/lib/addstrings.lua</a>
 	</li>
@@ -118,8 +124,6 @@
 		<a href="../../files/upandaway/map/tiledefs.html">upandaway/map/tiledefs.lua</a>
 	</li>
 
-	<li><strong>upandaway/markovchain.lua</strong></li>
-	
 	<li>
 		<a href="../../files/upandaway/prefabs/aetheel.html">upandaway/prefabs/aetheel.lua</a>
 	</li>
@@ -269,6 +273,10 @@
 	</li>
 
 	<li>
+		<a href="../../files/upandaway/stategraphs/SGskyfly.html">upandaway/stategraphs/SGskyfly.lua</a>
+	</li>
+
+	<li>
 		<a href="../../files/upandaway/strings.html">upandaway/strings.lua</a>
 	</li>
 
@@ -291,10 +299,10 @@
 
 <div id="content">
 
-<h1>File <code>upandaway/markovchain.lua</code></h1>
+<h1>File <code>upandaway/debugtools.lua</code></h1>
 
 
-<p>Implements a discrete Markov Chain over a finite set of states.</p>
+<p>Utilities for debugging. </p>
 
 
 <p><b>Author:</b>
@@ -309,78 +317,8 @@
 
 
 
-<h2>Functions</h2>
-<table class="function_list">
-
-	<tr>
-	<td class="name" nowrap><a href="#MarkovChain:AddState">MarkovChain:AddState</a>&nbsp;(s)</td>
-	<td class="summary">Adds a new state.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#MarkovChain:GetState">MarkovChain:GetState</a>&nbsp;()</td>
-	<td class="summary"> </td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#MarkovChain:GoTo">MarkovChain:GoTo</a>&nbsp;(t)</td>
-	<td class="summary">Goes to a target state, calling the transition function if the target state differs from the current one.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#MarkovChain:IsState">MarkovChain:IsState</a>&nbsp;(s)</td>
-	<td class="summary">Returns whether the argument is a state.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#MarkovChain:ProcessSpecs">MarkovChain:ProcessSpecs</a>&nbsp;(specs)</td>
-	<td class="summary">Processes a chain specification in table format.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#MarkovChain:RemoveState">MarkovChain:RemoveState</a>&nbsp;(s)</td>
-	<td class="summary">Removes a given state.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#MarkovChain:SetInitialState">MarkovChain:SetInitialState</a>&nbsp;(s)</td>
-	<td class="summary">Sets the initial state.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#MarkovChain:SetTransitionFn">MarkovChain:SetTransitionFn</a>&nbsp;(fn)</td>
-	<td class="summary">Sets the transition function.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#MarkovChain:SetTransitionProbability">MarkovChain:SetTransitionProbability</a>&nbsp;(u, v, p, symmetric)</td>
-	<td class="summary">Sets the transition probability (for a single step) from u to v.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#MarkovChain:States">MarkovChain:States</a>&nbsp;()</td>
-	<td class="summary"> </td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#MarkovChain:Step">MarkovChain:Step</a>&nbsp;()</td>
-	<td class="summary">Steps the markov chain.</td>
-	</tr>
-
-</table>
 
 
-
-
-<h2>Tables</h2>
-<table class="table_list">
-
-	<tr>
-	<td class="name" nowrap><a href="#MarkovChain ">MarkovChain </a></td>
-	<td class="summary">The markov chain class.</td>
-	</tr>
-
-</table>
 
 
 
@@ -390,303 +328,8 @@
 
 
 
-<h2><a name="functions"></a>Functions</h2>
-<dl class="function">
 
 
-
-<dt><a name="MarkovChain:AddState"></a><strong>MarkovChain:AddState</strong>&nbsp;(s)</dt>
-<dd>
-Adds a new state.
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  s: 
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="MarkovChain:GetState"></a><strong>MarkovChain:GetState</strong>&nbsp;()</dt>
-<dd>
-
-
-
-
-
-
-
-
-<h3>Return value:</h3>
-The current state.
-
-
-
-</dd>
-
-
-
-
-<dt><a name="MarkovChain:GoTo"></a><strong>MarkovChain:GoTo</strong>&nbsp;(t)</dt>
-<dd>
-Goes to a target state, calling the transition function if the target state differs from the current one.
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  t: 
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="MarkovChain:IsState"></a><strong>MarkovChain:IsState</strong>&nbsp;(s)</dt>
-<dd>
-Returns whether the argument is a state.
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  s: 
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="MarkovChain:ProcessSpecs"></a><strong>MarkovChain:ProcessSpecs</strong>&nbsp;(specs)</dt>
-<dd>
-Processes a chain specification in table format.
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  specs: 
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="MarkovChain:RemoveState"></a><strong>MarkovChain:RemoveState</strong>&nbsp;(s)</dt>
-<dd>
-Removes a given state.
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  s: 
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="MarkovChain:SetInitialState"></a><strong>MarkovChain:SetInitialState</strong>&nbsp;(s)</dt>
-<dd>
-Sets the initial state. If not present already, it is added.
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  s: 
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="MarkovChain:SetTransitionFn"></a><strong>MarkovChain:SetTransitionFn</strong>&nbsp;(fn)</dt>
-<dd>
-Sets the transition function. 
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  fn: The new transition function.
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="MarkovChain:SetTransitionProbability"></a><strong>MarkovChain:SetTransitionProbability</strong>&nbsp;(u, v, p, symmetric)</dt>
-<dd>
-Sets the transition probability (for a single step) from u to v. 
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  u: The initial state.
-	</li>
-	
-	<li>
-	  v: The target state.
-	</li>
-	
-	<li>
-	  p: The probability of going from u to v.
-	</li>
-	
-	<li>
-	  symmetric: Whether the same probability should be attached to going from v to u.
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="MarkovChain:States"></a><strong>MarkovChain:States</strong>&nbsp;()</dt>
-<dd>
-
-
-
-
-
-
-
-
-<h3>Return value:</h3>
-An iterator triple over the states.
-
-
-
-</dd>
-
-
-
-
-<dt><a name="MarkovChain:Step"></a><strong>MarkovChain:Step</strong>&nbsp;()</dt>
-<dd>
-Steps the markov chain.
-
-
-
-
-
-
-
-
-
-</dd>
-
-
-</dl>
-
-
-
-
-<h2><a name="tables"></a>Tables</h2>
-<dl class="table">
-
-<dt><a name="MarkovChain "></a><strong>MarkovChain </strong></dt>
-<dd>The markov chain class. 
-
-
-
-</dd>
-
-
-</dl>
 
 
 
