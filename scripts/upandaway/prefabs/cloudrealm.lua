@@ -186,6 +186,9 @@ local function fn(Sim)
     waves:SetWaveEffect("shaders/waves.ksh" ) -- texture.ksh    
 	waves:SetWaveSize(1024, 1024)
    
+    inst.components.ambientsoundmixer:SetReverbPreset("chess")  
+    --ambientsoundmixer.wave_sound = GLOBAL.resolvefilepath("dontstarve/ocean/waves"))
+   
 	inst:AddComponent("colourcubemanager")
 	--inst.Map:SetOverlayTexture( "levels/textures/snow.tex" )
 	

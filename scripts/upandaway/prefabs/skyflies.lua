@@ -98,6 +98,11 @@ local function fn(Sim)
 
     inst.AnimState:PlayAnimation("swarm_pre")
     inst.AnimState:PushAnimation("swarm_loop", true)
+
+    MakeCharacterPhysics(inst, 1, .25)
+    inst.Physics:SetCollisionGroup(COLLISION.FLYERS)
+    inst.Physics:ClearCollisionMask()
+    inst.Physics:CollidesWith(COLLISION.WORLD)
 	
     inst.AnimState:SetRayTestOnBB(true);
     
@@ -129,6 +134,16 @@ local function fn(Sim)
     inst.components.playerprox:SetDist(3,5)
     inst.components.playerprox:SetOnPlayerNear(onnear)
     inst.components.playerprox:SetOnPlayerFar(onfar)
+	
+    inst:AddComponent("locomotor")
+    inst.components.locomotor:EnableGroundSpeedMultiplier(false)
+	inst.components.locomotor:SetTriggersCreep(false)
+    inst:SetStateGraph("SGskyfly")	
+	
+	local brain = require "brains/skyflybrain"
+    inst:SetBrain(brain)
+	
+	inst:AddTag("FX")
 
 	--[[
     inst:ListenForEvent( "daytime", function()
