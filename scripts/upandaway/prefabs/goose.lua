@@ -6,6 +6,8 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 local assets=
 {
 	Asset("ANIM", "anim/goose.zip"),
+
+	Asset("ANIM", "anim/perd_basic.zip"),
 	Asset("SOUND", "sound/perd.fsb"),
 }
 
