@@ -70,10 +70,8 @@
 		<a href="../../../files/upandaway/components/skyflyspawner.html">upandaway/components/skyflyspawner.lua</a>
 	</li>
 
-	<li>
-		<a href="../../../files/upandaway/components/staticchargeable.html">upandaway/components/staticchargeable.lua</a>
-	</li>
-
+	<li><strong>upandaway/components/staticchargeable.lua</strong></li>
+	
 	<li>
 		<a href="../../../files/upandaway/components/staticgenerator.html">upandaway/components/staticgenerator.lua</a>
 	</li>
@@ -286,8 +284,10 @@
 		<a href="../../../files/upandaway/strings.html">upandaway/strings.lua</a>
 	</li>
 
-	<li><strong>upandaway/worldgen/climbing.lua</strong></li>
-	
+	<li>
+		<a href="../../../files/upandaway/worldgen/climbing.html">upandaway/worldgen/climbing.lua</a>
+	</li>
+
 	<li>
 		<a href="../../../files/upandaway/worldgen_main.html">upandaway/worldgen_main.lua</a>
 	</li>
@@ -303,11 +303,19 @@
 
 <div id="content">
 
-<h1>File <code>upandaway/worldgen/climbing.lua</code></h1>
+<h1>File <code>upandaway/components/staticchargeable.lua</code></h1>
 
 
-<p>Functions for adding, entering, exiting and failing (dying in) a cloud realm, as well as a few utility functions. </p>
+<p>Simple component for handling static state transitions. </p>
 
+
+<p><b>Author:</b>
+<table class="authors_list">
+
+	<tr><td class="name">simplex </td></tr>
+
+</table>
+</p>
 
 
 
@@ -317,59 +325,69 @@
 <table class="function_list">
 
 	<tr>
-	<td class="name" nowrap><a href="#AddCloudLevel">AddCloudLevel</a>&nbsp;(data)</td>
-	<td class="summary">Adds a new cloud level.</td>
+	<td class="name" nowrap><a href="#StaticChargeable:Charge">StaticChargeable:Charge</a>&nbsp;(force)</td>
+	<td class="summary">Charges if not already.</td>
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#Climb">Climb</a>&nbsp;(direction, cavenum)</td>
-	<td class="summary">Climbs in a direction.</td>
+	<td class="name" nowrap><a href="#StaticChargeable:GetOnChargedFn">StaticChargeable:GetOnChargedFn</a>&nbsp;(fn)</td>
+	<td class="summary">Returns the oncharge callback.</td>
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#ClimbTo">ClimbTo</a>&nbsp;(height, cavenum)</td>
-	<td class="summary">Climbs to the given height.</td>
+	<td class="name" nowrap><a href="#StaticChargeable:GetOnUnchargedFn">StaticChargeable:GetOnUnchargedFn</a>&nbsp;(fn)</td>
+	<td class="summary">Returns the onuncharge callback.</td>
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#GetLevelHeight">GetLevelHeight</a>&nbsp;()</td>
-	<td class="summary">Returns the height of the level we are currently in.</td>
+	<td class="name" nowrap><a href="#StaticChargeable:IsCharged">StaticChargeable:IsCharged</a>&nbsp;()</td>
+	<td class="summary">Returns whether it is charged.</td>
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#GetMaxHeight">GetMaxHeight</a>&nbsp;()</td>
-	<td class="summary">Returns the maximum height among all registered levels.</td>
+	<td class="name" nowrap><a href="#StaticChargeable:OnLoad">StaticChargeable:OnLoad</a>&nbsp;(data)</td>
+	<td class="summary">Loads the charged state.</td>
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#GetMinHeight">GetMinHeight</a>&nbsp;()</td>
-	<td class="summary">Returns the minimum height among all registered levels (including default ones).</td>
+	<td class="name" nowrap><a href="#StaticChargeable:OnSave">StaticChargeable:OnSave</a>&nbsp;()</td>
+	<td class="summary">Saves the charged state.</td>
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#GetNextLevel">GetNextLevel</a>&nbsp;()</td>
-	<td class="summary">Returns the next level number (for climbing up).</td>
+	<td class="name" nowrap><a href="#StaticChargeable:SetOnChargedFn">StaticChargeable:SetOnChargedFn</a>&nbsp;(fn)</td>
+	<td class="summary">Sets the oncharge callback.</td>
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#GetPreviousLevel">GetPreviousLevel</a>&nbsp;()</td>
-	<td class="summary">Returns the previous level number (for climbing down).</td>
+	<td class="name" nowrap><a href="#StaticChargeable:SetOnUnchargedFn">StaticChargeable:SetOnUnchargedFn</a>&nbsp;(fn)</td>
+	<td class="summary">Sets the onuncharge callback.</td>
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#GetRawLevelHeight">GetRawLevelHeight</a>&nbsp;()</td>
-	<td class="summary">As GetLevelHeight(), but based on the level number alone.</td>
+	<td class="name" nowrap><a href="#StaticChargeable:Toggle">StaticChargeable:Toggle</a>&nbsp;()</td>
+	<td class="summary">Toggles the state.</td>
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#IsCloudLevel">IsCloudLevel</a>&nbsp;()</td>
-	<td class="summary">Returns whether we are in a cloud level or not.</td>
+	<td class="name" nowrap><a href="#StaticChargeable:Uncharge">StaticChargeable:Uncharge</a>&nbsp;(force)</td>
+	<td class="summary">Uncharges if not already.</td>
 	</tr>
 
 </table>
 
 
 
+
+<h2>Tables</h2>
+<table class="table_list">
+
+	<tr>
+	<td class="name" nowrap><a href="#StaticChargeable">StaticChargeable</a></td>
+	<td class="summary">Simple component for handling static state transitions.</td>
+	</tr>
+
+</table>
 
 
 
@@ -384,16 +402,16 @@
 
 
 
-<dt><a name="AddCloudLevel"></a><strong>AddCloudLevel</strong>&nbsp;(data)</dt>
+<dt><a name="StaticChargeable:Charge"></a><strong>StaticChargeable:Charge</strong>&nbsp;(force)</dt>
 <dd>
-Adds a new cloud level. Also embedded as TheMod:AddCloudLevel(). 
+Charges if not already. 
 
 
 <h3>Parameters</h3>
 <ul>
 	
 	<li>
-	  data: A table describing the level, as in the second parameter of AddLevel. 
+	  force: Forces the charging, even if already charged.
 	</li>
 	
 </ul>
@@ -410,20 +428,16 @@ Adds a new cloud level. Also embedded as TheMod:AddCloudLevel().
 
 
 
-<dt><a name="Climb"></a><strong>Climb</strong>&nbsp;(direction, cavenum)</dt>
+<dt><a name="StaticChargeable:GetOnChargedFn"></a><strong>StaticChargeable:GetOnChargedFn</strong>&nbsp;(fn)</dt>
 <dd>
-Climbs in a direction. 
+Returns the oncharge callback. 
 
 
 <h3>Parameters</h3>
 <ul>
 	
 	<li>
-	  direction: A number. Its sign dictates the direction.  Calls ClimbTo to do the actual work. 
-	</li>
-	
-	<li>
-	  cavenum: 
+	  fn: 
 	</li>
 	
 </ul>
@@ -434,35 +448,65 @@ Climbs in a direction.
 
 
 
-
-<h3>See also:</h3>
-<ul>
-	
-	<li><a href="../../../files/upandaway/worldgen/climbing.html#ClimbTo">
-		ClimbTo
-	</a>
-	
-</ul>
 
 </dd>
 
 
 
 
-<dt><a name="ClimbTo"></a><strong>ClimbTo</strong>&nbsp;(height, cavenum)</dt>
+<dt><a name="StaticChargeable:GetOnUnchargedFn"></a><strong>StaticChargeable:GetOnUnchargedFn</strong>&nbsp;(fn)</dt>
 <dd>
-Climbs to the given height. It should be an integer. 
+Returns the onuncharge callback. 
 
 
 <h3>Parameters</h3>
 <ul>
 	
 	<li>
-	  height: The target height.
+	  fn: 
 	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="StaticChargeable:IsCharged"></a><strong>StaticChargeable:IsCharged</strong>&nbsp;()</dt>
+<dd>
+Returns whether it is charged.
+
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="StaticChargeable:OnLoad"></a><strong>StaticChargeable:OnLoad</strong>&nbsp;(data)</dt>
+<dd>
+Loads the charged state.  Calls Charge() or Uncharge() appropriately.
+
+
+<h3>Parameters</h3>
+<ul>
 	
 	<li>
-	  cavenum: The number of the target "cave". If not given, the current cave number is used, raising an error if we're not in a cave level. 
+	  data: 
 	</li>
 	
 </ul>
@@ -474,25 +518,42 @@ Climbs to the given height. It should be an integer.
 
 
 
-<h3>See also:</h3>
+</dd>
+
+
+
+
+<dt><a name="StaticChargeable:OnSave"></a><strong>StaticChargeable:OnSave</strong>&nbsp;()</dt>
+<dd>
+Saves the charged state.  Tries to use as little savedata as possible, since we'll have a lot of entities with this component.
+
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="StaticChargeable:SetOnChargedFn"></a><strong>StaticChargeable:SetOnChargedFn</strong>&nbsp;(fn)</dt>
+<dd>
+Sets the oncharge callback. 
+
+
+<h3>Parameters</h3>
 <ul>
 	
-	<li><a href="../../../files/upandaway/worldgen/climbing.html#Climb">
-		Climb
-	</a>
+	<li>
+	  fn: 
+	</li>
 	
 </ul>
 
-</dd>
-
-
-
-
-<dt><a name="GetLevelHeight"></a><strong>GetLevelHeight</strong>&nbsp;()</dt>
-<dd>
-Returns the height of the level we are currently in.  The height is 0 for a survival map, 1 for the first cloud level, 2 for the second one, etc. For the first cave level, it is -1, for the second one it is -2, etc. <br /><br /> This is primarily meant to be used as a test for whether we are in a cloud level or not. <br /><br /> Works both under normal game and under worldgen (using different methods). <br /><br /> At worldgen, the level number is used. At normal game, we check for the existence of the upandaway_metadata component in the world entity. If it exists and has a field "height" stored, that value is adopted, otherwise the level number is used as in worldgen. <br /> Savedata is given preference because the level number can possibly change, so this allows us to keep our system compatible with older saves. 
-
-
 
 
 
@@ -505,103 +566,35 @@ Returns the height of the level we are currently in.  The height is 0 for a surv
 
 
 
-<dt><a name="GetMaxHeight"></a><strong>GetMaxHeight</strong>&nbsp;()</dt>
+<dt><a name="StaticChargeable:SetOnUnchargedFn"></a><strong>StaticChargeable:SetOnUnchargedFn</strong>&nbsp;(fn)</dt>
 <dd>
-Returns the maximum height among all registered levels.  This works even if there are no cloud levels (returning 0).
+Sets the onuncharge callback. 
 
 
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="GetMinHeight"></a><strong>GetMinHeight</strong>&nbsp;()</dt>
-<dd>
-Returns the minimum height among all registered levels (including default ones).
-
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="GetNextLevel"></a><strong>GetNextLevel</strong>&nbsp;()</dt>
-<dd>
-Returns the next level number (for climbing up).  Returns nil if there are none. 0 means survival map.
-
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="GetPreviousLevel"></a><strong>GetPreviousLevel</strong>&nbsp;()</dt>
-<dd>
-Returns the previous level number (for climbing down).  Returns nil if there are none. 0 means survival map.
-
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="GetRawLevelHeight"></a><strong>GetRawLevelHeight</strong>&nbsp;()</dt>
-<dd>
-As GetLevelHeight(), but based on the level number alone. 
-
-
-
-
-
-
-
-
-
-<h3>See also:</h3>
+<h3>Parameters</h3>
 <ul>
 	
-	<li><a href="../../../files/upandaway/worldgen/climbing.html#GetLevelHeight">
-		GetLevelHeight
-	</a>
+	<li>
+	  fn: 
+	</li>
 	
 </ul>
 
+
+
+
+
+
+
+
 </dd>
 
 
 
 
-<dt><a name="IsCloudLevel"></a><strong>IsCloudLevel</strong>&nbsp;()</dt>
+<dt><a name="StaticChargeable:Toggle"></a><strong>StaticChargeable:Toggle</strong>&nbsp;()</dt>
 <dd>
-Returns whether we are in a cloud level or not.  First, it checks if the world entity has the "cloudrealm" tag. If it does, returns true. If not, checks if the level height is positive. 
+Toggles the state. Main for testing.
 
 
 
@@ -609,8 +602,31 @@ Returns whether we are in a cloud level or not.  First, it checks if the world e
 
 
 
-<h3>Return value:</h3>
-A boolean
+
+
+</dd>
+
+
+
+
+<dt><a name="StaticChargeable:Uncharge"></a><strong>StaticChargeable:Uncharge</strong>&nbsp;(force)</dt>
+<dd>
+Uncharges if not already. 
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  force: Forces the uncharging, even if already uncharged.
+	</li>
+	
+</ul>
+
+
+
+
+
 
 
 
@@ -621,6 +637,19 @@ A boolean
 
 
 
+
+<h2><a name="tables"></a>Tables</h2>
+<dl class="table">
+
+<dt><a name="StaticChargeable"></a><strong>StaticChargeable</strong></dt>
+<dd>Simple component for handling static state transitions. 
+
+
+
+</dd>
+
+
+</dl>
 
 
 
