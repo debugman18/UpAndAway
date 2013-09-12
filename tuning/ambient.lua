@@ -11,12 +11,12 @@ STATIC.COOLDOWN = 20
 -- around light sources (probably due to the colour cube, which is set to dusk
 -- winter).
 --]]
-local dusk_colour = Point(100/255, 100/255, 100/255)
+local dusk_colour = Point(80/255, 80/255, 80/255)
 
 -- Ambient colour (RGB) for the static states.
 -- Always multiply with numbers on the right.
-CLOUD_AMBIENT.UNCHARGED_COLOUR = dusk_colour*1.5
-CLOUD_AMBIENT.CHARGED_COLOUR = dusk_colour*0.6
+CLOUD_AMBIENT.UNCHARGED_COLOUR = dusk_colour*2.0 --1.5
+CLOUD_AMBIENT.CHARGED_COLOUR = dusk_colour*0.6 --0.6
 
 -- Transition time between ambient colours.
 CLOUD_AMBIENT.COLOUR_TRANSITION_TIME = 5
@@ -24,9 +24,9 @@ CLOUD_AMBIENT.COLOUR_TRANSITION_TIME = 5
 
 SKYFLYSPAWNER.MAX_FLIES = 5
 -- Range, (min, max)
-SKYFLYSPAWNER.SPAWN_DELAY = {5, 12}
+SKYFLYSPAWNER.SPAWN_DELAY = {5, 12} --5,12
 -- Distance from player allowed for spawning, (min, max)
-SKYFLYSPAWNER.PLAYER_DISTANCE = {3, 14}
+SKYFLYSPAWNER.PLAYER_DISTANCE = {3, 14} --3,14
 -- Minimum distance between spawned flies.
 SKYFLYSPAWNER.MIN_FLY2FLY_DISTANCE = 2
 -- Should skyflies be preserved across saves?

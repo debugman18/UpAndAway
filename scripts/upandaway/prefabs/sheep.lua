@@ -236,7 +236,7 @@ local function fn()
 
 	local anim = inst.entity:AddAnimState()
 	anim:SetBank("beefalo")
-	;(function(color) anim:SetMultColour(color, color, color, 1) end)(0.5 + 0.5*math.random())
+	;(function(color) anim:SetMultColour(color, color, color, 1) end)(0.3 + 0.3*math.random())
 	
 	local light = inst.entity:AddLight()
 	light:SetRadius(2)

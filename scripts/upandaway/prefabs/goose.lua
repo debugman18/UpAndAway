@@ -20,7 +20,30 @@ local loot =
 {
     "drumstick",
     "smallmeat",
+	"smallmeat",
 }
+ 
+local function set_eggdrop(inst)
+	local lastegglaid = GLOBAL.GetTime() - 120
+	local now = GLOBAL.GetTime()
+	local isstatic = true
+	if lastegglaid <= now - 120 then		
+		inst:DoTaskInTime(30, function()
+			inst:ListenForEvent("upandaway_uncharge", function(inst)
+				isstatic = false
+			end)	
+			if isstatic == true then
+				--egg = SpawnPrefab("golden_egg")
+				egg = SpawnPrefab("monkeybarrel")
+				--inst.AnimState:PlayAnimation("lay_egg")
+				egg.Transform:SetPosition(inst.Transform:GetWorldPosition())
+				lastegglaid = now
+				print "An egg was laid!"
+			end				
+		end)		
+	end
+end 
+
  
 local function fn()
 	local inst = CreateEntity()
@@ -30,24 +53,26 @@ local function fn()
 	local shadow = inst.entity:AddDynamicShadow()
 	shadow:SetSize( 1.5, .75 )
     inst.Transform:SetFourFaced()
-
+	inst.Transform:SetScale(1.3, 1.4, 1.1)
+	
     MakeCharacterPhysics(inst, 50, .5)    
      
     anim:SetBank("perd")
     anim:SetBuild("goose")
     
     inst:AddComponent("locomotor")
-    inst.components.locomotor.runspeed = TUNING.PERD_RUN_SPEED
-    inst.components.locomotor.walkspeed = TUNING.PERD_WALK_SPEED
+    inst.components.locomotor.runspeed = 10
+    inst.components.locomotor.walkspeed = 8
     
+	--inst:SetStateGraph(SGgoose")
     inst:SetStateGraph("SGperd")
-    anim:Hide("hat")
+    --anim:Hide("hat")
 
     inst:AddTag("character")
-    inst:AddTag("berrythief")
 
     inst:AddComponent("homeseeker")
-    local brain = require "brains/perdbrain"
+    --local brain = require "brains/goosebrain"
+	local brain = require "brains/perdbrain"
     inst:SetBrain(brain)
     
     inst:AddComponent("eater")
@@ -58,8 +83,9 @@ local function fn()
 
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "pig_torso"
+	
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(TUNING.PERD_HEALTH)
+    inst.components.health:SetMaxHealth(40)
     inst.components.combat:SetDefaultDamage(TUNING.PERD_DAMAGE)
     inst.components.combat:SetAttackPeriod(TUNING.PERD_ATTACK_PERIOD)
 
@@ -72,6 +98,10 @@ local function fn()
     
     MakeMediumBurnableCharacter(inst, "pig_torso")
     MakeMediumFreezableCharacter(inst, "pig_torso")
+	
+	inst:ListenForEvent("upandaway_charge", function(inst)
+		set_eggdrop(inst)		
+	end, GetWorld())
     
     return inst
 end
