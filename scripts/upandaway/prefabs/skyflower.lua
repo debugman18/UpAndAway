@@ -20,7 +20,7 @@ local names = {"f1","f2","f3","f4","f5","f6","f7","f8","f9","f10"}
 local daturanames = {"f1","f2","f3","f4","f5","f6","f7","f8"}
 
 local function GetStatus(inst)
-	return inst.charged and "DATURA" or "SKYFLOWER"
+	return inst.components.staticchargeable:IsCharged() and "DATURA" or "SKYFLOWER"
 end
 
 local function onpickedfn(inst, picker)
@@ -34,9 +34,7 @@ local function onpickedfn(inst, picker)
 	inst:Remove()
 end
 
-local function onunchargefn(inst, force)
-	if not inst.charged and not force then return end
-
+local function onunchargefn(inst)
     inst.AnimState:SetBank("flowers")
     inst.AnimState:SetBuild("skyflowers")
     inst.animname = names[math.random(#names)]
@@ -51,14 +49,10 @@ local function onunchargefn(inst, force)
 
     inst.components.sanityaura.aura = TUNING.SANITYAURA_LARGE		
 	
-	inst.charged = false
-	
 	return inst
 end
 
-local function onchargefn(inst, force)
-	if inst.charged and not force then return end
-
+local function onchargefn(inst)
     inst.AnimState:SetBank("flowers_evil")
     inst.AnimState:SetBuild("datura")
     inst.animname = daturanames[math.random(#daturanames)]
@@ -72,26 +66,17 @@ local function onchargefn(inst, force)
 	inst.components.pickable.onpickedfn = onpickedfn
 	
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_LARGE		
-    
-	inst.charged = true
 	
     return inst
 end
 
 local function onsave(inst, data)
-	data.charged = inst.charged or nil
 	data.anim = inst.animname	
 end
 
 local function onload(inst, data)
 	if not data then return end
 
-	if data.charged then
-		onchargefn(inst)
-	else
-		onunchargefn(inst)
-	end
-	
     if data.anim then
         inst.animname = data.anim
 	    inst.AnimState:PlayAnimation(inst.animname)
@@ -116,24 +101,16 @@ local function fn(inst)
 	MakeSmallBurnable(inst)
     MakeSmallPropagator(inst)
 
-	inst:ListenForEvent("upandaway_charge", function()
-		print "Charged!"
-		onchargefn(inst)	
-		return inst
-	end, GetWorld())
-
-	inst:ListenForEvent("upandaway_uncharge", function()
-		print "Uncharged!"
-		onunchargefn(inst)	
-		return inst
-	end, GetWorld())	
+	inst:AddComponent("staticchargeable")
+	inst.components.staticchargeable:SetOnChargeFn(onchargefn)
+	inst.components.staticchargeable:SetOnUnchargeFn(onunchargefn)
 
     --------SaveLoad
     inst.OnSave = onsave 
     inst.OnLoad = onload 
 
 
-	onunchargefn(inst, true)
+	onunchargefn(inst)
 
     
     return inst

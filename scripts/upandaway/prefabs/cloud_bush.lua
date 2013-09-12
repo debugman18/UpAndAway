@@ -22,13 +22,13 @@ local function dig_up(inst, chopper)
 	if inst.components.pickable and inst.components.pickable:CanBePicked() then
 		inst.components.lootdropper:SpawnLootPrefab("cloud_cotton")
 	end
-	inst:Remove()
 	local bush = inst.components.lootdropper:SpawnLootPrefab("dug_marsh_bush")
+	inst:Remove()
 end
 
 local function onpickedfn(inst, picker)
 	inst.AnimState:PlayAnimation("picking") 
-	inst.AnimState:PlayAnimation("empty")
+	inst.AnimState:PushAnimation("empty")
 	
 	if picker.components.combat then
         picker.components.combat:GetAttacked(nil, 2)
@@ -36,53 +36,29 @@ local function onpickedfn(inst, picker)
 end
 
 local function makeemptyfn(inst)
-	local anim = inst.entity:AddAnimState()
-	--inst.components.pickable:MakeEmpty()
+	inst.AnimState:PlayAnimation("empty")
 end
 
 
-local function onunchargefn(inst)
-	local anim = inst.entity:AddAnimState()
+local function onunchargedfn(inst)
 	inst:RemoveComponent("pickable")
+
+	local anim = inst.AnimState
 	anim:PlayAnimation("berries_more")
-	anim:PlayAnimation("berries", true)
-	anim:PlayAnimation("idle", true)
-	anim:PlayAnimation("idle_dead", true)
-	
-	inst.charged = false
-	
-	return inst
+	anim:PushAnimation("berries", true)
+	anim:PushAnimation("idle", true)
+	anim:PushAnimation("idle_dead", true)
 end
 
-local function onstaticfn(inst)
+local function onchargedfn(inst)
 	inst.AnimState:PlayAnimation("berriesmost", true) 
+
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/harvest_sticks"
-    
     inst.components.pickable:SetUp("candy_fruit", TUNING.MARSHBUSH_REGROW_TIME, 2)
-	inst.components.pickable.onregenfn = onstaticfn
+	inst.components.pickable.onregenfn = onchargedfn
 	inst.components.pickable.onpickedfn = onpickedfn
     inst.components.pickable.makeemptyfn = makeemptyfn
-	
-	inst.charged = true
-	
-	return inst
-end
-
-local function onsave(inst, data)
-	data.charged = inst.charged	
-end
-
-local function onload(inst, data)
-	if data and data.charged then
-		inst.charged = data.charged
-	end
-	
-	if inst.charged then
-		onstaticfn(inst)
-	else
-		onunchargefn(inst)
-	end
 end
 
 local function fn(Sim)
@@ -98,7 +74,6 @@ local function fn(Sim)
     anim:SetMultColour(color, color, color, 1)
 	
 	--inst.components.pickable.ontransplantfn = ontransplantfn
-	--inst.charged = false
 
 	inst:AddComponent("lootdropper")
 	
@@ -108,27 +83,20 @@ local function fn(Sim)
     inst.components.workable:SetWorkLeft(1)
     
     inst:AddComponent("inspectable")
-	
-	inst:ListenForEvent("upandaway_charge", function()
-		print "Charged!"
-		onstaticfn(inst)	
-		return inst
-	end, GetWorld())
 
-	inst:ListenForEvent("upandaway_uncharge", function()
-		print "Uncharged!"
-		onunchargefn(inst)	
-		return inst
-	end, GetWorld())	
-    
+	inst:AddComponent("staticchargeable")
+	inst.components.staticchargeable:SetChargedFn(onchargedfn)
+	inst.components.staticchargeable:SetUnchargedFn(onunchargedfn)
+
+
     MakeLargeBurnable(inst)
     MakeLargePropagator(inst)
 
-    --------SaveLoad
-    inst.OnSave = onsave 
-    inst.OnLoad = onload 	
-	
+
+	onunchargedfn(inst)
+
+
     return inst
 end
 
-return Prefab( "marsh/objects/cloud_bush", fn, assets, prefabs) 
+return Prefab( "cloudrealm/objects/cloud_bush", fn, assets, prefabs) 

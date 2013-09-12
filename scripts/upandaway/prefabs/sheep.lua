@@ -48,7 +48,7 @@ local sounds =
 }
 
 local function GetStatus(inst)
-	return inst.charged and "RAM" or "SHEEP"
+	return inst.components.staticchargeable:IsCharged() and "RAM" or "SHEEP"
 end
 
 
@@ -116,9 +116,7 @@ local function dostaticsparks(inst)
 end
 
 
-local function set_electricsheep(inst, force)
-	if not inst.charged and not force then return end
-
+local function set_electricsheep(inst)
 	if inst.undolist then
 		inst:undolist()
 	end
@@ -161,13 +159,9 @@ local function set_electricsheep(inst, force)
 	
 	local brain = require "brains/sheepbrain"
 	inst:SetBrain(brain)   
-	
-	inst.charged = false
 end
 
-local function set_stormram(inst, force)
-	if inst.charged and not force then return end
-
+local function set_stormram(inst)
 	if inst.undolist then
 		inst:undolist()
 	end
@@ -225,19 +219,8 @@ local function set_stormram(inst, force)
 			task:Cancel()
 		end)
 	end)(1/2)
-	
-	inst.charged = true
 end
 
-local function OnSave(inst, data)
-	data.charged = inst.charged or nil
-end
-
-local function OnLoad(inst, data)
-	if data and data.charged then
-		set_stormram(inst)
-	end
-end
 
 local function fn()
 	local inst = CreateEntity()
@@ -307,25 +290,17 @@ local function fn()
 	
 	inst:SetStateGraph("SGSheep")
 	
+	inst:AddComponent("staticchargeable")
+	inst.components.staticchargeable:SetOnChargeFn(set_stormram)
+	inst.components.staticchargeable:SetOnUnchargeFn(set_electricsheep)
 
-	set_electricsheep(inst, true)
+
+	set_electricsheep(inst)
 
 
 	inst:ListenForEvent("newcombattarget", OnNewTarget)
 	inst:ListenForEvent("attacked", OnAttacked)
 	
-	inst:ListenForEvent("upandaway_charge", function()
-		print "Charged!"
-		set_stormram(inst)
-	end, GetWorld())
-
-	inst:ListenForEvent("upandaway_uncharge", function()
-		print "Uncharged!"
-		set_electricsheep(inst)
-	end, GetWorld())
-	
-	inst.OnSave = OnSave
-	inst.OnLoad = OnLoad	
 
 	return inst	
 end
