@@ -10,13 +10,17 @@ STATIC.COOLDOWN = 20
 -- It seems not taking a multiple of it as ambient colour creates weird auras
 -- around light sources (probably due to the colour cube, which is set to dusk
 -- winter).
+--
+-- Please don't modify this. It's meant as an accurate reference.
+-- Use the scaling factors below.
+-- -simplex
 --]]
-local dusk_colour = Point(80/255, 80/255, 80/255)
+local dusk_colour = Point(100/255, 100/255, 100/255)
 
 -- Ambient colour (RGB) for the static states.
 -- Always multiply with numbers on the right.
-CLOUD_AMBIENT.UNCHARGED_COLOUR = dusk_colour*2.0 --1.5
-CLOUD_AMBIENT.CHARGED_COLOUR = dusk_colour*0.6 --0.6
+CLOUD_AMBIENT.UNCHARGED_COLOUR = dusk_colour*2.5 --1.5
+CLOUD_AMBIENT.CHARGED_COLOUR = dusk_colour*0.75 --0.6
 
 -- Transition time between ambient colours.
 CLOUD_AMBIENT.COLOUR_TRANSITION_TIME = 5
