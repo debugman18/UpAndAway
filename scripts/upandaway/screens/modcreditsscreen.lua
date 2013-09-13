@@ -5,8 +5,8 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 
 
 local Screen = require "widgets/screen"
-local Button = require "widgets/button"
-local AnimButton = require "widgets/animbutton"
+--local Button = require "widgets/button"
+--local AnimButton = require "widgets/animbutton"
 local ImageButton = require "widgets/imagebutton"
 local Text = require "widgets/text"
 local Image = require "widgets/image"
@@ -14,53 +14,228 @@ local UIAnim = require "widgets/uianim"
 local Widget = require "widgets/widget"
 
 
+local Lambda = wickerrequire 'paradigms.functional'
+
 local Tree = wickerrequire 'utils.table.tree'
 
---Very very unfinished.
+local Pred = wickerrequire 'lib.predicates'
 
-local new_ui_strings = 
-{	
-	MODCREDITS=
-	{
-		TITLE = "MODCREDITS",
-		NAMES=
-		{
-			"Debugman18",
-			"Simplex,",
-			"Lifemare,",
-			"Willette",
-			"MilleniumCount",
-			"Sukoushi",
-			"Lord_Battal",
-			"TheDanaAddams",
-			"TheLeftHelix",
-			"Luggs",
-			"KidneyBeanBoy",
-		},
-	},	
+
+local CFG = TheMod:GetConfig("SCREENS", "CREDITS")
+
+
+local function SortNames(cat)
+	shuffleArray(cat[2])
+	return cat
+end
+
+local function SortInfo(info)
+	local sinfo = Tree.InjectInto({}, info)
+
+	--[[
+	-- Lists the indexes of the sortable categories.
+	--]]
+	local sortable_cats = {}
+
+	for i, category in ipairs(info) do
+		if category.sort ~= false then
+			table.insert(sortable_cats, i)
+		end
+	end
+
+	local sorted_cats = shuffleArray(Lambda.InjectInto({}, ipairs(sortable_cats)))
+
+	for j = 1, #sortable_cats do
+		local original_i, target_i = sortable_cats[j], sorted_cats[j]
+
+		sinfo[ original_i ] = Tree.InjectInto({}, info[ target_i ])
+	end
+
+	for i, v in ipairs(sinfo) do
+		sinfo[i] = SortNames(v)
+	end
+
+	return sinfo
+end
+
+--[[
+-- Count lines in a string, accounting for the Linux, Mac and Windows
+-- conventions.
+--]]
+local function count_lines(s)
+	s = s:gsub("%s+$", "")
+
+	if s == "" then return 0 end
+
+	-- Normalize Windows line breaks.
+	s = s:gsub("\n\r", "\n")
+
+	-- Normalize Mac line breaks.
+	s = s:gsub("\r", "\n")
+
+	local num_breaks
+	s, num_breaks = s:gsub("\n", "\n")
+
+	return 1 + num_breaks
+end
+
+
+local function NewStringHeightCalculator(font, size)
+	return function(s)
+		local widget = Text(font, size)
+		widget:SetString(s)
+		local w, h = widget:GetRegionSize()
+		widget:Kill()
+		return h
+	end
+end
+
+
+local function GetPageBuilders(info)
+	assert( Pred.IsTable(info) )
+	info = SortInfo(info)
+
+	local title_height = NewStringHeightCalculator(TITLEFONT, CFG.TITLE.SIZE)("A")
+
+	local GetNamesHeight = NewStringHeightCalculator(TITLEFONT, CFG.NAMES.SIZE)
+
+
+	local top_pos = Point(0, -CFG.TOP_MARGIN)
+
+	-- Title bottom pos
+	local title_pos = top_pos - Point(0, title_height)
+
+	local names_top_pos = title_pos - Point(0, CFG.TITLE.BOTTOM_SPACING)
+
+	--[[
+	local screen_w, screen_h = TheSim:GetScreenSize()
+
+	local bottom_pos = Point(0, -screen_h + CFG.BOTTOM_MARGIN)
+	
+	local real_estate = -( bottom_pos.y - names_top_pos.y )
+
+	local max_lines = 1
+	do
+		local test_str = "A"
+		repeat
+			test_str = test_str .. "\nA"
+			max_lines = max_lines + 1
+		until GetNamesHeight(test_str) > real_estate
+		max_lines = max_lines - 1
+	end
+	]]--
+
+	local max_lines = CFG.NAMES.PER_PAGE
+
+
+	--[[
+	-- 1 is right, -1 is left.
+	--]]
+	local anim_orientation = {
+		-1,
+		1,
+		1,
+		-1,
+		1,
+		-1,
+	}
+
+
+	local title_hoffset = Point(CFG.TITLE.H_OFFSET)
+
+
+	local function new_page_builder(contents, title, bgcolour, anim)
+		contents = contents or ""
+		title = title or info.title or ""
+		bgcolour = bgcolour or CFG.BGCOLOURS[1] or Point(0, 0, 0)
+		anim = anim or CFG.ANIMS[1] or "1"
+
+		local names_voffset = Point(0, -0.5*GetNamesHeight("\n" .. contents))
+
+		return function(screen)
+			-- Text orientation.
+			local orient
+			if tonumber(anim) then
+				orient = -(anim_orientation[tonumber(anim)] or 0)
+			else
+				orient = 0
+			end
+			-- Text alignment.
+			local anchor
+			if orient > 0 then
+				anchor = ANCHOR_RIGHT
+			elseif orient < 0 then
+				anchor = ANCHOR_LEFT
+			else
+				anchor = ANCHOR_MIDDLE
+			end
+
+
+			local title_offset = title_hoffset*orient
+
+			screen.titletext:SetHAlign(anchor)
+			screen.titletext:SetString(title)
+			screen.titletext:SetPosition((title_pos + title_offset):Get())
 		
-	MODALTCREDITS=
-	{
-		TITLE = "MODALTCREDITS",
-		NAMES=
-		{
-			"Craig_Perry",
-			"GTG3000",
-			"Hugo M.",
-			"Lord_Battal",
-			
-			"Rabbitfist",
-			"Stephenmrush",
-			"TeoSS69",
-			
-			"TheHockeyGods",
-			"Wilbur",
-			"Xjurwi",
-		},
-	},	
-}
 
-Tree.InjectInto(STRINGS.UI, new_ui_strings)
+			screen.namestext:SetHAlign(anchor)
+			screen.namestext:SetString(contents)
+
+			local title_w = screen.titletext:GetRegionSize()
+			local names_w = screen.namestext:GetRegionSize()
+
+			local names_offset = names_voffset + Point((title_hoffset.x + 0.5*(title_w - names_w))*orient)
+
+			screen.namestext:SetPosition((names_top_pos + names_offset):Get())
+
+
+			screen.titletext:Show()
+			screen.namestext:Show()
+
+
+			screen.bg:SetTint(bgcolour.x, bgcolour.y, bgcolour.z, 1)
+
+
+			if anim and anim ~= "" then
+				local state = screen.worldanim:GetAnimState()
+				state:PlayAnimation(anim, true)
+			else
+				screen.worldanim:GetAnimState():PlayAnimation("")
+			end
+		end
+	end
+
+	local function new_category_page_builder(cat, contents)
+		return new_page_builder(
+			contents,
+			cat[2].title,
+			CFG.BGCOLOURS[cat[1]], 
+			CFG.ANIMS[cat[1]]
+		)
+	end
+
+	local pages = {}
+
+	table.insert(pages, new_page_builder(CFG.INITIAL_TEXT))
+
+	for _, cat in ipairs(info) do
+		local lines = {}
+		for name_idx, name in ipairs(cat[2]) do
+			table.insert(lines, name)
+			if name_idx % max_lines == 0 then
+				table.insert(pages, new_category_page_builder(cat, table.concat(lines, "\n")))
+				lines = {}
+			end
+		end
+		if #lines > 0 then
+			table.insert(pages, new_category_page_builder(cat, table.concat(lines, "\n")))
+		end
+	end
+
+	table.insert(pages, new_page_builder(CFG.FINAL_TEXT))
+
+	return pages
+end
 
 
 local ModCreditsScreen = Class(Screen, function(self)
@@ -73,24 +248,10 @@ local ModCreditsScreen = Class(Screen, function(self)
     self.bg:SetHAnchor(ANCHOR_MIDDLE)
     self.bg:SetScaleMode(SCALEMODE_FILLSCREEN)
 
-    self.bgcolors = 
-    {
-        BGCOLOURS.RED,
-        BGCOLOURS.YELLOW,
-        BGCOLOURS.PURPLE
-    }
-    self.bg:SetTint(self.bgcolors[1][1],self.bgcolors[1][2],self.bgcolors[1][3], 1)
-
-    self.klei_img = self:AddChild(Image("images/ui.xml", "klei_new_logo.tex"))
-    self.klei_img:SetVAnchor(ANCHOR_MIDDLE)
-    self.klei_img:SetHAnchor(ANCHOR_MIDDLE)
-    self.klei_img:SetScaleMode(SCALEMODE_PROPORTIONAL)
-    self.klei_img:SetPosition( 0, 25, 0)
-
-    self.center_root = self:AddChild(Widget("root"))
-    self.center_root:SetVAnchor(ANCHOR_MIDDLE)
-    self.center_root:SetHAnchor(ANCHOR_MIDDLE)
-    self.center_root:SetScaleMode(SCALEMODE_PROPORTIONAL)
+    self.top_root = self:AddChild(Widget("root"))
+    self.top_root:SetVAnchor(ANCHOR_TOP)
+    self.top_root:SetHAnchor(ANCHOR_MIDDLE)
+    self.top_root:SetScaleMode(SCALEMODE_PROPORTIONAL)
 
     self.bottom_root = self:AddChild(Widget("root"))
     self.bottom_root:SetVAnchor(ANCHOR_BOTTOM)
@@ -100,76 +261,41 @@ local ModCreditsScreen = Class(Screen, function(self)
     self.worldanim = self.bottom_root:AddChild(UIAnim())
     self.worldanim:GetAnimState():SetBuild("credits")
     self.worldanim:GetAnimState():SetBank("credits")
-    self.worldanim:GetAnimState():PlayAnimation("1", true)
 
-    self.flavourtext = self.center_root:AddChild(Text(TITLEFONT, 70))
-    self.thankyoutext = self.center_root:AddChild(Text(BODYTEXTFONT, 40))
-    self.thankyoutext:SetString("")
-    self.thankyoutext:Hide()
-
-    TheFrontEnd:DoFadeIn(2)
-    
-    self.positions = {
-            {x=300,y=30, bg=1},
-            {x=-220,y=30, bg=3},
-            {x=-325,y=30, bg=2},
-            {x=260,y=30, bg=1},
-            {x=-300,y=30, bg=2},
-            {x=220,y=0, bg=3, tx=220,ty=200},    -- EXTRA THANKS 
-            {x=220,y=0, bg=1, tx=220,ty=200},    -- EXTRA THANKS - STEAM
-            {x=0,y=0, bg=3, tx=0,ty=200},    -- ALTGAME
-            {x=0,y=60, bg=1, tx=0,ty=180},    -- FMOD
-            {x=0,y=180, bg=2, tx=0,ty=180},      -- THANKS
-            {x=0,y=180, bg=1},      -- KLEI
-        }
-		
-		
-	local names = shuffleArray(STRINGS.UI.MODCREDITS.NAMES)
-	self.page_contents = {}
-
-    local page_idx = 1
-    self.page_contents[page_idx] = ""
-
-    local name_cnt = 0
-    for i,name in ipairs(names) do
-        self.page_contents[page_idx] = self.page_contents[page_idx]..name.."\n"
-        name_cnt = name_cnt + 1 
-
-        if page_idx ~=4 then
-            if name_cnt % 4 == 0 then
-                page_idx = page_idx + 1
-                self.page_contents[page_idx] = ""
-                name_cnt = 0
-            end
-        else
-            if name_cnt % 5 == 0 then
-                page_idx = page_idx + 1
-                self.page_contents[page_idx] = ""
-                name_cnt = 0
-            end
-        end  
-
-    end
-	
-    self.page_contents[page_idx] = "A Thanks To The Collaborators"
-    page_idx = page_idx + 1
-    self.page_contents[page_idx] = "A Thanks To The "
-    page_idx = page_idx + 1
-	
-    local names = shuffleArray(STRINGS.UI.MODALTCREDITS.NAMES)
-    self.page_contents[page_idx] = ""
-    for i,name in ipairs(names) do
-        self.page_contents[page_idx] = self.page_contents[page_idx]..name.."\n"
-    end
-
-    self.titletext = self.center_root:AddChild(Text(TITLEFONT, 70))
-    self.titletext:SetPosition(0, 180, 0)
+    self.titletext = self.top_root:AddChild(Text(TITLEFONT, CFG.TITLE.SIZE))
     self.titletext:SetString("")
     self.titletext:Hide()
 
-    self.pageidx = 1
-    self.pagemax = 11
-    self:ChangeFlavourText()
+    self.namestext = self.top_root:AddChild(Text(TITLEFONT, CFG.NAMES.SIZE))
+	self.namestext:SetString("")
+	self.namestext:Hide()
+
+
+    TheFrontEnd:DoFadeIn(2)
+
+
+	;(function(delay)
+		local page_builders = GetPageBuilders( domodfile "credits.lua" )
+
+		page_builders[1](self)
+
+		local i = 2
+
+		local task
+		task = self.inst:DoPeriodicTask(delay, function()
+			if i > #page_builders then
+				task:Cancel()
+				return
+			end
+
+			TheFrontEnd:GetSound():PlaySound("dontstarve/HUD/creditpage_flip", "flippage")
+
+			page_builders[i](self)
+
+			i = i + 1
+		end)
+	end)(CFG.PAGE_TRANSITION_DELAY)
+
     
     local right_pos_x = -150
     local left_pos_x = 150
@@ -222,14 +348,17 @@ end)
 
 function ModCreditsScreen:OnBecomeActive()
     ModCreditsScreen._base.OnBecomeActive(self)
+	--[[
     TheFrontEnd:GetSound():PlaySound("dontstarve/music/gramaphone_ragtime", "creditsscreenmusic")    
+	]]--
 end
 
 function ModCreditsScreen:OnBecomeInactive()
     ModCreditsScreen._base.OnBecomeInactive(self)
-
+	--[[
     TheFrontEnd:GetSound():KillSound("creditsscreenmusic")    
     TheFrontEnd:GetSound():PlaySound("dontstarve/music/music_FE","FEMusic")
+	]]--
 end
 
 function ModCreditsScreen:OnControl(control, down)
@@ -238,69 +367,6 @@ function ModCreditsScreen:OnControl(control, down)
         TheFrontEnd:PopScreen(self)
         return true
     end
-end
-
-
-function ModCreditsScreen:ChangeFlavourText()
-    TheFrontEnd:GetSound():PlaySound("dontstarve/HUD/creditpage_flip", "flippage")   
-    local bgidx = self.positions[self.pageidx].bg
-
-    self.bg:SetTint(self.bgcolors[bgidx][1],self.bgcolors[bgidx][2],self.bgcolors[bgidx][3], 1)
-
-    self.flavourtext:Hide()
-    self.thankyoutext:Hide()
-    self.titletext:Hide()
-    self.klei_img:Hide()
-
-    local delay = 3.3
-    if self.pageidx == self.pagemax then
-         self.klei_img:Show()
-    else
-        if self.pageidx >= 6 then
-            self.titletext:Show()
-        end
-         
-         self.worldanim:Show()
-
-        if self.pageidx < 7 then         
-            self.worldanim:GetAnimState():PlayAnimation(tostring(self.pageidx), true)
-        elseif self.pageidx == 7 then
-            self.worldanim:GetAnimState():PlayAnimation(tostring(self.pageidx), false)
-        else
-            self.worldanim:Hide()
-        end
-
-        if self.pageidx == 10 then
-            delay = 15
-            self.titletext:SetPosition(self.positions[self.pageidx].tx, self.positions[self.pageidx].ty, 0)
-            self.thankyoutext:Show()
-        else
-            self.flavourtext:Show()
-        end
-        
-        self.flavourtext:SetPosition(self.positions[self.pageidx].x, self.positions[self.pageidx].y, 0)
-
-        if self.pageidx == 8 then 
-            self.titletext:SetString("Thanks For Playing!")
-        else
-            self.titletext:SetString("Up and Away")
-        end
-
-        if self.pageidx == 9 then
-            self.titletext:Hide()
-            self.titletext:SetPosition(self.positions[self.pageidx].tx, self.positions[self.pageidx].ty, 0)
-            self.flavourtext:SetString("A final thanks to Klei for\ngiving the world ''Don't Starve''")
-        elseif self.pageidx == 6 or self.pageidx == 8 then  
-            self.titletext:SetPosition(self.positions[self.pageidx].tx, self.positions[self.pageidx].ty, 0)
-            self.titletext:Show()
-            self.flavourtext:SetString(self.page_contents[self.pageidx])
-        else
-            self.flavourtext:SetString(self.page_contents[self.pageidx])
-        end
-    end
-    --print("TEXT", self.pageidx, self.page_contents[self.pageidx])
-    self.pageidx = (self.pageidx == self.pagemax) and 1 or (self.pageidx + 1)
-	self.inst:DoTaskInTime(delay, function() self:ChangeFlavourText() end)
 end
 
 return ModCreditsScreen
