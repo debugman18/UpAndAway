@@ -99,10 +99,9 @@ local function fn()
     MakeMediumBurnableCharacter(inst, "pig_torso")
     MakeMediumFreezableCharacter(inst, "pig_torso")
 	
-	inst:ListenForEvent("upandaway_charge", function(inst)
-		set_eggdrop(inst)		
-	end, GetWorld())
-    
+ 	inst:AddComponent("staticchargeable")
+ 	inst.components.staticchargeable:SetOnChargeFn(set_eggdrop)
+
     return inst
 end
 

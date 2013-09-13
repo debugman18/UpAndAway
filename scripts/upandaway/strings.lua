@@ -5,6 +5,8 @@ module( ..., require(_modname .. '.booter') )
 
 local Add = modrequire 'lib.addstrings'
 
+--Things that are not implemented yet, but are being worked on, will be denoted by "--%%"
+
 Add.Names {
 	aetheel = "Aetheel",
 	beanlet = "Beanlet",
@@ -22,11 +24,14 @@ Add.Names {
 	cloud_fruit = "Cloudfruit",
 	cloud_storage = "Cloud Chest",
 	cloud_turf = "Cloud Turf",
+	crystal_axe = "Crystal Axe",
 	crystal_cap = "Crystal Cap",
 	crystal_deposit = "Crystal Deposit",
 	crystal_lamp = "Crystal Lamp",
 	crystal_moss = "Crystal Moss",
+	crystal_pickaxe = "Crystal Pickaxe",
 	crystal_shard = "Crystal Shard",
+	crystal_shovel = "Crystal Shovel",
 	crystal_wall = "Crystal Wall",
 	datura_petals = "Datura Petals",
 	duckraptor = "Duckraptor",
@@ -42,16 +47,17 @@ Add.Names {
 	hive_marshmallow = "Marshmallow",	
 	kite = "Kite",
 	lionant = "Lionant",
+	lionblob = "Strange Blob",
 	longbill = "Longbill",
 	magic_beans = "Magic Beans",
 	magic_beans_cooked = "Baked Beans",
-	magic_bean_giant = "Bean Giant",
-	magic_bean_sprout = "Bean Sprout",
-	monolith = "Monolith",
+	magic_bean_giant = "Bean Giant", 
+	magic_bean_sprout = "Bean Sprout", 
+	monolith = "Monolith", 
 	moonflower = "Moonflower",
 	moonflower_seeds = "Moonflower Seeds",
-	owl = "Owl",
-	pineapple_bush = "Pineapple Bush",
+	owl = "Owl", --
+	pineapple_bush = "Pineapple Bush", 
 	pineapple_fruit = "Pineapple",
 	research_lectern = "Research Lectern",
 	sheep = "Sheep",
@@ -62,12 +68,11 @@ Add.Names {
 	sunflower_seeds = "Golden Sunflower Seeds",
 	sky_chest = "Golden Chest",
 	skyflies = "Lightning Bug",
-	skylemur = "Sky Lemur",
-	tree_thunder = "Thunder Tree",
-	weather_machine = "MISSING NAME",
-	wind_axe = "Wind Axe",
+	skylemur = "Sky Lemur", 
+	tree_thunder = "Thunder Tree", 
+	weather_machine = "Tropospherical Relay", 
+	storm_axe = "Storm Axe", 
 }
-
 
 Add.QuotesFor "beanstalk" {
 	GENERIC = "It reaches the clouds.",

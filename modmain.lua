@@ -74,7 +74,22 @@ local RawAssets = {
 	
 	Asset("SOUNDPACKAGE", "sound/sheep.fev"),
 	Asset("SOUND", "sound/sheep_bank01.fsb"),	
+
+	--Asset("ATLAS", "modicon.xml"),
+	--Asset("IMAGE", "modicon.tex"),
+	
+	--Asset("ANIM",  "anim/main_up.zip"),
+	
+	Asset("ATLAS", "images/uppanels.xml"),		
+	Asset("IMAGE", "images/uppanels.tex"),	
+
+	Asset("ATLAS", "images/bg_up.xml"),		
+	Asset("IMAGE", "images/bg_up.tex"),	
 }
+
+GLOBAL.require "screens/popupdialog"
+GLOBAL.require "screens/newgamescreen"
+GLOBAL.require "widgets/statusdisplays"
 
 Assets = RawAssets
 
@@ -107,10 +122,12 @@ local RawPrefabFiles = {
 	--"crystal_wall",	
 	--"crystal_cap",
 	--"crystal_lamp",	
-	--"sunflower",
+	
+	--"golden_sunflower",
 	--"sunflower_seeds",
-	--"moonflower",
-	--"moonflower_seeds",	
+	
+	--"gustflower",
+	--"gustflower_seeds",	
 	
 	"skyflower",
 	"skyflower_petals",
@@ -122,17 +139,15 @@ local RawPrefabFiles = {
 	"beanstalk_chunk",	
 	"magic_beans",
 	
-	--"magic_bean_sprout",	
+	--"bean_sprout",	
 	
-	--"magic_bean_giant",
-	--"magic_beanlet",
+	--"bean_giant",
 	
-	--"cloud_rock",
+	"beanlet",
 	
 	"cloud_cotton",	
 	
 	--"cloud_bomb",	
-	--"cloud_storage",	
 	
 	"cloud_turf",	
 	"cloud_bush",
@@ -146,6 +161,7 @@ local RawPrefabFiles = {
 	--"golden_amulet",
 	--"golden_golem",
 	--"monolith",
+	
 	--"research_lectern",
 	--"wind_axe",
 	--"kite",
@@ -158,6 +174,7 @@ local RawPrefabFiles = {
 	--"rainbowcoon",
 	--"cotton_candy",
 	--"cotton_vest",
+	"lionblob",
 }
 
 local new_tiles = CFG.NEW_TILES

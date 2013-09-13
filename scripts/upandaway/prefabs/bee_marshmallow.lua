@@ -162,6 +162,8 @@ local function commonfn()
     inst:ListenForEvent("attacked", beecommon.OnAttacked)
     inst:ListenForEvent("worked", beecommon.OnWorked)
 
+	inst.Transform:SetScale(0.4, 0.4, 1)
+	
     return inst
 end
 

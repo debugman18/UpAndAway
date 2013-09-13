@@ -7,6 +7,6 @@
 
 CLOUD_LIGHTNING.ENABLED = true
 CLOUD_MIST.ENABLED = true
-
+VERSION = "Pre-Alpha"
 
 DEBUG = true

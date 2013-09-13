@@ -133,7 +133,7 @@ local function fn(Sim)
 	inst.OnEntitySleep = OnEntitySleep
 	inst.OnEntityWake = OnEntityWake
     
-    
+    inst.Transform:SetScale(2.0, 1.7, 2.0)
     
 	return inst
 end

@@ -9,9 +9,10 @@ local PopupDialogScreen = require "screens/popupdialog"
 
 local assets=
 {
-	Asset("ANIM", "anim/cave_exit_rope.zip"),
+	Asset("ANIM", "anim/rock_stalagmite_tall.zip"),
+	Asset("ANIM", "anim/beanstalk_exit.zip"),
 }
-
+--[[
 local function onnear(inst)
 	inst.AnimState:PlayAnimation("down")
     inst.AnimState:PushAnimation("idle_loop", true)
@@ -22,6 +23,8 @@ local function onfar(inst)
     inst.AnimState:PlayAnimation("up")
     inst.SoundEmitter:PlaySound("dontstarve/cave/rope_up")
 end
+--]]
+
 --[[
 local function LeaveSky(onsavedcb)
 	local playerdata = {}
@@ -94,21 +97,21 @@ local function fn(Sim)
     --MakeObstaclePhysics(inst, 1)
     
     local minimap = inst.entity:AddMiniMapEntity()
-    minimap:SetIcon( "cave_open2.png" )
+    minimap:SetIcon("cave_open2.png")
     
-    anim:SetBank("exitrope")
-    anim:SetBuild("cave_exit_rope")
+    anim:SetBank("rock_stalagmite_tall")
+    anim:SetBuild("beanstalk_exit")
 
-    --anim:PlayAnimation("down")
-    --anim:PushAnimation("idle_loop", true)
+	inst.type = math.random(2)
+    inst.AnimState:PlayAnimation("full_"..inst.type)
 
     inst:AddComponent("climbable")
     inst.components.climbable:SetDirection("DOWN")
 
-    inst:AddComponent("playerprox")
-    inst.components.playerprox:SetDist(5,7)
-    inst.components.playerprox:SetOnPlayerFar(onfar)
-    inst.components.playerprox:SetOnPlayerNear(onnear)
+    --inst:AddComponent("playerprox")
+    --inst.components.playerprox:SetDist(5,7)
+    --inst.components.playerprox:SetOnPlayerFar(onfar)
+    --inst.components.playerprox:SetOnPlayerNear(onnear)
 
     inst:AddComponent("inspectable")
 
