@@ -184,11 +184,11 @@ local function UpdateWorldGenScreen(self)
 			
 				VERBS = 
 				{
-					"Wrangling",
-					"Generating",
+					"Deploying",
+					"Decompressing",
 					"Herding",
-					"Embiggening",
-					"Iterating upon",
+					"Replacing",
+					"Assembling",
 					"Insinuating",
 					"Reticulating",
 					"Inserting",
@@ -202,8 +202,8 @@ local function UpdateWorldGenScreen(self)
 					"candy",
 					"giants",
 					"snowflakes",
-					"oxygen",
-					"static",
+					"skeletons",
+					"static batteries",
 					"castles",
 					"beans",
 					"nature",		
