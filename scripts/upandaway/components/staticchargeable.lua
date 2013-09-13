@@ -20,19 +20,27 @@ local StaticChargeable = Class(Debuggable, function(self, inst)
 
 	self.charged = false
 
-	inst:ListenForEvent("upandaway_charge", function()
+	local function charge_callback()
 		local c = inst.components.staticchargeable
 		if inst:IsValid() and c then
 			c:Charge()
 		end
-	end, GetWorld())
+	end
 
-	inst:ListenForEvent("upandaway_uncharge", function()
+	local function uncharge_callback()
 		local c = inst.components.staticchargeable
 		if inst:IsValid() and c then
 			c:Uncharge()
 		end
-	end, GetWorld())
+	end
+
+	inst:ListenForEvent("upandaway_charge", charge_callback, GetWorld())
+	inst:ListenForEvent("upandaway_uncharge", uncharge_callback, GetWorld())
+
+	function self:OnRemoveFromEntity()
+		self.inst:RemoveEventCallback("upandaway_charge", charge_callback, GetWorld())
+		self.inst:RemoveEventCallback("upandaway_uncharge", uncharge_callback, GetWorld())
+	end
 end)
 
 
