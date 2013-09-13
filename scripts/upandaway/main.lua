@@ -96,7 +96,7 @@ local function UpdateMainScreen(self)
     self.motd.button:SetPosition(0, -100, 0)
     self.motd.button:SetText("More Info")
     self.motd.button:SetOnClick( function() 
-		GLOBAL.VisitURL("http://forums.kleientertainment.com/index.php?/topic/26501-up-and-away-mod-collaboration-thread/") 
+		GLOBAL.VisitURL("http://forums.kleientertainment.com/index.php?" .. TheMod.modinfo.forumthread)
 	end )
 	self.motd.motdtext:EnableWordWrap(true) 
 	
