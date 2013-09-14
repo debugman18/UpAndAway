@@ -29,7 +29,7 @@ local function fn(Sim)
     inst:AddComponent("inspectable")  
     
     inst:AddComponent("inventoryitem") 
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/cloudcotton.xml"
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/cloud_cotton.xml"
     
 	--Is not filling.
     inst:AddComponent("edible")

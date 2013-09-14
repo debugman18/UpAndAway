@@ -82,8 +82,10 @@
 		<a href="../../../files/upandaway/components/staticgenerator.html">upandaway/components/staticgenerator.lua</a>
 	</li>
 
-	<li><strong>upandaway/components/upandaway_metadata.lua</strong></li>
-	
+	<li>
+		<a href="../../../files/upandaway/components/upandaway_metadata.html">upandaway/components/upandaway_metadata.lua</a>
+	</li>
+
 	<li>
 		<a href="../../../files/upandaway/debugtools.html">upandaway/debugtools.lua</a>
 	</li>
@@ -92,10 +94,8 @@
 		<a href="../../../files/upandaway/lib/addstrings.html">upandaway/lib/addstrings.lua</a>
 	</li>
 
-	<li>
-		<a href="../../../files/upandaway/lib/climbing.html">upandaway/lib/climbing.lua</a>
-	</li>
-
+	<li><strong>upandaway/lib/climbing.lua</strong></li>
+	
 	<li>
 		<a href="../../../files/upandaway/main.html">upandaway/main.lua</a>
 	</li>
@@ -327,19 +327,11 @@
 
 <div id="content">
 
-<h1>File <code>upandaway/components/upandaway_metadata.lua</code></h1>
+<h1>File <code>upandaway/lib/climbing.lua</code></h1>
 
 
-<p>Simple component for storing arbitrary data as savedata. </p>
+<p>Functions for adding, entering, exiting and failing (dying in) a cloud realm, as well as a few utility functions. </p>
 
-
-<p><b>Author:</b>
-<table class="authors_list">
-
-	<tr><td class="name">simplex </td></tr>
-
-</table>
-</p>
 
 
 
@@ -349,44 +341,59 @@
 <table class="function_list">
 
 	<tr>
-	<td class="name" nowrap><a href="#Metadata:Get">Metadata:Get</a>&nbsp;(k)</td>
-	<td class="summary">Gets a field previously set/saved.</td>
+	<td class="name" nowrap><a href="#AddCloudLevel">AddCloudLevel</a>&nbsp;(data)</td>
+	<td class="summary">Adds a new cloud level.</td>
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#Metadata:OnLoad">Metadata:OnLoad</a>&nbsp;(data)</td>
-	<td class="summary">Loads the fields from savedata.</td>
+	<td class="name" nowrap><a href="#Climb">Climb</a>&nbsp;(direction, cavenum)</td>
+	<td class="summary">Climbs in a direction.</td>
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#Metadata:OnSave">Metadata:OnSave</a>&nbsp;()</td>
-	<td class="summary">Saves all fields.</td>
+	<td class="name" nowrap><a href="#ClimbTo">ClimbTo</a>&nbsp;(height, cavenum)</td>
+	<td class="summary">Climbs to the given height.</td>
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#Metadata:Set">Metadata:Set</a>&nbsp;(k, v)</td>
-	<td class="summary">Sets a field.</td>
+	<td class="name" nowrap><a href="#GetLevelHeight">GetLevelHeight</a>&nbsp;()</td>
+	<td class="summary">Returns the height of the level we are currently in.</td>
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#Metadata:pairs">Metadata:pairs</a>&nbsp;()</td>
-	<td class="summary">Returns an iterator triple over the existing fields.</td>
+	<td class="name" nowrap><a href="#GetMaxHeight">GetMaxHeight</a>&nbsp;()</td>
+	<td class="summary">Returns the maximum height among all registered levels.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#GetMinHeight">GetMinHeight</a>&nbsp;()</td>
+	<td class="summary">Returns the minimum height among all registered levels (including default ones).</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#GetNextLevel">GetNextLevel</a>&nbsp;()</td>
+	<td class="summary">Returns the next level number (for climbing up).</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#GetPreviousLevel">GetPreviousLevel</a>&nbsp;()</td>
+	<td class="summary">Returns the previous level number (for climbing down).</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#GetRawLevelHeight">GetRawLevelHeight</a>&nbsp;()</td>
+	<td class="summary">As GetLevelHeight(), but based on the level number alone.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#IsCloudLevel">IsCloudLevel</a>&nbsp;()</td>
+	<td class="summary">Returns whether we are in a cloud level or not.</td>
 	</tr>
 
 </table>
 
 
 
-
-<h2>Tables</h2>
-<table class="table_list">
-
-	<tr>
-	<td class="name" nowrap><a href="#Metadata">Metadata</a></td>
-	<td class="summary">Simple component for storing arbitrary data as savedata.</td>
-	</tr>
-
-</table>
 
 
 
@@ -401,16 +408,16 @@
 
 
 
-<dt><a name="Metadata:Get"></a><strong>Metadata:Get</strong>&nbsp;(k)</dt>
+<dt><a name="AddCloudLevel"></a><strong>AddCloudLevel</strong>&nbsp;(data)</dt>
 <dd>
-Gets a field previously set/saved.
+Adds a new cloud level. Also embedded as TheMod:AddCloudLevel(). 
 
 
 <h3>Parameters</h3>
 <ul>
 	
 	<li>
-	  k: 
+	  data: A table describing the level, as in the second parameter of AddLevel. 
 	</li>
 	
 </ul>
@@ -427,16 +434,20 @@ Gets a field previously set/saved.
 
 
 
-<dt><a name="Metadata:OnLoad"></a><strong>Metadata:OnLoad</strong>&nbsp;(data)</dt>
+<dt><a name="Climb"></a><strong>Climb</strong>&nbsp;(direction, cavenum)</dt>
 <dd>
-Loads the fields from savedata.
+Climbs in a direction. 
 
 
 <h3>Parameters</h3>
 <ul>
 	
 	<li>
-	  data: 
+	  direction: A number. Its sign dictates the direction.  Calls ClimbTo to do the actual work. 
+	</li>
+	
+	<li>
+	  cavenum: 
 	</li>
 	
 </ul>
@@ -448,42 +459,34 @@ Loads the fields from savedata.
 
 
 
-</dd>
-
-
-
-
-<dt><a name="Metadata:OnSave"></a><strong>Metadata:OnSave</strong>&nbsp;()</dt>
-<dd>
-Saves all fields.
-
-
-
-
-
-
-
-
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../../../files/upandaway/lib/climbing.html#ClimbTo">
+		ClimbTo
+	</a>
+	
+</ul>
 
 </dd>
 
 
 
 
-<dt><a name="Metadata:Set"></a><strong>Metadata:Set</strong>&nbsp;(k, v)</dt>
+<dt><a name="ClimbTo"></a><strong>ClimbTo</strong>&nbsp;(height, cavenum)</dt>
 <dd>
-Sets a field.
+Climbs to the given height. It should be an integer. 
 
 
 <h3>Parameters</h3>
 <ul>
 	
 	<li>
-	  k: 
+	  height: The target height.
 	</li>
 	
 	<li>
-	  v: 
+	  cavenum: The number of the target "cave". If not given, the current cave number is used, raising an error if we're not in a cave level. 
 	</li>
 	
 </ul>
@@ -495,20 +498,143 @@ Sets a field.
 
 
 
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../../../files/upandaway/lib/climbing.html#Climb">
+		Climb
+	</a>
+	
+</ul>
+
 </dd>
 
 
 
 
-<dt><a name="Metadata:pairs"></a><strong>Metadata:pairs</strong>&nbsp;()</dt>
+<dt><a name="GetLevelHeight"></a><strong>GetLevelHeight</strong>&nbsp;()</dt>
 <dd>
-Returns an iterator triple over the existing fields.
+Returns the height of the level we are currently in.  The height is 0 for a survival map, 1 for the first cloud level, 2 for the second one, etc. For the first cave level, it is -1, for the second one it is -2, etc. <br /><br /> This is primarily meant to be used as a test for whether we are in a cloud level or not. <br /><br /> Works both under normal game and under worldgen (using different methods). <br /><br /> At worldgen, the level number is used. At normal game, we check for the existence of the upandaway_metadata component in the world entity. If it exists and has a field "height" stored, that value is adopted, otherwise the level number is used as in worldgen. <br /> Savedata is given preference because the level number can possibly change, so this allows us to keep our system compatible with older saves. 
 
 
 
 
 
 
+
+
+
+</dd>
+
+
+
+
+<dt><a name="GetMaxHeight"></a><strong>GetMaxHeight</strong>&nbsp;()</dt>
+<dd>
+Returns the maximum height among all registered levels.  This works even if there are no cloud levels (returning 0).
+
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="GetMinHeight"></a><strong>GetMinHeight</strong>&nbsp;()</dt>
+<dd>
+Returns the minimum height among all registered levels (including default ones).
+
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="GetNextLevel"></a><strong>GetNextLevel</strong>&nbsp;()</dt>
+<dd>
+Returns the next level number (for climbing up).  Returns nil if there are none. 0 means survival map.
+
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="GetPreviousLevel"></a><strong>GetPreviousLevel</strong>&nbsp;()</dt>
+<dd>
+Returns the previous level number (for climbing down).  Returns nil if there are none. 0 means survival map.
+
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="GetRawLevelHeight"></a><strong>GetRawLevelHeight</strong>&nbsp;()</dt>
+<dd>
+As GetLevelHeight(), but based on the level number alone. 
+
+
+
+
+
+
+
+
+
+<h3>See also:</h3>
+<ul>
+	
+	<li><a href="../../../files/upandaway/lib/climbing.html#GetLevelHeight">
+		GetLevelHeight
+	</a>
+	
+</ul>
+
+</dd>
+
+
+
+
+<dt><a name="IsCloudLevel"></a><strong>IsCloudLevel</strong>&nbsp;()</dt>
+<dd>
+Returns whether we are in a cloud level or not.  First, it checks if the world entity has the "cloudrealm" tag. If it does, returns true. If not, checks if the level height is positive. 
+
+
+
+
+
+
+
+<h3>Return value:</h3>
+A boolean
 
 
 
@@ -519,19 +645,6 @@ Returns an iterator triple over the existing fields.
 
 
 
-
-<h2><a name="tables"></a>Tables</h2>
-<dl class="table">
-
-<dt><a name="Metadata"></a><strong>Metadata</strong></dt>
-<dd>Simple component for storing arbitrary data as savedata. 
-
-
-
-</dd>
-
-
-</dl>
 
 
 
