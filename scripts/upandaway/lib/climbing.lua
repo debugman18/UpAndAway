@@ -180,12 +180,13 @@ end
 --
 -- @return A boolean
 function IsCloudLevel()
-	local ground = GetWorld()
-	if ground and ground:HasTag("cloudrealm") then
+	if not Pred.IsWorldGen() then
+		local ground = GetWorld()
+		if ground and ground:HasTag("cloudrealm") then
 			return true
-	else
-		return GetLevelHeight() >= 1
+		end
 	end
+	return GetLevelHeight() >= 1
 end
 Pred.IsCloudLevel = IsCloudLevel
 
