@@ -74,8 +74,10 @@
 		<a href="../../../files/upandaway/components/skyflyspawner.html">upandaway/components/skyflyspawner.lua</a>
 	</li>
 
-	<li><strong>upandaway/components/staticchargeable.lua</strong></li>
-	
+	<li>
+		<a href="../../../files/upandaway/components/staticchargeable.html">upandaway/components/staticchargeable.lua</a>
+	</li>
+
 	<li>
 		<a href="../../../files/upandaway/components/staticgenerator.html">upandaway/components/staticgenerator.lua</a>
 	</li>
@@ -136,10 +138,8 @@
 		<a href="../../../files/upandaway/map/tiledefs.html">upandaway/map/tiledefs.lua</a>
 	</li>
 
-	<li>
-		<a href="../../../files/upandaway/postinits/burning.html">upandaway/postinits/burning.lua</a>
-	</li>
-
+	<li><strong>upandaway/postinits/burning.lua</strong></li>
+	
 	<li>
 		<a href="../../../files/upandaway/prefabs/aetheel.html">upandaway/prefabs/aetheel.lua</a>
 	</li>
@@ -323,16 +323,16 @@
 
 <div id="content">
 
-<h1>File <code>upandaway/components/staticchargeable.lua</code></h1>
+<h1>File <code>upandaway/postinits/burning.lua</code></h1>
 
 
-<p>Simple component for handling static state transitions. </p>
+<p>Postinits to tweak the burnable behaviour. </p>
 
 
 <p><b>Author:</b>
 <table class="authors_list">
 
-	<tr><td class="name">simplex </td></tr>
+	<tr><td class="name">simplex</td></tr>
 
 </table>
 </p>
@@ -341,73 +341,8 @@
 
 
 
-<h2>Functions</h2>
-<table class="function_list">
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticChargeable:Charge">StaticChargeable:Charge</a>&nbsp;(force)</td>
-	<td class="summary">Charges if not already.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticChargeable:GetOnChargedFn">StaticChargeable:GetOnChargedFn</a>&nbsp;(fn)</td>
-	<td class="summary">Returns the oncharge callback.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticChargeable:GetOnUnchargedFn">StaticChargeable:GetOnUnchargedFn</a>&nbsp;(fn)</td>
-	<td class="summary">Returns the onuncharge callback.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticChargeable:IsCharged">StaticChargeable:IsCharged</a>&nbsp;()</td>
-	<td class="summary">Returns whether it is charged.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticChargeable:OnLoad">StaticChargeable:OnLoad</a>&nbsp;(data)</td>
-	<td class="summary">Loads the charged state.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticChargeable:OnSave">StaticChargeable:OnSave</a>&nbsp;()</td>
-	<td class="summary">Saves the charged state.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticChargeable:SetOnChargedFn">StaticChargeable:SetOnChargedFn</a>&nbsp;(fn)</td>
-	<td class="summary">Sets the oncharge callback.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticChargeable:SetOnUnchargedFn">StaticChargeable:SetOnUnchargedFn</a>&nbsp;(fn)</td>
-	<td class="summary">Sets the onuncharge callback.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticChargeable:Toggle">StaticChargeable:Toggle</a>&nbsp;()</td>
-	<td class="summary">Toggles the state.</td>
-	</tr>
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticChargeable:Uncharge">StaticChargeable:Uncharge</a>&nbsp;(force)</td>
-	<td class="summary">Uncharges if not already.</td>
-	</tr>
-
-</table>
 
 
-
-
-<h2>Tables</h2>
-<table class="table_list">
-
-	<tr>
-	<td class="name" nowrap><a href="#StaticChargeable">StaticChargeable</a></td>
-	<td class="summary">Simple component for handling static state transitions.</td>
-	</tr>
-
-</table>
 
 
 
@@ -417,259 +352,8 @@
 
 
 
-<h2><a name="functions"></a>Functions</h2>
-<dl class="function">
 
 
-
-<dt><a name="StaticChargeable:Charge"></a><strong>StaticChargeable:Charge</strong>&nbsp;(force)</dt>
-<dd>
-Charges if not already. 
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  force: Forces the charging, even if already charged.
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="StaticChargeable:GetOnChargedFn"></a><strong>StaticChargeable:GetOnChargedFn</strong>&nbsp;(fn)</dt>
-<dd>
-Returns the oncharge callback. 
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  fn: 
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="StaticChargeable:GetOnUnchargedFn"></a><strong>StaticChargeable:GetOnUnchargedFn</strong>&nbsp;(fn)</dt>
-<dd>
-Returns the onuncharge callback. 
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  fn: 
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="StaticChargeable:IsCharged"></a><strong>StaticChargeable:IsCharged</strong>&nbsp;()</dt>
-<dd>
-Returns whether it is charged.
-
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="StaticChargeable:OnLoad"></a><strong>StaticChargeable:OnLoad</strong>&nbsp;(data)</dt>
-<dd>
-Loads the charged state.  Calls Charge() or Uncharge() appropriately.
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  data: 
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="StaticChargeable:OnSave"></a><strong>StaticChargeable:OnSave</strong>&nbsp;()</dt>
-<dd>
-Saves the charged state.  Tries to use as little savedata as possible, since we'll have a lot of entities with this component.
-
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="StaticChargeable:SetOnChargedFn"></a><strong>StaticChargeable:SetOnChargedFn</strong>&nbsp;(fn)</dt>
-<dd>
-Sets the oncharge callback. 
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  fn: 
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="StaticChargeable:SetOnUnchargedFn"></a><strong>StaticChargeable:SetOnUnchargedFn</strong>&nbsp;(fn)</dt>
-<dd>
-Sets the onuncharge callback. 
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  fn: 
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="StaticChargeable:Toggle"></a><strong>StaticChargeable:Toggle</strong>&nbsp;()</dt>
-<dd>
-Toggles the state. Main for testing.
-
-
-
-
-
-
-
-
-
-</dd>
-
-
-
-
-<dt><a name="StaticChargeable:Uncharge"></a><strong>StaticChargeable:Uncharge</strong>&nbsp;(force)</dt>
-<dd>
-Uncharges if not already. 
-
-
-<h3>Parameters</h3>
-<ul>
-	
-	<li>
-	  force: Forces the uncharging, even if already uncharged.
-	</li>
-	
-</ul>
-
-
-
-
-
-
-
-
-</dd>
-
-
-</dl>
-
-
-
-
-<h2><a name="tables"></a>Tables</h2>
-<dl class="table">
-
-<dt><a name="StaticChargeable"></a><strong>StaticChargeable</strong></dt>
-<dd>Simple component for handling static state transitions. 
-
-
-
-</dd>
-
-
-</dl>
 
 
 
