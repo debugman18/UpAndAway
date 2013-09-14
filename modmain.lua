@@ -165,7 +165,7 @@ local RawPrefabFiles = {
 	--"research_lectern",
 	--"wind_axe",
 	--"kite",
-	--"duckraptor",
+	"duckraptor",
 	--"duckraptor_mother",	
 	--"duckraptor_baby",
 	
