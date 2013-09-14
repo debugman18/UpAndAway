@@ -9,3 +9,15 @@
 -- for new tiles will get messed up (creating a new save will fix it, though).
 --]]
 NEW_TILES = {"poopcloud"}
+
+--[[
+-- Defines the fire extinguish speed (relative to its total burn time)
+-- within cloud levels. Indexed by the level height.
+--
+-- An infinite value means instant extinguishing.
+--]]
+FIRE.EXTINGUISH.SPEED = {
+	[1] = 10,
+
+	default = math.huge
+}

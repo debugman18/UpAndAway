@@ -4,7 +4,7 @@ module( ..., require(_modname .. '.booter') )
 --@@END ENVIRONMENT BOOTUP
 
 
-local Climbing = modrequire 'worldgen.climbing'
+local Climbing = modrequire 'lib.climbing'
 
 
 local Pred = wickerrequire 'lib.predicates'

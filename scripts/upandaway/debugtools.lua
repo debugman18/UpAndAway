@@ -22,7 +22,7 @@ local _O = _G
 --[[
 -- Type ClimbTo(0) in the console to return to the surface.
 --]]
-_O.ClimbTo = (modrequire 'worldgen.climbing').ClimbTo
+_O.ClimbTo = (modrequire 'lib.climbing').ClimbTo
 
 
 function _O.GetStaticGenerator()

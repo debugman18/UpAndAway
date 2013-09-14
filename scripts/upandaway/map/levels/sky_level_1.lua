@@ -4,7 +4,7 @@ module( ..., require(_modname .. '.booter') )
 --@@END ENVIRONMENT BOOTUP
 
 
-modrequire 'worldgen.climbing'
+modrequire 'lib.climbing'
 
 
 local LEVELTYPE = GLOBAL.LEVELTYPE

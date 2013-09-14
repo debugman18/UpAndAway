@@ -3,7 +3,7 @@
 -- as well as a few utility functions.
 --
 -- @class module
--- @name upandaway.worldgen.climbing
+-- @name upandaway.lib.climbing
 --
 
 --@@GLOBAL ENVIRONMENT BOOTUP

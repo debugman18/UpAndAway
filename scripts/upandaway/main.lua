@@ -21,8 +21,9 @@ require 'mainfunctions'
 modrequire('api_abstractions')()
 
 modrequire 'debugtools'
-
 modrequire 'strings'
+modrequire 'postinits.burning'
+
 
 local CFG = TUNING.UPANDAWAY
 
@@ -61,7 +62,7 @@ end)
 -- This is just to prevent changes in out implementation breaking old saves.
 --]]
 AddPrefabPostInit("world", function(inst)
-	local Climbing = modrequire 'worldgen.climbing'
+	local Climbing = modrequire 'lib.climbing'
 
 	local metadata_key = GetModname() .. "_metadata"
 	if not inst.components[metadata_key] then
