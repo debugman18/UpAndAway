@@ -33,9 +33,8 @@ local function set_eggdrop(inst)
 				isstatic = false
 			end)	
 			if isstatic == true then
-				--egg = SpawnPrefab("golden_egg")
-				egg = SpawnPrefab("monkeybarrel")
-				--inst.AnimState:PlayAnimation("lay_egg")
+				egg = SpawnPrefab("golden_egg")
+				inst.AnimState:PlayAnimation("lay_egg")
 				egg.Transform:SetPosition(inst.Transform:GetWorldPosition())
 				lastegglaid = now
 				print "An egg was laid!"

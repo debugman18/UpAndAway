@@ -52,6 +52,8 @@ local essential_assets =
     Asset("SOUND", "sound/forest_stream.fsb"),
     Asset("SOUND", "sound/cave_AMB.fsb"),
     Asset("SOUND", "sound/cave_mem.fsb"),
+
+    Asset("IMAGE", "images/cloudwave.tex"),
 }
 
 local essential_prefabs = 
@@ -179,10 +181,13 @@ local function fn(Sim)
    
     --Uses our cloudwaves.
     local waves = inst.entity:AddWaveComponent()
-    waves:SetRegionSize(32,16)
-    waves:SetRegionNumWaves(4)
+    --32,16
+    waves:SetRegionSize(32, 32)
+    --8
+    waves:SetRegionNumWaves(8)
     waves:SetWaveTexture(GLOBAL.resolvefilepath("images/cloudwave.tex"))   
-    waves:SetWaveEffect("shaders/waves.ksh" ) -- texture.ksh    
+    waves:SetWaveEffect("shaders/waves.ksh" ) -- texture.ksh   
+    --2048,512 
 	waves:SetWaveSize(1024, 1024)
    
     inst.components.ambientsoundmixer:SetReverbPreset("chess")  

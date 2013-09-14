@@ -85,6 +85,9 @@ local RawAssets = {
 
 	Asset("ATLAS", "images/bg_up.xml"),		
 	Asset("IMAGE", "images/bg_up.tex"),	
+
+	Asset("ATLAS", "images/bg_gen.xml"),		
+	Asset("IMAGE", "images/bg_gen.tex"),		
 }
 
 GLOBAL.require "screens/popupdialog"

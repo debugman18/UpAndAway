@@ -6,6 +6,7 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 local assets =
 {
 	Asset("ANIM", "anim/tallbird_egg.zip"),
+	Asset("ANIM", "anim/golden_egg.zip"),
 }
 
 local function HeatFn(inst, observer)
@@ -19,8 +20,8 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-    inst.AnimState:SetBuild("tallbird_egg")
     inst.AnimState:SetBank("egg")
+    inst.AnimState:SetBuild("golden_egg")
     inst.AnimState:PlayAnimation("egg")
 
 	inst:AddComponent("stackable")
@@ -39,8 +40,8 @@ local function fn(Sim)
 	inst:AddComponent("inventoryitem")
 
 	inst:AddComponent("temperature")
-	inst.components.temperature.maxtemp = 30
-	inst.components.temperature.current = 30
+	inst.components.temperature.maxtemp = 60
+	inst.components.temperature.current = 60
 	inst.components.temperature.inherentinsulation = TUNING.INSULATION_MED
 
 	inst:AddComponent("heater")
