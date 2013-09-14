@@ -29,4 +29,4 @@ local function fn(Sim)
     return inst
 end
 
-return Prefab("common/anim_test", fn, assets) 
+return Prefab("common/beanlet", fn, assets) 

@@ -155,10 +155,15 @@ local function UpdateWorldGenScreen(self)
 	local Pred = wickerrequire 'lib.predicates'
 
 	if Pred.IsCloudLevel() then
-	
+		
 		--Changes the background during worldgen.
 		self.bg:SetTexture("images/bg_up.xml", "bg_plain.tex")
-		self.bg:SetTint(100, 100, 100, 1)
+		self.bg:SetTint(160, 160, 100, 1)
+		self.bg:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
+		self.bg:SetHRegPoint(GLOBAL.ANCHOR_MIDDLE)
+		self.bg:SetVAnchor(GLOBAL.ANCHOR_MIDDLE)
+		self.bg:SetHAnchor(GLOBAL.ANCHOR_MIDDLE)
+		self.bg:SetScaleMode(GLOBAL.SCALEMODE_FILLSCREEN)	
 		
 		--The shadow hands can be changed.
 		--[[
