@@ -62,32 +62,33 @@ local _M = _M
 _M._modname = _modname
 
 
-function AddToCore(k, v)
-	if _M[k] == nil then
-		_M[k] = v
-	end
+local function SetWickerBooter(booter)
+	package.loaded[_modname .. '.wicker.booter'] = booter
+end
+
+local function SetModBooter(booter)
+	package.loaded[_modname .. '.booter'] = booter
 end
 
 
-do
+VarExists = (function()
 	local function indextable(t, k)
 		return t[k]
 	end
 
-	function VarExists(name, env)
+	return function(name, env)
 		env = env or _G
 
 		local status, val = pcall(indextable, env, name)
 
 		return status and val ~= nil
 	end
-end
+end)()
 
 
 function IsWorldgen()
 	return rawget(_G, "SEED") ~= nil
 end
-
 IsWorldGen = IsWorldgen
 
 
@@ -674,9 +675,17 @@ local function raw_bootstrapper(wicker_stem)
 		return assert( loadmodfile(fname) )()
 	end
 	
+
+	function RegisterModEnvironment(E)
+		SetModBooter(function(env)
+			return BindTable(env, E)
+		end)
+	end
+
 	
 	package.loaded[_NAME] = BindTheCore
-	package.loaded[_modname .. '.booter'] = BindTheCore
+	SetWickerBooter(BindTheCore)
+	SetModBooter(BindTheCore)
 	return BindTheCore
 end
 
