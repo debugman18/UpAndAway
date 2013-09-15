@@ -17,7 +17,7 @@ local assets =
 
 
 local function OnEntityWake(inst)
-    inst.SoundEmitter:PlaySound("dontstarve/bee/bee_hive_LP", "loop")
+    --inst.SoundEmitter:PlaySound("dontstarve/bee/bee_hive_LP", "loop")
 end
 
 local function OnEntitySleep(inst)
@@ -26,10 +26,7 @@ end
 
 local function StartSpawningFn(inst)
 	local fn = function(world)
-		
-		if inst.components.childspawner and GetSeasonManager() and GetSeasonManager():IsSummer() then
-			inst.components.childspawner:StartSpawning()
-		end
+		inst.components.childspawner:StartSpawning()
 	end
 	return fn
 end
@@ -48,7 +45,7 @@ local function OnIgnite(inst)
         inst.components.childspawner:ReleaseAllChildren()
         inst:RemoveComponent("childspawner")
     end
-    inst.SoundEmitter:KillSound("loop")
+    --inst.SoundEmitter:KillSound("loop")
     DefaultBurnFn(inst)
 end
 
@@ -57,7 +54,7 @@ local function OnKilled(inst)
     inst.AnimState:PlayAnimation("cocoon_dead", true)
     inst.Physics:ClearCollisionMask()
     
-    inst.SoundEmitter:KillSound("loop")
+    --inst.SoundEmitter:KillSound("loop")
     
     inst.SoundEmitter:PlaySound("dontstarve/bee/beehive_destroy")
     inst.components.lootdropper:DropLoot(Vector3(inst.Transform:GetWorldPosition()))
@@ -80,7 +77,6 @@ local function fn(Sim)
 	anim:PlayAnimation("cocoon_small", true)
 
     inst:AddTag("structure")
-	inst:AddTag("hive")
     
     -------------------
 	inst:AddComponent("health")
@@ -95,9 +91,6 @@ local function fn(Sim)
 	if GetSeasonManager() and GetSeasonManager():IsSummer() then
 		inst.components.childspawner:StartSpawning()
 	end
-	inst:ListenForEvent("dusktime", StartSpawningFn(inst), GetWorld())
-	inst:ListenForEvent("nighttime", StartSpawningFn(inst), GetWorld())
-	inst:ListenForEvent("daytime", StartSpawningFn(inst), GetWorld())
 	
     ---------------------  
     inst:AddComponent("lootdropper")

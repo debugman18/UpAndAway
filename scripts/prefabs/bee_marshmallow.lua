@@ -1,1 +1,1 @@
-return unpack(require('upandaway.prefabs.bee_marshmallow'))
+return require('upandaway.prefabs.bee_marshmallow')

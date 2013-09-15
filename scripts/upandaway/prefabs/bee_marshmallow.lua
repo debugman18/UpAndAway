@@ -5,18 +5,6 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 
 local beecommon = require "brains/beecommon"
 
-local assets=
-{
-	Asset("ANIM", "anim/bee_marshmallow.zip"),
-	Asset("ANIM", "anim/bee_angry_build.zip"),
-	Asset("SOUND", "sound/bee.fsb"),
-}
-    
-local prefabs =
-{
-	"marshmallow",
-}
-
 local workersounds = 
 {
     takeoff = "dontstarve/bee/bee_takeoff",
@@ -34,6 +22,69 @@ local killersounds =
     hit = "dontstarve/bee/killerbee_hurt",
     death = "dontstarve/bee/killerbee_death",
 }
+
+local assets=
+{
+	Asset("ANIM", "anim/bee_marshmallow.zip"),
+	Asset("ANIM", "anim/bee_angry_build.zip"),
+    Asset("ANIM", "anim/bee_build.zip"),
+    Asset("ANIM", "anim/bee.zip"),
+	Asset("SOUND", "sound/bee.fsb"),
+}
+    
+local prefabs =
+{
+	"marshmallow",
+}
+
+local workerbrain = require("brains/beebrain")
+local killerbrain = require("brains/killerbeebrain")
+
+
+local function KillerRetarget(inst)
+    return FindEntity(inst, 8, function(guy)
+        return (guy:HasTag("character") or guy:HasTag("animal") or guy:HasTag("monster") )
+            and not guy:HasTag("insect")
+            and inst.components.combat:CanTarget(guy)
+    end)
+end
+
+local function onunchargefn(inst)
+  
+    inst.AnimState:SetBank("bee")
+    inst.AnimState:SetBuild("bee_marshmallow")
+    inst.AnimState:PlayAnimation("idle")
+    inst.Transform:SetScale(1, 1, 1)
+    inst.components.health:SetMaxHealth(TUNING.BEE_HEALTH)
+    inst.components.combat:SetDefaultDamage(TUNING.BEE_DAMAGE)
+    inst.components.combat:SetAttackPeriod(TUNING.BEE_ATTACK_PERIOD)
+    inst:AddComponent("pollinator")   
+    inst:SetBrain(workerbrain)
+    inst.sounds = workersounds
+
+    return inst
+end
+
+local function onchargefn(inst) 
+ 
+    inst:AddTag("scarytoprey")
+    inst.AnimState:SetBank("bee")
+    inst.AnimState:SetBuild("bee_marshmallow")
+    inst.AnimState:PlayAnimation("idle")
+    inst.Transform:SetScale(2, 2.6, 2)
+    inst.components.health:SetMaxHealth(TUNING.BEE_HEALTH)
+    inst.components.combat:SetDefaultDamage(TUNING.BEE_DAMAGE)
+    inst.components.combat:SetAttackPeriod(TUNING.BEE_ATTACK_PERIOD)
+    inst.components.combat:SetRetargetFunction(2, KillerRetarget)
+    inst:SetBrain(killerbrain)
+    inst.sounds = killersounds    
+    
+    return inst
+end
+
+local function OnAttacked(inst)
+    print "Test."
+end    
 
 local function OnWorked(inst, worker)
     local owner = inst.components.homeseeker and inst.components.homeseeker.home
@@ -71,16 +122,7 @@ local function OnDropped(inst)
 end
 
 local function OnPickedUp(inst)
-    inst.SoundEmitter:KillSound("buzz")
     inst.sg:GoToState("idle")
-end
-
-local function KillerRetarget(inst)
-    return FindEntity(inst, 8, function(guy)
-        return (guy:HasTag("character") or guy:HasTag("animal") or guy:HasTag("monster") )
-            and not guy:HasTag("insect")
-            and inst.components.combat:CanTarget(guy)
-    end)
 end
 
 local function commonfn()
@@ -93,24 +135,24 @@ local function commonfn()
 	inst.entity:AddDynamicShadow()
 	inst.DynamicShadow:SetSize( .8, .5 )
     inst.Transform:SetFourFaced()
-    
-    
+ 
+    inst.AnimState:SetBank("bee")
+    inst.AnimState:SetBuild("bee_marshmallow")    
+    inst.AnimState:PlayAnimation("idle")
+    inst.AnimState:SetRayTestOnBB(true);
+
     ----------
     
     inst:AddTag("bee")
     inst:AddTag("insect")
     inst:AddTag("hit_panic")
-    inst:AddTag("smallcreature")
+    inst:AddTag("smallcreature") 
    
     MakeCharacterPhysics(inst, 1, .5)
     inst.Physics:SetCollisionGroup(COLLISION.FLYERS)
     inst.Physics:ClearCollisionMask()
     inst.Physics:CollidesWith(COLLISION.WORLD)
     inst.Physics:CollidesWith(COLLISION.FLYERS)
-    
-    inst.AnimState:SetBank("bee")
-    inst.AnimState:PlayAnimation("idle")
-    inst.AnimState:SetRayTestOnBB(true);
     
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
     inst.components.locomotor:EnableGroundSpeedMultiplier(false)
@@ -159,46 +201,16 @@ local function commonfn()
     
     inst:AddComponent("inspectable")
     
-    inst:ListenForEvent("attacked", beecommon.OnAttacked)
-    inst:ListenForEvent("worked", beecommon.OnWorked)
+    inst:ListenForEvent("attacked", OnAttacked)
+    inst:ListenForEvent("worked", OnWorked)
 
-	inst.Transform:SetScale(0.4, 0.4, 1)
+    inst:AddComponent("staticchargeable")
+    inst.components.staticchargeable:SetOnChargeFn(onchargefn)
+    inst.components.staticchargeable:SetOnUnchargeFn(onunchargefn)
 	
+    onunchargefn(inst)
+
     return inst
 end
 
-local workerbrain = require("brains/beebrain")
-local killerbrain = require("brains/killerbeebrain")
-
-local function workerbee()
-    local inst = commonfn()
-    inst:AddTag("worker")
-    inst.AnimState:SetBuild("bee_marshmallow")
-    inst.components.health:SetMaxHealth(TUNING.BEE_HEALTH)
-    inst.components.combat:SetDefaultDamage(TUNING.BEE_DAMAGE)
-    inst.components.combat:SetAttackPeriod(TUNING.BEE_ATTACK_PERIOD)
-	inst:AddComponent("pollinator")
-    
-    inst:SetBrain(workerbrain)
-    inst.sounds = workersounds
-    inst.SoundEmitter:PlaySound(inst.sounds.buzz, "buzz")
-    return inst
-end
-
-local function pufferbee()
-    local inst = commonfn()
-    inst:AddTag("killer")
-    inst:AddTag("scarytoprey")
-    inst.AnimState:SetBuild("bee_angry_build")
-    inst.components.health:SetMaxHealth(TUNING.BEE_HEALTH)
-    inst.components.combat:SetDefaultDamage(TUNING.BEE_DAMAGE)
-    inst.components.combat:SetAttackPeriod(TUNING.BEE_ATTACK_PERIOD)
-    inst.components.combat:SetRetargetFunction(2, KillerRetarget)
-    inst:SetBrain(killerbrain)
-    inst.sounds = killersounds
-    inst.SoundEmitter:PlaySound(inst.sounds.buzz, "buzz")
-    return inst
-end 
-
-return {Prefab( "forest/monsters/bee_marshmallow", workerbee, assets, prefabs),
-       Prefab( "forest/monsters/pufferbee", pufferbee, assets, prefabs)}
+return Prefab( "forest/monsters/bee_marshmallow", commonfn, assets, prefabs)
