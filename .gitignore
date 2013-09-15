@@ -1,3 +1,4 @@
 *.lnk
 **/.git/
 worldgen_log.txt
+rc.lua

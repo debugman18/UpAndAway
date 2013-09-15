@@ -92,7 +92,7 @@ local function UpdateMainScreen(self)
 	self.motd.motdtext:SetPosition(0, -20, 0)
 	self.motd.motdtitle:SetString("Version Information")
 	self.motd.motdtext:EnableWordWrap(true)   
-	self.motd.motdtext:SetString("You are currently using version '" .. CFG.VERSION .. "' of Up and Away. Thank you for testing!")
+	self.motd.motdtext:SetString("You are currently using version '" .. modinfo.version .. "' of Up and Away. Thank you for testing!")
 	
 	--This adds a button to the MOTD.
 	self.motd.button = self.motd:AddChild(ImageButton())

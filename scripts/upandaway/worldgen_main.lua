@@ -23,7 +23,8 @@ modrequire('api_abstractions')()
 
 
 LoadConfiguration "tuning.lua"
-LoadConfiguration "rc.lua"
+LoadConfiguration "rc.defaults.lua"
+if _G.kleifileexists(MODROOT .. "rc.lua") then LoadConfiguration "rc.lua" end
 
 
 ----------------------------------
@@ -62,6 +63,13 @@ LoadConfiguration "rc.lua"
 -----------------------------------
 
 modrequire 'map.tiledefs'
+
+if GetConfig "DISABLE_CUSTOM_TILES" then
+	for _, tilename in ipairs(GetConfig "NEW_TILES") do
+		GROUND[tilename:upper()] = GROUND.ROCKY
+	end
+end
+
 modrequire 'map.layouts'
 modrequire 'map.rooms'
 modrequire 'map.tasks'
