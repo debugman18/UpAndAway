@@ -24,9 +24,6 @@ local _O = _G
 --]]
 _O.ClimbTo = (modrequire 'lib.climbing').ClimbTo
 
+_O.GetStaticGenerator = GetStaticGenerator
 
-function _O.GetStaticGenerator()
-	local world = GetWorld()
-	return world and world.components.staticgenerator
-end
 _O.GetStaticGen = _O.GetStaticGenerator

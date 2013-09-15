@@ -10,6 +10,8 @@ local _modname = assert( (assert(..., 'This file should be loaded through requir
 module( ..., require(_modname .. '.booter') )
 --@@END ENVIRONMENT BOOTUP
 
+
+BindModModule 'modenv'
 -- This just enables syntax conveniences.
 BindTheMod()
 

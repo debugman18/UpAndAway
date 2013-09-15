@@ -17,6 +17,9 @@ local FunctionQueue = wickerrequire 'gadgets.functionqueue'
 local TODO_LIST = FunctionQueue()
 
 
+local ModEnv = modrequire 'modenv'
+
+
 --------------------------------------
 
 
@@ -55,7 +58,7 @@ softresolvefilepath = VarExists("softresolvefilepath") and _G.softresolvefilepat
 	local status, path = pcall(_G.resolvefilepath, name)
 	return status and path or nil
 end
-AddToCore("softresolvefilepath", softresolvefilepath)
+modenv.softresolvefilepath = softresolvefilepath
 
 
 local SetPause = function(...)
@@ -66,8 +69,8 @@ local SetPause = function(...)
 		return _G.SetHUDPause(...)
 	end
 end
-AddToCore("SetPause", SetPause)
-AddToCore("SetHUDPause", SetPause)
+modenv.SetPause = SetPause
+modenv.SetHUDPause = SetPause
 
 
 --------------------------------------
