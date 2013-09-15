@@ -12,12 +12,17 @@ local _modname = assert( (assert(..., 'This file should be loaded through requir
 EOS
 ;
 
-my $bootup_code = $essential_bootup_code . <<EOS
+my $wicker_bootup_code = $essential_bootup_code . <<EOS
+module( ..., require(_modname .. '.wicker.booter') )
+EOS
+;
+
+my $mod_bootup_code = $essential_bootup_code . <<EOS
 module( ..., require(_modname .. '.booter') )
 EOS
 ;
 
-my $global_bootup_code = $essential_bootup_code . <<EOS
+my $mod_global_bootup_code = $essential_bootup_code . <<EOS
 module( ..., package.seeall, require(_modname .. '.booter') )
 EOS
 ;
@@ -27,6 +32,8 @@ my $block_size = 8*1024;
 $ARGV[0] or die $!;
 
 my $scriptname = $ARGV[0];
+
+my $default_mode = $ARGV[1] or "mod";
 
 open SCRIPT, "<", $scriptname or die $!;
 
@@ -38,6 +45,7 @@ my $start_pos = 0;
 my $end_pos = 0;
 my $just_ended = 0;
 my $is_global = 0;
+my $is_wicker = 0;
 
 while(<SCRIPT>) {
 	if( $started and /^\s*--\@\@END (\S+ )?ENVIRONMENT BOOTUP\s*$/ ) {
@@ -53,6 +61,11 @@ while(<SCRIPT>) {
 		$started = 1;
 		$start_pos = tell(SCRIPT);
 		$is_global = 1;
+	} elsif( not $started and /^\s*--\@\@WICKER ENVIRONMENT BOOTUP\s*$/ ) {
+		#print "start wicker match\n";
+		$started = 1;
+		$start_pos = tell(SCRIPT);
+		$is_wicker = 1;
 	} elsif( not $started and /^\s*--\@\@NO ENVIRONMENT BOOTUP\s*$/ ) {
 		#print "disable match\n";
 		$disabled = 1;
@@ -98,14 +111,31 @@ if( $disabled ) {
 } else {
 	if( $started ) {
 		if( $is_global ) {
-			print $temp $global_bootup_code;
-		} else {
-			print $temp $bootup_code;
+			print $temp $mod_global_bootup_code;
+		} elsif( $is_wicker ) {
+			print $temp $wicker_bootup_code;
+		}else {
+			print $temp $mod_bootup_code;
 		}
 	} else {
-		print $temp "--\@\@ENVIRONMENT BOOTUP\n";
-		print $temp $bootup_code;
-		print $temp "--\@\@END ENVIRONMENT BOOTUP\n\n";
+		if( $default eq "mod" ) {
+			print $temp "--\@\@ENVIRONMENT BOOTUP\n";
+			print $temp $mod_bootup_code;
+			print $temp "--\@\@END ENVIRONMENT BOOTUP\n\n";
+		}
+		elsif( $default eq "global" ) {
+			print $temp "--\@\@GLOBAL ENVIRONMENT BOOTUP\n";
+			print $temp $mod_global_bootup_code;
+			print $temp "--\@\@END ENVIRONMENT BOOTUP\n\n";
+		}
+		elsif( $default eq "wicker" ) {
+			print $temp "--\@\@WICKER ENVIRONMENT BOOTUP\n";
+			print $temp $wicker_bootup_code;
+			print $temp "--\@\@END ENVIRONMENT BOOTUP\n\n";
+		}
+		else {
+			die "Invalid default mode $default.";
+		}
 	}
 }
 dump_byte_range($temp, $end_pos, -1);
