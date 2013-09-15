@@ -176,10 +176,12 @@ local function set_stormram(inst)
 		inst:RemoveTag("hostile")
 	end)
 	
+	--[[
 	inst.Light:Enable(true)
 	table.insert(inst.undolist, function(inst)
 		inst.Light:Enable(false)
 	end)
+	]]--
 		
 	inst.DynamicShadow:SetSize(6, 2)
 	
@@ -238,12 +240,14 @@ local function fn()
 	anim:SetBank("beefalo")
 	;(function(color) anim:SetMultColour(color, color, color, 1) end)(0.3 + 0.3*math.random())
 	
+	--[[
 	local light = inst.entity:AddLight()
 	light:SetRadius(2)
 	light:SetFalloff(1)
 	light:SetIntensity(.9)
 	light:SetColour(235/255,121/255,12/255)	
 	light:Enable(false)
+	]]--
 
 	MakeCharacterPhysics(inst, 100, .5)
 	
