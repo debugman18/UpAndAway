@@ -116,7 +116,12 @@ local function fn(Sim)
     inst.components.workable:SetOnFinishCallback(function(inst, worker)
         if worker.components.inventory then
             worker.components.inventory:GiveItem(inst, nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
-            fadeout(inst)
+			--[[
+			-- Does a fading out effect makes sense here?
+			-- Hasn't it been... caught already?
+			--
+            -- fadeout(inst)
+			]]--
         end
     end)
 
