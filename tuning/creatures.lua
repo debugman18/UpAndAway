@@ -24,3 +24,14 @@ RAM.TARGET_DIST= 6
 -- Maximum distance to herd when chasing a target.
 SHEEP.CHASE_DIST = 10
 RAM.CHASE_DIST = 30
+
+
+--[[
+-- Minimum span between lays.
+--]]
+GOOSE.LAY_PERIOD = 120
+
+--[[
+-- Delay after static starts until an egg is laid. May be a function.
+--]]
+GOOSE.LAY_DELAY = function() return 5 + 5*math.random() end

@@ -3,6 +3,15 @@ local _modname = assert( (assert(..., 'This file should be loaded through requir
 module( ..., package.seeall, require(_modname .. '.booter') )
 --@@END ENVIRONMENT BOOTUP
 
+
+local Pred = wickerrequire 'lib.predicates'
+
+local Configurable = wickerrequire 'adjectives.configurable'
+
+
+local cfg = Configurable "GOOSE"
+
+
 local assets=
 {
 	Asset("ANIM", "anim/goose.zip"),
@@ -23,25 +32,53 @@ local loot =
 	"smallmeat",
 }
  
-local function set_eggdrop(inst)
-	local lastegglaid = GLOBAL.GetTime() - 120
-	local now = GLOBAL.GetTime()
-	local isstatic = true
-	if lastegglaid <= now - 120 then		
-		inst:DoTaskInTime(10, function()
-			inst:ListenForEvent("upandaway_uncharge", function(inst)
-				isstatic = false
-			end)	
-			if isstatic == true then
-				lastegglaid = now
-				egg = SpawnPrefab("golden_egg")
-				inst.AnimState:PlayAnimation("lay_egg")
-				egg.Transform:SetPosition(inst.Transform:GetWorldPosition())
-				print "An egg was laid!"
-			end				
-		end)		
+
+--[[
+-- Actually, the "ConditionalTasker" protocomponent I wrote (within wicker)
+-- would suit this perfectly. It's meant precisely for this kind of use.
+--
+-- But since it's overkill atm, I'll hold off on using it.
+--
+-- period is the minimum span of time between lays*.
+-- delay is how long after static started the egg will be laid. It can be a function.
+--
+-- *The actual period will be this value plus the delay.
+--]]
+local function NewEggDropper(period, delay)
+	local lastlay = GetTime() - period
+
+	local task = nil
+
+	local function getdelay()
+		return math.max(1, Pred.IsCallable(delay) and delay() or delay)
 	end
-end 
+
+	local function task_callback(inst)
+		task = nil
+
+		if GetStaticGenerator():IsCharged() then
+			if inst:IsAsleep() then
+				local egg = SpawnPrefab("golden_egg")
+				egg.Transform:SetPosition(inst.Transform:GetWorldPosition())
+				TheMod:DebugSay("[", inst, "] laid [", egg, "]!")
+				lastlay = GetTime()
+			else
+				task = inst:DoTaskInTime(getdelay(), task_callback)
+			end
+		end
+	end
+
+	return function(inst)
+		if task then
+			task:Cancel()
+			task = nil
+		end
+
+		if GetTime() >= lastlay + period then
+			task = inst:DoTaskInTime(getdelay(), task_callback)
+		end
+	end
+end
 
  
 local function fn()
@@ -99,7 +136,7 @@ local function fn()
     MakeMediumFreezableCharacter(inst, "pig_torso")
 	
  	inst:AddComponent("staticchargeable")
- 	inst.components.staticchargeable:SetOnChargeFn(set_eggdrop)
+ 	inst.components.staticchargeable:SetOnChargeFn( NewEggDropper( cfg:GetConfig("LAY_PERIOD"), cfg:GetConfig("LAY_DELAY")) )
 
     return inst
 end
