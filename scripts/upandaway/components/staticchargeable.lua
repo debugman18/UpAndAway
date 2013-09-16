@@ -4,6 +4,8 @@ module( ..., require(_modname .. '.booter') )
 --@@END ENVIRONMENT BOOTUP
 
 
+local Pred = wickerrequire 'lib.predicates'
+
 local Debuggable = wickerrequire 'adjectives.debuggable'
 
 
@@ -20,18 +22,26 @@ local StaticChargeable = Class(Debuggable, function(self, inst)
 
 	self.charged = false
 
+	self.charge_delay = nil
+	self.uncharge_delay = nil
+
+
 	local function charge_callback()
-		local c = inst.components.staticchargeable
-		if inst:IsValid() and c then
-			c:Charge()
-		end
+		inst:DoTaskInTime(self:GetOnChargedDelay() or 0, function(inst)
+			local c = inst.components.staticchargeable
+			if inst:IsValid() and c then
+				c:Charge()
+			end
+		end)
 	end
 
 	local function uncharge_callback()
-		local c = inst.components.staticchargeable
-		if inst:IsValid() and c then
-			c:Uncharge()
-		end
+		inst:DoTaskInTime(self:GetOnUnchargedDelay() or 0, function(inst)
+			local c = inst.components.staticchargeable
+			if inst:IsValid() and c then
+				c:Uncharge()
+			end
+		end)
 	end
 
 	inst:ListenForEvent("upandaway_charge", charge_callback, GetWorld())
@@ -99,12 +109,40 @@ function StaticChargeable:SetOnUnchargedFn(fn)
 	self.onunchargedfn = fn
 end
 
+---
+-- Returns the oncharge delay as a number.
+function StaticChargeable:GetOnChargedDelay()
+	return Pred.IsCallable(self.charge_delay) and self.charge_delay() or self.charge_delay
+end
+
+---
+-- Sets the oncharge delay.
+-- Can be a function.
+function StaticChargeable:SetOnChargedDelay(delay)
+	self.charge_delay = delay
+end
+
+---
+-- Returns the onuncharge delay as a number.
+function StaticChargeable:GetOnUnchargedDelay()
+	return Pred.IsCallable(self.uncharge_delay) and self.uncharge_delay() or self.uncharge_delay
+end
+
+---
+-- Sets the onuncharge delay.
+-- Can be a function.
+function StaticChargeable:SetOnUnchargedDelay(delay)
+	self.uncharge_delay = delay
+end
+
 
 for basic_infix, tbl in pairs(aliases) do
 	for _, access in ipairs{"Get", "Set"} do
-		local primitive = assert( StaticChargeable[access .. basic_infix .. "Fn"] )
-		for _, alias in ipairs(tbl) do
-			StaticChargeable[access .. alias .. "Fn"] = primitive
+		for _, suffix in ipairs{"Fn", "Delay"} do
+			local primitive = assert( StaticChargeable[access .. basic_infix .. suffix] )
+			for _, alias in ipairs(tbl) do
+				StaticChargeable[access .. alias .. suffix] = primitive
+			end
 		end
 	end
 end

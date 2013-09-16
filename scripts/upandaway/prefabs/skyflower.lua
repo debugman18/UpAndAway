@@ -3,6 +3,11 @@ local _modname = assert( (assert(..., 'This file should be loaded through requir
 module( ..., package.seeall, require(_modname .. '.booter') )
 --@@END ENVIRONMENT BOOTUP
 
+
+local Configurable = wickerrequire 'adjectives.configurable'
+local goodcfg = Configurable("SKYFLOWER")
+
+
 local assets=
 {
 	Asset("ANIM", "anim/skyflowers.zip"),
@@ -104,6 +109,8 @@ local function fn(inst)
 	inst:AddComponent("staticchargeable")
 	inst.components.staticchargeable:SetOnChargeFn(onchargefn)
 	inst.components.staticchargeable:SetOnUnchargeFn(onunchargefn)
+	inst.components.staticchargeable:SetOnChargeDelay( goodcfg:GetConfig "CHARGE_DELAY" )
+	inst.components.staticchargeable:SetOnUnchargeDelay( goodcfg:GetConfig "UNCHARGE_DELAY" )
 
     --------SaveLoad
     inst.OnSave = onsave 

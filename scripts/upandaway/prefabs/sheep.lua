@@ -297,6 +297,8 @@ local function fn()
 	inst:AddComponent("staticchargeable")
 	inst.components.staticchargeable:SetOnChargeFn(set_stormram)
 	inst.components.staticchargeable:SetOnUnchargeFn(set_electricsheep)
+	inst.components.staticchargeable:SetOnChargeDelay(CFG.SHEEP.CHARGE_DELAY)
+	inst.components.staticchargeable:SetOnUnchargeDelay(CFG.SHEEP.UNCHARGE_DELAY)
 
 
 	set_electricsheep(inst)

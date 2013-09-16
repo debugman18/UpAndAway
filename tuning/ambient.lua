@@ -26,6 +26,12 @@ CLOUD_AMBIENT.CHARGED_COLOUR = dusk_colour*0.75 --0.6
 CLOUD_AMBIENT.COLOUR_TRANSITION_TIME = 5
 
 
+-- Delay for skyflower -> datura transformation.
+-- Can be a function.
+SKYFLOWER.CHARGE_DELAY = function() return 0.5 + 5*math.random() end
+SKYFLOWER.UNCHARGE_DELAY = SKYFLOWER.CHARGE_DELAY
+
+
 SKYFLYSPAWNER.MAX_FLIES = 5
 -- Range, (min, max)
 SKYFLYSPAWNER.SPAWN_DELAY = {5, 12} --5,12

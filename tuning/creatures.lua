@@ -25,6 +25,12 @@ RAM.TARGET_DIST= 6
 SHEEP.CHASE_DIST = 10
 RAM.CHASE_DIST = 30
 
+-- Delay for sheep -> ram transformation.
+-- Can be a function.
+SHEEP.CHARGE_DELAY = function() return 0.5 + 10*math.random() end
+-- Opposite
+SHEEP.UNCHARGE_DELAY = SHEEP.CHARGE_DELAY
+
 
 --[[
 -- Minimum span between lays.
