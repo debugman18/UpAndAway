@@ -22,7 +22,7 @@ local function dig_up(inst, chopper)
 	if inst.components.pickable and inst.components.pickable:CanBePicked() then
 		inst.components.lootdropper:SpawnLootPrefab("cloud_cotton")
 	end
-	local bush = inst.components.lootdropper:SpawnLootPrefab("dug_marsh_bush")
+	--local bush = inst.components.lootdropper:SpawnLootPrefab("dug_marsh_bush")
 	inst:Remove()
 end
 
