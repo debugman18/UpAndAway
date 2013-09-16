@@ -202,7 +202,6 @@ local function commonfn()
     inst:AddComponent("inspectable")
     
     inst:ListenForEvent("attacked", OnAttacked)
-    inst:ListenForEvent("worked", OnWorked)
 
     inst:AddComponent("staticchargeable")
     inst.components.staticchargeable:SetOnChargeFn(onchargefn)
