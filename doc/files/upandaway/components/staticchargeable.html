@@ -358,8 +358,18 @@
 	</tr>
 
 	<tr>
+	<td class="name" nowrap><a href="#StaticChargeable:GetOnChargedDelay">StaticChargeable:GetOnChargedDelay</a>&nbsp;()</td>
+	<td class="summary">Returns the oncharge delay as a number.</td>
+	</tr>
+
+	<tr>
 	<td class="name" nowrap><a href="#StaticChargeable:GetOnChargedFn">StaticChargeable:GetOnChargedFn</a>&nbsp;(fn)</td>
 	<td class="summary">Returns the oncharge callback.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#StaticChargeable:GetOnUnchargedDelay">StaticChargeable:GetOnUnchargedDelay</a>&nbsp;()</td>
+	<td class="summary">Returns the onuncharge delay as a number.</td>
 	</tr>
 
 	<tr>
@@ -383,8 +393,18 @@
 	</tr>
 
 	<tr>
+	<td class="name" nowrap><a href="#StaticChargeable:SetOnChargedDelay">StaticChargeable:SetOnChargedDelay</a>&nbsp;(delay)</td>
+	<td class="summary">Sets the oncharge delay.</td>
+	</tr>
+
+	<tr>
 	<td class="name" nowrap><a href="#StaticChargeable:SetOnChargedFn">StaticChargeable:SetOnChargedFn</a>&nbsp;(fn)</td>
 	<td class="summary">Sets the oncharge callback.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#StaticChargeable:SetOnUnchargedDelay">StaticChargeable:SetOnUnchargedDelay</a>&nbsp;(delay)</td>
+	<td class="summary">Sets the onuncharge delay.</td>
 	</tr>
 
 	<tr>
@@ -456,6 +476,23 @@ Charges if not already.
 
 
 
+<dt><a name="StaticChargeable:GetOnChargedDelay"></a><strong>StaticChargeable:GetOnChargedDelay</strong>&nbsp;()</dt>
+<dd>
+Returns the oncharge delay as a number.
+
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
 <dt><a name="StaticChargeable:GetOnChargedFn"></a><strong>StaticChargeable:GetOnChargedFn</strong>&nbsp;(fn)</dt>
 <dd>
 Returns the oncharge callback. 
@@ -469,6 +506,23 @@ Returns the oncharge callback.
 	</li>
 	
 </ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="StaticChargeable:GetOnUnchargedDelay"></a><strong>StaticChargeable:GetOnUnchargedDelay</strong>&nbsp;()</dt>
+<dd>
+Returns the onuncharge delay as a number.
+
 
 
 
@@ -568,6 +622,32 @@ Saves the charged state.  Tries to use as little savedata as possible, since we'
 
 
 
+<dt><a name="StaticChargeable:SetOnChargedDelay"></a><strong>StaticChargeable:SetOnChargedDelay</strong>&nbsp;(delay)</dt>
+<dd>
+Sets the oncharge delay. Can be a function.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  delay: 
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
 <dt><a name="StaticChargeable:SetOnChargedFn"></a><strong>StaticChargeable:SetOnChargedFn</strong>&nbsp;(fn)</dt>
 <dd>
 Sets the oncharge callback. 
@@ -578,6 +658,32 @@ Sets the oncharge callback.
 	
 	<li>
 	  fn: 
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="StaticChargeable:SetOnUnchargedDelay"></a><strong>StaticChargeable:SetOnUnchargedDelay</strong>&nbsp;(delay)</dt>
+<dd>
+Sets the onuncharge delay. Can be a function.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  delay: 
 	</li>
 	
 </ul>
