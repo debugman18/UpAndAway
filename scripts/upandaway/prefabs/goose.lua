@@ -28,15 +28,15 @@ local function set_eggdrop(inst)
 	local now = GLOBAL.GetTime()
 	local isstatic = true
 	if lastegglaid <= now - 120 then		
-		inst:DoTaskInTime(30, function()
+		inst:DoTaskInTime(10, function()
 			inst:ListenForEvent("upandaway_uncharge", function(inst)
 				isstatic = false
 			end)	
 			if isstatic == true then
+				lastegglaid = now
 				egg = SpawnPrefab("golden_egg")
 				inst.AnimState:PlayAnimation("lay_egg")
 				egg.Transform:SetPosition(inst.Transform:GetWorldPosition())
-				lastegglaid = now
 				print "An egg was laid!"
 			end				
 		end)		
