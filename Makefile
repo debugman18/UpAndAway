@@ -27,7 +27,6 @@ SCRIPT_DIR:=scripts/$(PROJECT_lc)
 include $(SCRIPT_DIR)/wicker/make/preamble.mk
 
 FILES:=
-
 THEMAIN:=$(SCRIPT_DIR)/main.lua
 FILES+=$(THEMAIN)
 
@@ -61,7 +60,7 @@ GET_BUILD_NAME = $(shell perl -e 'open FH, "<", "anim/$(1)/build.bin" || die $$!
 # Receives a build dir name, as above.
 define GEN_BUILD_TARGET =
 anim/$(call GET_BUILD_NAME,$(1)).zip: anim/$(1)/atlas-0.tex $(filter $(wildcard anim/$(1)/*.bin), anim/$(1)/build.bin anim/$(1)/anim.bin)
-	zip $$@ $$^
+	zip -j $$@ $$^
 
 anim/$(1)/atlas-0.tex: anim/$(1)/atlas-0.png
 	ktech $$< $$@

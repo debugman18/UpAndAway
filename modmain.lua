@@ -8,6 +8,7 @@ local new_tiles = CFG.NEW_TILES
 
 --These assets are for all of the added inventory items.
 local RawAssets = {
+	Asset( "ANIM", "anim/generating_cloud.zip" ),
 
 	Asset( "ATLAS", "images/inventoryimages/skyflower_petals.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/skyflower_petals.tex" ),

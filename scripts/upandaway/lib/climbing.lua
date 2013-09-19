@@ -40,7 +40,7 @@ end
 current_level = start_level - LEVEL_NUMBER_DIRECTION -- We start with an empty interval.
 
 
-local function is_cloud_level_number(level_number)
+function IsCloudLevelNumber(level_number)
 	if not Pred.IsNumber(level_number) then return false end
 
 	if LEVEL_NUMBER_DIRECTION > 0 then
@@ -82,7 +82,7 @@ end
 
 -- Maps a cave level number to its height.
 local function level_to_height(lvl)
-	if is_cloud_level_number(lvl) then
+	if IsCloudLevelNumber(lvl) then
 		return 1 + (lvl - start_level)*LEVEL_NUMBER_DIRECTION
 	elseif Pred.IsNumber(lvl) then
 		return -lvl

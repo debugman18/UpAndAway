@@ -152,11 +152,17 @@ end
 AddClassPostConstruct("screens/mainscreen", UpdateMainScreen)
 	
 --This gives us custom worldgen screens.	
-local function UpdateWorldGenScreen(self)
+local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
 	--Check for cloudrealm.	"cloudrealm"
-	local Pred = wickerrequire 'lib.predicates'
+	local Climbing = modrequire 'lib.climbing'
 
-	if Pred.IsCloudLevel() then
+	DebugSay "update worldgen!"
+
+	-- The old version only worked for the 1st save slot, because
+	-- there's no selected slot in the SaveIndex when this runs.
+	if Climbing.IsCloudLevelNumber(world_gen_options.level_world) then
+
+		DebugSay "update worldgen passed!"
 		
 		--Changes the background during worldgen.
 		self.bg:SetTexture("images/bg_gen.xml", "bg_plain.tex")
@@ -220,11 +226,9 @@ local function UpdateWorldGenScreen(self)
 		}	
 	
 		--We can replace the worldgen animation and strings.
-		--self.worldanim:GetAnimState():SetBuild("generating_cave")
-		--self.worldanim:GetAnimState():SetBank("generating_cloudrealm")
-		
-		self.worldanim:GetAnimState():SetBuild("generating_world")
-		self.worldanim:GetAnimState():SetBank("generating_world")
+		self.worldanim:GetAnimState():SetBank("generating_cave")
+		self.worldanim:GetAnimState():SetBuild("generating_cloud")
+		self.worldanim:GetAnimState():PlayAnimation("idle", true)
 		
 		self.worldgentext:SetString("GROWING BEANSTALK")	
 		self.verbs = GLOBAL.shuffleArray(STRINGS.UPUI.CLOUDGEN.VERBS)
@@ -233,7 +237,27 @@ local function UpdateWorldGenScreen(self)
 	end
 end
 
-AddClassPostConstruct("screens/worldgenscreen", UpdateWorldGenScreen)
+--AddClassPostConstruct("screens/worldgenscreen", UpdateWorldGenScreen)
+
+--[[
+-- This is quite ugly, but we need the ctor parameters.
+--]]
+do
+	local WorldGenScreen = require "screens/worldgenscreen"
+	local mt = getmetatable(WorldGenScreen)
+
+	local old_ctor = WorldGenScreen._ctor
+	WorldGenScreen._ctor = function(...)
+		old_ctor(...)
+		UpdateWorldGenScreen(...)
+	end
+	local old_call = mt.__call
+	mt.__call = function(class, ...)
+		local self = old_call(class, ...)
+		UpdateWorldGenScreen(self, ...)
+		return self
+	end
+end
 
 --Changes "activate" to "talk to" for "shopkeeper".
 AddSimPostInit(function(inst)
