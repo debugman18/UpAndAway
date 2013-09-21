@@ -114,6 +114,8 @@ TheMod:AddLevel(LEVELTYPE.ADVENTURE, adventure_sky_level_1)
 local cave_sky_level_1 = DeepCopy(sky_level_1)
 TheMod:AddCloudLevel(cave_sky_level_1)
 
+--[[
+--I'm not sure we will want/need this in the future. With ClimbTo(), this is obsolete.
 
 --This is the preset for testing purposes.
 
@@ -123,3 +125,4 @@ local survival_sky_level_1 = DeepCopy(sky_level_1)
 table.TrimArray(survival_sky_level_1.overrides, function(v) return v[1] ~= "start_setpeice" end)
 
 TheMod:AddLevel(LEVELTYPE.SURVIVAL, survival_sky_level_1)
+--]]
