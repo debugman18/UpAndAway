@@ -31,6 +31,11 @@ SHEEP.CHARGE_DELAY = function() return 0.5 + 10*math.random() end
 -- Opposite
 SHEEP.UNCHARGE_DELAY = SHEEP.CHARGE_DELAY
 
+-- Owl tuning.
+OWL.HEALTH = 250
+OWL.DEFEND_DIST = 3
+OWL.DAMAGE = 6
+OWL.ATTACK_PERIOD = .7
 
 --[[
 -- Minimum span between lays.

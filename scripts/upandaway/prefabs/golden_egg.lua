@@ -27,13 +27,9 @@ local function fn(Sim)
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
-	inst:AddComponent("perishable")
-	inst.components.perishable:SetPerishTime(5)
 	inst:ListenForEvent("upandaway_uncharge", function()
 		inst.components.perishable:StartPerishing()
 	end)
-	
-	inst.components.perishable.onperishreplacement = "rottenegg"	
 	
 	inst:AddComponent("inspectable")
 

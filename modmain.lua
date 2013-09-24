@@ -79,8 +79,6 @@ local RawAssets = {
 	--Asset("ATLAS", "modicon.xml"),
 	--Asset("IMAGE", "modicon.tex"),
 	
-	--Asset("ANIM",  "anim/main_up.zip"),
-	
 	Asset("ATLAS", "images/uppanels.xml"),		
 	Asset("IMAGE", "images/uppanels.tex"),	
 
@@ -120,11 +118,14 @@ local RawPrefabFiles = {
 	"goose",	
 	"longbill",
 	
-	--"crystal_deposit",
+	--"crystal_water",
+	--"crystal_quartz",
+
 	--"crystal_shard",
 	--"crystal_moss",
 	--"crystal_wall",	
-	--"crystal_cap",
+	--"crystal_crown",
+
 	--"crystal_lamp",	
 	
 	--"golden_sunflower",

@@ -1,0 +1,1 @@
+Building 'C:\Program Files (x86)\Steam\SteamApps\common\Don't Starve Mod Tools\mod_tools\..\..\dont_starve\mods\UpAndAway/exported\sky_octopus\build.scml'.
