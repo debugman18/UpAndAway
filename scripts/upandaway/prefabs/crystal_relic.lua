@@ -30,6 +30,72 @@ local function onhammered(inst, worker)
 	inst:Remove()	
 end
 
+local function OnActivate(inst)
+	inst.components.resurrector.active = true
+	inst.SoundEmitter:PlaySound("dontstarve/common/resurrectionstone_activate")
+
+	inst.components.resurrector:OnBuilt()
+end
+
+local function doresurrect(inst, dude)
+	inst:AddTag("busy")	
+	inst.MiniMapEntity:SetEnabled(false)
+    if inst.Physics then
+		MakeInventoryPhysics(inst) -- collides with world, but not character
+    end
+
+	GetClock():MakeNextDay()
+    dude.Transform:SetPosition(inst.Transform:GetWorldPosition())
+    dude:Hide()
+    TheCamera:SetDistance(12)
+
+    scheduler:ExecuteInTime(3, function()
+        dude:Show()
+        --inst:Hide()
+
+        GetSeasonManager():DoLightningStrike(Vector3(inst.Transform:GetWorldPosition()))
+
+
+		inst.SoundEmitter:PlaySound("dontstarve/common/resurrectionstone_break")
+        --inst.components.lootdropper:DropLoot()
+        inst:Remove()
+        
+        if dude.components.hunger then
+            dude.components.hunger:SetPercent(2/3)
+        end
+
+        if dude.components.health then
+            dude.components.health:Respawn(TUNING.RESURRECT_HEALTH)
+        end
+        
+        if dude.components.sanity then
+			dude.components.sanity:SetPercent(.5)
+        end
+        
+        dude.sg:GoToState("wakeup")
+        
+        dude:DoTaskInTime(3, function(inst) 
+		            if dude.HUD then
+		                dude.HUD:Show()
+		            end
+		            TheCamera:SetDefault()
+		            inst:RemoveTag("busy")
+
+			--SaveGameIndex:SaveCurrent(function()
+			--	end)            
+        end)
+        
+    end)
+end
+
+local function makeactive(inst)
+	--inst.AnimState:PlayAnimation("idle_activate", true)
+	inst.components.activatable.inactive = false
+end
+
+local function makeused(inst)
+	--inst.AnimState:PlayAnimation("idle_broken", true)
+end
 
 local function onhit(inst, worker)
     if inst.components.childspawner then
@@ -107,17 +173,17 @@ local function fn()
 	inst.components.childspawner:SetSpawnPeriod(10)
 	inst.components.childspawner:SetMaxChildren(5)
 
-	inst:ListenForEvent("dusktime", function() 
-	    if GetSeasonManager() and not GetSeasonManager():IsWinter() then
-		    inst.components.childspawner:ReleaseAllChildren()
-		end
-		StartSpawning(inst)
-	end, GetWorld())
-	inst:ListenForEvent("daytime", function() StopSpawning(inst) end , GetWorld())
-	StartSpawning(inst)
+	inst:AddComponent("resurrector")
+	inst.components.resurrector.makeactivefn = makeactive
+	inst.components.resurrector.makeusedfn = makeused
+	inst.components.resurrector.doresurrect = doresurrect
 
+	inst:AddComponent("activatable")
+	inst.components.activatable.OnActivate = OnActivate
+	inst.components.activatable.inactive = true
 
     inst:AddComponent("inspectable")
+    inst.components.inspectable.nameoverride = "Sacred Crystal"
 	
 	MakeSnowCovered(inst, .01)
     return inst
