@@ -6,8 +6,11 @@ local CFG = TUNING.UPANDAWAY
 local new_tiles = CFG.NEW_TILES
 
 
---These assets are for all of the added inventory items.
+--These assets are for everything.
 local RawAssets = {
+	--Asset("SOUNDPACKAGE", "sound/music_mod.fev"),
+	--Asset("SOUND", "sound/music_mod.fsb"),
+
 	Asset( "ANIM", "anim/generating_cloud.zip" ),
 
 	Asset( "ATLAS", "images/inventoryimages/skyflower_petals.xml" ),
@@ -181,6 +184,8 @@ local RawPrefabFiles = {
 	--"cotton_vest",
 	"lionblob",
 }
+
+--RemapSoundEvent("dontstarve/music/music_FE", "upandaway/music/music_FE")
 
 local new_tiles = CFG.NEW_TILES
 

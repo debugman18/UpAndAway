@@ -89,7 +89,8 @@ local sky_level_1 = {
 	},
 	
 	tasks = {
-		"Explore the Realm",
+		"Cloud_Generic_Biome",
+		"Cloud_Aurora_Biome",
 	},
 	
 	numoptionaltasks = 0,
@@ -97,7 +98,23 @@ local sky_level_1 = {
 	},
 	
 	set_pieces = {
+		["TestBeanstalk"] = { count=10, tasks={"Cloud_Generic_Biome"} },	
 	},
+
+	ordered_story_setpieces = {
+		--"TeleportatoRingLayout",
+		--"TeleportatoBoxLayout",
+		--"TeleportatoCrankLayout",
+		--"TeleportatoPotatoLayout",
+		--"AdventurePortalLayout",
+		--"TeleportatoBaseLayout",
+	},
+
+	required_prefabs = {
+		--"crystal_relic",  
+		"goose",
+	},
+
 }
 
 

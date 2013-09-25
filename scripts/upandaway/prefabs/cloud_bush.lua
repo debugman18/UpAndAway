@@ -28,7 +28,7 @@ end
 
 local function onpickedfn(inst, picker)
 	inst.AnimState:PlayAnimation("picking") 
-	inst.AnimState:PushAnimation("empty")
+	inst.AnimState:PushAnimation("idle")
 	
 	if picker.components.combat then
         picker.components.combat:GetAttacked(nil, 2)
@@ -36,7 +36,7 @@ local function onpickedfn(inst, picker)
 end
 
 local function makeemptyfn(inst)
-	inst.AnimState:PlayAnimation("empty")
+	inst.AnimState:PlayAnimation("idle")
 end
 
 

@@ -130,6 +130,8 @@ local function fn()
     inst:AddComponent("inventory")
     
     inst:AddComponent("inspectable")
+    inst.components.inspectable.nameoverride = "Strix"
+
     inst:AddComponent("knownlocations")
     
     MakeMediumBurnableCharacter(inst, "pig_torso")

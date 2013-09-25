@@ -10,3 +10,4 @@ local Layouts = require("map/layouts").Layouts
 local StaticLayout = require("map/static_layout")
 
 Layouts["BeanstalkTop"] = StaticLayout.Get("map.static_layouts.beanstalk_top")
+Layouts["TestBeanstalk"] = StaticLayout.Get("map.static_layouts.test_beanstalk")

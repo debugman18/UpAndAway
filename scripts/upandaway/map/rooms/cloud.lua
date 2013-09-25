@@ -85,6 +85,18 @@ TheMod:AddRoom("MarshmallowFields", {
 	},
 })
 
+TheMod:AddRoom("Aurora_Room", {
+	colour={r=.4,g=.2,b=.5,a=1},
+	value = GROUND.POOPCLOUD,
+	contents = {
+		distributepercent = 0.1,
+		distributeprefabs = {
+			hive_marshmallow = 1,
+			bee_marshmallow = 0.2,
+		},
+	},
+})
+
 TheMod:AddRoom("CragLanding", {
 	colour={r=.6,g=.7,b=.4,a=1},
 	value = GROUND.POOPCLOUD,
