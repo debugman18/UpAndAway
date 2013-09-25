@@ -13,6 +13,8 @@ local prefabs =
 	"owl",
 }
 
+local CFG = TheMod:GetConfig()
+
 local loot = 
 {
     "boards",

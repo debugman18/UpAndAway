@@ -3,6 +3,8 @@ local _modname = assert( (assert(..., 'This file should be loaded through requir
 module( ..., package.seeall, require(_modname .. '.booter') )
 --@@END ENVIRONMENT BOOTUP
 
+local CFG = TheMod:GetConfig()
+
 local assets=
 {
 	Asset("ANIM", "anim/merm_build.zip"),

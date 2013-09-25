@@ -111,7 +111,7 @@ local sky_level_1 = {
 	},
 
 	required_prefabs = {
-		--"crystal_relic",  
+		"crystal_relic",  
 		"goose",
 	},
 

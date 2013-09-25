@@ -86,3 +86,4 @@ TRANSLATE_TO_PREFABS["bee_marshmallow"] = {"bee_marshmallow"}
 TRANSLATE_TO_PREFABS["goose"] = {"goose"}
 TRANSLATE_TO_PREFABS["cloudcrag"] = {"cloudcrag"}
 TRANSLATE_TO_PREFABS["skyflies"] = {"skyflies"}
+TRANSLATE_TO_PREFABS["crystal_relic"] = {"crystal_relic"}

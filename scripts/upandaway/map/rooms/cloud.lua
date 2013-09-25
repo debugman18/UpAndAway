@@ -93,6 +93,7 @@ TheMod:AddRoom("Aurora_Room", {
 		distributeprefabs = {
 			hive_marshmallow = 1,
 			bee_marshmallow = 0.2,
+			crystal_relic = 0.05
 		},
 	},
 })
