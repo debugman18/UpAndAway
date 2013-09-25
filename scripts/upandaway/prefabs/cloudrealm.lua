@@ -101,6 +101,9 @@ local custom_prefabs = {
 	"skyflies",
 	
 	"antlion",
+	"owl",
+	"crystal_relic",
+	"duckraptor",
 
 	"golden_egg",
 }

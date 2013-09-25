@@ -14,6 +14,18 @@ local assets=
     Asset("SOUND", "sound/perd.fsb"),    
 }
 
+local function retargetfn(inst)
+    local entity = FindEntity(inst, TUNING.SHADOWCREATURE_TARGET_DIST, function(guy) 
+        return guy:HasTag("player") and inst.components.combat:CanTarget(guy)
+    end)
+    return entity
+end
+
+local function OnAttacked(inst, data)
+    inst.components.combat:SetTarget(data.attacker)
+    inst.components.combat:ShareTarget(data.attacker, 30, function(dude) return dude:HasTag("shadowcreature") and not dude.components.health:IsDead() end, 1)
+end
+
 local function fn(Sim)
     local inst = CreateEntity()
     local trans = inst.entity:AddTransform()
@@ -29,8 +41,8 @@ local function fn(Sim)
     anim:SetBuild("duckraptor")  -- name of the file 
 
     inst:AddComponent("locomotor")
-    inst.components.locomotor.runspeed = 10
-    inst.components.locomotor.walkspeed = 4
+    inst.components.locomotor.runspeed = 11
+    inst.components.locomotor.walkspeed = 8
     
     --inst:SetStateGraph(SGgoose")
     inst:SetStateGraph("SGperd")
@@ -40,7 +52,7 @@ local function fn(Sim)
 
     inst:AddComponent("homeseeker")
     --local brain = require "brains/goosebrain"
-    local brain = require "brains/perdbrain"
+    local brain = require "brains/shadowcreaturebrain"
     inst:SetBrain(brain)
     
     inst:AddComponent("eater")
@@ -48,14 +60,15 @@ local function fn(Sim)
     
     inst:AddComponent("sleeper")
     inst.components.sleeper:SetWakeTest( function() return true end)    --always wake up if we're asleep
-
-    inst:AddComponent("combat")
-    inst.components.combat.hiteffectsymbol = "pig_torso"
     
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(40)
-    inst.components.combat:SetDefaultDamage(TUNING.PERD_DAMAGE)
-    inst.components.combat:SetAttackPeriod(TUNING.PERD_ATTACK_PERIOD)
+
+    inst:AddComponent("combat")
+    inst.components.combat.hiteffectsymbol = "pig_torso"
+    inst.components.combat:SetRetargetFunction(3, retargetfn)    
+    inst.components.combat:SetDefaultDamage(20)
+    inst.components.combat:SetAttackPeriod(.8)
 
     inst:AddComponent("lootdropper")
     --inst.components.lootdropper:SetLoot(loot)

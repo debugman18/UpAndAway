@@ -98,11 +98,8 @@ local function makeused(inst)
 end
 
 local function onhit(inst, worker)
-    if inst.components.childspawner then
-        inst.components.childspawner:ReleaseAllChildren(worker)
-    end
-	inst.AnimState:PlayAnimation("hit_rundown")
-	inst.AnimState:PushAnimation("rundown")
+	--inst.AnimState:PlayAnimation("hit_rundown")
+	--inst.AnimState:PushAnimation("rundown")
 
 	inst.thief = worker
 	inst.components.childspawner.noregen = true
@@ -159,6 +156,7 @@ local function fn()
     inst:AddTag("structure")
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot(loot)
+    
 	inst:AddComponent("workable")
 	inst.components.workable:SetWorkAction(ACTIONS.MINE)
 	inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE)

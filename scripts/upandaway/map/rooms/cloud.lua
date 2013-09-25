@@ -4,7 +4,7 @@ module( ..., require(_modname .. '.booter') )
 --@@END ENVIRONMENT BOOTUP
 
 TheMod:AddRoom("BGCloud", {
-	colour={r=.6,g=.6,b=.7,a=1},
+	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
 		distributepercent = 0.1,
@@ -16,7 +16,7 @@ TheMod:AddRoom("BGCloud", {
 })
 
 TheMod:AddRoom("BeanstalkSpawn", {
-	colour={r=.7,g=.7,b=.8,a=1},
+	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
 	contents =  {
 		distributepercent = 0.2,
@@ -29,7 +29,7 @@ TheMod:AddRoom("BeanstalkSpawn", {
 })
 
 TheMod:AddRoom("SkyflowerGarden", {
-	colour={r=.4,g=.7,b=.4,a=1},
+	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
 		distributepercent = 0.4,
@@ -40,7 +40,7 @@ TheMod:AddRoom("SkyflowerGarden", {
 })
 
 TheMod:AddRoom("SheepHerd", {
-	colour={r=.7,g=.7,b=.5,a=1},
+	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
 		distributepercent = 0.08,
@@ -52,7 +52,7 @@ TheMod:AddRoom("SheepHerd", {
 })
 
 TheMod:AddRoom("GooseChase", {
-	colour={r=.2,g=.2,b=.5,a=1},
+	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
 		distributepercent = 0.1,
@@ -63,7 +63,7 @@ TheMod:AddRoom("GooseChase", {
 })
 
 TheMod:AddRoom("BushGarden", {
-	colour={r=.2,g=.4,b=.5,a=1},
+	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
 		distributepercent = 0.2,
@@ -74,7 +74,7 @@ TheMod:AddRoom("BushGarden", {
 })
 
 TheMod:AddRoom("MarshmallowFields", {
-	colour={r=.4,g=.2,b=.5,a=1},
+	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
 		distributepercent = 0.1,
@@ -86,7 +86,7 @@ TheMod:AddRoom("MarshmallowFields", {
 })
 
 TheMod:AddRoom("Aurora_Room", {
-	colour={r=.4,g=.2,b=.5,a=1},
+	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
 		distributepercent = 0.1,
@@ -99,7 +99,7 @@ TheMod:AddRoom("Aurora_Room", {
 })
 
 TheMod:AddRoom("CragLanding", {
-	colour={r=.6,g=.7,b=.4,a=1},
+	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
 		distributepercent = 0.1,

@@ -30,6 +30,7 @@ Add.Names {
 	crystal_lamp = "Crystal Lamp",
 	crystal_moss = "Crystal Moss",
 	crystal_pickaxe = "Crystal Pickaxe",
+	crystal_relic = "Crystal Relic",
 	crystal_shard = "Crystal Shard",
 	crystal_shovel = "Crystal Shovel",
 	crystal_wall = "Crystal Wall",
@@ -56,7 +57,7 @@ Add.Names {
 	monolith = "Monolith", 
 	moonflower = "Moonflower",
 	moonflower_seeds = "Moonflower Seeds",
-	owl = "Owl", --
+	owl = "Strix", --
 	pineapple_bush = "Pineapple Bush", 
 	pineapple_fruit = "Pineapple",
 	research_lectern = "Research Lectern",

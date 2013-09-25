@@ -36,7 +36,7 @@ local function onpickedfn(inst, picker)
 end
 
 local function makeemptyfn(inst)
-	inst.AnimState:PlayAnimation("idle")
+	inst.AnimState:PlayAnimation("empty")
 end
 
 
@@ -47,7 +47,7 @@ local function onunchargedfn(inst)
 	anim:PlayAnimation("berries_more")
 	anim:PushAnimation("berries", true)
 	anim:PushAnimation("idle", true)
-	anim:PushAnimation("idle_dead", true)
+	anim:PlayAnimation("idle_dead", true)
 end
 
 local function onchargedfn(inst)
