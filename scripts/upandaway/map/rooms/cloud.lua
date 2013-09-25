@@ -10,7 +10,6 @@ TheMod:AddRoom("BGCloud", {
 		distributepercent = 0.1,
 		distributeprefabs = {
 			skyflower = 1,
-			--sheep = 0.1,
 		},
 	}
 })
@@ -23,7 +22,6 @@ TheMod:AddRoom("BeanstalkSpawn", {
 		distributeprefabs = {
 			skeleton = 0.1,
 			skyflower = 5,
-			--sheep = 0.3,
 		}
 	}
 })
@@ -32,9 +30,11 @@ TheMod:AddRoom("SkyflowerGarden", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
-		distributepercent = 0.4,
+		distributepercent = 0.5,
 		distributeprefabs = {
 			skyflower = 1,
+			thunder_tree = 0.5,
+			crystal_relic = 0.01,
 		},
 	},
 })
@@ -43,21 +43,10 @@ TheMod:AddRoom("SheepHerd", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
-		distributepercent = 0.08,
+		distributepercent = 0.25,
 		distributeprefabs = {
 			sheep = 1,
 			skyflower = 0.1,
-		},
-	},
-})
-
-TheMod:AddRoom("GooseChase", {
-	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.POOPCLOUD,
-	contents = {
-		distributepercent = 0.1,
-		distributeprefabs = {
-			goose = 0.2,
 		},
 	},
 })
@@ -68,32 +57,31 @@ TheMod:AddRoom("BushGarden", {
 	contents = {
 		distributepercent = 0.2,
 		distributeprefabs = {
+			thunder_tree = 0.3,
 			cloud_bush = 1,
-		},
-	},
-})
-
-TheMod:AddRoom("MarshmallowFields", {
-	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.POOPCLOUD,
-	contents = {
-		distributepercent = 0.1,
-		distributeprefabs = {
-			hive_marshmallow = 1,
-			bee_marshmallow = 0.2,
 		},
 	},
 })
 
 TheMod:AddRoom("Aurora_Room", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.POOPCLOUD,
+	value = GROUND.MARSH,
 	contents = {
 		distributepercent = 0.1,
 		distributeprefabs = {
 			hive_marshmallow = 1,
 			bee_marshmallow = 0.2,
-			crystal_relic = 0.05
+		},
+	},
+})
+
+TheMod:AddRoom("Vine_Room", {
+	colour={r=.2,g=.2,b=.2,a=1},
+	value = GROUND.GRASS,
+	contents = {
+		distributepercent = 0.1,
+		distributeprefabs = {
+			vine = 0.6,
 		},
 	},
 })
@@ -105,7 +93,7 @@ TheMod:AddRoom("CragLanding", {
 		distributepercent = 0.1,
 		distributeprefabs = {
 			cloudcrag = 1,
-			goose = 0.05
+			goose = 0.01
 		},
 	},
 })

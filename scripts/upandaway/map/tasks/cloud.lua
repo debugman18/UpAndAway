@@ -10,15 +10,16 @@ TheMod:AddTask("Cloud_Generic_Biome", {
 
 	room_choices={
 		--["BGCloud"] = math.random(2),
-		["SkyflowerGarden"] = math.random(2, 4),
+		["SkyflowerGarden"] = math.random(1, 4),
 		["SheepHerd"] = math.random(2, 3),
 		["BushGarden"] = math.random(2, 4),	
-		["CragLanding"] = math.random(2,4),
+		["CragLanding"] = math.random(1,1),
+		["Vine_Room"] = math.random(1,1),
 	},
 
 	room_bg=GROUND.POOPCLOUD,
 	background_room="BGCloud",
-	colour={r=.8,g=.8,b=.8,a=1},
+	colour={r=.2,g=.2,b=.2,a=1},
 })
 
 TheMod:AddTask("Cloud_Aurora_Biome", {
@@ -27,7 +28,7 @@ TheMod:AddTask("Cloud_Aurora_Biome", {
 
 	room_choices={
 		--["BGCloud"] = math.random(2),
-		["Aurora_Room"] = math.random(2, 4),
+		["Aurora_Room"] = math.random(4, 4),
 	},
 
 	room_bg=GROUND.POOPCLOUD,

@@ -49,7 +49,6 @@ local function fn(Sim)
     inst:AddTag("monster")    
     inst:AddTag("hostile")
     inst:AddTag("eel")
-    --inst:AddTag("WORM_DANGER")
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.TENTACLE_HEALTH)
@@ -82,4 +81,4 @@ local function fn(Sim)
     return inst
 end
 
-return Prefab( "marsh/monsters/aetheel", fn, assets, prefabs) 
+return Prefab("cloudrealm/monsters/vine", fn, assets, prefabs) 

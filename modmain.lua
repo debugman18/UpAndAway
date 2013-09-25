@@ -107,7 +107,8 @@ local RawPrefabFiles = {
 	
 	"shopkeeper",
 	"sheep",	
-	"aetheel",
+
+	"vine",
 
 	"bee_marshmallow",
 	"hive_marshmallow",
@@ -139,8 +140,11 @@ local RawPrefabFiles = {
 	
 	"skyflower",
 	"skyflower_petals",
+
 	"beanstalk",
 	"beanstalk_exit",
+
+	"thunder_tree",
 	
 	--"beanstalk_wall",	
 	

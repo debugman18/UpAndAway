@@ -47,8 +47,6 @@ local essential_assets =
     Asset("ANIM", "anim/splash_ocean.zip"),
     Asset("ANIM", "anim/frozen.zip"),
 
-	Asset("IMAGE", "images/cloudwave.tex"),
-
     Asset("SOUND", "sound/forest_stream.fsb"),
     Asset("SOUND", "sound/cave_AMB.fsb"),
     Asset("SOUND", "sound/cave_mem.fsb"),
@@ -68,10 +66,11 @@ local essential_prefabs =
 
 
 local custom_assets = {
-
+    Asset("IMAGE", "images/cloudwave.tex"), 
 }
 
 local custom_prefabs = {
+	"vine",
 	"beanstalk",
 	"beanstalk_exit",
 	"beanstalk_chunk",
