@@ -104,6 +104,7 @@ TheMod:AddRoom("CragLanding", {
 		distributepercent = 0.1,
 		distributeprefabs = {
 			cloudcrag = 1,
+			goose = 0.05
 		},
 	},
 })

@@ -183,6 +183,9 @@ local RawPrefabFiles = {
 	--"cotton_candy",
 	--"cotton_vest",
 	"lionblob",
+
+	"owl",
+	"crystal_relic",
 }
 
 --RemapSoundEvent("dontstarve/music/music_FE", "upandaway/music/music_FE")
