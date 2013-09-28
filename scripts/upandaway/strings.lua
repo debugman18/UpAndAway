@@ -107,7 +107,7 @@ Add.Names {
 
     pineapple_fruit = "Pineapple",
 
-    rainbowcoon = "Rainbowcoon"
+    rainbowcoon = "Rainbowcoon",
 
     research_lectern = "Cumulocator Station",
 
