@@ -34,7 +34,7 @@ local function OnActivate(inst)
 	inst.components.resurrector.active = true
 	inst.SoundEmitter:PlaySound("dontstarve/common/resurrectionstone_activate")
 
-	inst.components.resurrector:OnBuilt()
+	--inst.components.resurrector:OnBuilt()
 end
 
 local function doresurrect(inst, dude)

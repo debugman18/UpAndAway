@@ -45,8 +45,8 @@ local sky_level_1 = {
 	overrides={
 		{"location",		"cave"},
 
-		--{"world_size", 		"huge"},
-		{"world_size", 		"tiny"},
+		{"world_size", 		"huge"},
+		--{"world_size", 		"tiny"},
 		{"day", 			"onlydusk"}, 
 		{"waves", 			"on"},
 		{"branching",		"never"},
