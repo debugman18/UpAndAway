@@ -15,11 +15,13 @@
         <file id="11" name="propeller2.png" width="1129" height="619" pivot_x="0" pivot_y="1"/>
         <file id="12" name="eyes2.png" width="350" height="70" pivot_x="0" pivot_y="1"/>
         <file id="13" name="test_spriter_head_back.png" width="685" height="591" pivot_x="0" pivot_y="1"/>
-        <file id="14" name="test_spriter_head_side.png" width="685" height="591" pivot_x="0" pivot_y="1"/>
-        <file id="15" name="test_spriter_tentacle5.png" width="486" height="690" pivot_x="0" pivot_y="1"/>
-        <file id="16" name="eyes3.png" width="350" height="70" pivot_x="0" pivot_y="1"/>
-        <file id="17" name="test_spriter_tentacle6.png" width="321" height="539" pivot_x="0" pivot_y="1"/>
-        <file id="18" name="test_spriter_head_side_eyeclosed.png" width="685" height="591" pivot_x="0" pivot_y="1"/>
+        <file id="14" name="pngB5E.tmp" width="181" height="491" pivot_x="0" pivot_y="1"/>
+        <file id="15" name="test_spriter_head_side.png" width="685" height="591" pivot_x="0" pivot_y="1"/>
+        <file id="16" name="test_spriter_tentacle5.png" width="486" height="690" pivot_x="0" pivot_y="1"/>
+        <file id="17" name="eyes3.png" width="350" height="70" pivot_x="0" pivot_y="1"/>
+        <file id="18" name="pngF17.tmp" width="321" height="539" pivot_x="0" pivot_y="1"/>
+        <file id="19" name="test_spriter_tentacle6.png" width="321" height="539" pivot_x="0" pivot_y="1"/>
+        <file id="20" name="test_spriter_head_side_eyeclosed.png" width="685" height="591" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="bank">
         <animation id="0" name="idle" length="4000">
