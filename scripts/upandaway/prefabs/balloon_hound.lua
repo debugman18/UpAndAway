@@ -5,7 +5,8 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/hound_basic.zip"),
+	Asset("ANIM", "anim/hound.zip"),
 }
 
 local function fn(Sim)
@@ -15,12 +16,9 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("marble")
-	inst.AnimState:PlayAnimation("anim")
-
-	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+	inst.AnimState:SetBank("hound")
+	inst.AnimState:SetBuild("hound")
+	inst.AnimState:PlayAnimation("idle")
 
 	inst:AddComponent("inspectable")
 
@@ -29,4 +27,4 @@ local function fn(Sim)
 	return inst
 end
 
-return Prefab ("common/inventory/beanstalk_chunk", fn, assets) 
+return Prefab ("common/inventory/balloon_hound", fn, assets) 

@@ -1,0 +1,1 @@
+return require('upandaway.prefabs.flying_fish_pond')

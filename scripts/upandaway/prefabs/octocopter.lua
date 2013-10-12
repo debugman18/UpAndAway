@@ -15,9 +15,9 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("marble")
-	inst.AnimState:PlayAnimation("anim")
+	inst.AnimState:SetBank("sky_octopus")
+	inst.AnimState:SetBuild("sky_octopus")
+	inst.AnimState:PlayAnimation("idle")
 
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
@@ -29,4 +29,4 @@ local function fn(Sim)
 	return inst
 end
 
-return Prefab ("common/inventory/beanstalk_chunk", fn, assets) 
+return Prefab ("common/inventory/octocopter", fn, assets) 

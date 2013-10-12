@@ -12,20 +12,13 @@ local assets=
 
 local prefabs =
 {
-	"gears",
-    "thulecite_pieces",
-    "nightmarefuel",
+	"feathers",
 }
 
 local loot = 
 {
-	"gears",
-	"gears",
-}
-
-local nightmareloot = 
-{
-    "gears"
+	"feathers",
+	"feathers",
 }
 
 local SLEEP_DIST_FROMHOME = 1
@@ -154,16 +147,6 @@ local function fn()
     
     inst:ListenForEvent("attacked", OnAttacked)
 
-    return inst
-end
-
-local function set_longbillchargedfn()
-    local inst = fn()
-    inst.kind = "_charged"        
-    inst.AnimState:SetBuild("knight_nightmare")
-    inst.components.lootdropper:SetLoot(nightmareloot)
-    inst.components.lootdropper:AddChanceLoot("nightmarefuel", 0.6)
-    inst.components.lootdropper:AddChanceLoot("thulecite_pieces", 0.5)
     return inst
 end
 

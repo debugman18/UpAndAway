@@ -13,7 +13,7 @@ local assets=
 
 local prefabs =
 {
-    "monstermeat",
+    "beanstalk_chunk",
 }
 
 local function Retarget(inst)
@@ -51,7 +51,7 @@ local function fn(Sim)
     inst:AddTag("eel")
 
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(TUNING.TENTACLE_HEALTH)
+    inst.components.health:SetMaxHealth(15)
     
     
     inst:AddComponent("combat")
@@ -68,11 +68,11 @@ local function fn(Sim)
        
     inst:AddComponent("inspectable")
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot({"monstermeat", "monstermeat"})
+    inst.components.lootdropper:SetLoot({"beanstalk_chunk", "beanstalk_chunk"})
 	
     inst:AddComponent("locomotor")
-    inst.components.locomotor.walkspeed = 7.6
-	inst.components.locomotor.runspeed = 9	
+    inst.components.locomotor.walkspeed = 7.3
+	inst.components.locomotor.runspeed = 8.4	
 	inst.components.locomotor.directdrive = true
     
     inst:SetStateGraph("SGeel")

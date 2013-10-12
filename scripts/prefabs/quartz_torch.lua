@@ -1,0 +1,1 @@
+return require('upandaway.prefabs.quartz_torch')

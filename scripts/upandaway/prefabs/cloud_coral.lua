@@ -8,6 +8,11 @@ local assets =
 	Asset("ANIM", "anim/void_placeholder.zip"),
 }
 
+local function mine_remove(inst, chopper)
+	inst.components.lootdropper:SpawnLootPrefab("cloud_coral_fragment")
+	inst:Remove()
+end
+
 local function fn(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
@@ -16,17 +21,19 @@ local function fn(Sim)
 	MakeInventoryPhysics(inst)
 
 	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("marble")
+	inst.AnimState:SetBuild("void_placeholder")
 	inst.AnimState:PlayAnimation("anim")
-
-	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("inventoryitem")
+	
+	inst:AddComponent("workable")
+    inst.components.workable:SetWorkAction(ACTIONS.MINE)
+    inst.components.workable:SetOnFinishCallback(mine_remove)
+    inst.components.workable:SetWorkLeft(2)	
 
 	return inst
 end
 
-return Prefab ("common/inventory/beanstalk_chunk", fn, assets) 
+return Prefab ("common/inventory/cloud_coral", fn, assets) 

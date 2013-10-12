@@ -16,11 +16,8 @@ local function fn(Sim)
 	MakeInventoryPhysics(inst)
 
 	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("marble")
+	inst.AnimState:SetBuild("void_placeholder")
 	inst.AnimState:PlayAnimation("anim")
-
-	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
 	inst:AddComponent("inspectable")
 
@@ -29,4 +26,4 @@ local function fn(Sim)
 	return inst
 end
 
-return Prefab ("common/inventory/beanstalk_chunk", fn, assets) 
+return Prefab ("common/inventory/flying_fish_pond", fn, assets) 

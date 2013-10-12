@@ -8,6 +8,10 @@ local assets =
 	Asset("ANIM", "anim/void_placeholder.zip"),
 }
 
+local function makeemptyfn(inst)
+	Print "This algae is now empty and needs to regenerate."
+end
+
 local function fn(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
@@ -16,7 +20,7 @@ local function fn(Sim)
 	MakeInventoryPhysics(inst)
 
 	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("marble")
+	inst.AnimState:SetBuild("void_placeholder")
 	inst.AnimState:PlayAnimation("anim")
 
 	inst:AddComponent("stackable")
@@ -25,8 +29,15 @@ local function fn(Sim)
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("inventoryitem")
+	
+    inst:AddComponent("pickable")
+    inst.components.pickable.picksound = "dontstarve/wilson/harvest_sticks"
+    inst.components.pickable:SetUp("cloud_algae_fragment", 200, 3)
+	inst.components.pickable.onregenfn = onchargedfn
+	inst.components.pickable.onpickedfn = onpickedfn
+    inst.components.pickable.makeemptyfn = makeemptyfn	
 
 	return inst
 end
 
-return Prefab ("common/inventory/beanstalk_chunk", fn, assets) 
+return Prefab ("common/inventory/cloud_algae", fn, assets) 

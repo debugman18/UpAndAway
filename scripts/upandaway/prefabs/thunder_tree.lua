@@ -10,14 +10,17 @@ local assets =
 
 local prefabs =
 {
-    "log",
-    "twigs",
-    "charcoal",
+	"crystal_fragment",
     "cloud_lightning",
     "marble",
 }
 
-local loot = {"marble"}
+local loot = 
+{
+	"crystal_fragment",
+	"marble",
+	"cloud_lightning",
+}
 
 local function sway(inst)
     inst.AnimState:PushAnimation("sway"..math.random(4).."_loop", true)
@@ -57,49 +60,7 @@ local function chop_down_tree(inst, chopper)
     inst.components.workable:SetWorkLeft(1)
 end
 
-local function chop_down_burnt_tree(inst, chopper)
-    inst.SoundEmitter:PlaySound("dontstarve/forest/treeCrumble")          
-    inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree")          
-	inst.AnimState:PlayAnimation("burnt_chop")
-    inst.Physics:ClearCollisionMask()
-	inst:ListenForEvent("animover", function() inst:Remove() end)
-    inst.components.lootdropper:DropLoot()
-end
-
-
-local function OnBurnt(inst)
-    inst:RemoveComponent("burnable")
-    inst:RemoveComponent("propagator")
-    
-    inst.components.lootdropper:SetLoot({"charcoal"})
-    
-    inst.components.workable:SetWorkLeft(1)
-    inst.components.workable:SetOnWorkCallback(nil)
-    inst.components.workable:SetOnFinishCallback(chop_down_burnt_tree)
-    inst.AnimState:PlayAnimation("burnt_idle", true)
-    inst:AddTag("burnt")
-end
-
-local function tree_burnt(inst)
-    OnBurnt(inst)
-end
-
---[[
-local function inspect_tree(inst)
-    if inst:HasTag("burnt") then
-        return "BURNT"
-    elseif inst:HasTag("stump") then
-        return "CHOPPED"
-    elseif inst.components.burnable and inst.components.burnable:IsBurning() then
-        return "BURNING"
-    end
-end
---]]
-
 local function onsave(inst, data)
-    if inst:HasTag("burnt") or inst:HasTag("fire") then
-        data.burnt = true
-    end
     if inst:HasTag("stump") then
         data.stump = true
     end
@@ -107,9 +68,7 @@ end
         
 local function onload(inst, data)
     if data then
-        if data.burnt then
-            OnBurnt(inst)
-        elseif data.stump then
+        if data.stump then
             inst:RemoveComponent("workable")
             inst:RemoveComponent("burnable")
             inst:RemoveComponent("propagator")
@@ -125,6 +84,25 @@ local function onload(inst, data)
         end
     end
 end   
+
+local function OnSpawned(inst, child)
+	GetSeasonManager():DoLightningStrike(Vector3(inst.Transform:GetWorldPosition()))
+	if GetClock():IsDay() and inst.components.childspawner and inst.components.childspawner:CountChildrenOutside() >= 2 then
+        StopSpawning(inst)
+    end
+end
+
+local function StartSpawning(inst)
+	if inst.components.childspawner and GetSeasonManager() and GetSeasonManager():IsWinter() then
+		inst.components.childspawner:StartSpawning()
+	end
+end
+
+local function StopSpawning(inst)
+	if inst.components.childspawner then
+		inst.components.childspawner:StopSpawning()
+	end
+end
 
 local function fn(Sim)
 	local inst = CreateEntity()
@@ -156,16 +134,22 @@ local function fn(Sim)
 
     anim:SetBuild("tree_marsh")
     anim:SetBank("marsh_tree")
-    local color = 0.5 + math.random() * 0.5
+    local color = 0.2 + math.random() * 0.2
     anim:SetMultColour(color, color, color, 1)
     sway(inst)
     anim:SetTime(math.random()*2)
     
     inst:AddComponent("inspectable")
+
+	inst:AddComponent("childspawner")
+	inst.components.childspawner.childname = "cloud_lightning"
+	inst.components.childspawner:SetSpawnedFn(OnSpawned)
+	inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*10)
+	inst.components.childspawner:SetSpawnPeriod(10)
+	inst.components.childspawner:SetMaxChildren(3)
     
     inst.OnSave = onsave
     inst.OnLoad = onload
-	MakeSnowCovered(inst, .01)
     return inst
 end
 

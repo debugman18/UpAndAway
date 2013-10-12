@@ -11,15 +11,16 @@ local assets =
 local prefabs = 
 {
 	"owl",
+	"crystal_relic_shard",
 }
 
 local CFG = TheMod:GetConfig()
 
 local loot = 
 {
-    "boards",
-    "rocks",
-    "fish",
+    "crystal_relic_shard",
+	"crystal_relic_shard",
+	"crystal_relic_shard",
 }
         
 local function onhammered(inst, worker)
@@ -33,8 +34,6 @@ end
 local function OnActivate(inst)
 	inst.components.resurrector.active = true
 	inst.SoundEmitter:PlaySound("dontstarve/common/resurrectionstone_activate")
-
-	--inst.components.resurrector:OnBuilt()
 end
 
 local function doresurrect(inst, dude)
@@ -61,11 +60,11 @@ local function doresurrect(inst, dude)
         inst:Remove()
         
         if dude.components.hunger then
-            dude.components.hunger:SetPercent(2/3)
+            dude.components.hunger:SetPercent(.5)
         end
 
         if dude.components.health then
-            dude.components.health:Respawn(TUNING.RESURRECT_HEALTH)
+            dude.components.health:Respawn(.5)
         end
         
         if dude.components.sanity then

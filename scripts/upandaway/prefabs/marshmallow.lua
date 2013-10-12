@@ -34,14 +34,10 @@ local function fn(Sim)
 	--Is not filling.
     inst:AddComponent("edible")
     inst.components.edible.foodtype = "VEGGIE"
-    inst.components.edible.healthvalue = 0
-    inst.components.edible.hungervalue = 0
-    inst.components.edible.sanityvalue = 1
+    inst.components.edible.healthvalue = -5
+    inst.components.edible.hungervalue = 10
+    inst.components.edible.sanityvalue = 5
 
-	--Is like snow on its structures.
-	inst:AddComponent("repairer")
-	inst.components.repairer.repairmaterial = "cloud"
-	inst.components.repairer.value = 1
     
     return inst
 end
