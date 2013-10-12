@@ -139,6 +139,7 @@ TheMod:AddRoom("Snow_Room", {
 		distributepercent = 1,
 		distributeprefabs = {
 			thunder_tree = 0.2,
+			crystal_relic = 0.1,
 		},
 	}
 })

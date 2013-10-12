@@ -98,7 +98,7 @@ local sky_level_1 = {
 	},
 	
 	set_pieces = {
-		["TestBeanstalk"] = { count=10, tasks={"Cloud_Generic_Biome"} },	
+		["TestBeanstalk"] = { count=10, tasks={"Cloud_Aurora_Biome"} },	
 	},
 
 	ordered_story_setpieces = {

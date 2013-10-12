@@ -117,10 +117,6 @@ local function fn(Sim)
 
     MakeObstaclePhysics(inst, .25)   
     inst:AddTag("tree")
-
-    MakeLargeBurnable(inst)
-    inst.components.burnable:SetOnBurntFn(tree_burnt)
-    MakeSmallPropagator(inst)
     
     inst:AddComponent("lootdropper") 
     inst.components.lootdropper:SetLoot(loot)

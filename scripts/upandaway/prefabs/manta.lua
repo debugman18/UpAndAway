@@ -5,7 +5,9 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	    Asset("ANIM", "anim/crow.zip"),
+	    Asset("ANIM", "anim/crow_build.zip"),
+	    Asset("SOUND", "sound/birds.fsb"),
 }
 
 local prefabs = 
@@ -21,10 +23,11 @@ end
 local function fn(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+	--inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
+	local anim = inst.entity:AddAnimState()
     anim:SetBank("crow")
     anim:SetBuild("crow_build")
     anim:PlayAnimation("idle")
@@ -32,18 +35,18 @@ local function fn(Sim)
     inst:AddComponent("locomotor")
     inst.components.locomotor:EnableGroundSpeedMultiplier(false)
 	inst.components.locomotor:SetTriggersCreep(false)
-    inst:SetStateGraph("SGbird")
+    --inst:SetStateGraph("SGbird")
     
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(30)
     
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot(loot)
+    --inst.components.lootdropper:SetLoot(loot)
     --inst.components.lootdropper:AddChanceLoot("jellyegg")
     
         
-    local brain = require "brains/beebrain"
-    inst:SetBrain(brain)    
+    --local brain = require "brains/beebrain"
+    --inst:SetBrain(brain)    
 
 	inst:AddComponent("inspectable")
 
