@@ -1,1 +1,1 @@
-return require('upandaway.prefabs.cotton_vest.lua')
+return require('upandaway.prefabs.cotton_vest')

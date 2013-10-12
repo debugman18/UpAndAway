@@ -122,15 +122,16 @@ local RawPrefabFiles = {
 	"goose",	
 	"longbill",
 	
+	"crystal_spire",
 	--"crystal_water",
 	--"crystal_quartz",
 
-	--"crystal_shard",
+	"crystal_fragment",
 	--"crystal_moss",
 	--"crystal_wall",	
 	--"crystal_crown",
 
-	--"crystal_lamp",	
+	"crystal_lamp",	
 	
 	--"golden_sunflower",
 	--"sunflower_seeds",
@@ -146,6 +147,31 @@ local RawPrefabFiles = {
 
 	"thunder_tree",
 	
+	"octocopter",
+	"balloon_hound",
+	"beanlet_shell",
+	"beanlet_zealot",
+	"cheshire",
+	"chimera",
+	"cloud_algae",
+	"cloud_algae_fragment",
+	"cloud_coral",
+	"cloud_coral_fragment",
+	"crystal_black",
+	"crystal_white",
+	"flying_fish_pond",
+	"grabber",
+	"alien",
+	"greenbean",
+	"jellyshroom",
+	"manta",
+	"manta_leather",
+	"quartz_torch",
+	"refiner",
+	"scarecrow",
+	"smores",
+	"weather_machine",
+
 	--"beanstalk_wall",	
 	
 	"beanstalk_chunk",	
@@ -183,13 +209,16 @@ local RawPrefabFiles = {
 	
 	"antlion",	
 	
-	--"rainbowcoon",
+	"rainbowcoon",
 	--"cotton_candy",
-	--"cotton_vest",
+	"cotton_vest",
 	"lionblob",
 
 	"owl",
 	"crystal_relic",
+	"crystal_relic_fragment",
+	"live_gnome",
+
 }
 
 --RemapSoundEvent("dontstarve/music/music_FE", "upandaway/music/music_FE")

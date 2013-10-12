@@ -1,1 +1,1 @@
-return require('upandaway.prefabs.jellyshroom')
+return unpack(require('upandaway.prefabs.jellyshroom'))

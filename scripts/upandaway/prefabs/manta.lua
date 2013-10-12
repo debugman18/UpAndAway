@@ -8,6 +8,16 @@ local assets =
 	Asset("ANIM", "anim/void_placeholder.zip"),
 }
 
+local prefabs = 
+{
+	--"cloud_jelly",
+}
+
+local function OnHit(inst, owner, target)
+	local pt = Vector3(inst.Transform:GetWorldPosition())
+	inst:Remove()
+end	
+
 local function fn(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
@@ -24,7 +34,15 @@ local function fn(Sim)
 	inst.components.locomotor:SetTriggersCreep(false)
     inst:SetStateGraph("SGbird")
     
-    local brain = require "brains/birdbrain"
+    inst:AddComponent("health")
+    inst.components.health:SetMaxHealth(30)
+    
+    inst:AddComponent("lootdropper")
+    inst.components.lootdropper:SetLoot(loot)
+    --inst.components.lootdropper:AddChanceLoot("jellyegg")
+    
+        
+    local brain = require "brains/beebrain"
     inst:SetBrain(brain)    
 
 	inst:AddComponent("inspectable")
@@ -37,4 +55,4 @@ local function fn(Sim)
 	return inst
 end
 
-return Prefab ("common/inventory/manta", fn, assets) 
+return Prefab ("common/monsters/manta", fn, assets) 

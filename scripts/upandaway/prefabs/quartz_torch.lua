@@ -29,4 +29,4 @@ local function fn(Sim)
 	return inst
 end
 
-return Prefab ("common/inventory/quartz_torch, fn, assets) 
+return Prefab ("common/inventory/quartz_torch", fn, assets) 

@@ -47,5 +47,7 @@ local function picked(Sim)
 	return inst
 end	
 
-return Prefab ("cloudrealm/flora/jellyshroom", fn, assets),
-			  ("cloudrealm/inventory/jellyshroom_picked", picked, assets)
+return {
+	Prefab ("cloudrealm/flora/jellyshroom", fn, assets),
+	Prefab ("cloudrealm/inventory/jellyshroom_picked", picked, assets),
+}	   

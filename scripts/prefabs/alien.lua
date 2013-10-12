@@ -1,1 +1,1 @@
-return unpack(require('upandaway.prefabs.alien'))
+return require('upandaway.prefabs.alien')

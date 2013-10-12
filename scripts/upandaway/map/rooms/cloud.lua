@@ -120,8 +120,19 @@ TheMod:AddRoom("Beanlet_Den", {
 	},
 })
 	
---These are the biomes for cloud/aurora
+--These are the biomes for cloud/snow.
 TheMod:AddRoom("BGSnow", {
+	colour={r=.2,g=.2,b=.2,a=1},
+	value = GROUND.POOPCLOUD,
+	contents = {
+		distributepercent = 1,
+		distributeprefabs = {
+			thunder_tree = 0.2,
+		},
+	}
+})
+
+TheMod:AddRoom("Snow_Room", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
