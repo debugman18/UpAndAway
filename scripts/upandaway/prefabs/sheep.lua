@@ -214,11 +214,29 @@ local function set_stormram(inst)
 
 
 	;(function(delay)
-		local task = inst:DoPeriodicTask(delay, function(inst)
-			dostaticsparks(inst)
+		local task_creator
+		local task
+
+		local function fx_chain(inst)
+			if not inst:IsAsleep() then
+				dostaticsparks(inst)
+				task = inst:DoTaskInTime(delay, fx_chain)
+			else
+				task = inst:DoTaskInTime(5, fx_chain)
+			end
+		end
+
+		task_creator = inst:DoTaskInTime(4*delay*math.random(), function(inst)
+			task = inst:DoTaskInTime(0, fx_chain)
+			task_creator = nil
 		end)
 		table.insert(inst.undolist, function()
-			task:Cancel()
+			if task_creator then
+				task_creator:Cancel()
+			end
+			if task then
+				task:Cancel()
+			end
 		end)
 	end)(1/2)
 end

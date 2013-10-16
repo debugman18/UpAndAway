@@ -20,6 +20,8 @@ local StaticChargeable = Class(Debuggable, function(self, inst)
 	self.inst = inst
 	Debuggable._ctor(self)
 
+	self:SetConfigurationKey("STATICCHARGEABLE")
+
 	self.charged = false
 
 	self.charge_delay = nil
