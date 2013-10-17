@@ -39,7 +39,7 @@ _O.trace_flow = (function()
 
 		f = assert(io.open(output_path, "w"), "Can't open '" .. output_path .. "' for writing!")
 
-		f:write("Execution trace (", os.date("%F %X"), ")\r\n")
+		f:write("Execution trace (", os.date("%F %X"), ")\r\n\r\n")
 
 		debug.sethook(
 			function(ev_type)
