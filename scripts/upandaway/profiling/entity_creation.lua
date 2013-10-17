@@ -56,10 +56,6 @@ function EntityCreationProfiler:Bind()
 	function _G.CreateEntity(...)
 		local info = debug.getinfo(2, "Sln")
 
-		if info.source and info.source:match("fx%.lua") then
-			self:Say(debug.traceback())
-		end
-
 		local s = self:GetDescriptionString(info)
 		self.data[s] = self.data[s] or self.Datum()
 		local datum = self.data[s]
