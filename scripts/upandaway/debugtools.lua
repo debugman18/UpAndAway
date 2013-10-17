@@ -32,6 +32,8 @@ _O.GetStaticGen = _O.GetStaticGenerator
 _O.trace_flow = (function()
 	local output_path = MODROOT .. "trace.txt"
 
+	local reopen_file = (PLATFORM ~= "LINUX")
+
 	local f = nil
 
 	return function()
@@ -41,8 +43,18 @@ _O.trace_flow = (function()
 
 		f:write("Execution trace (", os.date("%F %X"), ")\r\n\r\n")
 
+		f:flush()
+
+		if reopen_file then
+			f:close()
+		end
+
 		debug.sethook(
 			function(ev_type)
+				if reopen_file then
+					f = assert(io.open(output_path, "a"), "Can't open '" .. output_path .. "' for appending!")
+				end
+
 				if ev_type == "line" then
 					local info = debug.getinfo(2, 'Sl')
 
@@ -65,6 +77,10 @@ _O.trace_flow = (function()
 				end
 
 				f:flush()
+
+				if reopen_file then
+					f:close()
+				end
 			end,
 		'lc')
 	end
