@@ -67,13 +67,21 @@ _O.trace_flow = (function()
 				elseif ev_type == "call" then
 					local info = debug.getinfo(2, 'Sn')
 
-					f:write(
-						("Calling %s %s function %s\r\n"):format(
-							info.namewhat or "",
-							info.what or "anonymous",
-							info.name or "?"
+					if info.namewhat and info.namewhat ~= "" and info.name then
+						f:write(
+							("Calling %s %s function %s\r\n"):format(
+								info.namewhat,
+								info.what or "unknown",
+								info.name
+							)
 						)
-					)
+					else
+						f:write(
+							("Calling anonymous %s function\r\n"):format(
+								info.what or "unknown"
+							)
+						)
+					end
 				end
 
 				if reopen_file then
