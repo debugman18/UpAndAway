@@ -142,7 +142,7 @@ local function UpdateMainScreen(self)
 
 	-]]	
 	
-	self:UpdateDaysUntil()
+	--self:UpdateDaysUntil()
 	self:MainMenu()
 	self.menu:SetFocus()
 	
