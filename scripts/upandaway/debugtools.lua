@@ -43,10 +43,10 @@ _O.trace_flow = (function()
 
 		f:write("Execution trace (", os.date("%F %X"), ")\r\n\r\n")
 
-		f:flush()
-
 		if reopen_file then
 			f:close()
+		else
+			f:flush()
 		end
 
 		debug.sethook(
@@ -76,10 +76,10 @@ _O.trace_flow = (function()
 					)
 				end
 
-				f:flush()
-
 				if reopen_file then
 					f:close()
+				else
+					f:flush()
 				end
 			end,
 		'lc')
