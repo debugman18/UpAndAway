@@ -3,3 +3,4 @@
 worldgen_log.txt
 rc.lua
 entity_count_profiling.txt
+trace.txt
