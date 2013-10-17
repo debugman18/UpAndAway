@@ -29,7 +29,7 @@ local function fn(Sim)
 	
 	inst:AddComponent("childspawner")
 	inst.components.childspawner.childname = "cheshire"
-	inst.components.childspawner:SetSpawnedFn(OnSpawned)
+	inst.components.childspawner:SetSpawnedFn(OnActivate)
 	inst.components.childspawner:SetGoHomeFn(OnGoHome)
 	inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*20)
 	inst.components.childspawner:SetSpawnPeriod(60)
