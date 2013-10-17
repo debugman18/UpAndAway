@@ -22,6 +22,8 @@ local SkyflySpawner = Class(Debuggable, function(self, inst)
 	self.inst = inst
 	Debuggable._ctor(self)
 
+	self:SetConfigurationKey("SKYFLYSPAWNER")
+
 	self.prefab = "skyflies"
 	self.max_flies = 4
 	self.delay = 10
