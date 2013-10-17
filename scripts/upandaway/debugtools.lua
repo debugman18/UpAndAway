@@ -30,7 +30,7 @@ _O.GetStaticGen = _O.GetStaticGenerator
 
 
 _O.trace_flow = (function()
-	local output_path = "trace.txt"
+	local output_path = MODROOT .. "trace.txt"
 
 	local f = nil
 
