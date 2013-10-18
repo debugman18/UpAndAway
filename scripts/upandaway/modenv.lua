@@ -8,6 +8,8 @@ local _modname = assert( (assert(..., 'This file should be loaded through requir
 module( ..., require(_modname .. '.booter') )
 --@@END ENVIRONMENT BOOTUP
 
+LOGROOT = MODROOT .. "log/"
+
 --[[
 -- Note that this does NOT run in a "global" environment, things should be
 -- explicitly imported (unless they are by wicker itself already).

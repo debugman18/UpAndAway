@@ -30,7 +30,7 @@ if IS_WGEN and not status then GLOBAL.pcall(function()
 	
 	local now = os.date("%x %X")
 	
-	local f = io.open(MODROOT .. "worldgen_log.txt", "w")
+	local f = io.open(MODROOT .. "log/worldgen_log.txt", "w")
 
 	if status then
 		f:write("[", now, "] The mod ran successfully.\n")

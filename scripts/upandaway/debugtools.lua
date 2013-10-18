@@ -30,7 +30,7 @@ _O.GetStaticGen = _O.GetStaticGenerator
 
 
 _O.trace_flow = (function()
-	local output_path = MODROOT .. "trace.txt"
+	local output_path = LOGROOT .. "trace.txt"
 
 	--local reopen_file = (_G.PLATFORM ~= "LINUX")
 	local reopen_file = false

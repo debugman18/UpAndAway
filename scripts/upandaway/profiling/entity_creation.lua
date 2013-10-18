@@ -84,7 +84,7 @@ function EntityCreationProfiler:Report()
 
 	self:Say("Generating report at ", fname)
 
-	local f = io.open( MODROOT .. fname, "w" )
+	local f = io.open( LOGROOT .. fname, "w" )
 	assert(f, "Can't open entity creation profiling file " .. fname .. "!")
 
 	f:write("Entity creation profiling report (", os.date("%F %X"), ")", "\r\n\r\n")
