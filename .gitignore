@@ -1,4 +1,3 @@
 *.lnk
 **/.git/
 rc.lua
-log/*
