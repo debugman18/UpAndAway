@@ -84,6 +84,9 @@ end
 
 --Changes the main menu.
 local function UpdateMainScreen(self)
+	do
+		return
+	end
 
 	local Image = require "widgets/image"
 	local ImageButton = require "widgets/imagebutton"

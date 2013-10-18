@@ -41,7 +41,7 @@ _O.trace_flow = (function()
 
 		f = assert(io.open(output_path, "wb"), "Can't open '" .. output_path .. "' for writing!")
 
-		f:write("Execution trace (", os.date("%F %X"), ")\r\n\r\n")
+		f:write("Execution trace (", os.date("%Y-%m-%d %X"), ")\r\n\r\n")
 
 		if reopen_file then
 			f:close()
