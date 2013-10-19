@@ -33,8 +33,8 @@ local function fn(Sim)
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/harvest_sticks"
     inst.components.pickable:SetUp("cloud_algae_fragment", 200, 3)
-	inst.components.pickable.onregenfn = onchargedfn
-	inst.components.pickable.onpickedfn = onpickedfn
+	--inst.components.pickable.onregenfn = onchargedfn
+	--inst.components.pickable.onpickedfn = onpickedfn
     inst.components.pickable.makeemptyfn = makeemptyfn	
 
 	return inst

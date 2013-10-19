@@ -88,9 +88,9 @@ end
         
         --inst:AddComponent("transparentonsanity")
         inst:AddComponent("health")
-        inst.components.health:SetMaxHealth(data.health)
+        inst.components.health:SetMaxHealth(20)
         
-		inst.sanityreward = data.sanityreward
+		--inst.sanityreward = data.sanityreward
 		
         inst:AddComponent("combat")
         inst.components.combat:SetDefaultDamage(10)

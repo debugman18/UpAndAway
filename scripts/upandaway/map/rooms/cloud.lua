@@ -9,7 +9,7 @@ TheMod:AddRoom("BGCloud", {
 	contents = {
 		distributepercent = 0.01,
 		distributeprefabs = {
-			skyflower = 0.05,
+			skyflower = 1,
 		},
 	}
 })
@@ -22,7 +22,7 @@ TheMod:AddRoom("BeanstalkSpawn", {
 		distributepercent = 0.02,
 		distributeprefabs = {
 			skeleton = 0.1,
-			skyflower = 0.05,
+			skyflower = 1,
 		}
 	}
 })
@@ -33,7 +33,7 @@ TheMod:AddRoom("SkyflowerGarden", {
 	contents = {
 		distributepercent = 0.06,
 		distributeprefabs = {
-			skyflower = 0.09,
+			skyflower = 1,
 		},
 	},
 })
@@ -44,8 +44,8 @@ TheMod:AddRoom("SheepHerd", {
 	contents = {
 		distributepercent = 0.25,
 		distributeprefabs = {
-			sheep = 1,
-			skyflower = 0.001,
+			sheep = 0.001,
+			skyflower = 1,
 		},
 	},
 })
@@ -56,7 +56,7 @@ TheMod:AddRoom("BushGarden", {
 	contents = {
 		distributepercent = 0.02,
 		distributeprefabs = {
-			cloud_bush = 0.005,
+			cloud_bush = 0.020,
 		},
 	},
 })
@@ -67,8 +67,8 @@ TheMod:AddRoom("Aurora_Room", {
 	contents = {
 		distributepercent = 0.01,
 		distributeprefabs = {
-			thunder_tree = 0.002,
-			crystal_spire = 0.006
+			thunder_tree = 0.02,
+			crystal_spire = 0.001
 		},
 	},
 })
@@ -79,7 +79,7 @@ TheMod:AddRoom("Vine_Room", {
 	contents = {
 		distributepercent = 0.01,
 		distributeprefabs = {
-			vine = 0.006,
+			vine = 0.05,
 		},
 	},
 })
@@ -125,9 +125,9 @@ TheMod:AddRoom("BGSnow", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
-		distributepercent = 1,
+		distributepercent = 0.4,
 		distributeprefabs = {
-			thunder_tree = 0.02,
+			thunder_tree = 0.002,
 		},
 	}
 })
@@ -136,10 +136,10 @@ TheMod:AddRoom("Snow_Room", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
-		distributepercent = 1,
+		distributepercent = 0.1,
 		distributeprefabs = {
 			thunder_tree = 0.002,
-			crystal_relic = 0.001,
+			crystal_relic = 0.00001,
 		},
 	}
 })
@@ -153,7 +153,7 @@ TheMod:AddRoom("BGAurora", {
 		distributepercent = 0.002,
 		distributeprefabs = {
 			skeleton = 0.001,
-			manta = 0.008,
+			manta = 0.02,
 		}
 	}
 })
@@ -164,7 +164,7 @@ TheMod:AddRoom("BGRainbow", {
 	contents = {
 		distributepercent = 0.6,
 		distributeprefabs = {
-			alien = 1,
+			alien = 0.005,
 		},
 	},
 })
@@ -175,9 +175,9 @@ TheMod:AddRoom("Sea_Mimic", {
 	contents = {
 		distributepercent = 0.10,
 		distributeprefabs = {
-			sky_algae = .008,
-			sky_coral = .008,
-			manta = .001,
+			cloud_algae = 0.008,
+			cloud_coral = 0.008,
+			manta = 0.001,
 		},
 	},
 })
@@ -186,21 +186,21 @@ TheMod:AddRoom("Manta_Room", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
-		distributepercent = 0.002,
+		distributepercent = 0.02,
 		distributeprefabs = {
-			cloud_bush = 0.001,
-			manta = 0.005
+			cloud_bush = 0.010,
+			manta = 0.010
 		},
 	},
 })
 
-TheMod:AddRoom("Rainbow__Room", {
+TheMod:AddRoom("Rainbow_Room", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.MARSH,
 	contents = {
-		distributepercent = 0.001,
+		distributepercent = 0.02,
 		distributeprefabs = {
-			hive_marshmallow = 0.004,
+			hive_marshmallow = 0.05,
 			bee_marshmallow = 0.06,
 		},
 	},
@@ -210,9 +210,9 @@ TheMod:AddRoom("Crystal_Fields", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.GRASS,
 	contents = {
-		distributepercent = 0.001,
+		distributepercent = 0.01,
 		distributeprefabs = {
-			crystal_spire = 0.006,
+			crystal_spire = 0.06,
 		},
 	},
 })

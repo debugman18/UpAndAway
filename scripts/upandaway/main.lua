@@ -84,34 +84,34 @@ end
 
 --Changes the main menu.
 local function UpdateMainScreen(self)
-	do
-		return
-	end
+	--do
+		--return
+	--end
 
 	local Image = require "widgets/image"
 	local ImageButton = require "widgets/imagebutton"
 	local Text = require "widgets/text"	
 
 	--This displays the current version to the user.	
-	self.motd.motdtext:SetPosition(0, -20, 0)
+	self.motd.motdtext:SetPosition(0, 10, 0)
 	self.motd.motdtitle:SetString("Version Information")
 	self.motd.motdtext:EnableWordWrap(true)   
 	self.motd.motdtext:SetString("You are currently using version '" .. modinfo.version .. "' of Up and Away. Thank you for testing!")
 	
 	--This adds a button to the MOTD.
 	self.motd.button = self.motd:AddChild(ImageButton())
-    self.motd.button:SetPosition(0, -100, 0)
+    self.motd.button:SetPosition(0, -80, 0)
     self.motd.button:SetText("More Info")
-    self.motd.button:SetOnClick( function() 
-		GLOBAL.VisitURL("http://forums.kleientertainment.com/index.php?" .. TheMod.modinfo.forumthread)
-	end )
-	self.motd.motdtext:EnableWordWrap(true) 
+    self.motd.button:SetOnClick( function() VisitURL("http://forums.kleientertainment.com/index.php?" .. TheMod.modinfo.forumthread) end )    
+	self.motd.button:SetScale(.8)
+	self.motd.motdtext:EnableWordWrap(true) 	
 	
 	--Adds a mod credits button.
-	self.modcredits_button = self.bottom_left_stuff:AddChild(ImageButton())
-    self.modcredits_button:SetPosition(0, -150, 0)
-    self.modcredits_button:SetText("Mod Credits")
+	self.modcredits_button = self.motd:AddChild(ImageButton())
+    self.modcredits_button:SetPosition(0, -130, 0)
+    self.modcredits_button:SetText("Credits")
     self.modcredits_button:SetOnClick( function() Credits() end )	
+    self.modcredits_button:SetScale(.8)
 	
 	--We can change the background image here.
 	self.bg:SetTexture("images/bg_up.xml", "bg_plain.tex")

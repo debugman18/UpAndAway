@@ -78,7 +78,7 @@ return {
 		
         {
           name = "",
-          type = "octocopter",
+          type = "beanstalk_exit",
           shape = "rectangle",
           x = 170,
           y = 170,

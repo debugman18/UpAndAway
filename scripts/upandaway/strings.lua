@@ -9,8 +9,16 @@ local Add = modrequire 'lib.addstrings'
 
 Add.Names {
 
-    beanlet = "Beanlet",
+	alien = "Aurora",
+	
+	balloon_hound = "Balloon Hound",
 
+    beanlet = "Beanlet",
+    
+    beanlet_shell = "Beanlet Shell",
+    
+    beanlet_zealot = "Zealot Beanlet",
+    
     beanstalk = "Beanstalk",
 
     beanstalk_chunk = "Beanstalk Chunk",
@@ -23,13 +31,23 @@ Add.Names {
 
     candy_fruit = "Candy Fruit",
 
-    cheshire_cat = "Cat",
+    cheshire = "Cat",
+    
+    chimera = "Chimera",
 
     cloudcrag = "Cloudcrag",
+    
+    cloud_algae = "Cloud Algae",
+    
+    cloud_algae_fragment = "Algae Fragment",
 
     cloud_bomb = "Cloudbomb",
 
     cloud_bush = "Cloudbush",    
+    
+    cloud_coral = "Cloud Coral",
+    
+    cloud_coral_fragment = "Coral Fragment",
 
     cloud_cotton = "Cloud Cotton",
 
@@ -40,6 +58,8 @@ Add.Names {
     cloud_turf = "Cloud Turf",
 
     crystal_axe = "Axe of Storms",
+    
+    crystal_black = "Crystal",
 
     crystal_cap = "Crystal Cap",
 
@@ -51,9 +71,13 @@ Add.Names {
 
     crystal_relic = "Crystal Relic",
 
-    crystal_shard = "Crystal Shard",
+    crystal_fragment = "Crystal Shard",
+    
+    crystal_spire = "Crystal",
 
     crystal_wall = "Crystal Wall",
+    
+    crystal_white = "Crystal",
 
     datura_petals = "Datura Petals",
 
@@ -64,6 +88,8 @@ Add.Names {
     duckraptor_mother = "Mother Duckraptor",
 
     flying_fish = "Flying Fish",
+    
+    flying_fish_pond = "Flying Fish Pond",
 
     golden_amulet = "Golden Amulet",
 
@@ -76,10 +102,18 @@ Add.Names {
     golden_petals = "Golden Petals",
 
     goose = "Goose",
+    
+    grabber = "Grabber",
+    
+    greenbean = "Greenbean",
 
-    hive_marshmallow = "Marshmallow",    
+    hive_marshmallow = "Marshmallow",   
+    
+    jellyshroom = "Jellyshroom",
 
     kite = "Kite",
+    
+    live_gnome = "Gnome",
 
     lionant = "Lionant",
 
@@ -94,22 +128,34 @@ Add.Names {
     magic_bean_giant = "Bean Giant",
 
     magic_bean_sprout = "Bean Sprout",
+    
+    manta = "Manta",
+    
+    manta_leather = "Manta Leather",
 
     monolith = "Monolith",
 
     moonflower = "Moonflower",
 
     moonflower_seeds = "Moonflower Seeds",
+    
+    octocopter = "Octocopter",
 
     owl = "Strix",
 
     pineapple_bush = "Pineapple Bush",
 
     pineapple_fruit = "Pineapple",
+    
+    quartz_torch = "Quartz Torch",
 
     rainbowcoon = "Rainbowcoon",
-
+    
+    refiner = "Refiner",
+    
     research_lectern = "Cumulocator Station",
+    
+    scarecrow = "Scarecrow",
 
     sheep = "Sheep",
 
@@ -118,6 +164,8 @@ Add.Names {
     skyflower = "Skyflower",
 
     skyflower_petals = "Skyflower Petals",
+    
+    smores = "S'mores",
 
     sunflower = "Golden Sunflower",
 
@@ -129,7 +177,7 @@ Add.Names {
 
     skylemur = "Sky Lemur",
 
-    tree_thunder = "Thunder Tree",
+    thunder_tree = "Thunder Tree",
 
     vine = "Beanstalk Vine",
 
