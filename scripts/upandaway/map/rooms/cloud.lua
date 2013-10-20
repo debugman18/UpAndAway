@@ -3,6 +3,9 @@ local _modname = assert( (assert(..., 'This file should be loaded through requir
 module( ..., require(_modname .. '.booter') )
 --@@END ENVIRONMENT BOOTUP
 
+--Generic Biome Rooms
+
+--Generic BG
 TheMod:AddRoom("BGCloud", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
@@ -14,7 +17,7 @@ TheMod:AddRoom("BGCloud", {
 	}
 })
 
---These are the biomes for cloud/generic.
+--Generic Spawnzone
 TheMod:AddRoom("BeanstalkSpawn", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
@@ -27,6 +30,7 @@ TheMod:AddRoom("BeanstalkSpawn", {
 	}
 })
 
+--Skyflowers
 TheMod:AddRoom("SkyflowerGarden", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
@@ -38,6 +42,7 @@ TheMod:AddRoom("SkyflowerGarden", {
 	},
 })
 
+--Sheep
 TheMod:AddRoom("SheepHerd", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
@@ -50,6 +55,7 @@ TheMod:AddRoom("SheepHerd", {
 	},
 })
 
+--Cloudbushes
 TheMod:AddRoom("BushGarden", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
@@ -57,22 +63,30 @@ TheMod:AddRoom("BushGarden", {
 		distributepercent = 0.02,
 		distributeprefabs = {
 			cloud_bush = 0.020,
+			skyflower = 0.5
 		},
 	},
 })
 
-TheMod:AddRoom("Aurora_Room", {
+
+---------
+
+--Aurora Biome Rooms
+
+--Aurora BG
+TheMod:AddRoom("BGAurora", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.MARSH,
-	contents = {
-		distributepercent = 0.01,
+	value = GROUND.GRASS,
+	contents =  {
+		distributepercent = 0.002,
 		distributeprefabs = {
-			thunder_tree = 0.02,
-			crystal_spire = 0.001
-		},
-	},
+			skeleton = 0.001,
+			manta = 0.02,
+		}
+	}
 })
 
+--Vines
 TheMod:AddRoom("Vine_Room", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.GRASS,
@@ -84,9 +98,10 @@ TheMod:AddRoom("Vine_Room", {
 	},
 })
 
+--Cloudcrags
 TheMod:AddRoom("CragLanding", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.POOPCLOUD,
+	value = GROUND.GRASS,
 	contents = {
 		distributepercent = 0.01,
 		distributeprefabs = {
@@ -95,6 +110,7 @@ TheMod:AddRoom("CragLanding", {
 	},
 })
 
+--Longbills
 TheMod:AddRoom("Bigbird_Nest", {
 	coulour={r=.2,g=.2,b=.2,a=.2},
 	value = GROUND.GRASS,
@@ -107,7 +123,7 @@ TheMod:AddRoom("Bigbird_Nest", {
 	},
 })
 
-
+--Beanlets
 TheMod:AddRoom("Beanlet_Den", {
 	coulour={r=.2,g=.2,b=.2,a=.2},
 	value = GROUND.GRASS,
@@ -115,15 +131,20 @@ TheMod:AddRoom("Beanlet_Den", {
 		distributepercent = 0.05,
 		dsitributeprefabs = {
 			beanlet = 0.001,
-			skyflies = 0.007,
+			skyflies = 0.07,
 		},
 	},
 })
+
+
+----------
 	
---These are the biomes for cloud/snow.
+--Snow Biome Rooms
+
+--Snow BG
 TheMod:AddRoom("BGSnow", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.POOPCLOUD,
+	value = GROUND.FUNGUS,
 	contents = {
 		distributepercent = 0.4,
 		distributeprefabs = {
@@ -132,46 +153,21 @@ TheMod:AddRoom("BGSnow", {
 	}
 })
 
-TheMod:AddRoom("Snow_Room", {
+--Thunder Trees
+TheMod:AddRoom("Thunder_Forest", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.POOPCLOUD,
+	value = GROUND.FUNGUS,
 	contents = {
 		distributepercent = 0.1,
 		distributeprefabs = {
 			thunder_tree = 0.002,
-			crystal_relic = 0.00001,
 		},
 	}
-})
-
---These are the biomes for cloud/generic.
-
-TheMod:AddRoom("BGAurora", {
-	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.POOPCLOUD,
-	contents =  {
-		distributepercent = 0.002,
-		distributeprefabs = {
-			skeleton = 0.001,
-			manta = 0.02,
-		}
-	}
-})
-
-TheMod:AddRoom("BGRainbow", {
-	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.POOPCLOUD,
-	contents = {
-		distributepercent = 0.6,
-		distributeprefabs = {
-			alien = 0.005,
-		},
-	},
 })
 
 TheMod:AddRoom("Sea_Mimic", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.POOPCLOUD,
+	value = GROUND.FUNGUS,
 	contents = {
 		distributepercent = 0.10,
 		distributeprefabs = {
@@ -184,7 +180,7 @@ TheMod:AddRoom("Sea_Mimic", {
 
 TheMod:AddRoom("Manta_Room", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.POOPCLOUD,
+	value = GROUND.FUNGUS,
 	contents = {
 		distributepercent = 0.02,
 		distributeprefabs = {
@@ -194,6 +190,24 @@ TheMod:AddRoom("Manta_Room", {
 	},
 })
 
+----------
+
+
+--Rainbow Biome Rooms
+
+--Rainbow BG
+TheMod:AddRoom("BGRainbow", {
+	colour={r=.2,g=.2,b=.2,a=1},
+	value = GROUND.MARSH,
+	contents = {
+		distributepercent = 0.06,
+		distributeprefabs = {
+			alien = 0.005,
+		},
+	},
+})
+
+--Marshmallows
 TheMod:AddRoom("Rainbow_Room", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.MARSH,
@@ -206,25 +220,29 @@ TheMod:AddRoom("Rainbow_Room", {
 	},
 })
 
+--Crystals
 TheMod:AddRoom("Crystal_Fields", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.GRASS,
+	value = GROUND.MARSH,
 	contents = {
 		distributepercent = 0.01,
 		distributeprefabs = {
 			crystal_spire = 0.06,
+			crystal_black = 0.005,
+			crystal_white = 0.005,
 		},
 	},
 })
 
+--Flying Fish
 TheMod:AddRoom("Fish_Fields", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.POOPCLOUD,
+	value = GROUND.MARSH,
 	contents = {
 		distributepercent = 0.1,
 		distributeprefabs = {
 			cloudcrag = 0.03,
-			flying_fish_pond = 0.01
+			flying_fish_pond = 0.001
 		},
 	},
 })

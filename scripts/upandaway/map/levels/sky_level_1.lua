@@ -100,20 +100,22 @@ local sky_level_1 = {
 	},
 	
 	set_pieces = {
-		["TestBeanstalk"] = { count=1, tasks={"Cloud_Aurora_Biome"} },	
+		["OctocopterWreckage"] = { count=1, tasks={"Cloud_Aurora_Biome"} },	
+		["Cloudhenge"] = { count=1, tasks={"Cloud_Generic_Biome"} },	
+		["WitchGrove"] = { count=1, tasks={"Cloud_Aurora_Biome"} },	
+		["StrixShrine"] = { count=1, tasks={"Cloud_Snow_Biome"} },	
+		["CheshireHunting"] = { count=1, tasks={"Cloud_Rainbow_Biome"} },					
 	},
 
 	ordered_story_setpieces = {
-		--"TeleportatoRingLayout",
-		--"TeleportatoBoxLayout",
-		--"TeleportatoCrankLayout",
-		--"TeleportatoPotatoLayout",
-		--"AdventurePortalLayout",
-		--"TestBeanstalk",
+		"CheshireHunting",
+		"Cloudhenge",
+		"StrixShrine",
+		"WitchGrove",
+		"OctocopterWreckage",
 	},
 
 	required_prefabs = {
-		"crystal_relic",  
 		"goose",
 		"hive_marshmallow",
 	},

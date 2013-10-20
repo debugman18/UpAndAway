@@ -10,4 +10,8 @@ local Layouts = require("map/layouts").Layouts
 local StaticLayout = require("map/static_layout")
 
 Layouts["BeanstalkTop"] = StaticLayout.Get("map.static_layouts.beanstalk_top")
-Layouts["TestBeanstalk"] = StaticLayout.Get("map.static_layouts.test_beanstalk")
+Layouts["OctocopterWreckage"] = StaticLayout.Get("map.static_layouts.octocopter_wreckage")
+Layouts["WitchGrove"] = StaticLayout.Get("map.static_layouts.witch_grove")
+Layouts["StrixShrine"] = StaticLayout.Get("map.static_layouts.strix_shrine")
+Layouts["Cloudhenge"] = StaticLayout.Get("map.static_layouts.cloudhenge")
+Layouts["CheshireHunting"] = StaticLayout.Get("map.static_layouts.cheshire_hunting")
