@@ -37,6 +37,8 @@ local assets = {
         Asset( "ANIM", "anim/winnie.zip" ),
 }
 
+local starting_inventory = {}
+local prefabs = {}
 
 local fn = function(inst)
 	
@@ -48,4 +50,5 @@ local fn = function(inst)
 	
 end
 
-return MakePlayerCharacter("winnie", assets, fn)
+return MakePlayerCharacter("winnie", prefabs, assets, fn, starting_inventory)
+

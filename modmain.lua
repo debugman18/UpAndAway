@@ -114,8 +114,7 @@ Assets = RawAssets
 --This loads all of the new prefabs.
 
 local RawPrefabFiles = {
-	--Having winnie in this list causes a crash.
-	--"winnie",
+	"winnie",
 
 	"cloudrealm",
 	"cloud_mist",

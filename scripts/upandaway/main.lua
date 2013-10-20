@@ -92,6 +92,11 @@ local function UpdateMainScreen(self)
 	local ImageButton = require "widgets/imagebutton"
 	local Text = require "widgets/text"	
 
+	--Adds our own mod button.
+	self.upandaway_button = self.menu:AddChild(ImageButton())
+	self.upandaway_button:SetPosition(0, 400, 0)
+	self.upandaway_button:SetText("Up and Away")
+
 	--[[
 	--This displays the current version to the user.	
 	self.motd.motdtext:SetPosition(0, 10, 0)
