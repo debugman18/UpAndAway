@@ -92,6 +92,7 @@ local function UpdateMainScreen(self)
 	local ImageButton = require "widgets/imagebutton"
 	local Text = require "widgets/text"	
 
+	--[[
 	--This displays the current version to the user.	
 	self.motd.motdtext:SetPosition(0, 10, 0)
 	self.motd.motdtitle:SetString("Version Information")
@@ -104,14 +105,15 @@ local function UpdateMainScreen(self)
     self.motd.button:SetText("More Info")
     self.motd.button:SetOnClick( function() VisitURL("http://forums.kleientertainment.com/index.php?" .. TheMod.modinfo.forumthread) end )    
 	self.motd.button:SetScale(.8)
-	self.motd.motdtext:EnableWordWrap(true) 	
+	self.motd.motdtext:EnableWordWrap(true)
 	
 	--Adds a mod credits button.
 	self.modcredits_button = self.motd:AddChild(ImageButton())
-    self.modcredits_button:SetPosition(0, -130, 0)
+    self.modcredits_button:SetPosition(0, -150, 0)
     self.modcredits_button:SetText("Credits")
     self.modcredits_button:SetOnClick( function() Credits() end )	
     self.modcredits_button:SetScale(.8)
+    ]]
 	
 	--We can change the background image here.
 	self.bg:SetTexture("images/bg_up.xml", "bg_plain.tex")
@@ -154,7 +156,7 @@ end
 -- This works under both game versions (due to api_abstractions.lua)
 -- It will actually call AddGenericClassPostConstruct defined there.
 AddClassPostConstruct("screens/mainscreen", UpdateMainScreen)
-	
+
 --This gives us custom worldgen screens.	
 local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
 	--Check for cloudrealm.	"cloudrealm"
@@ -290,3 +292,7 @@ AddSimPostInit(function(inst)
 		end
 	end
 end)
+
+table.insert(GLOBAL.CHARACTER_GENDERS.FEMALE, "winnie")
+
+AddModCharacter("winnie")

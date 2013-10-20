@@ -89,7 +89,20 @@ local RawAssets = {
 	Asset("IMAGE", "images/bg_up.tex"),	
 
 	Asset("ATLAS", "images/bg_gen.xml"),		
-	Asset("IMAGE", "images/bg_gen.tex"),		
+	Asset("IMAGE", "images/bg_gen.tex"),	
+
+	--Winnie assets.
+    Asset( "IMAGE", "images/saveslot_portraits/winnie.tex" ),
+    Asset( "ATLAS", "images/saveslot_portraits/winnie.xml" ),
+
+    Asset( "IMAGE", "images/selectscreen_portraits/winnie.tex" ),
+    Asset( "ATLAS", "images/selectscreen_portraits/winnie.xml" ),
+
+    Asset( "IMAGE", "images/selectscreen_portraits/winnie_silho.tex" ),
+    Asset( "ATLAS", "images/selectscreen_portraits/winnie_silho.xml" ),
+
+    Asset( "IMAGE", "bigportraits/winnie.tex" ),
+    Asset( "ATLAS", "bigportraits/winnie.xml" ),		
 }
 
 GLOBAL.require "screens/popupdialog"
@@ -101,6 +114,9 @@ Assets = RawAssets
 --This loads all of the new prefabs.
 
 local RawPrefabFiles = {
+	--Having winnie in this list causes a crash.
+	--"winnie",
+
 	"cloudrealm",
 	"cloud_mist",
 	"cloud_lightning",
@@ -241,7 +257,5 @@ end
 
 
 PrefabFiles = RawPrefabFiles
-
-
 
 TheMod:Run("main")
