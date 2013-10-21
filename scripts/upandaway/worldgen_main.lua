@@ -87,3 +87,16 @@ TRANSLATE_TO_PREFABS["goose"] = {"goose"}
 TRANSLATE_TO_PREFABS["cloudcrag"] = {"cloudcrag"}
 TRANSLATE_TO_PREFABS["skyflies"] = {"skyflies"}
 TRANSLATE_TO_PREFABS["crystal_relic"] = {"crystal_relic"}
+
+local Layouts = GLOBAL.require("map/layouts").Layouts
+local StaticLayout = GLOBAL.require("map/static_layout")
+-- We'll just use an existing layout here, but feel free to add your own in a
+-- scripts/map/static_layouts folder.
+Layouts["ShopkeeperStall"] = StaticLayout.Get("map/static_layouts/shopkeeper_stall")
+-- Add this layout to every "forest" room in the game
+AddRoomPreInit("Forest", function(room)
+	if not room.contents.countstaticlayouts then
+		room.contents.countstaticlayouts = {}
+	end
+	room.contents.countstaticlayouts["ShopkeeperStall"] = 1
+end)

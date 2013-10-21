@@ -82,6 +82,11 @@ local function Credits()
 	GLOBAL.TheFrontEnd:PushScreen(ModCreditsScreen())
 end
 
+local function UpMenu()
+	local UpMenuScreen = require "screens/upmenuscreen"
+	GLOBAL.TheFrontEnd:PushScreen(UpMenuScreen())
+end	
+
 --Changes the main menu.
 local function UpdateMainScreen(self)
 	--do
@@ -96,6 +101,7 @@ local function UpdateMainScreen(self)
 	self.upandaway_button = self.menu:AddChild(ImageButton())
 	self.upandaway_button:SetPosition(0, 400, 0)
 	self.upandaway_button:SetText("Up and Away")
+	self.upandaway_button:SetOnClick( function() UpMenu() end )
 
 	--[[
 	--This displays the current version to the user.	
