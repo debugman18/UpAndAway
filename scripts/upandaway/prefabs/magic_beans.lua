@@ -20,27 +20,22 @@ local prefabs =
 }
 
 local function test_ground(inst, pt)
-	local tiletype = GetGroundTypeAtPosition(pt)
-	local ground_OK = tiletype ~= GROUND.ROCKY and tiletype ~= GROUND.ROAD and tiletype ~= GROUND.IMPASSABLE and
-						tiletype ~= GROUND.UNDERROCK and tiletype ~= GROUND.WOODFLOOR and 
-						tiletype ~= GROUND.CARPET and tiletype ~= GROUND.CHECKER and tiletype < GROUND.UNDERGROUND
-	
-	if ground_OK then
-	    local ents = TheSim:FindEntities(pt.x,pt.y,pt.z, 4)
-		local min_spacing = inst.components.deployable.min_spacing or 2
+		local tiletype = GetGroundTypeAtPosition(pt)
+		local ground_OK = tiletype ~= GROUND.IMPASSABLE 
 
-	    for k, v in pairs(ents) do
-			if v ~= inst and v.entity:IsValid() and v.entity:IsVisible() and not v:HasTag("player") and not v.components.placer and v.parent == nil and not v:HasTag("FX") then
-				if distsq( Vector3(v.Transform:GetWorldPosition()), pt) < min_spacing*min_spacing then
-					return false
-				end
+		if ground_OK then
+			local ents = TheSim:FindEntities(pt.x,pt.y,pt.z, 2, nil, {"NOBLOCK", "player", "FX", "INLIMBO", "DECOR"}) -- or we could include a flag to the search?
+
+			for k, v in pairs(ents) do
+				if not v:HasTag("mound") then 
+					return false 
+				end	
 			end
-		end
-		
-		return true
+			
+			return true
 
-	end
-	return false
+		end
+		return false
 	
 end
 
@@ -74,10 +69,13 @@ local function common(Sim)
 
 	inst:AddComponent("inventoryitem")
 	
-	inst:AddComponent("deployable")
+	--[[inst:AddComponent("deployable")
 	inst.components.deployable.ondeploy = ondeploy
 	inst.components.deployable.test = test_ground
 	inst.components.deployable.min_spacing = 4	
+	]]
+    inst:AddComponent("key")
+    inst.components.key.keytype = "beans" 
 	
     inst:AddComponent("cookable")
     inst.components.cookable.product = "magic_beans_cooked"	

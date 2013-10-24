@@ -584,8 +584,8 @@ Add.QuotesFor "cotton_candy" {
 
 STRINGS.CHARACTER_TITLES.winnie = "The Curious"
 STRINGS.CHARACTER_NAMES.winnie = "Winnie"
-STRINGS.CHARACTER_DESCRIPTIONS.winnie = " *Is not finished"
-STRINGS.CHARACTER_QUOTES.winnie = "Hello world!"
+STRINGS.CHARACTER_DESCRIPTIONS.winnie = "*Is a picky eater\n*Has a green thumb"
+STRINGS.CHARACTER_QUOTES.winnie = "'Where are you, little sheep?'"
 STRINGS.CHARACTERS.WINNIE = {}
 STRINGS.CHARACTERS.WINNIE.DESCRIBE = {}
 STRINGS.CHARACTERS.WINNIE.DESCRIBE.GENERIC = "I don't have strings yet."

@@ -77,11 +77,6 @@ AddPrefabPostInit("world", function(inst)
 	end
 end)
 
-local function Credits()
-	local ModCreditsScreen = require "screens/modcreditsscreen"
-	GLOBAL.TheFrontEnd:PushScreen(ModCreditsScreen())
-end
-
 local function UpMenu()
 	local UpMenuScreen = require "screens/upmenuscreen"
 	GLOBAL.TheFrontEnd:PushScreen(UpMenuScreen())
@@ -97,11 +92,7 @@ local function UpdateMainScreen(self)
 	local ImageButton = require "widgets/imagebutton"
 	local Text = require "widgets/text"	
 
-	--Adds our own mod button.
-	self.upandaway_button = self.menu:AddChild(ImageButton())
-	self.upandaway_button:SetPosition(0, 400, 0)
-	self.upandaway_button:SetText("Up and Away")
-	self.upandaway_button:SetOnClick( function() UpMenu() end )
+
 
 	--[[
 	--This displays the current version to the user.	
@@ -137,6 +128,14 @@ local function UpdateMainScreen(self)
 	STRINGS.UI.MAINSCREEN.UPDATENAME = "Up and Away"
 	self.updatename:SetString(STRINGS.UI.MAINSCREEN.UPDATENAME)
 	self.banner:SetPosition(0, -170, 0)	
+
+	--Adds our own mod button.
+	self.upandaway_button = self.updatename:AddChild(ImageButton())
+	--self.upandaway_button:SetPosition(-550, -130, 0)
+	self.upandaway_button:SetPosition(0,0,0)
+	self.upandaway_button:SetText("Up and Away")
+	self.upandaway_button:SetOnClick( function() UpMenu() end )	
+	--self.upandaway_button:SetScale(.8)
 		
 	--[[
 	
@@ -276,6 +275,23 @@ do
 	end
 end
 
+local function OnUnlock(inst)
+    local tree = SpawnPrefab("beanstalk")
+    if not inst.components.lock:IsLocked() and tree then
+        tree.Transform:SetPosition(inst.Transform:GetWorldPosition() )
+        print "Unlocked"
+    end
+    print "Locked"
+end
+
+local function addmoundtag(inst)
+	inst:AddTag("mound")
+    inst:AddComponent("lock")
+    inst.components.lock.locktype = "beans"
+    inst.components.lock.isstuck = false
+    inst.components.lock:SetOnUnlockedFn(OnUnlock)  
+end	
+
 --Changes "activate" to "talk to" for "shopkeeper".
 AddSimPostInit(function(inst)
 	local oldactionstringoverride = inst.ActionStringOverride
@@ -303,6 +319,21 @@ AddSimPostInit(function(inst)
 		end
 	end
 end)
+
+--Changes "Unlock" to "Plant" for beans and mounds.
+AddSimPostInit(function(inst)
+	local oldactionstringoverride = inst.ActionStringOverride
+	function inst:ActionStringOverride(bufaction)
+		if bufaction.action == GLOBAL.ACTIONS.UNLOCK and bufaction.target and bufaction.target.prefab == "mound" then
+			return "Plant"
+		end
+		if oldactionstringoverride then
+			return oldactionstringoverride(inst, bufaction)
+		end
+	end
+end)
+
+AddPrefabPostInit("mound", addmoundtag)
 
 table.insert(GLOBAL.CHARACTER_GENDERS.FEMALE, "winnie")
 

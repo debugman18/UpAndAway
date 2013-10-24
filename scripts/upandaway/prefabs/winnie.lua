@@ -40,6 +40,12 @@ local assets = {
 local starting_inventory = {}
 local prefabs = {}
 
+local function penalty_meat(inst)
+        inst.components.sanity:DoDelta(-20)
+        inst.components.health:DoDelta(-3)
+        inst.components.hunger:DoDelta(-3)
+end
+
 local fn = function(inst)
 	
         -- choose which sounds this character will play
@@ -47,6 +53,8 @@ local fn = function(inst)
 
 	-- a minimap icon must be specified
 	inst.MiniMapEntity:SetIcon( "winnie.png" )
+
+        inst.components.eater:SetOnEatFn(penalty_meat)
 	
 end
 
