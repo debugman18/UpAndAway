@@ -115,6 +115,7 @@ Assets = RawAssets
 
 local RawPrefabFiles = {
 	"winnie",
+	"winnie_staff",
 
 	"cloudrealm",
 	"cloud_mist",

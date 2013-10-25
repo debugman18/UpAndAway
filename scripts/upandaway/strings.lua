@@ -183,6 +183,8 @@ Add.Names {
 
     weather_machine = "Tropospherical Relay",
 
+    winnie_staff = "Shepherd's Staff",
+
 }
 
 Add.QuotesFor "beanstalk" {

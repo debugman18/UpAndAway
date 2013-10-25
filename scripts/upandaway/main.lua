@@ -60,6 +60,13 @@ AddGamePostInit(function()
 	end
 end)
 
+local function winter_perk(inst)
+	if GetPlayer().prefab == "winnie" then
+		TUNING.MIN_CROP_GROW_TEMP = -100
+	end	
+end	
+
+AddComponentPostInit("crop", winter_perk)
 
 --[[
 -- This is just to prevent changes in out implementation breaking old saves.

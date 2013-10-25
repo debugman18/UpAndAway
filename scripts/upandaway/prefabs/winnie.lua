@@ -37,24 +37,41 @@ local assets = {
         Asset( "ANIM", "anim/winnie.zip" ),
 }
 
-local starting_inventory = {}
-local prefabs = {}
+local starting_inventory = {"winnie_staff"}
+local prefabs = {"winnie_staff"}
 
-local function penalty_meat(inst)
-        inst.components.sanity:DoDelta(-20)
-        inst.components.health:DoDelta(-3)
-        inst.components.hunger:DoDelta(-3)
+--The penalty for eating meat.
+local function penalty_meat(inst, food)
+        if inst.components.eater and food.components.edible.foodtype == "MEAT" then
+                inst.components.sanity:DoDelta(-50)
+                inst.components.health:DoDelta(-5)
+                inst.components.hunger:DoDelta(-3)
+        end
 end
+
+--The penalty for attacking innocent creatures.
+local function penalty_combat(inst, target)
+        local target = inst.components.combat.target
+        if target and not target:HasTag("monster") then
+                inst.components.sanity:DoDelta(-3)
+                print "Attacking innocent."        
+        end
+        print "Attacking monster."
+end        
 
 local fn = function(inst)
 	
-        -- choose which sounds this character will play
 	inst.soundsname = "winnie"
 
-	-- a minimap icon must be specified
 	inst.MiniMapEntity:SetIcon( "winnie.png" )
 
         inst.components.eater:SetOnEatFn(penalty_meat)
+
+        inst:ListenForEvent("onattackother", penalty_combat)   
+
+        inst.components.inventory:GuaranteeItems({"winnie_staff"})
+
+        GLOBAL.TUNING.MIN_CROP_GROW_TEMP = 0
 	
 end
 

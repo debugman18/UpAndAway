@@ -7,6 +7,8 @@ require "behaviours/wander"
 require "behaviours/runaway"
 require "behaviours/doaction"
 require "behaviours/panic"
+require "behaviours/follow"
+require "behaviours/faceentity"
 
 local STOP_RUN_DIST = 2
 local SEE_PLAYER_DIST = 10
@@ -21,6 +23,19 @@ local MAX_WANDER_DIST = 50
 local SheepBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
 end)
+
+
+local function GetFaceTargetFn(inst)
+    local target = GetClosestInstWithTag("player", inst, 4)
+    if target and not target:HasTag("notarget") then
+        return target
+    end
+end
+
+local function KeepFaceTargetFn(inst, target)
+    return inst:GetDistanceSqToInst(target) <= 6*6 and not target:HasTag("notarget")
+end
+
 
 local function GoHomeAction(inst)
     if inst.components.homeseeker and 
@@ -47,6 +62,8 @@ function SheepBrain:OnStart()
     local root = PriorityNode(
     {
         WhileNode( function() return self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst)),
+        Follow(self.inst, function() return self.inst.components.follower and self.inst.components.follower.leader end, 1, 5, 5, false),
+        FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn),
         RunAway(self.inst, "scarytoprey", AVOID_PLAYER_DIST, AVOID_PLAYER_STOP),
         RunAway(self.inst, "scarytoprey", SEE_PLAYER_DIST, STOP_RUN_DIST, nil, true),
         Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST),		

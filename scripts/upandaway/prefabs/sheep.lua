@@ -146,9 +146,6 @@ local function set_electricsheep(inst)
 	inst.components.lootdropper:SetLoot(loot)
 	--inst.components.lootdropper:AddChanceLoot("cotton", 0.70)
 
-	inst.components.follower.maxfollowtime = TUNING.BEEFALO_FOLLOW_TIME
-	inst.components.follower.canaccepttarget = false
-
 	inst.components.periodicspawner:Stop()
 	inst.components.periodicspawner:SetRandomTimes(20, 100)
 	inst.components.periodicspawner:SetDensityInRange(10, 1)
@@ -294,6 +291,7 @@ local function fn()
 	inst:AddComponent("herdmember")
 	
 	inst:AddComponent("leader")
+
 	inst:AddComponent("follower")
 
 	inst:AddComponent("periodicspawner")
