@@ -1,0 +1,2 @@
+Building 'C:\Program Files (x86)\Steam\steamapps\common\Don't Starve Mod Tools\mod_tools\..\..\dont_starve\mods\UpAndAway/exported\Tailball\Tailball.scml'.
+ERROR: Missing image 'tailball_assets/Tailball_body.png' referenced by 'Tailball.scml'.
