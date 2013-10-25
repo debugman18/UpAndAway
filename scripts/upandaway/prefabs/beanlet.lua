@@ -15,7 +15,7 @@ local function fn(Sim)
 
     anim:SetBank("Beanlet") -- name of the animation root
     anim:SetBuild("Beanlet")  -- name of the file
-    anim:PlayAnimation("dummy", true) -- name of the animation
+    anim:PlayAnimation("idle", true) -- name of the animation
 	
     return inst
 end
