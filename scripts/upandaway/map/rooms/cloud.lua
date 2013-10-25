@@ -80,7 +80,7 @@ TheMod:AddRoom("BGAurora", {
 	contents =  {
 		distributepercent = 0.002,
 		distributeprefabs = {
-			alien = 0.005,		
+			alien = 0.06,		
 			skeleton = 0.001,
 			manta = 0.02,
 		}
@@ -131,7 +131,7 @@ TheMod:AddRoom("Beanlet_Den", {
 	contents = {
 		distributepercent = 0.05,
 		dsitributeprefabs = {
-			beanlet = 0.001,
+			beanlet = 0.01,
 			skyflies = 0.07,
 		},
 	},
