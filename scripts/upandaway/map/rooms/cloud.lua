@@ -80,6 +80,7 @@ TheMod:AddRoom("BGAurora", {
 	contents =  {
 		distributepercent = 0.002,
 		distributeprefabs = {
+			alien = 0.005,		
 			skeleton = 0.001,
 			manta = 0.02,
 		}
@@ -202,7 +203,7 @@ TheMod:AddRoom("BGRainbow", {
 	contents = {
 		distributepercent = 0.06,
 		distributeprefabs = {
-			alien = 0.005,
+			jellyshroom = 0.0002,
 		},
 	},
 })

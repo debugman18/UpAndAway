@@ -22,7 +22,7 @@ TheMod:AddTask("Cloud_Generic_Biome", {
 	background_room="BGCloud",
 	colour={r=.2,g=.2,b=.2,a=1},
   	-- The number of neighbors beyond the first that each node links to
-  	crosslink_factor = 2,
+  	crosslink_factor = 3,
   	-- Whether or not to connect the last node to the first
   	make_loop = true,	
 })
@@ -42,7 +42,7 @@ TheMod:AddTask("Cloud_Snow_Biome", {
 	background_room="BGSnow",
 	colour={r=.8,g=.8,b=.8,a=1},
   	-- The number of neighbors beyond the first that each node links to
-  	crosslink_factor = 3,
+  	crosslink_factor = 1,
   	-- Whether or not to connect the last node to the first
   	make_loop = false,	
 })
@@ -83,7 +83,7 @@ TheMod:AddTask("Cloud_Rainbow_Biome", {
 	background_room="BGRainbow",
 	colour={r=.8,g=.8,b=.8,a=1},
 	-- The number of neighbors beyond the first that each node links to
-  	crosslink_factor = 1,
+  	crosslink_factor = 0,
   	-- Whether or not to connect the last node to the first
   	make_loop = false,	
 })
