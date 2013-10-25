@@ -345,3 +345,14 @@ AddPrefabPostInit("mound", addmoundtag)
 table.insert(GLOBAL.CHARACTER_GENDERS.FEMALE, "winnie")
 
 AddModCharacter("winnie")
+
+local oldMakeNoGrowInWinter = _G.MakeNoGrowInWinter
+ 
+function _G.MakeNoGrowInWinter(inst)
+    -- We need to delay the actual work because spawning the player happens late.
+    inst:DoTaskInTime(0, function(inst)
+        if _G.GetPlayer().prefab ~= "winnie" or not (inst.components.pickable and inst.components.pickable.transplanted) then
+            return oldMakeNoGrowInWinter(inst)
+        end
+    end)
+end
