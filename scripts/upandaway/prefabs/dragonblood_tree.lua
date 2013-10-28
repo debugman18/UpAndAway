@@ -14,10 +14,12 @@ local prefabs =
 	"log",
 }
 
-local chopped(inst)
+local function chopped(inst)
+	--
 end
 
-local chop(inst)
+local function chop(inst)
+	--
 end
 
 local loot = 
