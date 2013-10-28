@@ -30,7 +30,7 @@ TheMod:AddTask("Cloud_Generic_Biome", {
 
 --Snow Biome
 TheMod:AddTask("Cloud_Snow_Biome", {
-	locks = LOCKS.NONE,
+	locks = LOCKS.TIER1,
 	keys_given = {KEYS.TIER1, KEYS.TIER2},
 
 	room_choices={
@@ -50,7 +50,7 @@ TheMod:AddTask("Cloud_Snow_Biome", {
 
 --Aurora Biome
 TheMod:AddTask("Cloud_Aurora_Biome", {
-	locks = LOCKS.NONE,
+	locks = LOCKS.TIER1,
 	keys_given = {KEYS.TIER1, KEYS.TIER2, KEYS.TIER3},
 
 	room_choices={
@@ -72,7 +72,7 @@ TheMod:AddTask("Cloud_Aurora_Biome", {
 
 --Rainbow Biome
 TheMod:AddTask("Cloud_Rainbow_Biome", {
-	locks = LOCKS.NONE,
+	locks = LOCKS.TIER1,
 	keys_given = {KEYS.TIER1, KEYS.TIER2},
 
 	room_choices={
