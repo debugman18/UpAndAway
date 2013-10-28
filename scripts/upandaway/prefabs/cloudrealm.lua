@@ -104,7 +104,25 @@ local custom_prefabs = {
 	"crystal_relic",
 	"duckraptor",
 
+	--[[
 	"golden_egg",
+	"gustflower",
+	"frog",
+	"golden_sunflower",
+	"skeleton",
+	"ball_lighting",
+	"beanlet",
+	"beanlet_zealot",
+	"crystal_white",
+	"crystal_black",
+	"crystal_spire",
+	"crystal_water",
+	"crystal_quartz",
+	"crystal_light",
+	"thunder_tree",
+	"skytrap",
+	"balloon_hound",
+	]]
 }
 
 

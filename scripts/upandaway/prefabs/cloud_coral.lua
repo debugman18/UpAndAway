@@ -5,7 +5,7 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/marble_pillar.zip"),
 }
 
 local function mine_remove(inst, chopper)
@@ -19,10 +19,14 @@ local function fn(Sim)
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
+	
+	inst.AnimState:SetBank("marble_pillar")
+	inst.AnimState:SetBuild("marble_pillar")
+	inst.AnimState:PlayAnimation("full")
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("void_placeholder")
-	inst.AnimState:PlayAnimation("anim")
+
+	inst.entity:AddMiniMapEntity()
+	inst.MiniMapEntity:SetIcon( "marblepillar.png" )	
 
 	inst:AddComponent("inspectable")
 

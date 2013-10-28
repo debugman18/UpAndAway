@@ -41,13 +41,11 @@ end
 		inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
         inst:AddComponent("bait")
-
         
 		inst:AddComponent("perishable")
 		inst.components.perishable:SetPerishTime(TUNING.PERISH_FAST)
 		inst.components.perishable:StartPerishing()
 		inst.components.perishable.onperishreplacement = "spoiled_food"
-        
         
         inst:AddComponent("inspectable")
         
@@ -70,7 +68,7 @@ end
 		inst.components.perishable:SetPerishTime(TUNING.PERISH_SUPERFAST)
         
         inst:AddComponent("cookable")
-        --inst.components.cookable.product = "flying_fish_cooked"
+        inst.components.cookable.product = "flying_fish_cooked"
         inst:AddComponent("dryable")
         inst.components.dryable:SetProduct("smallmeat_dried")
         inst.components.dryable:SetDryTime(TUNING.DRY_FAST)
@@ -92,5 +90,7 @@ end
         return inst
     end
 
-return Prefab("common/inventory/flying_fish", rawfn, assets, prefabs) 
-
+return {
+    Prefab("common/inventory/flying_fish", rawfn, assets, prefabs),
+    Prefab("common/inventory/flying_fish_cooked", cookedfn, assets, prefabs),
+}

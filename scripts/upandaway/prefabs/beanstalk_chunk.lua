@@ -26,6 +26,10 @@ local function fn(Sim)
 
 	inst:AddComponent("inventoryitem")
 
+	inst:AddComponent("repairer")
+	inst.components.repairer.repairmaterial = "beanstalk"
+	inst.components.repairer.value = 1	
+
 	return inst
 end
 

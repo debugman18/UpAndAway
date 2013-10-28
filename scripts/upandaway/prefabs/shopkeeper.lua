@@ -294,6 +294,9 @@ local function fn(Sim)
 	anim:SetBuild("shop_basic")
 	anim:PlayAnimation("idle", true)
 
+    local minimap = inst.entity:AddMiniMapEntity()
+    --This will be his own minimap icon.
+    --minimap:SetIcon("monkey_barrel.png")	
 
 	inst.flagger = true
 	inst.numbeans = CFG.SHOPKEEPER.NUMBEANS

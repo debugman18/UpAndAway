@@ -38,12 +38,12 @@ return {
       properties = {},
       encoding = "lua",
       data = {
-        11, 11, 11, 11, 11, 11,
-        11, 1, 3, 3, 1, 11,
-        11, 3, 3, 3, 3, 11,
-        11, 3, 3, 3, 3, 11,
-        11, 1, 3, 3, 1, 11,
-        11, 11, 11, 11, 11, 11
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0
       }
     },
     {
@@ -66,7 +66,7 @@ return {
         },
         {
           name = "",
-          type = "rook",
+          type = "thunder_tree",
           shape = "rectangle",
           x = 192,
           y = 263,
@@ -77,7 +77,7 @@ return {
         },
         {
           name = "",
-          type = "rook",
+          type = "crystal_relic",
           shape = "rectangle",
           x = 260,
           y = 192,
@@ -88,7 +88,7 @@ return {
         },
         {
           name = "",
-          type = "rook",
+          type = "thunder_tree",
           shape = "rectangle",
           x = 195,
           y = 134,
@@ -99,7 +99,7 @@ return {
         },
         {
           name = "",
-          type = "rook",
+          type = "skyflower",
           shape = "rectangle",
           x = 124,
           y = 191,
@@ -107,7 +107,51 @@ return {
           height = 0,
           visible = true,
           properties = {}
-        }
+        },
+        {
+          name = "",
+          type = "owl",
+          shape = "rectangle",
+          x = 126,
+          y = 193,
+          width = 0,
+          height = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "owl",
+          shape = "rectangle",
+          x = 122,
+          y = 189,
+          width = 0,
+          height = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          name = "",
+          type = "owl",
+          shape = "rectangle",
+          x = 131,
+          y = 198,
+          width = 0,
+          height = 0,
+          visible = true,
+          properties = {}
+        },                        
+        {
+          name = "",
+          type = "owl",
+          shape = "rectangle",
+          x = 110,
+          y = 185,
+          width = 0,
+          height = 0,
+          visible = true,
+          properties = {}
+        }        
       }
     }
   }

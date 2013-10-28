@@ -1,0 +1,1 @@
+return require('upandaway.prefabs.golden_sunflower_seeds')

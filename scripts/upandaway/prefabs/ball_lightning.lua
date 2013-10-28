@@ -3,6 +3,11 @@ local _modname = assert( (assert(..., 'This file should be loaded through requir
 module( ..., package.seeall, require(_modname .. '.booter') )
 --@@END ENVIRONMENT BOOTUP
 
+local prefabs =
+{
+	"cloud_lightning",
+}
+
 local assets =
 {
 	Asset("ANIM", "anim/void_placeholder.zip"),
@@ -42,8 +47,35 @@ local function fn(Sim)
 	inst.AnimState:PlayAnimation("anim")
 
 	inst:AddComponent("inspectable")
+	
+    --local brain = require "brains/batbrain"
+    --inst:SetBrain(brain)
 
-	inst:AddComponent("inventoryitem")
+    inst:AddComponent("locomotor")
+    inst.components.locomotor:SetSlowMultiplier( 1 )
+    inst.components.locomotor:SetTriggersCreep(false)
+    inst.components.locomotor.pathcaps = { ignorecreep = false }
+    inst.components.locomotor.walkspeed = TUNING.MONKEY_MOVE_SPEED
+	inst.components.locomotor.directdrive = true    
+
+    inst:AddComponent("combat")
+    inst.components.combat:SetAttackPeriod(TUNING.MONKEY_ATTACK_PERIOD)
+    inst.components.combat:SetRange(10)
+    --inst.components.combat:SetRetargetFunction(1, retargetfn)
+
+    --inst.components.combat:SetKeepTargetFunction(shouldKeepTarget)
+    inst.components.combat:SetDefaultDamage(2)	--This doesn't matter, monkey uses weapon damage
+
+    inst:AddComponent("health")
+    inst.components.health:SetMaxHealth(100)
+
+	inst:AddComponent("temperature")
+	inst.components.temperature.maxtemp = 80
+	inst.components.temperature.mintemp = 80
+	inst.components.temperature.current = 80
+	inst.components.temperature.inherentinsulation = TUNING.INSULATION_MED  
+
+	inst:AddComponent("heater")	  
 
 	return inst
 end

@@ -20,11 +20,16 @@ local cloudcrag3_assets =
 
 local prefabs =
 {
-    "rocks",
-    "nitre",
+    "cloud_cotton",
+    "nite",
     "flint",
     "goldnugget",
 }    
+
+local loot = 
+{
+	"cloud_cotton",
+}
 
 local function common(Sim)
 	local inst = CreateEntity()
@@ -51,8 +56,7 @@ local function common(Sim)
 				inst.components.lootdropper:DropLoot(pt)
 				inst:Remove()
 			else
-				
-				
+								
 				if workleft < TUNING.ROCKS_MINE*(1/3) then
 					inst.AnimState:PlayAnimation("low")
 				elseif workleft < TUNING.ROCKS_MINE*(2/3) then
@@ -75,7 +79,8 @@ local function cloudcrag(Sim)
 	inst.AnimState:SetBuild("cloudcrag")
 	inst.AnimState:PlayAnimation("full")
 
-	inst.components.lootdropper:SetLoot({"cloud_cotton"})
+	inst.components.lootdropper:SetLoot(loot)
+	inst.components.lootdropper:SetChanceLoot("flint")
 	return inst
 end
 --[[

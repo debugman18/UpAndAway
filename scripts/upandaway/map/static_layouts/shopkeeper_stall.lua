@@ -33,17 +33,17 @@ return {
       y = 0,
       width = 6,
       height = 6,
-      visible = true,
+      visible = false,
       opacity = 1,
       properties = {},
       encoding = "lua",
       data = {
-        11, 11, 11, 11, 11, 11,
-        11, 1, 3, 3, 1, 11,
-        11, 3, 3, 3, 3, 11,
-        11, 3, 3, 3, 3, 11,
-        11, 1, 3, 3, 1, 11,
-        11, 11, 11, 11, 11, 11
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0
       }
     },
     {
@@ -64,6 +64,39 @@ return {
           visible = true,
           properties = {}
         },
+        {
+          name = "",
+          type = "marblepillar",
+          shape = "rectangle",
+          x = 300,
+          y = 300,
+          width = 0,
+          height = 0,
+          visible = true,
+          properties = {}
+        },   
+        {
+          name = "",
+          type = "marblepillar",
+          shape = "rectangle",
+          x = 150,
+          y = 150,
+          width = 0,
+          height = 0,
+          visible = true,
+          properties = {}
+        },    
+        {
+          name = "",
+          type = "marblepillar",
+          shape = "rectangle",
+          x = 250,
+          y = 250,
+          width = 0,
+          height = 0,
+          visible = true,
+          properties = {}
+        }   
       }
     }
   }

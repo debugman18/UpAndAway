@@ -8,6 +8,18 @@ local assets =
 	Asset("ANIM", "anim/void_placeholder.zip"),
 }
 
+local prefabs =
+{
+   --"beak",
+   --"feather",
+}
+
+local loot = 
+{
+    --"beak",
+    --"feather",
+}
+
 local function fn(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
@@ -19,14 +31,18 @@ local function fn(Sim)
 	inst.AnimState:SetBuild("sky_octopus")
 	inst.AnimState:PlayAnimation("idle")
 
-	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
-
 	inst:AddComponent("inspectable")
 
-	inst:AddComponent("inventoryitem")
+    inst:AddComponent("combat")
+    inst.components.combat.hiteffectsymbol = "pig_torso"
+
+    inst:AddComponent("health")
+    inst.components.health:SetMaxHealth(200)	
+
+    inst:AddComponent("lootdropper")
+    inst.components.lootdropper:SetLoot(loot) 	
 
 	return inst
 end
 
-return Prefab ("common/inventory/octocopter", fn, assets) 
+return Prefab ("common/inventory/octocopter", fn, assets, prefabs) 

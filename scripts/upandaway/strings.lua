@@ -10,8 +10,14 @@ local Add = modrequire 'lib.addstrings'
 Add.Names {
 
 	alien = "Aurora",
+
+    ball_lightning = "Ball Lightning",
 	
 	balloon_hound = "Balloon Hound",
+
+    bean_giant = "Bean Giant",    
+
+    bean_giant_statue = "Giant Statue",
 
     beanlet = "Beanlet",
     
@@ -29,7 +35,11 @@ Add.Names {
 
     bee_marshmallow = "Marshmallow Bee",
 
+    bird_paradise = "Bird of Paradise",
+
     candy_fruit = "Candy Fruit",
+
+    cauldron = "Cauldron",
 
     cheshire = "Cat",
     
@@ -51,41 +61,71 @@ Add.Names {
 
     cloud_cotton = "Cloud Cotton",
 
+    cloud_fruit_tree = "Cloudfruit Tree",
+
     cloud_fruit = "Cloudfruit",
 
     cloud_storage = "Cloud Chest",
 
     cloud_turf = "Cloud Turf",
 
+    cloud_wall = "Cloud Wall",
+
+    colored_corn = "Rainbow Gem Corn",
+
+    cotton_candy = "Cotton Candy",
+
+    cotton_hat = "Cotton Hat",
+
+    cotton_vest = "Cotton Vest",
+    
+    crystal_armor = "Crystal Armor",
+
     crystal_axe = "Axe of Storms",
     
-    crystal_black = "Crystal",
+    crystal_black = "Black Crystal",
+
+    crystal_black_fragment = "Black Crystal Fragment",
 
     crystal_cap = "Crystal Cap",
 
-    crystal_deposit = "Crystal Deposit",
+    crystal_fragment = "Crystal Shard",    
 
     crystal_lamp = "Crystal Lamp",
 
+    crystal_light = "Light Crystal",
+
     crystal_moss = "Crystal Moss",
+
+    crystal_quartz = "Quartz Crystal",
+
+    crystal_quartz_fragment = "Quartz Crystal Fragment",
 
     crystal_relic = "Crystal Relic",
 
-    crystal_fragment = "Crystal Shard",
+    crystal_relic_fragment = "Relic Fragment",
     
-    crystal_spire = "Crystal",
+    crystal_spire = "Crystal Spire",
 
     crystal_wall = "Crystal Wall",
+
+    crystal_water = "Water Crystal",
+
+    crystal_water_fragment = "Water Crystal Fragment",
     
-    crystal_white = "Crystal",
+    crystal_white = "White Crystal",
+
+    crystal_white_fragment = "White Crystal Fragment",
+
+    cumulostone = "Cumolostone",
 
     datura_petals = "Datura Petals",
 
+    dragonblood_sap = "Dragonblood Sap",
+
+    dragonblood_tree = "Dragonblood Tree",
+
     duckraptor = "Duckraptor",
-
-    duckraptor_baby = "Duckling",
-
-    duckraptor_mother = "Mother Duckraptor",
 
     flying_fish = "Flying Fish",
     
@@ -97,6 +137,8 @@ Add.Names {
 
     golden_golem = "Golden Golem",
 
+    golden_harp = "Golden Harp",
+
     golden_rose = "Golden Rose",
 
     golden_petals = "Golden Petals",
@@ -106,6 +148,10 @@ Add.Names {
     grabber = "Grabber",
     
     greenbean = "Greenbean",
+
+    gustflower = "Gustflower",
+
+    gustflower_seeds = "Gustflower Seeds",
 
     hive_marshmallow = "Marshmallow",   
     
@@ -121,11 +167,11 @@ Add.Names {
 
     longbill = "Longbill",
 
+    magnet = "Magnet",
+
     magic_beans = "Magic Beans",
 
     magic_beans_cooked = "Baked Beans",
-
-    magic_bean_giant = "Bean Giant",
 
     magic_bean_sprout = "Bean Sprout",
     
@@ -133,11 +179,9 @@ Add.Names {
     
     manta_leather = "Manta Leather",
 
+    marshmallow = "Marshmallow",
+
     monolith = "Monolith",
-
-    moonflower = "Moonflower",
-
-    moonflower_seeds = "Moonflower Seeds",
     
     octocopter = "Octocopter",
 
@@ -154,6 +198,8 @@ Add.Names {
     refiner = "Refiner",
     
     research_lectern = "Cumulocator Station",
+
+    rubber = "Rubber",
     
     scarecrow = "Scarecrow",
 
@@ -164,14 +210,16 @@ Add.Names {
     skyflower = "Skyflower",
 
     skyflower_petals = "Skyflower Petals",
+
+    skytrap = "Skytrap",
     
     smores = "S'mores",
 
-    sunflower = "Golden Sunflower",
+    golden_sunflower = "Golden Sunflower",
 
-    sunflower_seeds = "Golden Sunflower Seeds",
+    golden_sunflower_seeds = "Golden Sunflower Seeds",
 
-    sky_chest = "Golden Chest",
+    sky_chest = "Eldrichest",
 
     skyflies = "Lightning Bug",
 
@@ -182,6 +230,8 @@ Add.Names {
     vine = "Beanstalk Vine",
 
     weather_machine = "Tropospherical Relay",
+
+    whirlwind = "Whirlwind",
 
     winnie_staff = "Shepherd's Staff",
 

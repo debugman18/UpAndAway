@@ -5,12 +5,20 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/grass.zip"),
+	Asset("ANIM", "anim/grass1.zip"),
 }
 
-local function makeemptyfn(inst)
-	Print "This algae is now empty and needs to regenerate."
-end
+local prefabs =
+{
+	"cloud_algae_fragment",
+}
+
+local loot =
+{
+	"cloud_algae_fragment",
+	"cloud_algae_fragment",
+}
 
 local function fn(Sim)
 	local inst = CreateEntity()
@@ -19,9 +27,15 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("void_placeholder")
-	inst.AnimState:PlayAnimation("anim")
+	local anim = inst.entity:AddAnimState()
+	local sound = inst.entity:AddSoundEmitter()
+	local minimap = inst.entity:AddMiniMapEntity()
+
+	minimap:SetIcon( "grass.png" )
+	    
+	anim:SetBank("grass")
+	anim:SetBuild("grass1")
+	anim:PlayAnimation("idle",true)
 
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
@@ -29,13 +43,14 @@ local function fn(Sim)
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("inventoryitem")
-	
-    inst:AddComponent("pickable")
-    inst.components.pickable.picksound = "dontstarve/wilson/harvest_sticks"
-    inst.components.pickable:SetUp("cloud_algae_fragment", 200, 3)
-	--inst.components.pickable.onregenfn = onchargedfn
-	--inst.components.pickable.onpickedfn = onpickedfn
-    inst.components.pickable.makeemptyfn = makeemptyfn	
+
+	inst:AddComponent("workable")
+    inst.components.workable:SetWorkAction(ACTIONS.MINE)
+    inst.components.workable:SetWorkLeft(3)
+    inst.components.workable:SetOnFinishCallback(mined) 
+
+   	inst:AddComponent("lootdropper") 
+   	inst.components.lootdropper:SetLoot(loot)        
 
 	return inst
 end

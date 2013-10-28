@@ -5,8 +5,25 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/rock_stalagmite.zip"),
 }
+
+local prefabs =
+{
+   "crystal_white_fragment",
+}
+
+local loot = 
+{
+   "crystal_white_fragment",
+}
+
+local function onMined(inst, worker)
+	inst.components.lootdropper:DropLoot()
+	inst.SoundEmitter:PlaySound("dontstarve/common/destroy_rock")
+
+	inst:Remove()	
+end
 
 local function fn(Sim)
 	local inst = CreateEntity()
@@ -15,18 +32,22 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("void_placeholder")
-	inst.AnimState:PlayAnimation("anim")
-
-	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+	inst.AnimState:SetBank("rock_stalagmite")
+	inst.AnimState:SetBuild("rock_stalagmite")
+    inst.AnimState:PlayAnimation("full")
 
 	inst:AddComponent("inspectable")
 
-	inst:AddComponent("inventoryitem")
+    inst:AddComponent("lootdropper")
+    inst.components.lootdropper:SetLoot(loot) 
+
+	inst:AddComponent("workable")
+	inst.components.workable:SetWorkAction(ACTIONS.MINE)
+	inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE)
+	inst.components.workable:SetOnFinishCallback(onMined)
+	--inst.components.workable:SetOnWorkCallback(onhit)	      	
 
 	return inst
 end
 
-return Prefab ("common/inventory/crystal_white", fn, assets) 
+return Prefab ("common/inventory/crystal_white", fn, assets, prefabs) 

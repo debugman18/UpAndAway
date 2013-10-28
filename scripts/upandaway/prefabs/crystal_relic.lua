@@ -5,25 +5,25 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 
 local assets =
 {
-	Asset("ANIM", "anim/pig_house.zip"),
+	Asset("ANIM", "anim/rock_stalagmite.zip"),
 }
 
 local prefabs = 
 {
 	"owl",
-	"crystal_relic_shard",
+	"crystal_relic_fragment",
 }
 
 local CFG = TheMod:GetConfig()
 
 local loot = 
 {
-    "crystal_relic_shard",
-	"crystal_relic_shard",
-	"crystal_relic_shard",
+    "crystal_relic_fragment",
+	"crystal_relic_fragment",
+	"crystal_relic_fragment",
 }
         
-local function onhammered(inst, worker)
+local function onMined(inst, worker)
     inst:RemoveComponent("childspawner")
 	inst.components.lootdropper:DropLoot()
 	inst.SoundEmitter:PlaySound("dontstarve/common/destroy_rock")
@@ -148,9 +148,9 @@ local function fn()
     
     MakeObstaclePhysics(inst, 1)
 
-    anim:SetBank("pig_house")
-    anim:SetBuild("pig_house")
-    anim:PlayAnimation("rundown")
+	anim:SetBank("rock_stalagmite")
+	anim:SetBuild("rock_stalagmite")
+    anim:PlayAnimation("full")
 
     inst:AddTag("structure")
     inst:AddComponent("lootdropper")
@@ -159,7 +159,7 @@ local function fn()
 	inst:AddComponent("workable")
 	inst.components.workable:SetWorkAction(ACTIONS.MINE)
 	inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE)
-	inst.components.workable:SetOnFinishCallback(onhammered)
+	inst.components.workable:SetOnFinishCallback(onMined)
 	inst.components.workable:SetOnWorkCallback(onhit)	
 	
 	inst:AddComponent("childspawner")
@@ -182,7 +182,7 @@ local function fn()
     inst:AddComponent("inspectable")
     inst.components.inspectable.nameoverride = "Sacred Crystal"
 	
-	MakeSnowCovered(inst, .01)
+	--MakeSnowCovered(inst, .01)
     return inst
 end
 

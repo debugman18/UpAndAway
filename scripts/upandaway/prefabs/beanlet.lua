@@ -3,21 +3,51 @@ local _modname = assert( (assert(..., 'This file should be loaded through requir
 module( ..., package.seeall, require(_modname .. '.booter') )
 --@@END ENVIRONMENT BOOTUP
 
-local assets=
+local assets =
 {
 	Asset("ANIM", "anim/Beanlet.zip"),  -- same name as the .scml
 }
+
+local prefabs =
+{
+   "greenbean",
+   "beanlet_shell",
+}
+
+local loot = 
+{
+    "greenbean",
+    "greenbean",
+    "greenbean",
+}
+
+local function OnAttacked(inst, data)
+end
 
 local function fn(Sim)
     local inst = CreateEntity()
     local trans = inst.entity:AddTransform()
     local anim = inst.entity:AddAnimState()
 
-    anim:SetBank("Beanlet") -- name of the animation root
-    anim:SetBuild("Beanlet")  -- name of the file
-    anim:PlayAnimation("idle", true) -- name of the animation
+    inst.AnimState:SetBank("Beanlet") -- name of the animation root
+    inst.AnimState:SetBuild("Beanlet")  -- name of the file
+    inst.AnimState:PlayAnimation("idle", true) -- name of the animation
+
+    inst:AddComponent("combat")
+    inst.components.combat.hiteffectsymbol = "pig_torso"
+
+    inst:AddComponent("health")
+    inst.components.health:SetMaxHealth(25)
+
+    inst:AddComponent("lootdropper")
+    inst.components.lootdropper:SetLoot(loot) 
+    inst.components.lootdropper:SetChanceLoot("beanlet_shell")
+
+    inst:AddComponent("inspectable")
+
+    inst:ListenForEvent("attacked", OnAttacked)        
 	
     return inst
 end
 
-return Prefab("common/beanlet", fn, assets) 
+return Prefab("common/beanlet", fn, assets, prefabs) 

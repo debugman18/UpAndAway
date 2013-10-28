@@ -1,0 +1,1 @@
+return unpack(require('upandaway.prefabs.beanstalk_wall'))

@@ -8,6 +8,16 @@ local assets =
 	Asset("ANIM", "anim/void_placeholder.zip"),
 }
 
+local function OnActivate(inst)
+	if GetWorld() and GetWorld():HasTag("cloudrealm") then
+		print "In cloudrealm."
+		GetSeasonManager():StartSummer()
+		GetWorld().components.staticgenerator:Charge()
+	else 
+		print "In another world."
+	end
+end	
+
 local function fn(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
@@ -21,7 +31,8 @@ local function fn(Sim)
 
 	inst:AddComponent("inspectable")
 
-	inst:AddComponent("inventoryitem")
+	inst:AddComponent("activatable")
+    inst.components.activatable.OnActivate = OnActivate	
 
 	return inst
 end

@@ -7,6 +7,9 @@ local assets =
 {
 	Asset("ANIM", "anim/hound_basic.zip"),
 	Asset("ANIM", "anim/hound.zip"),
+	Asset("ANIM", "anim/hound_red.zip"),
+	Asset("ANIM", "anim/hound_ice.zip"),
+	Asset("SOUND", "sound/hound.fsb"),
 }
 
 local function fn(Sim)
@@ -21,9 +24,7 @@ local function fn(Sim)
 	inst.AnimState:PlayAnimation("idle")
 
 	inst:AddComponent("inspectable")
-
-	inst:AddComponent("inventoryitem")
-
+	
 	return inst
 end
 

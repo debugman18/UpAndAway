@@ -139,21 +139,7 @@ local RawPrefabFiles = {
 	"longbill",
 	
 	"crystal_spire",
-	--"crystal_water",
-	--"crystal_quartz",
-
 	"crystal_fragment",
-	--"crystal_moss",
-	--"crystal_wall",	
-	--"crystal_crown",
-
-	"crystal_lamp",	
-	
-	--"golden_sunflower",
-	--"sunflower_seeds",
-	
-	--"gustflower",
-	--"gustflower_seeds",	
 	
 	"skyflower",
 	"skyflower_petals",
@@ -163,20 +149,15 @@ local RawPrefabFiles = {
 
 	"thunder_tree",
 	
-	"octocopter",
 	"balloon_hound",
 	"beanlet_shell",
-	"beanlet_zealot",
 	"cheshire",
 	"chimera",
 	"cloud_algae",
 	"cloud_algae_fragment",
 	"cloud_coral",
 	"cloud_coral_fragment",
-	"crystal_black",
-	"crystal_white",
 	"flying_fish_pond",
-	"grabber",
 	"alien",
 	"greenbean",
 	"jellyshroom",
@@ -185,19 +166,11 @@ local RawPrefabFiles = {
 	"quartz_torch",
 	"refiner",
 	"scarecrow",
-	"smores",
-	"weather_machine",
-
-	--"beanstalk_wall",	
 	
 	"beanstalk_chunk",	
 	"magic_beans",
 	
 	--"bean_sprout",	
-	
-	--"bean_giant",
-	
-	"beanlet",
 	
 	"cloud_cotton",	
 	
@@ -213,27 +186,90 @@ local RawPrefabFiles = {
 	"golden_egg",
 	
 	--"golden_amulet",
-	--"golden_golem",
-	--"monolith",
-	
-	--"research_lectern",
+
 	--"wind_axe",
 	--"kite",
+
 	"duckraptor",
+
 	--"duckraptor_mother",	
 	--"duckraptor_baby",
 	
 	"antlion",	
 	
-	"rainbowcoon",
-	--"cotton_candy",
-	"cotton_vest",
 	"lionblob",
 
 	"owl",
 	"crystal_relic",
 	"crystal_relic_fragment",
+
+	"cotton_vest",
+
+	"research_lectern",	
+
+	--"bean_giant",	
+	--"beanstalk_wall",	
+	--"cloud_wall",
+
+	"smores",
+	"weather_machine",	
+	"skytrap",	
+
+	--"crystal_moss",
+	--"crystal_wall",	
+	--"crystal_crown",
+
+	"crystal_lamp",		
+	"cotton_candy",	
+	"rainbowcoon",	
+	"ball_lightning",
+	"magnet",
+	"grabber",
+	"cotton_candy",
+	"smores",
+	"rubber",
+	"crystal_black_fragment",
+	"crystal_white_fragment",
+	"crystal_water_fragment",
+	"crystal_quartz_fragment",
+	"golden_sunflower",
+	"golden_sunflower_seeds",
+	"gustflower",
+	"gustflower_seeds",		
+
+	"beanlet_zealot",	
+	"octocopter",	
 	"live_gnome",
+	"crystal_black",
+	"crystal_white",	
+	"beanlet",	
+	"golden_golem",	
+	"monolith",		
+	"crystal_water",
+	"crystal_quartz",	
+	"sky_lemur",		
+	"cotton_hat",	
+
+	"whirlwind",
+	"bean_giant_statue",
+	"cumulostone",
+	"dragonblood_tree",
+	"dragonblood_sap",
+	"crystal_light",
+	"bird_paradise",
+	"cauldron",
+	"cloud_bomb",
+	"cloud_fruit_tree",
+	"cloud_fruit",
+	"cloud_wall",
+	"crystal_wall",
+	"beanstalk_wall",
+	"crystal_armor",
+	"crystal_axe",
+	"golden_amulet",
+	"kite",
+	"golden_rose",
+	"golden_petals",
 
 }
 
@@ -254,7 +290,6 @@ if CFG.DEBUG then
 		end
 	end)
 end
-
 
 PrefabFiles = RawPrefabFiles
 

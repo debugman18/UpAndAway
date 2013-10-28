@@ -1,3 +1,8 @@
+--@@GLOBAL ENVIRONMENT BOOTUP
+local _modname = assert( (assert(..., 'This file should be loaded through require.')):match('^[%a_][%w_%s]*') , 'Invalid path.' )
+module( ..., package.seeall, require(_modname .. '.booter') )
+--@@END ENVIRONMENT BOOTUP
+
 local prefabs =
 {
     "nightmarefuel",
@@ -5,7 +10,7 @@ local prefabs =
 
 local function retargetfn(inst)
     local entity = FindEntity(inst, TUNING.SHADOWCREATURE_TARGET_DIST, function(guy) 
-		return guy:HasTag("player") and guy.components.sanity:IsCrazy() and inst.components.combat:CanTarget(guy)
+		return guy:HasTag("player") and inst.components.combat:CanTarget(guy)
     end)
     return entity
 end
@@ -27,7 +32,7 @@ end
 
 local function canbeattackedfn(inst, attacker)
 	return inst.components.combat.target ~= nil or
-		(attacker.components.sanity and attacker.components.sanity:IsCrazy())
+		(attacker.components.sanity)
 end
 
 local function OnAttacked(inst, data)

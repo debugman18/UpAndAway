@@ -5,7 +5,7 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/bulb_plant_double.zip"),
 }
 
 local function fn(Sim)
@@ -15,9 +15,9 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("void_placeholder")
-	inst.AnimState:PlayAnimation("anim")
+	inst.AnimState:SetBank("bulb_plant_double")
+	inst.AnimState:SetBuild("bulb_plant_double")
+	inst.AnimState:PlayAnimation("idle",true)
 
 	inst:AddComponent("inspectable")
 

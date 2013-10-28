@@ -356,3 +356,88 @@ function _G.MakeNoGrowInWinter(inst)
         end
     end)
 end
+
+--This adds our 'Fable' tech tree. Thanks to @Heavenfall for the code.
+--assert( type(level) == "table", "Invalid recipe level specified. If you wish to use TECH.NONE, do it explicitly." )
+
+GLOBAL.TECH.FABLE_ONE = {FABLE = 1}
+
+for k,v in pairs(GLOBAL.TUNING.PROTOTYPER_TREES) do 
+    GLOBAL.TUNING.PROTOTYPER_TREES[k].FABLE_ONE = {}
+	GLOBAL.TUNING.PROTOTYPER_TREES.FABLE_ONE = {SCIENCE = 0,MAGIC = 0,ANCIENT = 0,FABLE=1}
+end	
+
+
+local function enteringradiusofskeleton(inst)  
+--entering proximity of skeleton
+	local playervar = GLOBAL.GetPlayer()    
+	if playervar then        
+		playervar.components.builder.accessible_tech_trees = GLOBAL.TECH.FABLE_ONE 
+	end
+end
+
+local function leavingradiusofskeleton(inst)  
+--left proximity of skeleton    
+	local playervar = GLOBAL.GetPlayer()    
+	if playervar then        
+		playervar.components.builder.accessible_tech_trees = GLOBAL.TECH.NONE    
+	end
+end
+
+-- add undeadskeleton prototype type to skeletonsfunction 
+local function addfableprototype(inst)    
+	inst:AddTag("prototyper")    
+	inst:AddComponent("prototyper")        
+	inst.components.prototyper.trees = GLOBAL.TUNING.PROTOTYPER_TREES.FABLE        
+	inst.components.prototyper.onactivate = function() end  
+	inst.components.prototyper.onturnoff = leavingradiusofskeleton        
+	inst.components.prototyper.onturnon = enteringradiusofskeletonend	       
+--skeleton recipe was built        
+end        
+
+AddPrefabPostInit("research_lectern", addfableprototype)
+--]]
+
+local RECIPETABS = GLOBAL.RECIPETABS
+local TECH = GLOBAL.TECH
+
+local cotton_vest = Recipe("cotton_vest", { Ingredient("silk", 4), Ingredient("cloud_cotton", 4, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.DRESS, TECH.FABLE_ONE)
+
+cotton_vest.atlas = "images/inventoryimages/cloud_cotton.xml"
+
+local cotton_hat = Recipe("cotton_hat", { Ingredient("silk", 2), Ingredient("cloud_cotton", 6, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.DRESS, TECH.FABLE_ONE)
+
+cotton_hat.atlas = "images/inventoryimages/cloud_cotton.xml"
+
+local weather_machine = Recipe("weather_machine", { Ingredient("gears", 4), Ingredient("crystal_relic_fragment", 6, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.SCIENCE, TECH.FABLE_ONE)
+
+weather_machine.atlas = "images/inventoryimages/cloud_cotton.xml"
+
+local research_lectern = Recipe("research_lectern", { Ingredient("silk", 2), Ingredient("cloud_cotton", 6, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.SCIENCE, TECH.SCIENCE_TWO)
+
+research_lectern.atlas = "images/inventoryimages/cloud_cotton.xml"
+
+local cotton_candy = Recipe("cotton_candy", { Ingredient("cloud_cotton", 6, "images/inventoryimages/cloud_cotton.xml"), Ingredient("candy_fruit", 6, "images/inventoryimages/candy_fruit.xml") }, RECIPETABS.FARM, TECH.SCIENCE_TWO)
+
+cotton_candy.atlas = "images/inventoryimages/cloud_cotton.xml"
+
+local grabber = Recipe("grabber", { Ingredient("magnet", 2, "images/inventoryimages/cloud_cotton.xml"), Ingredient("cane", 1), Ingredient("rubber", 4, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.SURVIVAL, TECH.FABLE_ONE)
+
+grabber.atlas = "images/inventoryimages/cloud_cotton.xml"
+
+local magnet = Recipe("magnet", { Ingredient("gears", 2), Ingredient("crystal_fragment", 3, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.SCIENCE, TECH.FABLE_ONE)
+
+magnet.atlas = "images/inventoryimages/cloud_cotton.xml"
+
+local crystal_lamp = Recipe("crystal_lamp", { Ingredient("beanlet_shell", 1, "images/inventoryimages/cloud_cotton.xml"), Ingredient("crystal_fragment", 4, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.SCIENCE, TECH.FABLE_ONE)
+
+crystal_lamp.atlas = "images/inventoryimages/cloud_cotton.xml"
+
+local black_crystal_staff = Recipe("magnet", { Ingredient("cane", 1), Ingredient("black_crystal_fragment", 6, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.SCIENCE, TECH.FABLE_ONE)
+
+black_crystal_staff.atlas = "images/inventoryimages/cloud_cotton.xml"
+
+local white_crystal_staff = Recipe("magnet", { Ingredient("cane", 1), Ingredient("white_crystal_fragment", 6, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.SCIENCE, TECH.FABLE_ONE)
+
+white_crystal_staff.atlas = "images/inventoryimages/cloud_cotton.xml"
+--]]

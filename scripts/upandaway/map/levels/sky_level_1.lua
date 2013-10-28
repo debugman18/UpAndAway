@@ -45,16 +45,18 @@ local sky_level_1 = {
 	overrides={
 		{"location",		"cave"},
 
-		{"world_size", 		"huge"},
+		{"world_size", 		"medium"},
 		--{"world_size", 		"tiny"},
 		{"day", 			"onlydusk"}, 
 		{"waves", 			"on"},
-		{"branching",		"never"},
+		{"branching",		"least"},
 		{"looping",		    "always"},
+
+		--{"world_complexity", "verycomplex"},		
 
 		-- The only effect the following has is preventing snow on the
 		-- ground.
-		{"season_start", 	"summer"},
+		{"season_start", 	"summer"},		
 
 		{"season", 			"onlywinter"},
 		{"weather", 		"never"},
@@ -75,8 +77,7 @@ local sky_level_1 = {
 		{"beefalo",         "never"},	
 		{"grass",           "never"},	
 		{"pigs",            "never"},
-		{"sapling",        "never"},
-		{"world_complexity", "verycomplex"},	
+		{"sapling",        "never"},	
 		]]--
 					
 		--This is custom content.
@@ -104,7 +105,8 @@ local sky_level_1 = {
 		["Cloudhenge"] = { count=1, tasks={"Cloud_Generic_Biome"} },	
 		["WitchGrove"] = { count=1, tasks={"Cloud_Aurora_Biome"} },	
 		["StrixShrine"] = { count=1, tasks={"Cloud_Snow_Biome"} },	
-		["CheshireHunting"] = { count=1, tasks={"Cloud_Rainbow_Biome"} },					
+		["CheshireHunting"] = { count=1, tasks={"Cloud_Rainbow_Biome"} },			
+		["CloudHoles"] = { count=3, tasks={"Cloud_Generic_Biome"} },
 	},
 
 	ordered_story_setpieces = {
@@ -113,11 +115,13 @@ local sky_level_1 = {
 		"StrixShrine",
 		"WitchGrove",
 		"OctocopterWreckage",
+		"CloudHoles",						
 	},
 
 	required_prefabs = {
 		"goose",
 		"hive_marshmallow",
+		"beanlet",
 	},
 
 }

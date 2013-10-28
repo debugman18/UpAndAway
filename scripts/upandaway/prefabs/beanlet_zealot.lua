@@ -5,28 +5,46 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/Beanlet.zip"),  -- same name as the .scml
 }
 
-local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
+local prefabs =
+{
+   "greenbean",
+}
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("void_placeholder")
-	inst.AnimState:PlayAnimation("anim")
+local loot = 
+{
+    "greenbean",
+}
 
-	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
-
-	inst:AddComponent("inspectable")
-
-	inst:AddComponent("inventoryitem")
-
-	return inst
+local function OnAttacked(inst, data)
 end
 
-return Prefab ("common/inventory/beanlet_zealot", fn, assets) 
+local function fn(Sim)
+    local inst = CreateEntity()
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
+
+    inst.AnimState:SetBank("Beanlet") -- name of the animation root
+    inst.AnimState:SetBuild("Beanlet")  -- name of the file
+    inst.AnimState:PlayAnimation("idle", true) -- name of the animation
+
+
+    inst:AddComponent("combat")
+    inst.components.combat.hiteffectsymbol = "pig_torso"
+
+    inst:AddComponent("health")
+    inst.components.health:SetMaxHealth(50)
+
+    inst:AddComponent("lootdropper")
+    inst.components.lootdropper:SetLoot(loot)   
+
+    inst:AddComponent("inspectable")
+
+    inst:ListenForEvent("attacked", OnAttacked)          
+	
+    return inst
+end
+
+return Prefab ("common/inventory/beanlet_zealot", fn, assets, prefabs) 

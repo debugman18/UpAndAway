@@ -13,28 +13,6 @@ local prefabs =
     "sheep",
 }
 
-local function InMood(inst)
-    if inst.components.periodicspawner then
-        inst.components.periodicspawner:Start()
-    end
-    if inst.components.herd then
-        for k,v in pairs(inst.components.herd.members) do
-            k:PushEvent("entermood")
-        end
-    end
-end
-
-local function LeaveMood(inst)
-    if inst.components.periodicspawner then
-        inst.components.periodicspawner:Stop()
-    end
-    if inst.components.herd then
-        for k,v in pairs(inst.components.herd.members) do
-            k:PushEvent("leavemood")
-        end
-    end
-end
-
 local function AddMember(inst, member)
     if inst.components.mood then
         if inst.components.mood:IsInMood() then
@@ -81,19 +59,13 @@ local function fn(Sim)
     inst.components.herd:SetOnEmptyFn(OnEmpty)
     inst.components.herd:SetOnFullFn(OnFull)
     inst.components.herd:SetAddMemberFn(AddMember)
-    
-    inst:AddComponent("mood")
-    inst.components.mood:SetMoodTimeInDays(TUNING.BEEFALO_MATING_SEASON_LENGTH, TUNING.BEEFALO_MATING_SEASON_WAIT)
-    inst.components.mood:SetInMoodFn(InMood)
-    inst.components.mood:SetLeaveMoodFn(LeaveMood)
-    inst.components.mood:CheckForMoodChange()
-    
+
     inst:AddComponent("periodicspawner")
     inst.components.periodicspawner:SetRandomTimes(TUNING.BEEFALO_MATING_SEASON_BABYDELAY, TUNING.BEEFALO_MATING_SEASON_BABYDELAY_VARIANCE)
     inst.components.periodicspawner:SetPrefab("sheep")
     inst.components.periodicspawner:SetOnSpawnFn(OnSpawned)
     inst.components.periodicspawner:SetSpawnTestFn(CanSpawn)
-    inst.components.periodicspawner:SetDensityInRange(20, 6)
+    inst.components.periodicspawner:SetDensityInRange(15, 6)
     inst.components.periodicspawner:SetOnlySpawnOffscreen(true)
     
     return inst

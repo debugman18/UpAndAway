@@ -11,6 +11,11 @@ local assets =
 	Asset( "IMAGE", "images/inventoryimages/cloud_cotton.tex" ),	
 }
 
+local prefabs =
+{
+    "smores",
+}
+
 local function fn(Sim)
 	local inst = CreateEntity()
 	local trans = inst.entity:AddTransform()
@@ -33,13 +38,15 @@ local function fn(Sim)
     
 	--Is not filling.
     inst:AddComponent("edible")
-    inst.components.edible.foodtype = "VEGGIE"
+    inst.components.edible.foodtype = "CANDY"
     inst.components.edible.healthvalue = -5
     inst.components.edible.hungervalue = 10
     inst.components.edible.sanityvalue = 5
 
+    inst:AddComponent("cookable")
+    inst.components.cookable.product = "smores"    
     
     return inst
 end
 
-return Prefab("common/inventory/marshmallow", fn, assets) 
+return Prefab("common/inventory/marshmallow", fn, assets, prefabs) 

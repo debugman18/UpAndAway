@@ -16,6 +16,7 @@ local prefabs =
 
 local function HeatFn(inst, observer)
 	if inst.components.temperature then
+		inst.components.temperature.current = 60
 		return inst.components.temperature:GetCurrent()
 	end	
 end

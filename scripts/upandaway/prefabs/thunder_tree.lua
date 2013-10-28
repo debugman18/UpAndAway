@@ -10,15 +10,15 @@ local assets =
 
 local prefabs =
 {
-	"crystal_fragment",
     "cloud_lightning",
-    "marble",
+    "cumulostone",
+    "ball_lightning",
 }
 
 local loot = 
 {
 	"crystal_fragment",
-	"marble",
+	"cumulostone",
 	"cloud_lightning",
 }
 
@@ -120,7 +120,7 @@ local function fn(Sim)
     
     inst:AddComponent("lootdropper") 
     inst.components.lootdropper:SetLoot(loot)
-    inst.components.lootdropper:AddChanceLoot("cloud_lightning", 1)
+    inst.components.lootdropper:AddChanceLoot("cumulostone", 1)
     
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.CHOP)
@@ -137,16 +137,16 @@ local function fn(Sim)
     
     inst:AddComponent("inspectable")
 
-	inst:AddComponent("childspawner")
-	inst.components.childspawner.childname = "cloud_lightning"
-	inst.components.childspawner:SetSpawnedFn(OnSpawned)
-	inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*10)
-	inst.components.childspawner:SetSpawnPeriod(10)
-	inst.components.childspawner:SetMaxChildren(3)
+	--inst:AddComponent("childspawner")
+	--inst.components.childspawner.childname = "cloud_lightning"
+	--inst.components.childspawner:SetSpawnedFn(OnSpawned)
+	--inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*10)
+	--inst.components.childspawner:SetSpawnPeriod(10)
+	--inst.components.childspawner:SetMaxChildren(3)
     
     inst.OnSave = onsave
     inst.OnLoad = onload
     return inst
 end
 
-return Prefab("cloudrealm/objects/thunder_tree", fn, assets) 
+return Prefab("cloudrealm/objects/thunder_tree", fn, assets, prefabs) 
