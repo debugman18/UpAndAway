@@ -41,7 +41,7 @@ local function fn(Sim)
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot(loot) 
-    inst.components.lootdropper:SetChanceLoot("beanlet_shell")
+    --inst.components.lootdropper:SetChanceLoot("beanlet_shell")
 
     inst:AddComponent("inspectable")
 
