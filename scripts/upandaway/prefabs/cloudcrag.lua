@@ -80,7 +80,7 @@ local function cloudcrag(Sim)
 	inst.AnimState:PlayAnimation("full")
 
 	inst.components.lootdropper:SetLoot(loot)
-	inst.components.lootdropper:SetChanceLoot("flint")
+	--inst.components.lootdropper:SetChanceLoot("flint")
 	return inst
 end
 --[[
