@@ -47,7 +47,7 @@ local function fn(Sim)
 	inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.MINE)
     inst.components.workable:SetWorkLeft(3)
-    inst.components.workable:SetOnFinishCallback(mined) 
+    --inst.components.workable:SetOnFinishCallback(mined) 
 
    	inst:AddComponent("lootdropper") 
    	inst.components.lootdropper:SetLoot(loot)        
