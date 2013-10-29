@@ -5,7 +5,7 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/sky_octopus.zip"),
 }
 
 local prefabs =
@@ -29,7 +29,7 @@ local function fn(Sim)
 
 	inst.AnimState:SetBank("sky_octopus")
 	inst.AnimState:SetBuild("sky_octopus")
-	inst.AnimState:PlayAnimation("idle")
+	inst.AnimState:PlayAnimation("idle_side",true)
 
 	inst:AddComponent("inspectable")
 
