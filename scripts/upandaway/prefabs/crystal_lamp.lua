@@ -8,7 +8,37 @@ local assets =
 	Asset("ANIM", "anim/void_placeholder.zip"),
 }
 
+local function onLight(inst)
+	local partner = GLOBAL.GetClosestInstWithTag("crystal_lamp", inst, 100)
+
+	inst.Light:Enable(true)
+
+	if partner and not partner.components.machine.ison then
+		partner.components.machine.turnonfn = onLight
+		partner:DoTaskInTime(0.3, function(inst, data) partner.components.machine:TurnOn() end)	
+
+		print "Partner lamp lit."
+	end	
+
+end
+
+local function onDim(inst)
+	local partner = GLOBAL.GetClosestInstWithTag("crystal_lamp", inst, 100)
+	
+	inst.Light:Enable(false)
+
+	if partner and partner.components.machine.ison then
+		partner.components.machine.turnonfn = onDim
+		partner:DoTaskInTime(0.3, function(inst, data) partner.components.machine:TurnOff() end)
+
+		furtherpartner = GLOBAL.GetClosestInstWithTag("crystal_lamp", partner, 100)
+
+		print "Partner lamp dimmed."
+	end	
+end
+
 local function fn(Sim)
+
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
@@ -21,7 +51,18 @@ local function fn(Sim)
 
 	inst:AddComponent("inspectable")
 
-	inst:AddComponent("inventoryitem")
+	inst:AddTag("crystal_lamp")
+
+	inst:AddComponent("machine")
+	inst.components.machine.turnonfn = onLight
+	inst.components.machine.turnofffn = onDim	
+
+    local light = inst.entity:AddLight()
+    inst.Light:Enable(false)
+	inst.Light:SetRadius(1.5)
+    inst.Light:SetFalloff(1)
+    inst.Light:SetIntensity(.5)
+    inst.Light:SetColour(235/255,121/255,12/255)	
 
 	return inst
 end

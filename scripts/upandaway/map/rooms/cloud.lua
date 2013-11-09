@@ -225,7 +225,9 @@ TheMod:AddRoom("BGRainbow", {
 	contents = {
 		distributepercent = 0.06,
 		distributeprefabs = {
-			jellyshroom = 0.0002,
+			jellyshroom_red = 0.0004,
+			jellyshroom_blue = 0.0006,
+			jellyshroom_green = 0.0004,
 			balloon_hound = 0.0001,
 		},
 	},
@@ -239,8 +241,9 @@ TheMod:AddRoom("Rainbow_Room", {
 		distributepercent = 0.02,
 		distributeprefabs = {
 			hive_marshmallow = 0.05,
+			jellyshroom_red = 0.0004,
 			bee_marshmallow = 0.06,
-			crystal_white = 0.005,			
+			crystal_white = 0.0025,			
 		},
 	},
 })
@@ -255,6 +258,7 @@ TheMod:AddRoom("Crystal_Fields", {
 			crystal_spire = 0.06,
 			crystal_black = 0.005,
 			rainbowcoon = 0.02,
+			jellyshroom_green = 0.02,
 		},
 	},
 })
@@ -270,6 +274,7 @@ TheMod:AddRoom("Fish_Fields", {
 			flying_fish_pond = 0.001,
 			crystal_water = 0.0007,
 			golden_sunflower = 0.003,
+			jellyshroom_blue = 0.03,
 		},
 	},
 })

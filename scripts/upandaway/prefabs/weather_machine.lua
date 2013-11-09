@@ -8,13 +8,22 @@ local assets =
 	Asset("ANIM", "anim/void_placeholder.zip"),
 }
 
-local function OnActivate(inst)
+local function weather_off(inst)
+	if GetWorld() and GetWorld():HasTag("cloudrealm") then
+		GetSeasonManager():StartSummer()
+	end
+	
+	GetSeasonManager():StartWinter()	
+end	
+
+local function weather_on(inst)
 	if GetWorld() and GetWorld():HasTag("cloudrealm") then
 		print "In cloudrealm."
 		GetSeasonManager():StartSummer()
-		GetWorld().components.staticgenerator:Charge()
+		inst:DoPeriodicTask(0.3, function(inst) GetWorld().components.staticgenerator:Charge() end)
 	else 
 		print "In another world."
+		GetSeasonManager():StartSummer()
 	end
 end	
 
@@ -31,8 +40,9 @@ local function fn(Sim)
 
 	inst:AddComponent("inspectable")
 
-	inst:AddComponent("activatable")
-    inst.components.activatable.OnActivate = OnActivate	
+	inst:AddComponent("machine")
+	inst.components.machine.turnonfn = weather_on
+	inst.components.machine.turnofffn = weather_off
 
 	return inst
 end
