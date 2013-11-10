@@ -8,6 +8,24 @@ local assets =
 	Asset("ANIM", "anim/void_placeholder.zip"),
 }
 
+local game = wickerrequire "utils.game"
+ 
+local function onLight(inst)
+    local partner = game.FindClosestEntity(inst, 100, function(e)
+        return e.components.machine and not e.components.machine:IsOn()
+    end, {"crystal_lamp"})
+ 
+    inst.Light:Enable(true)
+ 
+    if partner and not partner.components.machine.ison then
+        partner.components.machine.turnonfn = onLight
+        partner:DoTaskInTime(0.3, function(inst, data) partner.components.machine:TurnOn() end)   
+ 
+        print "Partner lamp lit."
+    end   
+end
+
+--[[
 local function onLight(inst)
 	local partner = GLOBAL.GetClosestInstWithTag("crystal_lamp", inst, 100)
 
@@ -21,6 +39,7 @@ local function onLight(inst)
 	end	
 
 end
+--]]
 
 local function onDim(inst)
 	local partner = GLOBAL.GetClosestInstWithTag("crystal_lamp", inst, 100)
