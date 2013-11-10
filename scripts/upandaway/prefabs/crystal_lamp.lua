@@ -11,7 +11,7 @@ local assets =
 local game = wickerrequire "utils.game"
 
 local function onLight(inst)
-    local partner = game.FindClosestEntity(inst, 100, function(e)
+    local partner = game.FindClosestEntity(inst, 12, function(e)
         return e ~= inst and e.components.machine and not e.components.machine:IsOn()
     end, {"crystal_lamp"})
 
@@ -42,7 +42,7 @@ end
 --]]
 
 local function onDim(inst)
-    local partner = game.FindClosestEntity(inst, 100, function(e)
+    local partner = game.FindClosestEntity(inst, 12, function(e)
         return e ~= inst and e.components.machine and e.components.machine:IsOn()
     end, {"crystal_lamp"})
 
