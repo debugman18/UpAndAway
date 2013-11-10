@@ -29,7 +29,7 @@ local function fn(Sim)
 
 	inst.AnimState:SetBank("sky_octopus")
 	inst.AnimState:SetBuild("sky_octopus")
-	inst.AnimState:PlayAnimation("idle_side",true)
+	inst.AnimState:PlayAnimation("idle_side")
 
 	inst:AddComponent("inspectable")
 

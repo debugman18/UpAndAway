@@ -9,20 +9,20 @@ local assets =
 }
 
 local game = wickerrequire "utils.game"
- 
+
 local function onLight(inst)
     local partner = game.FindClosestEntity(inst, 100, function(e)
-        return e.components.machine and not e.components.machine:IsOn()
+        return e ~= inst and e.components.machine and not e.components.machine:IsOn()
     end, {"crystal_lamp"})
- 
+
     inst.Light:Enable(true)
- 
+
     if partner and not partner.components.machine.ison then
         partner.components.machine.turnonfn = onLight
-        partner:DoTaskInTime(0.3, function(inst, data) partner.components.machine:TurnOn() end)   
- 
-        print "Partner lamp lit."
-    end   
+        partner:DoTaskInTime(0.3, function(inst, data) partner.components.machine:TurnOn() end)    
+
+        TheMod:DebugSay("Partner lamp [", partner, "] lit.")
+    end    
 end
 
 --[[
@@ -42,6 +42,22 @@ end
 --]]
 
 local function onDim(inst)
+    local partner = game.FindClosestEntity(inst, 100, function(e)
+        return e ~= inst and e.components.machine and e.components.machine:IsOn()
+    end, {"crystal_lamp"})
+
+    inst.Light:Enable(false)
+
+    if partner and partner.components.machine.ison then
+        partner.components.machine.turnofffn = onDim
+        partner:DoTaskInTime(0.3, function(inst, data) partner.components.machine:TurnOff() end)    
+
+        TheMod:DebugSay("Partner lamp [", partner, "] dimmed.")
+    end    
+end
+
+--[[
+local function onDim(inst)
 	local partner = GLOBAL.GetClosestInstWithTag("crystal_lamp", inst, 100)
 	
 	inst.Light:Enable(false)
@@ -55,6 +71,7 @@ local function onDim(inst)
 		print "Partner lamp dimmed."
 	end	
 end
+]]
 
 local function fn(Sim)
 
@@ -78,10 +95,10 @@ local function fn(Sim)
 
     local light = inst.entity:AddLight()
     inst.Light:Enable(false)
-	inst.Light:SetRadius(1.5)
-    inst.Light:SetFalloff(1)
-    inst.Light:SetIntensity(.5)
-    inst.Light:SetColour(235/255,121/255,12/255)	
+	inst.Light:SetRadius(4)
+    inst.Light:SetFalloff(5)
+    inst.Light:SetIntensity(.7)
+    inst.Light:SetColour(135/255,221/255,12/255)	
 
 	return inst
 end
