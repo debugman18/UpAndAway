@@ -82,7 +82,7 @@ TheMod:AddRoom("BushGarden", {
 --Aurora BG
 TheMod:AddRoom("BGAurora", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.GRASS,
+	value = GROUND.AURORA,
 	contents =  {
 		distributepercent = 0.01,
 		distributeprefabs = {
@@ -99,7 +99,7 @@ TheMod:AddRoom("BGAurora", {
 --Vines
 TheMod:AddRoom("Vine_Room", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.GRASS,
+	value = GROUND.AURORA,
 	contents = {
 		distributepercent = 0.01,
 		distributeprefabs = {
@@ -113,7 +113,7 @@ TheMod:AddRoom("Vine_Room", {
 --Cloudcrags
 TheMod:AddRoom("CragLanding", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.GRASS,
+	value = GROUND.AURORA,
 	contents = {
 		distributepercent = 0.01,
 		distributeprefabs = {
@@ -127,7 +127,7 @@ TheMod:AddRoom("CragLanding", {
 --Longbills
 TheMod:AddRoom("Bigbird_Nest", {
 	coulour={r=.2,g=.2,b=.2,a=.2},
-	value = GROUND.GRASS,
+	value = GROUND.AURORA,
 	contents = {
 		distributepercent = 0.05,
 		distributeprefabs = {
@@ -141,7 +141,7 @@ TheMod:AddRoom("Bigbird_Nest", {
 --Beanlets
 TheMod:AddRoom("Beanlet_Den", {
 	coulour={r=.2,g=.2,b=.2,a=.2},
-	value = GROUND.GRASS,
+	value = GROUND.AURORA,
 	contents = {
 		distributepercent = 0.05,
 		dsitributeprefabs = {
@@ -160,7 +160,7 @@ TheMod:AddRoom("Beanlet_Den", {
 --Snow BG
 TheMod:AddRoom("BGSnow", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.FUNGUS,
+	value = GROUND.SNOW,
 	contents = {
 		distributepercent = 0.07,
 		distributeprefabs = {
@@ -175,7 +175,7 @@ TheMod:AddRoom("BGSnow", {
 --Thunder Trees
 TheMod:AddRoom("Thunder_Forest", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.FUNGUS,
+	value = GROUND.SNOW,
 	contents = {
 		distributepercent = 0.1,
 		distributeprefabs = {
@@ -189,7 +189,7 @@ TheMod:AddRoom("Thunder_Forest", {
 
 TheMod:AddRoom("Sea_Mimic", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.FUNGUS,
+	value = GROUND.SNOW,
 	contents = {
 		distributepercent = 0.10,
 		distributeprefabs = {
@@ -202,7 +202,7 @@ TheMod:AddRoom("Sea_Mimic", {
 
 TheMod:AddRoom("Manta_Room", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.FUNGUS,
+	value = GROUND.SNOW,
 	contents = {
 		distributepercent = 0.02,
 		distributeprefabs = {
@@ -221,7 +221,7 @@ TheMod:AddRoom("Manta_Room", {
 --Rainbow BG
 TheMod:AddRoom("BGRainbow", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.MARSH,
+	value = GROUND.RAINBOW,
 	contents = {
 		distributepercent = 0.06,
 		distributeprefabs = {
@@ -236,7 +236,7 @@ TheMod:AddRoom("BGRainbow", {
 --Marshmallows
 TheMod:AddRoom("Rainbow_Room", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.MARSH,
+	value = GROUND.RAINBOW,
 	contents = {
 		distributepercent = 0.02,
 		distributeprefabs = {
@@ -251,7 +251,7 @@ TheMod:AddRoom("Rainbow_Room", {
 --Crystals
 TheMod:AddRoom("Crystal_Fields", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.MARSH,
+	value = GROUND.RAINBOW,
 	contents = {
 		distributepercent = 0.01,
 		distributeprefabs = {
@@ -266,7 +266,7 @@ TheMod:AddRoom("Crystal_Fields", {
 --Flying Fish
 TheMod:AddRoom("Fish_Fields", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.MARSH,
+	value = GROUND.RAINBOW,
 	contents = {
 		distributepercent = 0.1,
 		distributeprefabs = {

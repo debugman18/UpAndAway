@@ -277,6 +277,9 @@ local RawPrefabFiles = {
 
 local new_tiles = CFG.NEW_TILES
 
+--Removing this for the moment to test new turfs.
+
+--[[
 if CFG.DEBUG then
 	table.insert(RawPrefabFiles, "turf_test")
 
@@ -290,6 +293,7 @@ if CFG.DEBUG then
 		end
 	end)
 end
+--]]
 
 PrefabFiles = RawPrefabFiles
 
