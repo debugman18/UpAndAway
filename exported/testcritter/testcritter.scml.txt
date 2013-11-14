@@ -1,1 +1,0 @@
-Building 'C:\Program Files (x86)\Steam\steamapps\common\Don't Starve Mod Tools\mod_tools\..\..\dont_starve\mods\UpAndAway/exported\testcritter\testcritter.scml'.
