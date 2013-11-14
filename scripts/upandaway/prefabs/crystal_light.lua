@@ -5,7 +5,7 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 
 local assets =
 {
-	Asset("ANIM", "anim/rock_stalagmite.zip"),
+	Asset("ANIM", "anim/crystal.zip"),
 }
 
 local prefabs =
@@ -39,25 +39,27 @@ local function fn(Sim)
     local minimap = inst.entity:AddMiniMapEntity()
     minimap:SetIcon("maxwelltorch.png")
 
-    anim:SetBank("maxwell_torch")
-    anim:SetBuild("maxwell_torch")
-    anim:PlayAnimation("idle",false)
+    anim:SetBank("crystal")
+    anim:SetBuild("crystal")
+    anim:PlayAnimation("crystal_light")
   
     inst:AddTag("structure")
     MakeObstaclePhysics(inst, .1)    
 
+    inst:AddComponent("inspectable")
+    inst.components.inspectable.nameoverride = "Light Crystal" 
+
+    --[[
     inst:AddComponent("burnable")
     inst.components.burnable:AddBurnFX("maxwelllight_flame", Vector3(0,0,0), "fire_marker")
-    inst.components.burnable:SetOnIgniteFn(light)
-
-    inst:AddComponent("inspectable")
-    inst.components.inspectable.nameoverride = "Light Crystal"    
+    inst.components.burnable:SetOnIgniteFn(light)   
 
     inst.lightorder = {5,6,7,8,7}
     inst:AddComponent("playerprox")
     inst.components.playerprox:SetDist(17, 27 )
     inst.components.playerprox:SetOnPlayerNear(function() if not inst.components.burnable:IsBurning() then inst.components.burnable:Ignite() end end)
     inst.components.playerprox:SetOnPlayerFar(extinguish)
+    --]]
 
 	return inst
 end

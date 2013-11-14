@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+    <folder id="0">
+        <file id="0" name="crystal_white.png" width="146" height="210" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="crystal_water.png" width="146" height="210" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="crystal_quartz.png" width="146" height="210" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="crystal_spire.png" width="146" height="210" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="crystal_relic.png" width="146" height="210" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="crystal_black.png" width="146" height="210" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="crystal_light.png" width="146" height="210" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="crystal">
+        <animation id="0" name="crystal_light" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="crystal_light" folder="0" file="6" abs_x="-246.892857" abs_y="557.571429" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="2.928571" abs_scale_y="2.93907" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="crystal_light">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" x="-246.892857" y="557.571429" angle="0" scale_x="2.928571" scale_y="2.93907"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="crystal_spire" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="crystal_spire" folder="0" file="3" abs_x="-310.614431" abs_y="678.714286" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="3.485423" abs_scale_y="3.499086" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="crystal_spire">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-310.614431" y="678.714286" angle="0" scale_x="3.485423" scale_y="3.499086"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="crystal_relic" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="crystal_relic" folder="0" file="4" abs_x="-332.309767" abs_y="741.571429" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="3.809038" abs_scale_y="3.825103" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="crystal_relic">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-332.309767" y="741.571429" angle="0" scale_x="3.809038" scale_y="3.825103"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="crystal_white" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="crystal_white" folder="0" file="0" abs_x="-314.468173" abs_y="684.428571" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="3.492225" abs_scale_y="3.506255" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="crystal_white">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-314.468173" y="684.428571" angle="0" scale_x="3.492225" scale_y="3.506255"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="crystal_black" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="crystal_black" folder="0" file="5" abs_x="-371.817541" abs_y="879.714286" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="4.507775" abs_scale_y="4.529008" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="crystal_black">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-371.817541" y="879.714286" angle="0" scale_x="4.507775" scale_y="4.529008"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="crystal_quartz" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="crystal_quartz" folder="0" file="2" abs_x="-304.958455" abs_y="658.714286" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="3.368805" abs_scale_y="3.382254" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="crystal_quartz">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-304.958455" y="658.714286" angle="0" scale_x="3.368805" scale_y="3.382254"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="6" name="crystal_water" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="crystal_water" folder="0" file="1" abs_x="-365.394801" abs_y="818.714286" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="4.210398" abs_scale_y="4.229668" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="crystal_water">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-365.394801" y="818.714286" angle="0" scale_x="4.210398" scale_y="4.229668"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

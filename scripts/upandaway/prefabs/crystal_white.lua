@@ -5,7 +5,7 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 
 local assets =
 {
-	Asset("ANIM", "anim/rock_stalagmite.zip"),
+	Asset("ANIM", "anim/crystal.zip"),
 }
 
 local prefabs =
@@ -32,9 +32,9 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("rock_stalagmite")
-	inst.AnimState:SetBuild("rock_stalagmite")
-    inst.AnimState:PlayAnimation("full")
+	inst.AnimState:SetBank("crystal")
+	inst.AnimState:SetBuild("crystal")
+    inst.AnimState:PlayAnimation("crystal_white")
 
 	inst:AddComponent("inspectable")
 

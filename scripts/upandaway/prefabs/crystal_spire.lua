@@ -5,8 +5,7 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 
 assets = 
 {
-	Asset("ANIM", "anim/statue_small.zip"),
-	Asset("ANIM", "anim/statue_small_harp_build.zip"),
+	Asset("ANIM", "anim/crystal.zip"),
 }
 
 local prefabs =
@@ -28,20 +27,19 @@ local function fn()
 	inst.components.lootdropper:SetLoot({"crystal_fragment"})
 	inst.components.lootdropper:AddChanceLoot("crystal_fragment", 0.33)
 
-	anim:SetBank("statue_small")
-	anim:SetBuild("statue_small")
-	anim:OverrideSymbol("swap_statue", "statue_small_harp_build", "swap_statue")
-	anim:PlayAnimation("full")
+	anim:SetBank("crystal")
+	anim:SetBuild("crystal")
+	anim:PlayAnimation("crystal_spire")
 
 	inst.entity:AddMiniMapEntity()
 	inst.MiniMapEntity:SetIcon( "statue_small.png" )
-
-	
 
 	inst:AddComponent("inspectable")
 	inst:AddComponent("workable")
 	inst.components.workable:SetWorkAction(ACTIONS.MINE)
 	inst.components.workable:SetWorkLeft(TUNING.MARBLEPILLAR_MINE)
+	
+	--[[
 	inst.components.workable:SetOnWorkCallback(          
 		function(inst, worker, workleft)
 	        local pt = Point(inst.Transform:GetWorldPosition())
@@ -59,6 +57,9 @@ local function fn()
 	            end
 	        end
 	    end)
+
+	--]]
+	    
 	return inst
 end
 

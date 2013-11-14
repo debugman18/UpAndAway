@@ -5,7 +5,7 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 
 local assets =
 {
-	Asset("ANIM", "anim/rock_stalagmite.zip"),
+	Asset("ANIM", "anim/crystal.zip"),
 }
 
 local prefabs = 
@@ -144,13 +144,13 @@ local function fn()
     inst.entity:AddSoundEmitter()
 
 	local minimap = inst.entity:AddMiniMapEntity()
-	minimap:SetIcon( "mermhouse.png" )
+	minimap:SetIcon("mermhouse.png")
     
     MakeObstaclePhysics(inst, 1)
 
-	anim:SetBank("rock_stalagmite")
-	anim:SetBuild("rock_stalagmite")
-    anim:PlayAnimation("full")
+	anim:SetBank("crystal")
+	anim:SetBuild("crystal")
+    anim:PlayAnimation("crystal_relic")
 
     inst:AddTag("structure")
     inst:AddComponent("lootdropper")
