@@ -24,13 +24,10 @@ local function fn(Sim)
 	inst.AnimState:SetBuild("marble_pillar")
 	inst.AnimState:PlayAnimation("full")
 
-
 	inst.entity:AddMiniMapEntity()
 	inst.MiniMapEntity:SetIcon( "marblepillar.png" )	
 
 	inst:AddComponent("inspectable")
-
-	inst:AddComponent("inventoryitem")
 	
 	inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.MINE)

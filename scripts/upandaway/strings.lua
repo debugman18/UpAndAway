@@ -25,11 +25,11 @@ Add.Names {
     
     beanlet_zealot = "Zealot Beanlet",
     
-    beanstalk = "Beanstalk",
+    beanstalk = "Giant Beanstalk",
 
     beanstalk_chunk = "Beanstalk Chunk",
 
-    beanstalk_exit = "Beanstalk",
+    beanstalk_exit = "Beanstalk Tip",
 
     beanstalk_wall = "Beanstalk Wall",
 
@@ -95,7 +95,7 @@ Add.Names {
 
     crystal_light = "Light Crystal",
 
-    crystal_moss = "Crystal Moss",
+    crystal_light_fragment = "Light Crystal Fragment",
 
     crystal_quartz = "Quartz Crystal",
 
@@ -103,7 +103,7 @@ Add.Names {
 
     crystal_relic = "Crystal Relic",
 
-    crystal_relic_fragment = "Relic Fragment",
+    crystal_relic_fragment = "Crystal Relic Fragment",
     
     crystal_spire = "Crystal Spire",
 
@@ -155,7 +155,11 @@ Add.Names {
 
     hive_marshmallow = "Marshmallow",   
     
-    jellyshroom = "Jellyshroom",
+    jellyshroom_blue = "Blue Jellyshroom",
+
+    jellyshroom_green = "Green Jellyshroom",
+
+    jellyshroom_red = "Red Jellyshroom",
 
     kite = "Kite",
     
@@ -173,7 +177,7 @@ Add.Names {
 
     magic_beans_cooked = "Baked Beans",
 
-    magic_bean_sprout = "Bean Sprout",
+    magic_bean_sprout = "Abnormally Large Beanstalk",
     
     manta = "Manta",
     
@@ -287,7 +291,7 @@ Add.QuotesFor "magic_beans" {
 Add.QuotesFor "magic_beans_cooked" {
 
     GENERIC = "",
-    waxwell = "",
+    waxwell = "I hope the legends aren't full of beans.",
     wendy = "",
     wickerbottom = "",
     willow = "",

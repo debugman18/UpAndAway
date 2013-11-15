@@ -16,7 +16,7 @@ local prefabs =
 local function retargetfn(inst)
     return FindEntity(inst, TUNING.EYEPLANT_ATTACK_DIST, function(guy) 
         if guy.components.combat and guy.components.health and not guy.components.health:IsDead() then
-            return (guy:HasTag("character") or guy:HasTag("monster") or guy:HasTag("animal") or guy:HasTag("prey") or guy:HasTag("eyeplant") or guy:HasTag("lureplant")) and not checkmaster(guy, inst)
+            return (guy:HasTag("character") or guy:HasTag("monster") or guy:HasTag("animal") or guy:HasTag("prey") or guy:HasTag("eyeplant") or guy:HasTag("lureplant"))
         end
     end)
 end

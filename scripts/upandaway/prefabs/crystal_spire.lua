@@ -11,8 +11,20 @@ assets =
 local prefabs =
 {
 	--marble drops
-	"crystal_fragment",
+	"crystal_fragment_spire",
 }
+
+local loot = 
+{
+   "crystal_fragment_spire",
+}
+
+local function onMined(inst, worker)
+	inst.components.lootdropper:DropLoot()
+	inst.SoundEmitter:PlaySound("dontstarve/common/destroy_rock")
+
+	inst:Remove()	
+end
 
 local function fn()
 	local inst = CreateEntity()
@@ -24,8 +36,8 @@ local function fn()
 	MakeObstaclePhysics(inst, 0.66)
 
 	inst:AddComponent("lootdropper")
-	inst.components.lootdropper:SetLoot({"crystal_fragment"})
-	inst.components.lootdropper:AddChanceLoot("crystal_fragment", 0.33)
+	inst.components.lootdropper:SetLoot(loot)
+	inst.components.lootdropper:AddChanceLoot("crystal_fragment_spire", 0.33)
 
 	anim:SetBank("crystal")
 	anim:SetBuild("crystal")
@@ -35,30 +47,11 @@ local function fn()
 	inst.MiniMapEntity:SetIcon( "statue_small.png" )
 
 	inst:AddComponent("inspectable")
+
 	inst:AddComponent("workable")
 	inst.components.workable:SetWorkAction(ACTIONS.MINE)
-	inst.components.workable:SetWorkLeft(TUNING.MARBLEPILLAR_MINE)
-	
-	--[[
-	inst.components.workable:SetOnWorkCallback(          
-		function(inst, worker, workleft)
-	        local pt = Point(inst.Transform:GetWorldPosition())
-	        if workleft <= 0 then
-				inst.SoundEmitter:PlaySound("dontstarve/wilson/rock_break")
-	            inst.components.lootdropper:DropLoot(pt)
-	            inst:Remove()
-	        else	            
-	            if workleft < TUNING.MARBLEPILLAR_MINE*(1/3) then
-	                inst.AnimState:PlayAnimation("low")
-	            elseif workleft < TUNING.MARBLEPILLAR_MINE*(2/3) then
-	                inst.AnimState:PlayAnimation("med")
-	            else
-	                inst.AnimState:PlayAnimation("full")
-	            end
-	        end
-	    end)
-
-	--]]
+	inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE)
+	inst.components.workable:SetOnFinishCallback(onMined)
 	    
 	return inst
 end

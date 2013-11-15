@@ -1,1 +1,0 @@
-return require('upandaway.prefabs.crystal_white_fragment')

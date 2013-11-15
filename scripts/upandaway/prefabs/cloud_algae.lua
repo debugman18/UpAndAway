@@ -37,15 +37,10 @@ local function fn(Sim)
 	anim:SetBuild("grass1")
 	anim:PlayAnimation("idle",true)
 
-	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
-
 	inst:AddComponent("inspectable")
 
-	inst:AddComponent("inventoryitem")
-
 	inst:AddComponent("workable")
-    inst.components.workable:SetWorkAction(ACTIONS.MINE)
+    inst.components.workable:SetWorkAction(ACTIONS.DIG)
     inst.components.workable:SetWorkLeft(3)
     --inst.components.workable:SetOnFinishCallback(mined) 
 

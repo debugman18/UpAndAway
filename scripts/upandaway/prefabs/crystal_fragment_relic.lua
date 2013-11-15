@@ -6,6 +6,9 @@ module( ..., package.seeall, require(_modname .. '.booter') )
 local assets =
 {
 	Asset("ANIM", "anim/void_placeholder.zip"),
+
+	Asset( "ATLAS", "images/inventoryimages/crystal_fragment_relic.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/crystal_fragment_relic.tex" ),		
 }
 
 local function fn(Sim)
@@ -25,8 +28,9 @@ local function fn(Sim)
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("inventoryitem")
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/crystal_fragment_relic.xml"		
 
 	return inst
 end
 
-return Prefab ("common/inventory/crystal_relic_fragment", fn, assets) 
+return Prefab ("common/inventory/crystal_fragment_relic", fn, assets) 

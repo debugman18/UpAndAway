@@ -11,16 +11,16 @@ local assets =
 local prefabs = 
 {
 	"owl",
-	"crystal_relic_fragment",
+	"crystal_fragment_relic",
 }
 
 local CFG = TheMod:GetConfig()
 
 local loot = 
 {
-    "crystal_relic_fragment",
-	"crystal_relic_fragment",
-	"crystal_relic_fragment",
+    "crystal_fragment_relic",
+	"crystal_fragment_relic",
+	"crystal_fragment_relic",
 }
         
 local function onMined(inst, worker)

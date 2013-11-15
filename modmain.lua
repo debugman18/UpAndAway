@@ -5,7 +5,6 @@ local CFG = TUNING.UPANDAWAY
 
 local new_tiles = CFG.NEW_TILES
 
-
 --These assets are for everything.
 local RawAssets = {
 	--Asset("SOUNDPACKAGE", "sound/music_mod.fev"),
@@ -55,8 +54,27 @@ local RawAssets = {
 	Asset( "ATLAS", "images/inventoryimages/candy_fruit.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/candy_fruit.tex" ),	
 
-	Asset( "ATLAS", "images/inventoryimages/golden_egg.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/golden_egg.tex" ),
+	Asset( "ATLAS", "images/inventoryimages/crystal_fragment_light.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/crystal_fragment_light.tex" ),
+
+	Asset( "ATLAS", "images/inventoryimages/crystal_fragment_water.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/crystal_fragment_water.tex" ),
+
+	Asset( "ATLAS", "images/inventoryimages/crystal_fragment_relic.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/crystal_fragment_relic.tex" ),
+
+	Asset( "ATLAS", "images/inventoryimages/crystal_fragment_quartz.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/crystal_fragment_quartz.tex" ),
+
+	Asset( "ATLAS", "images/inventoryimages/crystal_fragment_black.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/crystal_fragment_black.tex" ),
+
+	Asset( "ATLAS", "images/inventoryimages/crystal_fragment_white.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/crystal_fragment_white.tex" ),
+
+	Asset( "ATLAS", "images/inventoryimages/crystal_fragment_spire.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/crystal_fragment_spire.tex" ),
+
 
 	--Asset( "ATLAS", "images/inventoryimages/pineapple_fruit.xml" ),
 	--Asset( "IMAGE", "images/inventoryimages/pineapple_fruit.tex" ),
@@ -139,7 +157,6 @@ local RawPrefabFiles = {
 	"longbill",
 	
 	"crystal_spire",
-	"crystal_fragment",
 	
 	"skyflower",
 	"skyflower_petals",
@@ -201,7 +218,9 @@ local RawPrefabFiles = {
 
 	"owl",
 	"crystal_relic",
-	"crystal_relic_fragment",
+	"crystal_fragment_relic",
+
+	"crystal_fragment_spire",
 
 	"cotton_vest",
 
@@ -228,10 +247,12 @@ local RawPrefabFiles = {
 	"cotton_candy",
 	"smores",
 	"rubber",
-	"crystal_black_fragment",
-	"crystal_white_fragment",
-	"crystal_water_fragment",
-	"crystal_quartz_fragment",
+
+	"crystal_fragment_black",
+	"crystal_fragment_white",
+	"crystal_fragment_water",
+	"crystal_fragment_quartz",
+
 	"golden_sunflower",
 	"golden_sunflower_seeds",
 	"gustflower",
@@ -256,6 +277,7 @@ local RawPrefabFiles = {
 	"dragonblood_tree",
 	"dragonblood_sap",
 	"crystal_light",
+	"crystal_fragment_light",
 	"bird_paradise",
 	"cauldron",
 	"cloud_bomb",

@@ -90,7 +90,7 @@ local function UpMenu()
 end	
 
 --Changes the main menu.
-local function UpdateMainScreen(self)
+local function DoInit(self)
 	--do
 		--return
 	--end
@@ -125,20 +125,30 @@ local function UpdateMainScreen(self)
     ]]
 	
 	--We can change the background image here.
+	--self.bg = self:AddChild(Image("images/ui.xml", "bg_plain.tex"))
 	self.bg:SetTexture("images/bg_up.xml", "bg_plain.tex")
 	self.bg:SetTint(100, 100, 100, 1)
+    self.bg:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
+    self.bg:SetHRegPoint(GLOBAL.ANCHOR_MIDDLE)
+    self.bg:SetVAnchor(GLOBAL.ANCHOR_MIDDLE)
+    self.bg:SetHAnchor(GLOBAL.ANCHOR_MIDDLE)	
+	self.bg:SetScaleMode(GLOBAL.SCALEMODE_FILLSCREEN)
 	
 	--We can change the shield image here.
-	self.shield:SetTexture("images/uppanels.xml", "panel_shield.tex")
-	
+    --self.shield = self.fixed_root:AddChild(Image("images/uppanels.xml", "panel_shield.tex"))
+    self.shield:SetTexture("images/uppanels.xml", "panel_shield.tex")
+    self.shield:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
+    self.shield:SetHRegPoint(GLOBAL.ANCHOR_MIDDLE)
+
+
 	--This renames the banner.
-	STRINGS.UI.MAINSCREEN.UPDATENAME = "Up and Away"
-	self.updatename:SetString(STRINGS.UI.MAINSCREEN.UPDATENAME)
-	self.banner:SetPosition(0, -170, 0)	
+	self.updatename:SetString("Up and Away")
+	self.banner:SetPosition(0, -170, 0)		
+	self.banner:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
+    self.banner:SetHRegPoint(GLOBAL.ANCHOR_MIDDLE)
 
 	--Adds our own mod button.
 	self.upandaway_button = self.updatename:AddChild(ImageButton())
-	--self.upandaway_button:SetPosition(-550, -130, 0)
 	self.upandaway_button:SetPosition(0,0,0)
 	self.upandaway_button:SetText("Up and Away")
 	self.upandaway_button:SetOnClick( function() UpMenu() end )	
@@ -165,14 +175,14 @@ local function UpdateMainScreen(self)
 	-]]	
 	
 	--self:UpdateDaysUntil()
+	
 	self:MainMenu()
 	self.menu:SetFocus()
-	
 end
 
 -- This works under both game versions (due to api_abstractions.lua)
 -- It will actually call AddGenericClassPostConstruct defined there.
-AddClassPostConstruct("screens/mainscreen", UpdateMainScreen)
+AddClassPostConstruct("screens/mainscreen", DoInit)
 
 --This gives us custom worldgen screens.	
 local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)

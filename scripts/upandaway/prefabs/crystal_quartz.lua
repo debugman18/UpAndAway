@@ -10,12 +10,12 @@ local assets =
 
 local prefabs =
 {
-   "crystal_quartz_fragment",
+   "crystal_fragment_quartz",
 }
 
 local loot = 
 {
-   "crystal_quartz_fragment",
+   "crystal_fragment_quartz",
 }
 
 local function onMined(inst, worker)

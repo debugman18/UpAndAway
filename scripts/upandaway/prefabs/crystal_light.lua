@@ -10,25 +10,22 @@ local assets =
 
 local prefabs =
 {
-    "maxwelllight_flame",
+    "crystal_fragment_light",
 }
 
-local function changelevels(inst, order)
-    for i=1, #order do
-        inst.components.burnable:SetFXLevel(order[i])
-        Sleep(0.05)
-    end
+local loot = 
+{
+   "crystal_fragment_light",
+}
+
+local function onMined(inst, worker)
+    inst.components.lootdropper:DropLoot()
+    inst.SoundEmitter:PlaySound("dontstarve/common/destroy_rock")
+
+    inst:Remove()   
 end
 
-local function light(inst)    
-    inst.task = inst:StartThread(function() changelevels(inst, inst.lightorder) end)    
-end
 
-local function extinguish(inst)
-    if inst.components.burnable:IsBurning() then
-        inst.components.burnable:Extinguish()
-    end
-end
 
 local function fn(Sim)
 	local inst = CreateEntity()
@@ -49,17 +46,13 @@ local function fn(Sim)
     inst:AddComponent("inspectable")
     inst.components.inspectable.nameoverride = "Light Crystal" 
 
-    --[[
-    inst:AddComponent("burnable")
-    inst.components.burnable:AddBurnFX("maxwelllight_flame", Vector3(0,0,0), "fire_marker")
-    inst.components.burnable:SetOnIgniteFn(light)   
+    inst:AddComponent("lootdropper")
+    inst.components.lootdropper:SetLoot(loot)   
 
-    inst.lightorder = {5,6,7,8,7}
-    inst:AddComponent("playerprox")
-    inst.components.playerprox:SetDist(17, 27 )
-    inst.components.playerprox:SetOnPlayerNear(function() if not inst.components.burnable:IsBurning() then inst.components.burnable:Ignite() end end)
-    inst.components.playerprox:SetOnPlayerFar(extinguish)
-    --]]
+    inst:AddComponent("workable")
+    inst.components.workable:SetWorkAction(ACTIONS.MINE)
+    inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE)
+    inst.components.workable:SetOnFinishCallback(onMined)
 
 	return inst
 end
