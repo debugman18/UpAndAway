@@ -35,6 +35,7 @@ local function fn(Sim)
 	inst.AnimState:SetBank("crystal")
 	inst.AnimState:SetBuild("crystal")
     inst.AnimState:PlayAnimation("crystal_white")
+    MakeObstaclePhysics(inst, 1.)
 
 	inst:AddComponent("inspectable")
 

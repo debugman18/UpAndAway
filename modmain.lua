@@ -293,6 +293,8 @@ local RawPrefabFiles = {
 	"golden_rose",
 	"golden_petals",
 
+	"colored_corn",
+
 }
 
 --RemapSoundEvent("dontstarve/music/music_FE", "upandaway/music/music_FE")

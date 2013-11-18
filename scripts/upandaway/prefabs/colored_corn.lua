@@ -10,7 +10,7 @@ local assets=
 
 local prefabs=
 {
-	--"colored_corn",
+	"colored_corn",
 }
 
 local function onpickedfn(inst)
@@ -30,13 +30,12 @@ local function fn(Sim)
     inst.AnimState:PlayAnimation("planted")
     inst.AnimState:SetRayTestOnBB(true);
     
-
     inst:AddComponent("inspectable")
     
-    --inst:AddComponent("pickable")
-    --inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
-    --inst.components.pickable:SetUp("colored_corn", 10)
-	--inst.components.pickable.onpickedfn = onpickedfn
+    inst:AddComponent("pickable")
+    inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
+    inst.components.pickable:SetUp("colored_corn", 10)
+	inst.components.pickable.onpickedfn = onpickedfn
     
     inst.components.pickable.quickpick = true
 

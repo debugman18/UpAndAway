@@ -204,13 +204,13 @@ local function fn(Sim)
     --32,16
     waves:SetRegionSize(32, 32)
     --8
-    waves:SetRegionNumWaves(8)
+    waves:SetRegionNumWaves(5)
     waves:SetWaveTexture(GLOBAL.resolvefilepath("images/cloudwave.tex"))   
     waves:SetWaveEffect("shaders/waves.ksh" ) -- texture.ksh   
     --2048,512 
-	waves:SetWaveSize(1024, 1024)
+	waves:SetWaveSize(1350, 1080)
    
-    inst.components.ambientsoundmixer:SetReverbPreset("chess")  
+    --inst.components.ambientsoundmixer:SetReverbPreset("chess")  
     --ambientsoundmixer.wave_sound = GLOBAL.resolvefilepath("dontstarve/ocean/waves"))
    
 	inst:AddComponent("colourcubemanager")

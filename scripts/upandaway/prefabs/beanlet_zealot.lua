@@ -11,12 +11,18 @@ local assets =
 local prefabs =
 {
    "greenbean",
+   "beanlet_shell",
 }
 
-local loot = 
+SetSharedLootTable( 'beanlet',
 {
-    "greenbean",
-}
+    {'greenbean',       1.00},
+    {'greenbean',       0.90},
+    {'greenbean',       0.80},
+    {'greenbean',       0.70},
+    {'beanlet_shell',   0.33},
+})
+
 
 local function OnAttacked(inst, data)
 end
@@ -30,15 +36,13 @@ local function fn(Sim)
     inst.AnimState:SetBuild("Beanlet")  -- name of the file
     inst.AnimState:PlayAnimation("idle", true) -- name of the animation
 
-
     inst:AddComponent("combat")
-    inst.components.combat.hiteffectsymbol = "pig_torso"
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(50)
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot(loot)   
+    inst.components.lootdropper:SetChanceLootTable('beanlet') 
 
     inst:AddComponent("inspectable")
 

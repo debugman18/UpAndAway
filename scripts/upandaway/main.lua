@@ -322,8 +322,6 @@ AddSimPostInit(function(inst)
 	end
 end)
 
-
-
 --Changes "activate" to "climb down" for "beanstalk_exit".
 AddSimPostInit(function(inst)
 	local oldactionstringoverride = inst.ActionStringOverride

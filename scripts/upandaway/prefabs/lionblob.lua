@@ -16,6 +16,9 @@ local function fn(Sim)
     anim:SetBank("lionblob") -- name of the animation root
     anim:SetBuild("lionblob")  -- name of the file
     anim:PlayAnimation("nod", true) -- name of the animation
+
+    local minimap = inst.entity:AddMiniMapEntity()
+    minimap:SetIcon("evergreen_lumpy.png")
 	
     return inst
 end

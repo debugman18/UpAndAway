@@ -151,6 +151,7 @@ local function fn()
 	anim:SetBank("crystal")
 	anim:SetBuild("crystal")
     anim:PlayAnimation("crystal_relic")
+    MakeObstaclePhysics(inst, 1.)
 
     inst:AddTag("structure")
     inst:AddComponent("lootdropper")
