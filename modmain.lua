@@ -226,7 +226,7 @@ local RawPrefabFiles = {
 
 	"research_lectern",	
 
-	--"bean_giant",	
+	"bean_giant",	
 	--"beanstalk_wall",	
 	--"cloud_wall",
 

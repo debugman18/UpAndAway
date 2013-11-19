@@ -48,7 +48,7 @@ local function OnAttacked(inst, data)
     print(GetPlayer().bean_hate)
 
     if GetPlayer().bean_hate and GetPlayer().bean_hate == 5 then
-        SpawnPrefab("deerclops").Transform:SetPosition(inst.Transform:GetWorldPosition())
+        SpawnPrefab("bean_giant").Transform:SetPosition(inst.Transform:GetWorldPosition())
     end    
 end
 

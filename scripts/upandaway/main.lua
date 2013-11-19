@@ -368,43 +368,13 @@ end
 --This adds our 'Fable' tech tree. Thanks to @Heavenfall for the code.
 --assert( type(level) == "table", "Invalid recipe level specified. If you wish to use TECH.NONE, do it explicitly." )
 
+GLOBAL.TECH.NONE.FABLE = 0
 GLOBAL.TECH.FABLE_ONE = {FABLE = 1}
 
 for k,v in pairs(GLOBAL.TUNING.PROTOTYPER_TREES) do 
-    GLOBAL.TUNING.PROTOTYPER_TREES[k].FABLE_ONE = {}
-	GLOBAL.TUNING.PROTOTYPER_TREES.FABLE_ONE = {SCIENCE = 0,MAGIC = 0,ANCIENT = 0,FABLE=1}
+    GLOBAL.TUNING.PROTOTYPER_TREES[k].FABLE = 0
+	GLOBAL.TUNING.PROTOTYPER_TREES.FABLE= {SCIENCE = 0,MAGIC = 0,ANCIENT = 0,FABLE=1}
 end	
-
-
-local function enteringradiusofskeleton(inst)  
---entering proximity of skeleton
-	local playervar = GLOBAL.GetPlayer()    
-	if playervar then        
-		playervar.components.builder.accessible_tech_trees = GLOBAL.TECH.FABLE_ONE 
-	end
-end
-
-local function leavingradiusofskeleton(inst)  
---left proximity of skeleton    
-	local playervar = GLOBAL.GetPlayer()    
-	if playervar then        
-		playervar.components.builder.accessible_tech_trees = GLOBAL.TECH.NONE    
-	end
-end
-
--- add undeadskeleton prototype type to skeletonsfunction 
-local function addfableprototype(inst)    
-	inst:AddTag("prototyper")    
-	inst:AddComponent("prototyper")        
-	inst.components.prototyper.trees = GLOBAL.TUNING.PROTOTYPER_TREES.FABLE        
-	inst.components.prototyper.onactivate = function() end  
-	inst.components.prototyper.onturnoff = leavingradiusofskeleton        
-	inst.components.prototyper.onturnon = enteringradiusofskeletonend	       
---skeleton recipe was built        
-end        
-
-AddPrefabPostInit("research_lectern", addfableprototype)
---]]
 
 local RECIPETABS = GLOBAL.RECIPETABS
 local TECH = GLOBAL.TECH

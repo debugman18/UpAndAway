@@ -9,7 +9,7 @@ SHOPKEEPER.IS_A_COW = function(inst)
 end
 
 -- Maximum distance for a cow to be negotiated.
-SHOPKEEPER.MAX_COW_DIST = 12
+SHOPKEEPER.MAX_COW_DIST = 17
 
 
 SHEEP.HEALTH = 100
