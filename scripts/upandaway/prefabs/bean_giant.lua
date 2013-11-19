@@ -32,8 +32,9 @@ local function onchargedfn(inst)
 	--inst.components.childspawner:SetSpawnedFn(OnSpawned)
 	--inst.components.childspawner:SetGoHomeFn(OnGoHome)
 	inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*.1)
-	inst.components.childspawner:SetSpawnPeriod(10)
-	inst.components.childspawner:SetMaxChildren(3)
+	inst.components.childspawner:SetSpawnPeriod(1)
+	inst.components.childspawner:SetMaxChildren(30)
+	inst.components.childspawner:StartSpawning()
 end
 
 local function CalcSanityAura(inst, observer)
@@ -52,6 +53,7 @@ local function RetargetFn(inst)
         return inst.components.combat:CanTarget(guy)
                and not guy:HasTag("prey")
                and not guy:HasTag("smallcreature")
+               and not guy:HasTag("beanmonster")
                and (inst.components.knownlocations:GetLocation("targetbase") == nil or guy.components.combat.target == inst)
     end)
 end
@@ -154,6 +156,8 @@ local function fn(Sim)
     inst:AddTag("scarytoprey")
     inst:AddTag("largecreature")
 
+    inst:AddTag("beanmonster")
+
     anim:SetBank("deerclops")
     anim:SetBuild("deerclops_build")
     anim:PlayAnimation("idle_loop", true)
@@ -161,7 +165,7 @@ local function fn(Sim)
     ------------------------------------------
 
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
-    inst.components.locomotor.walkspeed = 3  
+    inst.components.locomotor.walkspeed = 4 
     
     ------------------------------------------
     inst:SetStateGraph("SGdeerclops")
@@ -177,12 +181,12 @@ local function fn(Sim)
 
     ------------------
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(TUNING.DEERCLOPS_HEALTH)
+    inst.components.health:SetMaxHealth(600)
 
     ------------------
     
     inst:AddComponent("combat")
-    inst.components.combat:SetDefaultDamage(TUNING.DEERCLOPS_DAMAGE)
+    inst.components.combat:SetDefaultDamage(25)
     inst.components.combat.playerdamagepercent = .5
     inst.components.combat:SetRange(6)
     inst.components.combat:SetAreaDamage(6, 0.8)

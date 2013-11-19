@@ -21,6 +21,7 @@ local function Retarget(inst)
             return (guy:HasTag("character") or guy:HasTag("monster"))
                    and not (inst.components.follower and inst.components.follower.leader == guy)
                    and not guy:HasTag("eel")
+                   and not guy:HasTag("beanmonster")
                    and inst.components.combat:CanTarget(guy)
     end)
     return newtarget
@@ -49,6 +50,8 @@ local function fn(Sim)
     inst:AddTag("monster")    
     inst:AddTag("hostile")
     inst:AddTag("eel")
+
+    inst:AddTag("beanmonster")
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(15)

@@ -107,8 +107,9 @@ local sky_level_1 = {
 		["Cloudhenge"] = { count=1, tasks={"Cloud_Generic_Biome"} },	
 		["WitchGrove"] = { count=1, tasks={"Cloud_Aurora_Biome"} },	
 		["StrixShrine"] = { count=1, tasks={"Cloud_Snow_Biome"} },	
-		["CheshireHunting"] = { count=1, tasks={"Cloud_Rainbow_Biome"} },		
-		["CloudHoles"] = { count = 10, tasks ={"Cloud_Generic_Biome"} },
+		["CheshireHunting"] = { count=1, tasks={"Cloud_Rainbow_Biome"} },	
+
+		["CloudHoles"] = { count = 1, tasks ={"Cloud_Generic_Biome"} },
 	},
 
 	ordered_story_setpieces = {

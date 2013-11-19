@@ -27,7 +27,7 @@ local function generateSpeeches()
 			
 			delay = 2,
 			disableplayer = false,
-			skippable = true,
+			skippable = false,
 			
 			{
 				string = "You... You shouldn't be here.",
@@ -220,7 +220,7 @@ local function generateSpeeches()
 				sound = "dontstarve/common/destroy_metal",
 			},
 			{
-				string = "Bonemeal, perhaps.",
+				string = "Bonemeal, perhaps. A grave?",
 				wait = 3,
 				anim = nil,
 				sound = "dontstarve/common/destroy_metal",
