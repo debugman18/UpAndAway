@@ -137,12 +137,12 @@ local function fn(Sim)
     
     inst:AddComponent("inspectable")
 
-	--inst:AddComponent("childspawner")
-	--inst.components.childspawner.childname = "cloud_lightning"
-	--inst.components.childspawner:SetSpawnedFn(OnSpawned)
-	--inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*10)
-	--inst.components.childspawner:SetSpawnPeriod(10)
-	--inst.components.childspawner:SetMaxChildren(3)
+	inst:AddComponent("childspawner")
+	inst.components.childspawner.childname = "cloud_lightning"
+	inst.components.childspawner:SetSpawnedFn(OnSpawned)
+	inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*10)
+	inst.components.childspawner:SetSpawnPeriod(10)
+	inst.components.childspawner:SetMaxChildren(3)
     
     inst.OnSave = onsave
     inst.OnLoad = onload
