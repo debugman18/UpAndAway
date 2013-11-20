@@ -74,8 +74,8 @@ local function fn(Sim)
     inst.components.lootdropper:SetLoot({"beanstalk_chunk", "beanstalk_chunk"})
 	
     inst:AddComponent("locomotor")
-    inst.components.locomotor.walkspeed = 7.3
-	inst.components.locomotor.runspeed = 8.4	
+    inst.components.locomotor.walkspeed = 8.5
+	inst.components.locomotor.runspeed = 8.5
 	inst.components.locomotor.directdrive = true
     
     inst:SetStateGraph("SGeel")

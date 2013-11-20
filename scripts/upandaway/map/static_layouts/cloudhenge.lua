@@ -88,7 +88,7 @@ return {
         },
         {
           name = "",
-          type = "beanlet_zealot",
+          type = "crystal_light",
           shape = "rectangle",
           x = 163,
           y = 223,

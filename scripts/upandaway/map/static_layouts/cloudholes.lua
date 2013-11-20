@@ -36,12 +36,12 @@ return {
       properties = {},
       encoding = "lua",
       data = {
-        2, 1, 1, 0, 1, 2,
+        0, 1, 1, 0, 1, 0,
         0, 1, 0, 1, 1, 0,
         0, 0, 1, 1, 1, 1,
         0, 0, 1, 1, 1, 1,
         0, 1, 0, 1, 1, 0,
-        2, 0, 0, 0, 0, 2
+        0, 0, 0, 0, 0, 0
       }
     },
     {
@@ -53,7 +53,7 @@ return {
       objects = {
         {
           name = "",
-          type = "beanstalk",
+          type = "shopkeeper",
           shape = "rectangle",
           x = 254,
           y = 192,

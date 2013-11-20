@@ -142,7 +142,7 @@ local states=
     },
     
     State{
-        name = "start_run",
+        name = "start_walk",
     },  
     
 	State{
