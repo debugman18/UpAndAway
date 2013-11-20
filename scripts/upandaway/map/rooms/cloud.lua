@@ -12,10 +12,10 @@ TheMod:AddRoom("BGCloud", {
 	contents = {
 		distributepercent = 0.01,
 		distributeprefabs = {
-			skyflower = 0.1,
-			golden_sunflower = 0.05,
-			balloon_hound = 0.001,
-			lionblob = 0.001,
+			skyflower = 1.1,
+			golden_sunflower = 0.35,
+			balloon_hound = 0.01,
+			lionblob = 0.01,
 		},
 	}
 })
@@ -28,7 +28,7 @@ TheMod:AddRoom("BeanstalkSpawn", {
 		distributepercent = 0.02,
 		distributeprefabs = {
 			skeleton = 0.2,
-			skyflower = 0.12,
+			skyflower = 1.12,
 		}
 	}
 })
@@ -38,11 +38,12 @@ TheMod:AddRoom("SkyflowerGarden", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
-		distributepercent = 0.06,
+		distributepercent = 0.02,
 		distributeprefabs = {
-			skyflower = 0.6,
-			skytrap = 0.03,
-			golden_rose = 0.02,
+			skyflower = 0.3,
+			skytrap = 0.3,
+			golden_rose = 0.3,
+			sheep = 0.4,
 		},
 	},
 })
@@ -52,10 +53,10 @@ TheMod:AddRoom("SheepHerd", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
-		distributepercent = 0.25,
+		distributepercent = 0.02,
 		distributeprefabs = {
-			sheep = 0.1,
-			skyflower = 0.1,
+			sheep = 0.4,
+			skyflower = 0.6,
 		},
 	},
 })
@@ -68,7 +69,7 @@ TheMod:AddRoom("BushGarden", {
 		distributepercent = 0.02,
 		distributeprefabs = {
 			cloud_bush = 0.04,
-			skyflower = 0.1,
+			skyflower = 0.9,
 			frog = 0.01,
 		},
 	},
@@ -92,7 +93,7 @@ TheMod:AddRoom("BGAurora", {
 			balloon_hound = 0.00001,
 			gustflower = 0.2,
 			dragonblood_tree = 0.02,
-			skyflower = 0.1,
+			skyflower = 0.9,
 		}
 	}
 })

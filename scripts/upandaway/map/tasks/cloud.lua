@@ -9,11 +9,11 @@ TheMod:AddTask("Cloud_Generic_Biome", {
 	keys_given = {KEYS.TIER1},
 
 	room_choices={
-		["SkyflowerGarden"] = math.random(1, 4),
-		["SheepHerd"] = math.random(2, 2),
-		["BushGarden"] = math.random(2, 4),
-		["Bigbird_Nest"] = math.random(2,2),	
-		["BGCloud"] = math.random(2,2),				
+		["SkyflowerGarden"] = math.random(1, 1),
+		["SheepHerd"] = math.random(1, 1),
+		["BushGarden"] = math.random(1, 1),
+		["Bigbird_Nest"] = math.random(1,2),	
+		["Sea_Mimic"] = math.random(1,2),		
 	},
 
 	room_bg=GROUND.POOPCLOUD,
@@ -22,7 +22,7 @@ TheMod:AddTask("Cloud_Generic_Biome", {
   	-- The number of neighbors beyond the first that each node links to
   	crosslink_factor = 5,
   	-- Whether or not to connect the last node to the first
-  	make_loop = false,	
+  	make_loop = true,	
 })
 
 
@@ -32,11 +32,10 @@ TheMod:AddTask("Cloud_Snow_Biome", {
 	keys_given = {KEYS.TIER1, KEYS.TIER2},
 
 	room_choices={
-		["Thunder_Forest"] = math.random(4, 4),
+		["Thunder_Forest"] = math.random(2, 4),
 		["Manta_Room"] = math.random(2,3),
-		["Sea_Mimic"] = math.random(1,3),	
-		["CragLanding"] = math.random(2,2),	
-		["BGSnow"] = math.random(2,2),	
+		["Sea_Mimic"] = math.random(1,1),	
+		["CragLanding"] = math.random(1,2),	
 	},
 
 	room_bg=GROUND.FUNGUS,
@@ -45,7 +44,7 @@ TheMod:AddTask("Cloud_Snow_Biome", {
   	-- The number of neighbors beyond the first that each node links to
   	crosslink_factor = 4,
   	-- Whether or not to connect the last node to the first
-  	make_loop = false,	
+  	make_loop = true,	
 })
 
 
@@ -59,7 +58,7 @@ TheMod:AddTask("Cloud_Aurora_Biome", {
 		["Vine_Room"] = math.random(1,2),
 		["Beanlet_Den"] = math.random(1,1),		
 		["Crystal_Fields"] = math.random(2,2),		
-		["BGAurora"] = math.random(2,2),
+		["SheepHerd"] = math.random(1, 2),
 	},
 
 	room_bg=GROUND.GRASS,
@@ -82,7 +81,6 @@ TheMod:AddTask("Cloud_Rainbow_Biome", {
 		["Fish_Fields"] = math.random(2,4),
 		["Crystal_Fields"] = math.random(2,5),	
 		["Sea_Mimic"] = math.random(2,2),	
-		["BGRainbow"] = math.random(2,2),
 	},
 
 	room_bg=GROUND.MARSH,

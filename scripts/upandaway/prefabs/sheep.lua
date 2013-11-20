@@ -40,7 +40,7 @@ local loot = {"meat","meat","cloud_cotton","cloud_cotton"}
 local sounds = 
 {
 	walk = "dontstarve/beefalo/walk",
-	grunt = "sheep/sheep/baa",
+	grunt = "dontstarve/beefalo/curious",
 	yell = "dontstarve/beefalo/yell",
 	swish = "dontstarve/beefalo/tail_swish",
 	curious = "dontstarve/beefalo/curious",

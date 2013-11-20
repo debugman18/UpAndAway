@@ -55,7 +55,7 @@ return {
       objects = {
         {
           name = "",
-          type = "grass",
+          type = "skyflower",
           shape = "rectangle",
           x = 288,
           y = 290,
@@ -66,7 +66,7 @@ return {
         },
         {
           name = "",
-          type = "grass",
+          type = "cauldron",
           shape = "rectangle",
           x = 289,
           y = 93,
@@ -77,7 +77,7 @@ return {
         },
         {
           name = "",
-          type = "grass",
+          type = "crystal_lamp",
           shape = "rectangle",
           x = 100,
           y = 97,
@@ -88,7 +88,7 @@ return {
         },
         {
           name = "",
-          type = "grass",
+          type = "crystal_lamp",
           shape = "rectangle",
           x = 101,
           y = 284,

@@ -49,8 +49,8 @@ local sky_level_1 = {
 		--{"world_size", 		"tiny"},
 		{"day", 			"onlydusk"}, 
 		{"waves", 			"on"},
-		{"branching",		"least"},
-		{"looping",		    "always"},
+		{"branching",		"more"},
+		{"looping",		    "default"},
 
 		--{"world_complexity", "verycomplex"},		
 
@@ -108,8 +108,6 @@ local sky_level_1 = {
 		["WitchGrove"] = { count=1, tasks={"Cloud_Aurora_Biome"} },	
 		["StrixShrine"] = { count=1, tasks={"Cloud_Snow_Biome"} },	
 		["CheshireHunting"] = { count=1, tasks={"Cloud_Rainbow_Biome"} },	
-
-		["CloudHoles"] = { count = 1, tasks ={"Cloud_Generic_Biome"} },
 	},
 
 	ordered_story_setpieces = {
