@@ -30,6 +30,10 @@ local function fn(Sim)
 	inst.components.repairer.repairmaterial = "beanstalk"
 	inst.components.repairer.value = 1	
 
+	inst:AddTag("beanstalk_chunk")
+
+	inst:AddComponent("tradable")	
+
 	return inst
 end
 

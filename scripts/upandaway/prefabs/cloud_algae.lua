@@ -20,6 +20,11 @@ local loot =
 	"cloud_algae_fragment",
 }
 
+local function OnDug(inst)
+	inst.components.lootdropper:DropLoot()
+	inst:Remove()
+end	
+
 local function fn(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
@@ -42,7 +47,7 @@ local function fn(Sim)
 	inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.DIG)
     inst.components.workable:SetWorkLeft(3)
-    --inst.components.workable:SetOnFinishCallback(mined) 
+    inst.components.workable:SetOnFinishCallback(OnDug) 
 
    	inst:AddComponent("lootdropper") 
    	inst.components.lootdropper:SetLoot(loot)        

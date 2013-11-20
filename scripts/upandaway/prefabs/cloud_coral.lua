@@ -34,6 +34,9 @@ local function fn(Sim)
     inst.components.workable:SetOnFinishCallback(mine_remove)
     inst.components.workable:SetWorkLeft(2)	
 
+   	inst:AddComponent("lootdropper") 
+   	--inst.components.lootdropper:SetLoot(loot)     
+
 	return inst
 end
 

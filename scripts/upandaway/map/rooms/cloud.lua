@@ -105,7 +105,7 @@ TheMod:AddRoom("Vine_Room", {
 	contents = {
 		distributepercent = 0.01,
 		distributeprefabs = {
-			vine = 0.05,
+			vine = 0.5,
 			dragonblood_tree = 0.1,
 			beanlet = 0.8,
 		},

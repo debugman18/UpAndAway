@@ -149,10 +149,12 @@ local function DoInit(self)
 
 	--Adds our own mod button.
 	self.upandaway_button = self.updatename:AddChild(ImageButton())
-	self.upandaway_button:SetPosition(0,0,0)
+	self.upandaway_button:SetPosition(0,-2,11)
 	self.upandaway_button:SetText("Up and Away")
 	self.upandaway_button:SetOnClick( function() UpMenu() end )	
-	--self.upandaway_button:SetScale(.8)
+	self.upandaway_button:SetScale(1.1, 0.67, 1.1)
+
+	--]]
 		
 	--[[
 	
@@ -176,6 +178,13 @@ local function DoInit(self)
 	
 	--self:UpdateDaysUntil()
 	
+	--We can change wilson to somebody else.
+    --self.wilson = self.left_col:AddChild(UIAnim())
+    --self.wilson:GetAnimState():SetBank("corner_dude")
+    --self.wilson:GetAnimState():SetBuild("corner_up")
+    --self.wilson:GetAnimState():PlayAnimation("idle", true)
+    --self.wilson:SetPosition(0,-370,0)	
+
 	self:MainMenu()
 	self.menu:SetFocus()
 end
@@ -341,6 +350,19 @@ AddSimPostInit(function(inst)
 	function inst:ActionStringOverride(bufaction)
 		if bufaction.action == GLOBAL.ACTIONS.UNLOCK and bufaction.target and bufaction.target.prefab == "mound" then
 			return "Plant"
+		end
+		if oldactionstringoverride then
+			return oldactionstringoverride(inst, bufaction)
+		end
+	end
+end)
+
+--Changes "Give" to "Refiner" for the refiner.
+AddSimPostInit(function(inst)
+	local oldactionstringoverride = inst.ActionStringOverride
+	function inst:ActionStringOverride(bufaction)
+		if bufaction.action == GLOBAL.ACTIONS.GIVE and bufaction.target and bufaction.target.prefab == "refiner" then
+			return "Refine"
 		end
 		if oldactionstringoverride then
 			return oldactionstringoverride(inst, bufaction)

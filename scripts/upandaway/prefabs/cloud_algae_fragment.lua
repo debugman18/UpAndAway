@@ -26,6 +26,10 @@ local function fn(Sim)
 
 	inst:AddComponent("inventoryitem")
 
+	inst:AddTag("algae")
+
+	inst:AddComponent("tradable")
+
 	return inst
 end
 
