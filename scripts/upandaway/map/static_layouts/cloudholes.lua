@@ -53,7 +53,7 @@ return {
       objects = {
         {
           name = "",
-          type = "shopkeeper",
+          type = "flying_fish",
           shape = "rectangle",
           x = 254,
           y = 192,

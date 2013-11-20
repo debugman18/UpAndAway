@@ -16,6 +16,7 @@ TheMod:AddRoom("BGCloud", {
 			golden_sunflower = 0.35,
 			balloon_hound = 0.01,
 			lionblob = 0.01,
+			crystal_light = 0.35,
 		},
 	}
 })
