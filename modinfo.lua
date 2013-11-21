@@ -12,4 +12,4 @@ forumthread = "/topic/26501-up-and-away-mod-collaboration-thread"
 api_version = 4
 
 icon_atlas = "favicon/upandaway.xml"
-icon = "favicon/upandaway.tex"
+icon = "upandaway.tex"
