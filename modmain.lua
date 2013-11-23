@@ -1,137 +1,91 @@
 TheMod = GLOBAL.require("upandaway" .. '.wicker.init')(env)
+modimport "asset_utils.lua"
 
-local CFG = TUNING.UPANDAWAY
-
-
-local new_tiles = CFG.NEW_TILES
 
 --These assets are for everything.
-local RawAssets = {
-	--Asset("SOUNDPACKAGE", "sound/music_mod.fev"),
-	--Asset("SOUND", "sound/music_mod.fsb"),
-
-	Asset( "ANIM", "anim/generating_cloud.zip" ),
-
-	Asset( "ATLAS", "images/inventoryimages/skyflower_petals.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/skyflower_petals.tex" ),
-
-	Asset( "ATLAS", "images/inventoryimages/datura_petals.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/datura_petals.tex" ),
+Assets = GLOBAL.JoinArrays(
+	--[[
+	{
+		Asset("SOUNDPACKAGE", "sound/music_mod.fev"),
+		Asset("SOUND", "sound/music_mod.fsb"),
+	},
+	]]--
 	
-	--Asset( "ATLAS", "images/inventoryimages/crystal_shard.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/crystal_shard.tex" ),
+	AnimationAssets {
+		"generating_cloud",
+	},
 
-	--Asset( "ATLAS", "images/inventoryimages/crystal_moss.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/crystal_moss.tex" ),
-
-	--Asset( "ATLAS", "images/inventoryimages/crystal_wall.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/crystal_wall.tex" ),
-
-	--Asset( "ATLAS", "images/inventoryimages/crystal_cap.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/crystal_cap.tex" ),
-
-	--Asset( "ATLAS", "images/inventoryimages/sunflower_seeds.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/sunflower_seeds.tex" ),
-
-	--Asset( "ATLAS", "images/inventoryimages/moonflower_seeds.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/moonflower_seeds.tex" ),
+	InventoryImageAssets {
+		"skyflower_petals",
+		"datura_petals",
+		--"crystal_shard",
+		--"crystal_moss",
+		--"crystal_wall",
+		--"crystal_cap",
+		--"sunflower_seeds",
+		--"moonflower_seeds",
+		--"beanstalk_wall",
+		"beanstalk_chunk",
+		"magic_beans",
+		"magic_beans_cooked",
+		"cloud_cotton",
+		"candy_fruit",
+		"crystal_fragment_light",
+		"crystal_fragment_water",
+		"crystal_fragment_relic",
+		"crystal_fragment_quartz",
+		"crystal_fragment_black",
+		"crystal_fragment_white",
+		"crystal_fragment_spire",
+		--"pineapple_fruit",
+		--"cushion_fruit",
+		--"wind_axe",
+		--"golden_amulet",
+		--"kite",
+		"greentea",
+		"blacktea",
+	},
 	
-	--Asset( "ATLAS", "images/inventoryimages/beanstalk_wall.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/beanstalk_wall.tex" ),
+	{
+		Asset("SOUNDPACKAGE", "sound/project.fev"),
+		Asset("SOUND", "sound/project_bank00.fsb"),
+		
+		Asset("SOUNDPACKAGE", "sound/sheep.fev"),
+		Asset("SOUND", "sound/sheep_bank01.fsb"),	
+	},
 
-	Asset( "ATLAS", "images/inventoryimages/beanstalk_chunk.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/beanstalk_chunk.tex" ),
-
-	Asset( "ATLAS", "images/inventoryimages/magic_beans.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/magic_beans.tex" ),
-	
-	Asset( "ATLAS", "images/inventoryimages/magic_beans_cooked.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/magic_beans_cooked.tex" ),	
-
-	Asset( "ATLAS", "images/inventoryimages/cloud_cotton.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/cloud_cotton.tex" ),
-	
-	Asset( "ATLAS", "images/inventoryimages/candy_fruit.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/candy_fruit.tex" ),	
-
-	Asset( "ATLAS", "images/inventoryimages/crystal_fragment_light.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/crystal_fragment_light.tex" ),
-
-	Asset( "ATLAS", "images/inventoryimages/crystal_fragment_water.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/crystal_fragment_water.tex" ),
-
-	Asset( "ATLAS", "images/inventoryimages/crystal_fragment_relic.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/crystal_fragment_relic.tex" ),
-
-	Asset( "ATLAS", "images/inventoryimages/crystal_fragment_quartz.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/crystal_fragment_quartz.tex" ),
-
-	Asset( "ATLAS", "images/inventoryimages/crystal_fragment_black.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/crystal_fragment_black.tex" ),
-
-	Asset( "ATLAS", "images/inventoryimages/crystal_fragment_white.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/crystal_fragment_white.tex" ),
-
-	Asset( "ATLAS", "images/inventoryimages/crystal_fragment_spire.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/crystal_fragment_spire.tex" ),
-
-
-	--Asset( "ATLAS", "images/inventoryimages/pineapple_fruit.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/pineapple_fruit.tex" ),
-
-	--Asset( "ATLAS", "images/inventoryimages/cushion_fruit.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/cushion_fruit.tex" ),
-
-	--Asset( "ATLAS", "images/inventoryimages/wind_axe.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/wind_axe.tex" ),
-
-	--Asset( "ATLAS", "images/inventoryimages/golden_amulet.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/golden_amulet.tex" ),
-
-	--Asset( "ATLAS", "images/inventoryimages/kite.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/kite.tex" ),
-	
-	Asset("SOUNDPACKAGE", "sound/project.fev"),
-	Asset("SOUND", "sound/project_bank00.fsb"),
-	
-	Asset("SOUNDPACKAGE", "sound/sheep.fev"),
-	Asset("SOUND", "sound/sheep_bank01.fsb"),	
-
-	--Asset("ATLAS", "modicon.xml"),
-	--Asset("IMAGE", "modicon.tex"),
-	
-	Asset("ATLAS", "images/uppanels.xml"),		
-	Asset("IMAGE", "images/uppanels.tex"),	
-
-	Asset("ATLAS", "images/bg_up.xml"),		
-	Asset("IMAGE", "images/bg_up.tex"),	
-
-	Asset("ATLAS", "images/bg_gen.xml"),		
-	Asset("IMAGE", "images/bg_gen.tex"),	
+	ImageAssets {
+		"uppanels",
+		"bg_up",
+		"bg_gen",
+	},
 
 	--Winnie assets.
-    Asset( "IMAGE", "images/saveslot_portraits/winnie.tex" ),
-    Asset( "ATLAS", "images/saveslot_portraits/winnie.xml" ),
+	ImageAssets "saveslot_portraits" {
+		"winnie",
+	},
 
-    Asset( "IMAGE", "images/selectscreen_portraits/winnie.tex" ),
-    Asset( "ATLAS", "images/selectscreen_portraits/winnie.xml" ),
+	ImageAssets "selectscreen_portraits" {
+		"winnie",
+		"winnie_silho",
+	},
 
-    Asset( "IMAGE", "images/selectscreen_portraits/winnie_silho.tex" ),
-    Asset( "ATLAS", "images/selectscreen_portraits/winnie_silho.xml" ),
+	{
+		Asset( "IMAGE", "bigportraits/winnie.tex" ),
+		Asset( "ATLAS", "bigportraits/winnie.xml" ),		
+	},
 
-    Asset( "IMAGE", "bigportraits/winnie.tex" ),
-    Asset( "ATLAS", "bigportraits/winnie.xml" ),		
-}
+	-- Dummy end, just so we can put commas after everything.
+	{}
+)
 
 GLOBAL.require "screens/popupdialog"
 GLOBAL.require "screens/newgamescreen"
 GLOBAL.require "widgets/statusdisplays"
 
-Assets = RawAssets
-
 --This loads all of the new prefabs.
 
-local RawPrefabFiles = {
+PrefabFiles = {
 	"winnie",
 	"winnie_staff",
 
@@ -295,17 +249,19 @@ local RawPrefabFiles = {
 
 	"colored_corn",
 
+	"tea",
 }
 
 --RemapSoundEvent("dontstarve/music/music_FE", "upandaway/music/music_FE")
 
-local new_tiles = CFG.NEW_TILES
 
 --Removing this for the moment to test new turfs.
 
 --[[
-if CFG.DEBUG then
-	table.insert(RawPrefabFiles, "turf_test")
+if TheMod:Debug() then
+	local new_tiles = TheMod:GetConfig("NEW_TILES")
+
+	table.insert(PrefabFiles, "turf_test")
 
 	AddSimPostInit(function(inst)
 		local inv = inst.components.inventory
@@ -319,6 +275,5 @@ if CFG.DEBUG then
 end
 --]]
 
-PrefabFiles = RawPrefabFiles
 
 TheMod:Run("main")

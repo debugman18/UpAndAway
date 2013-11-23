@@ -25,7 +25,7 @@ modrequire('api_abstractions')()
 modrequire 'profiling'
 modrequire 'debugtools'
 modrequire 'strings'
-modrequire 'postinits.burning'
+modrequire 'postinits'
 
 
 local CFG = TUNING.UPANDAWAY

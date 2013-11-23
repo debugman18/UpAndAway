@@ -239,6 +239,9 @@ Add.Names {
 
     winnie_staff = "Shepherd's Staff",
 
+	greentea = "Green Tea",
+
+	blacktea = "Black Tea",
 }
 
 Add.QuotesFor "beanstalk" {
