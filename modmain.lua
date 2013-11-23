@@ -45,6 +45,8 @@ Assets = GLOBAL.JoinArrays(
 		--"kite",
 		"greentea",
 		"blacktea",
+		"tea_leaves",
+		"blacktea_leaves",
 	},
 	
 	{
@@ -251,6 +253,9 @@ PrefabFiles = {
 	"colored_corn",
 
 	"tea",
+	"tea_leaves",
+	"tea_bush",
+	"kettle",
 }
 
 --RemapSoundEvent("dontstarve/music/music_FE", "upandaway/music/music_FE")

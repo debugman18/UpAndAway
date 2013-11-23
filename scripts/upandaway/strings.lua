@@ -239,9 +239,22 @@ Add.Names {
 
     winnie_staff = "Shepherd's Staff",
 
+
+	--[[
+	-- Tea stuff.
+	--]]
+	
 	greentea = "Green Tea",
 
 	blacktea = "Black Tea",
+
+	tea_leaves = "Tea Leaves",
+
+	blacktea_leaves = "Black Tea Leaves",
+
+	tea_bush = "Tea Bush",
+
+	kettle = "Kettle",
 }
 
 Add.QuotesFor "beanstalk" {
