@@ -35,8 +35,6 @@ local function MakeBeverage(name, data)
 	local function basic_fn()
 		local inst = CreateEntity()
 
-		inst:AddTag("show_temperature")
-
 		--[[
 		-- Engine-level components.
 		--]]

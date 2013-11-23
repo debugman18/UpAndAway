@@ -13,6 +13,7 @@ Assets = GLOBAL.JoinArrays(
 	
 	AnimationAssets {
 		"generating_cloud",
+		"temperature_meter",
 	},
 
 	InventoryImageAssets {

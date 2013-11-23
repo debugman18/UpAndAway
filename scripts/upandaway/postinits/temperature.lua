@@ -1,5 +1,5 @@
 ---
--- Postinits to tweak the burnable behaviour.
+-- Postinits to extend the poorly implemented temperature component...
 --
 -- @author simplex
 

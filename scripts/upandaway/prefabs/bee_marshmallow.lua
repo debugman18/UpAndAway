@@ -59,7 +59,9 @@ local function onunchargefn(inst)
     inst.components.health:SetMaxHealth(TUNING.BEE_HEALTH)
     inst.components.combat:SetDefaultDamage(0)
     inst.components.combat:SetAttackPeriod(TUNING.BEE_ATTACK_PERIOD)
-    inst:AddComponent("pollinator")   
+	if not inst.components.pollinator then
+		inst:AddComponent("pollinator")   
+	end
     inst:SetBrain(workerbrain)
     inst.sounds = workersounds
 
@@ -77,6 +79,9 @@ local function onchargefn(inst)
     inst.components.combat:SetDefaultDamage(TUNING.BEE_DAMAGE)
     inst.components.combat:SetAttackPeriod(TUNING.BEE_ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(2, KillerRetarget)
+	if inst.components.pollinator then
+		inst:RemoveComponent("pollinator")
+	end
     inst:SetBrain(killerbrain)
     inst.sounds = killersounds    
     

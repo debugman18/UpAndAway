@@ -9,3 +9,4 @@ module( ..., require(_modname .. '.booter') )
 
 modrequire 'postinits.burning'
 modrequire 'postinits.temperature'
+modrequire 'postinits.itemtile'
