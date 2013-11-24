@@ -17,33 +17,33 @@ require 'actions'
 local ACTIONS = _G.ACTIONS
 
 
-local Undeployable = Class(Debuggable, function(self, inst)
+local Withdrawable = Class(Debuggable, function(self, inst)
     self.inst = inst
 	Debuggable._ctor(self)
-	self:SetConfigurationKey("UNDEPLOYABLE")
+	self:SetConfigurationKey("WITHDRAWABLE")
 
-	self.onundeployfn = nil
+	self.onwithdrawfn = nil
 end)
 
-function Undeployable:SetOnUndeployFn(fn)
-	self.onundeployfn = fn
+function Withdrawable:SetOnWithdrawFn(fn)
+	self.onwithdrawfn = fn
 end
 
-function Undeployable:SetDefaultOnUndeployFn(prefabname)
+function Withdrawable:SetDefaultOnWithdrawFn(prefabname)
 	assert( Pred.PrefabExists(prefabname) )
-	self:SetOnUndeployFn( Lambda.BindFirst(SpawnPrefab, prefabname) )
+	self:SetOnWithdrawFn( Lambda.BindFirst(SpawnPrefab, prefabname) )
 end
 
-function Undeployable:Undeploy(undeployer)
-	self:DebugSay("undeploying")
+function Withdrawable:Withdraw(withdrawer)
+	self:DebugSay("withdrawing")
 
 	local pos = self.inst:GetPosition()
 
-	self.inst:PushEvent("onundeploy", {undeployer = undeployer})
+	self.inst:PushEvent("onwithdraw", {withdrawer = withdrawer})
 
 	local outcomes
-	if self.onundeployfn then
-        outcomes = {self.onundeployfn(self.inst, undeployer)}
+	if self.onwithdrawfn then
+        outcomes = {self.onwithdrawfn(self.inst, withdrawer)}
 	end
 
 	if self.inst:IsValid() then
@@ -56,10 +56,10 @@ function Undeployable:Undeploy(undeployer)
 
 	for _, e in pairs(outcomes) do
 		if Pred.IsEntityScript(e) and e:IsValid() then
-			self:DebugSay("got undeploy outcome [", e, "]...")
-			if e.components.inventoryitem and undeployer.components.inventory then
-				self:DebugSay("...and put it in [", undeployer, "]'s inventory.")
-				undeployer.components.inventory:GiveItem( e )
+			self:DebugSay("got withdraw outcome [", e, "]...")
+			if e.components.inventoryitem and withdrawer.components.inventory then
+				self:DebugSay("...and put it in [", withdrawer, "]'s inventory.")
+				withdrawer.components.inventory:GiveItem( e )
 			else
 				self:DebugSay("...and put it on ground.")
 				Game.Move(e, pos)
@@ -70,10 +70,10 @@ function Undeployable:Undeploy(undeployer)
 	return true
 end
 
-function Undeployable:CollectSceneActions(doer, actions, right)
+function Withdrawable:CollectSceneActions(doer, actions, right)
 	if right then
-		table.insert(actions, ACTIONS.UNDEPLOY)
+		table.insert(actions, ACTIONS.WITHDRAW)
 	end
 end
 
-return Undeployable
+return Withdrawable

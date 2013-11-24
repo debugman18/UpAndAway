@@ -23,22 +23,22 @@ ACTIONS.DEPLOY.strfn = (function()
 end)()
 
 
-local Undeploy = Action(1)
-Undeploy.str = "Undeploy"
-Undeploy.id = "UNDEPLOY"
-Undeploy.fn = function(act)
+local Withdraw = Action(1)
+Withdraw.str = "Withdraw"
+Withdraw.id = "WITHDRAW"
+Withdraw.fn = function(act)
 	local doer = act.doer
 	local targ = act.target or act.invobject
-	if doer and targ and targ.components.undeployable then
-		return targ.components.undeployable:Undeploy(doer)
+	if doer and targ and targ.components.withdrawable then
+		return targ.components.withdrawable:Withdraw(doer)
 	end
 end
 
-AddAction(Undeploy)
+AddAction(Withdraw)
 
-AddStategraphActionHandler("wilson", ActionHandler(Undeploy, function(inst, action)
-	local un = action.target and action.target.components.undeployable
+AddStategraphActionHandler("wilson", ActionHandler(Withdraw, function(inst, action)
+	local un = action.target and action.target.components.withdrawable
 	if un then
-		return un.quickundeploy and "doshortaction" or "dolongaction"
+		return un.quickwithdraw and "doshortaction" or "dolongaction"
 	end
 end))

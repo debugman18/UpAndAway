@@ -108,11 +108,11 @@ local function BuildKettlePrefab()
 		inst.AnimState:PlayAnimation("idle_empty")
 	end
 
-	local function onundeployfn(inst)
+	local function onwithdrawfn(inst)
 		return SpawnPrefab("kettle_item")
 	end
 
-	local function onundeploy_handler(inst, data)
+	local function onwithdraw_handler(inst, data)
 		if inst.components.brewer and inst.components.brewer:IsBrewing() then
 			Game.Move( SpawnPrefab("wetgoop"), inst:GetPosition() + Point(0, 2, 0) )
 		end
@@ -176,13 +176,13 @@ local function BuildKettlePrefab()
 			brewer.onharvest = harvestfn
 		end
 		
-		inst:AddComponent("undeployable")
+		inst:AddComponent("withdrawable")
 		do
-			local undeployable = inst.components.undeployable
+			local withdrawable = inst.components.withdrawable
 
-			undeployable:SetOnUndeployFn(onundeployfn)
+			withdrawable:SetOnWithdrawFn(onwithdrawfn)
 
-			inst:ListenForEvent("onundeploy", onundeploy_handler)
+			inst:ListenForEvent("onwithdraw", onwithdraw_handler)
 		end
 		
 		inst:AddComponent("container")
