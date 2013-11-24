@@ -130,8 +130,8 @@ local function fn(Sim)
 
     anim:SetBuild("tree_thunder")
     anim:SetBank("marsh_tree")
-    local color = 0.2 + math.random() * 0.2
-    anim:SetMultColour(color, color, color, 1)
+    --local color = 0.2 + math.random() * 0.2
+    --anim:SetMultColour(color, color, color, 1)
     sway(inst)
     anim:SetTime(math.random()*2)
     
