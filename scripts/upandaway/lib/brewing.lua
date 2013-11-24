@@ -117,7 +117,7 @@ end
 
 
 local IsPrefab = (function()
-	local cache = {}
+	local cache = setmetatable({}, {__mode = "v"})
 
 	return function(prefabname)
 		assert( Pred.IsString(prefabname) and Pred.PrefabExists(prefabname), "'"..prefabname.."' is not a valid prefab." )
