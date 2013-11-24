@@ -44,7 +44,7 @@ function Brewer:CanBrew()
 end
 
 
-function Brewer:StartBrewing()
+function Brewer:StartBrewing(dude)
 	if not self.done and not self.brewing then
 		if self.inst.components.container then
 			local spoilage_total = 0
@@ -63,7 +63,7 @@ function Brewer:StartBrewing()
 				self.product_spoilage = 1 - (1 - self.product_spoilage)*.5
 			end
 			
-			local recipe = BrewingRecipeBook(ings, self.inst)
+			local recipe = BrewingRecipeBook(ings, self.inst, dude)
 
 			if not recipe then return end
 

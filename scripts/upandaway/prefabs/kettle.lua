@@ -20,7 +20,7 @@ local assets=
 }
 
 
-local prefabs = Lambda.CompactlyMap(Brewing.Recipe.GetName, BrewingRecipeBook:Recipes())
+local prefabs = Lambda.CompactlyMap(Brewing.Recipe.GetProduct, BrewingRecipeBook:Recipes())
 
 
 local slotpos = {	Vector3(0,64+32+8+4,0), 
@@ -32,7 +32,7 @@ local widgetbuttoninfo = {
 	text = "Brew",
 	position = Vector3(0, -165, 0),
 	fn = function(inst)
-		inst.components.brewer:StartBrewing()	
+		inst.components.brewer:StartBrewing( GetPlayer() )	
 	end,
 	
 	validfn = function(inst)

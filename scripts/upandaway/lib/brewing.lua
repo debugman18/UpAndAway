@@ -27,7 +27,9 @@ local table = wickerrequire 'utils.table'
 -- + The stewer entity.
 --]]
 Condition = Class(function(self, fn)
-	assert( Lambda.IsFunctional(fn), "Function expected as constructor parameter." )
+	if not Lambda.IsFunctional(fn) then
+		return error("Function expected as constructor parameter.", 2)
+	end
 	self.fn = fn
 end)
 
@@ -42,8 +44,8 @@ local function to_condition(x)
 	end
 end
 
-function Condition:__call(ings, kettle)
-	return self.fn(ings, kettle)
+function Condition:__call(ings, kettle, dude)
+	return self.fn(ings, kettle, dude)
 end
 
 function Condition.Similar(A, B)
@@ -64,6 +66,10 @@ function Condition:__unm()
 	return Condition( Lambda.Not(self.fn) )
 end
 
+function Condition.__pow(A, B)
+	return Condition( Lambda.Xor(A.fn, B.fn) )
+end
+
 
 --[[
 -- Acts on elements instead of the full ingredient list.
@@ -77,11 +83,11 @@ AtomicCondition = Class(Condition, function(self, fn, count)
 	self.count = count
 	self.basic_fn = fn
 
-	Condition._ctor(self, function(ings, kettle)
+	Condition._ctor(self, function(ings, kettle, dude)
 		local n = self.count
 		local fn = self.basic_fn
 		for _, I in ipairs(ings) do
-			if fn(I, kettle) then
+			if fn(I, kettle, dude) then
 				n = n - 1
 				if n <= 0 then break end
 			end
@@ -99,14 +105,6 @@ end
 
 function AtomicCondition.__eq(A, B)
 	return AtomicCondition.Similar(A, B) and A.count == B.count
-end
-
-function AtomicCondition.__add(A, B)
-	if AtomicCondition.Similar(A, B) then
-		return AtomicCondition(A.fn, A.count + B.count)
-	else
-		return Condition.__add(A, B)
-	end
 end
 
 function AtomicCondition.__mul(k, A)
@@ -164,6 +162,12 @@ end)
 Pred.IsBrewingRecipe = Pred.IsInstanceOf(Recipe)
 local IsRecipe = Pred.IsBrewingRecipe
 
+local function recipe_check(self)
+	if not IsRecipe(self) then
+		return error( "Recipe object expected as 'self' parameter.", 3 )
+	end
+end
+
 function Recipe:GetName()
 	return self.name
 end
@@ -172,19 +176,23 @@ Recipe.GetProduct = Recipe.GetName
 Recipe.__tostring = Recipe.GetName
 
 function Recipe:GetCondition()
+	recipe_check(self)
 	return self.condition
 end
 
 function Recipe:GetPriority()
+	recipe_check(self)
 	return self.priority
 end
 
-function Recipe:GetBrewingTime()
+function Recipe:GetTime()
+	recipe_check(self)
 	return self.brewing_time
 end
+Recipe.GetBrewingTime = Recipe.GetTime
 
-function Recipe:__call(ings, kettle)
-	if self.condition(ings, kettle) then
+function Recipe:__call(ings, kettle, dude)
+	if self.condition(ings, kettle, dude) then
 		self:Say("PASSED")
 		return self.name
 	elseif self:Debug() then
@@ -206,11 +214,21 @@ RecipeBook = Class(Debuggable, function(self, recipes)
 	table.sort(self.recipes, function(a, b) return a.priority > b.priority end)
 end)
 
+Pred.IsBrewingRecipeBook = Pred.IsInstanceOf(RecipeBook)
+local IsRecipeBook = Pred.IsBrewingRecipeBook
+
+local function recipebook_check(self)
+	if not IsRecipeBook(self) then
+		return error( "RecipeBook object expected as 'self' parameter.", 3 )
+	end
+end
+
 function RecipeBook:Recipes()
+	recipebook_check(self)
 	return table.ivalues(self.recipes)
 end
 
-function RecipeBook:__call(ings, kettle)
+function RecipeBook:__call(ings, kettle, dude)
 	local candidates = Lambda.Fold(
 		function(R, total)
 			local head = total and total[1]
@@ -219,14 +237,14 @@ function RecipeBook:__call(ings, kettle)
 				return total
 			end
 
-			if not R(ings, kettle) then
+			if not R(ings, kettle, dude) then
 				return total
 			end
 
 			if not total or R.priority > head.priority then
 				return {R}
 			else
-				table.insert(total, product)
+				table.insert(total, R)
 				return total
 			end
 		end,
