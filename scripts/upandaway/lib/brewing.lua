@@ -17,9 +17,16 @@ local Logic = wickerrequire 'paradigms.logic'
 local Pred = wickerrequire 'lib.predicates'
 
 local Debuggable = wickerrequire 'adjectives.debuggable'
-local Configurable = wickerrequire 'adjectives.configurable'
 
 local table = wickerrequire 'utils.table'
+
+
+local function myassert(level, test, msg_format, ...)
+	if not test then
+		return error(msg_format:format(...), level + 1)
+	end
+end
+
 
 --[[
 -- Each recipe test takes as parameters:
@@ -27,9 +34,7 @@ local table = wickerrequire 'utils.table'
 -- + The stewer entity.
 --]]
 Condition = Class(function(self, fn)
-	if not Lambda.IsFunctional(fn) then
-		return error("Function expected as constructor parameter.", 2)
-	end
+	myassert(2, Lambda.IsFunctional(fn), "Function expected as 'fn' parameter.")
 	self.fn = fn
 end)
 
@@ -77,9 +82,11 @@ end
 -- Count marks how many elements must pass the test.
 --]]
 AtomicCondition = Class(Condition, function(self, fn, count)
-	assert( Lambda.IsFunctional(fn), "Function expected as constructor parameter." )
+	myassert(2, Lambda.IsFunctional(fn), "Function expected as 'fn' parameter.")
 
 	count = count or 1
+	myassert(2, Pred.IsNumber(count), "Number or nil expected as 'count' parameter.")
+
 	self.count = count
 	self.basic_fn = fn
 
@@ -110,17 +117,27 @@ end
 function AtomicCondition.__mul(k, A)
 	if Pred.IsNumber(A) then
 		k, A = A, k
+	else
+		myassert(2, Pred.IsNumber(k), "Number expected as factor.")
 	end
-	assert( Pred.IsNumber(k) and IsAtomicCondition(A) )
 	return AtomicCondition(A.basic_fn, k*A.count)
 end
 
 
 local IsPrefab = (function()
+	--[[
+	-- This check is just to avoid errors if used at worldgen.
+	--]]
+	if not Pred.PrefabExists then
+		return Lambda.Constant( Lambda.False )
+	end
+
 	local cache = setmetatable({}, {__mode = "v"})
 
 	return function(prefabname)
-		assert( Pred.IsString(prefabname) and Pred.PrefabExists(prefabname), "'"..prefabname.."' is not a valid prefab." )
+		if not (Pred.IsString(prefabname) and Pred.PrefabExists(prefabname)) then
+			return error("'"..tostring(prefabname).."' is not a valid prefab.", 3)
+		end
 
 		if not cache[prefabname] then
 			cache[prefabname] = function(inst)
@@ -141,17 +158,18 @@ end)
 -- Not to be confused with the vanilla Recipe class.
 -- ]]
 Recipe = Class(Debuggable, function(self, name, condition, priority, brewing_time)
-	assert( Pred.IsString(name) and Pred.PrefabExists(name), "'"..name.."' is not a valid prefab." )
-	assert( Lambda.IsFunctional(condition), "The condition should be functional." )
+	Debuggable._ctor(self, "Brewing recipe "..name)
+	self:SetConfigurationKey("BREWING_RECIPE")
+
+	if not Pred.IsString(name) or (Pred.PrefabExists and not Pred.PrefabExists(name)) then
+		return error("'"..tostring(name).."' is not a valid prefab.", 2)
+	end
 
 	priority = priority or 0
-	assert( Pred.IsNumber(priority), "The priority should be nil or a number." )
+	myassert( 2, Pred.IsNumber(priority), "Number or nil expected as 'priority' parameter." )
 
 	brewing_time = brewing_time or 1
-	assert( Pred.IsNonNegativeNumber(brewing_time), "The brewing time should be a non-negative number." )
-
-	Debuggable._ctor(self, "Recipe "..name)
-	self:SetConfigurationKey("RECIPE")
+	myassert( 2, Pred.IsNonNegativeNumber(brewing_time), "Non-negative number expected as 'brewing_time' parameter." )
 
 	self.name = name
 	self.condition = to_condition(condition)
@@ -206,9 +224,18 @@ end
 -- numerical).
 --]]
 RecipeBook = Class(Debuggable, function(self, recipes)
-	assert( Pred.IsTable(recipes) and not Pred.IsObject(recipes) )
 	Debuggable._ctor(self, "Recipebook")
-	self:SetConfigurationKey("RECIPEBOOK")
+	self:SetConfigurationKey("BREWING_RECIPEBOOK")
+
+	myassert( 2, Pred.IsTable(recipes) and not Pred.IsObject(recipes), "Table expected as 'recipes' parameter." )
+	
+	-- Slightly more robust error checking.
+	if self:Debug() then
+		local offender, offender_key = Lambda.Find( Lambda.Not( IsRecipe ), pairs(recipes) )
+		if offender then
+			return error(2, ("Table of recipes expected as 'recipes' parameter. Got %s on key %s."):format(tostring(offender), tostring(offender_key)))
+		end
+	end
 
 	self.recipes = Lambda.CompactlyMap(Lambda.Identity, pairs(recipes))
 	table.sort(self.recipes, function(a, b) return a.priority > b.priority end)
@@ -253,9 +280,7 @@ function RecipeBook:__call(ings, kettle, dude)
 
 	if candidates and #candidates > 0 then
 		local choice = candidates[math.random(#candidates)]
-		if self:Debug() then
-			self:Say("Found ", #candidates, " highest priority candidates, chose ", choice)
-		end
+		self:DebugSay("Found ", #candidates, " highest priority candidates, chose \"", choice, "\"")
 		return choice
 	elseif self:Debug() then
 		self:Say("No candidates found.")
