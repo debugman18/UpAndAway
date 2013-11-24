@@ -61,6 +61,7 @@ Assets = GLOBAL.JoinArrays(
 		"uppanels",
 		"bg_up",
 		"bg_gen",
+		"up_new",
 	},
 
 	--Winnie assets.

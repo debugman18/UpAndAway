@@ -126,7 +126,8 @@ local function DoInit(self)
 	
 	--We can change the background image here.
 	--self.bg = self:AddChild(Image("images/ui.xml", "bg_plain.tex"))
-	self.bg:SetTexture("images/bg_up.xml", "bg_plain.tex")
+	--self.bg:SetTexture("images/bg_up.xml", "bg_plain.tex")
+	self.bg:SetTexture("images/up_new.xml", "ps4_mainmenu.tex")
 	self.bg:SetTint(100, 100, 100, 1)
     self.bg:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
     self.bg:SetHRegPoint(GLOBAL.ANCHOR_MIDDLE)
