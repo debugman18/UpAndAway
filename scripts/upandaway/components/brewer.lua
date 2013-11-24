@@ -20,6 +20,14 @@ local Brewer = Class(Debuggable, function(self, inst)
     self.product_spoilage = nil
 end)
 
+function Brewer:IsBrewing()
+	return self.brewing
+end
+
+function Brewer:IsDone()
+	return self.done
+end
+
 local function dobrew(inst)
 	inst.components.brewer.task = nil
 	
@@ -32,7 +40,7 @@ local function dobrew(inst)
 end
 
 function Brewer:GetTimeToBrew()
-	if self.brewing then
+	if self:IsBrewing() then
 		return self.targettime - GetTime()
 	end
 	return 0
@@ -43,6 +51,20 @@ function Brewer:CanBrew()
 	return self.inst.components.container and next( self.inst.components.container.slots ) ~= nil
 end
 
+
+function Brewer:StopBrewing()
+	if self:IsBrewing() then
+		if self.task then
+			self.task:Cancel()
+			self.task = nil
+		end
+		self.brewing = nil
+		self.done = nil
+		if self.inst.components.inventory then
+			self.inst.components.inventory.canbeopened = true
+		end
+	end
+end
 
 function Brewer:StartBrewing(dude)
 	if not self.done and not self.brewing then
@@ -143,8 +165,6 @@ end
 function Brewer:CollectSceneActions(doer, actions, right)
     if self.done then
         table.insert(actions, _G.ACTIONS.HARVEST)
-    elseif right then
-		print("code undeploy")
     end
 end
 

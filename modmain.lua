@@ -48,7 +48,21 @@ Assets = GLOBAL.JoinArrays(
 		"tea_leaves",
 		"blacktea_leaves",
 	},
-	
+
+	InventoryImageTextures {
+		"nil",
+	},
+
+	--[[
+	-- These are atlases without a proper .tex yet.
+	--
+	-- When they get one, the entries should be moved to
+	-- InventoryImageAssets.
+	--]]
+	InventoryImageAtlases {
+		"kettle_item",
+	},
+
 	{
 		Asset("SOUNDPACKAGE", "sound/project.fev"),
 		Asset("SOUND", "sound/project_bank00.fsb"),

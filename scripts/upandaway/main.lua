@@ -26,6 +26,7 @@ modrequire 'profiling'
 modrequire 'debugtools'
 modrequire 'strings'
 modrequire 'postinits'
+modrequire 'actions'
 
 
 local CFG = TUNING.UPANDAWAY

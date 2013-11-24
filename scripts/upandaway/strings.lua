@@ -255,6 +255,8 @@ Add.Names {
 	tea_bush = "Tea Bush",
 
 	kettle = "Kettle",
+
+	kettle_item = "Kettle",
 }
 
 Add.QuotesFor "beanstalk" {
@@ -661,4 +663,5 @@ STRINGS.CHARACTER_QUOTES.winnie = "'Where are you, little sheep?'"
 STRINGS.CHARACTERS.WINNIE = {}
 STRINGS.CHARACTERS.WINNIE.DESCRIBE = {}
 STRINGS.CHARACTERS.WINNIE.DESCRIBE.GENERIC = "I don't have strings yet."
-    
+
+STRINGS.ACTIONS.DEPLOY.PORTABLE_STRUCTURE = "Place"
