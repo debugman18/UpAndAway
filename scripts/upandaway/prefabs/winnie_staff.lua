@@ -12,14 +12,42 @@ local assets=
 
 local prefabs = {}
 
+local herddt = 1
+local SEARCH_RADIUS = 20
+local HERD_TAG = "herded"
+local MIN_FOLLOW_LEADER = 1
+local MAX_FOLLOW_LEADER = 12
+local TARGET_FOLLOW_LEADER = 2
+
 local function herd_disable(inst)
     if inst.updatetask then
         inst.updatetask:Cancel()
         inst.updatetask = nil
     end
+
+    local x,y,z = GetPlayer().Transform:GetWorldPosition()
+    local ents = TheSim:FindEntities(x,y,z, 20, {"sheep"})
+
+    for k,v in pairs(ents) do
+        v:RemoveTag(HERD_TAG)
+        v.components.follower.leader = nil
+    end
 end
 
-local herddt = 1
+-- Returns the current leader.
+local function GetLeader(inst)
+    return inst.components.follower and inst.components.follower.leader
+end
+
+local function IsValidFollower(entity)
+    -- Only consider things which can move around and have a brain.  We don't want trees to try and follow us.
+    return entity.components and entity.components.locomotor and entity.brain and entity.brain.bt and entity.brain.bt.root and entity.prefab == "sheep" and entity ~= GLOBAL.GetPlayer()
+end
+
+local function CanBeAttacked(attacker)
+    -- Don't let followers attack us.
+    return not attacker:HasTag(HERD_TAG)
+end
 
 local function herd_update(inst)
     local owner = inst.components.inventoryitem and inst.components.inventoryitem.owner
@@ -27,7 +55,7 @@ local function herd_update(inst)
     if owner and owner.components.leader then
         local x,y,z = owner.Transform:GetWorldPosition()
 
-        local ents = TheSim:FindEntities(x,y,z, 15, {"beefalo"}, {"sheep"})
+        local ents = TheSim:FindEntities(x,y,z, 20, {"beefalo"})
 
         for k,v in pairs(ents) do
             if v.components.follower and not owner.components.leader:IsFollower(v) and owner.components.leader.numfollowers < 3 then
@@ -36,50 +64,65 @@ local function herd_update(inst)
         end
 
         for k,v in pairs(owner.components.leader.followers) do
-            if k:HasTag("beefalo") or k.HasTag("sheep") and k.components.follower then
-                k.components.follower:AddLoyaltyTime(1)
+            if k:HasTag("beefalo") and k.prefab == "beefalo" and k.components.follower then
+                k.components.follower:AddLoyaltyTime(2)
             end
         end
+    end    
+
+
+    -- Only update if player has spawned.
+    local player = GLOBAL.GetPlayer()
+    if not player then
+        return
     end
+
+    -- Make sure our followers can't attack us.
+    if player.components.combat and not player.components.combat.canbeattackedfn then
+        player.components.combat.canbeattackedfn = CanBeAttacked
+    end
+
+    -- Get all entities around the player which haven't already been tagged.
+    local x,y,z = player.Transform:GetWorldPosition()
+    local ignore_tags = {HERD_TAG}
+    local entities = TheSim:FindEntities(x,y,z, SEARCH_RADIUS, {}, ignore_tags)
+
+    -- Convert the entities to followers.
+    for k,v in pairs(entities) do
+        if IsValidFollower(v) then
+
+            -- Insert a new behaviour into the brain
+            local behaviours = v.brain.bt.root.children
+            table.insert(behaviours, math.min(3, #behaviours), GLOBAL.Follow(v, GetLeader, MIN_FOLLOW_LEADER, TARGET_FOLLOW_LEADER, MAX_FOLLOW_LEADER, true))
+    
+            -- Add follower component if it doesn't already have one.
+            if not v.components.follower then
+                v:AddComponent("follower")
+            end         
+
+            -- Tell entity to stop combat just in case it was trying to fight us.
+            if v.components.combat then
+                v.components.combat:GiveUp()
+            end
+    
+            -- Tell the entity to follow us.
+            if v.components.follower.leader ~= player then
+                player.components.leader:AddFollower(v)
+            end
+
+            -- Tag this entity so we don't try and convert it again.
+            v:AddTag(HERD_TAG)
+
+            --Make the sheep walk faster to catch up.
+            v.components.locomotor.walkspeed = 5
+        end
+    end   
+         
 end
 
 local function herd_enable(inst)
     inst.updatetask = inst:DoPeriodicTask(herddt, herd_update, 1)
 end    
-
---[[
-local function TryAddFollower(leader, follower)
-    if leader.components.leader
-       and follower.components.follower
-       and follower:HasTag("beefalo")
-       and leader.components.leader:CountFollowers("beefalo") < 3 then
-        leader.components.leader:AddFollower(follower)
-        follower.components.follower:AddLoyaltyTime(10+math.random())
-        if follower.components.combat and follower.components.combat.target and follower.components.combat.target == leader then
-            follower.components.combat:SetTarget(nil)
-        end
-        follower:DoTaskInTime(math.random(), function() follower.sg:PushEvent("heardhorn", {musician = leader} )end)
-    end
-end
-
-local function obey_staff(inst, musician, instrument)
-    if musician.components.leader then
-        local herd = nil
-        if inst:HasTag("beefalo") and not inst:HasTag("baby") and inst.components.herdmember then
-            if inst.components.combat and inst.components.combat.target then
-                inst.components.combat:GiveUp()
-            end
-            TryAddFollower(musician, inst)
-            herd = inst.components.herdmember:GetHerd()
-        end
-        if herd and herd.components.herd then
-            for k,v in pairs(herd.components.herd.members) do
-                TryAddFollower(musician, k)
-            end
-        end
-    end
-end
-]]
 
 local function onequip(inst, owner) 
     owner.AnimState:OverrideSymbol("swap_object", "swap_cane", "swap_cane")

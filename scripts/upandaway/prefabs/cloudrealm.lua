@@ -202,13 +202,13 @@ local function fn(Sim)
     --Uses our cloudwaves.
     local waves = inst.entity:AddWaveComponent()
     --32,16
-    waves:SetRegionSize(64, 32)
+    waves:SetRegionSize(40, 20)
     --8
-    waves:SetRegionNumWaves(12)
+    waves:SetRegionNumWaves(8)
     waves:SetWaveTexture(GLOBAL.resolvefilepath("images/cloudwave.tex"))   
     waves:SetWaveEffect("shaders/waves.ksh" ) -- texture.ksh   
     --2048,512 
-	waves:SetWaveSize(2248, 612)
+	waves:SetWaveSize(2048, 562)
    
     --inst.components.ambientsoundmixer:SetReverbPreset("chess")  
     --ambientsoundmixer.wave_sound = GLOBAL.resolvefilepath("dontstarve/ocean/waves"))

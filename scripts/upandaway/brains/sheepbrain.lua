@@ -63,7 +63,7 @@ function SheepBrain:OnStart()
     {
         WhileNode( function() return self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst)),
         Follow(self.inst, function() return self.inst.components.follower and self.inst.components.follower.leader end, 1, 5, 5, false),
-        FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn),
+        --FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn),
         RunAway(self.inst, "scarytoprey", AVOID_PLAYER_DIST, AVOID_PLAYER_STOP),
         RunAway(self.inst, "scarytoprey", SEE_PLAYER_DIST, STOP_RUN_DIST, nil, true),
         Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST),		

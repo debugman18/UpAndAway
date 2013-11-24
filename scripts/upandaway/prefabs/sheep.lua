@@ -268,7 +268,7 @@ local function fn()
 	
 
 	inst:AddTag("animal")
-
+	inst:AddTag("beefalo")
 	
 	inst:AddComponent("eater")	
 	inst.components.eater:SetVegetarian()	

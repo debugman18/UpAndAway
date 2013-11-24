@@ -195,10 +195,10 @@ local states=
         tags = {"idle", "canrotate"},
         
         onenter = function(inst)
-            inst.components.locomotor:StopMoving()
+            --inst.components.locomotor:StopMoving()
             inst.SoundEmitter:PlaySound(inst.sounds.curious)
-            inst.AnimState:PlayAnimation("alert_pre")
-            inst.AnimState:PushAnimation("alert_idle", true)
+            --inst.AnimState:PlayAnimation("alert_pre")
+            --inst.AnimState:PushAnimation("alert_idle", true)
         end,
     },
     
