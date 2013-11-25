@@ -294,6 +294,7 @@ function RecipeBook:Recipes()
 end
 
 function RecipeBook:GetTopCandidates(ings, kettle, dude)
+	recipebook_check(self)
 	if not self.sorted then
 		recipebook_sort(self)
 	end
@@ -318,30 +319,6 @@ function RecipeBook:GetTopCandidates(ings, kettle, dude)
 end
 
 function RecipeBook:__call(ings, kettle, dude)
-	--[[
-	local candidates = Lambda.Fold(
-		function(R, total)
-			local head = total and total[1]
-
-			if head and R.priority < head.priority then
-				return total
-			end
-
-			if not R(ings, kettle, dude) then
-				return total
-			end
-
-			if not total or R.priority > head.priority then
-				return {R}
-			else
-				table.insert(total, R)
-				return total
-			end
-		end,
-		ipairs(self.recipes)
-	) or {}
-	]]--
-
 	local candidates = self:GetTopCandidates(ings, kettle, dude)
 
 	if #candidates > 0 then
