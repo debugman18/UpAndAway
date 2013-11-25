@@ -1,13 +1,9 @@
 TheMod = GLOBAL.require("upandaway" .. '.wicker.init')(env)
 
 
+
 modimport "assets.lua"
 modimport "prefabfiles.lua"
-
-
-GLOBAL.require "screens/popupdialog"
-GLOBAL.require "screens/newgamescreen"
-GLOBAL.require "widgets/statusdisplays"
 
 
 
@@ -33,6 +29,7 @@ if TheMod:Debug() then
 	end)
 end
 --]]
+
 
 
 TheMod:Run("main")
