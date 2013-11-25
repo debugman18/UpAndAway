@@ -218,6 +218,14 @@ function Recipe:__call(ings, kettle, dude)
 	end
 end
 
+function Recipe.__lt(A, B)
+	return A.priority < B.priority
+end
+
+function Recipe.__gt(A, B)
+	return Recipe.__lt(B, A)
+end
+
 
 --[[
 -- Receives a list of recipes as a table (the indexes don't need to be
@@ -238,7 +246,7 @@ RecipeBook = Class(Debuggable, function(self, recipes)
 	end
 
 	self.recipes = Lambda.CompactlyMap(Lambda.Identity, pairs(recipes))
-	table.sort(self.recipes, function(a, b) return a.priority > b.priority end)
+	table.sort(self.recipes, Recipe.__gt)
 end)
 
 Pred.IsBrewingRecipeBook = Pred.IsInstanceOf(RecipeBook)
@@ -250,12 +258,53 @@ local function recipebook_check(self)
 	end
 end
 
+function RecipeBook:AddRecipe(R)
+	recipebook_check(self)
+	myassert( 2, IsRecipe(R), "Recipe expected as parameter." )
+
+	local recipes = self.recipes
+	for i = #recipes, 1, -1 do
+		local v = recipes[i]
+		if R > v then
+			recipes[i + 1] = v
+		else
+			recipes[i + 1] = R
+			R = nil
+			break
+		end
+	end
+	if R then
+		recipes[1] = R
+	end
+end
+
 function RecipeBook:Recipes()
 	recipebook_check(self)
 	return table.ivalues(self.recipes)
 end
 
+function RecipeBook:GetTopCandidates(ings, kettle, dude)
+	local top = {}
+
+	for _, R in ipairs(self.recipes) do
+		local head = top[1]
+
+		assert( not head or head >= R, "Recipe list is not sorted." )
+
+		if head and head > R then
+			break
+		end
+
+		if R(ings, kettle, dude) then
+			table.insert(top, R)
+		end
+	end
+
+	return top
+end
+
 function RecipeBook:__call(ings, kettle, dude)
+	--[[
 	local candidates = Lambda.Fold(
 		function(R, total)
 			local head = total and total[1]
@@ -276,9 +325,12 @@ function RecipeBook:__call(ings, kettle, dude)
 			end
 		end,
 		ipairs(self.recipes)
-	)
+	) or {}
+	]]--
 
-	if candidates and #candidates > 0 then
+	local candidates = self:GetTopCandidates(ings, kettle, dude)
+
+	if #candidates > 0 then
 		local choice = candidates[math.random(#candidates)]
 		self:DebugSay("Found ", #candidates, " highest priority candidates, chose \"", choice, "\"")
 		return choice

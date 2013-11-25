@@ -92,6 +92,7 @@ local function MakeBeverage(name, data)
 			temperature.inherentinsulation = cfg:GetConfig("INHERENT_INSULATION") or 0
 
 			if data.temperature then
+				temperature.maxtemp = math.min( temperature.maxtemp, data.temperature )
 				temperature:SetTemperature(data.temperature)
 			end
 		end
