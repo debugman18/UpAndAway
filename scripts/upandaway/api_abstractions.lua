@@ -44,12 +44,10 @@ end
 ---------------------------------------
 
 
-alias_pkg("widgets/SavingIndicator", "widgets/savingindicator")
-alias_pkg("widgets/StatusDisplays", "widgets/statusdisplays")
-
 if not Pred.IsCallable(require("screens/popupdialog")) and VarExists("PopupDialogScreen") then
 	package.loaded["screens/popupdialog"] = _G.PopupDialogScreen
 end
+
 
 ---------------------------------------
 
@@ -58,19 +56,14 @@ softresolvefilepath = VarExists("softresolvefilepath") and _G.softresolvefilepat
 	local status, path = pcall(_G.resolvefilepath, name)
 	return status and path or nil
 end
-modenv.softresolvefilepath = softresolvefilepath
+ModEnv.softresolvefilepath = softresolvefilepath
 
 
 local SetPause = function(...)
-	require 'mainfunctions'
-	if VarExists("SetPause") then
-		return _G.SetPause(...)
-	else
-		return _G.SetHUDPause(...)
-	end
+	return _G.SetPause(...)
 end
-modenv.SetPause = SetPause
-modenv.SetHUDPause = SetPause
+ModEnv.SetPause = SetPause
+ModEnv.SetHUDPause = SetPause
 
 
 --------------------------------------
@@ -94,7 +87,7 @@ function AddGenericClassPostConstruct(pkgname, classname, fn)
 		classname, fn = fn, classname
 	end
 
-	local pkg_prefix, pkg_suffix = pkgname:match("^(.-)(%w+)$")
+	local pkg_prefix, pkg_suffix = pkgname:match("^(.-)([%w_]+)$")
 
 	local is_primary = (not classname or classname:lower() == pkg_suffix:lower())
 
@@ -120,7 +113,7 @@ function AddGenericClassPostConstruct(pkgname, classname, fn)
 			classname = find_global_fibermatch(pkg_suffix:lower(), string.lower)
 		end
 		if classname and VarExists(classname) then
-			modenv.AddGlobalClassPostConstruct(effective_pkgname, classname, fn)
+			modenv.AddGlobalClassPostConstruct("math", classname, fn)
 			return
 		end
 	end
