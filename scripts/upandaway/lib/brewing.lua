@@ -246,7 +246,7 @@ RecipeBook = Class(Debuggable, function(self, recipes)
 	end
 
 	self.recipes = Lambda.CompactlyMap(Lambda.Identity, pairs(recipes))
-	table.sort(self.recipes, Recipe.__gt)
+	self.sorted = false
 end)
 
 Pred.IsBrewingRecipeBook = Pred.IsInstanceOf(RecipeBook)
@@ -258,9 +258,19 @@ local function recipebook_check(self)
 	end
 end
 
+local function recipebook_sort(self)
+	table.sort(self.recipes, Recipe.__gt)
+	self.sorted = true
+end
+
 function RecipeBook:AddRecipe(R)
 	recipebook_check(self)
 	myassert( 2, IsRecipe(R), "Recipe expected as parameter." )
+
+	if not self.sorted then
+		table.insert(self.recipes, R)
+		return
+	end
 
 	local recipes = self.recipes
 	for i = #recipes, 1, -1 do
@@ -284,6 +294,10 @@ function RecipeBook:Recipes()
 end
 
 function RecipeBook:GetTopCandidates(ings, kettle, dude)
+	if not self.sorted then
+		recipebook_sort(self)
+	end
+
 	local top = {}
 
 	for _, R in ipairs(self.recipes) do
