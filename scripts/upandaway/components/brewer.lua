@@ -3,9 +3,16 @@ local _modname = assert( (assert(..., 'This file should be loaded through requir
 module( ..., require(_modname .. '.booter') )
 --@@END ENVIRONMENT BOOTUP
 
-local BrewingRecipeBook = modrequire 'resources.brewing_recipebook'
+
+local Pred = wickerrequire 'lib.predicates'
 
 local Debuggable = wickerrequire 'adjectives.debuggable'
+
+
+--[[
+-- Just to ensure the relevant predicates have been placed into Pred.
+--]]
+modrequire 'lib.brewing'
 
 
 local Brewer = Class(Debuggable, function(self, inst)
@@ -16,8 +23,14 @@ local Brewer = Class(Debuggable, function(self, inst)
     self.brewing = false
     self.done = false
     
+	--[[
+	-- There should NEVER be edited when configuring the component.
+	-- They are internal variables.
+	--]]
     self.product = nil
     self.product_spoilage = nil
+
+	self.recipe_book = nil
 end)
 
 function Brewer:IsBrewing()
@@ -26,6 +39,11 @@ end
 
 function Brewer:IsDone()
 	return self.done
+end
+
+function Brewer:SetRecipeBook(book)
+	assert( Pred.IsBrewingRecipeBook(book), "Brewing.RecipeBook expected as SetRecipeBook parameter." )
+	self.recipe_book = book
 end
 
 local function dobrew(inst)
@@ -48,7 +66,7 @@ end
 
 
 function Brewer:CanBrew()
-	return self.inst.components.container and next( self.inst.components.container.slots ) ~= nil
+	return self.recipe_book and self.inst.components.container and next( self.inst.components.container.slots ) ~= nil
 end
 
 
@@ -67,6 +85,10 @@ function Brewer:StopBrewing()
 end
 
 function Brewer:StartBrewing(dude)
+	if not Pred.IsBrewingRecipeBook(self.recipe_book) then
+		error(2, "Attempt to brew without setting a recipe book first.")
+	end
+
 	if not self.done and not self.brewing then
 		if self.inst.components.container then
 			local spoilage_total = 0
@@ -85,7 +107,7 @@ function Brewer:StartBrewing(dude)
 				self.product_spoilage = 1 - (1 - self.product_spoilage)*.5
 			end
 			
-			local recipe = BrewingRecipeBook(ings, self.inst, dude)
+			local recipe = self.recipe_book(ings, self.inst, dude)
 
 			if not recipe then return end
 

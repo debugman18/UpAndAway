@@ -3,6 +3,10 @@ local _modname = assert( (assert(..., 'This file should be loaded through requir
 module( ..., package.seeall, require(_modname .. '.booter') )
 --@@END ENVIRONMENT BOOTUP
 
+
+local RefiningRecipeBook = modrequire 'resources.refining_recipebook'
+
+
 local assets =
 {
 	Asset("ANIM", "anim/void_placeholder.zip"),
@@ -115,6 +119,11 @@ local function fn(Sim)
 	inst.AnimState:PlayAnimation("anim")
 
     inst:AddComponent("brewer")
+	do
+		local brewer = inst.components.brewer
+
+		brewer:SetRecipeBook(RefiningRecipeBook)
+	end
 
     inst:AddComponent("inspectable")
         

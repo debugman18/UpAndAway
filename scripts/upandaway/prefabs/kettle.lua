@@ -169,6 +169,7 @@ local function BuildKettlePrefab()
 		do
 			local brewer = inst.components.brewer
 
+			brewer:SetRecipeBook(BrewingRecipeBook)
 			brewer.onstartbrewing = startbrewfn
 			brewer.oncontinuebrewing = continuebrewfn
 			brewer.oncontinuedone = continuedonefn

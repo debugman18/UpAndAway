@@ -125,17 +125,10 @@ end
 
 
 local IsPrefab = (function()
-	--[[
-	-- This check is just to avoid errors if used at worldgen.
-	--]]
-	if not Pred.PrefabExists then
-		return Lambda.Constant( Lambda.False )
-	end
-
 	local cache = setmetatable({}, {__mode = "v"})
 
 	return function(prefabname)
-		if not (Pred.IsString(prefabname) and Pred.PrefabExists(prefabname)) then
+		if not Pred.IsString(prefabname) then
 			return error("'"..tostring(prefabname).."' is not a valid prefab.", 3)
 		end
 
@@ -235,18 +228,10 @@ RecipeBook = Class(Debuggable, function(self, recipes)
 	Debuggable._ctor(self, "Recipebook")
 	self:SetConfigurationKey("BREWING_RECIPEBOOK")
 
-	myassert( 2, Pred.IsTable(recipes) and not Pred.IsObject(recipes), "Table expected as 'recipes' parameter." )
-	
-	-- Slightly more robust error checking.
-	if self:Debug() then
-		local offender, offender_key = Lambda.Find( Lambda.Not( IsRecipe ), pairs(recipes) )
-		if offender then
-			return error(2, ("Table of recipes expected as 'recipes' parameter. Got %s on key %s."):format(tostring(offender), tostring(offender_key)))
-		end
-	end
-
-	self.recipes = Lambda.CompactlyMap(Lambda.Identity, pairs(recipes))
+	self.recipes = {}
 	self.sorted = false
+
+	self:AddRecipes(recipes)
 end)
 
 Pred.IsBrewingRecipeBook = Pred.IsInstanceOf(RecipeBook)
@@ -265,6 +250,14 @@ end
 
 function RecipeBook:AddRecipe(R)
 	recipebook_check(self)
+
+	if Pred.IsTable(R) and not Pred.IsObject(R) then
+		for _, r in pairs(R) do
+			self:AddRecipe(r)
+		end
+		return
+	end
+
 	myassert( 2, IsRecipe(R), "Recipe expected as parameter." )
 
 	if not self.sorted then
@@ -287,6 +280,7 @@ function RecipeBook:AddRecipe(R)
 		recipes[1] = R
 	end
 end
+RecipeBook.AddRecipes = RecipeBook.AddRecipe
 
 function RecipeBook:Recipes()
 	recipebook_check(self)
