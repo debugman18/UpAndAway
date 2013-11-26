@@ -13,8 +13,7 @@ BindModModule 'lib.brewing'
 
 --[[
 -- You don't need to use verbal keys for the recipes, you could just
--- list them. I'm keeping them for organization, since the product
--- prefab doesn't exist yet.
+-- list them. I'm just keeping them for organization.
 --
 -- The keys below are discarded, only the recipe values matter.
 --]]
