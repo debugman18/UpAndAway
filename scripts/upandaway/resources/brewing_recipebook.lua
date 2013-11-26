@@ -31,6 +31,15 @@ local teas = {
 teas.sweet_green = Recipe("sweet_greentea", teas.green:GetCondition() + Ingredient("honey"), 1)
 teas.sweet_black = Recipe("sweet_blacktea", teas.black:GetCondition() + Ingredient("honey"), 1)
 
+local potions = {
+	sweet = Recipe("taffy", Ingredient("candy_fruit"), 0),
+}
+
+local refiner = {
+	refined_rocks = Recipe("rocks", Ingredient("cloud_coral_fragment"), 0),
+	refined_coral = Recipe("cutgrass", Ingredient("cloud_algae_fragment"), 0),
+	refined_beans = Recipe("rocks", Ingredient("beanstalk_chunk"), 0),
+}
 
 local function squash(...)
 	local ret = {}
@@ -44,6 +53,8 @@ end
 
 return RecipeBook(squash(
 	teas,
+	potions,
+	refiner,
 
 	{Recipe(basic_cfg:GetConfig("SPOILED_PREFAB"), Lambda.True, -math.huge)}
 ))
