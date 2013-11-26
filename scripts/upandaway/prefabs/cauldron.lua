@@ -28,7 +28,7 @@ local widgetbuttoninfo = {
 }
 
 local function itemtest(inst, item, slot)
-	return (item.prefab == "taffy") or item:HasTag("taffy")
+	return (item:HasTag("alchemy"))
 end
 
 local function fn(Sim)

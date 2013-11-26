@@ -39,10 +39,15 @@ local widgetbuttoninfo = {
 }
 
 local function itemtest(inst, item, slot)
-    return (item:HasTag("coral")) or item:HasTag("algae") or item:HasTag("beanstalk_chunk")
+    return (item:HasTag("refinable")) 
+        or item.prefab == "beanstalk_chunk"
+        or item.prefab == "cloud_coral_fragment"
+        or item.prefab == "cloud_algae_fragment"
+        or item.prefab == "cloud_cotton"
 end
 
 --[[
+--The following is unused.
 
 local function ShouldAcceptItem(inst, item)
     if item then
@@ -106,7 +111,6 @@ end
 
 --]]
 
---This will convert coral into rocks, and algae into sticks.
 local function fn(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()

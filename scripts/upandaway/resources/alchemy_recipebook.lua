@@ -19,7 +19,7 @@ BindModModule 'lib.brewing'
 --]]
 
 local potions = {
-	sweet = Recipe("taffy", Ingredient("candy_fruit"), 0),
+	sweet = Recipe("honey", Ingredient("taffy"), 0),
 }
 
 --[[
