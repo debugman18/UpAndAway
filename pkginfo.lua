@@ -2,8 +2,6 @@ return {
 	--[[
 	-- Defines the name of the mod directory to be used inside the zip archive.
 	-- (it doesn't need to match the actual directory name being used)
-	--
-	-- The name of the zip will be that appended with ".zip".
 	--]]
 	moddir = "UpAndAway_test",
 
