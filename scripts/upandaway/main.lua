@@ -209,7 +209,8 @@ local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
 		DebugSay "update worldgen passed!"
 		
 		--Changes the background during worldgen.
-		self.bg:SetTexture("images/bg_gen.xml", "bg_plain.tex")
+		--self.bg:SetTexture("images/bg_gen.xml", "bg_plain.tex")
+		self.bg:SetTexture("images/bg_up.xml", "bg_plain.tex")
 		self.bg:SetTint(140, 140, 100, 1)
 		self.bg:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
 		self.bg:SetHRegPoint(GLOBAL.ANCHOR_MIDDLE)

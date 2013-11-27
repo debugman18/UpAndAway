@@ -16,8 +16,8 @@ local UPDATING_PERIOD = 2
 
 
 local events_map = {
-	CHARGED = { UNCHARGED = "upandaway_uncharge" },
-	UNCHARGED = { CHARGED = "upandaway_charge" },
+	UNCHARGED = "upandaway_uncharge",
+	CHARGED = "upandaway_charge",
 }
 
 local generic_event = "upandaway_chargechange"
@@ -44,9 +44,10 @@ local StaticGenerator = Class(Debuggable, function(self, inst)
 	local chain = MarkovChain()
 	chain:AddState("CHARGED")
 	chain:AddState("UNCHARGED")
-	chain:SetInitialState("UNCHARGED")
+	chain:SetInitialState("NONE")
+	chain:SetTransitionProbability("NONE", "UNCHARGED", 1)
 	chain:SetTransitionFn(function(old, new)
-		local event = assert( events_map[old][new] )
+		local event = assert( events_map[new] )
 		self:DebugSay("Pushing event ", ("%q"):format(event))
 		self.inst:PushEvent(event)
 		self:DebugSay("Pushing generic event ",("(%q, {state = %q})"):format(generic_event, new))

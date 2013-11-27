@@ -31,6 +31,7 @@ local StaticChargeable = Class(Debuggable, function(self, inst)
 
 	self.state_release_task = nil
 	self.state_release_targettime = nil
+	self.toggle_states_on_release = nil
 
 	local function charge_callback()
 		inst:DoTaskInTime(self:GetOnChargedDelay() or 0, function(inst)
@@ -68,7 +69,7 @@ end
 ---
 -- Returns whether the current state is unaffected by the ambient.
 function StaticChargeable:IsInHeldState()
-	assert( Logic.IfAndOnlyIf(self.state_release_task ~= nil, self.state_release_time ~= nil) )
+	assert( Logic.IfAndOnlyIf(self.state_release_task == nil, self.state_release_targettime == nil) )
 	return self.state_release_task and true or false
 end
 
@@ -166,10 +167,13 @@ end
 function StaticChargeable:Charge(force)
 	if not self.charged and not self:IsInHeldState() or force then
 		self:DebugSay("Charge()")
+		self.toggle_states_on_release = nil
 		if self.onchargedfn then
 			self.onchargedfn(self.inst)
 		end
 		self.charged = true
+	elseif self:IsInHeldState() then
+		self.toggle_states_on_release = not self.charged
 	end
 end
 
@@ -178,17 +182,20 @@ end
 --
 -- @param force Forces the uncharging, even if already uncharged.
 function StaticChargeable:Uncharge(force)
-	if self.chargedi and not self:IsInHeldState() or force then
+	if self.charged and not self:IsInHeldState() or force then
 		self:DebugSay("Uncharge()")
+		self.toggle_states_on_release = nil
 		if self.onunchargedfn then
 			self.onunchargedfn(self.inst)
 		end
 		self.charged = false
+	elseif self:IsInHeldState() then
+		self.toggle_states_on_release = self.charged
 	end
 end
 
 ---
--- Toggles the state. Mainly for testing.
+-- Toggles the state.
 function StaticChargeable:Toggle(force)
 	if self.charged then
 		self:Uncharge(force)
@@ -210,10 +217,13 @@ function StaticChargeable:HoldState(time)
 	if self.state_release_targettime and self.state_release_targettime >= targettime then
 		return
 	end
-	self:ReleaseState()
 	self.state_release_targettime = targettime
 
 	self:DebugSay("holding state for ", time, " seconds.")
+
+	if self.state_release_task then
+		self.state_release_task:Cancel()
+	end
 
 	self.state_release_task = self.inst:DoTaskInTime(time, function(inst)
 		if inst.components.staticchargeable then
@@ -228,11 +238,16 @@ end
 function StaticChargeable:ReleaseState()
 	self:DebugSay("ReleaseState()")
 
+	self.state_release_targettime = nil
 	if self.state_release_task then
 		self.state_release_task:Cancel()
 		self.state_release_task = nil
+
+		if self.toggle_states_on_release then
+			self:Toggle()
+			self.toggle_states_on_release = nil
+		end
 	end
-	self.state_release_targettime = nil
 end
 
 ---
