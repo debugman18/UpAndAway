@@ -169,7 +169,7 @@ PrefabFiles = {
 	"tea_bush",
 	"kettle",
 
-	"blackstaff",
+	"ua_staves",
 }
 
 -- The return statement is just for if this file is used externally, at

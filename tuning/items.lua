@@ -19,3 +19,10 @@ TEA_LEAF.SPOILED_PREFAB = "wetgoop"
 --]]
 TEA_BUSH.CYCLES = 5
 TEA_BUSH.REGROW_TIME = 5*TUNING.TOTAL_DAY_TIME
+
+--[[
+-- Staves.
+--]]
+STAFF.BLACK.USES = 5
+-- How long the forced static induced by it lasts.
+STAFF.BLACK.EFFECT_DURATION = 120

@@ -4,6 +4,8 @@ module( ..., require(_modname .. '.booter') )
 --@@END ENVIRONMENT BOOTUP
 
 
+local Logic = wickerrequire 'paradigms.logic'
+
 local Pred = wickerrequire 'lib.predicates'
 
 local Debuggable = wickerrequire 'adjectives.debuggable'
@@ -27,6 +29,8 @@ local StaticChargeable = Class(Debuggable, function(self, inst)
 	self.charge_delay = nil
 	self.uncharge_delay = nil
 
+	self.state_release_task = nil
+	self.state_release_targettime = nil
 
 	local function charge_callback()
 		inst:DoTaskInTime(self:GetOnChargedDelay() or 0, function(inst)
@@ -55,13 +59,18 @@ local StaticChargeable = Class(Debuggable, function(self, inst)
 	end
 end)
 
-
 ---
 -- Returns whether it is charged.
 function StaticChargeable:IsCharged()
 	return self.charged
 end
 
+---
+-- Returns whether the current state is unaffected by the ambient.
+function StaticChargeable:IsInHeldState()
+	assert( Logic.IfAndOnlyIf(self.state_release_task ~= nil, self.state_release_time ~= nil) )
+	return self.state_release_task and true or false
+end
 
 --
 -- Lists aliases of methods.
@@ -155,7 +164,7 @@ end
 --
 -- @param force Forces the charging, even if already charged.
 function StaticChargeable:Charge(force)
-	if not self.charged or force then
+	if not self.charged and not self:IsInHeldState() or force then
 		self:DebugSay("Charge()")
 		if self.onchargedfn then
 			self.onchargedfn(self.inst)
@@ -169,7 +178,7 @@ end
 --
 -- @param force Forces the uncharging, even if already uncharged.
 function StaticChargeable:Uncharge(force)
-	if (self.charged or force) then
+	if self.chargedi and not self:IsInHeldState() or force then
 		self:DebugSay("Uncharge()")
 		if self.onunchargedfn then
 			self.onunchargedfn(self.inst)
@@ -179,15 +188,58 @@ function StaticChargeable:Uncharge(force)
 end
 
 ---
--- Toggles the state. Main for testing.
-function StaticChargeable:Toggle()
+-- Toggles the state. Mainly for testing.
+function StaticChargeable:Toggle(force)
 	if self.charged then
-		self:Uncharge()
+		self:Uncharge(force)
 	else
-		self:Charge()
+		self:Charge(force)
 	end
 end
 
+---
+-- Keeps the current state for a predetermined amount of time.
+-- During that period, the state doesn't change with the ambient.
+function StaticChargeable:HoldState(time)
+	self:DebugSay("HoldState()")
+
+	time = Pred.IsCallable(time) and time() or time
+	assert( Pred.IsNumber(time) )
+
+	local targettime = GetTime() + time
+	if self.state_release_targettime and self.state_release_targettime >= targettime then
+		return
+	end
+	self:ReleaseState()
+	self.state_release_targettime = targettime
+
+	self:DebugSay("holding state for ", time, " seconds.")
+
+	self.state_release_task = self.inst:DoTaskInTime(time, function(inst)
+		if inst.components.staticchargeable then
+			inst.components.staticchargeable.state_release_task = nil
+			inst.components.staticchargeable:ReleaseState()
+		end
+	end)
+end
+
+---
+-- Reverses the effect of the KeepState.
+function StaticChargeable:ReleaseState()
+	self:DebugSay("ReleaseState()")
+
+	if self.state_release_task then
+		self.state_release_task:Cancel()
+		self.state_release_task = nil
+	end
+	self.state_release_targettime = nil
+end
+
+---
+-- Returns the duration of the current state holding, and nil otherwise.
+function StaticChargeable:GetStateHoldingDuration()
+	return self.state_release_targettime and (self.state_release_targettime - GetTime())
+end
 
 ---
 -- @description Saves the charged state.
@@ -197,6 +249,7 @@ end
 function StaticChargeable:OnSave()
 	return {
 		c = self.charged and 1 or nil,
+		hold_time = self:GetStateHoldingDuration(),
 	}
 end
 
@@ -211,6 +264,10 @@ function StaticChargeable:OnLoad(data)
 			self:Charge()
 		else
 			self:Uncharge()
+		end
+
+		if data.hold_time then
+			self:HoldState(data.hold_time)
 		end
 	end
 end
