@@ -13,15 +13,15 @@ use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
 
 
 use constant DEBUG =>
-	#0
-	1
+	0
+#	1
 ;
 
 
 # Compression level to use for archiving.
 use constant COMPRESSION_LEVEL =>
-	#COMPRESSION_LEVEL_BEST_COMPRESSION
-	COMPRESSION_LEVEL_FASTEST
+	COMPRESSION_LEVEL_BEST_COMPRESSION
+#	COMPRESSION_LEVEL_FASTEST
 ;
 
 
@@ -126,23 +126,27 @@ sub parse_input {
 }
 
 
-my $zip = Archive::Zip->new;
+{
+	local $| = 1;
 
-print "Processing package contents... ";
-print "\n" if DEBUG;
-my $root = parse_input $zip, \*STDIN;
-print "Done.\n";
+	my $zip = Archive::Zip->new;
 
-my $archive_name;
-if(defined $ARGV[0]) {
-	$archive_name = $ARGV[0];
-}
-else {
-	$archive_name = $root . ".zip";
-}
+	print "Processing package contents... ";
+	print "\n" if DEBUG;
+	my $root = parse_input $zip, \*STDIN;
+	print "Done.\n";
 
-print "Writing zip archive to '", $archive_name, "'... ";
-unless( $zip->writeToFileNamed( $archive_name ) == AZ_OK ) {
-	die "Failed to create zip archive $archive_name: $!";
+	my $archive_name;
+	if(defined $ARGV[0]) {
+		$archive_name = $ARGV[0];
+	}
+	else {
+		$archive_name = $root . ".zip";
+	}
+
+	print "Writing zip archive to '", $archive_name, "'... ";
+	unless( $zip->writeToFileNamed( $archive_name ) == AZ_OK ) {
+		die "Failed to create zip archive $archive_name: $!";
+	}
+	print "Done.\n";
 }
-print "Done.\n";
