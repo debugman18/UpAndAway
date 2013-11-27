@@ -1,3 +1,11 @@
-*.lnk
-**/.git/
+# Explicit files to ignore
 rc.lua
+dev.rc.lua
+prefabassets.lua
+make/config.mk
+
+# Patterns
+/*.zip
+log/**
+**/*.lnk
+**/.git/

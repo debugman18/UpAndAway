@@ -25,6 +25,8 @@ modrequire('api_abstractions')()
 LoadConfiguration "tuning.lua"
 LoadConfiguration "rc.defaults.lua"
 if _G.kleifileexists(MODROOT .. "rc.lua") then LoadConfiguration "rc.lua" end
+if _G.kleifileexists(MODROOT .. "dev.rc.defaults.lua") then LoadConfiguration "dev.rc.defaults.lua" end
+if _G.kleifileexists(MODROOT .. "dev.rc.lua") then LoadConfiguration "dev.rc.lua" end
 
 
 ----------------------------------

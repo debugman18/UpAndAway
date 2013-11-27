@@ -28,8 +28,7 @@ modrequire 'strings'
 modrequire 'postinits'
 modrequire 'actions'
 
-
-local CFG = TUNING.UPANDAWAY
+modrequire 'prefab_asset_compiler'
 
 do
 	local oldSpawnPrefab = _G.SpawnPrefab
