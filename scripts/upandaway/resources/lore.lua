@@ -22,7 +22,10 @@ Of the dark thoughts that storm his mind.
 
 ]=][=[
 
-This would be page 2.
+So peaceful. Such calm. It's very nice.
+And so dreadfully BORING.
+Mercurius's mind rebels against such stagnation.
+How these 'gods' can remain sane in such static is beyond understanding
+Static....Mercurius can feel a plan beginning to form.
 
 ]=]
-
