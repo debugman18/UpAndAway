@@ -117,6 +117,10 @@
 	</li>
 
 	<li>
+		<a href="../../../files/upandaway/lib/storytelling.html">upandaway/lib/storytelling.lua</a>
+	</li>
+
+	<li>
 		<a href="../../../files/upandaway/main.html">upandaway/main.lua</a>
 	</li>
 
@@ -661,6 +665,10 @@
 	</li>
 
 	<li>
+		<a href="../../../files/upandaway/prefabs/ua_staves.html">upandaway/prefabs/ua_staves.lua</a>
+	</li>
+
+	<li>
 		<a href="../../../files/upandaway/prefabs/vine.html">upandaway/prefabs/vine.lua</a>
 	</li>
 
@@ -697,7 +705,19 @@
 	</li>
 
 	<li>
+		<a href="../../../files/upandaway/resources/alchemy_recipebook.html">upandaway/resources/alchemy_recipebook.lua</a>
+	</li>
+
+	<li>
 		<a href="../../../files/upandaway/resources/brewing_recipebook.html">upandaway/resources/brewing_recipebook.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/upandaway/resources/lore.html">upandaway/resources/lore.lua</a>
+	</li>
+
+	<li>
+		<a href="../../../files/upandaway/resources/refining_recipebook.html">upandaway/resources/refining_recipebook.lua</a>
 	</li>
 
 	<li>
@@ -802,8 +822,23 @@
 	</tr>
 
 	<tr>
+	<td class="name" nowrap><a href="#StaticChargeable:GetStateHoldingDuration">StaticChargeable:GetStateHoldingDuration</a>&nbsp;()</td>
+	<td class="summary">Returns the duration of the current state holding, and nil otherwise.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#StaticChargeable:HoldState">StaticChargeable:HoldState</a>&nbsp;(time)</td>
+	<td class="summary">Keeps the current state for a predetermined amount of time.</td>
+	</tr>
+
+	<tr>
 	<td class="name" nowrap><a href="#StaticChargeable:IsCharged">StaticChargeable:IsCharged</a>&nbsp;()</td>
 	<td class="summary">Returns whether it is charged.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#StaticChargeable:IsInHeldState">StaticChargeable:IsInHeldState</a>&nbsp;()</td>
+	<td class="summary">Returns whether the current state is unaffected by the ambient.</td>
 	</tr>
 
 	<tr>
@@ -814,6 +849,11 @@
 	<tr>
 	<td class="name" nowrap><a href="#StaticChargeable:OnSave">StaticChargeable:OnSave</a>&nbsp;()</td>
 	<td class="summary">Saves the charged state.</td>
+	</tr>
+
+	<tr>
+	<td class="name" nowrap><a href="#StaticChargeable:ReleaseState">StaticChargeable:ReleaseState</a>&nbsp;()</td>
+	<td class="summary">Reverses the effect of the KeepState.</td>
 	</tr>
 
 	<tr>
@@ -837,7 +877,7 @@
 	</tr>
 
 	<tr>
-	<td class="name" nowrap><a href="#StaticChargeable:Toggle">StaticChargeable:Toggle</a>&nbsp;()</td>
+	<td class="name" nowrap><a href="#StaticChargeable:Toggle">StaticChargeable:Toggle</a>&nbsp;(force)</td>
 	<td class="summary">Toggles the state.</td>
 	</tr>
 
@@ -986,9 +1026,69 @@ Returns the onuncharge callback.
 
 
 
+<dt><a name="StaticChargeable:GetStateHoldingDuration"></a><strong>StaticChargeable:GetStateHoldingDuration</strong>&nbsp;()</dt>
+<dd>
+Returns the duration of the current state holding, and nil otherwise.
+
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="StaticChargeable:HoldState"></a><strong>StaticChargeable:HoldState</strong>&nbsp;(time)</dt>
+<dd>
+Keeps the current state for a predetermined amount of time. During that period, the state doesn't change with the ambient.
+
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  time: 
+	</li>
+	
+</ul>
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
 <dt><a name="StaticChargeable:IsCharged"></a><strong>StaticChargeable:IsCharged</strong>&nbsp;()</dt>
 <dd>
 Returns whether it is charged.
+
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="StaticChargeable:IsInHeldState"></a><strong>StaticChargeable:IsInHeldState</strong>&nbsp;()</dt>
+<dd>
+Returns whether the current state is unaffected by the ambient.
 
 
 
@@ -1032,6 +1132,23 @@ Loads the charged state.  Calls Charge() or Uncharge() appropriately.
 <dt><a name="StaticChargeable:OnSave"></a><strong>StaticChargeable:OnSave</strong>&nbsp;()</dt>
 <dd>
 Saves the charged state.  Tries to use as little savedata as possible, since we'll have a lot of entities with this component.
+
+
+
+
+
+
+
+
+
+</dd>
+
+
+
+
+<dt><a name="StaticChargeable:ReleaseState"></a><strong>StaticChargeable:ReleaseState</strong>&nbsp;()</dt>
+<dd>
+Reverses the effect of the KeepState.
 
 
 
@@ -1150,10 +1267,19 @@ Sets the onuncharge callback.
 
 
 
-<dt><a name="StaticChargeable:Toggle"></a><strong>StaticChargeable:Toggle</strong>&nbsp;()</dt>
+<dt><a name="StaticChargeable:Toggle"></a><strong>StaticChargeable:Toggle</strong>&nbsp;(force)</dt>
 <dd>
-Toggles the state. Main for testing.
+Toggles the state.
 
+
+<h3>Parameters</h3>
+<ul>
+	
+	<li>
+	  force: 
+	</li>
+	
+</ul>
 
 
 
