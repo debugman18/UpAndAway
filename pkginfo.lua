@@ -9,8 +9,11 @@ return {
 	-- Names of the files returning asset tables.
 	--]]
 	asset_files = {
-		"assets.lua",
-		"prefabassets.lua",
+		--[[
+		-- This file lists "regular" as well as prefab assets.
+		-- It is automatically generated when the game runs.
+		--]]
+		"asset_compilation.lua",
 	},
 
 	--[[
@@ -54,7 +57,6 @@ return {
 		"tuning",
 
 		"scripts",
-		"levels",
 	},
 
 	--[[

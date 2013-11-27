@@ -11,7 +11,7 @@ SKYFLYSPAWNER.DEBUG = false
 
 PROFILING.ENTITY_CREATION.ENABLED = false
 
--- Name of the file in which to put the list of prefab assets. If nil,
+-- Name of the file in which to put the list of mod assets. If nil,
 -- it is not generated.
-PREFAB_ASSET_COMPILER.OUTPUT_FILE = "prefabassets.lua"
-PREFAB_ASSET_COMPILER.DEBUG = false
+ASSET_COMPILER.OUTPUT_FILE = "asset_compilation.lua"
+ASSET_COMPILER.DEBUG = false

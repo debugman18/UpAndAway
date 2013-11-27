@@ -10,28 +10,26 @@ module( ..., require(_modname .. '.booter') )
 
 
 local Configurable = wickerrequire 'adjectives.configurable'
-local cfg = Configurable "PREFAB_ASSET_COMPILER"
+local cfg = Configurable "ASSET_COMPILER"
 
 
 local output_file = cfg:GetConfig "OUTPUT_FILE"
 if not output_file then return end
-assert( type(output_file) == "string", "String or nil expected as PREFAB_ASSET_COMPILER.OUTPUT_FILE configuration value." )
+assert( type(output_file) == "string", "String or nil expected as ASSET_COMPILER.OUTPUT_FILE configuration value." )
 
 local DEBUG = cfg:GetConfig "DEBUG"
 
 
 local function CompilePrefabAssets()
-	assert( modenv.PrefabFiles, "The mod's PrefabFiles table is not defined!" )
+	local mod = assert( _G.ModManager:GetMod(modenv.modname), "Unable to find self in the ModManager!" )
 
-	local assets_map = {}
-	local file_cache = {}
 
-	for _, prefab_file in ipairs(modenv.PrefabFiles) do
-		assert( type(prefab_file) == "string", "Non-string entry in PrefabFiles!" )
-		local assets = {}
+	local process_assetlist = (function()
+		local file_cache = {}
 
-		for _, prefab in ipairs{domodfile("scripts/prefabs/"..prefab_file..".lua")} do
-			for _, A in ipairs(prefab.assets) do
+		return function(assets)
+			local ret = {}
+			for _, A in ipairs(assets) do
 				assert( type(A.type) == "string" and type(A.file) == "string", "Invalid asset." )
 
 				local file = A.file
@@ -39,15 +37,23 @@ local function CompilePrefabAssets()
 				local match_start, match_end = file:find(MODROOT, 1, true)
 				if match_start == 1 then
 					if not file_cache[file] then
-						table.insert(assets, {A.type, file:sub(match_end + 1)})
+						table.insert(ret, {A.type, file:sub(match_end + 1)})
 						file_cache[file] = true
 					end
 				end
 			end
+			return ret
 		end
+	end)()
 
-		assets_map[prefab_file] = assets
+
+	local assets_map = {}
+
+	for prefab_name, prefab in pairs( mod.Prefabs ) do
+		assets_map[prefab_name] = process_assetlist( prefab.assets )
 	end
+
+	assets_map["modbaseprefabs/MOD_"..modenv.modname] = process_assetlist( mod.Assets )
 
 	return assets_map
 end
@@ -56,12 +62,12 @@ end
 -- @param fh The file handler to which write the asset list.
 local function WritePrefabAssets(assets_map, fh)
 	fh:write("return {\n")
-	for prefab_file, assets in pairs(assets_map) do
-		fh:write("\t-- ", prefab_file, ".lua\n")
+	for prefab_name, assets in pairs(assets_map) do
+		fh:write("\t-- ", prefab_name, "\n")
 		for _, A in ipairs(assets) do
 			fh:write("\tAsset", ("(%q, %q)"):format(unpack(A)), ",\n")
 		end
-		fh:write("\n")
+		--fh:write("\n")
 	end
 	fh:write("}\n")
 end

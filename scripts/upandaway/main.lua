@@ -28,7 +28,7 @@ modrequire 'strings'
 modrequire 'postinits'
 modrequire 'actions'
 
-modrequire 'prefab_asset_compiler'
+modrequire 'asset_compiler'
 
 do
 	local oldSpawnPrefab = _G.SpawnPrefab
