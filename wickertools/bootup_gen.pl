@@ -1,29 +1,36 @@
 #!/bin/perl
 
-my $BACKUP = 0;
+my $BACKUP = 1;
 
 my $BACKUP_SUFFIX = ".orig";
 
 use File::Temp qw( :POSIX );
 use File::Copy qw/ cp mv /;
 
-my $essential_bootup_code = <<EOS
-local _modname = assert( (assert(..., 'This file should be loaded through require.')):match('^[%a_][%w_%s]*') , 'Invalid path.' )
-EOS
-;
+#my $essential_bootup_code = <<EOS
+#local _modname = assert( (assert(..., 'This file should be loaded through require.')):match('^[%a_][%w_%s]*') , 'Invalid path.' )
+#EOS
+#;
+my $essential_bootup_code = "";
 
-my $wicker_bootup_code = $essential_bootup_code . <<EOS
-module( ..., require(_modname .. '.wicker.booter') )
-EOS
-;
+#my $wicker_bootup_code = $essential_bootup_code . <<EOS
+#module( ..., require(_modname .. '.wicker.booter') )
+#EOS
+#;
+my $wicker_bootup_code = "";
 
-my $mod_bootup_code = $essential_bootup_code . <<EOS
-module( ..., require(_modname .. '.booter') )
-EOS
-;
+#my $mod_bootup_code = $essential_bootup_code . <<EOS
+#module( ..., require(_modname .. '.booter') )
+#EOS
+#;
+my $mod_bootup_code = "";
 
-my $mod_global_bootup_code = $essential_bootup_code . <<EOS
-module( ..., package.seeall, require(_modname .. '.booter') )
+#my $mod_global_bootup_code = $essential_bootup_code . <<EOS
+#module( ..., package.seeall, require(_modname .. '.booter') )
+#EOS
+#;
+my $mod_global_bootup_code = <<EOS
+BindGlobal()
 EOS
 ;
 
@@ -33,7 +40,8 @@ $ARGV[0] or die $!;
 
 my $scriptname = $ARGV[0];
 
-my $default_mode = $ARGV[1] or "mod";
+my $default_mode = $ARGV[1];
+unless($default_mode) { $default_mode = "mod"; }
 
 open SCRIPT, "<", $scriptname or die $!;
 
@@ -50,26 +58,26 @@ my $is_wicker = 0;
 while(<SCRIPT>) {
 	if( $started and /^\s*--\@\@END (\S+ )?ENVIRONMENT BOOTUP\s*$/ ) {
 		#print "end match\n";
-		$end_pos = tell(SCRIPT) - length($_);
+		$end_pos = tell(SCRIPT);
 		last;
 	} elsif( not $started and /^\s*--\@\@ENVIRONMENT BOOTUP\s*$/ ) {
 		#print "start match\n";
 		$started = 1;
-		$start_pos = tell(SCRIPT);
+		$start_pos = tell(SCRIPT) - length($_);
 	} elsif( not $started and /^\s*--\@\@GLOBAL ENVIRONMENT BOOTUP\s*$/ ) {
 		#print "start global match\n";
 		$started = 1;
-		$start_pos = tell(SCRIPT);
+		$start_pos = tell(SCRIPT) - length($_);
 		$is_global = 1;
 	} elsif( not $started and /^\s*--\@\@WICKER ENVIRONMENT BOOTUP\s*$/ ) {
 		#print "start wicker match\n";
 		$started = 1;
-		$start_pos = tell(SCRIPT);
+		$start_pos = tell(SCRIPT) - length($_);
 		$is_wicker = 1;
 	} elsif( not $started and /^\s*--\@\@NO ENVIRONMENT BOOTUP\s*$/ ) {
 		#print "disable match\n";
 		$disabled = 1;
-		$start_pos = tell(SCRIPT);
+		$start_pos = tell(SCRIPT) - length($_);
 		<SCRIPT>; # We skip the next line.
 		$end_pos = tell(SCRIPT);
 		last;
@@ -118,20 +126,20 @@ if( $disabled ) {
 			print $temp $mod_bootup_code;
 		}
 	} else {
-		if( $default eq "mod" ) {
-			print $temp "--\@\@ENVIRONMENT BOOTUP\n";
+		if( $default_mode eq "mod" ) {
+#			print $temp "--\@\@ENVIRONMENT BOOTUP\n";
 			print $temp $mod_bootup_code;
-			print $temp "--\@\@END ENVIRONMENT BOOTUP\n\n";
+#			print $temp "--\@\@END ENVIRONMENT BOOTUP\n\n";
 		}
-		elsif( $default eq "global" ) {
-			print $temp "--\@\@GLOBAL ENVIRONMENT BOOTUP\n";
+		elsif( $default_mode eq "global" ) {
+#			print $temp "--\@\@GLOBAL ENVIRONMENT BOOTUP\n";
 			print $temp $mod_global_bootup_code;
-			print $temp "--\@\@END ENVIRONMENT BOOTUP\n\n";
+#			print $temp "--\@\@END ENVIRONMENT BOOTUP\n\n";
 		}
-		elsif( $default eq "wicker" ) {
-			print $temp "--\@\@WICKER ENVIRONMENT BOOTUP\n";
+		elsif( $default_mode eq "wicker" ) {
+#			print $temp "--\@\@WICKER ENVIRONMENT BOOTUP\n";
 			print $temp $wicker_bootup_code;
-			print $temp "--\@\@END ENVIRONMENT BOOTUP\n\n";
+#			print $temp "--\@\@END ENVIRONMENT BOOTUP\n\n";
 		}
 		else {
 			die "Invalid default mode $default.";
