@@ -1,3 +1,6 @@
+modimport 'lib/use.lua'
+
+
 local rawget = GLOBAL.rawget
 
 
@@ -14,7 +17,7 @@ end)()
 
 
 local status, err = run_handler(function()
-	TheMod = GLOBAL.require("upandaway" .. '.wicker.init')(env)
+	TheMod = use 'start_wicker'
 
 	-- This enables us to access configurations through TUNING.UPANDAWAY (for backwards compatibility)
 	TheMod:AddMasterConfigurationKey("UPANDAWAY")

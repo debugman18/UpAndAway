@@ -1,10 +1,10 @@
-TheMod = GLOBAL.require("upandaway" .. '.wicker.init')(env)
+modimport 'lib/use.lua'
 
+TheMod = use 'start_wicker'
 
 
 modimport "assets.lua"
 modimport "prefabfiles.lua"
-
 
 
 --RemapSoundEvent("dontstarve/music/music_FE", "upandaway/music/music_FE")
@@ -29,7 +29,6 @@ if TheMod:Debug() then
 	end)
 end
 --]]
-
 
 
 TheMod:Run("main")

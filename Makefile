@@ -10,7 +10,10 @@ PKGINFO:=pkginfo.lua
 TOOLS_DIR:=tools
 
 # Scripts directory (under the wicker redirection).
-SCRIPT_DIR:=scripts/upandaway
+SCRIPT_DIR:=code
+
+# Wicker directory
+WICKER_SCRIPT_DIR:=wicker
 
 # Wicker tools directory.
 WICKER_TOOLS_DIR:=wickertools
@@ -46,4 +49,4 @@ clean:
 
 include make/doc.mk
 #include make/build_rename.mk
-include $(SCRIPT_DIR)/wicker/make/utils.mk
+include $(WICKER_SCRIPT_DIR)/make/utils.mk

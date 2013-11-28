@@ -1,1 +1,0 @@
-return require('upandaway.prefabs.cotton_candy')
