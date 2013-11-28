@@ -1,6 +1,6 @@
 #!/bin/perl
 
-my $BACKUP = 1;
+my $BACKUP = 0;
 
 my $BACKUP_SUFFIX = ".orig";
 
@@ -126,12 +126,12 @@ if( $disabled ) {
 			print $temp $mod_bootup_code;
 		}
 	} else {
-		if( $default_mode eq "mod" ) {
+		if( $default_mode eq "global" || $default_mode eq "mod" ) {
 #			print $temp "--\@\@ENVIRONMENT BOOTUP\n";
 			print $temp $mod_bootup_code;
 #			print $temp "--\@\@END ENVIRONMENT BOOTUP\n\n";
 		}
-		elsif( $default_mode eq "global" ) {
+		elsif( 0 && $default_mode eq "global" ) {
 #			print $temp "--\@\@GLOBAL ENVIRONMENT BOOTUP\n";
 			print $temp $mod_global_bootup_code;
 #			print $temp "--\@\@END ENVIRONMENT BOOTUP\n\n";
