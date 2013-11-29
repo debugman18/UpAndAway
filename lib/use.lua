@@ -41,6 +41,14 @@ if _G.rawget(_G, _IDENTIFIER) then
 end
 
 
+local function preload_searcher(self, name)
+	local ret = self.package.preload[name]
+	if ret ~= nil then
+		return ret
+	else
+		return "no field package.preload['"..name.."']"
+	end
+end
 
 local function default_searcher(self, name)
 	name = name:gsub("[.\\]", "/")
@@ -69,7 +77,8 @@ local Requirer = Class(function(self, default_env)
 
 	self.package = {
 		path = MODROOT .. "?.lua",
-		searchers = {default_searcher},
+		searchers = {preload_searcher, default_searcher},
+		preload = {},
 		loaded = {},
 	}
 	self.package.loaders = self.package.searchers

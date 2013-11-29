@@ -16,6 +16,8 @@ local time = wickerrequire 'utils.time'
 local _O = _G
 
 
+_O.UA = TheMod
+
 --[[
 -- Type ClimbTo(0) in the console to return to the surface.
 --]]
