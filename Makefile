@@ -38,7 +38,7 @@ ifneq ($(wildcard make/config.mk),)
 endif
 
 
-.PHONY: dist clean
+.PHONY: dist clean wicker wickertools
 
 
 dist:

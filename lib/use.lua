@@ -43,10 +43,12 @@ end
 
 
 local function default_searcher(self, name)
+	name = name:gsub("[.\\]", "/")
+
 	local fail_pieces = {}
 
 	for pathspec in self.package.path:gmatch("[^;]+") do
-		local path = pathspec:gsub("%?", name, 1):gsub("[.\\]", "/")
+		local path = pathspec:gsub("%?", name, 1)
 		if _G.kleifileexists(path) then
 			local fn = _G.kleiloadlua(path)
 			if type(fn) ~= "function" then
@@ -97,7 +99,7 @@ function Requirer:__call(name)
 				_G.setfenv(fn, self:GetEnvironment())
 				local ret = fn(name)
 				if ret == nil then
-					ret = true
+					ret = self.package.loaded[name] or true
 				end
 				self.package.loaded[name] = ret
 				return ret

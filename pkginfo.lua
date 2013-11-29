@@ -56,7 +56,11 @@ return {
 		"tuning.lua",
 		"tuning",
 
-		"scripts",
+		"code",
+		"wicker",
+		"lib",
+
+		"scripts/prefabs",
 	},
 
 	--[[

@@ -19,10 +19,7 @@ local prefabs =
 	"magic_beans",
 }
 
---[[
--- The speech has been moved to scripts/upandaway/resources/shopkeeper_speech.lua
---]]
-local generateSpeeches = require 'upandaway.resources.shopkeeper_speech'
+local generateSpeeches = modrequire 'resources.shopkeeper_speech'
 
 
 -------------------------------------------------------------------------------------------------
