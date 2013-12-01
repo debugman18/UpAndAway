@@ -1,5 +1,7 @@
 BindGlobal()
 
+local cfg = wickerrequire('adjectives.configurable')("BALL_LIGHTNING")
+
 local prefabs =
 {
 	"cloud_lightning",
@@ -9,8 +11,6 @@ local assets =
 {
 	Asset("ANIM", "anim/void_placeholder.zip"),
 }
-
-local CFG = TheMod:GetConfig()
 
 local SLEEP_DIST_FROMHOME = 10
 local SLEEP_DIST_FROMTHREAT = 0
@@ -101,8 +101,8 @@ local function fn(Sim)
     inst.components.locomotor:SetSlowMultiplier( 1 )
     inst.components.locomotor:SetTriggersCreep(false)
     inst.components.locomotor.pathcaps = { ignorecreep = false }
-    inst.components.locomotor.walkspeed = TUNING.MONKEY_MOVE_SPEED
-	inst.components.locomotor.directdrive = true    
+    inst.components.locomotor.walkspeed = cfg:GetConfig("WALKSPEED")
+	inst.components.locomotor.directdrive = cfg:GetConfig("RUNSPEED")
 
 	local brain = require "brains/monkeybrain"
 	inst:SetBrain(brain)
@@ -112,15 +112,15 @@ local function fn(Sim)
 	inst.components.eater:SetOnEatFn(oneat)
 
     inst:AddComponent("combat")
-    inst.components.combat:SetAttackPeriod(TUNING.MONKEY_ATTACK_PERIOD)
+    inst.components.combat:SetAttackPeriod(cfg:GetConfig("ATTACK_PERIOD"))
     inst.components.combat:SetRange(10)
     inst.components.combat:SetRetargetFunction(1, retargetfn)
 
     inst.components.combat:SetKeepTargetFunction(shouldKeepTarget)
-    inst.components.combat:SetDefaultDamage(2)
+    inst.components.combat:SetDefaultDamage(cfg:GetConfig("UNCHARGED_DAMAGE"))
 
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(100)
+    inst.components.health:SetMaxHealth(cfg:GetConfig("HEALTH"))
 
     inst.HasAmmo = hasammo
 
@@ -129,8 +129,8 @@ local function fn(Sim)
 	inst:AddComponent("staticchargeable")
 	inst.components.staticchargeable:SetOnChargeFn(charge)
 	inst.components.staticchargeable:SetOnUnchargeFn(uncharge)
-	inst.components.staticchargeable:SetOnChargeDelay(CFG.SHEEP.CHARGE_DELAY)
-	inst.components.staticchargeable:SetOnUnchargeDelay(CFG.SHEEP.UNCHARGE_DELAY)
+	inst.components.staticchargeable:SetOnChargeDelay(cfg:GetConfig("CHARGE_DELAY"))
+	inst.components.staticchargeable:SetOnUnchargeDelay(cfg:GetConfig("UNCHARGE_DELAY"))
 
 
 	inst:AddComponent("temperature")
