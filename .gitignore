@@ -6,7 +6,5 @@ make/config.mk
 
 # Patterns
 /*.zip
-log/**
 **/*.lnk
 **/.git/
-scripts/prefabs/*.lua
