@@ -19,14 +19,15 @@ return {
 	--[[
 	-- File extensions to never include.
 	--
-	-- Only the image extensions really have a reason to be listed, the others
-	-- shouldn't be included anyway.
+	-- This should be redundant, since the relevant assets are chosen
+	-- automatically, but they are here just in case.
 	--]]
 	exclude_extensions = {
 		"png",
 		"psd",
 		"xcf",
 		"svg",
+		"sai",
 
 		"bin",
 
