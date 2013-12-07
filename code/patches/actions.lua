@@ -1,5 +1,5 @@
 ---
--- Action tweaks (not necessarily postinits ;P).
+-- Action tweaks
 --
 -- @author simplex
 

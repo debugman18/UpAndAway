@@ -5,8 +5,6 @@
 -- @author simplex
 
 
-
-
 BindModModule 'modenv'
 -- This just enables syntax conveniences.
 BindTheMod()
@@ -21,6 +19,7 @@ modrequire('api_abstractions')()
 modrequire 'profiling'
 modrequire 'debugtools'
 modrequire 'strings'
+modrequire 'patches'
 modrequire 'postinits'
 modrequire 'actions'
 
