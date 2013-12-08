@@ -47,6 +47,8 @@ for _, attr in ipairs(tracked_attributes) do
 				local val = datum and datum[attr]
 				if val then
 					return unpack(val)
+				else
+					return 0
 				end
 			else
 				metadata[phys] = nil
