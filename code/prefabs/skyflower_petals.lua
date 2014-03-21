@@ -58,7 +58,7 @@ local function fndatura(Sim)
     MakeInventoryPhysics(inst)
     RemovePhysicsColliders(inst)
     
-    anim:SetBank("flower__evil_petals")
+    anim:SetBank("flower_petals_evil")
     anim:SetBuild("datura_petals")
     anim:PlayAnimation("anim")
     anim:SetRayTestOnBB(true);
