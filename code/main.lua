@@ -371,6 +371,8 @@ AddPrefabPostInit("mound", addmoundtag)
 
 table.insert(GLOBAL.CHARACTER_GENDERS.FEMALE, "winnie")
 
+AddMinimapAtlas("images/winnie.xml")
+
 AddModCharacter("winnie")
 
 local oldMakeNoGrowInWinter = _G.MakeNoGrowInWinter

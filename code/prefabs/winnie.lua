@@ -60,7 +60,8 @@ local fn = function(inst)
 	
 	inst.soundsname = "winnie"
 
-	inst.MiniMapEntity:SetIcon( "winnie.png" )
+        inst.entity:AddMiniMapEntity()
+        inst.MiniMapEntity:SetIcon("winnie.tex")
 
         inst.components.eater:SetOnEatFn(penalty_meat)
 
