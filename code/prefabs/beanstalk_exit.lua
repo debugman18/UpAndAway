@@ -94,7 +94,7 @@ local function fn(Sim)
     --MakeObstaclePhysics(inst, 1)
     
     local minimap = inst.entity:AddMiniMapEntity()
-    minimap:SetIcon("cave_open2.png")
+    minimap:SetIcon("beanstalk.tex")
     
     anim:SetBank("rock_stalagmite_tall")
     anim:SetBuild("beanstalk_exit")

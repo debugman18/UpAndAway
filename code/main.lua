@@ -371,7 +371,9 @@ AddPrefabPostInit("mound", addmoundtag)
 
 table.insert(GLOBAL.CHARACTER_GENDERS.FEMALE, "winnie")
 
+--This adds our minimap atlases.
 AddMinimapAtlas("images/winnie.xml")
+AddMinimapAtlas("images/beanstalk.xml")
 
 AddModCharacter("winnie")
 

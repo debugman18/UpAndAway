@@ -91,6 +91,9 @@ Assets = GLOBAL.JoinArrays(
 		Asset( "ATLAS", "bigportraits/winnie.xml" ),	
 		Asset( "IMAGE", "images/winnie.tex" ),
 		Asset( "ATLAS", "images/winnie.xml" ),	
+		
+		Asset( "IMAGE", "images/beanstalk.tex" ),
+		Asset( "ATLAS", "images/beanstalk.xml" ),			
 	},
 
 	-- Dummy end, just so we can put commas after everything.

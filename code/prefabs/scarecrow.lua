@@ -23,7 +23,7 @@ local function fn(Sim)
 
 	inst.AnimState:SetBank("scarecrow")
 	inst.AnimState:SetBuild("scarecrow")
-	inst.AnimState:PlayAnimation("idle_loop",true)
+	inst.AnimState:PlayAnimation("idle",true)
 
 	inst:AddComponent("inspectable")
 

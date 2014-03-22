@@ -18,6 +18,8 @@ local MAX_CHASEAWAY_DIST = 0
 local MAX_TARGET_SHARES = 5
 local SHARE_TARGET_DIST = 40
 
+local loot = {}
+
 local function hasammo(inst)
 	if inst.components.inventory then
 		local thunder = inst.components.inventory:FindItem(function(item) return item.prefab == "cloud_lightning" end )
@@ -123,6 +125,9 @@ local function fn(Sim)
     inst.components.health:SetMaxHealth(cfg:GetConfig("HEALTH"))
 
     inst.HasAmmo = hasammo
+
+    inst:AddComponent("lootdropper")
+	inst.components.lootdropper:SetLoot(loot)
 
     inst:AddComponent("knownlocations")  
 

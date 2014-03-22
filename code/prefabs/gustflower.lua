@@ -8,10 +8,29 @@ local assets=
 local prefabs=
 {
 	"gustflower_seeds",
+    "whirlwind",
 }
 
 local function onpickedfn(inst)
-	inst:Remove()
+	--inst:Remove()
+end
+
+local function OnSpawned(inst, child)
+    if GetClock():IsDay() and inst.components.childspawner and inst.components.childspawner:CountChildrenOutside() >= 4 then
+        StopSpawning(inst)
+    end
+end
+
+local function StartSpawning(inst)
+    if inst.components.childspawner and GetSeasonManager() and GetSeasonManager():IsWinter() and GetWorld().components.staticgenerator.IsCharged() then
+        inst.components.childspawner:StartSpawning()
+    end
+end
+
+local function StopSpawning(inst)
+    if inst.components.childspawner then
+        inst.components.childspawner:StopSpawning()
+    end
 end
 
 local function fn(Sim)
@@ -26,7 +45,6 @@ local function fn(Sim)
     inst.AnimState:PlayAnimation("planted")
     inst.AnimState:SetRayTestOnBB(true);
     
-
     inst:AddComponent("inspectable")
     
     inst:AddComponent("pickable")
@@ -36,6 +54,12 @@ local function fn(Sim)
     
     inst.components.pickable.quickpick = true
 
+    inst:AddComponent("childspawner")
+    inst.components.childspawner.childname = "whirlwind"
+    inst.components.childspawner:SetSpawnedFn(OnSpawned)
+    inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*10)
+    inst.components.childspawner:SetSpawnPeriod(10)
+    inst.components.childspawner:SetMaxChildren(6)
     
 	MakeSmallBurnable(inst)
     MakeSmallPropagator(inst)

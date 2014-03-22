@@ -11,7 +11,7 @@ Original concept by debugman18.]]
 
 forumthread = "/topic/26501-up-and-away-mod-collaboration-thread"
 
-api_version = 4
+api_version = 5
 
 icon_atlas = "favicon/upandaway.xml"
 icon = "upandaway.tex"
