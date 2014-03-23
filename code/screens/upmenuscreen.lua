@@ -42,10 +42,16 @@ local UpMenuScreen = Class(Screen, function(self, buttons)
 
 	--local character = GetPlayer().profile:GetValue("characterinthrone") or "wilson"
 
+	local is_rog_enabled = IsDLCEnabled ~= nil and IsDLCEnabled(REIGN_OF_GIANTS)
+
     self.text:SetPosition(0, -60, 0)
     self.text:SetString("You are running version '" .. modinfo.version .. "' of Up and Away.\nThe latest version of Up and Away is 'prealpha'.\nThank you for playtesting, and being a part of our mod's development!")
     self.text:EnableWordWrap(true)
     self.text:SetRegionSize(700, 350)
+
+    if is_rog_enabled then
+    	self.text:SetString("Warning: The Reign of Giants DLC may cause bugs with this mod currently.\n\n You are running version '" .. modinfo.version .. "' of Up and Away.\nThe latest version of Up and Away is 'prealpha'.\nThank you for playtesting, and being a part of our mod's development!")
+    end	
 
 	self.button = self.title:AddChild(ImageButton())
 	self.button:SetPosition(0,-390,0)

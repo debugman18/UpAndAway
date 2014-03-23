@@ -120,8 +120,6 @@ local function DoInit(self)
     ]]
 	
 	--We can change the background image here.
-	--self.bg = self:AddChild(Image("images/ui.xml", "bg_plain.tex"))
-	--self.bg:SetTexture("images/bg_up.xml", "bg_plain.tex")
 	self.bg:SetTexture("images/up_new.xml", "ps4_mainmenu.tex")
 	self.bg:SetTint(100, 100, 100, 1)
     self.bg:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
@@ -131,7 +129,6 @@ local function DoInit(self)
 	self.bg:SetScaleMode(GLOBAL.SCALEMODE_FILLSCREEN)
 	
 	--We can change the shield image here.
-    --self.shield = self.fixed_root:AddChild(Image("images/uppanels.xml", "panel_shield.tex"))
     self.shield:SetTexture("images/uppanels.xml", "panel_shield.tex")
     self.shield:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
     self.shield:SetHRegPoint(GLOBAL.ANCHOR_MIDDLE)
@@ -139,17 +136,20 @@ local function DoInit(self)
 
 	--This renames the banner.
 	self.updatename:SetString("Up and Away")
-	self.banner:SetPosition(0, -170, 0)		
+	self.banner:SetPosition(0, -170, 0)	
 	self.banner:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
     self.banner:SetHRegPoint(GLOBAL.ANCHOR_MIDDLE)
+    self.banner:SetTint(0,0,0,0)
 
 	--Adds our own mod button.
-	self.upandaway_button = self.updatename:AddChild(ImageButton())
-	self.upandaway_button:SetPosition(0,-2,11)
-	self.upandaway_button:SetText("Up and Away")
+	self.upandaway_button = self.updatename:AddChild(ImageButton("images/ui.xml", "update_banner.tex"))
+	self.upandaway_button:SetPosition(0, -8, 0)	
 	self.upandaway_button:SetOnClick( function() UpMenu() end )	
-	self.upandaway_button:SetScale(1.1, 0.67, 1.1)
 
+    self.up_name = self.upandaway_button:AddChild(Text(GLOBAL.BUTTONFONT, 30))
+    self.up_name:SetPosition(0,8,0)	
+    self.up_name:SetString("Up and Away")	
+	self.up_name:SetColour(0,0,0,1)
 	--]]
 		
 	--[[
