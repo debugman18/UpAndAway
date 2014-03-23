@@ -9,15 +9,64 @@ local Image = require "widgets/image"
 local UIAnim = require "widgets/uianim"
 local Widget = require "widgets/widget"
 
+local platform_modstatus = nil
 
 local function Credits()
 	local ModCreditsScreen = require "screens/modcreditsscreen"
 	GLOBAL.TheFrontEnd:PushScreen(ModCreditsScreen())
 end
 
+local function SetVersion(str, cache)
+    local status, modstatus = pcall( function() return json.decode(str) end )
+    print("decode:", status, modversion)
+    if status and modstatus then
+        if cache then
+            SavePersistentString("modstatus", str)
+        end
+
+        if PLATFORM == "WIN32_STEAM" or PLATFORM == "LINUX_STEAM" or PLATFORM == "OSX_STEAM" then
+            platform_modstatus = modstatus.steam
+        else
+            platform_modstatus = modstatus.standalone
+        end
+
+        if platform_modstatus then
+            if platform_modstatus.modversion and string.len(platform_modstatus.modversion) > 0 then
+                print(platform_modstatus.modversion)
+            end
+        end
+    end
+end
+
+local function OnStatusQueryComplete(result, isSuccessful, resultCode)
+    print("OnStatusQueryComplete", result, isSuccessful, resultCode )
+    if isSuccessful and string.len(result) > 1 and resultCode == 200 then 
+        print "Query made successfully."
+        SetVersion(result, true)
+    end
+end
+
+local function CheckModVersion(load_success, str)
+    if load_success and string.len(str) > 1 then
+        SetVersion(str, false)
+    end    
+    _G.TheSim:QueryServer("https://raw.githubusercontent.com/debugman18/UpAndAway/master/modstatus.json", function(...) OnStatusQueryComplete(...) end, "GET")
+end
+
+local function UpdateStatus()
+    
+end
+
 local UpMenuScreen = Class(Screen, function(self, buttons)
 	Screen._ctor(self, "UpMenuScreen")
     
+    _G.TheSim:GetPersistentString("modstatus", function(...) CheckModVersion(...) end)
+
+    if platform_modstatus and platform_modstatus.modversion then
+        print(platform_modstatus.modversion)
+        print("This is A.")
+    end    
+
 	self.proot = self:AddChild(Widget("ROOT"))
     self.proot:SetVAnchor(ANCHOR_MIDDLE)
     self.proot:SetHAnchor(ANCHOR_MIDDLE)
@@ -44,13 +93,15 @@ local UpMenuScreen = Class(Screen, function(self, buttons)
 
 	local is_rog_enabled = IsDLCEnabled ~= nil and IsDLCEnabled(REIGN_OF_GIANTS)
 
+    print("This is B.")
+
     self.text:SetPosition(0, -60, 0)
     self.text:SetString("You are running version '" .. modinfo.version .. "' of Up and Away.\nThe latest version of Up and Away is 'prealpha'.\nThank you for playtesting, and being a part of our mod's development!")
     self.text:EnableWordWrap(true)
     self.text:SetRegionSize(700, 350)
 
     if is_rog_enabled then
-    	self.text:SetString("Warning: The Reign of Giants DLC may cause bugs with this mod currently.\n\n You are running version '" .. modinfo.version .. "' of Up and Away.\nThe latest version of Up and Away is 'prealpha'.\nThank you for playtesting, and being a part of our mod's development!")
+    	self.text:SetString("Warning: The Reign of Giants DLC may cause bugs with this mod currently.\n\n You are running version '" .. modinfo.version .. "' of Up and Away.\nThe latest version of Up and Away is '" .. platform_modstatus.modversion .. "'.\nThank you for playtesting, and being a part of our mod's development!")
     end	
 
 	self.button = self.title:AddChild(ImageButton())
