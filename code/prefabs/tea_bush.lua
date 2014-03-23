@@ -11,7 +11,7 @@ local function ontransplantfn(inst)
 end
 
 local function makeemptyfn(inst)
-	inst.AnimState:PlayAnimation("empty")
+	inst.AnimState:PlayAnimation("empty", true)
 end
 
 local function pickanim(inst)

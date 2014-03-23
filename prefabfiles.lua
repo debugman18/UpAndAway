@@ -170,6 +170,8 @@ PrefabFiles = {
 	"kettle",
 
 	"ua_staves",
+
+	"weavernest",
 }
 
 -- The return statement is just for if this file is used externally, at

@@ -21,6 +21,10 @@ SetSharedLootTable( 'beanlet',
     {'beanlet_shell',   0.33},
 })
 
+local function OnIgnite(inst)
+    DefaultBurnFn(inst)
+end
+
 local function OnAttacked(inst, data)
     local x,y,z = inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x,y,z, 30, {'beanlet'})
@@ -61,6 +65,8 @@ local function fn(Sim)
 
     MakeCharacterPhysics(inst, 50, .5)  
 
+    inst.Transform:SetScale(1.3, 1.3, 1.3)
+
     inst.AnimState:SetBank("Beanlet") -- name of the animation root
     inst.AnimState:SetBuild("Beanlet")  -- name of the file
     inst.AnimState:PlayAnimation("idle", true) -- name of the animation
@@ -81,6 +87,9 @@ local function fn(Sim)
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(25)
+
+    MakeMediumBurnable(inst)
+    inst.components.burnable:SetOnIgniteFn(OnIgnite)
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable('beanlet')

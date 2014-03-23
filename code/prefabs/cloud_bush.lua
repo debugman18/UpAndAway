@@ -30,18 +30,25 @@ local function onpickedfn(inst, picker)
 	if picker.components.combat then
         picker.components.combat:GetAttacked(nil, 2)
 	end
+
+	if inst.components.pickable:IsBarren() then
+		inst.AnimState:PushAnimation("idle")
+	end	
 end
 
 local function makeemptyfn(inst)
-	inst.AnimState:PlayAnimation("empty", true)
+	inst.AnimState:PlayAnimation("empty", true) 
 end
 
+local function makebarrenfn(inst)
+	inst.AnimState:PlayAnimation("idle")
+end
 
 local function onunchargedfn(inst)
 	inst:RemoveComponent("pickable")
 
 	local anim = inst.AnimState
-	anim:PlayAnimation("berries_more", true)
+	anim:PlayAnimation("berriesmore", true)
 	anim:PushAnimation("berries", true)
 	anim:PushAnimation("idle", true)
 	anim:PlayAnimation("idle_dead", true)
@@ -55,6 +62,7 @@ local function onchargedfn(inst)
     inst.components.pickable:SetUp("candy_fruit", TUNING.MARSHBUSH_REGROW_TIME, 2)
 	inst.components.pickable.onregenfn = onchargedfn
 	inst.components.pickable.onpickedfn = onpickedfn
+	inst.components.pickable.makebarrenfn = makebarrenfn
     inst.components.pickable.makeemptyfn = makeemptyfn
 end
 

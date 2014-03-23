@@ -12,10 +12,15 @@ local prefabs =
 }
 
 local function HeatFn(inst, observer)
-	if inst.components.temperature then
-		inst.components.temperature.current = 60
-		return inst.components.temperature:GetCurrent()
-	end	
+    --inst:DoPeriodicTask(1, function(inst)
+    	--if inst.components.temperature then
+    		--local heathotness = inst.components.temperature.current
+			--local heatdecay = heathotness / 100000
+			--local realhotness = heathotness - heatdecay 
+			--inst.components.temperature:SetTemperature(realhotness)
+		--end	
+    --end)   
+    return inst.components.temperature:GetCurrent()	
 end
 
 local function corruptegg(inst)
@@ -25,14 +30,17 @@ local function corruptegg(inst)
 	local corruption = SpawnPrefab("duckraptor")
     corruption.Transform:SetPosition(inst.Transform:GetWorldPosition())	
 
+    local ashes = SpawnPrefab("ash")
+    ashes.Transform:SetPosition(inst.Transform:GetWorldPosition())
+
    	inst:Remove()
 end
 
 local function OnDropped(inst)
 	inst:AddComponent("temperature")
-	inst.components.temperature.maxtemp = 80
-	inst.components.temperature.mintemp = 60
-	inst.components.temperature.current = 80
+	inst.components.temperature.maxtemp = 100
+	inst.components.temperature.mintemp = 0
+	inst.components.temperature.current = 100
 	inst.components.temperature.inherentinsulation = TUNING.INSULATION_MED
 end
 
@@ -59,7 +67,7 @@ local function fn(Sim)
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
 	inst:ListenForEvent("upandaway_uncharge", function()
-		inst.components.temperature.current = 60
+		--inst.components.temperature.current = 80
 	end)
 	
 	inst:AddComponent("inspectable")
@@ -69,17 +77,31 @@ local function fn(Sim)
 	inst.components.inventoryitem:SetOnPutInInventoryFn(OnPickedUp)	
 
 	inst:AddComponent("temperature")
-	inst.components.temperature.maxtemp = 80
-	inst.components.temperature.mintemp = 60
-	inst.components.temperature.current = 80
+	inst.components.temperature.maxtemp = 100
+	inst.components.temperature.mintemp = 0
+	inst.components.temperature.current = 100
 	inst.components.temperature.inherentinsulation = TUNING.INSULATION_MED
 
 	inst:AddComponent("heater")
 	inst.components.heater.heatfn = HeatFn
 	--inst.components.heater.carriedheatfn = HeatFn
 
+	inst:AddComponent("perishable")
+	inst.components.perishable.onperishreplacement = "goldnugget"
+
+    inst:DoPeriodicTask(1, function(inst)
+    	if inst.components.temperature then
+    		local hotness = inst.components.temperature.current
+			local neardecay = hotness / 4
+			local perishtime = hotness - neardecay 
+			inst.components.perishable:SetPerishTime(perishtime)
+			inst.components.perishable:StartPerishing()
+			print(perishtime)    
+		end	
+    end)    
+
     inst:AddComponent("sanityaura")
-    inst.components.sanityaura.aura = -TUNING.SANITYAURA_SMALL	
+    inst.components.sanityaura.aura = -TUNING.SANITYAURA_LARGE
 	
 	inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
     inst.entity:AddLight()

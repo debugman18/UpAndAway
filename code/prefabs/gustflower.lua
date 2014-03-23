@@ -16,14 +16,14 @@ local function onpickedfn(inst)
 end
 
 local function OnSpawned(inst, child)
-    if GetClock():IsDay() and inst.components.childspawner and inst.components.childspawner:CountChildrenOutside() >= 4 then
+    if GetClock():IsDay() and inst.components.childspawner and inst.components.childspawner:CountChildrenOutside() >= 1 then
         StopSpawning(inst)
     end
 end
 
 local function StartSpawning(inst)
-    if inst.components.childspawner and GetSeasonManager() and GetSeasonManager():IsWinter() and GetWorld().components.staticgenerator.IsCharged() then
-        inst.components.childspawner:StartSpawning()
+    if inst.components.childspawner and GetSeasonManager() and GetSeasonManager():IsWinter() then
+        inst.components.childspawner:StartSpawning()  
     end
 end
 
@@ -31,6 +31,17 @@ local function StopSpawning(inst)
     if inst.components.childspawner then
         inst.components.childspawner:StopSpawning()
     end
+end
+
+local function onunchargedfn(inst)
+    inst.components.childspawner:StopSpawning()
+end
+
+local function onchargedfn(inst)
+    inst:DoTaskInTime(0, function(inst)
+        inst.components.childspawner:ReleaseAllChildren() 
+        inst.components.childspawner:StartSpawning()          
+    end)    
 end
 
 local function fn(Sim)
@@ -57,14 +68,22 @@ local function fn(Sim)
     inst:AddComponent("childspawner")
     inst.components.childspawner.childname = "whirlwind"
     inst.components.childspawner:SetSpawnedFn(OnSpawned)
-    inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*10)
-    inst.components.childspawner:SetSpawnPeriod(10)
-    inst.components.childspawner:SetMaxChildren(6)
-    
+    inst.components.childspawner:SetRegenPeriod(TUNING.TUMBLEWEED_REGEN_PERIOD)
+    inst.components.childspawner:SetSpawnPeriod(3)
+    inst.components.childspawner:SetMaxChildren(1)
+    --inst.components.childspawner.spawnoffscreen = true
+ 
+    inst:AddComponent("staticchargeable")
+    inst.components.staticchargeable:SetChargedFn(onchargedfn)
+    inst.components.staticchargeable:SetUnchargedFn(onunchargedfn)
+
 	MakeSmallBurnable(inst)
     MakeSmallPropagator(inst)
+
+    inst.OnSave = onsave
+    inst.OnLoad = onload
 	
     return inst
 end
 
-return Prefab( "common/inventory/gustflower", fn, assets) 
+return Prefab( "common/inventory/gustflower", fn, assets, prefabs) 

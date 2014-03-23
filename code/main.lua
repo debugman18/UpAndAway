@@ -264,6 +264,8 @@ local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
 			},
 		}	
 	
+		print("This is the worldgen screen.")
+
 		--We can replace the worldgen animation and strings.
 		self.worldanim:GetAnimState():SetBank("generating_cave")
 		self.worldanim:GetAnimState():SetBuild("generating_cloud")
@@ -374,6 +376,16 @@ table.insert(GLOBAL.CHARACTER_GENDERS.FEMALE, "winnie")
 --This adds our minimap atlases.
 AddMinimapAtlas("images/winnie.xml")
 AddMinimapAtlas("images/beanstalk.xml")
+AddMinimapAtlas("images/beanstalk_exit.xml")
+--AddMinimapAtlas("images/cloudcrag.xml")
+--AddMinimapAtlas("images/shopkeeper.xml")
+--AddMinimapAtlas("images/marshmallowhive.xml")
+--AddMinimapAtlas("images/cauldron.xml")
+--AddMinimapAtlas("images/weathermachine.xml")
+--AddMinimapAtlas("images/thundertree.xml")
+--AddMinimapAtlas("images/jellyshroomred.xml")
+--AddMinimapAtlas("images/jellyshroomgreen.xml")
+--AddMinimapAtlas("images/jellyshroomblue.xml")
 
 AddModCharacter("winnie")
 

@@ -68,6 +68,7 @@ end
 	    inst.Physics:CollidesWith(COLLISION.SANITY)
 	    --inst.Physics:CollidesWith(COLLISION.WORLD)
         
+        inst:AddComponent("inspectable")
          
         anim:SetBank("shadowcreature1")
         anim:SetBuild("shadow_insanity1_basic")

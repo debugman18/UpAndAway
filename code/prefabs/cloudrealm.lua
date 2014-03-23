@@ -210,6 +210,8 @@ local function fn(Sim)
     --ambientsoundmixer.wave_sound = GLOBAL.resolvefilepath("dontstarve/ocean/waves"))
    
 	inst:AddComponent("colourcubemanager")
+	local COLOURCUBE = "images/colour_cubes/snowdusk_cc.tex"
+	_G.GetWorld().components.colourcubemanager:SetOverrideColourCube(COLOURCUBE)
 	--inst.Map:SetOverlayTexture( "levels/textures/snow.tex" )
 	
 	inst:AddComponent("staticgenerator")

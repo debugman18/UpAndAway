@@ -96,7 +96,7 @@ local UpMenuScreen = Class(Screen, function(self, buttons)
     print("This is B.")
 
     self.text:SetPosition(0, -60, 0)
-    self.text:SetString("You are running version '" .. modinfo.version .. "' of Up and Away.\nThe latest version of Up and Away is 'prealpha'.\nThank you for playtesting, and being a part of our mod's development!")
+    self.text:SetString("You are running version '" .. modinfo.version .. "' of Up and Away.\nThe latest version of Up and Away is '" .. platform_modstatus.modversion .. "'.\nThank you for playtesting, and being a part of our mod's development!")
     self.text:EnableWordWrap(true)
     self.text:SetRegionSize(700, 350)
 

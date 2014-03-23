@@ -88,12 +88,18 @@ Assets = GLOBAL.JoinArrays(
 
 	{
 		Asset( "IMAGE", "bigportraits/winnie.tex" ),
-		Asset( "ATLAS", "bigportraits/winnie.xml" ),	
+		Asset( "ATLAS", "bigportraits/winnie.xml" ),
+
+		--Minimap icons.
+
 		Asset( "IMAGE", "images/winnie.tex" ),
 		Asset( "ATLAS", "images/winnie.xml" ),	
 		
 		Asset( "IMAGE", "images/beanstalk.tex" ),
 		Asset( "ATLAS", "images/beanstalk.xml" ),			
+
+		Asset( "IMAGE", "images/beanstalk_exit.tex" ),
+		Asset( "ATLAS", "images/beanstalk_exit.xml" ),			
 	},
 
 	-- Dummy end, just so we can put commas after everything.

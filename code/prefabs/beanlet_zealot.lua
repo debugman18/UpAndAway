@@ -79,11 +79,15 @@ local function fn(Sim)
     inst.components.locomotor.runspeed = 7
     inst:SetStateGraph("SGbeanlet")
 
+    inst.Transform:SetScale(1.4, 1.4, 1.4)
+
     inst.data = {}  
 
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(TUNING.PIG_GUARD_DAMAGE)
     inst.components.combat:SetAttackPeriod(TUNING.PIG_GUARD_ATTACK_PERIOD)
+
+    inst:RemoveComponent("burnable")
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(25)
