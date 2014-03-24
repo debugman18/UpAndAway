@@ -1,105 +1,40 @@
 # TODO for Up and Away
 __________
 
-Asset Progress Keys:
-___________
+- **Current bugs:**
 
-Code Completed : !C!
+-- Octocopter (Invisible)
+-- Scarecrow (Invisible)
+-- Cloud Bushes (Invisible on picked)
+-- Beanlet (Burning and Freezing)
+-- All objects using custom animations (Tiny player action hitboxes)
+-- Prefab density (Needs to be extensively improved)
+-- Worldgen Animation (Isn't loading; Vanilla bug)
 
-Code In Progress : %C%
- 
-Code Not Started : ^C^
+- **Art assets in need of attention**
 
-___________
+-- Weaver Den (All art assets, using spiderden bank or custom animations)
+-- Manta (All art assets, using buzzard bank or custom animations)
+-- Dragonblood Tree (All art assets, using banana tree bank or custom animations)
+-- Cloud Fruit Tree (All art assets, using banana tree bank or custom animations)
+-- Living Gnomes (All art assets, using custom animations)
+-- Bean Giant (All art assets, using deerclops bank or custom animations)
+-- Golden Sunflower (All art assets, using custom animations)
+-- Gustflower (All art assets, using custom animations)
+-- Various minimap icons. (For various objects in the world)
+-- Balloon Hound (All art assets, using custom animations)
 
-Art Completed : !A!
+- **Code assets in need of attention**
 
-Art In Progress : %A%
- 
-Art Not Started : ^A^
+-- Weaver Den (Additional functionality needed)
+-- Gnomes (All functionality needed)
+-- Beanstalk (Sapling/Growth functionality needed)
+-- Golden Egg (Freezing functionality needed)
+-- Beanlet Zealots (Cult functionality needed)
+-- Octocopter sequence (All functionality needed)
+-- Balloon Hound (All functionality needed)
+__________________
 
-___________
-
-Animations Completed : !M!
-
-Animations In Progress : %M%
- 
-Animations Not Started : ^M^
-
-___________
-
-Strings Completed : !S!
-
-Strings In Progress : %S%
-
-Strings Not Started : ^S^
-
-___________
-
-"Aetheel",
-"Beanlet",
-"Beanstalk",
-"Beanstalk Chunk",
-"Beanstalk",
-"Beanstalk Wall",
-"Marshmallow Bee",
-"Candy Fruit",
-"Cat",
-"Cloudcrag",
-"Cloudbomb",
-"Cloudbush",	
-"Cloud Cotton",
-"Cloudfruit",
-"Cloud Chest",
-"Cloud Turf",
-"Crystal Axe",
-"Crystal Cap",
-"Crystal Deposit",
-"Crystal Lamp",
-"Crystal Moss",
-"Crystal Pickaxe",
-"Crystal Shard",
-"Crystal Shovel",
-"Crystal Wall",
-"Datura Petals",
-"Duckraptor",
-"Duckling",
-"Mother Duckraptor",
-"Flying Fish",
-"Golden Amulet",
-"Golden Egg",
-"Golden Golem",
-"Golden Rose",
-"Golden Petals",
-"Goose",
-"Marshmallow",	
-"Kite",
-"Lionant",
-"Strange Blob",
-"Longbill",
-"Magic Beans",
-"Baked Beans",
-"Bean Giant", 
-"Bean Sprout", 
-"Monolith", 
-"Moonflower",
-"Moonflower Seeds",
-"Owl", --
-"Pineapple Bush", 
-"Pineapple",
-"Research Lectern",
-"Sheep",
-"Shopkeeper",
-"Skyflower",
-"Skyflower Petals",
-"Golden Sunflower",
-"Golden Sunflower Seeds",
-"Golden Chest",
-"Lightning Bug",
-"Sky Lemur", 
-"Thunder Tree", 
-"Tropospherical Relay", 
-"Storm Axe", 
-
-
+Anything else that needs to be added will be added, current version is from memory. 
+If something is missing (bugs or otherwise), let either @simplex or @debugman18 know.
 
