@@ -11,7 +11,7 @@ __________
 
 -- Beanlet (Burning and Freezing)
 
--- All objects using custom animations (Tiny player action hitboxes)
+-- All objects using custom animations (Tiny player action hitboxes; Vanilla bug?)
 
 -- Prefab density (Needs to be extensively improved)
 
@@ -43,15 +43,11 @@ __________
 
 - **Code assets in need of attention**
 
--- Weaver Den (Additional functionality needed)
-
 -- Weaver Bird (All functionality needed)
 
 -- Manta (All functionality needed)
 
 -- Gnomes (All functionality needed)
-
--- Beanstalk (Sapling/Growth functionality needed)
 
 -- Golden Egg (Freezing functionality needed)
 
