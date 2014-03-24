@@ -55,6 +55,7 @@ PrefabFiles = {
 	
 	"beanstalk_chunk",	
 	"magic_beans",
+	"beanstalk_sapling",
 	
 	--"bean_sprout",	
 	

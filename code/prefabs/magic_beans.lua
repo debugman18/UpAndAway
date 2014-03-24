@@ -1,8 +1,9 @@
 BindGlobal()
-
+require "prefabutil"
 local assets =
 {
 	Asset("ANIM", "anim/magic_beans.zip"),
+	Asset("ANIM", "anim/pinecone.zip"),
 	
 	Asset( "ATLAS", "images/inventoryimages/magic_beans.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/magic_beans.tex" ),
@@ -14,6 +15,8 @@ local assets =
 local prefabs =
 {
 	"magic_beans_cooked",
+	"beanstalk",
+	"beanstalk_sapling",
 }
 
 local function test_ground(inst, pt)
@@ -37,15 +40,13 @@ local function test_ground(inst, pt)
 end
 
 local function ondeploy(inst, pt)
-	local tree = SpawnPrefab("beanstalk") 
+	local tree = SpawnPrefab("beanstalk_sapling") 
 	if tree then 
 		tree.Transform:SetPosition(pt.x, pt.y, pt.z)
-		inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentapiller_emerge") 
-		inst.AnimState:PlayAnimation("emerge")		
-        inst.AnimState:PushAnimation("idle", "loop")		
-		inst.components.stackable:Get():Remove()
-		GetPlayer().AnimState:PlayAnimation("wakeup")
 	end 
+	_G.DeleteCloseEntsWithTag(inst, "mound", 2)
+	inst:Remove()
+	print("Mound deleted.")
 end
 
 local function common(Sim)
@@ -96,4 +97,5 @@ end
 return {
 	Prefab ("common/inventory/magic_beans", common, assets, prefabs), 
 	Prefab ("common/inventory/magic_beans_cooked", cooked, assets, prefabs),
+	MakePlacer ("common/beanstalk_sapling_placer", "pinecone", "pinecone", "idle_planted"),	
 }

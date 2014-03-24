@@ -2,11 +2,11 @@ BindGlobal()
 
 local prefabs =
 {
-	"spider",
-    "spider_warrior",
-    "silk",
-    "spidereggsack",
-    "spiderqueen",
+	"robin",
+    "robin_winter",
+    "crow",
+    "twigs",
+    "cutgrass",
 }
 
 local assets =
@@ -15,15 +15,14 @@ local assets =
 	Asset("SOUND", "sound/spider.fsb"),
 }
 
-
 local function SetStage(inst, stage)
 	if stage <= 3 then
 		inst.SoundEmitter:PlaySound("dontstarve/creatures/spider/spiderLair_grow")
 		if inst.components.childspawner then
-			inst.components.childspawner:SetMaxChildren(TUNING.SPIDERDEN_SPIDERS[stage])
+			inst.components.childspawner:SetMaxChildren(10)
 		end
 		if inst.components.health then
-			inst.components.health:SetMaxHealth(TUNING.SPIDERDEN_HEALTH[stage])
+			inst.components.health:SetMaxHealth(50)
 		end
     
 		inst.AnimState:PlayAnimation(inst.anims.init)
@@ -42,16 +41,16 @@ local function SetSmall(inst)
     	thaw="frozen_loop_pst_small",
     }
     SetStage(inst, 1)
-    inst.components.lootdropper:SetLoot({ "twigs","twigs"})
+    inst.components.lootdropper:SetLoot({ "twigs","twigs","cutgrass"})
 
     if inst.components.burnable then
         inst.components.burnable:SetFXLevel(3)
-        inst.components.burnable:SetBurnTime(10)
+        inst.components.burnable:SetBurnTime(0)
     end
 
     if inst.components.freezable then
 	    inst.components.freezable:SetShatterFXLevel(3)
-	    inst.components.freezable:SetResistance(2)
+	    inst.components.freezable:SetResistance(6)
     end
 
 	inst.GroundCreepEntity:SetRadius( 5 )
@@ -67,16 +66,16 @@ local function SetMedium(inst)
     	thaw="frozen_loop_pst_medium",
     }
     SetStage(inst, 2)
-    inst.components.lootdropper:SetLoot({ "twigs","twigs","cutgrass","cutgrass"})
+    inst.components.lootdropper:SetLoot({ "twigs","twigs","cutgrass","cutgrass","cutgrass"})
 
     if inst.components.burnable then
         inst.components.burnable:SetFXLevel(3)
-        inst.components.burnable:SetBurnTime(10)
+        inst.components.burnable:SetBurnTime(0)
     end
 
     if inst.components.freezable then
 	    inst.components.freezable:SetShatterFXLevel(4)
-	    inst.components.freezable:SetResistance(3)
+	    inst.components.freezable:SetResistance(6)
     end
 
 	inst.GroundCreepEntity:SetRadius( 9 )
@@ -91,22 +90,22 @@ local function SetLarge(inst)
     	thaw="frozen_loop_pst_large",
     }
     SetStage(inst, 3)
-    inst.components.lootdropper:SetLoot({ "twigs","twigs","cutgrass","cutgrass","cutgrass","cutgrass", "bird_egg"})
+    inst.components.lootdropper:SetLoot({ "twigs","twigs","cutgrass","cutgrass","cutgrass","cutgrass", "bird_egg", "bird_egg"})
 
     if inst.components.burnable then
         inst.components.burnable:SetFXLevel(4)
-        inst.components.burnable:SetBurnTime(15)
+        inst.components.burnable:SetBurnTime(0)
     end
 
     if inst.components.freezable then
 	    inst.components.freezable:SetShatterFXLevel(5)
-	    inst.components.freezable:SetResistance(4)
+	    inst.components.freezable:SetResistance(6)
     end
 
 	inst.GroundCreepEntity:SetRadius( 9 )
 end
 
-local function AttemptMakeQueen(inst)
+local function SpawnWeaverGuardian(inst)
 	if inst.data.stage == nil or inst.data.stage ~= 3 then
 		-- we got here directly (probably by loading), so reconfigure to the level 3 state.
 		SetLarge(inst)
@@ -140,18 +139,18 @@ local function AttemptMakeQueen(inst)
 	inst.AnimState:PushAnimation("cocoon_small", true)
 	
 
-	inst.SoundEmitter:PlaySound("dontstarve/creatures/spiderqueen/legburst")
-	inst:DoTaskInTime(5*FRAMES, function() inst.SoundEmitter:PlaySound("dontstarve/creatures/spiderqueen/legburst") end)
-	inst:DoTaskInTime(15*FRAMES, function() inst.SoundEmitter:PlaySound("dontstarve/creatures/spiderqueen/legburst") end)
+	--inst.SoundEmitter:PlaySound("dontstarve/creatures/spiderqueen/legburst")
+	--inst:DoTaskInTime(5*FRAMES, function() inst.SoundEmitter:PlaySound("dontstarve/creatures/spiderqueen/legburst") end)
+	--inst:DoTaskInTime(15*FRAMES, function() inst.SoundEmitter:PlaySound("dontstarve/creatures/spiderqueen/legburst") end)
 	
 	inst:DoTaskInTime(35*FRAMES, function() 
-		local queen = SpawnPrefab("crow")
+		local weaverguardian = SpawnPrefab("crow")
 		local pt = Vector3(inst.Transform:GetWorldPosition())
 		local rad = 1.25
 		local angle = math.random(2*PI)
 		pt = pt + Vector3(rad*math.cos(angle), 0, rad*math.sin(angle))
-		queen.Transform:SetPosition(pt:Get())
-		--queen.sg:GoToState("birth")
+		weaverguardian.Transform:SetPosition(pt:Get())
+		--weaverguardian.sg:GoToState("birth")
 		
 		if not should_duplicate then
 			inst:Remove()
@@ -197,10 +196,10 @@ local function SpawnDefenders(inst, attacker)
                 else
                     inst.components.childspawner.childname = "robin"
                 end
-                local spider = inst.components.childspawner:SpawnChild()
-                if spider and attacker and spider.components.combat then
-                    spider.components.combat:SetTarget(attacker)
-                    spider.components.combat:BlankOutAttacks(1.5 + math.random()*2)
+                local weaver = inst.components.childspawner:SpawnChild()
+                if weaver and attacker and weaver.components.combat then
+                    weaver.components.combat:SetTarget(attacker)
+                    weaver.components.combat:BlankOutAttacks(1.5 + math.random()*2)
                 end
             end
             inst.components.childspawner.childname = "robin_winter"
@@ -230,7 +229,6 @@ local function SpawnInvestigators(inst, data)
         end
     end
 end
-
 
 local function StartSpawning(inst)
     if inst.components.childspawner then
@@ -305,8 +303,6 @@ local function GetLargeGrowTime(inst)
 	return TUNING.SPIDERDEN_GROW_TIME[3]+ math.random()*TUNING.SPIDERDEN_GROW_TIME[3]
 end
 
-
-
 local function OnEntityWake(inst)
     inst.SoundEmitter:PlaySound("dontstarve/creatures/spider/spidernest_LP", "loop")
 end
@@ -315,12 +311,11 @@ local function OnEntitySleep(inst)
 	inst.SoundEmitter:KillSound("loop")
 end
 
-
 local growth_stages = {
     {name="small", time = GetSmallGrowTime, fn = SetSmall },
     {name="med", time = GetMedGrowTime , fn = SetMedium },
 	{name="large", time = GetLargeGrowTime, fn = SetLarge},
-	{name="queen", fn = AttemptMakeQueen}}
+	{name="queen", fn = SpawnWeaverGuardian}}
 
 local function MakeWeaverNestFn(den_level)
 	local weavernest_fn = function(Sim)
@@ -409,8 +404,6 @@ local function MakeWeaverNestFn(den_level)
 
 	return weavernest_fn
 end
-
-	
 
 return {
 	   Prefab( "forest/monsters/weavernest", MakeWeaverNestFn(1), assets, prefabs ),

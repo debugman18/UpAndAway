@@ -301,11 +301,14 @@ do
 end
 
 local function OnUnlock(inst)
-    local tree = SpawnPrefab("beanstalk")
+    local tree = SpawnPrefab("beanstalk_sapling")
     if not inst.components.lock:IsLocked() and tree then
         tree.Transform:SetPosition(inst.Transform:GetWorldPosition() )
         print "Unlocked"
     end
+	--_G.DeleteCloseEntsWithTag(inst, "mound", 2)
+	--inst:Remove()
+	--print("Mound deleted.")
     print "Locked"
 end
 
@@ -378,7 +381,7 @@ AddMinimapAtlas("images/winnie.xml")
 AddMinimapAtlas("images/beanstalk.xml")
 AddMinimapAtlas("images/beanstalk_exit.xml")
 --AddMinimapAtlas("images/cloudcrag.xml")
---AddMinimapAtlas("images/shopkeeper.xml")
+AddMinimapAtlas("images/shopkeeper.xml")
 --AddMinimapAtlas("images/marshmallowhive.xml")
 --AddMinimapAtlas("images/cauldron.xml")
 --AddMinimapAtlas("images/weathermachine.xml")

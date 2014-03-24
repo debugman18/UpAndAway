@@ -91,11 +91,34 @@ local StaticLayout = GLOBAL.require("map/static_layout")
 -- We'll just use an existing layout here, but feel free to add your own in a
 -- scripts/map/static_layouts folder.
 Layouts["ShopkeeperStall"] = StaticLayout.Get("map/static_layouts/shopkeeper_stall")
--- Add this layout to every "forest" room in the game
-AddRoomPreInit("Graveyard", function(room)
+
+AddRoomPreInit("PigKingdom", function(room)
 	if not room.contents.countstaticlayouts then
 		room.contents.countstaticlayouts = {}
 	end
 	room.contents.countstaticlayouts["ShopkeeperStall"] = 1
 end)
 
+GLOBAL.require("constants")
+local GROUND = GLOBAL.GROUND
+
+AddRoom("Shopkeeper", {
+	colour={r=.010,g=.010,b=.10,a=.50},
+	value = GROUND.MARSH,
+	contents =  {
+			countprefabs= {
+				shopkeeper = 1,
+				gravestone = function () return 4 + math.random(4) end,
+				marblepillar = function () return 1 + math.random(3) end
+		}
+	}
+})
+
+--[[
+local function InsertShopkeeper(task)
+	-- Insert the custom room we created above into the task.
+	-- We could modify the task here as well.
+	task.room_choices["Shopkeeper"] = 1
+end
+AddTaskPreInit("One of everything", InsertShopkeeper)
+]]--

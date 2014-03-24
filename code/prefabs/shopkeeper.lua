@@ -347,6 +347,9 @@ local function fn(Sim)
 	inst.components.activatable.OnActivate = onactivate
 	inst.components.activatable.quickaction = true
 
+    inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("shopkeeper.tex")
+
 	return inst
 end
 

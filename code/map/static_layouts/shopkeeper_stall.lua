@@ -64,18 +64,7 @@ return {
         },
         {
           name = "",
-          type = "marblepillar",
-          shape = "rectangle",
-          x = 300,
-          y = 300,
-          width = 0,
-          height = 0,
-          visible = true,
-          properties = {}
-        },   
-        {
-          name = "",
-          type = "marblepillar",
+          type = "skyflower",
           shape = "rectangle",
           x = 150,
           y = 150,
@@ -86,7 +75,7 @@ return {
         },    
         {
           name = "",
-          type = "marblepillar",
+          type = "skyflower",
           shape = "rectangle",
           x = 250,
           y = 250,
