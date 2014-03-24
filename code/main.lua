@@ -309,7 +309,7 @@ local function OnUnlock(inst)
 	--_G.DeleteCloseEntsWithTag(inst, "mound", 2)
 	--inst:Remove()
 	--print("Mound deleted.")
-    print "Locked"
+    --print "Locked"
 end
 
 local function addmoundtag(inst)

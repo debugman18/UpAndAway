@@ -97,5 +97,5 @@ end
 return {
 	Prefab ("common/inventory/magic_beans", common, assets, prefabs), 
 	Prefab ("common/inventory/magic_beans_cooked", cooked, assets, prefabs),
-	MakePlacer ("common/beanstalk_sapling_placer", "pinecone", "pinecone", "idle_planted"),	
+	MakePlacer ("common/beanstalk_sapling_placer", "beanstalk_sapling", "beanstalk_sapling", "idle"),	
 }

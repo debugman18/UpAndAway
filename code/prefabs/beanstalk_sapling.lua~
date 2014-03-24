@@ -2,7 +2,6 @@ BindGlobal()
 local assets =
 {
 	Asset("ANIM", "anim/beanstalk_sapling.zip"),
-	Asset("ANIM", "anim/pinecone.zip"),
 }
 
 local prefabs = 
@@ -12,12 +11,6 @@ local prefabs =
 
 local function GrowBeanstalk(inst)
 	local tree = SpawnPrefab("beanstalk") 
-	local player = GetPlayer()
-	local distToPlayer = inst:GetPosition():Dist(player:GetPosition())
-	local power = Lerp(3, 1, distToPlayer/180)
-	player.components.playercontroller:ShakeCamera(player, "VERTICAL", 0.5, 0.03, power, 40)
-	--GetPlayer().components.talker:Say(GetString(GetPlayer().prefab, "ANNOUNCE_BEANSTALK"))
-	GetPlayer().components.talker:Say("What could that be?!")
     if tree then 
 		tree.Transform:SetPosition(inst.Transform:GetWorldPosition() ) 
 		inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentapiller_emerge") 
@@ -29,7 +22,7 @@ local function GrowBeanstalk(inst)
 end
 
 local function plant(inst, growtime)
-    inst.AnimState:PlayAnimation("idle")
+    inst.AnimState:PlayAnimation("idle_planted")
     inst.SoundEmitter:PlaySound("dontstarve/wilson/plant_tree")
 end
 
@@ -40,22 +33,18 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
     MakeInventoryPhysics(inst)
 
-    inst.AnimState:SetBank("pinecone")
-    inst.AnimState:SetBuild("beancone")
-    inst.AnimState:PlayAnimation("idle_planted")
+    inst.AnimState:SetBank("beanstalk_sapling")
+    inst.AnimState:SetBuild("beanstalk_sapling")
+    inst.AnimState:PlayAnimation("idle")
 
     inst:AddComponent("inspectable")
     
 	MakeSmallBurnable(inst, TUNING.SMALL_BURNTIME)
     MakeSmallPropagator(inst)
 
-	inst:AddComponent("named")
-	inst.components.named:SetName("Beanstalk Sapling")
+    inst.Transform:SetScale(4, 4, 4)
 
-    --inst.Transform:SetScale(4, 4, 4)
-    inst:DoPeriodicTask(0, function() _G.DeleteCloseEntsWithTag(inst, "mound", 5) end, 0)
 	inst:ListenForEvent("fullmoon", function() GrowBeanstalk(inst) end, GetWorld())
-	print("Mound deleted.")
 
     return inst
 end
