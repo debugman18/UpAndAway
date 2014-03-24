@@ -39,9 +39,15 @@ __________
 
 -- Balloon Hound (All art assets, using custom animations)
 
+-- Rainbow Cloudturf and Snow/Icecream Cloudturg (All art assets, simply a tesselating image)
+
 - **Code assets in need of attention**
 
 -- Weaver Den (Additional functionality needed)
+
+-- Weaver Bird (All functionality needed)
+
+-- Manta (All functionality needed)
 
 -- Gnomes (All functionality needed)
 
