@@ -55,7 +55,6 @@ local function fn(Sim)
     --inst.Transform:SetScale(4, 4, 4)
     inst:DoPeriodicTask(0, function() _G.DeleteCloseEntsWithTag(inst, "mound", 5) end, 0)
 	inst:ListenForEvent("fullmoon", function() GrowBeanstalk(inst) end, GetWorld())
-	print("Mound deleted.")
 
     return inst
 end
