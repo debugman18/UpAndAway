@@ -24,9 +24,7 @@ local get_perish_rate = (function()
 	-- Temperature for which the rate is 1.
 	local base_temp = 30
 
-	local freeze_temp = cfg:GetConfig "FREEZE_TEMP"
-
-	assert( base_temp > freeze_temp )
+	assert( base_temp > 0 )
 	
 	return function(inst)
 		local temp = inst.components.temperature
@@ -34,7 +32,7 @@ local get_perish_rate = (function()
 
 		return math.max(
 			0,
-			(temp:GetCurrent() - freeze_temp)/(base_temp - freeze_temp)
+			temp:GetCurrent()/base_temp
 		)
 	end
 end)()
@@ -159,8 +157,17 @@ local function fn(Sim)
 	do
 		local inventoryitem = inst.components.inventoryitem
 
-		-- FIXME: remove this once we have a proper icon.
-		inventoryitem:ChangeImageName("tallbirdegg")
+		inst:ListenForEvent("startfreezing", function(inst)
+			if inst.components.inventoryitem then
+				inst.components.inventoryitem:ChangeImageName("golden_egg_frozen")
+			end
+		end)
+
+		inst:ListenForEvent("stopfreezing", function(inst)
+			if inst.components.inventoryitem then
+				inst.components.inventoryitem:ChangeImageName("golden_egg")
+			end
+		end)
 	end
 
 	inst:AddComponent("temperature")
