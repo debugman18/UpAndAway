@@ -192,7 +192,15 @@ CommonStates.AddWalkStates(
             TimeEvent(40*FRAMES, function(inst) inst.SoundEmitter:PlaySound(inst.sounds.walk) end),
         }
     })
-	
+CommonStates.AddRunStates(
+    states,
+    {
+        runtimeline = 
+        { 
+            TimeEvent(15*FRAMES, function(inst) inst.SoundEmitter:PlaySound(inst.sounds.walk) end),
+            TimeEvent(40*FRAMES, function(inst) inst.SoundEmitter:PlaySound(inst.sounds.walk) end),
+        }
+    })	
     
 return StateGraph("eel", states, events, "idle")
 

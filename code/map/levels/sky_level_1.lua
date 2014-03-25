@@ -41,6 +41,7 @@ local sky_level_1 = {
 	overrides={
 		{"location",		"cave"},
 
+		--{"world_size", 		"small"},
 		{"world_size", 		"medium"},
 		--{"world_size", 		"tiny"},
 		{"day", 			"onlydusk"}, 
@@ -101,9 +102,9 @@ local sky_level_1 = {
 	set_pieces = {
 		["OctocopterWreckage"] = { count=1, tasks={"Cloud_Aurora_Biome"} },	
 		["Cloudhenge"] = { count=1, tasks={"Cloud_Generic_Biome"} },	
-		["WitchGrove"] = { count=1, tasks={"Cloud_Aurora_Biome"} },	
-		["StrixShrine"] = { count=1, tasks={"Cloud_Snow_Biome"} },	
-		["CheshireHunting"] = { count=1, tasks={"Cloud_Rainbow_Biome"} },	
+		["WitchGrove"] = { count=1, tasks={"Cloud_Snow_Biome"} },	
+		["StrixShrine"] = { count=3, tasks={"Cloud_Aurora_Biome"} },	
+		["CheshireHunting"] = { count=5, tasks={"Cloud_Rainbow_Biome"} },	
 	},
 
 	ordered_story_setpieces = {

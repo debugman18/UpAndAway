@@ -13,8 +13,6 @@ __________
 
 -- All objects using custom animations (Tiny player action hitboxes; Vanilla bug?)
 
--- Prefab density (Needs to be extensively improved)
-
 -- Worldgen Animation (Isn't loading; Vanilla bug)
 
 - **Art assets in need of attention**
@@ -39,7 +37,7 @@ __________
 
 -- Balloon Hound (All art assets, using custom animations)
 
--- Rainbow Cloudturf and Snow/Icecream Cloudturg (All art assets, simply a tesselating image)
+-- Rainbow Cloudturf and Snow/Icecream Cloudturf (All art assets, simply a tesselating image)
 
 - **Code assets in need of attention**
 
@@ -49,13 +47,19 @@ __________
 
 -- Gnomes (All functionality needed)
 
--- Golden Egg (Freezing functionality needed)
-
 -- Beanlet Zealots (Cult functionality needed)
 
 -- Octocopter sequence (All functionality needed)
 
 -- Balloon Hound (All functionality needed)
+
+-- Water Crystal (Should launch Flying Fish when nearly completely mined)
+
+-- Flying Fish (See above)
+
+-- Recipes and Tech Tree
+
+-- Setpieces, setpieces, setpieces
 __________________
 
 Anything else that needs to be added will be added, current version is from memory. 

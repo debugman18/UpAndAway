@@ -97,15 +97,15 @@ local function fn()
     inst.components.locomotor.runspeed = 10
     inst.components.locomotor.walkspeed = 8
     
-	--inst:SetStateGraph(SGgoose")
-    inst:SetStateGraph("SGperd")
+	inst:SetStateGraph("SGgoose")
+    --inst:SetStateGraph("SGperd")
     --anim:Hide("hat")
 
     inst:AddTag("character")
 
-    inst:AddComponent("homeseeker")
-    --local brain = require "brains/goosebrain"
-	local brain = require "brains/perdbrain"
+    --inst:AddComponent("homeseeker")
+    local brain = require "brains/goosebrain"
+	--local brain = require "brains/perdbrain"
     inst:SetBrain(brain)
     
     inst:AddComponent("eater")

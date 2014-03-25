@@ -26,20 +26,18 @@ local loot =
 local MAX_TARGET_SHARES = 5
 local SHARE_TARGET_DIST = 40
 
-local function ShouldSleep(inst)
-    return GetClock():IsDay()
-           and not (inst.components.combat and inst.components.combat.target)
-           and not (inst.components.homeseeker and inst.components.homeseeker:HasHome() )
-end
+local function worshiprocks(inst)
 
-local function ShouldWake(inst)
-    return not GetClock():IsDay()
-           or (inst.components.combat and inst.components.combat.target)
-           or (inst.components.homeseeker and inst.components.homeseeker:HasHome() )
+end    
+
+local function ontalk(inst, script)
+    inst.SoundEmitter:PlaySound("dontstarve/pig/grunt")
 end
 
 local function RetargetFn(inst)
     local defenseTarget = inst
+    inst:DoPeriodicTask(10, function() inst.components.talker:Say("Whoo?", 3, noanim) end, 0)
+    inst:DoPeriodicTask(8, function() inst.components.talker:ShutUp() end, 3)
     local home = inst.components.homeseeker and inst.components.homeseeker.home
     if home and inst:GetDistanceSqToInst(home) < CFG.OWL.DEFEND_DIST*CFG.OWL.DEFEND_DIST then
         defenseTarget = home
@@ -60,6 +58,7 @@ local function KeepTargetFn(inst, target)
 end
 
 local function OnAttacked(inst, data)
+    inst.components.talker:Say("Whoo!", 2, noanim)
     local attacker = data and data.attacker
     if attacker and inst.components.combat:CanTarget(attacker) then
         inst.components.combat:SetTarget(attacker)
@@ -97,21 +96,19 @@ local function fn()
     inst.components.locomotor.runspeed = 10
     inst.components.locomotor.walkspeed = 8
     
-    inst:SetStateGraph("SGmerm")
+    inst:SetStateGraph("SGowl")
     anim:Hide("hat")
 
     inst:AddTag("character")
     inst:AddTag("owl")
 
-    local brain = require "brains/mermbrain"
+    local brain = require "brains/owlbrain"
     inst:SetBrain(brain)
     
     inst:AddComponent("eater")
     inst.components.eater:SetVegetarian()
-    
-    inst:AddComponent("sleeper")
-    inst.components.sleeper:SetWakeTest(ShouldWake)
-    inst.components.sleeper:SetSleepTest(ShouldSleep)
+
+    --local home = FindEntity(inst, 6, function(ent) end, {"crystal_relic"})
 
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "pig_torso"
@@ -131,12 +128,22 @@ local function fn()
     inst:AddComponent("inspectable")
     inst.components.inspectable.nameoverride = "Strix"
 
+    inst:AddComponent("homeseeker")
     inst:AddComponent("knownlocations")
     
     MakeMediumBurnableCharacter(inst, "pig_torso")
     MakeMediumFreezableCharacter(inst, "pig_torso")
 
     inst:ListenForEvent("attacked", OnAttacked)
+
+    inst:AddComponent("talker")
+    inst.components.talker.ontalk = ontalk
+    inst.components.talker.fontsize = 35
+    inst.components.talker.font = TALKINGFONT
+    inst.components.talker.offset = Vector3(0,-400,0)  
+    inst.components.talker:StopIgnoringAll()  
+
+    inst:DoPeriodicTask(1, worshiprocks(inst), 0)
     
     return inst
 end

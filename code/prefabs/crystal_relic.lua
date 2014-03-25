@@ -22,6 +22,7 @@ local loot =
         
 local function onMined(inst, worker)
     inst:RemoveComponent("childspawner")
+    inst:RemoveComponent("resurrector")
 	inst.components.lootdropper:DropLoot()
 	inst.SoundEmitter:PlaySound("dontstarve/common/destroy_rock")
 
@@ -82,6 +83,8 @@ local function doresurrect(inst, dude)
         end)
         
     end)
+
+    inst:Remove()
 end
 
 local function makeactive(inst)
@@ -122,7 +125,7 @@ end
 
 local function OnSpawned(inst, child)
 	inst.SoundEmitter:PlaySound("dontstarve/common/pighouse_door")
-	if GetClock():IsDay() and inst.components.childspawner and inst.components.childspawner:CountChildrenOutside() >= 3 and not child.components.combat.target then
+	if GetClock():IsDay() and inst.components.childspawner and inst.components.childspawner:CountChildrenOutside() >= 5 and not child.components.combat.target then
         StopSpawning(inst)
     end
 end
@@ -179,6 +182,8 @@ local function fn()
 
     inst:AddComponent("inspectable")
     inst.components.inspectable.nameoverride = "Sacred Crystal"
+
+    inst.components.childspawner:StartSpawning() 
 	
 	--MakeSnowCovered(inst, .01)
     return inst

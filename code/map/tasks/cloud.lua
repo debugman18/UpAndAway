@@ -6,10 +6,11 @@ TheMod:AddTask("Cloud_Generic_Biome", {
 
 	room_choices={
 		["SkyflowerGarden"] = math.random(1, 1),
-		["SheepHerd"] = math.random(1, 1),
-		["BushGarden"] = math.random(1, 1),
+		["SheepHerd"] = math.random(1, 3),
+		["BushGarden"] = math.random(1, 4),
 		["Bigbird_Nest"] = math.random(1,2),	
-		["Sea_Mimic"] = math.random(1,2),		
+		["Sea_Mimic"] = math.random(1,2),	
+		["Vine_Room"] = math.random(2,2),	
 	},
 
 	room_bg=GROUND.POOPCLOUD,
@@ -30,7 +31,7 @@ TheMod:AddTask("Cloud_Snow_Biome", {
 	room_choices={
 		["Thunder_Forest"] = math.random(2, 4),
 		["Manta_Room"] = math.random(2,3),
-		["Sea_Mimic"] = math.random(1,1),	
+		["Sea_Mimic"] = math.random(1,3),	
 		["CragLanding"] = math.random(1,2),	
 	},
 
@@ -40,7 +41,7 @@ TheMod:AddTask("Cloud_Snow_Biome", {
   	-- The number of neighbors beyond the first that each node links to
   	crosslink_factor = 4,
   	-- Whether or not to connect the last node to the first
-  	make_loop = true,	
+  	make_loop = false,	
 })
 
 
@@ -52,7 +53,7 @@ TheMod:AddTask("Cloud_Aurora_Biome", {
 	room_choices={
 		["CragLanding"] = math.random(1,2),
 		["Vine_Room"] = math.random(1,2),
-		["Beanlet_Den"] = math.random(1,1),		
+		["Beanlet_Den"] = math.random(2,4),		
 		["Crystal_Fields"] = math.random(2,2),		
 		["SheepHerd"] = math.random(1, 2),
 	},

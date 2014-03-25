@@ -61,29 +61,7 @@ return {
           height = 0,
           visible = true,
           properties = {}
-        },
-        {
-          name = "",
-          type = "skyflower",
-          shape = "rectangle",
-          x = 150,
-          y = 150,
-          width = 0,
-          height = 0,
-          visible = true,
-          properties = {}
-        },    
-        {
-          name = "",
-          type = "skyflower",
-          shape = "rectangle",
-          x = 250,
-          y = 250,
-          width = 0,
-          height = 0,
-          visible = true,
-          properties = {}
-        }   
+        } 
       }
     }
   }
