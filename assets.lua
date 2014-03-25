@@ -45,6 +45,7 @@ Assets = GLOBAL.JoinArrays(
 		"blacktea",
 		"tea_leaves",
 		"blacktea_leaves",
+		"golden_egg",
 	},
 
 	InventoryImageTextures {

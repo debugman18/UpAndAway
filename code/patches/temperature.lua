@@ -30,3 +30,14 @@ Temperature.SetTemperature = (function()
 		end
 	end
 end)()
+
+Temperature.OnLoad = (function()
+	local oldOnLoad = Temperature.OnLoad
+
+	return function(self, data)
+		if data.current then
+			self:SetTemperature(data.current)
+		end
+		return oldOnLoad(self, data)
+	end
+end)()

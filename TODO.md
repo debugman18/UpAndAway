@@ -15,6 +15,8 @@ __________
 
 -- Worldgen Animation (Isn't loading; Vanilla bug)
 
+-- Skyflies (Misc distsq bug)
+
 - **Art assets in need of attention**
 
 -- Weaver Den (All art assets, using spiderden bank or custom animations)
@@ -53,13 +55,21 @@ __________
 
 -- Balloon Hound (All functionality needed)
 
+<<<<<<< HEAD
+=======
+-- Owls (Cult functionality needed)
+
+>>>>>>> 48b5866f6e3593bcf04a0fd5b545a9d16ca87c5d
 -- Water Crystal (Should launch Flying Fish when nearly completely mined)
 
 -- Flying Fish (See above)
 
 -- Recipes and Tech Tree
+<<<<<<< HEAD
 
 -- Setpieces, setpieces, setpieces
+=======
+>>>>>>> 48b5866f6e3593bcf04a0fd5b545a9d16ca87c5d
 __________________
 
 Anything else that needs to be added will be added, current version is from memory. 

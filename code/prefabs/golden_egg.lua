@@ -24,9 +24,7 @@ local get_perish_rate = (function()
 	-- Temperature for which the rate is 1.
 	local base_temp = 30
 
-	local freeze_temp = cfg:GetConfig "FREEZE_TEMP"
-
-	assert( base_temp > freeze_temp )
+	assert( base_temp > 0 )
 	
 	return function(inst)
 		local temp = inst.components.temperature
@@ -34,7 +32,7 @@ local get_perish_rate = (function()
 
 		return math.max(
 			0,
-			(temp:GetCurrent() - freeze_temp)/(base_temp - freeze_temp)
+			temp:GetCurrent()/base_temp
 		)
 	end
 end)()
@@ -47,7 +45,60 @@ local function force_drop(inst)
 	end
 end
 
+--[[
+-- Changes graphical attributes based on the current temperature and charge
+-- state.
+--]]
+local function recalculate_graphics(inst)
+	if not inst:IsValid() then return end
+
+	local temperature = inst.components.temperature
+	local chargeable = inst.components.staticchargeable
+	local inventoryitem = inst.components.inventoryitem
+
+	inst.SoundEmitter:KillSound("uncomfy")
+	inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
+	inst.AnimState:Resume()
+	inst.AnimState:PlayAnimation("egg", true)
+	if inventoryitem then
+		inventoryitem:ChangeImageName("golden_egg")
+	end
+
+
+	if inst.corrupting then return end
+
+	if temperature then
+		if temperature:IsFreezing() then
+			inst.SoundEmitter:PlaySound("dontstarve/creatures/egg/egg_cold_freeze", "uncomfy")
+			inst.AnimState:PlayAnimation("toocold")
+			inst.AnimState:SetPercent("toocold", 0.3)
+			inst.AnimState:Pause()
+			inst.AnimState:ClearBloomEffectHandle()
+			if inventoryitem then
+				inventoryitem:ChangeImageName("golden_egg_frozen")
+			end
+		else
+			if chargeable and chargeable:IsCharged() then
+				inst.SoundEmitter:PlaySound("dontstarve/creatures/egg/egg_hot_steam_LP", "uncomfy")
+				inst.AnimState:PlayAnimation("idle_hot", true)
+			end
+		end
+	end
+end
+
+local function on_freeze(inst)
+	recalculate_graphics(inst)
+end
+
+local function on_thaw(inst)
+	recalculate_graphics(inst)
+end
+
 local function corruptegg(inst)
+	inst.corrupting = true
+
+	recalculate_graphics(inst)
+
 	force_drop(inst)
 
 	--inst.AnimState:SetColour(60/255,60/255,60/255)
@@ -79,9 +130,7 @@ local function on_charged(inst)
 		force_drop(inst)
 	end
 
-	if inst.components.temperature then
-		inst.AnimState:PlayAnimation("idle_hot", true)
-	end
+	recalculate_graphics(inst)
 	
 	inst:StartThread(function()
 		local charge_rate = 100/cfg:GetConfig("BASE_CHARGE_TIME")
@@ -121,10 +170,22 @@ local function on_uncharged(inst)
 		inst.components.inventoryitem.canbepickedup = true
 	end
 
-	inst.AnimState:PlayAnimation("egg")
+	recalculate_graphics(inst)
 end
 
-local function fn(Sim)
+local function OnSave(inst)
+	if inst.corrupting then
+		return {corrupting = true}
+	end
+end
+
+local function OnLoad(inst, data)
+	if data and data.corrupting then
+		corruptegg(inst)
+	end
+end
+
+local function fn()
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
@@ -159,16 +220,30 @@ local function fn(Sim)
 	do
 		local inventoryitem = inst.components.inventoryitem
 
-		-- FIXME: remove this once we have a proper icon.
-		inventoryitem:ChangeImageName("tallbirdegg")
+		inventoryitem.atlasname = "images/inventoryimages/golden_egg.xml"
+
+		
 	end
 
 	inst:AddComponent("temperature")
-	inst.components.temperature.maxtemp = cfg:GetConfig "MAX_TEMP"
-	inst.components.temperature.mintemp = cfg:GetConfig "MIN_TEMP"
-	inst.components.temperature.current = cfg:GetConfig "INITIAL_TEMP"
-	inst.components.temperature.inherentinsulation = TUNING.INSULATION_MED
-	inst:AddTag("show_temperature")
+	do
+		local temperature = inst.components.temperature
+
+		temperature.maxtemp = cfg:GetConfig "MAX_TEMP"
+		temperature.mintemp = cfg:GetConfig "MIN_TEMP"
+		temperature.current = cfg:GetConfig "INITIAL_TEMP"
+		temperature.inherentinsulation = TUNING.INSULATION_MED
+
+		inst:AddTag("show_temperature")
+
+		inst:ListenForEvent("startfreezing", function(inst)
+			on_freeze(inst)
+		end)
+
+		inst:ListenForEvent("stopfreezing", function(inst)
+			on_thaw(inst)
+		end)
+	end
 
 	inst:AddComponent("heater")
 	inst.components.heater.heatfn = HeatFn
@@ -188,7 +263,6 @@ local function fn(Sim)
     inst:AddComponent("sanityaura")
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_LARGE
 	
-	inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
     inst.entity:AddLight()
 	inst.Light:SetRadius(.4)
     inst.Light:SetFalloff(1)
@@ -197,7 +271,12 @@ local function fn(Sim)
 	inst.Light:Enable(true)
 	inst.Light:SetDisableOnSceneRemoval(false)
 
+	inst.OnSave = OnSave
+	inst.OnLoad = OnLoad
+
+	recalculate_graphics(inst)
+
 	return inst
 end
 
-return Prefab ("common/inventory/golden_egg", fn, assets) 
+return Prefab ("common/inventory/golden_egg", fn, assets, prefabs) 
