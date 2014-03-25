@@ -8,46 +8,120 @@ local assets =
 
 local prefabs = 
 {
+	"goldnugget",
 	"duckraptor",
 }
 
+local cfg = wickerrequire("adjectives.configurable")("GOLDEN_EGG")
+local PatchedComponents = modrequire "patched_components"
+local Effects = modrequire "lib.effects"
+
 local function HeatFn(inst, observer)
-    --inst:DoPeriodicTask(1, function(inst)
-    	--if inst.components.temperature then
-    		--local heathotness = inst.components.temperature.current
-			--local heatdecay = heathotness / 100000
-			--local realhotness = heathotness - heatdecay 
-			--inst.components.temperature:SetTemperature(realhotness)
-		--end	
-    --end)   
     return inst.components.temperature:GetCurrent()	
 end
 
+local get_perish_rate = (function()
+	-- Temperature for which the rate is 1.
+	local base_temp = 30
+
+	local freeze_temp = cfg:GetConfig "FREEZE_TEMP"
+
+	assert( base_temp > freeze_temp )
+	
+	return function(inst)
+		local temp = inst.components.temperature
+		if not temp then return 0 end
+
+		return math.max(
+			0,
+			(temp:GetCurrent() - freeze_temp)/(base_temp - freeze_temp)
+		)
+	end
+end)()
+
+local function force_drop(inst)
+	local inventoryitem = inst.components.inventoryitem
+	if inventoryitem then
+		Effects.ThrowItemFromContainer(inst)
+		inventoryitem.canbepickedup = false
+	end
+end
+
 local function corruptegg(inst)
+	force_drop(inst)
+
 	--inst.AnimState:SetColour(60/255,60/255,60/255)
 	inst.Light:SetColour(60/255,60/255,60/255)
 
-	local corruption = SpawnPrefab("duckraptor")
-    corruption.Transform:SetPosition(inst.Transform:GetWorldPosition())	
+	local chargeable = inst.components.staticchargeable
+	if chargeable and chargeable:IsCharged() then
+		chargeable:HoldState(1.5)
+	end
 
-    local ashes = SpawnPrefab("ash")
-    ashes.Transform:SetPosition(inst.Transform:GetWorldPosition())
+	inst.SoundEmitter:PlaySound("dontstarve/creatures/egg/egg_hot_jump")
+	inst.AnimState:PlayAnimation("toohot")
 
-   	inst:Remove()
+	inst:DoTaskInTime(20*_G.FRAMES, function(inst)
+		inst.SoundEmitter:PlaySound("dontstarve/creatures/egg/egg_hot_explo")
+
+		local corruption = SpawnPrefab("duckraptor")
+		corruption.Transform:SetPosition(inst.Transform:GetWorldPosition())	
+
+		local ashes = SpawnPrefab("ash")
+		ashes.Transform:SetPosition(inst.Transform:GetWorldPosition())
+
+		inst:Remove()
+	end)
 end
 
-local function OnDropped(inst)
-	inst:AddComponent("temperature")
-	inst.components.temperature.maxtemp = 100
-	inst.components.temperature.mintemp = 0
-	inst.components.temperature.current = 100
-	inst.components.temperature.inherentinsulation = TUNING.INSULATION_MED
-end
+local function on_charged(inst)
+	if inst.components.inventoryitem then
+		force_drop(inst)
+	end
 
-local function OnPickedUp(inst)
 	if inst.components.temperature then
-		inst:RemoveComponent("temperature")
-	end	
+		inst.AnimState:PlayAnimation("idle_hot", true)
+	end
+	
+	inst:StartThread(function()
+		local charge_rate = 100/cfg:GetConfig("BASE_CHARGE_TIME")
+		
+		local chargeable = inst.components.staticchargeable
+
+		while true do
+			local player = GetPlayer()
+			if player and player.components.sanity and player.components.sanity:IsCrazy() then
+				corruptegg(inst)
+				break
+			end
+
+			local dt = 1 + math.random()
+			_G.Sleep(dt)
+
+			if not (inst:IsValid() and chargeable:IsCharged()) then
+				break
+			end
+
+			local temp = inst.components.temperature
+			if temp then
+				temp:SetTemp( temp:GetCurrent() + dt*charge_rate )
+			end
+		end
+
+		if not inst:IsValid() then return end
+
+		if inst.components.temperature then
+			inst.components.temperature:SetTemp(nil)
+		end
+	end)
+end
+
+local function on_uncharged(inst)
+	if inst.components.inventoryitem then
+		inst.components.inventoryitem.canbepickedup = true
+	end
+
+	inst.AnimState:PlayAnimation("egg")
 end
 
 local function fn(Sim)
@@ -63,42 +137,53 @@ local function fn(Sim)
 
     inst.Transform:SetScale(1.2, 1.2, 1.2)
 
+	--[[
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+	]]--
 
-	inst:ListenForEvent("upandaway_uncharge", function()
-		--inst.components.temperature.current = 80
-	end)
-	
 	inst:AddComponent("inspectable")
 
+	inst:AddComponent("staticchargeable")
+	do
+		local chargeable = inst.components.staticchargeable
+
+		chargeable:SetOnChargedFn(on_charged)
+		chargeable:SetOnUnchargedFn(on_uncharged)
+
+		chargeable:SetOnChargedDelay(math.random())
+		chargeable:SetOnUnchargedDelay(0.5*math.random())
+	end
+
 	inst:AddComponent("inventoryitem")
-	inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
-	inst.components.inventoryitem:SetOnPutInInventoryFn(OnPickedUp)	
+	do
+		local inventoryitem = inst.components.inventoryitem
+
+		-- FIXME: remove this once we have a proper icon.
+		inventoryitem:ChangeImageName("tallbirdegg")
+	end
 
 	inst:AddComponent("temperature")
-	inst.components.temperature.maxtemp = 100
-	inst.components.temperature.mintemp = 0
-	inst.components.temperature.current = 100
+	inst.components.temperature.maxtemp = cfg:GetConfig "MAX_TEMP"
+	inst.components.temperature.mintemp = cfg:GetConfig "MIN_TEMP"
+	inst.components.temperature.current = cfg:GetConfig "INITIAL_TEMP"
 	inst.components.temperature.inherentinsulation = TUNING.INSULATION_MED
+	inst:AddTag("show_temperature")
 
 	inst:AddComponent("heater")
 	inst.components.heater.heatfn = HeatFn
-	--inst.components.heater.carriedheatfn = HeatFn
+	inst.components.heater.carriedheatfn = HeatFn
 
-	inst:AddComponent("perishable")
-	inst.components.perishable.onperishreplacement = "goldnugget"
+	PatchedComponents.Add(inst, "flexible_perishable")
+	do
+		local perishable = inst.components.perishable
 
-    inst:DoPeriodicTask(1, function(inst)
-    	if inst.components.temperature then
-    		local hotness = inst.components.temperature.current
-			local neardecay = hotness / 4
-			local perishtime = hotness - neardecay 
-			inst.components.perishable:SetPerishTime(perishtime)
-			inst.components.perishable:StartPerishing()
-			print(perishtime)    
-		end	
-    end)    
+		perishable.onperishreplacement = "goldnugget"
+		perishable:SetPerishTime(cfg:GetConfig("BASE_PERISH_TIME"))
+		perishable:SetRate(get_perish_rate)
+		perishable:StartPerishing()
+	end
+	inst:AddTag("show_spoilage")
 
     inst:AddComponent("sanityaura")
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_LARGE
@@ -110,9 +195,7 @@ local function fn(Sim)
     inst.Light:SetIntensity(.5)
     inst.Light:SetColour(235/255,165/255,12/255)
 	inst.Light:Enable(true)
-
-	inst.player = GetPlayer()
-	inst.player:ListenForEvent("goinsane", function() corruptegg(inst) end)
+	inst.Light:SetDisableOnSceneRemoval(false)
 
 	return inst
 end

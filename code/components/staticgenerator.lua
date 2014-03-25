@@ -162,7 +162,9 @@ function StaticGenerator:OnLoad(data)
 	if type(state) == "string" then
 		state = state:upper()
 		if self.chain:IsState(state) then
-			self.chain:GoTo(state)
+			self.LoadPostPass = function()
+				self.chain:GoTo(state)
+			end
 		end
 	end
 end

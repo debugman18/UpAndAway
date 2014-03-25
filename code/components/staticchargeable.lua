@@ -54,6 +54,15 @@ local StaticChargeable = Class(Debuggable, function(self, inst)
 		self.inst:RemoveEventCallback("upandaway_charge", charge_callback, GetWorld())
 		self.inst:RemoveEventCallback("upandaway_uncharge", uncharge_callback, GetWorld())
 	end
+
+	inst:DoTaskInTime(0, function(inst)
+		if GetStaticGenerator():IsCharged() then
+			local c = inst.components.staticchargeable
+			if inst:IsValid() and c then
+				c:Charge()
+			end
+		end
+	end)
 end)
 
 ---
@@ -270,8 +279,8 @@ end
 -- Calls Charge() or Uncharge() appropriately.
 function StaticChargeable:OnLoad(data)
 	if data then
-		self.charged = data.c and true or false
-		if self.charged then
+		local charged = data.c
+		if charged then
 			self:Charge()
 		else
 			self:Uncharge()

@@ -68,7 +68,6 @@ local function do_charged_effects(self)
 	Sleep(self:GetConfig "FX_TRANSITION_DELAY")
 
 
-
 	local wait = (function()
 		local min, max = unpack(self:GetConfig "LIGHTNING_DELAY")
 		return function()
@@ -105,7 +104,11 @@ function CloudAmbientManager:OnEnterState(state)
 
 	local target_colour = assert( self.colours[state] )
 
-	clock:LerpAmbientColour(self.current_colour, target_colour, self.transition_time)
+	local colour_transition_time = self.transition_time
+	if self.inst:GetTimeAlive() <= 2*_G.FRAMES then
+		colour_transition_time = 0
+	end
+	clock:LerpAmbientColour(self.current_colour, target_colour, colour_transition_time)
 
 	if state == "CHARGED" then
 		local thread = self.inst:StartThread(function() do_charged_effects(self) end)

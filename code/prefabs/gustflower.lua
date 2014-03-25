@@ -11,6 +11,8 @@ local prefabs=
     "whirlwind",
 }
 
+local cfg = wickerrequire("adjectives.configurable")("GUSTFLOWER")
+
 local function onpickedfn(inst)
 	--inst:Remove()
 end
@@ -68,7 +70,7 @@ local function fn(Sim)
     inst:AddComponent("childspawner")
     inst.components.childspawner.childname = "whirlwind"
     inst.components.childspawner:SetSpawnedFn(OnSpawned)
-    inst.components.childspawner:SetRegenPeriod(TUNING.TUMBLEWEED_REGEN_PERIOD)
+    inst.components.childspawner:SetRegenPeriod(cfg:GetConfig("WHIRLWIND_SPAWN_PERIOD"))
     inst.components.childspawner:SetSpawnPeriod(3)
     inst.components.childspawner:SetMaxChildren(1)
     --inst.components.childspawner.spawnoffscreen = true
