@@ -6,5 +6,6 @@ make/config.mk
 
 # Patterns
 /*.zip
-**/*.lnk
+*.lnk
+*~
 **/.git/
