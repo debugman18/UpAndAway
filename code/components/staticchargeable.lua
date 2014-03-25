@@ -173,10 +173,10 @@ function StaticChargeable:Charge(force)
 	if not self.charged and not self:IsInHeldState() or force then
 		self:DebugSay("Charge()")
 		self.toggle_states_on_release = nil
+		self.charged = true
 		if self.onchargedfn then
 			self.onchargedfn(self.inst)
 		end
-		self.charged = true
 	elseif self:IsInHeldState() then
 		self.toggle_states_on_release = not self.charged
 	end
@@ -190,10 +190,10 @@ function StaticChargeable:Uncharge(force)
 	if self.charged and not self:IsInHeldState() or force then
 		self:DebugSay("Uncharge()")
 		self.toggle_states_on_release = nil
+		self.charged = false
 		if self.onunchargedfn then
 			self.onunchargedfn(self.inst)
 		end
-		self.charged = false
 	elseif self:IsInHeldState() then
 		self.toggle_states_on_release = self.charged
 	end
