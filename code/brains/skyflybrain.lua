@@ -11,7 +11,7 @@ end)
 
 local function GetFollowTarget(skyflies)
     if skyflies.brain.followtarget then
-        if (not skyflies.brain.followtarget.components.health or skyflies.brain.followtarget.components.health:IsDead()) or
+        if not skyflies.brain.followtarget:IsValid() or not skyflies.brain.followtarget.components.health or skyflies.brain.followtarget.components.health:IsDead() or
             skyflies:GetDistanceSqToInst(skyflies.brain.followtarget) > 20*8 then
             skyflies.brain.followtarget = nil
         end
