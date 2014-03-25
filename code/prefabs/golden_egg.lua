@@ -157,6 +157,8 @@ local function fn(Sim)
 	do
 		local inventoryitem = inst.components.inventoryitem
 
+		inventoryitem.atlasname = "images/golden_egg.xml"
+
 		inst:ListenForEvent("startfreezing", function(inst)
 			if inst.components.inventoryitem then
 				inst.components.inventoryitem:ChangeImageName("golden_egg_frozen")
