@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/cave_banana_tree.zip"),
+	Asset("ANIM", "anim/dragonblood_tree.zip"),
 }
 
 local prefabs =
@@ -33,9 +33,10 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-    inst.AnimState:SetBank("cave_banana_tree")
-    inst.AnimState:SetBuild("cave_banana_tree")
-	inst.AnimState:PlayAnimation("idle_loop", true)
+    inst.AnimState:SetBank("dragonblood_tree")
+    inst.AnimState:SetBuild("dragonblood_tree")
+	inst.AnimState:PlayAnimation("idle", true)
+	--inst.AnimState:PlayAnimation("idle_harvested", true)
 
 	inst:AddComponent("inspectable")
 

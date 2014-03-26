@@ -21,8 +21,6 @@ __________
 
 -- Manta (All art assets, using buzzard bank or custom animations)
 
--- Dragonblood Tree (All art assets, using banana tree bank or custom animations)
-
 -- Cloud Fruit Tree (All art assets, using banana tree bank or custom animations)
 
 -- Living Gnomes (All art assets, using custom animations)
@@ -30,8 +28,6 @@ __________
 -- Bean Giant (All art assets, using deerclops bank or custom animations)
 
 -- Golden Sunflower (All art assets, using custom animations)
-
--- Gustflower (All art assets, using custom animations)
 
 -- Various minimap icons. (For various objects in the world)
 

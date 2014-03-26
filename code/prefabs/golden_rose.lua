@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/carrot.zip"),
+	Asset("ANIM", "anim/golden_rose.zip"),
 }
 
 local prefabs=
@@ -21,9 +21,9 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-    inst.AnimState:SetBank("carrot")
-    inst.AnimState:SetBuild("carrot")
-    inst.AnimState:PlayAnimation("planted")
+    inst.AnimState:SetBank("golden_rose")
+    inst.AnimState:SetBuild("golden_rose")
+    inst.AnimState:PlayAnimation("idle")
 
 	inst:AddComponent("inspectable")
 

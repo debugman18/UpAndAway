@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets=
 {
-	Asset("ANIM", "anim/carrot.zip"),
+	Asset("ANIM", "anim/gustflower.zip"),
 }
 
 local prefabs=
@@ -37,12 +37,14 @@ end
 
 local function onunchargedfn(inst)
     inst.components.childspawner:StopSpawning()
+    inst.AnimState:PlayAnimation("idle_1")
 end
 
 local function onchargedfn(inst)
     inst:DoTaskInTime(0, function(inst)
         inst.components.childspawner:ReleaseAllChildren() 
-        inst.components.childspawner:StartSpawning()          
+        inst.components.childspawner:StartSpawning() 
+        inst.AnimState:PlayAnimation("idle_2")         
     end)    
 end
 
@@ -53,9 +55,9 @@ local function fn(Sim)
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
    
-    inst.AnimState:SetBank("carrot")
-    inst.AnimState:SetBuild("carrot")
-    inst.AnimState:PlayAnimation("planted")
+    inst.AnimState:SetBank("gustflower")
+    inst.AnimState:SetBuild("gustflower")
+    inst.AnimState:PlayAnimation("idle_1")
     inst.AnimState:SetRayTestOnBB(true);
     
     inst:AddComponent("inspectable")
