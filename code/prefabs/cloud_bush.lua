@@ -24,24 +24,26 @@ local function dig_up(inst, chopper)
 end
 
 local function onpickedfn(inst, picker)
-	inst.AnimState:PlayAnimation("picking") 
-	inst.AnimState:PushAnimation("idle")
+	--inst.AnimState:PlayAnimation("picking") 
+	print("onpickedfn")
+	inst.AnimState:PlayAnimation("berries_picked")
 	
 	if picker.components.combat then
         picker.components.combat:GetAttacked(nil, 2)
 	end
 
 	if inst.components.pickable:IsBarren() then
-		inst.AnimState:PushAnimation("idle")
+		inst.AnimState:PushAnimation("berries_picked")
+		print("IsBarren")
 	end	
 end
 
 local function makeemptyfn(inst)
-	inst.AnimState:PlayAnimation("empty", true) 
+	--inst.AnimState:PlayAnimation("empty", true) 
 end
 
 local function makebarrenfn(inst)
-	inst.AnimState:PlayAnimation("idle")
+	--inst.AnimState:PlayAnimation("berries")
 end
 
 local function onunchargedfn(inst)
@@ -93,6 +95,8 @@ local function fn(Sim)
 	inst.components.staticchargeable:SetChargedFn(onchargedfn)
 	inst.components.staticchargeable:SetUnchargedFn(onunchargedfn)
 
+    inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("cloud_bush.tex")
 
     MakeLargeBurnable(inst)
     MakeLargePropagator(inst)

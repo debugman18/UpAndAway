@@ -49,6 +49,9 @@ local function fn(Sim)
    	inst:AddComponent("lootdropper") 
    	inst.components.lootdropper:SetLoot(loot) 
 
+    inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("dragonblood_tree.tex")	   	
+
 	return inst
 end
 

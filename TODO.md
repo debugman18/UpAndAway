@@ -3,13 +3,7 @@ __________
 
 - **Current bugs:**
 
--- Octocopter (Invisible)
-
--- Scarecrow (Invisible)
-
--- Cloud Bushes (Invisible on picked)
-
--- Beanlet (Burning and Freezing)
+-- Beanlet (Burning and Freezing makes them invisible)
 
 -- All objects using custom animations (Tiny player action hitboxes; Vanilla bug?)
 
@@ -21,15 +15,27 @@ __________
 
 -- Manta (All art assets, using buzzard bank or custom animations)
 
--- Cloud Fruit Tree (All art assets, using banana tree bank or custom animations)
+-- Cloud Coral (All art assets, still image, idle and idle_harvested)
+
+-- Weather Machine (All art assets, still image)
+
+-- Kettle (All art assets, still image)
+
+-- Refiner (All art assets, still image)
+
+-- Three Different Octocopter pieces (All art assets, still images)
+
+-- Cloud Fruit Tree (All art assets, still image, idle and idle_harvested)
 
 -- Living Gnomes (All art assets, using custom animations)
 
 -- Bean Giant (All art assets, using deerclops bank or custom animations)
 
--- Golden Sunflower (All art assets, using custom animations)
+-- Bean Giant Statue (All art assets, still image)
 
--- Various minimap icons. (For various objects in the world)
+-- Golden Sunflower (All art assets, still image)
+
+-- Various minimap icons. (For various objects in the world, still images)
 
 -- Balloon Hound (All art assets, using custom animations)
 
@@ -49,11 +55,11 @@ __________
 
 -- Balloon Hound (All functionality needed)
 
--- Water Crystal (Should launch Flying Fish when nearly completely mined)
+-- Water Crystal (Should launch Flying Fish into nearby water crystals when nearly completely mined, a net is needed)
 
 -- Flying Fish (See above)
 
--- Recipes and Tech Tree
+-- Recipes and Unique Tech Tree
 
 -- Setpieces, setpieces, setpieces
 __________________

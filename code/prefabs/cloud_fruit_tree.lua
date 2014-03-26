@@ -20,6 +20,9 @@ local function fn(Sim)
 
 	inst:AddComponent("inventoryitem")
 
+    inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("cloud_fruit_tree.tex") 
+
 	return inst
 end
 

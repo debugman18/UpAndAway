@@ -13,9 +13,36 @@ local function weather_off(inst)
 	end
 end	
 
-
 local function DoWeatherPick(inst)
-	if GetWorld() then
+
+	local is_rog_enabled = IsDLCEnabled ~= nil and IsDLCEnabled(REIGN_OF_GIANTS)
+
+	if GetWorld() and is_rog_enabled then
+		weather_id = math.random(1,7)
+		GetPlayer().components.sanity:DoDelta(-40)
+		if weather_id == 1 then
+			print(weather_id)
+			GetSeasonManager():StartWinter()
+		elseif weather_id == 2 then
+			print(weather_id)
+			GetSeasonManager():StartSummer()
+		elseif weather_id == 3 then
+			print(weather_id)
+			GetSeasonManager():StartPrecip()
+		elseif weather_id == 4 then
+			print(weather_id)
+			GetSeasonManager():StopPrecip()
+		elseif weather_id == 5 then	
+			print(weather_id)
+			GetSeasonManager():Cycle()
+		elseif weather_id == 6 then
+			print(weather_id)
+			GetSeasonManager():StartAutumn()
+		elseif weather_id == 7 then
+			print(weather_id)
+			GetSeasonManager():StartSpring()								
+		end	
+	else	
 		weather_id = math.random(1,5)
 		GetPlayer().components.sanity:DoDelta(-40)
 		if weather_id == 1 then
@@ -64,6 +91,9 @@ local function fn(Sim)
 	inst:AddComponent("machine")
 	inst.components.machine.turnonfn = weather_on
 	inst.components.machine.turnofffn = weather_off
+
+    inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("weather_machine.tex") 
 
 	return inst
 end

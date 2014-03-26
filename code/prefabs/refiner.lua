@@ -139,6 +139,9 @@ local function fn(Sim)
     inst.components.container.widgetbuttoninfo = widgetbuttoninfo
     inst.components.container.acceptsstacks = false
 
+    inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("refiner.tex") 
+
     --[[
     inst:AddComponent("trader")
     inst.components.trader:SetAcceptTest(ShouldAcceptItem)

@@ -21,7 +21,10 @@ local function redfn(inst)
     inst.AnimState:PlayAnimation("idle")	
     inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
 
-	inst:AddComponent("inspectable")    
+	inst:AddComponent("inspectable") 
+
+    inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("jellyshroom_red.tex")		   
 
     return inst
 end	
@@ -38,7 +41,10 @@ local function greenfn(inst)
     inst.AnimState:PlayAnimation("idle")
     inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
 
-	inst:AddComponent("inspectable")    
+	inst:AddComponent("inspectable")  
+
+    inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("jellyshroom_green.tex")		  
 
     return inst	
 end	
@@ -55,7 +61,10 @@ local function bluefn(inst)
     inst.AnimState:PlayAnimation("idle")
     inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )	
 
-	inst:AddComponent("inspectable")   
+	inst:AddComponent("inspectable")  
+
+    inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("jellyshroom_blue.tex")		 
 
     return inst
 end	

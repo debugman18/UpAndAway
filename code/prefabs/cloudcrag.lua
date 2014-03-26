@@ -78,6 +78,9 @@ local function cloudcrag(Sim)
 
 	inst.components.lootdropper:SetLoot(loot)
 	--inst.components.lootdropper:SetChanceLoot("flint")
+
+    inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("cloudcrag.tex") 
 	return inst
 end
 --[[

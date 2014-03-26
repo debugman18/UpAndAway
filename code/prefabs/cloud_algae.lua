@@ -2,8 +2,9 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/grass.zip"),
-	Asset("ANIM", "anim/grass1.zip"),
+	--Asset("ANIM", "anim/grass.zip"),
+	--Asset("ANIM", "anim/grass1.zip"),
+	Asset("ANIM", "anim/cloud_algae.zip"),
 }
 
 local prefabs =
@@ -31,13 +32,13 @@ local function fn(Sim)
 
 	local anim = inst.entity:AddAnimState()
 	local sound = inst.entity:AddSoundEmitter()
-	local minimap = inst.entity:AddMiniMapEntity()
 
-	minimap:SetIcon( "grass.png" )
+	inst.entity:AddMiniMapEntity()
+	inst.MiniMapEntity:SetIcon( "cloud_algae.tex" )
 	    
-	anim:SetBank("grass")
-	anim:SetBuild("grass1")
-	anim:PlayAnimation("idle",true)
+	anim:SetBank("cloud_algae")
+	anim:SetBuild("cloud_algae")
+	anim:PlayAnimation("idle", true)
 
 	inst:AddComponent("inspectable")
 

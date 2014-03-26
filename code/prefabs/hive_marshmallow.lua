@@ -118,6 +118,9 @@ local function fn(Sim)
     MakeSnowCovered(inst)
     
     ---------------------
+
+    inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("hive_marshmallow.tex")   
     
     inst:AddComponent("inspectable")
 	inst.OnEntitySleep = OnEntitySleep

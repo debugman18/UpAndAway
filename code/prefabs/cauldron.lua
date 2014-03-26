@@ -54,6 +54,9 @@ local function fn(Sim)
 	inst.components.container.widgetbuttoninfo = widgetbuttoninfo
 	inst.components.container.acceptsstacks = false
 
+    inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("cauldron.tex")	
+
 	--container.onopenfn = onopen
 	--container.onclosefn = onclose
 

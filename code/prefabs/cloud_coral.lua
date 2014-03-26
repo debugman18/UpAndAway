@@ -21,8 +21,8 @@ local function fn(Sim)
 	inst.AnimState:SetBuild("marble_pillar")
 	inst.AnimState:PlayAnimation("full")
 
-	inst.entity:AddMiniMapEntity()
-	inst.MiniMapEntity:SetIcon( "marblepillar.png" )	
+    inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("cloud_coral.tex") 	
 
 	inst:AddComponent("inspectable")
 	

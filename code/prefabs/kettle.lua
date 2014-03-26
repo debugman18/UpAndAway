@@ -216,6 +216,8 @@ local function BuildKettlePrefab()
 			playerprox:SetOnPlayerFar(onfar)
 		end
 
+   		inst.entity:AddMiniMapEntity()
+    	inst.MiniMapEntity:SetIcon("kettle.tex") 
 
 		--MakeSnowCovered(inst, .01)    
 		inst:ListenForEvent("onbuilt", onbuilt)

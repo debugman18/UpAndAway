@@ -140,6 +140,9 @@ local function fn(Sim)
 	inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*10)
 	inst.components.childspawner:SetSpawnPeriod(10)
 	inst.components.childspawner:SetMaxChildren(3)
+
+    inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("thunder_tree.tex") 
     
     inst.OnSave = onsave
     inst.OnLoad = onload
