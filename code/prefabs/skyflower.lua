@@ -43,7 +43,8 @@ local function onunchargefn(inst)
     inst.AnimState:PlayAnimation(inst.animname)
 	
 	inst:RemoveTag("flower_datura")
-    inst:AddTag("flower")	
+	-- Do NOT remove the flower tag, ever.
+    --inst:AddTag("flower")	
 	
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
     inst.components.pickable:SetUp("skyflower_petals", 10)
@@ -60,7 +61,8 @@ local function onchargefn(inst)
     inst.animname = daturanames[math.random(#daturanames)]
     inst.AnimState:PlayAnimation(inst.animname)
     
-	inst:RemoveTag("flower")
+	-- Do NOT remove the flower tag, ever.
+	--inst:RemoveTag("flower")
     inst:AddTag("flower_datura")
     
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
@@ -91,6 +93,8 @@ local function fn(inst)
 	
 	inst.entity:AddAnimState()
     inst.AnimState:SetRayTestOnBB(true);
+
+	inst:AddTag("flower")
     
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus

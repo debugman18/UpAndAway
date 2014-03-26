@@ -32,7 +32,7 @@ SKYFLOWER.CHARGE_DELAY = function() return 0.5 + 5*math.random() end
 SKYFLOWER.UNCHARGE_DELAY = SKYFLOWER.CHARGE_DELAY
 
 
-SKYFLYSPAWNER.MAX_FLIES = 5
+SKYFLYSPAWNER.MAX_FLIES = 10
 -- Range, (min, max)
 SKYFLYSPAWNER.SPAWN_DELAY = {5, 12} --5,12
 -- Distance from player allowed for spawning, (min, max)

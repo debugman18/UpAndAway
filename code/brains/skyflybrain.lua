@@ -1,37 +1,67 @@
 BindGlobal()
 
-require "behaviours/follow"
+require "behaviours/runaway"
 require "behaviours/wander"
+local RandomlySelectTarget = modrequire "behaviours.randomlyselecttarget"
+local RandomlyWaitNode = modrequire "behaviours.randomlywaitnode"
+local ConditionEventNode = modrequire "behaviours.conditioneventnode"
+
+local Lambda = wickerrequire "paradigms.functional"
+local Game = wickerrequire "utils.game"
+
+local cfg = wickerrequire("adjectives.configurable")("SKYFLY")
 
 
 local SkyflyBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
 end)
 
-
-local function GetFollowTarget(skyflies)
-    if skyflies.brain.followtarget then
-        if not skyflies.brain.followtarget:IsValid() or not skyflies.brain.followtarget.components.health or skyflies.brain.followtarget.components.health:IsDead() or
-            skyflies:GetDistanceSqToInst(skyflies.brain.followtarget) > 20*8 then
-            skyflies.brain.followtarget = nil
-        end
-    end
-    
-    if not skyflies.brain.followtarget then
-        skyflies.brain.followtarget = FindEntity(skyflies, 20, function(target)
-            return target:HasTag("character") and not (target.components.health and target.components.health:IsDead() )
-        end)
-    end
-    
-    return skyflies.brain.followtarget
+--[[
+local function IsNotOnFlower(inst)
+	return not Game.FindSomeEntity(inst, 0.5, nil, {"flower"})
 end
+]]--
+
+local FlowerWeight = (function()
+	local farness = cfg:GetConfig("PLAYER_FARNESS")
+	local closeness = 1/farness
+
+	return function(flower)
+		local player = GetPlayer()
+
+		if player then
+			local d2 = player:GetDistanceSqToInst(flower)
+			return math.exp(-closeness*d2)
+		end
+	end
+end)()
 
 function SkyflyBrain:OnStart()
     local clock = GetClock()
+
+	local function far_enough(flower)
+		return self.inst:GetDistanceSqToInst(flower) > 0.25
+	end
     
     local root = PriorityNode(
     {
-        Follow(self.inst, function() return GetFollowTarget(self.inst) end, 20*.25, 20*.5, 20),
+        --RunAway(self.inst, "scarytoprey", RUN_AWAY_DIST, STOP_RUN_AWAY_DIST),
+
+		SequenceNode {
+			RandomlySelectTarget(self.inst, {
+				range = cfg:GetConfig("HOP_RANGE"),
+				filter = far_enough,
+				action = ACTIONS.WALKTO,
+				weight = FlowerWeight,
+				tags = {"flower"},
+			}),
+			ParallelNodeAny {
+				ConditionEventNode(self.inst, "onreachdestination"),
+				WaitNode( 3 ),
+			},
+			RandomlyWaitNode( unpack(cfg:GetConfig("HOP_COOLDOWN"))	),
+		},
+
 		Wander(self.inst),
     }, 1)
         

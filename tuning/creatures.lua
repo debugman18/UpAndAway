@@ -55,3 +55,10 @@ GOOSE.LAY_PERIOD = 120
 -- Delay after static starts until an egg is laid. May be a function.
 --]]
 GOOSE.LAY_DELAY = function() return 5 + 5*math.random() end
+
+-- Maximum range for flower hopping.
+SKYFLY.HOP_RANGE = 16
+-- Cooldown for a skyfly to switch flowers. Randomized between the two values.
+SKYFLY.HOP_COOLDOWN = {2, 4}
+-- The smaller this is, the closer skyflies will concentrate around the player. Must be positive.
+SKYFLY.PLAYER_FARNESS = 2
