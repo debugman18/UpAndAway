@@ -37,14 +37,14 @@ end
 
 local function onunchargedfn(inst)
     inst.components.childspawner:StopSpawning()
-    inst.AnimState:PlayAnimation("idle_1")
+    inst.AnimState:PlayAnimation("idle_2")
 end
 
 local function onchargedfn(inst)
     inst:DoTaskInTime(0, function(inst)
         inst.components.childspawner:ReleaseAllChildren() 
         inst.components.childspawner:StartSpawning() 
-        inst.AnimState:PlayAnimation("idle_2")         
+        inst.AnimState:PlayAnimation("idle_1")         
     end)    
 end
 
@@ -57,7 +57,7 @@ local function fn(Sim)
    
     inst.AnimState:SetBank("gustflower")
     inst.AnimState:SetBuild("gustflower")
-    inst.AnimState:PlayAnimation("idle_1")
+    inst.AnimState:PlayAnimation("idle_2")
     inst.AnimState:SetRayTestOnBB(true);
     
     inst:AddComponent("inspectable")

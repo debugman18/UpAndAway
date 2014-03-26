@@ -35,8 +35,8 @@ local function fn(Sim)
 
     inst.AnimState:SetBank("dragonblood_tree")
     inst.AnimState:SetBuild("dragonblood_tree")
-	inst.AnimState:PlayAnimation("idle", true)
-	--inst.AnimState:PlayAnimation("idle_harvested", true)
+	inst.AnimState:PlayAnimation("idle")
+	--inst.AnimState:PlayAnimation("idle_harvested")
 
 	inst:AddComponent("inspectable")
 

@@ -36,8 +36,8 @@ end
 
 local function RetargetFn(inst)
     local defenseTarget = inst
-    inst:DoPeriodicTask(10, function() inst.components.talker:Say("Whoo?", 3, noanim) end, 0)
-    inst:DoPeriodicTask(8, function() inst.components.talker:ShutUp() end, 3)
+    inst:DoPeriodicTask(5, function() inst.components.talker:Say("Whoo?", 3, noanim) end, 8)
+    inst:DoPeriodicTask(5, function() inst.components.talker:ShutUp() end, 12)
     local home = inst.components.homeseeker and inst.components.homeseeker.home
     if home and inst:GetDistanceSqToInst(home) < CFG.OWL.DEFEND_DIST*CFG.OWL.DEFEND_DIST then
         defenseTarget = home
