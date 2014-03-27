@@ -75,6 +75,29 @@ Assets = GLOBAL.JoinArrays(
 		"bg_up",
 		"bg_gen",
 		"up_new",
+
+		--Minimap icons.
+		"winnie",
+		"beanstalk",
+		"beanstalk_exit",
+		"shopkeeper",
+		"cloud_algae",
+		"scarecrow",
+		"jellyshroom_red",
+		"jellyshroom_blue",
+		"jellyshroom_green",
+		"cauldron",
+		"cloudcrag",
+		"octocopter",
+		"dragonblood_tree",
+		"hive_marshmallow",
+		"cloud_bush",
+		"thunder_tree",
+		--"cloud_fruit_tree",
+		--"bean_giant_statue",
+		--"weather_machine",
+		--"refiner",
+		--"kettle",
 	},
 
 	--Winnie assets.
@@ -90,68 +113,6 @@ Assets = GLOBAL.JoinArrays(
 	{
 		Asset( "IMAGE", "bigportraits/winnie.tex" ),
 		Asset( "ATLAS", "bigportraits/winnie.xml" ),
-
-		--Minimap icons.
-
-		Asset( "IMAGE", "images/winnie.tex" ),
-		Asset( "ATLAS", "images/winnie.xml" ),	
-		
-		Asset( "IMAGE", "images/beanstalk.tex" ),
-		Asset( "ATLAS", "images/beanstalk.xml" ),			
-
-		Asset( "IMAGE", "images/beanstalk_exit.tex" ),
-		Asset( "ATLAS", "images/beanstalk_exit.xml" ),	
-
-		Asset( "IMAGE", "images/shopkeeper.tex" ),
-		Asset( "ATLAS", "images/shopkeeper.xml" ),	
-
-		Asset( "IMAGE", "images/cloud_algae.tex" ),
-		Asset( "ATLAS", "images/cloud_algae.xml" ),	
-
-		Asset( "IMAGE", "images/scarecrow.tex" ),
-		Asset( "ATLAS", "images/scarecrow.xml" ),
-
-		Asset( "IMAGE", "images/jellyshroom_red.tex" ),
-		Asset( "ATLAS", "images/jellyshroom_red.xml" ),
-
-		Asset( "IMAGE", "images/jellyshroom_blue.tex" ),
-		Asset( "ATLAS", "images/jellyshroom_blue.xml" ),
-
-		Asset( "IMAGE", "images/jellyshroom_green.tex" ),
-		Asset( "ATLAS", "images/jellyshroom_green.xml" ),
-
-		Asset( "IMAGE", "images/cauldron.tex" ),
-		Asset( "ATLAS", "images/cauldron.xml" ),	
-
-		Asset( "IMAGE", "images/cloudcrag.tex" ),
-		Asset( "ATLAS", "images/cloudcrag.xml" ),	
-
-		Asset( "IMAGE", "images/octocopter.tex" ),
-		Asset( "ATLAS", "images/octocopter.xml" ),	
-
-		Asset( "IMAGE", "images/dragonblood_tree.tex" ),
-		Asset( "ATLAS", "images/dragonblood_tree.xml" ),	
-
-		Asset( "IMAGE", "images/hive_marshmallow.tex" ),
-		Asset( "ATLAS", "images/hive_marshmallow.xml" ),		
-
-		Asset( "IMAGE", "images/cloud_bush.tex" ),
-		Asset( "ATLAS", "images/cloud_bush.xml" ),	
-
-		--Asset( "IMAGE", "images/cloud_fruit_tree.tex" ),
-		--Asset( "ATLAS", "images/cloud_fruit_tree.xml" ),
-
-		--Asset( "IMAGE", "images/bean_giant_statue.tex" ),
-		--Asset( "ATLAS", "images/bean_giant_statue.xml" ),
-
-		--Asset( "IMAGE", "images/weather_machine.tex" ),
-		--Asset( "ATLAS", "images/weather_machine.xml" ),
-
-		--Asset( "IMAGE", "images/refiner.tex" ),
-		--Asset( "ATLAS", "images/refiner.xml" ),
-
-		--Asset( "IMAGE", "images/kettle.tex" ),
-		--Asset( "ATLAS", "images/kettle.xml" ),									
 	},
 
 	-- Dummy end, just so we can put commas after everything.

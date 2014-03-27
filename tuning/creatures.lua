@@ -62,3 +62,16 @@ SKYFLY.HOP_RANGE = 16
 SKYFLY.HOP_COOLDOWN = {2, 4}
 -- The smaller this is, the closer skyflies will concentrate around the player. Must be positive.
 SKYFLY.PLAYER_FARNESS = 2
+
+-- Height with respect to ground. Can't be more than 2, otherwise the hound can't be attacked.
+BALLOON_HOUND.HEIGHT = 2
+BALLOON_HOUND.BALLOON_SCALE = 1
+-- Possible balloon colours (chosen at random).
+BALLOON_HOUND.BALLOON_COLOURS = {
+    Point(198/255,  43/255,  43/255),
+    Point( 79/255, 153/255,  68/255),
+    Point( 35/255, 105/255, 235/255),
+    Point(233/255, 208/255,  69/255),
+    Point(109/255,  50/255, 163/255),
+    Point(222/255, 126/255,  39/255),
+}

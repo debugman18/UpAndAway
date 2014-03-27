@@ -41,6 +41,7 @@ return {
 		"modinfo.lua",
 		"modmain.lua",
 		"modworldgenmain.lua",
+		"start_wicker.lua",
 
 		"favicon",
 
