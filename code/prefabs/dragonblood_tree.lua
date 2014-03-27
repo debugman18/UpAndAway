@@ -21,24 +21,49 @@ end
 
 local loot = 
 {
-    "log",
 	"log",
 	"log",
+	"log",	
 }
+
+local function onregenfn(inst)
+	inst.AnimState:PlayAnimation("idle") 
+end
+
+local function makefullfn(inst)
+	inst.AnimState:PlayAnimation("idle")
+end
+
+
+local function onpickedfn(inst)
+	inst.SoundEmitter:PlaySound("dontstarve/wilson/pickup_reeds") 
+	inst.AnimState:PlayAnimation("idle_harvested") 
+end
+
+local function makeemptyfn(inst)
+	inst.AnimState:PlayAnimation("idle_harvested")
+end
 
 local function fn(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
 
     inst.AnimState:SetBank("dragonblood_tree")
     inst.AnimState:SetBuild("dragonblood_tree")
 	inst.AnimState:PlayAnimation("idle")
-	--inst.AnimState:PlayAnimation("idle_harvested")
 
 	inst:AddComponent("inspectable")
+
+	inst:AddComponent("pickable")
+	inst.components.pickable.picksound = "dontstarve/wilson/pickup_reeds"
+	
+	inst.components.pickable:SetUp("dragonblood_sap", TUNING.CAVE_BANANA_GROW_TIME)
+	inst.components.pickable.onregenfn = onregenfn
+	inst.components.pickable.onpickedfn = onpickedfn
+	inst.components.pickable.makeemptyfn = makeemptyfn
+	inst.components.pickable.makefullfn = makefullfn
 
 	inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.CHOP)

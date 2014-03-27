@@ -29,6 +29,8 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
+	inst:AddTag("crystal")
+
 	inst.AnimState:SetBank("crystal")
 	inst.AnimState:SetBuild("crystal")
     inst.AnimState:PlayAnimation("crystal_white")

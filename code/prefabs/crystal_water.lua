@@ -93,6 +93,8 @@ local function fn(Sim)
     inst.AnimState:PlayAnimation("crystal_water")
     MakeObstaclePhysics(inst, 1.)
 
+    inst:AddTag("crystal")
+
 	inst:AddComponent("inspectable")
 
     inst:AddComponent("lootdropper")

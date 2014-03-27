@@ -32,6 +32,8 @@ local function fn(Sim)
     shadow:SetSize( 1.5, .75 )
     inst.Transform:SetFourFaced()
     inst.Transform:SetScale(.8, 1, 1.2)
+    --inst.Transform:SetScale(2.4, 3, 3.6)
+    anim:SetMultColour(.9, .9, .9, .3)
     
     MakeCharacterPhysics(inst, 50, .5)    
     anim:SetBank("perd") -- name of the animation root

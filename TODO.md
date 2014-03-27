@@ -5,7 +5,7 @@ __________
 
 -- Beanlet (Burning and Freezing makes them invisible)
 
--- All objects using custom animations (Tiny player action hitboxes; Vanilla bug?)
+-- All objects using custom animations (Tiny player action hitboxes; Vanilla bug)
 
 -- Worldgen Animation (Isn't loading; Vanilla bug)
 
@@ -47,13 +47,13 @@ __________
 
 -- Manta (All functionality needed)
 
--- Gnomes (All functionality needed)
+-- Gnomes (All functionality needed) *In Progress*
 
 -- Beanlet Zealots (Cult functionality needed)
 
 -- Octocopter sequence (All functionality needed)
 
--- Balloon Hound (All functionality needed)
+-- Balloon Hound (All functionality needed) *In Progress*
 
 -- Water Crystal (Should launch Flying Fish into nearby water crystals when nearly completely mined, a net is needed)
 

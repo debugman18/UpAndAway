@@ -48,11 +48,16 @@ local function GoHomeAction(inst)
 end
 
 local function GetFaceTargetFn(inst)
-    return GetClosestInstWithTag("player", inst, SEE_PLAYER_DIST)
+    target = GetClosestInstWithTag("player", inst, SEE_PLAYER_DIST)
+    if not target then
+        target = GetClosestInstWithTag("gnome", inst, 20)
+    end    
+    --print(target)
+    return target
 end
 
 local function KeepFaceTargetFn(inst, target)
-    return inst:GetDistanceSqToInst(target) <= SEE_PLAYER_DIST*SEE_PLAYER_DIST
+    return inst:GetDistanceSqToInst(target) <= 20*20
 end
 
 local function ShouldGoHome(inst)

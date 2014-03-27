@@ -36,6 +36,8 @@ local function fn(Sim)
     anim:SetBank("crystal")
     anim:SetBuild("crystal")
     anim:PlayAnimation("crystal_light")
+ 
+    inst:AddTag("crystal")
   
     inst:AddTag("structure")
     MakeObstaclePhysics(inst, .1)    

@@ -148,6 +148,8 @@ local function fn()
     
     MakeObstaclePhysics(inst, 1)
 
+    inst:AddTag("crystal")
+
 	anim:SetBank("crystal")
 	anim:SetBuild("crystal")
     anim:PlayAnimation("crystal_relic")
