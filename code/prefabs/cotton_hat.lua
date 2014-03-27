@@ -2,13 +2,12 @@ BindGlobal()
 
 local assets=
 {
-	Asset("ANIM", "anim/armor_sweatervest.zip"),
+	Asset("ANIM", "anim/hat_winter.zip"),
 }
 
 
 local function onequip(inst, owner)
-    local build = hat_winter
-    owner.AnimState:OverrideSymbol("swap_hat", build, "swap_hat")
+    owner.AnimState:OverrideSymbol("swap_hat", "hat_winter", "swap_hat")
     owner.AnimState:Show("HAT")
     owner.AnimState:Show("HAT_HAIR")
     owner.AnimState:Hide("HAIR_NOHAT")
