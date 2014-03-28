@@ -302,8 +302,8 @@ end
 
 local function OnUnlock(inst)
     local tree = SpawnPrefab("beanstalk_sapling")
-    if not inst.components.lock:IsLocked() and tree then
-        tree.Transform:SetPosition(inst.Transform:GetWorldPosition() )
+    if not inst.components.lock:IsLocked() and tree and inst then
+        tree.Transform:SetPosition(inst.Transform:GetWorldPosition())
         print "Unlocked"
     end
 	--_G.DeleteCloseEntsWithTag(inst, "mound", 2)
