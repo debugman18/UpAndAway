@@ -329,7 +329,11 @@ local UpMenuScreen = Class(Screen, function(self, buttons)
 	local screen_builder = coroutine.wrap(build_screen)
 	screen_builder(self)
 
-	GetModInfo(screen_builder)
+	GetModInfo(function(...)
+		if self.inst:IsValid() then
+			screen_builder(...)
+		end
+	end)
 end)
 
 return UpMenuScreen
