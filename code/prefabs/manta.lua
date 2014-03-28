@@ -22,7 +22,6 @@ local function fn(Sim)
 	inst.entity:AddTransform()
 	--inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
 
 	local anim = inst.entity:AddAnimState()
     anim:SetBank("crow")
@@ -46,8 +45,6 @@ local function fn(Sim)
     --inst:SetBrain(brain)    
 
 	inst:AddComponent("inspectable")
-
-	inst:AddComponent("inventoryitem")
 	
 	--Mantas will sail overhead. I think the only way to attack one would be to use a ranged weapon. 
 	--If attacked, they will go offscreen and come back lower, to sail past the player.
