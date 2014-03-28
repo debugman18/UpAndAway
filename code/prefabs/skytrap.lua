@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/eyeplant.zip"),
+	Asset("ANIM", "anim/skytrap.zip"),
 }
 
 local prefabs =
@@ -37,9 +37,8 @@ local function fn(Sim)
 
     inst.Transform:SetFourFaced()
 
-    inst.AnimState:SetBank("eyeplant")
-    inst.AnimState:SetBuild("eyeplant")
-    inst.AnimState:PlayAnimation("spawn")
+    inst.AnimState:SetBank("skytrap")
+    inst.AnimState:SetBuild("skytrap")
     inst.AnimState:PushAnimation("idle")
 
 	inst:AddComponent("inspectable")	

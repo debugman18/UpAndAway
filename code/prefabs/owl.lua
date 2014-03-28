@@ -27,7 +27,7 @@ local MAX_TARGET_SHARES = 5
 local SHARE_TARGET_DIST = 40
 
 local function worshiprocks(inst)
-
+    local rock = _G.GetClosestInstWithTag("crystal", inst, 20)
 end    
 
 local function ontalk(inst, script)
@@ -36,8 +36,6 @@ end
 
 local function RetargetFn(inst)
     local defenseTarget = inst
-    inst:DoPeriodicTask(5, function() inst.components.talker:Say("Whoo?", 3, noanim) end, 8)
-    inst:DoPeriodicTask(5, function() inst.components.talker:ShutUp() end, 12)
     local home = inst.components.homeseeker and inst.components.homeseeker.home
     if home and inst:GetDistanceSqToInst(home) < CFG.OWL.DEFEND_DIST*CFG.OWL.DEFEND_DIST then
         defenseTarget = home
@@ -143,7 +141,10 @@ local function fn()
     inst.components.talker.offset = Vector3(0,-400,0)  
     inst.components.talker:StopIgnoringAll()  
 
-    inst:DoPeriodicTask(1, worshiprocks(inst), 0)
+    inst:DoPeriodicTask(5, function() inst.components.talker:Say("Whoo?", 3, noanim) end, 12)
+    inst:DoPeriodicTask(5, function() inst.components.talker:ShutUp() end, 12)
+
+    --inst:DoPeriodicTask(1, worshiprocks(inst), 0)
     
     return inst
 end

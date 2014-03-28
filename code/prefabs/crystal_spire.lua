@@ -36,6 +36,8 @@ local function fn()
 	inst.components.lootdropper:SetLoot(loot)
 	inst.components.lootdropper:AddChanceLoot("crystal_fragment_spire", 0.33)
 
+	inst:AddTag("crystal")
+
 	anim:SetBank("crystal")
 	anim:SetBuild("crystal")
 	anim:PlayAnimation("crystal_spire")
