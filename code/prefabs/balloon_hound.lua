@@ -2,18 +2,23 @@ BindGlobal()
 
 local assets =
 {
-	Asset("SOUND", "sound/common.fsb"),
+	--Asset("SOUND", "sound/common.fsb"),
 }
 
-local prefabs =
+local common_prefabs =
 {
 	"balloon",
-	"hound",
 }
 
+
+local Lambda = wickerrequire "paradigms.functional"
 local Game = wickerrequire "utils.game"
 
 local cfg = wickerrequire("adjectives.configurable")("BALLOON_HOUND")
+
+
+-- list of hounds to use as a base.
+local base_hounds = {"hound", "icehound", "firehound"}
 
 
 local function new_dummy_entity()
@@ -205,35 +210,43 @@ local function OnLoad(inst, data)
 	end
 end
 
-local function fn(Sim)
-	local inst = SpawnPrefab("hound")
 
-	--------------------------------------
-	
-	make_ground_shadow(inst)
-	make_balloon(inst)
+local function MakePrefab(base_prefab)
+	local prefabs = Lambda.CompactlyInjectInto({base_prefab}, ipairs(common_prefabs))
 
-	--------------------------------------
-	
-	set_floating(inst)
+	local function fn(Sim)
+		local inst = SpawnPrefab(base_prefab)
+		inst.prefab, inst.name = nil, nil
 
-	--------------------------------------
-	
-	inst:ListenForEvent("attacked", pop_balloon)
-	inst:ListenForEvent("death", pop_balloon)
+		--------------------------------------
+		
+		make_ground_shadow(inst)
+		make_balloon(inst)
 
-	--------------------------------------
-	
-	-- FIXME: for debugging purposes, remove later.
-	function inst:SetHeight(h)
-		local x, y, z = self.Transform:GetWorldPosition()
-		self.Transform:SetPosition(x, h, z)
+		--------------------------------------
+		
+		set_floating(inst)
+
+		--------------------------------------
+		
+		inst:ListenForEvent("attacked", pop_balloon)
+		inst:ListenForEvent("death", pop_balloon)
+
+		--------------------------------------
+		
+		-- FIXME: for debugging purposes, remove later.
+		function inst:SetHeight(h)
+			local x, y, z = self.Transform:GetWorldPosition()
+			self.Transform:SetPosition(x, h, z)
+		end
+		function inst:Pop()
+			pop_balloon(self)
+		end
+
+		return inst
 	end
-	function inst:Pop()
-		pop_balloon(self)
-	end
 
-	return inst
+	return Prefab("monsters/balloon_"..base_prefab, fn, assets, prefabs)
 end
 
-return Prefab ("monsters/balloon_hound", fn, assets, prefabs) 
+return Lambda.CompactlyMap(MakePrefab, ipairs(base_hounds))

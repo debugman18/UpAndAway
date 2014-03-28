@@ -1,4 +1,3 @@
-
 local Add = modrequire 'lib.addstrings'
 
 --This gives each prefab its own in-game name.
@@ -253,6 +252,11 @@ Add.Names {
 	kettle = "Kettle",
 
 	kettle_item = "Kettle",
+
+	[{"balloon_hound", "balloon_icehound", "balloon_firehound"}] = function(prefab)
+		local suf = prefab:match("^BALLOON_(.+)$")
+		return STRINGS.NAMES[suf]
+	end,
 }
 
 Add.QuotesFor "beanstalk" {
@@ -652,6 +656,13 @@ Add.QuotesFor "cotton_candy" {
 
 }
 
+Add.QuotesFor {"balloon_hound", "balloon_icehound", "balloon_firehound"} {
+	ANY = function(character, prefab)
+		local suf = prefab:match("^BALLOON_(.+)$")
+		return STRINGS.CHARACTERS[character].DESCRIBE[suf]
+	end,
+}
+
 STRINGS.CHARACTER_TITLES.winnie = "The Curious"
 STRINGS.CHARACTER_NAMES.winnie = "Winnie"
 STRINGS.CHARACTER_DESCRIPTIONS.winnie = "*Is a picky eater\n*Has a green thumb"
@@ -661,3 +672,10 @@ STRINGS.CHARACTERS.WINNIE.DESCRIBE = {}
 STRINGS.CHARACTERS.WINNIE.DESCRIBE.GENERIC = "I don't have strings yet."
 
 STRINGS.ACTIONS.DEPLOY.PORTABLE_STRUCTURE = "Place"
+
+
+
+--------------------------------------------------------------------------
+-- This cleans up the memory used by all the temporary objects above.
+--------------------------------------------------------------------------
+_G.collectgarbage()
