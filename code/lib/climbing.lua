@@ -67,9 +67,23 @@ end
 TheMod:EmbedAdder("CloudLevel", AddCloudLevel)
 
 
-local function get_default_height()
+local function is_current(slotnum, cavenum)
+	if slotnum then
+		if slotnum ~= SaveGameIndex:GetCurrentSaveSlot() then return false end
+
+		if cavenum then
+			if SaveGameIndex:GetCurrentMode() ~= "cave" then return false end
+			if SaveGameIndex:GetCurrentCaveNum(slotnum) ~= cavenum then return false end
+		end
+	end
+
+	return true
+end
+
+
+local function get_default_height(slot, cavenum)
 	-- wicker imports the SaveGameIndex.
-	if SaveGameIndex:GetCurrentMode() == "cave" then
+	if cavenum or SaveGameIndex:GetCurrentMode(slot) == "cave" then
 		return -1
 	else
 		return 0
@@ -78,13 +92,14 @@ local function get_default_height()
 end
 
 -- Maps a cave level number to its height.
-local function level_to_height(lvl)
+-- The parameters slot and cavenum are only used if lvl is not given.
+local function level_to_height(lvl, slot, cavenum)
 	if IsCloudLevelNumber(lvl) then
 		return 1 + (lvl - start_level)*LEVEL_NUMBER_DIRECTION
 	elseif Pred.IsNumber(lvl) then
 		return -lvl
 	else
-		return get_default_height()
+		return get_default_height(slot, cavenum)
 	end
 end
 
@@ -126,10 +141,10 @@ end
 -- As GetLevelHeight(), but based on the level number alone.
 --
 -- @see GetLevelHeight
-function GetRawLevelHeight()
+function GetRawLevelHeight(slot, cavenum)
 	-- wicker imports the SaveGameIndex.
-	if SaveGameIndex:GetCurrentMode() == "cave" then
-		return level_to_height(SaveGameIndex:GetCurrentCaveLevel())
+	if SaveGameIndex:GetCurrentMode(slot) == "cave" then
+		return level_to_height(SaveGameIndex:GetCurrentCaveLevel(slot, cavenum))
 	else
 		return 0
 	end
@@ -155,8 +170,11 @@ end
 -- Savedata is given preference because the level number can possibly change,
 -- so this allows us to keep our system compatible with older saves.
 --
-function GetLevelHeight()
-	if not Pred.IsWorldGen() then
+-- @param slot (optional) Save slot to check.
+-- @param cavenum (optional) Cave number to check.
+--
+function GetLevelHeight(slot, cavenum)
+	if not Pred.IsWorldGen() and is_current(slot, cavenum) then
 		local world = rawget(_G, "GetWorld") and GetWorld()
 		local metadata_key = "upandaway_metadata"
 		if world and world.components[metadata_key] then
@@ -166,7 +184,7 @@ function GetLevelHeight()
 			end
 		end
 	end
-	return GetRawLevelHeight()
+	return GetRawLevelHeight(slot, cavenum)
 end
 
 ---
@@ -175,15 +193,18 @@ end
 -- First, it checks if the world entity has the "cloudrealm" tag. If it does, returns
 -- true. If not, checks if the level height is positive.
 --
+-- @param slot (optional) Save slot to check.
+-- @param cavenum (optional) Cave number to check.
+--
 -- @return A boolean
-function IsCloudLevel()
-	if not Pred.IsWorldGen() then
+function IsCloudLevel(slot, cavenum)
+	if not Pred.IsWorldGen() and is_current(slot, cavenum) then
 		local ground = GetWorld()
 		if ground and ground:HasTag("cloudrealm") then
 			return true
 		end
 	end
-	return GetLevelHeight() >= 1
+	return GetLevelHeight(slot, cavenum) >= 1
 end
 Pred.IsCloudLevel = IsCloudLevel
 

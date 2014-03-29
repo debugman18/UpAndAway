@@ -3,4 +3,5 @@
 --
 
 
+modrequire 'postinits.saveselection'
 modrequire 'postinits.burning'
