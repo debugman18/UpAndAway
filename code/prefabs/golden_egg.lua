@@ -14,7 +14,7 @@ local prefabs =
 
 local cfg = wickerrequire("adjectives.configurable")("GOLDEN_EGG")
 local PatchedComponents = modrequire "patched_components"
-local Effects = modrequire "lib.effects"
+local Effects = wickerrequire "game.effects"
 
 local function HeatFn(inst, observer)
     return inst.components.temperature:GetCurrent()	

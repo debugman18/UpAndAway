@@ -5,7 +5,8 @@ local PopupDialogScreen = require "screens/popupdialog"
 
 
 local Logic = wickerrequire 'paradigms.logic'
-local game = wickerrequire 'utils.game'
+local game = wickerrequire 'game'
+local Effects = game.effects
 
 
 --[[
@@ -115,96 +116,6 @@ end
 local AddLoot = NewLootAdder()
 
 
--- Drops an item from the sky (to be used mainly with loot).
--- 
--- @param item The item entity
--- @param center The center (on the ground) of the falling area.
--- @param min_radius Minimum radius from center it will fall on.
--- @param max_radius Maximum radius from center it will fall on.
---
--- @returns item
-local function DropItemFromTheSky(item, center, min_radius, max_radius)
-	local height = 35
-
-	assert( item:is_a(EntityScript) )
-	assert( center:is_a(Point) )
-
-	min_radius = min_radius or 0
-	max_radius = max_radius or 0
-
-	assert( type(min_radius) == "number" and min_radius >= 0 )
-	assert( type(max_radius) == "number" and max_radius >= 0 )
-
-	if max_radius < min_radius then
-		max_radius = min_radius
-	end
-
-	-- Angle in relation to center it should fall on (preferably).
-	local theta = 2*math.pi*math.random()
-
-	-- Offset from center on which it will reach the ground.
-	local offset
-
-	-- We try to find a valid position within the range.
-	for _ = 1, 4 do
-		local tentative_radius = min_radius + math.random()*(max_radius - min_radius)
-		offset = FindWalkableOffset(center, theta, tentative_radius, 16)
-		if offset then break end
-	end
-
-	local target_pt = center + offset
-
-	-- If it doesn't have physics or is static (so that it won't fall), just spawn it on the ground.
-	if not item.Physics or item.Physics:GetMass() == 0 then
-		item.Transform:SetPosition(target_pt:Get())
-		return item
-	end
-
-	-- Otherwise, things get interesting! ;]
-	
-	target_pt.y = height
-
-	item.Physics:Teleport(target_pt:Get())
-
-	return item
-end
-
---[[
--- Drops all loot from inst from the sky.
---
--- @param inst Lootdropper entity
--- @param max_distance Maximum distance from inst loot should drop on.
---]]
-local function DropLootFromTheSky(inst, max_distance)
-	assert( inst:is_a(EntityScript) )
-
-	max_distance = max_distance or 0
-	assert( type(max_distance) == "number" and max_distance >= 0 )
-
-	if not inst.components.lootdropper then return end
-
-
-	local center = inst:GetPosition()
-
-	local prefabs = inst.components.lootdropper:GenerateLoot()
-	for _, v in pairs(prefabs) do
-		local item = SpawnPrefab(v)
-		if item then
-			print("Doing item: " .. v)
-
-			local min_radius = inst.Physics and inst.Physics:GetRadius() or 1
-			local max_radius = min_radius + max_distance
-
-			if item.Physics then
-				min_radius = min_radius + (item.Physics:GetRadius() or 1)
-			end
-
-			DropItemFromTheSky(item, center, min_radius, max_radius)
-		end
-	end
-end
-
-
 local function onsave(inst, data)
 	-- Lets save a bit of disk space: use nil instead of false.
 	data.chopped = inst.chopped or nil
@@ -299,7 +210,7 @@ end
 local function chopdownbeanstalk(inst, chopper)
 	inst.chopped = true
 
-	DropLootFromTheSky(inst, 4)
+	Effects.DropLootFromTheSky(inst, 4)
 
 	inst:DoTaskInTime(.4, function() 
 		local sz = 10
