@@ -16,13 +16,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ]]--
 
 
-local Lambda = wickerrequire 'paradigms.functional'
-local Logic = wickerrequire 'lib.logic'
+return function()
+	local table = assert( _G.table )
 
+	do
+		local mod_postinits = {}
 
-InjectModPackage 'tree.core'
+		function RunModPostInits()
+			if not TheMod then return end
 
-dfs = pkgrequire 'tree.dfs'
-Dfs = dfs
+			TheMod:DebugSay("Running mod post inits...")
 
-return setmetatable(_M, {__call = function(self, t, k, v) return New(t, k, v) end})
+			for _, f in ipairs(mod_postinits) do
+				f(TheMod)
+			end
+
+			mod_postinits = {}
+		end
+		local RunModPostInits = RunModPostInits
+
+		-- Runs after TheMod has been instantiated.
+		function AddModPostInit(f)
+			table.insert(mod_postinits, f)
+			if TheMod then
+				RunModPostInits()
+			end
+		end
+	end
+end
