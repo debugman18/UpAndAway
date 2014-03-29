@@ -44,6 +44,7 @@ function SearchSpace:Find(p, maxtries)
 		end
 	end
 end
+SearchSpace.Search = SearchSpace.Find
 
 ---
 -- Searches deterministically.
@@ -68,8 +69,19 @@ function SearchSpace:FindByLattice(p, n, m)
 
 		local hor_step = 1/n
 		local vert_step = 1/m
-		for j = 0, n do
-			for i = 0, m do
+		local j0 = math.random(0, n)
+		local i0 = math.random(0, m)
+		for dj = 0, n do
+			for di = 0, m do
+				local j, i = j0 + dj, i0 + di
+				if j > n then
+					j0 = j0 - n
+					j = j - n
+				end
+				if i > m then
+					i0 = i0 - m
+					i = i - m
+				end
 				local pt = self.object( j*hor_step, i*vert_step )
 				if p(pt) then
 					return pt
@@ -80,7 +92,13 @@ function SearchSpace:FindByLattice(p, n, m)
 		n = n or math.max(1, self.maxtries - 1)
 
 		local hor_step = 1/n
-		for j = 0, n do
+		local j0 = math.random(0, n)
+		for dj = 0, n do
+			local j = j0 + dj
+			if j > n then
+				j0 = j0 - n
+				j = j - n
+			end
 			local pt = self.object( j*hor_step )
 			if p(pt) then
 				return pt
@@ -88,6 +106,7 @@ function SearchSpace:FindByLattice(p, n, m)
 		end
 	end
 end
+SearchSpace.SearchByLattice = SearchSpace.FindByLattice
 
 function SearchSpace:__call(p, maxtries)
 	if p then
