@@ -30,7 +30,7 @@ local function new_dummy_entity()
 end
 
 local make_ground_shadow = (function()
-	local UPDATE_PERIOD = 0.1
+	local UPDATE_PERIOD = FRAMES
 
 	local function get_height(inst)
 		local x, y = inst.Transform:GetWorldPosition()
@@ -43,6 +43,7 @@ local make_ground_shadow = (function()
 
 	local function stop_updating(shadowinst)
 		if shadowinst.updatetask then
+			update_ground_shadow(shadowinst)
 			shadowinst.updatetask:Cancel()
 			shadowinst.updatetask = nil
 		end
@@ -78,7 +79,8 @@ local make_ground_shadow = (function()
 
 		inst:AddChild(shadowinst)
 
-		start_updating(shadowinst)
+		shadowinst.start_updating = start_updating
+		shadowinst.stop_updating = stop_updating
 	end
 end)()
 
@@ -121,6 +123,129 @@ local function make_balloon(inst)
 	configure_balloon(balloon)
 end
 
+
+local function stop_falling(inst)
+	if inst.fallthread then
+		TheMod:DebugSay("Killing fall thread of [", inst, "].")
+		_G.KillThread(inst.fallthread)
+		inst.fallthread = nil
+	end
+	if inst.floatawaythread then
+		TheMod:DebugSay("Killing float away thread of [", inst, "].")
+		_G.KillThread(inst.floatawaythread)
+		inst.floatawaythread = nil
+	end
+
+	inst.Physics:SetDamping(5)
+
+	inst.shadowinst:stop_updating()
+end
+
+local function do_floataway(inst)
+	stop_falling(inst)
+
+	inst:StopBrain()
+	inst:SetBrain(nil)
+
+	local speed = cfg:GetConfig("FLOAT_AWAY_SPEED")
+
+	inst.Physics:SetMotorVel(0, speed, 0)
+
+	inst.floatawaythread = inst:StartThread(function()
+		if not inst:IsValid() then return end
+
+		TheMod:DebugSay("Floating [", inst, "] away with speed ", speed, ".")
+
+		inst.shadowinst:start_updating()
+
+		local period = 1/15
+
+		local x, y = inst.Transform:GetWorldPosition()
+
+		while inst:IsValid() and not inst:IsAsleep() and y < 30 do
+			Sleep(period)
+			inst.Physics:SetMotorVel(0, speed, 0)
+			x, y = inst.Transform:GetWorldPosition()
+		end
+
+		if not inst:IsValid() then return end
+
+		inst.floatawaythread = nil
+
+		TheMod:DebugSay("Removed [", inst, "].")
+		inst:Remove()
+	end)
+
+	return inst.floatawaythread
+end
+
+local function leave_world_in(inst, delay)
+	if inst.leavetask then
+		inst.leavetask:Cancel()
+		inst.leavetask = nil
+	end
+
+	if inst.grounded then return end
+
+	inst.leaveat = GetTime() + delay
+
+	inst.leavetask = inst:DoTaskInTime(delay, function(inst)
+		if not inst.grounded then
+			do_floataway(inst)
+		end
+	end)
+end
+
+local function do_fall(inst, damping, final_height, epsilon, callback)
+	stop_falling(inst)
+
+	inst.Physics:SetDamping(damping)
+	inst.Physics:SetMotorVel(1, 0, 0)
+	inst.Physics:SetMotorVel(0, 0, 0)
+
+	inst.fallthread = inst:StartThread(function()
+		if not inst:IsValid() then return end
+
+		TheMod:DebugSay("Dropping [", inst, "] with damping ", damping, ".")
+
+		inst.shadowinst:start_updating()
+
+		local period = 1/15
+
+		local x, y = inst.Transform:GetWorldPosition()
+
+		while inst:IsValid() and not inst:IsAsleep() and y - final_height > epsilon do
+			Sleep(period)
+			x, y = inst.Transform:GetWorldPosition()
+		end
+
+		if not inst:IsValid() then return end
+
+		inst.Physics:SetDamping(5)
+
+		do
+			local x, y, z = inst.Transform:GetWorldPosition()
+			inst.Physics:Teleport(x, final_height, z)
+		end
+
+		TheMod:DebugSay("Dropped [", inst, "].")
+
+		if callback then
+			callback(inst)
+		end
+
+		inst.fallthread = nil
+
+		inst.shadowinst:stop_updating()
+	end)
+
+	return inst.fallthread
+end
+
+local function fall_smoothly(inst)
+	do_fall(inst, cfg:GetConfig("FALL_DAMPING"), cfg:GetConfig("HEIGHT"), 0)
+end
+
 local function set_floating(inst)
 	inst.grounded = false
 
@@ -133,41 +258,20 @@ local function set_floating(inst)
 	-- FIXME: remove this once we have a custom brain for the floating state.
 	inst:StopBrain()
 	inst:SetBrain(nil)
+
+	fall_smoothly(inst)
 end
 
 local function set_grounded(inst)
-	inst.Physics:SetDamping(0.5)
-	inst.Physics:SetMotorVel(1, 0, 0)
-	inst.Physics:SetMotorVel(0, 0, 0)
-
 	inst.grounded = true
 
 	inst.ballooninst:RemoveFromScene()
 
 	inst:StopBrain()
 
-	inst:StartThread(function()
-		if not inst:IsValid() then return end
-
-		local period = 0.1
-		local epsilon = 0.2
-		local x, y = inst.Transform:GetWorldPosition()
-
-		while inst:IsValid() and not inst:IsAsleep() and y > epsilon do
-			Sleep(period)
-			x, y = inst.Transform:GetWorldPosition()
-		end
-
-		if not inst:IsValid() then return end
-
-		inst.Physics:SetDamping(5)
-
+	do_fall(inst, 0.5, 0, 0.2, function(inst)
 		inst.shadowinst:RemoveFromScene()
 		inst.DynamicShadow:Enable(true)
-		do
-			local x, y, z = inst.Transform:GetWorldPosition()
-			inst.Physics:Teleport(x, 0, z)
-		end
 
 		inst:SetBrain(require "brains/houndbrain")
 		inst:RestartBrain()
@@ -192,9 +296,12 @@ local function pop_balloon(inst)
 	Game.ListenForEventOnce(balloon, "animover", function() set_grounded(inst) end)
 end
 
+
 local function OnSave(inst, data)
 	if inst.grounded then
 		data.grounded = true
+	elseif inst.leaveat then
+		data.leave_delay = inst.leaveat - GetTime()
 	end
 	data.balloondata = inst.ballooninst.data
 end
@@ -206,6 +313,8 @@ local function OnLoad(inst, data)
 		end
 		if data.grounded then
 			set_grounded(inst)
+		elseif data.leave_delay then
+			leave_world_in(inst, data.leave_delay)
 		end
 	end
 end
@@ -225,10 +334,6 @@ local function MakePrefab(base_prefab)
 
 		--------------------------------------
 		
-		set_floating(inst)
-
-		--------------------------------------
-		
 		inst:ListenForEvent("attacked", pop_balloon)
 		inst:ListenForEvent("death", pop_balloon)
 
@@ -238,10 +343,34 @@ local function MakePrefab(base_prefab)
 		function inst:SetHeight(h)
 			local x, y, z = self.Transform:GetWorldPosition()
 			self.Transform:SetPosition(x, h, z)
+
+			if self.grounded then
+				set_grounded(self)
+			else
+				fall_smoothly(self)
+			end
 		end
 		function inst:Pop()
 			pop_balloon(self)
 		end
+		function inst:FloatAway()
+			do_floataway(self)
+		end
+
+		--------------------------------------
+	
+		set_floating(inst)
+
+		do
+			local timeout_range = cfg:GetConfig("TIMEOUT")
+			local timeout = timeout_range[1] + (timeout_range[2] - timeout_range[1])*math.random()
+			leave_world_in(inst, timeout)
+		end
+
+		--------------------------------------
+		
+		inst.OnSave = OnSave
+		inst.OnLoad = OnLoad
 
 		return inst
 	end

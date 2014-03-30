@@ -250,6 +250,8 @@ local function fn(Sim)
 		flyspawner:Touch()
 	end
 
+	inst:AddComponent("balloonhounded")
+
 	TheMod:DebugSay("Built cloudrealm entity [", inst, "]")
 	return inst
 end

@@ -81,3 +81,15 @@ BALLOON_HOUND.BALLOON_COLOURS = {
     Point(109/255,  50/255, 163/255),
     Point(222/255, 126/255,  39/255),
 }
+-- Initial height of the hound when dropping.
+BALLOON_HOUND.INITIAL_HEIGHT = 25
+-- Damping when falling. The closer to 1 it is, the slower the fall. It must be strictly less than 1, otherwise the hound does not move at all.
+BALLOON_HOUND.FALL_DAMPING = 0.9999
+-- How long it stays in the world after spawning (without its balloon having popped). {min, max}
+BALLOON_HOUND.TIMEOUT = {30, 90}
+-- Speed in which it floats away upwards after the permanency timeout.
+BALLOON_HOUND.FLOAT_AWAY_SPEED = 5
+-- Distance to spawn a hound if the player is still. {min, max}
+BALLOON_HOUND.STILL_SPAWN_DIST = {3, 8}
+-- Distance to spawn a hound if the player is moving. {min, max}
+BALLOON_HOUND.MOVING_SPAWN_DIST = {8, 12}

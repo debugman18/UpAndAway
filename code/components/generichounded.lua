@@ -1,6 +1,10 @@
+BindGlobal()
+
 local Lambda = wickerrequire "paradigms.functional"
 local Pred = wickerrequire "lib.predicates"
 local Tree = wickerrequire "utils.table.tree"
+
+local Debuggable = wickerrequire "adjectives.debuggable"
 
 local default_attack_levels = {
 	intro={warnduration= function() return 120 end, numhounds = function() return 2 end},
@@ -16,34 +20,10 @@ local default_attack_delays = {
 	frequent = function() return TUNING.TOTAL_DAY_TIME * 3 + math.random() * TUNING.TOTAL_DAY_TIME * 5 end,
 }
 
-local function default_spawner(spawn_pt, special_chance)
-	local prefab = "hound"
-
-	if GetSeasonManager() then
-		if GetSeasonManager():IsSummer() then
-			special_chance = special_chance * 1.5
-		end
-
-		if math.random() < special_chance then
-			if GetSeasonManager():IsWinter() then
-				prefab = "icehound"
-			else
-				prefab = "firehound"
-			end
-		end
-	end
-
-	local hound = SpawnPrefab(prefab)
-	if hound then
-		hound.Physics:Teleport(spawn_pt:Get())
-		hound:FacePoint(GetPlayer():GetPosition())
-		hound.components.combat:SuggestTarget(GetPlayer())
-		return hound
-	end
-end
-
-local GenericHounded = Class(function(self, inst)
+local GenericHounded = Class(Debuggable, function(self, inst, name)
     self.inst = inst
+
+	Debuggable._ctor(self, name or "GenericHounded", true)
 	
 	self.spawn_distance = 30
 	self.announcement = "ANNOUNCE_HOUNDS"
@@ -82,6 +62,27 @@ function GenericHounded:GetSpawnDistance()
 		assert( Pred.IsPositiveNumber(r) )
 	end
 	return r
+end
+
+function GenericHounded:GetPrefabToSpawn()
+	local prefab = "hound"
+	local special_chance = self:GetSpecialHoundChance()
+
+	if GetSeasonManager() then
+		if GetSeasonManager():IsSummer() then
+			special_chance = special_chance * 1.5
+		end
+
+		if math.random() < special_chance then
+			if GetSeasonManager():IsWinter() then
+				prefab = "icehound"
+			else
+				prefab = "firehound"
+			end
+		end
+	end
+
+	return prefab
 end
 
 function GenericHounded:SpawnModeEscalating()
@@ -302,10 +303,19 @@ function GenericHounded:ReleaseHound(dt)
 	local spawn_pt = self:GetSpawnPoint( GetPlayer():GetPosition() )
 	if spawn_pt then
 		self.houndstorelease = self.houndstorelease - 1
-		self.hound_spawner(spawn_pt, self:GetSpecialHoundChance())
+		self:SpawnHound(spawn_pt)
 	end
 end
 
+function GenericHounded:SpawnHound(spawn_pt)
+	local hound = SpawnPrefab( self:GetPrefabToSpawn() )
+	if hound then
+		hound.Physics:Teleport(spawn_pt:Get())
+		hound:FacePoint(GetPlayer():GetPosition())
+		hound.components.combat:SuggestTarget(GetPlayer())
+		return hound
+	end
+end
 
 function GenericHounded:LongUpdate(dt)
 	if self.spawnmode == "never" then
