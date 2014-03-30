@@ -9,6 +9,7 @@ PrefabFiles = {
 	"cloud_lightning",
 	
 	"shopkeeper",
+	"shopkeeper_spawner",
 	"sheep",	
 
 	"vine",

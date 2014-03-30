@@ -73,7 +73,6 @@ modrequire 'map.rooms'
 modrequire 'map.tasks'
 modrequire 'map.levels'
 
---This also does the following.
 local TRANSLATE_TO_PREFABS = GLOBAL.require("map/forest_map").TRANSLATE_TO_PREFABS
 TRANSLATE_TO_PREFABS["skyflowers"] = {"skyflower"}
 TRANSLATE_TO_PREFABS["sheep"] = {"sheep"}
@@ -88,6 +87,8 @@ TRANSLATE_TO_PREFABS["crystal_relic"] = {"crystal_relic"}
 local Layouts = GLOBAL.require("map/layouts").Layouts
 local StaticLayout = GLOBAL.require("map/static_layout")
 
+
+--[[
 -- We'll just use an existing layout here, but feel free to add your own in a
 -- scripts/map/static_layouts folder.
 Layouts["ShopkeeperStall"] = StaticLayout.Get("map/static_layouts/shopkeeper_stall")
@@ -113,6 +114,7 @@ AddRoom("Shopkeeper", {
 		}
 	}
 })
+]]--
 
 --[[
 local function InsertShopkeeper(task)

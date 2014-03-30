@@ -12,9 +12,6 @@ BindTheMod()
 
 local Pred = wickerrequire 'lib.predicates'
 
--- This needs to be require'd to build road info on game post init.
-wickerrequire "game.topology"
-
 require 'mainfunctions'
 
 modrequire('api_abstractions')()

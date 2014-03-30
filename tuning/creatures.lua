@@ -1,3 +1,9 @@
+-- Maximum distance from the player for it to spawn a shopkeeper.
+SHOPKEEPER_SPAWNER.MAX_DIST = 8
+
+-- How long the shopkeeper spawner stays in the world after rain stops.
+SHOPKEEPER_SPAWNER.REMOVE_DELAY = 30
+
 -- Number of beans the Shopkeeper has.
 -- (should we make it regen with time?)
 SHOPKEEPER.NUMBEANS = 3

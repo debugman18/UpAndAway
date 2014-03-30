@@ -133,7 +133,7 @@ local function flagplayer(inst)
 			inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
 		end
 	elseif not inst.gavebeans then
-		print "I have nothing to give you!"
+		TheMod:DebugSay "I have nothing to give you!"
 	elseif inst.gavebeans then
 		if inst.components.maxwelltalker then
 			inst.components.maxwelltalker:SetSpeech("BEANS_HINT")
@@ -142,7 +142,7 @@ local function flagplayer(inst)
 		end
 		inst.flagger = false
 	else
-		print "If this is printing, there's new flagging logic to account for!"
+		TheMod:Say "If this is printing, there's new flagging logic to account for!"
 	end
 end
 
@@ -167,7 +167,7 @@ local function onactivate(inst, doer)
 		end
 		inst.customer = true
 	elseif inst.numbeans > 0 and negotiateCows(inst, doer) then
-		print "This should be a pause."
+		TheMod:DebugSay "This should be a pause."
 		
 		--Confirms the trade via short dialogue.
 		inst:DoTaskInTime(1, function()
@@ -189,8 +189,29 @@ local function onactivate(inst, doer)
 			inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
 		end
 	else
-		print "What else do you expect from me?"
+		TheMod:DebugSay "What else do you expect from me?"
 	end
+end
+
+local function has_given_quest(inst)
+	return inst.customer
+end
+
+local function try_despawn(inst)
+	if not inst:IsValid() then return end
+
+	TheMod:DebugSay("Attempting to despawn [", inst, "]...")
+	
+	local sm = GetSeasonManager()
+	if not has_given_quest(inst)
+		and inst:IsAsleep()
+		and sm and not sm:IsRaining()
+	then
+		TheMod:DebugSay("Despawned [", inst, "].")
+		inst:Remove()
+		return
+	end
+	TheMod:DebugSay("Did not despawn [", inst, "].")
 end
 
 -------------------------------------------------------------------------------------------------
@@ -223,7 +244,7 @@ end
 
 --This knows what to do if the player doesn't do the trades requirements.
 local function OnRefuseItem(inst, item)
-	print "Item refused."
+	TheMod:DebugSay "Item refused."
 end
 
 --This checks if the item fulfils particular requirements, and if it does, it returns true.
@@ -253,7 +274,7 @@ local function OnGetItemFromPlayer(inst, giver, item)
 		--Creates smoke for effect.
 		inst.SoundEmitter:PlaySound("dontstarve/maxwell/disappear")
 		fx.Transform:SetPosition(beanprize.Transform:GetWorldPosition())
-		print "This should be a pause."
+		TheMod:DebugSay "This should be a pause."
 		
 		--Confirms the trade via short dialogue.
 		inst:DoTaskInTime(1.5, function()
@@ -281,6 +302,8 @@ local function fn(Sim)
 	inst.Transform:SetTwoFaced()
 	
 	MakeObstaclePhysics(inst, 1)
+
+	inst:AddTag("shopkeeper")
 	
 	------------------------------------------------------
 	
@@ -304,7 +327,8 @@ local function fn(Sim)
 
 	------------------------------------------------------
  
-	if CFG.DEBUG then
+	--[[
+	if TheMod:Debug() then
 		--All of this is related to trading.
 		
 		inst:AddComponent("trader")
@@ -312,6 +336,7 @@ local function fn(Sim)
 		inst.components.trader.onaccept = OnGetItemFromPlayer
 		inst.components.trader.onrefuse = OnRefuseItem
 	end
+	]]--
 	
 	------------------------------------------------------
 
@@ -349,6 +374,10 @@ local function fn(Sim)
 
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("shopkeeper.tex")
+
+	inst:ListenForEvent("rainstop", function() try_despawn(inst) end, GetWorld())
+	inst:ListenForEvent("entitysleep", try_despawn)
+	inst:DoTaskInTime(0, try_despawn)
 
 	return inst
 end
