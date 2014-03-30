@@ -47,13 +47,9 @@ __________
 
 -- Manta (All functionality needed)
 
--- Gnomes (All functionality needed) *In Progress*
-
 -- Beanlet Zealots (Cult functionality needed)
 
 -- Octocopter sequence (All functionality needed)
-
--- Balloon Hound (All functionality needed) *In Progress*
 
 -- Water Crystal (Should launch Flying Fish into nearby water crystals when nearly completely mined, a net is needed)
 
