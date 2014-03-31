@@ -21,6 +21,14 @@ SetSharedLootTable( 'beanlet',
     {'beanlet_shell',   0.33},
 })
 
+local function RetargetFn(inst)
+    return FindEntity(inst, 8, function(guy)
+        return inst.components.combat:CanTarget(guy)
+               and not guy:HasTag("beanlet")
+               and not guy:HasTag("beanmonster")
+    end)
+end
+
 local function OnAttacked(inst, data)
     local x,y,z = inst.Transform:GetWorldPosition()
     local ents = TheSim:FindEntities(x,y,z, 30, {'beanlet'})
@@ -60,7 +68,7 @@ local function fn(Sim)
     local physics = inst.entity:AddPhysics()
     local sound = inst.entity:AddSoundEmitter()
 
-    local brain = require "brains/beanletbrain"
+    local brain = require "brains/beanletzealotbrain"
     inst:SetBrain(brain)
 
     MakeCharacterPhysics(inst, 50, .5)  
@@ -97,7 +105,10 @@ local function fn(Sim)
 
     inst:AddComponent("inspectable")
 
-    inst:ListenForEvent("attacked", OnAttacked)        
+    inst:ListenForEvent("attacked", OnAttacked) 
+    inst.components.combat:SetRetargetFunction(2, RetargetFn)  
+
+    inst:DoPeriodicTask(0, function(inst) inst.AnimState:PlayAnimation("idle") end)     
     
     return inst
 end

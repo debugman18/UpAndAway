@@ -96,7 +96,9 @@ local function fn(Sim)
 
     inst:AddComponent("inspectable")
 
-    inst:ListenForEvent("attacked", OnAttacked)        
+    inst:ListenForEvent("attacked", OnAttacked)
+
+    inst:DoPeriodicTask(0, function(inst) inst.AnimState:PlayAnimation("idle") end)        
 	
     return inst
 end

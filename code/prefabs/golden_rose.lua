@@ -19,15 +19,12 @@ local function fn(Sim)
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
 
     inst.AnimState:SetBank("golden_rose")
     inst.AnimState:SetBuild("golden_rose")
     inst.AnimState:PlayAnimation("idle")
 
 	inst:AddComponent("inspectable")
-
-	inst:AddComponent("inventoryitem")
 
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"

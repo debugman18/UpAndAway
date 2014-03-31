@@ -174,6 +174,10 @@ PrefabFiles = {
 	"ua_staves",
 
 	"weavernest",
+	"weaver_bird",
+	"package",
+	"refined_black_crystal",
+	"refined_white_crystal",
 }
 
 -- The return statement is just for if this file is used externally, at

@@ -9,6 +9,8 @@ local basic_assets =
 {
 	Asset("ANIM", "anim/staffs.zip"),
 	Asset("ANIM", "anim/swap_staffs.zip"), 
+    Asset("IMAGE", "minimap/minimap_atlas.tex"),
+    Asset("ATLAS", "minimap/minimap_data.xml"),
 }
 
 local basic_prefabs = 
@@ -16,7 +18,6 @@ local basic_prefabs =
 	"staffcastfx",
 	"stafflight",
 }
-
 
 local function make_staff(data)
 	local assets = _G.JoinArrays(basic_assets, data.assets or {})
@@ -147,7 +148,63 @@ local function make_black_staff()
 	}
 end
 
+local function make_white_staff()
+	local function canshrink(staff, caster, target, pos)
+		return target
+	end
+
+	local effect_duration = cfg:GetConfig("BLACK", "EFFECT_DURATION")
+	local function white_activate(staff, target, pos)
+		if target then
+    		local package = SpawnPrefab("package")
+    		if package then
+    			package.iteminside = target.prefab
+    			package.itemdata = target:GetPersistData()
+    			package.metadata = target.data
+    			print(package.iteminside)
+        		package.Transform:SetPosition(target.Transform:GetWorldPosition(x,y,z))
+    		end
+    		target:Remove()
+			staff.components.finiteuses:Use(1)
+
+			local doer = staff.components.inventoryitem and staff.components.inventoryitem.owner or GetPlayer()
+			if doer.SoundEmitter then
+				doer.SoundEmitter:PlaySound("dontstarve/rain/thunder_close")
+			end
+		end    
+	end
+
+	return make_staff {
+		name = "whitestaff",
+
+		anim = "greenstaff",
+		swap_symbol = "greenstaff",
+
+		postinit = function(inst)
+			do
+				local finiteuses = inst.components.finiteuses
+
+				local uses = cfg:GetConfig("BLACK", "USES")
+
+				finiteuses:SetMaxUses(uses)
+				finiteuses:SetUses(uses)
+			end
+
+			inst:AddComponent("spellcaster")
+			do
+				local spellcaster = inst.components.spellcaster
+
+				spellcaster.canuseontargets = true
+				spellcaster.canusefrominventory = false
+				spellcaster:SetSpellTestFn(canshrink)
+				spellcaster:SetSpellFn(white_activate)
+			end
+
+		end,
+	}
+end
 
 return {
 	make_black_staff(),
+	make_white_staff(),
 }

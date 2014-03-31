@@ -27,7 +27,6 @@ local function fn(Sim)
     inst.AnimState:PlayAnimation("planted")
     inst.AnimState:SetRayTestOnBB(true);
     
-
     inst:AddComponent("inspectable")
     
     inst:AddComponent("pickable")

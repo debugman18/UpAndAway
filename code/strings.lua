@@ -186,6 +186,8 @@ Add.Names {
 
     owl = "Strix",
 
+    package = "Empty Package",
+
     pineapple_bush = "Pineapple Bush",
 
     pineapple_fruit = "Pineapple",
@@ -665,7 +667,7 @@ Add.QuotesFor {"balloon_hound", "balloon_icehound", "balloon_firehound"} {
 
 STRINGS.CHARACTER_TITLES.winnie = "The Curious"
 STRINGS.CHARACTER_NAMES.winnie = "Winnie"
-STRINGS.CHARACTER_DESCRIPTIONS.winnie = "*Is a picky eater\n*Has a green thumb"
+STRINGS.CHARACTER_DESCRIPTIONS.winnie = "*Is a vegetarian\n*Has a green thumb"
 STRINGS.CHARACTER_QUOTES.winnie = "'Where are you, little sheep?'"
 STRINGS.CHARACTERS.WINNIE = {}
 STRINGS.CHARACTERS.WINNIE.DESCRIBE = {}
@@ -673,7 +675,16 @@ STRINGS.CHARACTERS.WINNIE.DESCRIBE.GENERIC = "I don't have strings yet."
 
 STRINGS.ACTIONS.DEPLOY.PORTABLE_STRUCTURE = "Place"
 
-
+STRINGS.RECIPE_DESC.COTTON_VEST = "A warm cotton vest. It falls apart in the rain."
+STRINGS.RECIPE_DESC.CRYSTAL_LAMP = "A lamp made from the shell of a monster. Fancy!"
+STRINGS.RECIPE_DESC.WEATHER_MACHINE = "It can almost control the weather."
+STRINGS.RECIPE_DESC.COTTON_HAT = "A warm cotton hat. It falls apart in the rain."
+STRINGS.RECIPE_DESC.RESEARCH_LECTERN = "It holds knowledge from far away lands."
+STRINGS.RECIPE_DESC.MAGNET = "It's a magnet fueled by magic."
+STRINGS.RECIPE_DESC.COTTON_CANDY = "Carnival food. Rots your teeth."
+STRINGS.RECIPE_DESC.GRABBER = "A hookshot. You can grab and poke things."
+STRINGS.RECIPE_DESC.BLACKSTAFF = "A black staff. Shock therapy for the environment."
+STRINGS.RECIPE_DESC.WHITESTAFF = "A white staff. For heavy lifting."
 
 --------------------------------------------------------------------------
 -- This cleans up the memory used by all the temporary objects above.

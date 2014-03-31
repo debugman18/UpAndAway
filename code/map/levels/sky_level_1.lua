@@ -95,16 +95,19 @@ local sky_level_1 = {
 		"Cloud_Snow_Biome",
 	},
 	
-	numoptionaltasks = 0,
-	optionaltasks = {
-	},
+		--numoptionaltasks = math.random(2,3),
+		--optionaltasks = {
+		--},
 	
 	set_pieces = {
 		["OctocopterWreckage"] = { count=1, tasks={"Cloud_Aurora_Biome"} },	
 		["Cloudhenge"] = { count=1, tasks={"Cloud_Generic_Biome"} },	
-		["WitchGrove"] = { count=1, tasks={"Cloud_Snow_Biome"} },	
+		["WitchGrove"] = { count=1, tasks={"Cloud_Snow_Biome"} },
+		["OwlColony"] = { count=1, tasks={"Cloud_Snow_Biome"} },	
 		["StrixShrine"] = { count=3, tasks={"Cloud_Aurora_Biome"} },	
-		["CheshireHunting"] = { count=5, tasks={"Cloud_Rainbow_Biome"} },	
+		["SkyGrotto"] = { count=3, tasks={"Cloud_Aurora_Biome"} },
+		["CheshireHunting"] = { count=5, tasks={"Cloud_Rainbow_Biome"} },
+		["CloudHoles"] = { count=1, tasks={"Cloud_Generic_Biome"} },	
 	},
 
 	ordered_story_setpieces = {
@@ -119,6 +122,7 @@ local sky_level_1 = {
 		"goose",
 		"hive_marshmallow",
 		"beanlet",
+		"octocopter",
 	},
 
 }

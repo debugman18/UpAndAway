@@ -4,7 +4,7 @@ local brain = require "brains/eelbrain"
 
 local assets=
 {
-	Asset("ANIM", "anim/tentacle.zip"),
+	Asset("ANIM", "anim/vine.zip"),
     Asset("SOUND", "sound/tentacle.fsb"),
 }
 
@@ -40,7 +40,7 @@ local function fn(Sim)
     MakeGhostPhysics(inst, 1, .5)
 	
     anim:SetBank("tentacle")
-    anim:SetBuild("tentacle")
+    anim:SetBuild("vine")
     anim:PlayAnimation("idle")
  	inst.entity:AddSoundEmitter()
 

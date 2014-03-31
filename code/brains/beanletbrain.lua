@@ -11,7 +11,7 @@ local SEE_PLAYER_DIST = 10
 local AVOID_PLAYER_DIST = 6
 local AVOID_PLAYER_STOP = 10
 
-local MAX_WANDER_DIST = 20
+local MAX_WANDER_DIST = 200
 
 local BeanletBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
@@ -28,12 +28,11 @@ function BeanletBrain:OnStart()
     
     local root = PriorityNode(
     {
-        WhileNode( function() return self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst)),
         RunAway(self.inst, "scarytoprey", AVOID_PLAYER_DIST, AVOID_PLAYER_STOP),
         RunAway(self.inst, "scarytoprey", SEE_PLAYER_DIST, STOP_RUN_DIST, nil, true),
         EventNode(self.inst, "gohome", 
             DoAction(self.inst, GoHomeAction, "go home", true )),
-        Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST)
+        Wander(self.inst, function() return self.inst:GetPosition() end, MAX_WANDER_DIST),   
     }, .25)
     self.bt = BT(self.inst, root)
 end

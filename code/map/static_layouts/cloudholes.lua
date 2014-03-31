@@ -39,7 +39,7 @@ return {
         0, 1, 1, 0, 1, 0,
         0, 1, 0, 1, 1, 0,
         0, 0, 1, 1, 1, 1,
-        0, 0, 1, 1, 1, 1,
+        0, 0, 1, 0, 1, 1,
         0, 1, 0, 1, 1, 0,
         0, 0, 0, 0, 0, 0
       }
@@ -53,7 +53,7 @@ return {
       objects = {
         {
           name = "",
-          type = "flying_fish",
+          type = "weaver_bird",
           shape = "rectangle",
           x = 254,
           y = 192,

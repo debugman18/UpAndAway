@@ -12,3 +12,6 @@ Layouts["StrixShrine"] = StaticLayout.Get("map.static_layouts.strix_shrine")
 Layouts["Cloudhenge"] = StaticLayout.Get("map.static_layouts.cloudhenge")
 Layouts["CheshireHunting"] = StaticLayout.Get("map.static_layouts.cheshire_hunting")
 Layouts["CloudHoles"] = StaticLayout.Get("map.static_layouts.cloudholes")
+
+Layouts["OwlColony"] = StaticLayout.Get("map.static_layouts.owlcolony")
+Layouts["SkyGrotto"] = StaticLayout.Get("map.static_layouts.skygrotto")

@@ -31,8 +31,8 @@ local function fn(Sim)
     local sound = inst.entity:AddSoundEmitter() 
     shadow:SetSize( 1.5, .75 )
     inst.Transform:SetFourFaced()
-    inst.Transform:SetScale(.8, 1, 1.2)
-    --inst.Transform:SetScale(2.4, 3, 3.6)
+    --inst.Transform:SetScale(.8, 1, 1.2)
+    inst.Transform:SetScale(2.4, 3, 3.6)
     anim:SetMultColour(.9, .9, .9, .3)
     
     MakeCharacterPhysics(inst, 50, .5)    
@@ -40,8 +40,8 @@ local function fn(Sim)
     anim:SetBuild("duckraptor")  -- name of the file 
 
     inst:AddComponent("locomotor")
-    inst.components.locomotor.runspeed = 11
-    inst.components.locomotor.walkspeed = 8
+    inst.components.locomotor.runspeed = 8
+    inst.components.locomotor.walkspeed = 5
     
     --inst:SetStateGraph(SGgoose")
     inst:SetStateGraph("SGperd")

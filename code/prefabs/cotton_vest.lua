@@ -32,7 +32,8 @@ local function fn(Sim)
     
     inst:AddComponent("inspectable")
     
-    inst:AddComponent("inventoryitem")
+    inst:AddComponent("inventoryitem") 
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/cotton_vest.xml"
 
     inst:AddComponent("dapperness")
     inst.components.dapperness.dapperness = TUNING.DAPPERNESS_TINY
@@ -41,15 +42,16 @@ local function fn(Sim)
     
     inst.components.equippable:SetOnEquip( onequip )
     inst.components.equippable:SetOnUnequip( onunequip )
-    
+
     inst:AddComponent("fueled")
     inst.components.fueled.fueltype = "USAGE"
     inst.components.fueled:InitializeFuelLevel(TUNING.SWEATERVEST_PERISHTIME)
     inst.components.fueled:SetDepletedFn(onperish)
     
-    
 	inst:AddComponent("insulator")
     inst.components.insulator.insulation = TUNING.INSULATION_LARGE
+
+    inst:ListenForEvent("rainstart", function() inst.components.fueled:MakeEmpty() end)
 
     return inst
 end

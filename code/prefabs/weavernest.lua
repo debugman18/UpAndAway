@@ -7,6 +7,7 @@ local prefabs =
     "crow",
     "twigs",
     "cutgrass",
+    "weaver_bird"
 }
 
 local assets =
@@ -124,7 +125,7 @@ local function SpawnWeaverGuardian(inst)
 	local num_dens = 0
 	
 	for k,v in pairs(ents) do
-		if v:HasTag("weavernest") or v.prefab == "crow" then
+		if v:HasTag("weavernest") or v.prefab == "weaver_bird" then
 			num_dens = num_dens + 1
 		end
 		
@@ -188,13 +189,13 @@ local function SpawnDefenders(inst, attacker)
             local num_to_release = math.min( max_release_per_stage[inst.data.stage] or 1, inst.components.childspawner.childreninside)
             local num_warriors = math.min(num_to_release, TUNING.SPIDERDEN_WARRIORS[inst.data.stage])
             num_warriors = num_warriors - inst.components.childspawner:CountChildrenOutside(function(child)
-                return child.prefab == "robin_winter"
+                return child.prefab == "weaver_bird"
             end)
             for k = 1,num_to_release do
                 if k <= num_warriors then
-                    inst.components.childspawner.childname = "robin_winter"
+                    inst.components.childspawner.childname = "weaver_bird"
                 else
-                    inst.components.childspawner.childname = "robin"
+                    inst.components.childspawner.childname = "weaver_bird"
                 end
                 local weaver = inst.components.childspawner:SpawnChild()
                 if weaver and attacker and weaver.components.combat then
@@ -202,7 +203,7 @@ local function SpawnDefenders(inst, attacker)
                     weaver.components.combat:BlankOutAttacks(1.5 + math.random()*2)
                 end
             end
-            inst.components.childspawner.childname = "robin_winter"
+            inst.components.childspawner.childname = "weaver_bird"
         end
     end
 end
@@ -347,7 +348,7 @@ local function MakeWeaverNestFn(den_level)
 
 		-------------------
 		inst:AddComponent("childspawner")
-		inst.components.childspawner.childname = "robin"
+		inst.components.childspawner.childname = "weaver_bird"
 		inst.components.childspawner:SetRegenPeriod(TUNING.SPIDERDEN_REGEN_TIME)
 		inst.components.childspawner:SetSpawnPeriod(TUNING.SPIDERDEN_RELEASE_TIME)
 
