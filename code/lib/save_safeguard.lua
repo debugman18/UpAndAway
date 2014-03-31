@@ -78,6 +78,7 @@ local function onload()
 				end)
 
 				if not status then
+					pcall(function() TheFrontEnd:ClearScreens() end)
 					oldDoInitGame(unpack(args))
 				end
 			end
