@@ -93,12 +93,13 @@ _G.SavePersistentString = (function()
 	local SavePersistentString = _G.SavePersistentString
 
 	return function(name, data, ...)
-		local status, parent_info = pcall(debug.getinfo, 3, 'f')
+		if SaveGameIndex:GetCurrentMode() ~= "adventure" then
+			local status, parent_info = pcall(debug.getinfo, 3, 'f')
 
-		if status and parent_info and parent_info.func == _G.SaveGame then
-			data = ("loadstring(%q)();"):format(string.dump(onload))..data
+			if status and parent_info and parent_info.func == _G.SaveGame then
+				data = ("loadstring(%q)();"):format(string.dump(onload))..data
+			end
 		end
-
 		return SavePersistentString(name, data, ...)
 	end
 end)()
