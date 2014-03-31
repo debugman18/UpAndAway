@@ -25,6 +25,8 @@ modrequire 'actions'
 
 modrequire 'asset_compiler'
 
+modrequire 'lib.save_safeguard'
+
 do
 	local oldSpawnPrefab = _G.SpawnPrefab
 	function _G.SpawnPrefab(name)
