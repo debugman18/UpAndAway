@@ -242,8 +242,30 @@ local function do_fall(inst, damping, final_height, epsilon, callback)
 	return inst.fallthread
 end
 
-local function fall_smoothly(inst)
-	do_fall(inst, cfg:GetConfig("FALL_DAMPING"), cfg:GetConfig("HEIGHT"), 0)
+local function floating_retargetfn(inst)
+	local combat = inst.components.combat
+
+	local range = combat:GetAttackRange()
+
+	-- How much beyond the attack range we look for a target (to account for large body sizes).
+	-- If even a Deerclops has a radius of 0.5, this should be fine.
+	local extra_range = 1
+
+	return Game.FindSomeEntity(inst, range + extra_range, function(guy)
+		local max_dist = range + (guy.Physics and guy.Physics:GetRadius() or 0)
+		if inst:GetDistanceSqToInst(guy) <= max_dist*max_dist then
+			return combat:CanTarget(guy)
+		end
+	end, nil, {"wall", "houndmound", "hound", "houndfriend"})
+end
+
+local function floating_keeptargetfn(inst, target)
+	local combat = inst.components.combat
+	return combat:CanTarget(target) and inst:GetDistanceSqToInst(target) <= combat:CalcAttackRangeSq(target)
+end
+
+local function fall_smoothly(inst, cb)
+	do_fall(inst, cfg:GetConfig("FALL_DAMPING"), cfg:GetConfig("HEIGHT"), 0, cb)
 end
 
 local function set_floating(inst)
@@ -255,11 +277,19 @@ local function set_floating(inst)
 
 	inst.ballooninst.SoundEmitter:PlaySound("dontstarve/common/balloon_bounce")
 
-	-- FIXME: remove this once we have a custom brain for the floating state.
-	inst:StopBrain()
-	inst:SetBrain(nil)
+	do
+		local combat = inst.components.combat
 
-	fall_smoothly(inst)
+		combat:SetRetargetFunction(1, floating_retargetfn)
+		combat:SetKeepTargetFunction(floating_keeptargetfn)
+	end
+
+	inst:StopBrain()
+
+	fall_smoothly(inst, function(inst)
+		inst:SetBrain(require "brains/balloon_houndbrain")
+		inst:RestartBrain()
+	end)
 end
 
 local function set_grounded(inst)
@@ -268,6 +298,13 @@ local function set_grounded(inst)
 	inst.ballooninst:RemoveFromScene()
 
 	inst:StopBrain()
+
+	do
+		local combat = inst.components.combat
+
+		combat:SetRetargetFunction(3, inst.grounded_fns.retargetfn)
+		combat:SetKeepTargetFunction(inst.grounded_fns.keeptargetfn)
+	end
 
 	do_fall(inst, 0.5, 0, 0.2, function(inst)
 		inst.shadowinst:RemoveFromScene()
@@ -327,6 +364,15 @@ local function MakePrefab(base_prefab)
 		local inst = SpawnPrefab(base_prefab)
 		inst.prefab, inst.name = nil, nil
 
+		do
+			local combat = inst.components.combat
+
+			inst.grounded_fns = {
+				retargetfn = combat.targetfn,
+				keeptargetfn = combat.keeptargetfn,
+			}
+		end
+
 		--------------------------------------
 		
 		make_ground_shadow(inst)
@@ -347,7 +393,7 @@ local function MakePrefab(base_prefab)
 			if self.grounded then
 				set_grounded(self)
 			else
-				fall_smoothly(self)
+				set_floating(self)
 			end
 		end
 		function inst:Pop()
