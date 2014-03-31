@@ -161,7 +161,18 @@ local function make_white_staff()
     			package.iteminside = target.prefab
     			package.itemdata = target:GetPersistData()
     			package.metadata = target.data
-    			print(package.iteminside)
+    			local iteminside = string.upper(package.iteminside)
+    			for k,v in pairs(STRINGS.NAMES) do
+    				if k == iteminside then 
+    					print(k)
+    					print(v)
+    					local itemname = ("Packaged " .. tostring(v))
+    					package.components.named:SetName(itemname)
+    				end	
+				end
+
+    			print(("%s."):format(iteminside))
+
         		package.Transform:SetPosition(target.Transform:GetWorldPosition(x,y,z))
     		end
     		target:Remove()

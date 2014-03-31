@@ -4,8 +4,8 @@ local assets =
 {
 	Asset("ANIM", "anim/void_placeholder.zip"),
 
-	--Asset( "ATLAS", "images/inventoryimages/package.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/package.tex" ),	
+	Asset( "ATLAS", "images/inventoryimages/package.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/package.tex" ),	
 }
 
 local function OnDroppedFn(inst, iteminside)
@@ -27,8 +27,8 @@ local function fn(Sim, iteminside)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.iteminside = nil
-	print(iteminside)
+	--inst.iteminside = nil
+	print(inst.iteminside)
 	inst.itemdata = {}
 	inst.metadata = nil
 
@@ -40,20 +40,10 @@ local function fn(Sim, iteminside)
 
 	inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.nobounce = true
-	--inst.components.inventoryitem.atlasname = "images/inventoryimages/package.xml"
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/package.xml"
 	inst.components.inventoryitem:SetOnDroppedFn(OnDroppedFn)
 
 	inst:AddComponent("named")
-
-	inst:DoTaskInTime(2, function(iteminside)
-		local iteminside = inst.iteminside
-		if iteminside and not iteminside == nil then
-			local itemname = iteminside:GetDisplayName()
-			inst.components.named:SetName("Packaged " .. _G.strings.names.itemname)
-		else 
-			inst.components.named:SetName("Empty Package") 
-		end
-	end)
 
 	return inst
 end
