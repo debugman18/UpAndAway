@@ -155,9 +155,11 @@ local function make_white_staff()
 
 	local effect_duration = cfg:GetConfig("BLACK", "EFFECT_DURATION")
 	local function white_activate(staff, target, pos)
-		if target then
+		if target and target:IsValid() then
+			local targetpos = target:GetPosition()
     		local package = SpawnPrefab("package")
     		if package then
+				--[[
     			package.iteminside = target.prefab
     			package.itemdata = target:GetPersistData()
     			package.metadata = target.data
@@ -207,13 +209,18 @@ local function make_white_staff()
     			print(("%s."):format(iteminside))
 
         		package.Transform:SetPosition(target.Transform:GetWorldPosition(x,y,z))
-    		end
-    		target:Remove()
-			staff.components.finiteuses:Use(1)
+				]]--
 
-			local doer = staff.components.inventoryitem and staff.components.inventoryitem.owner or GetPlayer()
-			if doer.SoundEmitter then
-				doer.SoundEmitter:PlaySound("dontstarve/rain/thunder_close")
+				if package.components.packer:Pack(target) then
+					package.Transform:SetPosition( targetpos:Get() )
+					staff.components.finiteuses:Use(1)
+					local doer = staff.components.inventoryitem and staff.components.inventoryitem.owner or GetPlayer()
+					if doer.SoundEmitter then
+						doer.SoundEmitter:PlaySound("dontstarve/rain/thunder_close")
+					end
+				else
+					package:Remove()
+				end
 			end
 		end    
 	end

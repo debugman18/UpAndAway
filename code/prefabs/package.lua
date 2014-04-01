@@ -8,26 +8,18 @@ local assets =
 	Asset( "IMAGE", "images/inventoryimages/package.tex" ),	
 }
 
-local function OnDroppedFn(inst, iteminside)
-	local iteminside = inst.iteminside
-	print(iteminside)
-	local package = SpawnPrefab(iteminside) or SpawnPrefab("package")
-	if package then
-		package:SetPersistData(inst.itemdata)
-		package.data = inst.metadata
-		package.Transform:SetPosition(inst.Transform:GetWorldPosition())	
+local function do_unpack(inst)
+	if inst.components.packer:Unpack() then
+		inst:Remove()
 	end
-	inst:Remove()
 end	
 
-local function OnLoad(inst, data)
-	inst.itemdata = data.itemdata
-	inst.iteminside = data.iteminside
-end
-
-local function OnSave(inst, data)
-	data.itemdata = inst.itemdata
-	data.iteminside = inst.iteminside
+local function get_name(inst)
+	if inst.components.packer:HasPackage() then
+		return "Packaged "..inst.components.packer:GetName()
+	else
+		return "Package"
+	end
 end
 
 local function fn(Sim, iteminside)
@@ -37,26 +29,36 @@ local function fn(Sim, iteminside)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	--inst.iteminside = nil
-	print(inst.iteminside)
-	inst.itemdata = {}
-	inst.metadata = nil
-
 	inst.AnimState:SetBank("marble")
 	inst.AnimState:SetBuild("void_placeholder")
 	inst.AnimState:PlayAnimation("anim")
 
 	inst:AddComponent("inspectable")
 
+	inst:AddComponent("packer")
+	do
+		local packer = inst.components.packer
+
+		-- Filter out things like this:
+		--[[
+		packer:SetCanPackFn(function(target, inst)
+			-- stuff
+		end)
+		]]--
+	end
+
+	inst:AddComponent("deployable")
+	do
+		local deployable = inst.components.deployable
+
+		deployable.ondeploy = do_unpack
+	end
+
 	inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.nobounce = true
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/package.xml"
-	inst.components.inventoryitem:SetOnDroppedFn(OnDroppedFn)
 
-	inst:AddComponent("named")
-
-    inst.OnSave = OnSave     
-    inst.OnLoad = OnLoad	
+	inst.displaynamefn = get_name
 
 	return inst
 end
