@@ -300,16 +300,15 @@ do
 	end
 end
 
-local function OnUnlock(inst)
-    local tree = SpawnPrefab("beanstalk_sapling")
-    if not inst.components.lock:IsLocked() and tree and inst then
-        tree.Transform:SetPosition(inst.Transform:GetWorldPosition())
-        print "Unlocked"
-    end
-	--_G.DeleteCloseEntsWithTag(inst, "mound", 2)
-	--inst:Remove()
-	--print("Mound deleted.")
-    --print "Locked"
+local function OnUnlockMound(inst)
+	if not inst:IsValid() then return end
+
+	local tree = SpawnPrefab("beanstalk_sapling")
+	if tree then
+		tree.Transform:SetPosition(inst.Transform:GetWorldPosition())
+	end
+	TheMod:DebugSay("[", inst, "] unlocked.")
+	inst:Remove()
 end
 
 local function addmoundtag(inst)
@@ -317,7 +316,7 @@ local function addmoundtag(inst)
     inst:AddComponent("lock")
     inst.components.lock.locktype = "beans"
     inst.components.lock.isstuck = false
-    inst.components.lock:SetOnUnlockedFn(OnUnlock)  
+    inst.components.lock:SetOnUnlockedFn(OnUnlockMound)  
 end	
 
 --Changes "activate" to "talk to" for "shopkeeper".
