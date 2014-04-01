@@ -29,7 +29,7 @@ function Packer:CanPack(target)
 		and not self:HasPackage()
 		and target:IsValid()
 		and not target:IsInLimbo()
-		and not (target:HasTag("irreplaceable") or target:HasTag("player") or target:HasTag("unpackable"))
+		and not (target:HasTag("irreplaceable") or target:HasTag("player") or target:HasTag("nonpackable"))
 		and (not self.canpackfn or self.canpackfn(target, self.inst))
 end
 
