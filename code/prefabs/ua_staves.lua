@@ -162,15 +162,48 @@ local function make_white_staff()
     			package.itemdata = target:GetPersistData()
     			package.metadata = target.data
     			local iteminside = string.upper(package.iteminside)
+    			local itemstatus = nil
+    			if target.components.inspectable and target.components.inspectable.getstatus then
+    				itemstatus = target.components.inspectable.getstatus(target)
+    			end	
+    			print(itemstatus)
+    			local itemnamestatus = tostring(iteminside) .. "_" .. tostring(itemstatus)
+
     			for k,v in pairs(STRINGS.NAMES) do
-    				if k == iteminside then 
-    					print(k)
-    					print(v)
-    					local itemname = ("Packaged " .. tostring(v))
-    					package.components.named:SetName(itemname)
-    				end	
+					if k == iteminside and itemstatus == nil then
+						print(k)
+						print(v)
+						local itemname = ("Packaged " .. tostring(v))	
+						package.components.named:SetName(itemname)
+						print(itemname)   				
+    				elseif k == itemnamestatus then 
+						print(k)
+						print(v)
+						local itemnamewithstatus = ("Packaged " .. tostring(v))	
+						package.components.named:SetName(itemnamewithstatus)
+						print(itemname)
+    				elseif target.name and not target.name == MISSING_NAME then
+ 						print(k)
+						print(v)
+						local itemnamenamed = ("Packaged " .. tostring(target.name))	
+						package.components.named:SetName(itemnamenamed)
+						print(itemname)  
+						print(target.name) 					
+    				else end
 				end
 
+				if target.prefab == CAVE_ENTRANCE and target.open then
+ 					local itemnamecaveopen = ("Packaged Plugged Sinkhole")	
+					package.components.named:SetName(itemnamecaveopen)   	
+				elseif target.prefab == CAVE_ENTRANCE and not target.open then
+					local itemnamecaveclosed = ("Packaged Sinkhole")	
+					package.components.named:SetName(itemnamecaveclosed)					
+				elseif target.name == STRINGS.NAMES.CAVE_ENTRANCE_CLOSED_CAVE then
+					local itemnamecave = ("Packaged Plugged Hole")	
+					package.components.named:SetName(itemnamecave)
+				else end	
+
+				print(itemname)
     			print(("%s."):format(iteminside))
 
         		package.Transform:SetPosition(target.Transform:GetWorldPosition(x,y,z))

@@ -186,7 +186,7 @@ Add.Names {
 
     owl = "Strix",
 
-    package = "Empty Package",
+    package = "Mysterious Package",
 
     pineapple_bush = "Pineapple Bush",
 

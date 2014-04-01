@@ -456,7 +456,7 @@ local cotton_candy = Recipe("cotton_candy", { Ingredient("cloud_cotton", 6, "ima
 
 cotton_candy.atlas = "images/winnie.xml"
 
-local grabber = Recipe("grabber", { Ingredient("magnet", 2, "images/inventoryimages/cloud_cotton.xml"), Ingredient("cane", 1), Ingredient("rubber", 4, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.SURVIVAL, TECH.FABLE_ONE)
+local grabber = Recipe("grabber", { Ingredient("magnet", 2, "images/inventoryimages/cloud_cotton.xml"), Ingredient("cane", 1), Ingredient("rubber", 4, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.TOOLS, TECH.FABLE_ONE)
 
 grabber.atlas = "images/winnie.xml"
 
@@ -464,7 +464,7 @@ local magnet = Recipe("magnet", { Ingredient("gears", 2), Ingredient("crystal_fr
 
 magnet.atlas = "images/winnie.xml"
 
-local crystal_lamp = Recipe("crystal_lamp", { Ingredient("beanlet_shell", 1, "images/inventoryimages/cloud_cotton.xml"), Ingredient("crystal_fragment", 4, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.SCIENCE, TECH.FABLE_ONE)
+local crystal_lamp = Recipe("crystal_lamp", { Ingredient("beanlet_shell", 1, "images/inventoryimages/cloud_cotton.xml"), Ingredient("crystal_fragment", 4, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.LIGHT, TECH.FABLE_ONE)
 
 crystal_lamp.atlas = "images/winnie.xml"
 
@@ -476,11 +476,11 @@ local refined_white_crystal = Recipe("refined_white_crystal", { Ingredient("whit
 
 refined_white_crystal.atlas = "images/inventoryimages/crystal_fragment_white.xml"
 
-local black_crystal_staff = Recipe("blackstaff", { Ingredient("spear", 1), Ingredient("refined_black_crystal", 1, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.SCIENCE, TECH.FABLE_ONE)
+local black_crystal_staff = Recipe("blackstaff", { Ingredient("spear", 1), Ingredient("refined_black_crystal", 1, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.MAGIC, TECH.FABLE_ONE)
 
 black_crystal_staff.atlas = "images/winnie.xml"
 
-local white_crystal_staff = Recipe("whitestaff", { Ingredient("spear", 1), Ingredient("refined_white_crystal", 1, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.SCIENCE, TECH.FABLE_ONE)
+local white_crystal_staff = Recipe("whitestaff", { Ingredient("spear", 1), Ingredient("refined_white_crystal", 1, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.MAGIC, TECH.FABLE_ONE)
 
 white_crystal_staff.atlas = "images/winnie.xml"
 --]]

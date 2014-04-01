@@ -20,6 +20,16 @@ local function OnDroppedFn(inst, iteminside)
 	inst:Remove()
 end	
 
+local function OnLoad(inst, data)
+	inst.itemdata = data.itemdata
+	inst.iteminside = data.iteminside
+end
+
+local function OnSave(inst, data)
+	data.itemdata = inst.itemdata
+	data.iteminside = inst.iteminside
+end
+
 local function fn(Sim, iteminside)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
@@ -44,6 +54,9 @@ local function fn(Sim, iteminside)
 	inst.components.inventoryitem:SetOnDroppedFn(OnDroppedFn)
 
 	inst:AddComponent("named")
+
+    inst.OnSave = OnSave     
+    inst.OnLoad = OnLoad	
 
 	return inst
 end
