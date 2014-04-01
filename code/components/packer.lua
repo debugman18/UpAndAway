@@ -35,7 +35,9 @@ end
 
 
 local function get_name(target)
-	local name = target:GetDisplayName() or (target.components.named and target.components.named.name) or "MISSING NAME"
+	local name = target:GetDisplayName() or (target.components.named and target.components.named.name)
+
+	if not name or name == "MISSING NAME" then return end
 
 	local adj = target:GetAdjective()
 	if adj then

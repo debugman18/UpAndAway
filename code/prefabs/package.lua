@@ -15,10 +15,11 @@ local function do_unpack(inst)
 end	
 
 local function get_name(inst)
-	if inst.components.packer:HasPackage() then
-		return "Packaged "..inst.components.packer:GetName()
+	local basename = inst.components.packer:GetName()
+	if basename then
+		return "Packaged "..basename
 	else
-		return "Package"
+		return "Unknown Package"
 	end
 end
 
