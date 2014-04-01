@@ -18,12 +18,20 @@ local colours=
 }
 
 local function fadein(inst)
+	inst:AddTag("NOCLICK")
     inst.components.fader:StopAll()
     inst.AnimState:PlayAnimation("swarm_pre")
     inst.AnimState:PushAnimation("swarm_loop", true)
     inst.Light:Enable(true)
     inst.Light:SetIntensity(0)
     inst.components.fader:Fade(0, INTENSITY, 3+math.random()*2, function(v) inst.Light:SetIntensity(v) end, function() inst:RemoveTag("NOCLICK") end)
+end
+
+local function fadeout(inst)
+	inst:AddTag("NOCLICK")
+    inst.components.fader:StopAll()
+    inst.Light:SetIntensity(INTENSITY)
+    inst.components.fader:Fade(INTENSITY, 0, 3+math.random()*2, function(v) inst.Light:SetIntensity(v) end, function() inst:Remove() end)
 end
 
 local function updatelight(inst)
@@ -54,6 +62,12 @@ end
 
 local function onnear(inst) 
 	updatelight(inst) 
+end
+
+local function try_remove(inst)
+	if GetStaticGenerator() and not GetStaticGenerator():IsCharged() then
+		fadeout(inst)
+	end
 end
 
 local function onsave(inst, data)
@@ -113,12 +127,6 @@ local function fn(Sim)
     inst.components.workable:SetOnFinishCallback(function(inst, worker)
         if worker.components.inventory then
             worker.components.inventory:GiveItem(inst, nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
-			--[[
-			-- Does a fading out effect makes sense here?
-			-- Hasn't it been... caught already?
-			--
-            -- fadeout(inst)
-			]]--
         end
     end)
 
@@ -146,15 +154,7 @@ local function fn(Sim)
 	
 	inst:AddTag("FX")
 
-	--[[
-    inst:ListenForEvent( "daytime", function()
-        inst:DoTaskInTime(2+math.random()*1, function() updatelight(inst) end)
-    end, GetWorld())
-    inst:ListenForEvent( "nighttime", function()
-        inst:DoTaskInTime(2+math.random()*1, function() updatelight(inst) end)
-    end, GetWorld())
-	--]]
-	
+	inst:ListenForEvent("upandaway_uncharge", function() try_remove(inst) end, GetWorld())
 
     updatelight(inst)
     inst.OnSave = onsave

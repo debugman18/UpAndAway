@@ -11,6 +11,8 @@ local Physics = modrequire 'lib.physics'
 
 local BitMask = modrequire 'lib.bitmask'
 
+local NewEntityTable = modrequire 'lib.entity_table'
+
 
 --[[
 -- Returns the list of nodes within the minimum and maximum distances to
@@ -160,10 +162,12 @@ local EntityFlinger = Class(Debuggable, function(self, inst)
 	--[[
 	-- Entities being attracted.
 	--]]
-	self.attracted_ents = setmetatable({}, {__mode = "k"})
+	self.attracted_ents = NewEntityTable()
 
 
 	self.entity_cleaner = function(ent)
+		if not self.inst:IsValid() then return end
+
 		for _, kind in ipairs{"pre_fling", "post_fling"} do
 			local tasks = self[kind][ent]
 			if tasks then
@@ -176,7 +180,6 @@ local EntityFlinger = Class(Debuggable, function(self, inst)
 					tasks[task] = nil
 				end
 			end
-			self[kind][ent] = nil
 		end
 		self:Touch()
 	end
@@ -193,7 +196,7 @@ end
 
 function EntityFlinger:Touch()
 	if self:WantsToDie() then
-		if next(self.pre_fling) == nil and next(self.post_fling) == nil and next(self.attracted_ents) == nil then
+		if next(self.pre_fling) == nil and next(self.post_fling) == nil and self.attracted_ents.IsEmpty() then
 			self.inst:Remove()
 		end
 	end
@@ -341,30 +344,26 @@ local UntrackInst = {}
 
 function TrackInst.pre_fling(self, inst)
 	if not self.pre_fling[inst] then
-		self.pre_fling[inst] = setmetatable({}, {__mode = "k"})
-		self.inst:ListenForEvent("onremove", self.entity_cleaner, inst)
+		self.pre_fling[inst] = NewEntityTable(self.entity_cleaner)
 	end
 end
 
 function UntrackInst.pre_fling(self, inst)
 	if self.pre_fling[inst] then
 		self.pre_fling[inst] = nil
-		self.inst:RemoveEventCallback("onremove", self.entity_cleaner, inst)
 	end
 end
 
 function TrackInst.post_fling(self, inst)
 	UntrackInst.pre_fling(self, inst)
 	if not self.post_fling[inst] then
-		self.post_fling[inst] = setmetatable({}, {__mode = "k"})
-		self.inst:ListenForEvent("onremove", self.entity_cleaner, inst)
+		self.post_fling[inst] = NewEntityTable(self.entity_cleaner)
 	end
 end
 
 function UntrackInst.post_fling(self, inst)
 	if self.post_fling[inst] then
 		self.post_fling[inst] = nil
-		self.inst:RemoveEventCallback("onremove", self.entity_cleaner, inst)
 	end
 end
 
@@ -686,7 +685,7 @@ end)()
 
 function EntityFlinger:StopAttracting()
 	self.wants_to_attract = false
-	self.attracted_ents = setmetatable({}, {__mode = "k"})
+	self.attracted_ents = NewEntityTable()
 end
 
 function EntityFlinger:OnSave()

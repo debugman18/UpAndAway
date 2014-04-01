@@ -210,8 +210,13 @@ local function fn(Sim)
     --ambientsoundmixer.wave_sound = GLOBAL.resolvefilepath("dontstarve/ocean/waves"))
    
 	inst:AddComponent("colourcubemanager")
-	local COLOURCUBE = "images/colour_cubes/snowdusk_cc.tex"
-	_G.GetWorld().components.colourcubemanager:SetOverrideColourCube(COLOURCUBE)
+	do
+		local ccman = inst.components.colourcubemanager
+		local COLOURCUBE = "images/colour_cubes/snowdusk_cc.tex"
+
+		ccman:SetOverrideColourCube(COLOURCUBE)
+	end
+
 	--inst.Map:SetOverlayTexture( "levels/textures/snow.tex" )
 	
 	inst:AddComponent("staticgenerator")
@@ -247,6 +252,11 @@ local function fn(Sim)
 		flyspawner:SetMinFlySpread(cfg:GetConfig "MIN_FLY2FLY_DISTANCE")
 		flyspawner:SetPersistence( cfg:GetConfig "PERSISTENT" )
 
+		flyspawner:SetShouldSpawnFn(function()
+			local sgen = inst.components.staticgenerator
+			return sgen and sgen:IsCharged()
+		end)
+
 		flyspawner:Touch()
 	end
 
@@ -258,67 +268,3 @@ end
 
 
 return Prefab("cloudrealm", fn, assets, prefabs)
-
-
--------------------------------------------------
-
-
---[[
--- Forest and cave constructors, for reference.
--- (as in Nightmares, not public preview!)
-
--- Forest
-local function fn(Sim)
-
-	local inst = SpawnPrefab("world")
-	inst.prefab = "forest"
-	inst.entity:SetCanSleep(false)
-	
-	
-	--add waves
-	local waves = inst.entity:AddWaveComponent()
-	waves:SetRegionSize( 32, 16 )
-	waves:SetRegionNumWaves( 6 )
-	waves:SetWaveTexture( "images/wave.tex" )
-
-	-- See source\game\components\WaveRegion.h
-	waves:SetWaveEffect( "shaders/waves.ksh" ) -- texture.ksh
-	waves:SetWaveSize( 2048, 512 )
-
-	inst:AddComponent("seasonmanager")
-    inst:AddComponent("birdspawner")
-    inst:AddComponent("butterflyspawner")
-	inst:AddComponent("hounded")
-	inst:AddComponent("basehassler")
-	inst:AddComponent("hunter")
-	
-    inst.components.butterflyspawner:SetButterfly("butterfly")
-
-	inst:AddComponent("frograin")
-
-	inst:AddComponent("lureplantspawner")
-	inst:AddComponent("penguinspawner")
-
-	inst:AddComponent("colourcubemanager")
-	inst.Map:SetOverlayTexture( "levels/textures/snow.tex" )
-    return inst
-end
-
--- Cave
-local function fn(Sim)
-	local inst = SpawnPrefab("world")
-	inst:AddTag("cave")
-
-	inst.prefab = "cave"
-	--cave specifics
-	inst:AddComponent("quaker")
-	inst:AddComponent("seasonmanager")
-	inst.components.seasonmanager:SetCaves()
-	inst:AddComponent("colourcubemanager")
-
-	inst.components.ambientsoundmixer:SetReverbPreset("cave")
-
-    return inst
-end
-
-]]--

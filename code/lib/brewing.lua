@@ -121,7 +121,7 @@ end
 
 
 local IsPrefab = (function()
-	local cache = setmetatable({}, {__mode = "v"})
+	local cache = {}
 
 	return function(prefabname)
 		if not Pred.IsString(prefabname) then

@@ -1,7 +1,7 @@
 local _M = _M
 
 
-local EntityMeta = modrequire 'lib.entity_metadata'
+local EntityMeta = modrequire('lib.entity_table')()
 
 local PhysicsPatches = modrequire 'patches.physics'
 
@@ -18,10 +18,10 @@ local tracked_attributes = PhysicsPatches.tracked_attributes
 --]]
 local function phys_meta(inst)
 	if inst:IsValid() then
-		local ret = EntityMeta[inst][_M]
+		local ret = EntityMeta[inst]
 		if not ret then
 			ret = {}
-			EntityMeta[inst][_M] = ret
+			EntityMeta[inst] = ret
 		end
 		return ret
 	end

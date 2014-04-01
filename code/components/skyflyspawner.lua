@@ -1,5 +1,3 @@
-
-
 local Pred = wickerrequire 'lib.predicates'
 
 local game = wickerrequire 'utils.game'
@@ -27,8 +25,10 @@ local SkyflySpawner = Class(Debuggable, function(self, inst)
 	self.max_distance = 25
 	self.min_spread = 1
 
+	self.shouldspawnfn = nil
+
 	-- Maps flies to "onremove" callbacks.
-	self.flies = setmetatable({}, {__mode = "k"})
+	self.flies = {}
 	self.numflies = 0
 
 	self.is_persistent = true
@@ -86,6 +86,16 @@ function SkyflySpawner:SetMinFlySpread(ds)
 end
 
 ---
+-- Sets the function called to determine whether a skyfly should be spawned
+-- or not.
+--
+-- @param fn The predicate function.
+function SkyflySpawner:SetShouldSpawnFn(fn)
+	assert( fn == nil or Pred.IsCallable(fn) )
+	self.shouldspawnfn = fn
+end
+
+---
 -- Sets whether entities spawned should be kept across reloading.
 --
 -- @param b A boolean.
@@ -108,10 +118,8 @@ function SkyflySpawner:Track(fly)
 	self.flies[fly] = function(fly)
 		if self.flies[fly]  then
 			self:Untrack(fly)
-			if fly:IsAsleep() then
-				self:DebugSay("Removing [", fly, "]")
-				fly:Remove()
-			end
+			self:DebugSay("Removing [", fly, "]")
+			fly:Remove()
 		end
 	end
 
@@ -207,9 +215,8 @@ end
 ---
 -- Stops the spawning task, if any.
 function SkyflySpawner:StopSpawning()
-	self:DebugSay("StopSpawning")
-
 	if self.task then
+		self:DebugSay("StopSpawning")
 		self.task:Cancel()
 		self.task = nil
 	end
@@ -244,7 +251,7 @@ function SkyflySpawner:GetSpawnFlower()
 	local player = GetPlayer()
 	local minsq = self.min_distance*self.min_distance
 
-	local candidates = game.FindAllEntities(
+	return game.FindRandomEntity(
 		player,
 		self.max_distance,
 		function(flower)
@@ -258,14 +265,12 @@ function SkyflySpawner:GetSpawnFlower()
 		end,
 		{"flower"}
 	)
-
-	if #candidates > 0 then
-		return candidates[math.random(#candidates)]
-	end
 end
 
 function SkyflySpawner:TrySpawn()
-	if self.numflies >= self.max_flies then return end
+	if self.numflies >= self.max_flies or (self.shouldspawnfn and not self.shouldspawnfn(self.inst)) then
+		return
+	end
 
 	self:DebugSay("TrySpawn")
 

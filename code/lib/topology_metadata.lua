@@ -61,8 +61,6 @@ GetNodeInradius = (function()
 	end
 
 	local inradii = setmetatable({}, {
-		__mode = "k",
-
 		__index = function(t, k)
 			local v = CalculateInradius(k)
 			t[k] = v
