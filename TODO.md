@@ -1,65 +1,70 @@
 # TODO for Up and Away
-__________
 
-- **Current bugs:**
++ **Current bugs:**
 
--- Beanlet (Burning and Freezing makes them invisible)
+	+ Beanlet (Burning and Freezing makes them invisible)
 
--- All objects using custom animations (Tiny player action hitboxes; Vanilla bug)
+	+ All objects using custom animations (Tiny player action hitboxes; Vanilla bug)
 
--- Worldgen Animation (Isn't loading; Vanilla bug)
+	+ Worldgen Animation (Isn't loading; Vanilla bug)
 
-- **Art assets in need of attention**
+	+ Whirlwind physics bug
 
--- Weaver Den (All art assets, using spiderden bank or custom animations)
++ **Art assets in need of attention**
 
--- Manta (All art assets, using buzzard bank or custom animations)
+	+ Weaver Den (All art assets, using spiderden bank or custom animations)
 
--- Cloud Coral (All art assets, still image, idle and idle_harvested)
+	+ Manta (All art assets, using buzzard bank or custom animations)
 
--- Weather Machine (All art assets, still image)
+	+ Cloud Coral (All art assets, still image, idle and idle_harvested)
 
--- Kettle (All art assets, still image)
+	+ Weather Machine (All art assets, still image)
 
--- Refiner (All art assets, still image)
+	+ Kettle (All art assets, still image)
 
--- Three Different Octocopter pieces (All art assets, still images)
+	+ Refiner (All art assets, still image)
 
--- Cloud Fruit Tree (All art assets, still image, idle and idle_harvested)
+	+ Three Different Octocopter pieces (All art assets, still images)
 
--- Living Gnomes (All art assets, using custom animations)
+	+ Cloud Fruit Tree (All art assets, still image, idle and idle_harvested)
 
--- Bean Giant (All art assets, using deerclops bank or custom animations)
+	+ Living Gnomes (All art assets, using custom animations)
 
--- Bean Giant Statue (All art assets, still image)
+	+ Bean Giant (All art assets, using deerclops bank or custom animations)
 
--- Golden Sunflower (All art assets, still image)
+	+ Bean Giant Statue (All art assets, still image)
 
--- Various minimap icons. (For various objects in the world, still images)
+	+ Golden Sunflower (All art assets, still image)
 
--- Balloon Hound (All art assets, using custom animations)
+	+ Various minimap icons. (For various objects in the world, still images)
 
--- Rainbow Cloudturf and Snow/Icecream Cloudturf (All art assets, simply a tesselating image)
+	+ Balloon Hound (All art assets, using custom animations)
 
-- **Code assets in need of attention**
+	+ Rainbow Cloudturf and Snow/Icecream Cloudturf (All art assets, simply a tesselating image)
 
--- Weaver Bird (All functionality needed)
++ **Code assets in need of attention**
 
--- Manta (All functionality needed)
+	+ Weaver Bird (All functionality needed)
 
--- Beanlet Zealots (Cult functionality needed)
+	+ Manta (All functionality needed)
 
--- Octocopter sequence (All functionality needed)
+	+ Beanlet Zealots (Cult functionality needed)
 
--- Water Crystal (Should launch Flying Fish into nearby water crystals when nearly completely mined, a net is needed)
+	+ Octocopter sequence (All functionality needed)
 
--- Flying Fish (See above)
+	+ Water Crystal (Should launch Flying Fish into nearby water crystals when nearly completely mined, a net is needed)
 
--- Recipes and Unique Tech Tree
+	+ Flying Fish (See above)
 
--- Setpieces, setpieces, setpieces
-__________________
+	+ Recipes and Unique Tech Tree
+
+	+ Setpieces, setpieces, setpieces
+
+******
 
 Anything else that needs to be added will be added, current version is from memory. 
 If something is missing (bugs or otherwise), let either @simplex or @debugman18 know.
 
+<!--
+vim: ft=markdown nofoldenable
+-->
