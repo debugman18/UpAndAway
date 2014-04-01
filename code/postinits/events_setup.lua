@@ -29,7 +29,9 @@ local function spawn_shopkeeper_spawner()
 	end
 end
 
-TheMod:AddSimPostInit(function()
+-- This has two "locks": topology data gathering and sim post init.
+local shopkeeper_spawner_setup = coroutine.wrap(function()
+	coroutine.yield()
 	if SaveGameIndex:GetCurrentMode() == "survival" then
 		local world = GetWorld()
 		if world then
@@ -37,3 +39,6 @@ TheMod:AddSimPostInit(function()
 		end
 	end
 end)
+
+TheMod:AddSimPostInit(shopkeeper_spawner_setup)
+Game.Topology.AddRoadDataPostInit(shopkeeper_spawner_setup)
