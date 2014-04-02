@@ -2,12 +2,11 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/blocker.zip"),	
+	Asset("ANIM", "anim/blocker.zip"),
+    Asset("ANIM", "anim/whirlwind.zip")	
 }
 
-
 local brain = modrequire "brains.whirlwindbrain"
-
 
 --[[
 -- Receives the whirlwind entity and the victim.
@@ -38,17 +37,16 @@ local function MakeHelix(inst, victim)
 	end
 end
 
-
 local function fn(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
 	local anim = inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
 
-	anim:SetBank("blocker")
-	anim:SetBuild("blocker")
-	anim:PlayAnimation("block1")
-	anim:SetMultColour(.9, .9, .9, .3)
+	anim:SetBank("mossling")
+    anim:SetBuild("whirlwind")
+	anim:PlayAnimation("spin_loop", true)
+	anim:SetMultColour(.6, .6, .6, .3)
 
 	local physics = inst.entity:AddPhysics()
 	physics:SetMass(1)

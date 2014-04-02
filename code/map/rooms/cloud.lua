@@ -136,6 +136,9 @@ TheMod:AddRoom("CragLanding", {
 			beanlet = 0.01,
 			cloud_fruit_tree = 0.05,
 		},
+	    countprefabs = {
+	        goose = 1,
+	    }	
 	},
 })
 
@@ -146,12 +149,15 @@ TheMod:AddRoom("Bigbird_Nest", {
 	contents = {
 		distributepercent = 0.3,
 		distributeprefabs = {
-			goose = 0.00003,
+			goose = 0.00006,
 			longbill = 0.00002,
 			dragonblood_tree = 0.0001,
 			beanlet = 0.00001,
 			skyflower = 0.1,
 		},
+	    countprefabs = {
+	        goose = 1,
+	    }		
 	},
 })
 
