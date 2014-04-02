@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/Beanlet.zip"),  -- same name as the .scml
+	Asset("ANIM", "anim/beanlet.zip"),  -- same name as the .scml
     Asset("SOUND", "sound/pengull.fsb"),
 }
 
@@ -67,12 +67,13 @@ local function fn(Sim)
 
     inst.Transform:SetScale(1.3, 1.3, 1.3)
 
-    inst.AnimState:SetBank("Beanlet") -- name of the animation root
-    inst.AnimState:SetBuild("Beanlet")  -- name of the file
+    inst.AnimState:SetBank("beanlet") -- name of the animation root
+    inst.AnimState:SetBuild("beanlet")  -- name of the file
     inst.AnimState:PlayAnimation("idle", true) -- name of the animation
 
     inst:AddTag("animal")
     inst:AddTag("smallcreature")
+    inst:AddTag("beanlet")
 
     inst:AddComponent("knownlocations")
 
@@ -98,7 +99,7 @@ local function fn(Sim)
 
     inst:ListenForEvent("attacked", OnAttacked)
 
-    inst:DoPeriodicTask(0, function(inst) inst.AnimState:PlayAnimation("idle") end)        
+    --inst:DoPeriodicTask(0, function(inst) inst.AnimState:PlayAnimation("idle") end)        
 	
     return inst
 end

@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+    <folder id="0">
+        <file id="0" name="gnome_death.png" width="47" height="74" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="gnome_feet.png" width="47" height="74" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="gnome_legs.png" width="47" height="21" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="gnome_head.png" width="47" height="74" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="gnome_hat.png" width="32" height="36" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="livegnome">
+        <animation id="0" name="idle" length="1000">
+            <mainline>
+                <key id="0">
+                    <bone_ref id="0" timeline="4" key="0"/>
+                    <object_ref id="0" name="gnome_feet" folder="0" file="1" abs_x="-21.909844" abs_y="31.4693" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" name="gnome_legs" folder="0" file="2" abs_x="-22.262119" abs_y="11.849194" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" name="gnome_head" folder="0" file="3" abs_x="-22.621185" abs_y="55.834838" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" name="gnome_hat" folder="0" file="4" abs_x="-15.615616" abs_y="57.057066" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="1" time="100">
+                    <bone_ref id="0" timeline="4" key="1"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="2" time="511">
+                    <bone_ref id="0" timeline="4" key="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="gnome_feet">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-21.909844" y="31.4693" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="gnome_legs">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="41.46073" y="23.018957" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="gnome_head">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="263.519113" y="22.990485" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="gnome_hat">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="269.377416" y="15.97442" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="bone_000" object_type="bone">
+                <key id="0" spin="0">
+                    <bone x="0.828302" y="3.839442" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="1" time="100" spin="0">
+                    <bone x="1.484757" y="3.182986" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="2" time="511" spin="0">
+                    <bone x="2.497886" y="3.576859" angle="90.504796" scale_x="0.198088"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="walk_pst" length="1000">
+            <mainline>
+                <key id="0">
+                    <bone_ref id="0" timeline="4" key="0"/>
+                    <object_ref id="0" name="gnome_feet" folder="0" file="1" abs_x="-21.909844" abs_y="31.4693" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" name="gnome_legs" folder="0" file="2" abs_x="-22.262119" abs_y="11.849194" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" name="gnome_head" folder="0" file="3" abs_x="-22.621185" abs_y="55.834838" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" name="gnome_hat" folder="0" file="4" abs_x="-15.615616" abs_y="57.057066" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="1" time="100">
+                    <bone_ref id="0" timeline="4" key="1"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="2" time="511">
+                    <bone_ref id="0" timeline="4" key="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="gnome_feet">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-21.909844" y="31.4693" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="gnome_legs">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="41.46073" y="23.018957" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="gnome_head">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="263.519113" y="22.990485" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="gnome_hat">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="269.377416" y="15.97442" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="bone_000" object_type="bone">
+                <key id="0" spin="0">
+                    <bone x="0.828302" y="3.839442" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="1" time="100" spin="0">
+                    <bone x="1.484757" y="3.182986" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="2" time="511" spin="0">
+                    <bone x="2.497886" y="3.576859" angle="90.504796" scale_x="0.198088"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="run_pre" length="1000">
+            <mainline>
+                <key id="0">
+                    <bone_ref id="0" timeline="4" key="0"/>
+                    <object_ref id="0" name="gnome_feet" folder="0" file="1" abs_x="-21.909844" abs_y="31.4693" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" name="gnome_legs" folder="0" file="2" abs_x="-22.262119" abs_y="11.849194" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" name="gnome_head" folder="0" file="3" abs_x="-22.621185" abs_y="55.834838" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" name="gnome_hat" folder="0" file="4" abs_x="-15.615616" abs_y="57.057066" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="1" time="100">
+                    <bone_ref id="0" timeline="4" key="1"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="2" time="511">
+                    <bone_ref id="0" timeline="4" key="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="gnome_feet">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-21.909844" y="31.4693" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="gnome_legs">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="41.46073" y="23.018957" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="gnome_head">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="263.519113" y="22.990485" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="gnome_hat">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="269.377416" y="15.97442" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="bone_000" object_type="bone">
+                <key id="0" spin="0">
+                    <bone x="0.828302" y="3.839442" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="1" time="100" spin="0">
+                    <bone x="1.484757" y="3.182986" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="2" time="511" spin="0">
+                    <bone x="2.497886" y="3.576859" angle="90.504796" scale_x="0.198088"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="run_pst" length="1000">
+            <mainline>
+                <key id="0">
+                    <bone_ref id="0" timeline="4" key="0"/>
+                    <object_ref id="0" name="gnome_feet" folder="0" file="1" abs_x="-21.909844" abs_y="31.4693" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" name="gnome_legs" folder="0" file="2" abs_x="-22.262119" abs_y="11.849194" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" name="gnome_head" folder="0" file="3" abs_x="-22.621185" abs_y="55.834838" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" name="gnome_hat" folder="0" file="4" abs_x="-15.615616" abs_y="57.057066" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="1" time="100">
+                    <bone_ref id="0" timeline="4" key="1"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="2" time="511">
+                    <bone_ref id="0" timeline="4" key="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="gnome_feet">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-21.909844" y="31.4693" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="gnome_legs">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="41.46073" y="23.018957" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="gnome_head">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="263.519113" y="22.990485" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="gnome_hat">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="269.377416" y="15.97442" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="bone_000" object_type="bone">
+                <key id="0" spin="0">
+                    <bone x="0.828302" y="3.839442" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="1" time="100" spin="0">
+                    <bone x="1.484757" y="3.182986" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="2" time="511" spin="0">
+                    <bone x="2.497886" y="3.576859" angle="90.504796" scale_x="0.198088"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="run" length="1000">
+            <mainline>
+                <key id="0">
+                    <bone_ref id="0" timeline="4" key="0"/>
+                    <object_ref id="0" name="gnome_feet" folder="0" file="1" abs_x="-21.909844" abs_y="31.4693" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" name="gnome_legs" folder="0" file="2" abs_x="-22.262119" abs_y="11.849194" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" name="gnome_head" folder="0" file="3" abs_x="-22.621185" abs_y="55.834838" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" name="gnome_hat" folder="0" file="4" abs_x="-15.615616" abs_y="57.057066" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="1" time="100">
+                    <bone_ref id="0" timeline="4" key="1"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="2" time="511">
+                    <bone_ref id="0" timeline="4" key="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="gnome_feet">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-21.909844" y="31.4693" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="gnome_legs">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="41.46073" y="23.018957" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="gnome_head">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="263.519113" y="22.990485" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="gnome_hat">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="269.377416" y="15.97442" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="bone_000" object_type="bone">
+                <key id="0" spin="0">
+                    <bone x="0.828302" y="3.839442" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="1" time="100" spin="0">
+                    <bone x="1.484757" y="3.182986" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="2" time="511" spin="0">
+                    <bone x="2.497886" y="3.576859" angle="90.504796" scale_x="0.198088"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="run_loop" length="1000">
+            <mainline>
+                <key id="0">
+                    <bone_ref id="0" timeline="4" key="0"/>
+                    <object_ref id="0" name="gnome_feet" folder="0" file="1" abs_x="-21.909844" abs_y="31.4693" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" name="gnome_legs" folder="0" file="2" abs_x="-22.262119" abs_y="11.849194" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" name="gnome_head" folder="0" file="3" abs_x="-22.621185" abs_y="55.834838" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" name="gnome_hat" folder="0" file="4" abs_x="-15.615616" abs_y="57.057066" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="1" time="100">
+                    <bone_ref id="0" timeline="4" key="1"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="2" time="511">
+                    <bone_ref id="0" timeline="4" key="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="gnome_feet">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-21.909844" y="31.4693" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="gnome_legs">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="41.46073" y="23.018957" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="gnome_head">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="263.519113" y="22.990485" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="gnome_hat">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="269.377416" y="15.97442" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="bone_000" object_type="bone">
+                <key id="0" spin="0">
+                    <bone x="0.828302" y="3.839442" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="1" time="100" spin="0">
+                    <bone x="1.484757" y="3.182986" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="2" time="511" spin="0">
+                    <bone x="2.497886" y="3.576859" angle="90.504796" scale_x="0.198088"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="6" name="atk_pst" length="1000">
+            <mainline>
+                <key id="0">
+                    <bone_ref id="0" timeline="4" key="0"/>
+                    <object_ref id="0" name="gnome_feet" folder="0" file="1" abs_x="-21.909844" abs_y="31.4693" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" name="gnome_legs" folder="0" file="2" abs_x="-22.262119" abs_y="11.849194" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" name="gnome_head" folder="0" file="3" abs_x="-22.621185" abs_y="55.834838" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" name="gnome_hat" folder="0" file="4" abs_x="-15.615616" abs_y="57.057066" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="1" time="100">
+                    <bone_ref id="0" timeline="4" key="1"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="2" time="511">
+                    <bone_ref id="0" timeline="4" key="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="gnome_feet">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-21.909844" y="31.4693" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="gnome_legs">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="41.46073" y="23.018957" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="gnome_head">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="263.519113" y="22.990485" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="gnome_hat">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="269.377416" y="15.97442" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="bone_000" object_type="bone">
+                <key id="0" spin="0">
+                    <bone x="0.828302" y="3.839442" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="1" time="100" spin="0">
+                    <bone x="1.484757" y="3.182986" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="2" time="511" spin="0">
+                    <bone x="2.497886" y="3.576859" angle="90.504796" scale_x="0.198088"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="7" name="walk_pre" length="1000">
+            <mainline>
+                <key id="0">
+                    <bone_ref id="0" timeline="4" key="0"/>
+                    <object_ref id="0" name="gnome_feet" folder="0" file="1" abs_x="-21.909844" abs_y="31.4693" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" name="gnome_legs" folder="0" file="2" abs_x="-22.262119" abs_y="11.849194" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" name="gnome_head" folder="0" file="3" abs_x="-22.621185" abs_y="55.834838" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" name="gnome_hat" folder="0" file="4" abs_x="-15.615616" abs_y="57.057066" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="1" time="100">
+                    <bone_ref id="0" timeline="4" key="1"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="2" time="511">
+                    <bone_ref id="0" timeline="4" key="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="gnome_feet">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-21.909844" y="31.4693" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="gnome_legs">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="41.46073" y="23.018957" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="gnome_head">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="263.519113" y="22.990485" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="gnome_hat">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="269.377416" y="15.97442" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="bone_000" object_type="bone">
+                <key id="0" spin="0">
+                    <bone x="0.828302" y="3.839442" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="1" time="100" spin="0">
+                    <bone x="1.484757" y="3.182986" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="2" time="511" spin="0">
+                    <bone x="2.497886" y="3.576859" angle="90.504796" scale_x="0.198088"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="8" name="walk" length="1000">
+            <mainline>
+                <key id="0">
+                    <bone_ref id="0" timeline="4" key="0"/>
+                    <object_ref id="0" name="gnome_feet" folder="0" file="1" abs_x="-21.909844" abs_y="31.4693" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" name="gnome_legs" folder="0" file="2" abs_x="-22.262119" abs_y="11.849194" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" name="gnome_head" folder="0" file="3" abs_x="-22.621185" abs_y="55.834838" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" name="gnome_hat" folder="0" file="4" abs_x="-15.615616" abs_y="57.057066" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="1" time="100">
+                    <bone_ref id="0" timeline="4" key="1"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="2" time="511">
+                    <bone_ref id="0" timeline="4" key="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="gnome_feet">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-21.909844" y="31.4693" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="gnome_legs">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="41.46073" y="23.018957" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="gnome_head">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="263.519113" y="22.990485" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="gnome_hat">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="269.377416" y="15.97442" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="bone_000" object_type="bone">
+                <key id="0" spin="0">
+                    <bone x="0.828302" y="3.839442" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="1" time="100" spin="0">
+                    <bone x="1.484757" y="3.182986" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="2" time="511" spin="0">
+                    <bone x="2.497886" y="3.576859" angle="90.504796" scale_x="0.198088"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="9" name="walk_loop" length="1000">
+            <mainline>
+                <key id="0">
+                    <bone_ref id="0" timeline="4" key="0"/>
+                    <object_ref id="0" name="gnome_feet" folder="0" file="1" abs_x="-21.909844" abs_y="31.4693" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" name="gnome_legs" folder="0" file="2" abs_x="-22.262119" abs_y="11.849194" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" name="gnome_head" folder="0" file="3" abs_x="-22.621185" abs_y="55.834838" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" name="gnome_hat" folder="0" file="4" abs_x="-15.615616" abs_y="57.057066" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="1" time="100">
+                    <bone_ref id="0" timeline="4" key="1"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="2" time="511">
+                    <bone_ref id="0" timeline="4" key="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="gnome_feet">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-21.909844" y="31.4693" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="gnome_legs">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="41.46073" y="23.018957" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="gnome_head">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="263.519113" y="22.990485" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="gnome_hat">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="269.377416" y="15.97442" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="bone_000" object_type="bone">
+                <key id="0" spin="0">
+                    <bone x="0.828302" y="3.839442" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="1" time="100" spin="0">
+                    <bone x="1.484757" y="3.182986" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="2" time="511" spin="0">
+                    <bone x="2.497886" y="3.576859" angle="90.504796" scale_x="0.198088"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="10" name="idle_loop" length="1000">
+            <mainline>
+                <key id="0">
+                    <bone_ref id="0" timeline="4" key="0"/>
+                    <object_ref id="0" name="gnome_feet" folder="0" file="1" abs_x="-21.909844" abs_y="31.4693" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" name="gnome_legs" folder="0" file="2" abs_x="-22.262119" abs_y="11.849194" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" name="gnome_head" folder="0" file="3" abs_x="-22.621185" abs_y="55.834838" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" name="gnome_hat" folder="0" file="4" abs_x="-15.615616" abs_y="57.057066" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="1" time="100">
+                    <bone_ref id="0" timeline="4" key="1"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="2" time="511">
+                    <bone_ref id="0" timeline="4" key="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" parent="0" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" parent="0" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" parent="0" timeline="3" key="0" z_index="3"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="gnome_feet">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-21.909844" y="31.4693" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="gnome_legs">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="41.46073" y="23.018957" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="gnome_head">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="263.519113" y="22.990485" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="gnome_hat">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="269.377416" y="15.97442" angle="269.495204" scale_x="5.048262"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="bone_000" object_type="bone">
+                <key id="0" spin="0">
+                    <bone x="0.828302" y="3.839442" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="1" time="100" spin="0">
+                    <bone x="1.484757" y="3.182986" angle="90.504796" scale_x="0.198088"/>
+                </key>
+                <key id="2" time="511" spin="0">
+                    <bone x="2.497886" y="3.576859" angle="90.504796" scale_x="0.198088"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="11" name="death" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="gnome_death" folder="0" file="0" abs_x="-22.373541" abs_y="59.338521" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="gnome_death">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-22.373541" y="59.338521" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="12" name="atk" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="gnome_death" folder="0" file="0" abs_x="-22.373541" abs_y="59.338521" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="gnome_death">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-22.373541" y="59.338521" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="13" name="atk_pre" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="gnome_death" folder="0" file="0" abs_x="-22.373541" abs_y="59.338521" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="gnome_death">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-22.373541" y="59.338521" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="14" name="slide_bounce" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="gnome_death" folder="0" file="0" abs_x="-22.373541" abs_y="59.338521" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="gnome_death">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-22.373541" y="59.338521" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="15" name="die" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="gnome_death" folder="0" file="0" abs_x="-22.373541" abs_y="59.338521" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="gnome_death">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-22.373541" y="59.338521" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="16" name="hit" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="gnome_death" folder="0" file="0" abs_x="-22.373541" abs_y="59.338521" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="gnome_death">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-22.373541" y="59.338521" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

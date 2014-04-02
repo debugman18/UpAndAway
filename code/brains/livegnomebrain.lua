@@ -77,7 +77,7 @@ function LiveGnomeBrain:OnStart()
     
     local root = PriorityNode(
     {
-        WhileNode( function() return self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst)),
+        WhileNode( function() return self.inst.components.health and self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst)),
 
         RunAway(self.inst, ShouldRunAway, RUN_START_DIST, RUN_STOP_DIST),
 

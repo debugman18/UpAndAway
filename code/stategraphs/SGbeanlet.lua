@@ -311,7 +311,7 @@ local states=
     },
  }
 
-CommonStates.AddSimpleState(states,"hit", "idle")
+CommonStates.AddSimpleState(states,"hit", "hit")
 
 CommonStates.AddSleepStates(states,
 {

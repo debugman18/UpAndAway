@@ -2,7 +2,11 @@ BindGlobal()
 
 local assets =
 {
-    Asset("ANIM", "anim/trinkets.zip"),    
+    Asset("ANIM", "anim/livegnome.zip"),   
+    Asset("ANIM", "anim/trinkets.zip"), 
+
+    Asset( "ATLAS", "images/inventoryimages/live_gnome.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/live_gnome.tex" ),  
 }
 
 local prefabs =
@@ -39,6 +43,9 @@ local function SetBeard(inst)
     end
 end
 
+local function onpickup(inst)
+end    
+
 local function DropToy(inst)
     local health = inst.components.health:GetPercent()
     print(health)
@@ -48,8 +55,17 @@ local function DropToy(inst)
         MakeInventoryPhysics(inst)
         print(2)
         inst:AddComponent("inventoryitem")
+        inst.components.inventoryitem.atlasname = "images/inventoryimages/live_gnome.xml"
+        inst.components.inventoryitem:SetOnPickupFn(onpickup)
         print(3)
-    end    
+        inst.AnimState:SetBank("trinkets")
+        inst.AnimState:SetBuild("trinkets")
+        inst.Transform:SetScale(1.2, 1.2, 1.2)
+        inst:DoPeriodicTask(0, function() inst.AnimState:PlayAnimation("4") end)
+        inst:ClearStateGraph()
+        inst:StopBrain()
+        inst.Physics:Stop()
+    end   
 end    
 
 local function fn(Sim)
@@ -58,9 +74,9 @@ local function fn(Sim)
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
 
-    inst.AnimState:SetBank("trinkets")
-    inst.AnimState:SetBuild("trinkets")
-    inst.AnimState:PlayAnimation("4")
+    inst.AnimState:SetBank("livegnome")
+    inst.AnimState:SetBuild("livegnome")
+    inst.AnimState:PlayAnimation("idle_loop")
 
     MakeCharacterPhysics(inst, 50, 1)
     inst:AddTag("character")
@@ -78,6 +94,8 @@ local function fn(Sim)
     inst:AddComponent("cookable")
     inst.components.cookable.product = "rubber"
 
+    inst.Transform:SetScale(3.8, 3.8, 3.8)
+
 	inst:AddComponent("inspectable")
 
     inst:AddComponent("combat")
@@ -93,7 +111,7 @@ local function fn(Sim)
 
     inst:ListenForEvent("attacked", DropToy)
 
-    inst:DoPeriodicTask(0, function(inst) inst.AnimState:PlayAnimation("4") end)
+    --inst:DoPeriodicTask(0, function(inst) inst.AnimState:PlayAnimation("idle") end)
 
     inst:DoTaskInTime(1, SetBeard)
 

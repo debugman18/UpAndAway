@@ -47,7 +47,7 @@ local states=
         
         onenter = function(inst)
             inst.Physics:Stop()
-            inst.AnimState:PlayAnimation("4")
+            inst.AnimState:PlayAnimation("idle")
         end,
         
         events=
@@ -63,7 +63,7 @@ local states=
         onenter = function(inst)
             inst.components.combat:StartAttack() -- reset combat attack timer
             inst.Physics:Stop()
-            inst.AnimState:PlayAnimation("4")
+            inst.AnimState:PlayAnimation("idle")
         end,
         
         events=
@@ -80,22 +80,22 @@ local states=
             inst.Physics:Stop()
             if inst.prefab == "live_gnome" then
                 if math.random(0, 1) == 0 then
-                    inst.AnimState:PlayAnimation("4")
+                    inst.AnimState:PlayAnimation("idle_loop")
                 else
-                    inst.AnimState:PlayAnimation("4")
+                    inst.AnimState:PlayAnimation("idle_loop")
                 end
             else
                 if inst.components.combat.target then
                     if math.random(0, 1) == 0 then
-                        inst.AnimState:PlayAnimation("4")
+                        inst.AnimState:PlayAnimation("idle_loop")
                     else
-                        inst.AnimState:PlayAnimation("4")
+                        inst.AnimState:PlayAnimation("idle_loop")
                     end
                 else
                     if math.random(0, 1) == 0 then
-                        inst.AnimState:PlayAnimation("4")
+                        inst.AnimState:PlayAnimation("idle_loop")
                     else
-                        inst.AnimState:PlayAnimation("4")
+                        inst.AnimState:PlayAnimation("idle_loop")
                     end
                 end
             end
