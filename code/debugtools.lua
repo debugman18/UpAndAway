@@ -16,7 +16,16 @@ local time = wickerrequire 'utils.time'
 local _O = _G
 
 
-_O.UA = TheMod
+_O.UA = _M
+
+
+Lambda = wickerrequire "paradigms.functional"
+Logic = wickerrequire "paradigms.logic"
+
+Pred = wickerrequire "lib.predicates"
+Game = wickerrequire "game"
+Math = wickerrequire "math"
+
 
 --[[
 -- Type ClimbTo(0) in the console to return to the surface.

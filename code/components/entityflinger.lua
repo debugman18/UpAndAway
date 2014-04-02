@@ -154,16 +154,9 @@ local EntityFlinger = Class(Debuggable, function(self, inst)
 
 
 	--[[
-	-- Tracked entities during the fling pre and post phases.
-	--]]
-	self.pre_fling = {}
-	self.post_fling = {}
-
-	--[[
 	-- Entities being attracted.
 	--]]
 	self.attracted_ents = NewEntityTable()
-
 
 	self.entity_cleaner = function(ent)
 		if not self.inst:IsValid() then return end
@@ -183,6 +176,12 @@ local EntityFlinger = Class(Debuggable, function(self, inst)
 		end
 		self:Touch()
 	end
+
+	--[[
+	-- Tracked entities during the fling pre and post phases.
+	--]]
+	self.pre_fling = NewEntityTable(self.entitycleaner)
+	self.post_fling = NewEntityTable(self.entitycleaner)
 end)
 
 
@@ -196,7 +195,7 @@ end
 
 function EntityFlinger:Touch()
 	if self:WantsToDie() then
-		if next(self.pre_fling) == nil and next(self.post_fling) == nil and self.attracted_ents.IsEmpty() then
+		if next(self.pre_fling) == nil and next(self.post_fling) == nil and next(self.attracted_ents) == nil then
 			self.inst:Remove()
 		end
 	end
@@ -344,7 +343,7 @@ local UntrackInst = {}
 
 function TrackInst.pre_fling(self, inst)
 	if not self.pre_fling[inst] then
-		self.pre_fling[inst] = NewEntityTable(self.entity_cleaner)
+		self.pre_fling[inst] = {}
 	end
 end
 
@@ -357,7 +356,7 @@ end
 function TrackInst.post_fling(self, inst)
 	UntrackInst.pre_fling(self, inst)
 	if not self.post_fling[inst] then
-		self.post_fling[inst] = NewEntityTable(self.entity_cleaner)
+		self.post_fling[inst] = {}
 	end
 end
 

@@ -12,17 +12,16 @@ local function new_entity_table(onclear)
 	local inner_t = {}
 
 	local function ClearEntry(inst)
-		inner_t[inst] = nil
 		if onclear then
 			onclear(inst)
 		end
+		inner_t[inst] = nil
 	end
 
 	local function SetInstEntry(t, inst, v)
 		assert( Pred.IsEntityScript(inst), "EntityScript expected as index!" )
 
 		local oldv = inner_t[inst]
-		inner_t[inst] = v
 
 		if oldv == nil and v ~= nil then
 			inst:ListenForEvent("onremove", ClearEntry)
@@ -32,17 +31,27 @@ local function new_entity_table(onclear)
 				onclear(inst)
 			end
 		end
+
+		inner_t[inst] = v
+	end
+
+	local next = next
+	local function next(t, k)
+		return next(inner_t)
+	end
+
+	local pairs = pairs
+	local function pairs(t)
+		return pairs(inner_t)
 	end
 
 	local t = {}
 
-	function t.IsEmpty()
-		return next(inner_t) == nil
-	end
-
 	return setmetatable(t, {
 		__index = inner_t,
 		__newindex = SetInstEntry,
+		__next = next,
+		__pairs = pairs,
 	})
 end
 

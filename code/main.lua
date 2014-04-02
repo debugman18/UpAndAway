@@ -191,8 +191,11 @@ AddClassPostConstruct("screens/mainscreen", DoInit)
 
 --This gives us custom worldgen screens.	
 local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
-	--Check for cloudrealm.	"cloudrealm"
+	--Check for cloudrealm.
 	local Climbing = modrequire 'lib.climbing'
+
+	TheSim:LoadPrefabs {"MOD_UpAndAway"}
+
 
 	DebugSay "update worldgen!"
 
@@ -267,7 +270,7 @@ local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
 		print("This is the worldgen screen.")
 
 		--We can replace the worldgen animation and strings.
-		self.worldanim:GetAnimState():SetBank("generating_cave")
+		self.worldanim:GetAnimState():SetBank("generating_cloud")
 		self.worldanim:GetAnimState():SetBuild("generating_cloud")
 		self.worldanim:GetAnimState():PlayAnimation("idle", true)
 		
