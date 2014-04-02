@@ -2,8 +2,6 @@
 
 + **Current bugs:**
 
-	+ Beanlet (Burning and Freezing makes them invisible). Cause: lack of a "hit" animation.
-
 	+ All objects using custom animations (Tiny player action hitboxes; Vanilla bug)
 
 	+ Whirlwind physics bug
