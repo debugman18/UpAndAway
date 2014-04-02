@@ -2,11 +2,9 @@
 
 + **Current bugs:**
 
-	+ Beanlet (Burning and Freezing makes them invisible)
+	+ Beanlet (Burning and Freezing makes them invisible). Cause: lack of a "hit" animation.
 
 	+ All objects using custom animations (Tiny player action hitboxes; Vanilla bug)
-
-	+ Worldgen Animation (Isn't loading; Vanilla bug)
 
 	+ Whirlwind physics bug
 
@@ -38,9 +36,9 @@
 
 	+ Various minimap icons. (For various objects in the world, still images)
 
-	+ Balloon Hound (All art assets, using custom animations)
-
 	+ Rainbow Cloudturf and Snow/Icecream Cloudturf (All art assets, simply a tesselating image)
+
+	+ Whirlwind (All, as few as they may be, art assets, using custom animations)
 
 + **Code assets in need of attention**
 
