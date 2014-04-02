@@ -208,7 +208,7 @@ local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
 		--Changes the background during worldgen.
 		--self.bg:SetTexture("images/bg_gen.xml", "bg_plain.tex")
 		self.bg:SetTexture("images/bg_up.xml", "bg_plain.tex")
-		self.bg:SetTint(140, 140, 100, 1)
+		self.bg:SetTint(130, 130, 100, 0.5)
 		self.bg:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
 		self.bg:SetHRegPoint(GLOBAL.ANCHOR_MIDDLE)
 		self.bg:SetVAnchor(GLOBAL.ANCHOR_MIDDLE)
@@ -303,6 +303,7 @@ do
 	end
 end
 
+--[[
 local function OnUnlockMound(inst)
 	if not inst:IsValid() then return end
 
@@ -313,14 +314,37 @@ local function OnUnlockMound(inst)
 	TheMod:DebugSay("[", inst, "] unlocked.")
 	inst:Remove()
 end
+--]]
 
 local function addmoundtag(inst)
-	inst:AddTag("mound")
-    inst:AddComponent("lock")
-    inst.components.lock.locktype = "beans"
-    inst.components.lock.isstuck = false
-    inst.components.lock:SetOnUnlockedFn(OnUnlockMound)  
+
+		local function beanstalktest(inst, item)
+		    if item.prefab == "magic_beans" and not item:HasTag("cooked") then
+		        return true
+		    else return false end
+		end
+
+		local function beanstalkaccept(inst, giver, item)
+			print("Beans accepted.")
+			local tree = SpawnPrefab("beanstalk_sapling") 
+			if tree then 
+				tree.Transform:SetPosition(inst.Transform:GetWorldPosition())
+			end 
+		end
+
+		local function beanstalkrefuse(inst, item)
+		    print("This shouldn't happen.")
+		end
+		inst:AddComponent("inventory")
+	    inst:AddComponent("trader")
+	    inst.components.trader:SetAcceptTest(beanstalktest)
+	    inst.components.trader.onaccept = beanstalkaccept
+	    inst.components.trader.onrefuse = beanstalkrefuse
+	    inst.components.trader:Enable()
+	    inst:AddTag("mound")
 end	
+
+AddPrefabPostInit("mound", addmoundtag)
 
 --Changes "activate" to "talk to" for "shopkeeper".
 AddSimPostInit(function(inst)
@@ -348,11 +372,24 @@ AddSimPostInit(function(inst)
 	end
 end)
 
---Changes "Unlock" to "Plant" for beans and mounds.
+--Changes "Give" to "Plant" for beans and mounds.
 AddSimPostInit(function(inst)
 	local oldactionstringoverride = inst.ActionStringOverride
 	function inst:ActionStringOverride(bufaction)
-		if bufaction.action == GLOBAL.ACTIONS.UNLOCK and bufaction.target and bufaction.target.prefab == "mound" then
+		if bufaction.action == GLOBAL.ACTIONS.GIVE and bufaction.target and bufaction.target.prefab == "mound" then
+			return "Plant"
+		end
+		if oldactionstringoverride then
+			return oldactionstringoverride(inst, bufaction)
+		end
+	end
+end)
+
+--Changes "Bury" to "Plant" for beans and mounds.
+AddSimPostInit(function(inst)
+	local oldactionstringoverride = inst.ActionStringOverride
+	function inst:ActionStringOverride(bufaction)
+		if bufaction.action == GLOBAL.ACTIONS.BURY and bufaction.target and bufaction.target.prefab == "mound" then
 			return "Plant"
 		end
 		if oldactionstringoverride then
@@ -373,8 +410,6 @@ AddSimPostInit(function(inst)
 		end
 	end
 end)
-
-AddPrefabPostInit("mound", addmoundtag)
 
 table.insert(GLOBAL.CHARACTER_GENDERS.FEMALE, "winnie")
 

@@ -3,7 +3,7 @@ require "prefabutil"
 local assets =
 {
 	Asset("ANIM", "anim/magic_beans.zip"),
-	Asset("ANIM", "anim/pinecone.zip"),
+	Asset("ANIM", "anim/beanstalk_sapling.zip"),
 	
 	Asset( "ATLAS", "images/inventoryimages/magic_beans.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/magic_beans.tex" ),
@@ -19,34 +19,13 @@ local prefabs =
 	"beanstalk_sapling",
 }
 
-local function test_ground(inst, pt)
-		local tiletype = GetGroundTypeAtPosition(pt)
-		local ground_OK = tiletype ~= GROUND.IMPASSABLE 
-
-		if ground_OK then
-			local ents = TheSim:FindEntities(pt.x,pt.y,pt.z, 2, nil, {"NOBLOCK", "player", "FX", "INLIMBO", "DECOR"}) -- or we could include a flag to the search?
-
-			for k, v in pairs(ents) do
-				if not v:HasTag("mound") then 
-					return false 
-				end	
-			end
-			
-			return true
-
-		end
-		return false
-	
-end
-
-local function ondeploy(inst, pt)
+local function plantbeanstalk(inst, hole, doer)
+	print("Beans accepted.")
 	local tree = SpawnPrefab("beanstalk_sapling") 
 	if tree then 
-		tree.Transform:SetPosition(pt.x, pt.y, pt.z)
+		tree.Transform:SetPosition(inst.Transform:GetWorldPosition())
 	end 
-	_G.DeleteCloseEntsWithTag(inst, "mound", 2)
 	inst:Remove()
-	print("Mound deleted.")
 end
 
 local function common(Sim)
@@ -65,16 +44,16 @@ local function common(Sim)
 
 	inst:AddComponent("inspectable")
 
+	local is_rog_enabled = VarExists("IsDLCEnabled") and VarExists("REIGN_OF_GIANTS") and IsDLCEnabled(REIGN_OF_GIANTS)
+	if not is_rog_enabled then
+		inst:AddComponent("tradable")
+	else 
+		inst:AddComponent("buryable")
+		inst.components.buryable:SetOnBury(plantbeanstalk)
+	end	
+
 	inst:AddComponent("inventoryitem")
-	
-	--[[inst:AddComponent("deployable")
-	inst.components.deployable.ondeploy = ondeploy
-	inst.components.deployable.test = test_ground
-	inst.components.deployable.min_spacing = 4	
-	]]
-    inst:AddComponent("key")
-    inst.components.key.keytype = "beans" 
-	
+
     inst:AddComponent("cookable")
     inst.components.cookable.product = "magic_beans_cooked"	
 
@@ -89,7 +68,11 @@ local function cooked()
 	inst.components.edible.healthvalue = 100
     inst.components.edible.hungervalue = 100
     inst.components.edible.sanityvalue = -50
-	inst:RemoveComponent("deployable")	
+	inst:AddTag("cooked")	
+	local is_rog_enabled = VarExists("IsDLCEnabled") and VarExists("REIGN_OF_GIANTS") and IsDLCEnabled(REIGN_OF_GIANTS)
+	if not is_rog_enabled then
+		inst:RemoveComponent("tradable")
+	end	
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/magic_beans_cooked.xml"
     return inst
 end
@@ -97,5 +80,5 @@ end
 return {
 	Prefab ("common/inventory/magic_beans", common, assets, prefabs), 
 	Prefab ("common/inventory/magic_beans_cooked", cooked, assets, prefabs),
-	MakePlacer ("common/beanstalk_sapling_placer", "beanstalk_sapling", "beanstalk_sapling", "idle"),	
+	MakePlacer ("common/magic_beans_placer", "beanstalk_sapling", "beanstalk_sapling", "idle"),	
 }
