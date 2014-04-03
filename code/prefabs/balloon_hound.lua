@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	--Asset("SOUND", "sound/common.fsb"),
+	Asset( "ANIM", "anim/invisible_hound.zip" ),
 }
 
 local common_prefabs =
@@ -69,8 +69,8 @@ local make_ground_shadow = (function()
 		shadowinst.entity:AddAnimState()
 		shadowinst.entity:AddDynamicShadow():SetSize(2.5, 1.5)
 		shadowinst.AnimState:SetBank("hound")
-		shadowinst.AnimState:SetBuild("hound")
-		shadowinst.AnimState:PlayAnimation("nonexistent")
+		shadowinst.AnimState:SetBuild("invisible_hound")
+		shadowinst.AnimState:PlayAnimation("idle")
 
 		shadowinst:ListenForEvent("exitlimbo", start_updating)
 		shadowinst:ListenForEvent("enterlimbo", stop_updating)
