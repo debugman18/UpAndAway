@@ -34,10 +34,6 @@
 
 	+ Various minimap icons. (For various objects in the world, still images)
 
-	+ Rainbow Cloudturf and Snow/Icecream Cloudturf (All art assets, simply a tesselating image)
-
-	+ Whirlwind (All, as few as they may be, art assets, using custom animations)
-
 + **Code assets in need of attention**
 
 	+ Weaver Bird (All functionality needed)
