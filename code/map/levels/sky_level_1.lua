@@ -106,6 +106,8 @@ local sky_level_1 = {
 		["OwlColony"] = { count=1, tasks={"Cloud_Snow_Biome"} },	
 		["StrixShrine"] = { count=3, tasks={"Cloud_Aurora_Biome"} },	
 		["SkyGrotto"] = { count=3, tasks={"Cloud_Aurora_Biome"} },
+		["HiveTrees1"] = { count=3, tasks={"Cloud_Rainbow_Biome"} },
+		["CloudBase1"] = { count=1, tasks={"Cloud_Generic_Biome"} },
 		["CheshireHunting"] = { count=5, tasks={"Cloud_Rainbow_Biome"} },
 		["CloudHoles"] = { count=1, tasks={"Cloud_Generic_Biome"} },	
 	},
