@@ -442,11 +442,17 @@ function Begin.post_fling(self, inst)
 		end
 
 		inst.Physics:SetMotorVel(0, 1, 0)
-		inst.Physics:SetMotorVel(0, 0, 0)
+		inst.Physics:Stop()
 
 		local function get_height()
 			local _, h = inst.Transform:GetWorldPosition()
 			return h
+		end
+
+		local function put_on_ground()
+			local x, y, z = inst.Transform:GetWorldPosition()
+			inst.Physics:Teleport(x, 0, z)
+			inst.Physics:Stop()
 		end
 
 		while inst:IsValid() and get_height() > 0.1 do
@@ -462,6 +468,8 @@ function Begin.post_fling(self, inst)
 
 		Physics.PopDamping(inst)
 		Physics.PopRestitution(inst)
+
+		put_on_ground()
 
 		EnableEntity(inst)
 
@@ -607,7 +615,7 @@ function EntityFlinger:ApplyAttraction(victim)
 
 			--local cur_vel = Vector3(victim.Physics:GetVelocity())
 
-			self:DebugSay("victim speed: ", Point(victim.Physics:GetVelocity()):Length())
+			--self:DebugSay("victim speed: ", Point(victim.Physics:GetVelocity()):Length())
 
 			local vel_direction = (self.inst:GetPosition() - victim:GetPosition()):Normalize()
 
@@ -618,7 +626,7 @@ function EntityFlinger:ApplyAttraction(victim)
 
 			--victim.Physics:SetMotorVel(self:GetAttractionSpeed(), 0, 0)
 
-			self:DebugSay("new victim speed: ", Point(victim.Physics:GetVelocity()):Length())
+			--self:DebugSay("new victim speed: ", Point(victim.Physics:GetVelocity()):Length())
 
 
 			_G.Sleep(UPDATE_PERIOD)
@@ -629,7 +637,7 @@ function EntityFlinger:ApplyAttraction(victim)
 			local cur_vel = Vector3(victim.Physics:GetVelocity())
 			victim.Physics:SetMotorVel((cur_vel - old_vel_summand):Get())
 			]]--
-			victim.Physics:SetMotorVel(0, 0, 0)
+			victim.Physics:Stop()
 		end
 
 		EnableEntity(victim)
