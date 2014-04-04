@@ -263,7 +263,6 @@ local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
 		--[[
 		-- The worldgen strings are defined in strings.lua.
 		--]]
-		
 		self.worldgentext:SetString("GROWING BEANSTALK")	
 		self.verbs = GLOBAL.shuffleArray(STRINGS.UPUI.CLOUDGEN.VERBS)
 		self.nouns = GLOBAL.shuffleArray(STRINGS.UPUI.CLOUDGEN.NOUNS)
