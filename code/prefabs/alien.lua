@@ -37,78 +37,92 @@ local function OnAttacked(inst, data)
     inst.components.combat:ShareTarget(data.attacker, 30, function(dude) return dude:HasTag("shadowcreature") and not dude.components.health:IsDead() end, 1)
 end
 
-    local assets=
-    {
-	    Asset("ANIM", "anim/shadow_insanity1_basic.zip"),
-    }
+local assets=
+{
+    Asset("ANIM", "anim/shadow_insanity1_color.zip"),
+}
+
+local sounds = 
+{
+    attack = "dontstarve/sanity/creature1/attack",
+    attack_grunt = "dontstarve/sanity/creature1/attack_grunt",
+    death = "dontstarve/sanity/creature1/die",
+    idle = "dontstarve/sanity/creature1/idle",
+    taunt = "dontstarve/sanity/creature1/taunt",
+    appear = "dontstarve/sanity/creature1/appear",
+    disappear = "dontstarve/sanity/creature1/dissappear",
+}
+
+local colours=
+{
+    {198/255,43/255,43/255},
+    {79/255,153/255,68/255},
+    {35/255,105/255,235/255},
+    {233/255,208/255,69/255},
+    {109/255,50/255,163/255},
+    {222/255,126/255,39/255},
+}
+
+local function fn()
+    local inst = CreateEntity()
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
+    local physics = inst.entity:AddPhysics()
+    local sound = inst.entity:AddSoundEmitter()
+    inst.Transform:SetFourFaced()
+    inst:AddTag("shadowcreature")
+	
+    MakeCharacterPhysics(inst, 10, 1.5)
+    RemovePhysicsColliders(inst)
+    inst.Physics:SetCollisionGroup(COLLISION.SANITY)
+    inst.Physics:CollidesWith(COLLISION.SANITY)
+    --inst.Physics:CollidesWith(COLLISION.WORLD)
     
-    local sounds = 
-    {
-        attack = "dontstarve/sanity/creature1/attack",
-        attack_grunt = "dontstarve/sanity/creature1/attack_grunt",
-        death = "dontstarve/sanity/creature1/die",
-        idle = "dontstarve/sanity/creature1/idle",
-        taunt = "dontstarve/sanity/creature1/taunt",
-        appear = "dontstarve/sanity/creature1/appear",
-        disappear = "dontstarve/sanity/creature1/dissappear",
-    }
+    inst:AddComponent("inspectable")
+     
+    anim:SetBank("shadowcreature1")
+    anim:SetBuild("shadow_insanity1_color")
+    anim:PlayAnimation("idle_loop")
+    anim:SetMultColour(1, 1, 1, 0.3)
+    inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
+    inst.components.locomotor.walkspeed = 3
+    inst.sounds = sounds
+    inst:SetStateGraph("SGshadowcreature")
 
-    local function fn()
-	    local inst = CreateEntity()
-	    local trans = inst.entity:AddTransform()
-	    local anim = inst.entity:AddAnimState()
-        local physics = inst.entity:AddPhysics()
-	    local sound = inst.entity:AddSoundEmitter()
-        inst.Transform:SetFourFaced()
-        inst:AddTag("shadowcreature")
-    	
-        MakeCharacterPhysics(inst, 10, 1.5)
-        RemovePhysicsColliders(inst)
-	    inst.Physics:SetCollisionGroup(COLLISION.SANITY)
-	    inst.Physics:CollidesWith(COLLISION.SANITY)
-	    --inst.Physics:CollidesWith(COLLISION.WORLD)
-        
-        inst:AddComponent("inspectable")
-         
-        anim:SetBank("shadowcreature1")
-        anim:SetBuild("shadow_insanity1_basic")
-        anim:PlayAnimation("idle_loop")
-        anim:SetMultColour(1, 1, 1, 0.5)
-        inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
-        inst.components.locomotor.walkspeed = 5
-        inst.sounds = sounds
-        inst:SetStateGraph("SGshadowcreature")
+    inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
+    inst.colour_idx = math.random(#colours)
+    anim:SetMultColour(colours[inst.colour_idx][1],colours[inst.colour_idx][2],colours[inst.colour_idx][3],0.7)
 
-        inst:AddTag("monster")
-	    inst:AddTag("hostile")
-        inst:AddTag("shadow")
+    inst:AddTag("monster")
+    inst:AddTag("hostile")
+    inst:AddTag("shadow")
 
-        local brain = require "brains/shadowcreaturebrain"
-        inst:SetBrain(brain)
-        
-	    inst:AddComponent("sanityaura")
-	    inst.components.sanityaura.aurafn = CalcSanityAura
-        
-        --inst:AddComponent("transparentonsanity")
-        inst:AddComponent("health")
-        inst.components.health:SetMaxHealth(20)
-        
-		--inst.sanityreward = data.sanityreward
-		
-        inst:AddComponent("combat")
-        inst.components.combat:SetDefaultDamage(10)
-        inst.components.combat:SetAttackPeriod(5)
-        inst.components.combat:SetRetargetFunction(3, retargetfn)
-        inst.components.combat.onkilledbyother = onkilledbyother
-        inst.components.combat.canbeattackedfn = canbeattackedfn
+    local brain = require "brains/shadowcreaturebrain"
+    inst:SetBrain(brain)
+    
+    inst:AddComponent("sanityaura")
+    inst.components.sanityaura.aurafn = CalcSanityAura
+    
+    --inst:AddComponent("transparentonsanity")
+    inst:AddComponent("health")
+    inst.components.health:SetMaxHealth(20)
+    
+	--inst.sanityreward = data.sanityreward
+	
+    inst:AddComponent("combat")
+    inst.components.combat:SetDefaultDamage(10)
+    inst.components.combat:SetAttackPeriod(5)
+    inst.components.combat:SetRetargetFunction(3, retargetfn)
+    inst.components.combat.onkilledbyother = onkilledbyother
+    inst.components.combat.canbeattackedfn = canbeattackedfn
 
-        inst:AddComponent("lootdropper")
-        inst.components.lootdropper:SetLoot(loot)
-        inst.components.lootdropper:AddChanceLoot("nightmarefuel", 0.5)
-        
-        inst:ListenForEvent("attacked", OnAttacked)
+    inst:AddComponent("lootdropper")
+    inst.components.lootdropper:SetLoot(loot)
+    inst.components.lootdropper:AddChanceLoot("nightmarefuel", 0.5)
+    
+    inst:ListenForEvent("attacked", OnAttacked)
 
-        return inst
-    end
-        
-    return Prefab("monsters/alien", fn, assets, prefabs)
+    return inst
+end
+    
+return Prefab("monsters/alien", fn, assets, prefabs)

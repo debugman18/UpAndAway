@@ -178,6 +178,9 @@ PrefabFiles = {
 	"package",
 	"refined_black_crystal",
 	"refined_white_crystal",
+
+	"dragonblood_log",
+	"thunder_log",
 }
 
 -- The return statement is just for if this file is used externally, at

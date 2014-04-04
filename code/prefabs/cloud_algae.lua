@@ -28,7 +28,6 @@ local function fn(Sim)
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
 
 	local anim = inst.entity:AddAnimState()
 	local sound = inst.entity:AddSoundEmitter()

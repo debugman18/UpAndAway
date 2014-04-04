@@ -45,6 +45,10 @@ local function fn()
 	inst.entity:AddMiniMapEntity()
 	inst.MiniMapEntity:SetIcon( "statue_small.png" )
 
+    local basescale = math.random(8,14)
+    local scale = basescale / 10
+    inst.Transform:SetScale(scale, scale, scale)
+
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("workable")

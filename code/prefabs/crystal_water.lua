@@ -100,6 +100,10 @@ local function fn(Sim)
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot(loot) 	
 
+    local basescale = math.random(8,14)
+    local scale = basescale / 10
+    inst.Transform:SetScale(scale, scale, scale)
+
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.MINE)
     inst.components.workable:SetWorkLeft(TUNING.SPILAGMITE_SPAWNER)

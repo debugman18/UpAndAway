@@ -12,11 +12,84 @@ local prefabs =
     "ball_lightning",
 }
 
-local loot = 
+local short_loot = 
 {
-	"crystal_fragment",
-	"cumulostone",
-	"cloud_lightning",
+    "thunder_log",  
+}
+
+local normal_loot = 
+{
+    "thunder_log",
+    "thunder_log",  
+}
+
+local tall_loot = 
+{
+    "thunder_log",
+    "thunder_log",
+    "thunder_log",      
+}
+
+local function SetShort(inst)
+    if inst.components.workable then
+        inst.components.workable:SetWorkLeft(TUNING.EVERGREEN_CHOPS_SMALL)
+    end
+    if not inst.components.lootdropper then
+        inst:AddComponent("lootdropper")
+    end 
+    inst.components.lootdropper:SetLoot(short_loot)
+    inst.Transform:SetScale(0.7, 0.7, 0.7)
+    if inst.components.staticchargeable then
+        inst:RemoveComponent("staticchargeable")
+    end    
+end
+
+local function GrowShort(inst)
+    inst.SoundEmitter:PlaySound("dontstarve/forest/treeGrowFromWilt")          
+end
+
+local function SetNormal(inst)
+    if inst.components.workable then
+        inst.components.workable:SetWorkLeft(TUNING.EVERGREEN_CHOPS_NORMAL)
+    end
+    if not inst.components.lootdropper then
+        inst:AddComponent("lootdropper")
+    end     
+    inst.components.lootdropper:SetLoot(normal_loot)
+    inst.Transform:SetScale(0.8, 0.8, 0.8)
+    if inst.components.staticchargeable then
+        inst:RemoveComponent("staticchargeable")
+    end 
+end
+
+local function GrowNormal(inst)
+    inst.SoundEmitter:PlaySound("dontstarve/forest/treeGrow")          
+end
+
+local function SetTall(inst)
+    if inst.components.workable then
+        inst.components.workable:SetWorkLeft(TUNING.EVERGREEN_CHOPS_TALL)
+    end
+    if not inst.components.lootdropper then
+        inst:AddComponent("lootdropper")
+    end     
+    inst.components.lootdropper:SetLoot(tall_loot)
+    inst.Transform:SetScale(1, 1, 1)   
+    inst.components.lootdropper:AddChanceLoot("cumulostone", 1)
+    inst:AddComponent("staticchargeable")
+    inst.components.staticchargeable:SetChargedFn(StopSpawning)
+    inst.components.staticchargeable:SetUnchargedFn(StartSpawning)
+end
+
+local function GrowTall(inst)
+    inst.SoundEmitter:PlaySound("dontstarve/forest/treeGrow")          
+end
+
+local growth_stages =
+{
+    {name="short", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[1].base, TUNING.EVERGREEN_GROW_TIME[1].random) end, fn = function(inst) SetShort(inst) end,  growfn = function(inst) GrowShort(inst) end , leifscale=.7 },
+    {name="normal", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[2].base, TUNING.EVERGREEN_GROW_TIME[2].random) end, fn = function(inst) SetNormal(inst) end, growfn = function(inst) GrowNormal(inst) end, leifscale=1 },
+    {name="tall", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[3].base, TUNING.EVERGREEN_GROW_TIME[3].random) end, fn = function(inst) SetTall(inst) end, growfn = function(inst) GrowTall(inst) end, leifscale=1.25 },
 }
 
 local function sway(inst)
@@ -83,30 +156,55 @@ local function onload(inst, data)
 end   
 
 local function OnSpawned(inst, child)
-	GetSeasonManager():DoLightningStrike(Vector3(inst.Transform:GetWorldPosition()))
-	if GetClock():IsDay() and inst.components.childspawner and inst.components.childspawner:CountChildrenOutside() >= 2 then
-        StopSpawning(inst)
-    end
+    if not GetWorld().components.staticgenerator.charged then
+	   GetSeasonManager():DoLightningStrike(Vector3(child.Transform:GetWorldPosition()))
+    end   
+    inst:DoTaskInTime(0, function() SpawnPrefab("ball_lightning").Transform:SetPosition(child.Transform:GetWorldPosition()) end)
 end
 
 local function StartSpawning(inst)
 	if inst.components.childspawner and GetSeasonManager() and GetSeasonManager():IsWinter() then
 		inst.components.childspawner:StartSpawning()
+        print("Tree spawning.")
 	end
 end
 
 local function StopSpawning(inst)
 	if inst.components.childspawner then
 		inst.components.childspawner:StopSpawning()
+        print("Tree no longer spawning.")
 	end
 end
 
-local function fn(Sim)
+local function fn(Sim, stage)
 	local inst = CreateEntity()
 	local trans = inst.entity:AddTransform()
 	local anim = inst.entity:AddAnimState()
     local shadow = inst.entity:AddDynamicShadow()
     local sound = inst.entity:AddSoundEmitter()
+
+    if stage == nil then
+        stage = math.random(1,3)
+    end
+
+    local l_stage = stage
+    if l_stage == 0 then
+        l_stage = math.random(1,3)
+    end 
+
+    inst:AddComponent("childspawner")
+    inst.components.childspawner.childname = "cloud_lightning"
+    inst.components.childspawner:SetSpawnedFn(OnSpawned)
+    inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*10)
+    inst.components.childspawner:SetSpawnPeriod(10)
+    inst.components.childspawner:SetMaxChildren(1)
+    inst.components.childspawner.spawnoffscreen = false
+
+    inst:AddComponent("growable")
+    inst.components.growable.stages = growth_stages
+    inst.components.growable:SetStage(l_stage)
+    inst.components.growable.loopstages = true
+    inst.components.growable:StartGrowing()
 
 	local minimap = inst.entity:AddMiniMapEntity()
 	minimap:SetIcon( "marshtree.png" )
@@ -115,9 +213,9 @@ local function fn(Sim)
     MakeObstaclePhysics(inst, .25)   
     inst:AddTag("tree")
     
-    inst:AddComponent("lootdropper") 
-    inst.components.lootdropper:SetLoot(loot)
-    inst.components.lootdropper:AddChanceLoot("cumulostone", 1)
+    if not inst.components.lootdropper then
+        inst:AddComponent("lootdropper")
+    end 
     
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.CHOP)
@@ -125,25 +223,26 @@ local function fn(Sim)
     inst.components.workable:SetOnWorkCallback(chop_tree)
     inst.components.workable:SetOnFinishCallback(chop_down_tree)
 
+    inst:AddComponent("playerprox")
+    inst.components.playerprox:SetDist(0, 20)
+    inst.components.playerprox:SetOnPlayerFar(StopSpawning)
+
     anim:SetBuild("tree_thunder")
     anim:SetBank("marsh_tree")
-    --local color = 0.2 + math.random() * 0.2
-    --anim:SetMultColour(color, color, color, 1)
+    local color = 0.5 + math.random() * 0.5
+    anim:SetMultColour(color, color, color, 1)
     sway(inst)
     anim:SetTime(math.random()*2)
-    
-    inst:AddComponent("inspectable")
+    inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
+ 
+    local scale = math.random(0.8,1.4)
+    inst.Transform:SetScale(scale, scale, scale)
 
-	inst:AddComponent("childspawner")
-	inst.components.childspawner.childname = "cloud_lightning"
-	inst.components.childspawner:SetSpawnedFn(OnSpawned)
-	inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*10)
-	inst.components.childspawner:SetSpawnPeriod(10)
-	inst.components.childspawner:SetMaxChildren(3)
+    inst:AddComponent("inspectable")
 
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("thunder_tree.tex") 
-    
+
     inst.OnSave = onsave
     inst.OnLoad = onload
     return inst

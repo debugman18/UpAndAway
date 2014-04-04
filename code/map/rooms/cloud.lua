@@ -134,7 +134,7 @@ TheMod:AddRoom("CragLanding", {
 			cloudcrag = 1,
 			sky_lemur = 0.02,
 			beanlet = 0.01,
-			cloud_fruit_tree = 0.05,
+			cloud_fruit_tree = 0.07,
 		},
 	    countprefabs = {
 	        goose = 1,
@@ -188,7 +188,7 @@ TheMod:AddRoom("BGSnow", {
 		distributepercent = 0.7,
 		distributeprefabs = {
 			thunder_tree = 0.02,
-			ball_lightning = 0.005,
+			ball_lightning = 0.001,
 			frog = 0.002,
 			skyflower = 0.1,
 			owl = 0.001,
