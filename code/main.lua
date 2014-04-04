@@ -10,6 +10,23 @@ BindModModule 'modenv'
 BindTheMod()
 
 
+--[[
+-- The following test checks if we are running the development branch (according to what modinfo.lua informs us).
+--]]
+if IsDevelopment() then
+	-- This enables the prefab compiler (i.e., the automatic generation of files in scripts/prefabs).
+	wickerrequire('plugins.prefab_compiler')
+
+	-- This enables the asset compiler (i.e., the automatic generation of a file listing all of our assets).
+	-- If the output filename is nil, disables it instead.
+	wickerrequire('plugins.asset_compiler')(GetConfig("ASSET_COMPILER", "OUTPUT_FILE"))
+end
+
+-- This enables the save load-time check for U&A being enabled. The argument is how to call U&A
+-- in the button for automatically enabling the mod. It should be short to fit in the button.
+wickerrequire('plugins.save_safeguard')("UA")
+
+
 local Pred = wickerrequire 'lib.predicates'
 
 require 'mainfunctions'
@@ -23,24 +40,32 @@ modrequire 'patches'
 modrequire 'postinits'
 modrequire 'actions'
 
-modrequire 'asset_compiler'
-
-modrequire 'lib.save_safeguard'
-
 do
 	local oldSpawnPrefab = _G.SpawnPrefab
 	function _G.SpawnPrefab(name)
 		if name == "cave" and Pred.IsCloudLevel() then
-				name = "cloudrealm"
+			name = "cloudrealm"
 		end
 		return oldSpawnPrefab(name)
 	end
 end
 
 AddSimPostInit(function(inst)
-	local alphawarning = inst.HUD and inst.HUD.controls and inst.HUD.controls.alphawarning
-	if alphawarning then
+	if Pred.IsCloudLevel() then
+		local Text = require "widgets/text"
+
+		local alphawarning
+		local controls = inst.HUD and inst.HUD.controls
+		if controls then
+			alphawarning = controls.alphawarning
+			if not alphawarning and controls.top_root then
+				alphawarning = controls.top_root:AddChild(Text(_G.TITLEFONT, 40))
+				alphawarning:SetRegionSize(400, 50)
+				alphawarning:SetPosition(0, -28, 0)
+			end
+		end
 		alphawarning:SetString("Up and Away is a work in progress!")
+		alphawarning:Show()
 	end
 end)
 
@@ -48,7 +73,7 @@ AddGamePostInit(function()
 	local ground = GetWorld()
 	if ground and Pred.IsCloudLevel() then
 		for _, node in ipairs(ground.topology.nodes) do
-			local mist = SpawnPrefab("cloud_mist")
+			local mist = assert( SpawnPrefab("cloud_mist") )
 			mist:AddToNode(node)
 			if mist:IsValid() and mist.components.emitter then
 				mist.components.emitter:Emit()
@@ -64,7 +89,7 @@ local function winter_perk(inst)
 end	
 
 --[[
--- This is just to prevent changes in out implementation breaking old saves.
+-- This is just to prevent changes in our implementation breaking old saves.
 --]]
 AddPrefabPostInit("world", function(inst)
 	local Climbing = modrequire 'lib.climbing'
@@ -133,9 +158,8 @@ local function DoInit(self)
     self.shield:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
     self.shield:SetHRegPoint(GLOBAL.ANCHOR_MIDDLE)
 
-
 	--This renames the banner.
-	self.updatename:SetString("Up and Away")
+	self.updatename:SetString(modinfo.name)
 	self.banner:SetPosition(0, -170, 0)	
 	self.banner:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
     self.banner:SetHRegPoint(GLOBAL.ANCHOR_MIDDLE)
@@ -148,7 +172,7 @@ local function DoInit(self)
 
     self.up_name = self.upandaway_button:AddChild(Text(GLOBAL.BUTTONFONT, 30))
     self.up_name:SetPosition(0,8,0)	
-    self.up_name:SetString("Up and Away")	
+    self.up_name:SetString( IsDevelopment() and (modinfo.name.." (dev)") or modinfo.name )
 	self.up_name:SetColour(0,0,0,1)
 	--]]
 		
@@ -194,9 +218,6 @@ local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
 	--Check for cloudrealm.
 	local Climbing = modrequire 'lib.climbing'
 
-	TheSim:LoadPrefabs {"MOD_UpAndAway"}
-
-
 	DebugSay "update worldgen!"
 
 	-- The old version only worked for the 1st save slot, because
@@ -234,50 +255,18 @@ local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
 		self.hand2:SetScale(-hand_scale,hand_scale,hand_scale)	
 		--]]
 
-		STRINGS.UPUI =
-		{
-			CLOUDGEN = {
-			
-				VERBS = 
-				{
-					"Deploying",
-					"Decompressing",
-					"Herding",
-					"Replacing",
-					"Assembling",
-					"Insinuating",
-					"Reticulating",
-					"Inserting",
-					"Framing",
-				},
-				
-				NOUNS=
-				{
-					"clouds",
-					"sheep",
-					"candy",
-					"giants",
-					"snowflakes",
-					"skeletons",
-					"static batteries",
-					"castles",
-					"beans",
-					"nature",		
-				},
-			},
-		}	
-	
-		print("This is the worldgen screen.")
-
 		--We can replace the worldgen animation and strings.
 		self.worldanim:GetAnimState():SetBank("generating_cloud")
 		self.worldanim:GetAnimState():SetBuild("generating_cloud")
 		self.worldanim:GetAnimState():PlayAnimation("idle", true)
+
+		--[[
+		-- The worldgen strings are defined in strings.lua.
+		--]]
 		
 		self.worldgentext:SetString("GROWING BEANSTALK")	
 		self.verbs = GLOBAL.shuffleArray(STRINGS.UPUI.CLOUDGEN.VERBS)
 		self.nouns = GLOBAL.shuffleArray(STRINGS.UPUI.CLOUDGEN.NOUNS)
-		
 	end
 end
 

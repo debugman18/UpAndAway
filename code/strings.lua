@@ -686,7 +686,39 @@ STRINGS.RECIPE_DESC.GRABBER = "A hookshot. You can grab and poke things."
 STRINGS.RECIPE_DESC.BLACKSTAFF = "A black staff. Shock therapy for the environment."
 STRINGS.RECIPE_DESC.WHITESTAFF = "A white staff. For heavy lifting."
 
+STRINGS.UPUI = {
+	CLOUDGEN = {
+		VERBS = 
+		{
+			"Deploying",
+			"Decompressing",
+			"Herding",
+			"Replacing",
+			"Assembling",
+			"Insinuating",
+			"Reticulating",
+			"Inserting",
+			"Framing",
+		},
+		
+		NOUNS=
+		{
+			"clouds",
+			"sheep",
+			"candy",
+			"giants",
+			"snowflakes",
+			"skeletons",
+			"static batteries",
+			"castles",
+			"beans",
+			"nature",		
+		},
+	},
+}	
+
+
 --------------------------------------------------------------------------
--- This cleans up the memory used by all the temporary objects above.
+-- This cleans up the memory used by the temporary objects above.
 --------------------------------------------------------------------------
-_G.collectgarbage()
+_G.collectgarbage("step")

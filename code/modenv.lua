@@ -17,6 +17,10 @@ function GetStaticGenerator()
 	local w = GetWorld()
 	return w and w.components.staticgenerator
 end
+GetStaticGen = GetStaticGenerator
+
+
+STRINGS = setmetatable({}, {__index = _G.STRINGS})
 
 
 RegisterModEnvironment(_M)

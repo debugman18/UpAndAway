@@ -11,8 +11,8 @@ BindModModule 'modenv'
 BindTheMod()
 
 -- These embed the corresponding methods in TheMod.
-wickerrequire 'api.plugins.addtile'
-wickerrequire 'api.plugins.addsaveindexpostinit'
+wickerrequire 'plugins.addtile'
+wickerrequire 'plugins.addsaveindexpostinit'
 
 
 modrequire('api_abstractions')()

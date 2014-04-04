@@ -3,6 +3,7 @@ author = "The Fellowship of the Bean"
 version = "prealpha"
 
 id = "upandaway"
+branch = "dev"
 
 description = [[A massive mod that adds many new things to the traditional Don't Starve experience, including new items, new monsters, new food, new structures, new recipes, and more.
 

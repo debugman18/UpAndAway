@@ -1,3 +1,8 @@
+--[[
+-- This is for measuring how long the mod is taking to load.
+--]]
+local t0 = GLOBAL.GetTime()
+
 modimport 'lib/use.lua'
 
 TheMod = use 'start_wicker'
@@ -32,3 +37,6 @@ end
 
 
 TheMod:Run("main")
+
+
+TheMod:Say( ("Finished loading in %.3f seconds."):format(GLOBAL.GetTime() - t0) )
