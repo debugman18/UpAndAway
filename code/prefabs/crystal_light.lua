@@ -36,6 +36,7 @@ local function fn(Sim)
     anim:SetBank("crystal")
     anim:SetBuild("crystal")
     anim:PlayAnimation("crystal_light")
+    inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
  
     inst:AddTag("crystal")
   
@@ -44,6 +45,17 @@ local function fn(Sim)
 
     inst:AddComponent("inspectable")
     inst.components.inspectable.nameoverride = "Light Crystal" 
+
+    local light = inst.entity:AddLight()
+    light:SetFalloff(0.5)
+    light:SetIntensity(.8)
+    light:SetRadius(1.5)
+    light:SetColour(237/255, 237/255, 209/255)
+    light:Enable(true)
+
+    local basescale = math.random(8,14)
+    local scale = basescale / 10
+    inst.Transform:SetScale(scale, scale, scale)
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot(loot)   

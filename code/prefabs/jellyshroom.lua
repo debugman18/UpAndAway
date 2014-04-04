@@ -17,9 +17,15 @@ local function redfn(inst)
 	MakeInventoryPhysics(inst)
 
 	inst.AnimState:SetBank("Redjellyshroom") 
-	inst.AnimState:SetBuild("jelly shrooms")    
+	inst.AnimState:SetBuild("jelly shrooms")  
+	local color = 0.7 + math.random() * 0.7
+    inst.AnimState:SetMultColour(color, color, color, 1)  
     inst.AnimState:PlayAnimation("idle")	
     inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
+
+    local basescale = math.random(8,14)
+    local scale = basescale / 10
+    inst.Transform:SetScale(scale, scale, scale)
 
 	inst:AddComponent("inspectable") 
 
@@ -37,9 +43,15 @@ local function greenfn(inst)
 	MakeInventoryPhysics(inst)
 
 	inst.AnimState:SetBank("Greenjellyshroom") 
-	inst.AnimState:SetBuild("jelly shrooms")    
+	inst.AnimState:SetBuild("jelly shrooms")  
+	local color = 0.7 + math.random() * 0.7
+    inst.AnimState:SetMultColour(color, color, color, 1)  
     inst.AnimState:PlayAnimation("idle")
     inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
+
+    local basescale = math.random(8,14)
+    local scale = basescale / 10
+    inst.Transform:SetScale(scale, scale, scale)
 
 	inst:AddComponent("inspectable")  
 
@@ -57,9 +69,15 @@ local function bluefn(inst)
 	MakeInventoryPhysics(inst)
 
 	inst.AnimState:SetBank("Bluejellyshroom") 
-	inst.AnimState:SetBuild("jelly shrooms")    
+	inst.AnimState:SetBuild("jelly shrooms") 
+	local color = 0.7 + math.random() * 0.7
+    inst.AnimState:SetMultColour(color, color, color, 1)   
     inst.AnimState:PlayAnimation("idle")
     inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )	
+
+    local basescale = math.random(8,14)
+    local scale = basescale / 10
+    inst.Transform:SetScale(scale, scale, scale)
 
 	inst:AddComponent("inspectable")  
 

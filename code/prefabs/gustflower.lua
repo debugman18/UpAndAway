@@ -14,7 +14,7 @@ local prefabs=
 local cfg = wickerrequire("adjectives.configurable")("GUSTFLOWER")
 
 local function onpickedfn(inst)
-	--inst:Remove()
+	inst.components.pickable:MakeEmpty()
 end
 
 local function OnSpawned(inst, child)
@@ -67,7 +67,11 @@ local function fn(Sim)
     inst.components.pickable:SetUp("gustflower_seeds", 1)
 	inst.components.pickable.onpickedfn = onpickedfn
     
-    inst.components.pickable.quickpick = true
+    inst.components.pickable.quickpick = false
+
+    local basescale = math.random(8,14)
+    local scale = basescale / 10
+    inst.Transform:SetScale(scale, scale, scale)
 
     inst:AddComponent("childspawner")
     inst.components.childspawner.childname = "whirlwind"
