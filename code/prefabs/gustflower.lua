@@ -21,6 +21,14 @@ local function OnSpawned(inst, child)
     if GetClock():IsDay() and inst.components.childspawner and inst.components.childspawner:CountChildrenOutside() >= 1 then
         StopSpawning(inst)
     end
+
+    local seeds = SpawnPrefab("gustflower_seeds")
+    local pt = Vector3(inst.Transform:GetWorldPosition()) + Vector3(0,4.5,0)
+    seeds.Transform:SetPosition(pt:Get())
+    local down = TheCamera:GetDownVec()
+    local angle = math.atan2(down.z, down.x) + (math.random()*60-30)*DEGREES
+    local sp = math.random()*4+2
+    seeds.Physics:SetVel(sp*math.cos(angle), math.random()*2+8, sp*math.sin(angle))
 end
 
 local function StartSpawning(inst)
