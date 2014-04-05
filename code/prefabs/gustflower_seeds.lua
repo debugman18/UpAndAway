@@ -68,6 +68,7 @@ local function fn(Sim)
     inst:AddComponent("periodicspawner")
     inst.components.periodicspawner:SetPrefab("gustflower")
     inst.components.periodicspawner:SetOnSpawnFn(spawngustflower)
+    inst.components.periodicspawner:Start()
     
     return inst
 end
