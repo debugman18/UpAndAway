@@ -22,7 +22,7 @@ local function fn(Sim)
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("inventoryitem")
-
+	
 	return inst
 end
 

@@ -20,17 +20,6 @@ local SHARE_TARGET_DIST = 40
 
 local loot = {}
 
-local function hasammo(inst)
-	if inst.components.inventory then
-		local thunder = inst.components.inventory:FindItem(function(item) return item.prefab == "cloud_lightning" end )
-		return thunder ~= nil
-	end
-end
-
-local function oneat(inst)
-	print "Ate your food. Not really."
-end
-
 local function charge(inst)
 	inst:AddTag("ball_lightning_charged")
 end
@@ -39,45 +28,13 @@ local function uncharge(inst)
 	inst:RemoveTag("ball_lightning_charged")
 end	
 
-local function FindTargetOfInterest(inst)
-
-	if not inst.harassplayer and not inst.components.combat.target then
-		local m_pt = inst:GetPosition()
-	    local target = GetPlayer()
-		if target and target.components.inventory and distsq(m_pt, target:GetPosition()) < 5*5 then			
-			local interest_chance = 0
-			local item = target.components.inventory:FindItem(function(item) return item.prefab == "magnet" end )
-
-			if item then
-				-- Follow the player because he has a magnet.
-				interest_chance = 1 
-			end
-			if math.random() < interest_chance then
-
-				inst.harassplayer = true
-				inst:DoTaskInTime(120, function() inst.harassplayer = false end)
-			end			
-		end
-	end
-end
-
-local function retargetfn(inst)
-	if inst:HasTag("ball_lightning_charged") then
-	    local newtarget = FindEntity(inst, 20, function(guy)
-	            return (guy:HasTag("character") or guy:HasTag("monster") )
-	                   and inst.components.combat:CanTarget(guy)
-	    end)
-	    return newtarget
-	end
-end
-
-local function shouldKeepTarget(inst, target)
-	if inst:HasTag("ball_lightning") then
-		return true
-	end
-
-	return true
-end
+local function FindMagnet(inst)
+	local magnetholder = GetPlayer().components.inventory:FindItem(function(item) return item.prefab == "magnet" end )
+	if magnetholder then
+		print("Magnet found.")
+		inst.components.follower:SetLeader(GetPlayer())
+	else inst.components.follower:SetLeader() end	
+end	
 
 local function fn(Sim)
 	local inst = CreateEntity()
@@ -95,9 +52,6 @@ local function fn(Sim)
 	inst:DoPeriodicTask(0.5, function() inst.AnimState:PlayAnimation("anim") end)
 
 	inst:AddComponent("inspectable")
-	
-    local brain = require "brains/monkeybrain"
-    inst:SetBrain(brain)
 
     inst:AddComponent("locomotor")
     inst.components.locomotor:SetSlowMultiplier( 1 )
@@ -106,30 +60,9 @@ local function fn(Sim)
     inst.components.locomotor.walkspeed = cfg:GetConfig("WALKSPEED")
 	inst.components.locomotor.directdrive = cfg:GetConfig("RUNSPEED")
 
-	local brain = require "brains/monkeybrain"
+	local brain = require "brains/lightningballbrain"
 	inst:SetBrain(brain)
-	inst:SetStateGraph("SGmonkey")
-
-	inst:AddComponent("eater")
-	inst.components.eater:SetOnEatFn(oneat)
-
-    inst:AddComponent("combat")
-    inst.components.combat:SetAttackPeriod(cfg:GetConfig("ATTACK_PERIOD"))
-    inst.components.combat:SetRange(10)
-    inst.components.combat:SetRetargetFunction(1, retargetfn)
-
-    inst.components.combat:SetKeepTargetFunction(shouldKeepTarget)
-    inst.components.combat:SetDefaultDamage(cfg:GetConfig("UNCHARGED_DAMAGE"))
-
-    inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(cfg:GetConfig("HEALTH"))
-
-    inst.HasAmmo = hasammo
-
-    inst:AddComponent("lootdropper")
-	inst.components.lootdropper:SetLoot(loot)
-
-    inst:AddComponent("knownlocations")  
+	inst:SetStateGraph("SGlightningball")
 
 	inst:AddComponent("staticchargeable")
 	inst.components.staticchargeable:SetOnChargeFn(charge)
@@ -137,6 +70,8 @@ local function fn(Sim)
 	inst.components.staticchargeable:SetOnChargeDelay(cfg:GetConfig("CHARGE_DELAY"))
 	inst.components.staticchargeable:SetOnUnchargeDelay(cfg:GetConfig("UNCHARGE_DELAY"))
 
+	inst:AddComponent("follower")
+	inst:AddComponent("knownlocations")
 
 	inst:AddComponent("temperature")
 	inst.components.temperature.maxtemp = 80
@@ -144,7 +79,10 @@ local function fn(Sim)
 	inst.components.temperature.current = 80
 	inst.components.temperature.inherentinsulation = TUNING.INSULATION_MED  
 
+	inst:DoPeriodicTask(0, FindMagnet)
+
 	inst:AddComponent("heater")	  
+	inst.components.heater.heat = 80
 
 	return inst
 end
