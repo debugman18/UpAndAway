@@ -12,17 +12,21 @@
 
 	+ Manta (All art assets, using buzzard bank or custom animations)
 
-	+ Cloud Coral (All art assets, still image, idle and idle_harvested)
+	+ Cloud Coral (All art assets, still image, idle and idle_harvested) + Inventory Image
 
-	+ Weather Machine (All art assets, still image)
+	+ Weather Machine (All art assets, still image) + Recipe Image
 
-	+ Kettle (All art assets, still image)
+	+ Ball Lightning (All art assets, still image)
 
-	+ Refiner (All art assets, still image)
+	+ Magnet (All art assets, custom animations) + Inventory Image
+
+	+ Kettle (All art assets, still image) + Inventory Image
+ 
+	+ Refiner (All art assets, still image) + Recipe Image
 
 	+ Three Different Octocopter pieces (All art assets, still images)
 
-	+ Cloud Fruit Tree (All art assets, still image, idle and idle_harvested)
+	+ Cloud Fruit Tree (All art assets, still image, idle and idle_harvested) + Cloud Fruit Inventory Image
 
 	+ Living Gnomes (All art assets, using custom animations)
 
@@ -36,9 +40,9 @@
 
 + **Code assets in need of attention**
 
-	+ Weaver Bird (All functionality needed)
-
 	+ Manta (All functionality needed)
+
+	+ Skytrap (All functionality needed)
 
 	+ Beanlet Zealots (Cult functionality needed)
 
