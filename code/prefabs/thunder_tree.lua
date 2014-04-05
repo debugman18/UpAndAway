@@ -30,6 +30,20 @@ local tall_loot =
     "thunder_log",      
 }
 
+local function StartSpawning(inst)
+    if inst.components.childspawner and GetSeasonManager() and GetSeasonManager():IsWinter() and not GetWorld().components.staticgenerator.charged then
+        inst.components.childspawner:StartSpawning()
+        print("Tree spawning.")
+    end
+end
+
+local function StopSpawning(inst)
+    if inst.components.childspawner then
+        inst.components.childspawner:StopSpawning()
+        print("Tree no longer spawning.")
+    end
+end
+
 local function SetShort(inst)
     if inst.components.workable then
         inst.components.workable:SetWorkLeft(TUNING.EVERGREEN_CHOPS_SMALL)
@@ -77,8 +91,12 @@ local function SetTall(inst)
     inst.Transform:SetScale(1, 1, 1)   
     inst.components.lootdropper:AddChanceLoot("cumulostone", 1)
     inst:AddComponent("staticchargeable")
-    inst.components.staticchargeable:SetChargedFn(StopSpawning)
-    inst.components.staticchargeable:SetUnchargedFn(StartSpawning)
+    inst.components.staticchargeable:SetChargedFn(function(inst)
+        StopSpawning(inst)
+    end)
+    inst.components.staticchargeable:SetUnchargedFn(function(inst)
+        StartSpawning(inst)
+    end)
 end
 
 local function GrowTall(inst)
@@ -162,20 +180,6 @@ local function OnSpawned(inst, child)
     inst:DoTaskInTime(0, function() SpawnPrefab("ball_lightning").Transform:SetPosition(child.Transform:GetWorldPosition()) end)
 end
 
-local function StartSpawning(inst)
-	if inst.components.childspawner and GetSeasonManager() and GetSeasonManager():IsWinter() then
-		inst.components.childspawner:StartSpawning()
-        print("Tree spawning.")
-	end
-end
-
-local function StopSpawning(inst)
-	if inst.components.childspawner then
-		inst.components.childspawner:StopSpawning()
-        print("Tree no longer spawning.")
-	end
-end
-
 local function fn(Sim, stage)
 	local inst = CreateEntity()
 	local trans = inst.entity:AddTransform()
@@ -191,14 +195,6 @@ local function fn(Sim, stage)
     if l_stage == 0 then
         l_stage = math.random(1,3)
     end 
-
-    inst:AddComponent("childspawner")
-    inst.components.childspawner.childname = "cloud_lightning"
-    inst.components.childspawner:SetSpawnedFn(OnSpawned)
-    inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*10)
-    inst.components.childspawner:SetSpawnPeriod(10)
-    inst.components.childspawner:SetMaxChildren(1)
-    inst.components.childspawner.spawnoffscreen = false
 
     inst:AddComponent("growable")
     inst.components.growable.stages = growth_stages
@@ -216,6 +212,14 @@ local function fn(Sim, stage)
     if not inst.components.lootdropper then
         inst:AddComponent("lootdropper")
     end 
+
+    inst:AddComponent("childspawner")
+    inst.components.childspawner.childname = "cloud_lightning"
+    inst.components.childspawner:SetSpawnedFn(OnSpawned)
+    inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*10)
+    inst.components.childspawner:SetSpawnPeriod(10)
+    inst.components.childspawner:SetMaxChildren(1)
+    inst.components.childspawner.spawnoffscreen = false
     
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.CHOP)
@@ -224,8 +228,9 @@ local function fn(Sim, stage)
     inst.components.workable:SetOnFinishCallback(chop_down_tree)
 
     inst:AddComponent("playerprox")
-    inst.components.playerprox:SetDist(0, 20)
+    inst.components.playerprox:SetDist(6, 17)
     inst.components.playerprox:SetOnPlayerFar(StopSpawning)
+    inst.components.playerprox:SetOnPlayerNear(StartSpawning)
 
     anim:SetBuild("tree_thunder")
     anim:SetBank("marsh_tree")

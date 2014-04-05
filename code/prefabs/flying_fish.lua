@@ -3,9 +3,7 @@ BindGlobal()
 local assets=
 {
 	Asset("ANIM", "anim/flying_fish.zip"),
-	--Asset("ANIM", "anim/flying_fish01.zip"),
 }
-
 
 local prefabs =
 {
@@ -13,8 +11,21 @@ local prefabs =
     "spoiled_food",
 }
 
+local function OnWorked(inst, worker)
+    if worker.components.inventory then
+        worker.components.inventory:GiveItem(inst, nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
+    end
+end
+
+local function onhit(inst, attacker, target)
+    local impactfx = SpawnPrefab("splash")
+    impactfx.Transform:SetPosition(attacker.Transform:GetWorldPosition())
+    inst:Remove()
+end
+
 local function stopkicking(inst)
     inst.AnimState:PlayAnimation("dead")
+    inst:RemoveTag("flying_fish")
 end
 
 local function commonfn()
@@ -29,6 +40,7 @@ local function commonfn()
 	--inst.build = build --This is used within SGwilson, sent from an event in fishingrod.lua
 	
 	inst:AddTag("meat")
+	inst:AddTag("flying_fish")
 
 	inst:AddComponent("edible")
 	inst.components.edible.ismeat = true
@@ -43,10 +55,26 @@ local function commonfn()
 	inst.components.perishable:SetPerishTime(TUNING.PERISH_FAST)
 	inst.components.perishable:StartPerishing()
 	inst.components.perishable.onperishreplacement = "spoiled_food"
+
+    inst:AddComponent("projectile")
+    inst.components.projectile:SetSpeed(8)
+    inst.components.projectile:SetOnHitFn(onhit)
+    local crystal = GetClosestInstWithTag("crystal_water_broken", inst, 10)
+    if crystal then
+    	inst:DoTaskInTime(2, function()
+    		inst.components.projectile.target = crystal
+    		inst.components.projectile:Throw(inst, target, inst)
+    	end)	
+    end	
 	
 	inst:AddComponent("inspectable")
 	
 	inst:AddComponent("inventoryitem")
+
+	inst:AddComponent("workable")
+	inst.components.workable:SetWorkAction(ACTIONS.NET)
+	inst.components.workable:SetWorkLeft(1)
+	inst.components.workable:SetOnFinishCallback(OnWorked)
 	
 	inst:AddComponent("tradable")
 	inst.components.tradable.goldvalue = TUNING.GOLD_VALUES.MEAT

@@ -29,9 +29,9 @@ TheMod:AddTask("Cloud_Snow_Biome", {
 	keys_given = {KEYS.TIER1, KEYS.TIER2},
 
 	room_choices={
-		["Thunder_Forest"] = math.random(2, 4),
-		["Manta_Room"] = math.random(2,3),
-		["Sea_Mimic"] = math.random(1,3),	
+		["Thunder_Forest"] = math.random(2, 2),
+		["Manta_Room"] = math.random(2,2),
+		["Sea_Mimic"] = math.random(1,2),	
 		["CragLanding"] = math.random(1,2),	
 	},
 
@@ -53,7 +53,7 @@ TheMod:AddTask("Cloud_Aurora_Biome", {
 	room_choices={
 		["CragLanding"] = math.random(1,2),
 		["Vine_Room"] = math.random(1,2),
-		["Beanlet_Den"] = math.random(2,4),		
+		["Beanlet_Den"] = math.random(2,2),		
 		["Crystal_Fields"] = math.random(2,2),		
 		["SheepHerd"] = math.random(1, 2),
 	},
@@ -74,9 +74,9 @@ TheMod:AddTask("Cloud_Rainbow_Biome", {
 	keys_given = {KEYS.TIER1, KEYS.TIER2},
 
 	room_choices={
-		["Rainbow_Room"] = math.random(2, 4),
+		["Rainbow_Room"] = math.random(2,2),
 		["Fish_Fields"] = math.random(2,4),
-		["Crystal_Fields"] = math.random(2,5),	
+		["Crystal_Fields"] = math.random(2,2),	
 		["Sea_Mimic"] = math.random(2,2),	
 	},
 

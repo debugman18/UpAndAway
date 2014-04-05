@@ -154,7 +154,7 @@ local function fn()
 	anim:SetBuild("crystal")
     anim:PlayAnimation("crystal_relic")
     MakeObstaclePhysics(inst, 1.)
-
+    inst.AnimState:SetMultColour(1, 1, 1, 0.7)
     inst:AddTag("structure")
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot(loot)

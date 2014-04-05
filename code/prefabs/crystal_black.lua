@@ -33,7 +33,7 @@ local function fn(Sim)
 	inst.AnimState:SetBuild("crystal")
     inst.AnimState:PlayAnimation("crystal_black")
     MakeObstaclePhysics(inst, 1.)
-
+    inst.AnimState:SetMultColour(1, 1, 1, 0.7)
 	inst:AddTag("crystal")
 
 	inst:AddComponent("inspectable")

@@ -14,12 +14,18 @@ local prefabs =
 local loot = 
 {
    "crystal_fragment_water",
-   "flying_fish",
-   "flying_fish",
 }
+
+local function MakeFishSpawner(inst)
+    inst:AddTag("crystal_water_broken")
+    local fish = SpawnPrefab("flying_fish")
+    local pt = Vector3(inst.Transform:GetWorldPosition())
+    fish.Transform:SetPosition(pt:Get())
+end
 
 local function onMined(inst, worker)
 	inst.components.lootdropper:DropLoot()
+    inst.components.lootdropper:DropLoot()
 	inst.SoundEmitter:PlaySound("dontstarve/common/destroy_rock")
 
 	inst:Remove()	
@@ -38,6 +44,7 @@ local function workcallback(inst, worker, workleft)
         else
             --inst.AnimState:PlayAnimation("med")
             print "Water at med."
+            MakeFishSpawner(inst)
         end
     end
 end
@@ -47,21 +54,8 @@ local function GoToBrokenState(inst)
     
     inst.SoundEmitter:PlaySound("dontstarve/wilson/rock_break")
     
-    if inst.components.childspawner then 
-        inst.components.childspawner:StartSpawning()
-    end
-
     inst.components.workable:SetOnWorkCallback(workcallback)
     inst.components.workable:SetWorkLeft(TUNING.SPILAGMITE_ROCK)    
-end
-
-local function MakeFishSpawner(inst)
-    inst:AddComponent("childspawner")
-    inst.components.childspawner:SetRegenPeriod(120)
-    inst.components.childspawner:SetSpawnPeriod(240)
-    inst.components.childspawner:SetMaxChildren(math.random(2,3))
-    inst.components.childspawner:StartRegen()
-    inst.components.childspawner.childname = "flying_fish"
 end
 
 local function onsave(inst, data)
@@ -94,6 +88,7 @@ local function fn(Sim)
     MakeObstaclePhysics(inst, 1.)
 
     inst:AddTag("crystal")
+    inst:AddTag("crystal_water")
 
 	inst:AddComponent("inspectable")
 
@@ -103,7 +98,7 @@ local function fn(Sim)
     local basescale = math.random(8,14)
     local scale = basescale / 10
     inst.Transform:SetScale(scale, scale, scale)
-
+    inst.AnimState:SetMultColour(1, 1, 1, 0.7)
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.MINE)
     inst.components.workable:SetWorkLeft(TUNING.SPILAGMITE_SPAWNER)

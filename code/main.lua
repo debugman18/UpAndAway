@@ -260,10 +260,41 @@ local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
 		self.worldanim:GetAnimState():SetBuild("generating_cloud")
 		self.worldanim:GetAnimState():PlayAnimation("idle", true)
 
+		--Black magic fix because I need to test worldgen. 
+		STRINGS.UPUI = {
+			CLOUDGEN = {
+				VERBS = 
+				{
+					"Deploying",
+					"Decompressing",
+					"Herding",
+					"Replacing",
+					"Assembling",
+					"Insinuating",
+					"Reticulating",
+					"Inserting",
+					"Framing",
+				},
+				
+				NOUNS=
+				{
+					"clouds",
+					"sheep",
+					"candy",
+					"giants",
+					"snowflakes",
+					"skeletons",
+					"static batteries",
+					"castles",
+					"beans",
+					"nature",		
+				},
+			},
+		}	
+
 		--[[
 		-- The worldgen strings are defined in strings.lua.
 		--]]
-		
 		self.worldgentext:SetString("GROWING BEANSTALK")	
 		self.verbs = GLOBAL.shuffleArray(STRINGS.UPUI.CLOUDGEN.VERBS)
 		self.nouns = GLOBAL.shuffleArray(STRINGS.UPUI.CLOUDGEN.NOUNS)

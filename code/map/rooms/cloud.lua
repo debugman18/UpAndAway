@@ -100,7 +100,7 @@ TheMod:AddRoom("BGAurora", {
 			alien = 0.09,		
 			skeleton = 0.004,
 			manta = 0.07,
-			gustflower = 1.0,
+			gustflower = 0.09,
 			dragonblood_tree = 0.09,
 			skyflower = 1.0,
 			cloudcrag = 0.04,
@@ -129,15 +129,15 @@ TheMod:AddRoom("CragLanding", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.AURORA,
 	contents = {
-		distributepercent = 0.3,
+		distributepercent = 0.4,
 		distributeprefabs = {
-			cloudcrag = 1,
-			sky_lemur = 0.02,
-			beanlet = 0.01,
-			cloud_fruit_tree = 0.07,
+			sky_lemur = 0.005,
+			beanlet = 0.005,
+			cloud_fruit_tree = 0.01,
 		},
 	    countprefabs = {
 	        goose = 1,
+	        beanlet = 1,
 	    }	
 	},
 })
@@ -156,7 +156,7 @@ TheMod:AddRoom("Bigbird_Nest", {
 			skyflower = 0.1,
 		},
 	    countprefabs = {
-	        goose = 1,
+	        goose = 6,
 	    }		
 	},
 })
@@ -168,10 +168,13 @@ TheMod:AddRoom("Beanlet_Den", {
 	contents = {
 		distributepercent = 0.5,
 		dsitributeprefabs = {
-			beanlet = 0.02,
+			beanlet = 0.009,
 			skyflower = 0.1,
 			dragonblood_tree = 0.01,
 		},
+	    countprefabs = {
+	        goose = 1,
+	    }
 	},
 })
 
@@ -187,7 +190,7 @@ TheMod:AddRoom("BGSnow", {
 	contents = {
 		distributepercent = 0.7,
 		distributeprefabs = {
-			thunder_tree = 0.02,
+			thunder_tree = 0.008,
 			ball_lightning = 0.001,
 			frog = 0.002,
 			skyflower = 0.1,
@@ -202,7 +205,7 @@ TheMod:AddRoom("Thunder_Forest", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.SNOW,
 	contents = {
-		distributepercent = 0.3,
+		distributepercent = 0.6,
 		distributeprefabs = {
 			thunder_tree = 0.0009,
 			crystal_quartz = 0.0009,
@@ -225,7 +228,7 @@ TheMod:AddRoom("Sea_Mimic", {
 			cloud_algae = 0.15,
 			cloud_coral = 0.15,
 			manta = 0.12,
-			thunder_tree = 0.12,
+			thunder_tree = 0.09,
 			skyflower = 0.2,
 		},
 	},

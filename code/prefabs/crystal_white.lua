@@ -29,23 +29,23 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst:AddTag("crystal")
-
 	inst.AnimState:SetBank("crystal")
 	inst.AnimState:SetBuild("crystal")
     inst.AnimState:PlayAnimation("crystal_white")
     MakeObstaclePhysics(inst, 1.)
+    inst.AnimState:SetMultColour(1, 1, 1, 0.7)
+	inst:AddTag("crystal")
 
 	inst:AddComponent("inspectable")
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot(loot) 
+    inst.components.lootdropper:SetLoot(loot) 	
 
 	inst:AddComponent("workable")
 	inst.components.workable:SetWorkAction(ACTIONS.MINE)
 	inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE)
 	inst.components.workable:SetOnFinishCallback(onMined)
-	--inst.components.workable:SetOnWorkCallback(onhit)	      	
+	--inst.components.workable:SetOnWorkCallback(onhit)	      
 
 	return inst
 end
