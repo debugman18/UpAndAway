@@ -20,8 +20,5 @@ end
 GetStaticGen = GetStaticGenerator
 
 
-STRINGS = setmetatable({}, {__index = _G.STRINGS})
-
-
 RegisterModEnvironment(_M)
 return _M
