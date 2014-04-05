@@ -225,6 +225,8 @@ local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
 	if Climbing.IsCloudLevelNumber(world_gen_options.level_world) then
 
 		DebugSay "update worldgen passed!"
+
+		TheSim:LoadPrefabs {"MOD_"..modname}
 		
 		--Changes the background during worldgen.
 		--self.bg:SetTexture("images/bg_gen.xml", "bg_plain.tex")
