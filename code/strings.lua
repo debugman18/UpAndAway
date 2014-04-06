@@ -291,7 +291,7 @@ Add.QuotesFor "beanstalk" {
 
 Add.QuotesFor "beanstalk_sapling" {
 
-    GENERIC = "",
+    GENERIC = "It's supposed to grow into a beanstalk.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -306,7 +306,7 @@ Add.QuotesFor "beanstalk_sapling" {
 
 Add.QuotesFor "beanstalk_exit" {
 
-    GENERIC = "",
+    GENERIC = "That's the way back to the ground.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -336,8 +336,8 @@ Add.QuotesFor "magic_beans" {
 
 Add.QuotesFor "magic_beans_cooked" {
 
-    GENERIC = "",
-    waxwell = "I hope the legends aren't full of beans.",
+    GENERIC = "I don't even know why I did that.",
+    waxwell = "I guess we'll never know if they were real or not.",
     wendy = "",
     wickerbottom = "",
     willow = "",
@@ -455,7 +455,7 @@ Add.QuotesFor "datura_petals" {
 
 Add.QuotesFor "antlion" {
 
-    GENERIC = "What sick breading produced this?",
+    GENERIC = "What sick breeding produced this?",
     waxwell = "Even my Tallbirds were a bigger success than this one.",
     wendy = "",
     wickerbottom = "",
@@ -470,7 +470,7 @@ Add.QuotesFor "antlion" {
 
 Add.QuotesFor "manta" {
 
-    GENERIC = "",
+    GENERIC = "Aren't you supposed to be in the ocean?",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -485,7 +485,7 @@ Add.QuotesFor "manta" {
 
 Add.QuotesFor "manta_leather" {
 
-    GENERIC = "",
+    GENERIC = "Skin from a flying manta.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -500,7 +500,7 @@ Add.QuotesFor "manta_leather" {
 
 Add.QuotesFor "magnet" {
 
-    GENERIC = "",
+    GENERIC = "It's quite magnetic.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -515,7 +515,7 @@ Add.QuotesFor "magnet" {
 
 Add.QuotesFor "cloud_fruit_tree" {
 
-    GENERIC = "",
+    GENERIC = "It has a strange fruit on it.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -530,7 +530,7 @@ Add.QuotesFor "cloud_fruit_tree" {
 
 Add.QuotesFor "cloud_fruit" {
 
-    GENERIC = "",
+    GENERIC = "Cloud fruit. What else would it be?",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -545,7 +545,7 @@ Add.QuotesFor "cloud_fruit" {
 
 Add.QuotesFor "gustflower" {
 
-    GENERIC = "",
+    GENERIC = "I should steer clear of it.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -560,7 +560,7 @@ Add.QuotesFor "gustflower" {
 
 Add.QuotesFor "gustflower_seeds" {
 
-    GENERIC = "",
+    GENERIC = "I can plant this somewhere.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -575,7 +575,7 @@ Add.QuotesFor "gustflower_seeds" {
 
 Add.QuotesFor "skytrap" {
 
-    GENERIC = "",
+    GENERIC = "Something about that flower is off.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -590,7 +590,7 @@ Add.QuotesFor "skytrap" {
 
 Add.QuotesFor "live_gnome" {
 
-    GENERIC = "",
+    GENERIC = "Is that a gnome?",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -605,7 +605,7 @@ Add.QuotesFor "live_gnome" {
 
 Add.QuotesFor "whitestaff" {
 
-    GENERIC = "",
+    GENERIC = "Packages objects through magic.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -620,7 +620,7 @@ Add.QuotesFor "whitestaff" {
 
 Add.QuotesFor "blackstaff" {
 
-    GENERIC = "",
+    GENERIC = "You can charge things with magic.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -635,7 +635,7 @@ Add.QuotesFor "blackstaff" {
 
 Add.QuotesFor "skyflies" {
 
-    GENERIC = "",
+    GENERIC = "I wonder how they light up like that?",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -650,7 +650,7 @@ Add.QuotesFor "skyflies" {
 
 Add.QuotesFor "weaver_bird" {
 
-    GENERIC = "",
+    GENERIC = "It makes large nests to keep warm.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -665,7 +665,7 @@ Add.QuotesFor "weaver_bird" {
 
 Add.QuotesFor "greenbean" {
 
-    GENERIC = "",
+    GENERIC = "Green and nutricious.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -680,7 +680,7 @@ Add.QuotesFor "greenbean" {
 
 Add.QuotesFor "beanlet_shell" {
 
-    GENERIC = "",
+    GENERIC = "A husk of a bean monster.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -710,7 +710,7 @@ Add.QuotesFor "beanlet" {
 
 Add.QuotesFor "beanlet_zealot" {
 
-    GENERIC = "",
+    GENERIC = "They seem pretty aggressive.",
     waxwell = "I'd fancy some beans on toast now.",
     wendy = "",
     wickerbottom = "",
@@ -785,7 +785,7 @@ Add.QuotesFor "owl" {
 
 Add.QuotesFor "longbill" {
 
-    GENERIC = "",
+    GENERIC = "Are those claws on its wings?",
     waxwell = "With it's size it most likely has trouble ducking.",
     wendy = "",
     wickerbottom = "",
@@ -800,7 +800,7 @@ Add.QuotesFor "longbill" {
 
 Add.QuotesFor "duckraptor" {
 
-    GENERIC = "",
+    GENERIC = "A nightmare duck! What next?",
     waxwell = "You will make a rather exquisite duck pâté.",
     wendy = "",
     wickerbottom = "",
@@ -815,7 +815,7 @@ Add.QuotesFor "duckraptor" {
 
 Add.QuotesFor "rainbowcoon" {
 
-    GENERIC = "",
+    GENERIC = "It's a sneaky little animal.",
     waxwell = "The rainbow is trying to taste my food!",
     wendy = "",
     wickerbottom = "",
@@ -845,7 +845,7 @@ Add.QuotesFor "cloud_bush" {
 
 Add.QuotesFor "cloud_bush.picked" {
 
-    GENERIC = "",
+    GENERIC = "No more sugar for me.",
     waxwell = "It needs manure, but where do I obtain that here?",
     wendy = "",
     wickerbottom = "",
@@ -860,7 +860,7 @@ Add.QuotesFor "cloud_bush.picked" {
 
 Add.QuotesFor "lionblob" {
 
-    GENERIC = "",
+    GENERIC = "Is that supposed to be a joke?",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -875,7 +875,7 @@ Add.QuotesFor "lionblob" {
 
 Add.QuotesFor "octocopter" {
 
-    GENERIC = "",
+    GENERIC = "Half machine, half octopus.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -890,7 +890,7 @@ Add.QuotesFor "octocopter" {
 
 Add.QuotesFor "hive_marshmallow" {
 
-    GENERIC = "",
+    GENERIC = "A giant marshmallow.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -905,7 +905,7 @@ Add.QuotesFor "hive_marshmallow" {
 
 Add.QuotesFor "bee_marshmallow" {
 
-    GENERIC = "",
+    GENERIC = "A flying marshmallow.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -966,7 +966,7 @@ Add.QuotesFor "tree_thunder" {
 
 Add.QuotesFor "thunder_log" {
 
-    GENERIC = "",
+    GENERIC = "It ripples with elecricity.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -981,7 +981,7 @@ Add.QuotesFor "thunder_log" {
 
 Add.QuotesFor "cloudcrag" {
 
-    GENERIC = "",
+    GENERIC = "Super condensed cloud.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -996,7 +996,7 @@ Add.QuotesFor "cloudcrag" {
 
 Add.QuotesFor "bean_giant_statue" {
 
-    GENERIC = "",
+    GENERIC = "I wouldn't want to run into that thing.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1011,7 +1011,7 @@ Add.QuotesFor "bean_giant_statue" {
 
 Add.QuotesFor "crystal_lamp" {
 
-    GENERIC = "",
+    GENERIC = "It's magically lit by crystals.",
     waxwell = "Even the light is crystal clear.",
     wendy = "",
     wickerbottom = "",
@@ -1026,7 +1026,7 @@ Add.QuotesFor "crystal_lamp" {
 
 Add.QuotesFor "dragonblood_tree" {
 
-    GENERIC = "",
+    GENERIC = "I wonder if it breathes fire?",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1041,7 +1041,7 @@ Add.QuotesFor "dragonblood_tree" {
 
 Add.QuotesFor "dragonblood_sap" {
 
-    GENERIC = "",
+    GENERIC = "Warm, gooey tree sap.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1056,22 +1056,7 @@ Add.QuotesFor "dragonblood_sap" {
 
 Add.QuotesFor "dragonblood_log" {
 
-    GENERIC = "",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-    willow = "",
-    wolfgang = "",
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "crystal_lamp" {
-
-    GENERIC = "",
+    GENERIC = "It emits a slight warmth.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1086,7 +1071,7 @@ Add.QuotesFor "crystal_lamp" {
 
 Add.QuotesFor "vine" {
 
-    GENERIC = "",
+    GENERIC = "A sentient vine!",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1101,7 +1086,7 @@ Add.QuotesFor "vine" {
 
 Add.QuotesFor "cumulostone" {
 
-    GENERIC = "",
+    GENERIC = "A rock that seems to pulse with light.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1116,7 +1101,7 @@ Add.QuotesFor "cumulostone" {
 
 Add.QuotesFor "cloud_turf" {
 
-    GENERIC = "",
+    GENERIC = "The ground... Err, cloud beneath my feet.",
     waxwell = "It came from above.",
     wendy = "",
     wickerbottom = "",
@@ -1131,7 +1116,7 @@ Add.QuotesFor "cloud_turf" {
 
 Add.QuotesFor "crystal_relic" {
 
-    GENERIC = "",
+    GENERIC = "I get a weird feeling from that crystal.",
     waxwell = "Dare I say they look crystal clear.",
     wendy = "",
     wickerbottom = "",
@@ -1146,7 +1131,7 @@ Add.QuotesFor "crystal_relic" {
 
 Add.QuotesFor "crystal_water" {
 
-    GENERIC = "",
+    GENERIC = "It looks like it has water inside.",
     waxwell = "Dare I say they look crystal clear.",
     wendy = "",
     wickerbottom = "",
@@ -1161,7 +1146,7 @@ Add.QuotesFor "crystal_water" {
 
 Add.QuotesFor "crystal_quartz" {
 
-    GENERIC = "",
+    GENERIC = "I bet it conducts electricity.",
     waxwell = "Dare I say they look crystal clear.",
     wendy = "",
     wickerbottom = "",
@@ -1176,7 +1161,7 @@ Add.QuotesFor "crystal_quartz" {
 
 Add.QuotesFor "crystal_black" {
 
-    GENERIC = "",
+    GENERIC = "It looks like there's a dark storm inside.",
     waxwell = "Dare I say they look crystal clear.",
     wendy = "",
     wickerbottom = "",
@@ -1191,7 +1176,7 @@ Add.QuotesFor "crystal_black" {
 
 Add.QuotesFor "crystal_white" {
 
-    GENERIC = "",
+    GENERIC = "I feel lighter just being near it.",
     waxwell = "Dare I say they look crystal clear.",
     wendy = "",
     wickerbottom = "",
@@ -1206,7 +1191,7 @@ Add.QuotesFor "crystal_white" {
 
 Add.QuotesFor "crystal_light" {
 
-    GENERIC = "",
+    GENERIC = "It glows with a strange light.",
     waxwell = "Dare I say they look crystal clear.",
     wendy = "",
     wickerbottom = "",
@@ -1221,7 +1206,7 @@ Add.QuotesFor "crystal_light" {
 
 Add.QuotesFor "goose" {
 
-    GENERIC = "",
+    GENERIC = "I wonder if it lays golden eggs?",
     waxwell = "For others a source of wealth, for me a source of annoyance.",
     wendy = "",
     wickerbottom = "",
@@ -1251,7 +1236,7 @@ Add.QuotesFor "monolith" {
 
 Add.QuotesFor "golden_lyre" {
 
-    GENERIC = "",
+    GENERIC = "A boring golden harp.",
     waxwell = "Plays a beautiful tune, yet participates in dull conversations.",
     wendy = "",
     wickerbottom = "",
@@ -1266,7 +1251,7 @@ Add.QuotesFor "golden_lyre" {
 
 Add.QuotesFor "golden_egg" {
 
-    GENERIC = "",
+    GENERIC = "It's warm. And gold. Mostly gold.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1281,8 +1266,8 @@ Add.QuotesFor "golden_egg" {
 
 Add.QuotesFor "golden_rose" {
 
-    GENERIC = "",
-    waxwell = "Plays a beautiful tune, yet participates in dull conversations.",
+    GENERIC = "A rose with golden petals.",
+    waxwell = "",
     wendy = "",
     wickerbottom = "",
     willow = "",
@@ -1296,7 +1281,7 @@ Add.QuotesFor "golden_rose" {
 
 Add.QuotesFor "golden_sunflower" {
 
-    GENERIC = "",
+    GENERIC = "A sunflower made of gold.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1311,7 +1296,7 @@ Add.QuotesFor "golden_sunflower" {
 
 Add.QuotesFor "golden_sunflower_seeds" {
 
-    GENERIC = "",
+    GENERIC = "I can make a gold farm!",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1326,7 +1311,7 @@ Add.QuotesFor "golden_sunflower_seeds" {
 
 Add.QuotesFor "golden_petals" {
 
-    GENERIC = "",
+    GENERIC = "Golden flower petals.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1341,7 +1326,7 @@ Add.QuotesFor "golden_petals" {
 
 Add.QuotesFor "cotton_candy" {
 
-    GENERIC = "",
+    GENERIC = "A bunch of fluffy sugar.",
     waxwell = "A sugary delicacy for carnivals and common folk.",
     wendy = "",
     wickerbottom = "",
@@ -1356,7 +1341,7 @@ Add.QuotesFor "cotton_candy" {
 
 Add.QuotesFor "rubber" {
 
-    GENERIC = "",
+    GENERIC = "It doesn't conduct electricity very well.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1371,7 +1356,7 @@ Add.QuotesFor "rubber" {
 
 Add.QuotesFor "whirlwind" {
 
-    GENERIC = "",
+    GENERIC = "Who knows where that thing could send me.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1416,7 +1401,7 @@ Add.QuotesFor "cloud_cotton" {
 
 Add.QuotesFor "cotton_hat" {
 
-    GENERIC = "",
+    GENERIC = "A warm, fluffy cotton hat.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1431,7 +1416,7 @@ Add.QuotesFor "cotton_hat" {
 
 Add.QuotesFor "cotton_vest" {
 
-    GENERIC = "",
+    GENERIC = "It's silly looking, but very warm.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1446,7 +1431,7 @@ Add.QuotesFor "cotton_vest" {
 
 Add.QuotesFor "package" {
 
-    GENERIC = "",
+    GENERIC = "There's something in it.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1461,7 +1446,7 @@ Add.QuotesFor "package" {
 
 Add.QuotesFor "greentea" {
 
-    GENERIC = "",
+    GENERIC = "A healthy green tea.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1476,7 +1461,7 @@ Add.QuotesFor "greentea" {
 
 Add.QuotesFor "blacktea" {
 
-    GENERIC = "",
+    GENERIC = "It's a nice strong tea.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1491,7 +1476,7 @@ Add.QuotesFor "blacktea" {
 
 Add.QuotesFor "tea_bush" {
 
-    GENERIC = "",
+    GENERIC = "Tea leave grow on this bush.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1506,7 +1491,7 @@ Add.QuotesFor "tea_bush" {
 
 Add.QuotesFor "tea_leaves" {
 
-    GENERIC = "",
+    GENERIC = "Regular old tea leaves.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1521,7 +1506,7 @@ Add.QuotesFor "tea_leaves" {
 
 Add.QuotesFor "blacktea_leaves" {
 
-    GENERIC = "",
+    GENERIC = "Oxidized tea leaves.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1536,7 +1521,7 @@ Add.QuotesFor "blacktea_leaves" {
 
 Add.QuotesFor "kite" {
 
-    GENERIC = "",
+    GENERIC = "Cloth tied to a string.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1551,7 +1536,7 @@ Add.QuotesFor "kite" {
 
 Add.QuotesFor "kettle" {
 
-    GENERIC = "",
+    GENERIC = "A kettle, for brewing tea.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1566,12 +1551,12 @@ Add.QuotesFor "kettle" {
 
 Add.QuotesFor "kettle_item" {
 
-    GENERIC = "",
+    GENERIC = "A kettle, for brewing tea.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Gets Wolfgang into hot water!",
     woodie = "",
     wx78 = "",
 
@@ -1581,7 +1566,7 @@ Add.QuotesFor "kettle_item" {
 
 Add.QuotesFor "cloud_algae" {
 
-    GENERIC = "",
+    GENERIC = "Apparently algae grows on clouds.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1596,7 +1581,7 @@ Add.QuotesFor "cloud_algae" {
 
 Add.QuotesFor "cloud_coral" {
 
-    GENERIC = "",
+    GENERIC = "A rock that grows.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1611,7 +1596,7 @@ Add.QuotesFor "cloud_coral" {
 
 Add.QuotesFor "research_lectern" {
 
-    GENERIC = "",
+    GENERIC = "I'm not even sure what's real anymore.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1626,7 +1611,7 @@ Add.QuotesFor "research_lectern" {
 
 Add.QuotesFor "refiner" {
 
-    GENERIC = "",
+    GENERIC = "A refiner. It crushes things into pieces.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1641,7 +1626,7 @@ Add.QuotesFor "refiner" {
 
 Add.QuotesFor "weather_machine" {
 
-    GENERIC = "",
+    GENERIC = "It's not a very consistent weather machine.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
