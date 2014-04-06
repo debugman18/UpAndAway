@@ -34,7 +34,7 @@ Add.Names {
 
     bird_paradise = "Bird of Paradise",
 
-    blackstaff = "Black Staff"
+    blackstaff = "Black Staff",
 
     candy_fruit = "Candy Fruit",
 
@@ -244,7 +244,7 @@ Add.Names {
 
     whirlwind = "Whirlwind",
 
-    whitestaff = "White Staff"
+    whitestaff = "White Staff",
 
     winnie_staff = "Shepherd's Staff",
 
@@ -296,11 +296,26 @@ Add.QuotesFor "beanstalk_sapling" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is small now, big later.",
     woodie = "",
     wx78 = "",
 
     webber = "It's a little baby beanstalk.",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "beanstalk_exit" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Is a long way down.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "Don't look down, don't look down.",
     wathgrithr = "",
 }
 
@@ -445,7 +460,7 @@ Add.QuotesFor "antlion" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is cat? Is bug? Is catbug.",
     woodie = "",
     wx78 = "",
 
@@ -454,6 +469,36 @@ Add.QuotesFor "antlion" {
 }
 
 Add.QuotesFor "manta" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "What is creature? Where is from?",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "manta_leather" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Is tough skin.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "magnet" {
 
     GENERIC = "",
     waxwell = "",
@@ -520,7 +565,7 @@ Add.QuotesFor "gustflower_seeds" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is for blowy flower.",
     woodie = "",
     wx78 = "",
 
@@ -550,7 +595,7 @@ Add.QuotesFor "live_gnome" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Garden man lives?",
     woodie = "",
     wx78 = "",
 
@@ -565,7 +610,7 @@ Add.QuotesFor "whitestaff" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Does things. Is always changing.",
     woodie = "",
     wx78 = "",
 
@@ -580,7 +625,67 @@ Add.QuotesFor "blackstaff" {
     wendy = "",
     wickerbottom = "",
     willow = "",
+    wolfgang = "Makes thunder.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "skyflies" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
     wolfgang = "",
+    woodie = "Is swarm of bugs. ",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "weaver_bird" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Is little birdie.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "greenbean" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Wolfgang has bean green before!",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "beanlet_shell" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Little plants gone.",
     woodie = "",
     wx78 = "",
 
@@ -595,7 +700,7 @@ Add.QuotesFor "beanlet" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Little plant runs around.",
     woodie = "",
     wx78 = "",
 
@@ -610,7 +715,7 @@ Add.QuotesFor "beanlet_zealot" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Little plant is very angry!",
     woodie = "",
     wx78 = "",
 
@@ -625,7 +730,7 @@ Add.QuotesFor "bean_giant" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Not little plant at all!",
     woodie = "",
     wx78 = "",
 
@@ -685,7 +790,7 @@ Add.QuotesFor "longbill" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Why long bill? Wolfgang still funny.",
     woodie = "",
     wx78 = "",
 
@@ -725,23 +830,8 @@ Add.QuotesFor "rainbowcoon" {
 
 Add.QuotesFor "cloud_bush" {
 
-    GENERIC = "",
-    waxwell = "It needs manure, but where do I obtain that here?",
-    wendy = "",
-    wickerbottom = "",
-    willow = "",
-    wolfgang = "Do I have to poop on it?",
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "cloud_bush.charged" {
-
-    GENERIC = "",
-    waxwell = "",
+    GENERIC = "All plants produce simple sugars.",
+    waxwell = "Heavenly treats await me.",
     wendy = "",
     wickerbottom = "",
     willow = "",
@@ -756,11 +846,41 @@ Add.QuotesFor "cloud_bush.charged" {
 Add.QuotesFor "cloud_bush.picked" {
 
     GENERIC = "",
+    waxwell = "It needs manure, but where do I obtain that here?",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Do I have to poop on it?",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "lionblob" {
+
+    GENERIC = "",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "No more candies.",
+    wolfgang = "Is not right.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "octocopter" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "It has many arms!",
     woodie = "",
     wx78 = "",
 
@@ -783,6 +903,22 @@ Add.QuotesFor "hive_marshmallow" {
     wathgrithr = "",
 }
 
+Add.QuotesFor "bee_marshmallow" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Is bee or is not too bee? ",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+
 Add.QuotesFor "marshmallow" {
 
     GENERIC = "Maybe just one. For science!",
@@ -790,7 +926,7 @@ Add.QuotesFor "marshmallow" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is soft treat!",
     woodie = "",
     wx78 = "",
 
@@ -835,7 +971,37 @@ Add.QuotesFor "thunder_log" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is tickly to touch.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "cloudcrag" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Is mound of cloud.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "bean_giant_statue" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Is big stone monster.",
     woodie = "",
     wx78 = "",
 
@@ -926,6 +1092,21 @@ Add.QuotesFor "vine" {
     wickerbottom = "",
     willow = "",
     wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "cumulostone" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Is rock and is cloud.",
     woodie = "",
     wx78 = "",
 
@@ -1086,11 +1267,11 @@ Add.QuotesFor "golden_lyre" {
 Add.QuotesFor "golden_egg" {
 
     GENERIC = "",
-    waxwell = "Plays a beautiful tune, yet participates in dull conversations.",
+    waxwell = "",
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is not for eating.",
     woodie = "",
     wx78 = "",
 
@@ -1113,6 +1294,51 @@ Add.QuotesFor "golden_rose" {
     wathgrithr = "",
 }
 
+Add.QuotesFor "golden_sunflower" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "golden_sunflower_seeds" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "This grow big shiny plant.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "golden_petals" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Is from shiny plant.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
 Add.QuotesFor "cotton_candy" {
 
     GENERIC = "",
@@ -1121,6 +1347,21 @@ Add.QuotesFor "cotton_candy" {
     wickerbottom = "",
     willow = "",
     wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "rubber" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Is stretchy.",
     woodie = "",
     wx78 = "",
 
@@ -1151,7 +1392,7 @@ Add.QuotesFor "cauldron" {
     wickerbottom = "",
     willow = "",
     wolfgang = "",
-    woodie = "",
+    woodie = "Is belong to witch?",
     wx78 = "",
 
     webber = "",
@@ -1210,7 +1451,7 @@ Add.QuotesFor "package" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "What is inside?",
     woodie = "",
     wx78 = "",
 
@@ -1225,7 +1466,7 @@ Add.QuotesFor "greentea" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is not even green.",
     woodie = "",
     wx78 = "",
 
@@ -1240,7 +1481,7 @@ Add.QuotesFor "blacktea" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is nearly as strong as me!",
     woodie = "",
     wx78 = "",
 
@@ -1270,7 +1511,7 @@ Add.QuotesFor "tea_leaves" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Put in water.",
     woodie = "",
     wx78 = "",
 
@@ -1285,7 +1526,22 @@ Add.QuotesFor "blacktea_leaves" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is for making drink.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "kite" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Is for flying.",
     woodie = "",
     wx78 = "",
 
@@ -1300,7 +1556,7 @@ Add.QuotesFor "kettle" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Gets Wolfgang into hot water!",
     woodie = "",
     wx78 = "",
 
@@ -1316,6 +1572,36 @@ Add.QuotesFor "kettle_item" {
     wickerbottom = "",
     willow = "",
     wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "cloud_algae" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Is plant-cloud.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "cloud_coral" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Is plant-rock.",
     woodie = "",
     wx78 = "",
 

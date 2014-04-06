@@ -8,8 +8,15 @@ local assets =
 local prefabs = 
 {
     "cloud_cotton",
-    "dug_marsh_bush",
 }
+
+local function GetStatus(inst)
+	if inst.components.pickable and inst.components.pickable:CanBePicked() then
+		return cloud_bush
+	else 
+		return picked
+	end
+end
 
 local function ontransplantfn(inst)
 	inst.components.pickable:MakeEmpty()
@@ -90,6 +97,7 @@ local function fn(Sim)
     inst.components.workable:SetWorkLeft(1)
     
     inst:AddComponent("inspectable")
+    inst.components.inspectable.getstatus = GetStatus
 
 	inst:AddComponent("staticchargeable")
 	inst.components.staticchargeable:SetChargedFn(onchargedfn)
@@ -101,9 +109,7 @@ local function fn(Sim)
     MakeLargeBurnable(inst)
     MakeLargePropagator(inst)
 
-
 	onunchargedfn(inst)
-
 
     return inst
 end

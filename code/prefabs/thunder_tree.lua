@@ -33,14 +33,14 @@ local tall_loot =
 local function StartSpawning(inst)
     if inst.components.childspawner and GetSeasonManager() and GetSeasonManager():IsWinter() and not GetWorld().components.staticgenerator.charged then
         inst.components.childspawner:StartSpawning()
-        print("Tree spawning.")
+        --print("Tree spawning.")
     end
 end
 
 local function StopSpawning(inst)
     if inst.components.childspawner then
         inst.components.childspawner:StopSpawning()
-        print("Tree no longer spawning.")
+        --print("Tree no longer spawning.")
     end
 end
 
@@ -90,13 +90,15 @@ local function SetTall(inst)
     inst.components.lootdropper:SetLoot(tall_loot)
     inst.Transform:SetScale(1, 1, 1)   
     inst.components.lootdropper:AddChanceLoot("cumulostone", 1)
-    inst:AddComponent("staticchargeable")
-    inst.components.staticchargeable:SetChargedFn(function(inst)
-        StopSpawning(inst)
-    end)
-    inst.components.staticchargeable:SetUnchargedFn(function(inst)
-        StartSpawning(inst)
-    end)
+    if not inst.components.staticchargeable then
+        inst:AddComponent("staticchargeable")
+        inst.components.staticchargeable:SetChargedFn(function(inst)
+            StopSpawning(inst)
+        end)
+        inst.components.staticchargeable:SetUnchargedFn(function(inst)
+            StartSpawning(inst)
+        end)
+    end    
 end
 
 local function GrowTall(inst)

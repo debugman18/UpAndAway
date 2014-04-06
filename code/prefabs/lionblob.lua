@@ -16,6 +16,8 @@ local function fn(Sim)
 
     local minimap = inst.entity:AddMiniMapEntity()
     minimap:SetIcon("evergreen_lumpy.png")
+
+    inst:AddComponent("inspectable")
 	
     return inst
 end
