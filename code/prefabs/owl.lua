@@ -125,7 +125,7 @@ local function fn()
     
     inst:AddComponent("inspectable")
     inst:AddComponent("named")
-    inst.componenets.named:SetName("Strix")
+    inst.components.named:SetName("Strix")
 
     inst:AddComponent("homeseeker")
     inst:AddComponent("knownlocations")
