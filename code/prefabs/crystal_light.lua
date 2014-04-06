@@ -44,7 +44,6 @@ local function fn(Sim)
     MakeObstaclePhysics(inst, .1)    
 
     inst:AddComponent("inspectable")
-    inst.components.inspectable.nameoverride = "Light Crystal" 
 
     local light = inst.entity:AddLight()
     light:SetFalloff(0.5)

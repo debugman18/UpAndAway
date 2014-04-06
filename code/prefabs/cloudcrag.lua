@@ -65,7 +65,6 @@ local function common(Sim)
 		end)         
 
 	inst:AddComponent("inspectable")
-	inst.components.inspectable.nameoverride = "Cloud Crag"
 	MakeSnowCovered(inst, .01)        
 	return inst
 end

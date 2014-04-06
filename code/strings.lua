@@ -238,7 +238,7 @@ Add.Names {
 
     weaver_bird = "Weaver Bird",
 
-    weaver_nest = "Weaver Nest",
+    weavernest = "Weaver Nest",
 
     weather_machine = "Tropospherical Relay",
 
@@ -949,7 +949,7 @@ Add.QuotesFor "smores" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "tree_thunder" {
+Add.QuotesFor "thunder_tree" {
 
     GENERIC = "Looks fragile, but dangerous.",
     waxwell = "I was rather shocked the first time I discovered these.",
@@ -1084,6 +1084,66 @@ Add.QuotesFor "vine" {
     wathgrithr = "",
 }
 
+Add.QuotesFor "weavernest" {
+
+    GENERIC = "A warm nest made by birds.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "jellyshroom_red" {
+
+    GENERIC = "A tall jelly mushroom.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "jellyshroom_blue" {
+
+    GENERIC = "A tall jelly mushroom.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "jellyshroom_green" {
+
+    GENERIC = "A tall jelly mushroom.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
 Add.QuotesFor "cumulostone" {
 
     GENERIC = "A rock that seems to pulse with light.",
@@ -1092,6 +1152,21 @@ Add.QuotesFor "cumulostone" {
     wickerbottom = "",
     willow = "",
     wolfgang = "Is rock and is cloud.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "ball_lightning" {
+
+    GENERIC = "A wandering ball of static.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
     woodie = "",
     wx78 = "",
 
@@ -1129,7 +1204,37 @@ Add.QuotesFor "crystal_relic" {
     wathgrithr = "",
 }
 
+Add.QuotesFor "crystal_fragment_relic" {
+
+    GENERIC = "I get a weird feeling from that crystal.",
+    waxwell = "Dare I say they look crystal clear.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
 Add.QuotesFor "crystal_water" {
+
+    GENERIC = "It looks like it has water inside.",
+    waxwell = "Dare I say they look crystal clear.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "crystal_fragment_water" {
 
     GENERIC = "It looks like it has water inside.",
     waxwell = "Dare I say they look crystal clear.",
@@ -1159,7 +1264,37 @@ Add.QuotesFor "crystal_quartz" {
     wathgrithr = "",
 }
 
+Add.QuotesFor "crystal_fragment_quartz" {
+
+    GENERIC = "I bet it conducts electricity.",
+    waxwell = "Dare I say they look crystal clear.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
 Add.QuotesFor "crystal_black" {
+
+    GENERIC = "It looks like there's a dark storm inside.",
+    waxwell = "Dare I say they look crystal clear.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "crystal_fragment_black" {
 
     GENERIC = "It looks like there's a dark storm inside.",
     waxwell = "Dare I say they look crystal clear.",
@@ -1189,10 +1324,100 @@ Add.QuotesFor "crystal_white" {
     wathgrithr = "",
 }
 
+Add.QuotesFor "crystal_fragment_white" {
+
+    GENERIC = "I feel lighter just being near it.",
+    waxwell = "Dare I say they look crystal clear.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
 Add.QuotesFor "crystal_light" {
 
     GENERIC = "It glows with a strange light.",
     waxwell = "Dare I say they look crystal clear.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "crystal_fragment_light" {
+
+    GENERIC = "It glows with a strange light.",
+    waxwell = "Dare I say they look crystal clear.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "crystal_spire" {
+
+    GENERIC = "It's a large crystal.",
+    waxwell = "Dare I say they look crystal clear.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "crystal_fragment_spire" {
+
+    GENERIC = "It's a large crystal.",
+    waxwell = "Dare I say they look crystal clear.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "refined_black_crystal" {
+
+    GENERIC = "A large chunk of black crystal.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "refined_white_crystal" {
+
+    GENERIC = "A large chunk of white crystal.",
+    waxwell = "",
     wendy = "",
     wickerbottom = "",
     willow = "",
@@ -1317,6 +1542,22 @@ Add.QuotesFor "golden_petals" {
     wickerbottom = "",
     willow = "",
     wolfgang = "Is from shiny plant.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+
+Add.QuotesFor "colored_corn" {
+
+    GENERIC = "Rainbow colored corn.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
     woodie = "",
     wx78 = "",
 

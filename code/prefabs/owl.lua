@@ -124,7 +124,8 @@ local function fn()
     inst:AddComponent("inventory")
     
     inst:AddComponent("inspectable")
-    inst.components.inspectable.nameoverride = "Strix"
+    inst:AddComponent("named")
+    inst.componenets.named:SetName("Strix")
 
     inst:AddComponent("homeseeker")
     inst:AddComponent("knownlocations")
