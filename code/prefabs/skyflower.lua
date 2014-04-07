@@ -56,7 +56,7 @@ local function onunchargefn(inst)
 end
 
 local function onchargefn(inst)
-    inst.AnimState:SetBank("flowers_evil")
+    inst.AnimState:SetBank("datura")
     inst.AnimState:SetBuild("datura")
     inst.animname = daturanames[math.random(#daturanames)]
     inst.AnimState:PlayAnimation(inst.animname)
