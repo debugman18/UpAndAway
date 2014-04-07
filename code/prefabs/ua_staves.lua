@@ -1,6 +1,8 @@
 BindGlobal()
 
 
+local Lambda = wickerrequire 'paradigms.functional'
+local Pred = wickerrequire 'lib.predicates'
 local Configurable = wickerrequire 'adjectives.configurable'
 local cfg = Configurable "STAFF"
 
@@ -149,68 +151,24 @@ local function make_black_staff()
 end
 
 local function make_white_staff()
-	local function canshrink(staff, caster, target, pos)
-		return target
+	require "components/packer"
+
+	local function canshrink(target)
+		if target then
+			return not target.components.combat or target.components.combat.defaultdamage == 0
+		end
 	end
 
-	local effect_duration = cfg:GetConfig("BLACK", "EFFECT_DURATION")
+	local function cancastspell(staff, caster, target, pos)
+		return canshrink(target) and Pred.IsPackable(target)
+	end
+
 	local function white_activate(staff, target, pos)
 		if target and target:IsValid() then
 			local targetpos = target:GetPosition()
     		local package = SpawnPrefab("package")
     		if package then
-				--[[
-    			package.iteminside = target.prefab
-    			package.itemdata = target:GetPersistData()
-    			package.metadata = target.data
-    			local iteminside = string.upper(package.iteminside)
-    			local itemstatus = nil
-    			if target.components.inspectable and target.components.inspectable.getstatus then
-    				itemstatus = target.components.inspectable.getstatus(target)
-    			end	
-    			print(itemstatus)
-    			local itemnamestatus = tostring(iteminside) .. "_" .. tostring(itemstatus)
-
-    			for k,v in pairs(STRINGS.NAMES) do
-					if k == iteminside and itemstatus == nil then
-						print(k)
-						print(v)
-						local itemname = ("Packaged " .. tostring(v))	
-						package.components.named:SetName(itemname)
-						print(itemname)   				
-    				elseif k == itemnamestatus then 
-						print(k)
-						print(v)
-						local itemnamewithstatus = ("Packaged " .. tostring(v))	
-						package.components.named:SetName(itemnamewithstatus)
-						print(itemname)
-    				elseif target.name and not target.name == MISSING_NAME then
- 						print(k)
-						print(v)
-						local itemnamenamed = ("Packaged " .. tostring(target.name))	
-						package.components.named:SetName(itemnamenamed)
-						print(itemname)  
-						print(target.name) 					
-    				else end
-				end
-
-				if target.prefab == CAVE_ENTRANCE and target.open then
- 					local itemnamecaveopen = ("Packaged Plugged Sinkhole")	
-					package.components.named:SetName(itemnamecaveopen)   	
-				elseif target.prefab == CAVE_ENTRANCE and not target.open then
-					local itemnamecaveclosed = ("Packaged Sinkhole")	
-					package.components.named:SetName(itemnamecaveclosed)					
-				elseif target.name == STRINGS.NAMES.CAVE_ENTRANCE_CLOSED_CAVE then
-					local itemnamecave = ("Packaged Plugged Hole")	
-					package.components.named:SetName(itemnamecave)
-				else end	
-
-				print(itemname)
-    			print(("%s."):format(iteminside))
-
-        		package.Transform:SetPosition(target.Transform:GetWorldPosition(x,y,z))
-				]]--
-
+				package.components.packer:SetCanPackFn(canshrink)
 				if package.components.packer:Pack(target) then
 					package.Transform:SetPosition( targetpos:Get() )
 					staff.components.finiteuses:Use(1)
@@ -247,7 +205,7 @@ local function make_white_staff()
 
 				spellcaster.canuseontargets = true
 				spellcaster.canusefrominventory = false
-				spellcaster:SetSpellTestFn(canshrink)
+				spellcaster:SetSpellTestFn(cancastspell)
 				spellcaster:SetSpellFn(white_activate)
 			end
 

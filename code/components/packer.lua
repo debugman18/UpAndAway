@@ -24,12 +24,24 @@ function Packer:SetCanPackFn(fn)
 	self.canpackfn = fn
 end
 
+-- Note: does NOT take an object as 'self'.
+function Packer.DefaultCanPackTest(target)
+	return target
+		and target:IsValid()
+		and not target:IsInLimbo()
+		and not (
+			target:HasTag("teleportato")
+			or target:HasTag("irreplaceable")
+			or target:HasTag("player")
+			or target:HasTag("nonpackable")
+		)
+end
+Pred.IsPackable = Packer.DefaultCanPackTest
+
 function Packer:CanPack(target)
 	return self.inst:IsValid()
 		and not self:HasPackage()
-		and target:IsValid()
-		and not target:IsInLimbo()
-		and not (target:HasTag("irreplaceable") or target:HasTag("player") or target:HasTag("nonpackable"))
+		and self.DefaultCanPackTest(target)
 		and (not self.canpackfn or self.canpackfn(target, self.inst))
 end
 

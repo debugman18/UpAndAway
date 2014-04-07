@@ -40,7 +40,13 @@ local function fn(Sim, iteminside)
 	do
 		local packer = inst.components.packer
 
-		-- Filter out things like this:
+		--[[
+		-- General things which should never be packed are being given the
+		-- unpackable tag in postinits.packaging.
+		--
+		-- Specific things which shouldn't be packed by white staff packages
+		-- are being filtered out in the white staff prefab file.
+		--]]
 		--[[
 		packer:SetCanPackFn(function(target, inst)
 			-- stuff
