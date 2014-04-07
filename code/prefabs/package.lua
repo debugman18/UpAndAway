@@ -1,5 +1,7 @@
 BindGlobal()
 
+require "prefabutil"
+
 local assets =
 {
 	Asset("ANIM", "anim/void_placeholder.zip"),
@@ -70,4 +72,7 @@ local function fn(Sim, iteminside)
 	return inst
 end
 
-return Prefab ("common/inventory/package", fn, assets) 
+return {
+	Prefab("common/inventory/package", fn, assets),
+	MakePlacer("common/inventory/package_placer", "marble", "void_placeholder", "anim"),
+}
