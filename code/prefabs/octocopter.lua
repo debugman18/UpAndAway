@@ -84,6 +84,8 @@ local function fn(Sim)
     inst.components.locomotor.walkspeed = 5
     inst.components.locomotor.runspeed = 5
     inst.components.locomotor.directdrive = true
+
+    inst.Transform:SetScale(1.4, 1.4, 1.4)
     
     inst:SetStateGraph("SGoctocopter")
 

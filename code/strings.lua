@@ -896,6 +896,66 @@ Add.QuotesFor "octocopter" {
     wathgrithr = "",
 }
 
+Add.QuotesFor "octocopter_wreckage" {
+
+    GENERIC = "Now it's mostly octopus.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "octocopterpart1" {
+
+    GENERIC = "A rotor blade.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "octocopterpart2" {
+
+    GENERIC = "A rotor plate.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "octocopterpart3" {
+
+    GENERIC = "A rotor hub.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
 Add.QuotesFor "hive_marshmallow" {
 
     GENERIC = "A giant marshmallow.",

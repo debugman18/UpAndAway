@@ -75,6 +75,8 @@ local function fn(inst)
 	inst.AnimState:SetBuild("sky_octopus")
 	inst.AnimState:PlayAnimation("idle", true)
 
+	inst.Transform:SetScale(1.4, 1.4, 1.4)
+
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("octocopter.tex")
 
