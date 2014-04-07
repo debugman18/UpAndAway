@@ -13,7 +13,6 @@
 + cloud_bomb
 + cloud_coral_fragment
 + cloud_fruit
-+ cloud_turf
 + cloud_wall
 + cotton_candy
 + cotton_hat
@@ -24,7 +23,6 @@
 + dragonblood_log
 + dragonblood_sap
 + flying_fish
-+ flying_fish_pond
 + golden_amulet
 + golden_petals
 + golden_sunflower_seeds
@@ -69,7 +67,7 @@
 + Ball Lightning (All art assets, still image)
 + Kettle (All art assets, still image)
 + Refiner (All art assets, still image) + Recipe Image
-+ Cloud Fruit Tree (All art assets, still image, idle and idle_harvested) + Cloud Fruit Inventory Image
++ Cloud Fruit Tree (All art assets, still image, idle and idle_harvested)
 + Bean Giant (All art assets, using deerclops bank or custom animations)
 + Bean Giant Statue (All art assets, still image)
 + Golden Sunflower (All art assets, still image)
