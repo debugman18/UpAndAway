@@ -179,7 +179,6 @@ local function OnSpawned(inst, child)
     if not GetWorld().components.staticgenerator.charged then
 	   GetSeasonManager():DoLightningStrike(Vector3(child.Transform:GetWorldPosition()))
     end   
-    inst:DoTaskInTime(0, function() SpawnPrefab("ball_lightning").Transform:SetPosition(child.Transform:GetWorldPosition()) end)
 end
 
 local function fn(Sim, stage)
@@ -222,6 +221,7 @@ local function fn(Sim, stage)
     inst.components.childspawner:SetSpawnPeriod(10)
     inst.components.childspawner:SetMaxChildren(1)
     inst.components.childspawner.spawnoffscreen = false
+    inst.components.childspawner:SetRareChild("ball_lightning", 0.2)
     
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.CHOP)

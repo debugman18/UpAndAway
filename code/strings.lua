@@ -823,7 +823,7 @@ Add.QuotesFor "duckraptor" {
 
 Add.QuotesFor "rainbowcoon" {
 
-    GENERIC = "It's a sneaky little animal.",
+    GENERIC = "Colorful, but it's a ploy for my food.",
     waxwell = "The rainbow is trying to taste my food!",
     wendy = "",
     wickerbottom = "",
@@ -1169,7 +1169,7 @@ Add.QuotesFor "weavernest" {
 
 Add.QuotesFor "jellyshroom_red" {
 
-    GENERIC = "A tall jelly mushroom.",
+    GENERIC = "You jelly?",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1184,7 +1184,7 @@ Add.QuotesFor "jellyshroom_red" {
 
 Add.QuotesFor "jellyshroom_blue" {
 
-    GENERIC = "A tall jelly mushroom.",
+    GENERIC = "You jelly?",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
@@ -1199,7 +1199,7 @@ Add.QuotesFor "jellyshroom_blue" {
 
 Add.QuotesFor "jellyshroom_green" {
 
-    GENERIC = "A tall jelly mushroom.",
+    GENERIC = "You jelly?",
     waxwell = "",
     wendy = "",
     wickerbottom = "",

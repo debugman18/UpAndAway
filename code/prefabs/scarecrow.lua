@@ -36,7 +36,7 @@ local function fn(Sim)
 	inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*20)
 	inst.components.childspawner:SetSpawnPeriod(60)
 	inst.components.childspawner:SetMaxChildren(1)
-	inst.components.childspawner:StartSpawning()
+	--inst.components.childspawner:StartSpawning()
 
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("scarecrow.tex")	

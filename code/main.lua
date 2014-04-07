@@ -231,7 +231,10 @@ local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
 		--Changes the background during worldgen.
 		--self.bg:SetTexture("images/bg_gen.xml", "bg_plain.tex")
 		self.bg:SetTexture("images/bg_up.xml", "bg_plain.tex")
-		self.bg:SetTint(130, 130, 100, 0.5)
+		--self.bg:SetTint(54, 189, 255, 1.0) --Red
+		--self.bg:SetTint(255, 54, 189, 1.0) --Green
+		--self.bg:SetTint(54, 255, 54, 1.0) --Purple
+		self.bg:SetTint(255, 255, 54, 1.0) --Blue
 		self.bg:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
 		self.bg:SetHRegPoint(GLOBAL.ANCHOR_MIDDLE)
 		self.bg:SetVAnchor(GLOBAL.ANCHOR_MIDDLE)
