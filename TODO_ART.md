@@ -32,6 +32,7 @@
 + greenbean
 + gustflower_seeds
 + jellyshroom
++ kettle (portable mode)
 + kite
 + magnet
 + manta_leather
@@ -66,7 +67,7 @@
 + Cloud Coral (All art assets, still image, animations idle and idle_harvested)
 + Weather Machine (All art assets, still image) + Recipe Image
 + Ball Lightning (All art assets, still image)
-+ Kettle (All art assets, still image) + Inventory Image
++ Kettle (All art assets, still image)
 + Refiner (All art assets, still image) + Recipe Image
 + Cloud Fruit Tree (All art assets, still image, idle and idle_harvested) + Cloud Fruit Inventory Image
 + Bean Giant (All art assets, using deerclops bank or custom animations)
