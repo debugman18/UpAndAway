@@ -61,6 +61,7 @@ Assets = GLOBAL.JoinArrays(
 	--]]
 	InventoryImageAtlases {
 		"kettle_item",
+		"winnie_staff",
 	},
 
 	{

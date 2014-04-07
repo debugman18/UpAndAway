@@ -8,6 +8,8 @@
 
 + **Art assets in need of attention**
 
+	+ Tea Bush (All art assets, likely based on the berry bush build)
+
 	+ Weaver Den (All art assets, using spiderden bank or custom animations)
 
 	+ Manta (All art assets, using buzzard bank or custom animations)
