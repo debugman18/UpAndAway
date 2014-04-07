@@ -13,7 +13,7 @@ local prefabs =
 local function retargetfn(inst)
     return FindEntity(inst, TUNING.EYEPLANT_ATTACK_DIST, function(guy) 
         if guy.components.combat and guy.components.health and not guy.components.health:IsDead() then
-            return (guy:HasTag("character") or guy:HasTag("monster") or guy:HasTag("animal") or guy:HasTag("prey") or guy:HasTag("eyeplant") or guy:HasTag("lureplant"))
+            return (guy:HasTag("character") or guy:HasTag("monster") or guy:HasTag("animal") or guy:HasTag("prey"))
         end
     end)
 end
@@ -52,6 +52,14 @@ local function fn(Sim)
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(30)    
+
+    inst:ListenForEvent("newcombattarget", function(inst, data)
+        if data.target and not inst.sg:HasStateTag("attack") and not inst.sg:HasStateTag("hit") and not inst.components.health:IsDead() then
+            inst.sg:GoToState("attack")
+        end
+    end)
+
+    inst:SetStateGraph("SGskytrap")    
 
 	return inst
 end

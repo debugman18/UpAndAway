@@ -192,6 +192,14 @@ Add.Names {
     
     octocopter = "Octocopter",
 
+    octocopter_wreckage = "Wrecked Octocopter",
+
+    octocopterpart1 = "Rotor Blade",
+
+    octocopterpart2 = "Rotor Plate",
+
+    octocopterpart3 = "Rotor Hub",
+
     owl = "Strix",
 
     package = "Unknown Package",

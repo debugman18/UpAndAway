@@ -181,6 +181,8 @@ PrefabFiles = {
 
 	"dragonblood_log",
 	"thunder_log",
+
+	"octocopter_wreckage",
 }
 
 -- The return statement is just for if this file is used externally, at

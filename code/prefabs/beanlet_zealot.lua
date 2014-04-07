@@ -21,6 +21,9 @@ SetSharedLootTable( 'beanlet',
     {'beanlet_shell',   0.33},
 })
 
+local MAX_TARGET_SHARES = 5
+local SHARE_TARGET_DIST = 30
+
 local function RetargetFn(inst)
     return FindEntity(inst, 8, function(guy)
         return inst.components.combat:CanTarget(guy)
@@ -59,6 +62,7 @@ local function OnAttacked(inst, data)
     local attacker = data.attacker
 
     inst.components.combat:SetTarget(attacker)
+    inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude) return dude:HasTag("zealot") end, MAX_TARGET_SHARES)
 end
 
 local function fn(Sim)
@@ -80,6 +84,7 @@ local function fn(Sim)
     inst:AddTag("animal")
     inst:AddTag("smallcreature")
     inst:AddTag("beanlet")
+    inst:AddTag("zealot")
 
     inst:AddComponent("knownlocations")
 

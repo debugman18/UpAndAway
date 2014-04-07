@@ -42,15 +42,7 @@
 
 	+ Manta (All functionality needed)
 
-	+ Skytrap (All functionality needed)
-
-	+ Beanlet Zealots (Cult functionality needed)
-
-	+ Octocopter sequence (All functionality needed)
-
-	+ Water Crystal (Should launch Flying Fish into nearby water crystals when nearly completely mined, a net is needed)
-
-	+ Flying Fish (See above)
+	+ Water Crystal and Flying Fish (A nearly mined water crystal should launch a flying fish into the nearest nearly mined water crystal / or just launch them periodically with them disappearing through the ground)
 
 	+ Recipes and Unique Tech Tree
 

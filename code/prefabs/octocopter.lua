@@ -1,7 +1,5 @@
 BindGlobal()
 
-local PopupDialogScreen = require "screens/popupdialog"
-
 local assets =
 {
 	Asset("ANIM", "anim/sky_octopus.zip"),
@@ -102,23 +100,8 @@ local function fn(Sim)
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot(loot) 	
 
-    local function prealphawarning(inst)
-        SetPause(false) 
-        TheFrontEnd:PopScreen()
-    end
-
     inst:ListenForEvent("death", function(inst)
-        SetPause(true)
-        local options = {
-            {text="Well, okay.", cb = prealphawarning},
-        }
-
-        TheFrontEnd:PushScreen(PopupDialogScreen(
-    
-        "Sorry, this segment isn't finished!", 
-        "Normally, that octocopter would crash, and you would have to go hunt down three pieces and fix it to get to the next floor. That isn't ready yet, though. So have this popup message instead!",
-    
-        options))
+        SpawnPrefab("octocopter_wreckage").Transform:SetPosition(inst.Transform:GetWorldPosition())
     end)
 
 	return inst
