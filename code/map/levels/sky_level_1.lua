@@ -109,7 +109,10 @@ local sky_level_1 = {
 		["HiveTrees1"] = { count=3, tasks={"Cloud_Rainbow_Biome"} },
 		["CloudBase1"] = { count=1, tasks={"Cloud_Generic_Biome"} },
 		["CheshireHunting"] = { count=5, tasks={"Cloud_Rainbow_Biome"} },
-		["CloudHoles"] = { count=1, tasks={"Cloud_Generic_Biome"} },	
+		["CloudHoles"] = { count=1, tasks={"Cloud_Generic_Biome"} },
+		["OctocopterPart1"] = { count=1, tasks={"Cloud_Aurora_Biome"} },
+		["OctocopterPart2"] = { count=1, tasks={"Cloud_Rainbow_Biome"} },
+		["OctocopterPart3"] = { count=1, tasks={"Cloud_Snow_Biome"} },	
 	},
 
 	ordered_story_setpieces = {

@@ -120,7 +120,6 @@ TheMod:AddRoom("Vine_Room", {
 			beanlet = 0.5,
 			gustflower = 0.2,
 			skeleton = 0.3,
-			octocopterpart1 =1,
 		},
 	},
 })
@@ -216,7 +215,6 @@ TheMod:AddRoom("Thunder_Forest", {
 		},
 	    countprefabs= {
 	        weavernest = 4,
-	        octocopterpart2 =1,
 	    }
 	}
 })
@@ -287,7 +285,6 @@ TheMod:AddRoom("Rainbow_Room", {
 		},
 	    countprefabs= {
 	        crystal_white = 4,
-	        octocopterpart3 =1,
 	    }
 	},
 })
