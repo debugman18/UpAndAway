@@ -312,6 +312,21 @@ Add.QuotesFor "beanstalk_sapling" {
     wathgrithr = "",
 }
 
+Add.QuotesFor "beanstalk_chunk" {
+
+    GENERIC = "Part of a beanstalk.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Piece of big plant.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "It's a little baby beanstalk.",
+    wathgrithr = "",
+}
+
 Add.QuotesFor "beanstalk_exit" {
 
     GENERIC = "That's the way back to the ground.",
@@ -354,6 +369,21 @@ Add.QuotesFor "magic_beans_cooked" {
     wx78 = "",
 
     webber = "The wonder has been cooked out of them.",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "scarecrow" {
+
+    GENERIC = "",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Does not scare Wolfgang!",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
     wathgrithr = "",
 }
 
@@ -588,7 +618,7 @@ Add.QuotesFor "skytrap" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is a trap.",
     woodie = "",
     wx78 = "",
 
@@ -813,7 +843,7 @@ Add.QuotesFor "duckraptor" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "So many claws.",
     woodie = "",
     wx78 = "",
 
@@ -903,7 +933,7 @@ Add.QuotesFor "octocopter_wreckage" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is broken!",
     woodie = "",
     wx78 = "",
 
@@ -918,7 +948,7 @@ Add.QuotesFor "octocopterpart1" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is for flying.",
     woodie = "",
     wx78 = "",
 
@@ -933,7 +963,7 @@ Add.QuotesFor "octocopterpart2" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Soon Wolfgang flies.",
     woodie = "",
     wx78 = "",
 
@@ -948,7 +978,7 @@ Add.QuotesFor "octocopterpart3" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Octopus needs this.",
     woodie = "",
     wx78 = "",
 
@@ -1145,7 +1175,7 @@ Add.QuotesFor "vine" {
     wickerbottom = "",
     willow = "",
     wolfgang = "",
-    woodie = "",
+    woodie = "Little plant.",
     wx78 = "",
 
     webber = "",
@@ -1159,7 +1189,7 @@ Add.QuotesFor "weavernest" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Bird lives here.",
     woodie = "",
     wx78 = "",
 
@@ -1174,7 +1204,7 @@ Add.QuotesFor "jellyshroom_red" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is squeezy.",
     woodie = "",
     wx78 = "",
 
@@ -1189,7 +1219,7 @@ Add.QuotesFor "jellyshroom_blue" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is squishy.",
     woodie = "",
     wx78 = "",
 
@@ -1204,7 +1234,7 @@ Add.QuotesFor "jellyshroom_green" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is squidgy.",
     woodie = "",
     wx78 = "",
 
@@ -1249,7 +1279,7 @@ Add.QuotesFor "cloud_turf" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is soft ground.",
     woodie = "",
     wx78 = "",
 
@@ -1264,7 +1294,7 @@ Add.QuotesFor "crystal_relic" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is old.",
     woodie = "",
     wx78 = "",
 
@@ -1279,7 +1309,7 @@ Add.QuotesFor "crystal_fragment_relic" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is just a piece.",
     woodie = "",
     wx78 = "",
 
@@ -1294,7 +1324,7 @@ Add.QuotesFor "crystal_water" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is pretty blue.",
     woodie = "",
     wx78 = "",
 
@@ -1309,7 +1339,7 @@ Add.QuotesFor "crystal_fragment_water" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is smashed.",
     woodie = "",
     wx78 = "",
 
@@ -1324,7 +1354,7 @@ Add.QuotesFor "crystal_quartz" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is stone.",
     woodie = "",
     wx78 = "",
 
@@ -1339,7 +1369,7 @@ Add.QuotesFor "crystal_fragment_quartz" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is pebble.",
     woodie = "",
     wx78 = "",
 
@@ -1354,7 +1384,7 @@ Add.QuotesFor "crystal_black" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is dark jewel.",
     woodie = "",
     wx78 = "",
 
@@ -1369,7 +1399,7 @@ Add.QuotesFor "crystal_fragment_black" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is cracked.",
     woodie = "",
     wx78 = "",
 
@@ -1384,7 +1414,7 @@ Add.QuotesFor "crystal_white" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is blank. Like thoughts.",
     woodie = "",
     wx78 = "",
 
@@ -1399,7 +1429,7 @@ Add.QuotesFor "crystal_fragment_white" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is not whole.",
     woodie = "",
     wx78 = "",
 
@@ -1414,7 +1444,7 @@ Add.QuotesFor "crystal_light" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is bright!",
     woodie = "",
     wx78 = "",
 
@@ -1429,7 +1459,7 @@ Add.QuotesFor "crystal_fragment_light" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is broken.",
     woodie = "",
     wx78 = "",
 
@@ -1444,7 +1474,7 @@ Add.QuotesFor "crystal_spire" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is spiky, shiny rock.",
     woodie = "",
     wx78 = "",
 
@@ -1459,7 +1489,7 @@ Add.QuotesFor "crystal_fragment_spire" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is shiny rock.",
     woodie = "",
     wx78 = "",
 
@@ -1534,7 +1564,7 @@ Add.QuotesFor "golden_lyre" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "What pretty noises.",
     woodie = "",
     wx78 = "",
 
@@ -1564,7 +1594,7 @@ Add.QuotesFor "golden_rose" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Shiny flower has sharp thorns.",
     woodie = "",
     wx78 = "",
 
@@ -1579,7 +1609,7 @@ Add.QuotesFor "golden_sunflower" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is big yellow flower.",
     woodie = "",
     wx78 = "",
 
@@ -1625,7 +1655,7 @@ Add.QuotesFor "colored_corn" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is tasty rock.",
     woodie = "",
     wx78 = "",
 
@@ -1640,7 +1670,7 @@ Add.QuotesFor "cotton_candy" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is like tasty cloud.",
     woodie = "",
     wx78 = "",
 
@@ -1670,7 +1700,7 @@ Add.QuotesFor "whirlwind" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is fast air!",
     woodie = "",
     wx78 = "",
 
@@ -1700,7 +1730,7 @@ Add.QuotesFor "cloud_cotton" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is for make clothes.",
     woodie = "",
     wx78 = "",
 
@@ -1715,7 +1745,7 @@ Add.QuotesFor "cotton_hat" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Soft on head.",
     woodie = "",
     wx78 = "",
 
@@ -1730,7 +1760,7 @@ Add.QuotesFor "cotton_vest" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is comfy!",
     woodie = "",
     wx78 = "",
 
@@ -1910,7 +1940,7 @@ Add.QuotesFor "research_lectern" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Finds clouds?",
     woodie = "",
     wx78 = "",
 
@@ -1925,7 +1955,7 @@ Add.QuotesFor "refiner" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is to change stuff.",
     woodie = "",
     wx78 = "",
 
@@ -1940,7 +1970,7 @@ Add.QuotesFor "weather_machine" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is... technical.",
     woodie = "",
     wx78 = "",
 
