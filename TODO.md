@@ -8,37 +8,7 @@
 
 + **Art assets in need of attention**
 
-	+ Tea Bush (All art assets, likely based on the berry bush build)
-
-	+ Weaver Den (All art assets, using spiderden bank or custom animations)
-
-	+ Manta (All art assets, using buzzard bank or custom animations)
-
-	+ Cloud Coral (All art assets, still image, idle and idle_harvested) + Inventory Image
-
-	+ Weather Machine (All art assets, still image) + Recipe Image
-
-	+ Ball Lightning (All art assets, still image)
-
-	+ Magnet (All art assets, custom animations) + Inventory Image
-
-	+ Kettle (All art assets, still image) + Inventory Image
- 
-	+ Refiner (All art assets, still image) + Recipe Image
-
-	+ Three Different Octocopter pieces (All art assets, still images)
-
-	+ Cloud Fruit Tree (All art assets, still image, idle and idle_harvested) + Cloud Fruit Inventory Image
-
-	+ Living Gnomes (All art assets, using custom animations)
-
-	+ Bean Giant (All art assets, using deerclops bank or custom animations)
-
-	+ Bean Giant Statue (All art assets, still image)
-
-	+ Golden Sunflower (All art assets, still image)
-
-	+ Various minimap icons. (For various objects in the world, still images)
+	+ Check our [dedicated TODO list](TODO_ART.md).
 
 + **Code assets in need of attention**
 
