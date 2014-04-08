@@ -176,8 +176,9 @@ local function onload(inst, data)
 end   
 
 local function OnSpawned(inst, child)
+    local lightning = SpawnPrefab("lightning")
     if not GetWorld().components.staticgenerator.charged then
-	   GetSeasonManager():DoMediumLightning(Vector3(child.Transform:GetWorldPosition()))
+	   lightning.Transform:SetPosition(child.Transform:GetWorldPosition())
     end   
 end
 
