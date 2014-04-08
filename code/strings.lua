@@ -102,6 +102,7 @@ Add.Names {
     manta_leather = "Manta Leather",
     marshmallow = "Marshmallow",
     monolith = "Monolith",
+    mushroom_hat = "Mushroom Hat",
     octocopter = "Octocopter",
     octocopterpart1 = "Rotor Blade",
     octocopterpart2 = "Rotor Plate",
@@ -1409,6 +1410,21 @@ Add.QuotesFor "monolith" {
 
     GENERIC = "What is this? A giant golden potato?",
     waxwell = "It's artistic value is greatly underrated.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Is...art?",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "mushroom_hat" {
+
+    GENERIC = "",
+    waxwell = "",
     wendy = "",
     wickerbottom = "",
     willow = "",
