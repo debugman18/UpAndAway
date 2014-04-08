@@ -4,572 +4,159 @@ local Add = modrequire 'lib.addstrings'
 
 Add.Names {
 
-	alien = "Aurora",
-
+    alien = "Aurora",   
+    balloon_hound = "Balloon Hound",
     ball_lightning = "Ball Lightning",
-	
-	balloon_hound = "Balloon Hound",
-
-    bean_giant = "Bean Giant",    
-
-    bean_giant_statue = "Giant Statue",
-
     beanlet = "Beanlet",
-    
     beanlet_shell = "Beanlet Shell",
-    
     beanlet_zealot = "Zealot Beanlet",
-    
     beanstalk = "Giant Beanstalk",
-
-    beanstalk_sapling = "Beanstalk Sapling",
-
     beanstalk_chunk = "Beanstalk Chunk",
-
     beanstalk_exit = "Beanstalk Tip",
-
+    beanstalk_sapling = "Beanstalk Sapling",
     beanstalk_wall = "Beanstalk Wall",
-
+    bean_giant = "Bean Giant",
+    bean_giant_statue = "Giant Statue",
     bee_marshmallow = "Marshmallow Bee",
-
     bird_paradise = "Bird of Paradise",
-
     blackstaff = "Black Staff",
-
+    blacktea = "Black Tea",
+    blacktea_leaves = "Black Tea Leaves",
     candy_fruit = "Candy Fruit",
-
     cauldron = "Cauldron",
-
     cheshire = "Cat",
-    
     chimera = "Chimera",
-
     cloudcrag = "Cloudcrag",
-    
     cloud_algae = "Cloud Algae",
-    
     cloud_algae_fragment = "Cloud Algae",
-
     cloud_bomb = "Cloudbomb",
-
-    cloud_bush = "Cloudbush",    
-    
+    cloud_bush = "Cloudbush",
     cloud_coral = "Cloud Coral",
-    
     cloud_coral_fragment = "Cloud Coral",
-
     cloud_cotton = "Cloud Cotton",
-
-    cloud_fruit_tree = "Cloudfruit Tree",
-
     cloud_fruit = "Cloud Fruit",
-
+    cloud_fruit_tree = "Cloudfruit Tree",
     cloud_storage = "Cloud Chest",
-
     cloud_turf = "Cloud Turf",
-
     cloud_wall = "Cloud Wall",
-
     colored_corn = "Rainbow Gem Corn",
-
     cotton_candy = "Cotton Candy",
-
     cotton_hat = "Cotton Hat",
-
     cotton_vest = "Cotton Vest",
-    
     crystal_armor = "Crystal Armor",
-
     crystal_axe = "Axe of Storms",
-    
     crystal_black = "Black Crystal",
-
-    crystal_fragment_black = "Black Crystal Fragment",
-
     crystal_cap = "Crystal Cap",
-
-    crystal_fragment_spire = "Spire Crystal Shard",    
-
-    crystal_lamp = "Crystal Lamp",
-
-    crystal_light = "Light Crystal",
-
+    crystal_fragment_black = "Black Crystal Fragment",
     crystal_fragment_light = "Light Crystal Fragment",
-
-    crystal_quartz = "Quartz Crystal",
-
     crystal_fragment_quartz = "Quartz Crystal Fragment",
-
-    crystal_relic = "Crystal Relic",
-
     crystal_fragment_relic = "Crystal Relic Fragment",
-    
-    crystal_spire = "Crystal Spire",
-
-    crystal_wall = "Crystal Wall",
-
-    crystal_water = "Water Crystal",
-
+    crystal_fragment_spire = "Spire Crystal Shard",
     crystal_fragment_water = "Water Crystal Fragment",
-    
-    crystal_white = "White Crystal",
-
     crystal_fragment_white = "White Crystal Fragment",
-
+    crystal_lamp = "Crystal Lamp",
+    crystal_light = "Light Crystal",
+    crystal_quartz = "Quartz Crystal",
+    crystal_relic = "Crystal Relic",
+    crystal_spire = "Crystal Spire",
+    crystal_wall = "Crystal Wall",
+    crystal_water = "Water Crystal",
+    crystal_white = "White Crystal",
     cumulostone = "Cumolostone",
-
     datura_petals = "Datura Petals",
-
-    dragonblood_sap = "Dragonblood Sap",
-
-    dragonblood_tree = "Dragonblood Tree",
-
     dragonblood_log = "Dragonblood Log",
-
+    dragonblood_sap = "Dragonblood Sap",
+    dragonblood_tree = "Dragonblood Tree",
     duckraptor = "Duckraptor",
-
     flying_fish = "Flying Fish",
-    
     flying_fish_pond = "Flying Fish Pond",
-
     golden_amulet = "Golden Amulet",
-
     golden_egg = "Golden Egg",
-
     golden_golem = "Golden Golem",
-
     golden_lyre = "Golden Harp",
-
-    golden_rose = "Golden Rose",
-
-    golden_sunflower = "Golden Sunflower",
-
-    golden_sunflower_seeds = "Golden Sunflower Seeds",
-
     golden_petals = "Golden Petals",
-
+    golden_rose = "Golden Rose",
+    golden_sunflower = "Golden Sunflower",
+    golden_sunflower_seeds = "Golden Sunflower Seeds",
     goose = "Goose",
-    
     grabber = "Grabber",
-    
-    greenbean = "Greenbean",
-
+    greenbean = "Greenbean",    
+    greentea = "Green Tea",
     gustflower = "Gustflower",
-
     gustflower_seeds = "Gustflower Seeds",
-
-    hive_marshmallow = "Marshmallow",   
-    
+    hive_marshmallow = "Marshmallow",
     jellyshroom_blue = "Blue Jellyshroom",
-
     jellyshroom_green = "Green Jellyshroom",
-
     jellyshroom_red = "Red Jellyshroom",
-
+    kettle = "Kettle",
+    kettle_item = "Kettle",
     kite = "Kite",
-    
-    live_gnome = "Gnome",
-
     lionant = "Lionant",
-
     lionblob = "Strange Blob",
-
+    live_gnome = "Gnome",
     longbill = "Longbill",
-
-    magnet = "Mag Net",
-
     magic_beans = "Magic Beans",
-
     magic_beans_cooked = "Baked Beans",
-    
+    magnet = "Mag Net",
     manta = "Manta",
-    
     manta_leather = "Manta Leather",
-
     marshmallow = "Marshmallow",
-
     monolith = "Monolith",
-
-	mushroom_hat = "Mushroom Hat",
-    
     octocopter = "Octocopter",
-
-    octocopter_wreckage = "Wrecked Octocopter",
-
     octocopterpart1 = "Rotor Blade",
-
     octocopterpart2 = "Rotor Plate",
-
     octocopterpart3 = "Rotor Hub",
-
+    octocopter_wreckage = "Wrecked Octocopter",
     owl = "Strix",
-
     package = "Unknown Package",
-
     pineapple_bush = "Pineapple Bush",
-
     pineapple_fruit = "Pineapple",
-    
     quartz_torch = "Quartz Torch",
-
     rainbowcoon = "Rainbowcoon",
-    
     refiner = "Refiner",
-    
     research_lectern = "Cumulocator Station",
-
     rubber = "Rubber",
-    
     scarecrow = "Scarecrow",
-
     sheep = "Sheep",
-
     shopkeeper = "Shopkeeper",
-
-    skyflower = "Skyflower",
-
-    skyflower_petals = "Skyflower Petals",
-
-    skytrap = "Skytrap",
-    
-    smores = "S'mores",
-
-    sky_chest = "Eldrichest",
-
     skyflies = "Lightning Bug",
-
+    skyflower = "Skyflower",
+    skyflower_petals = "Skyflower Petals",
+    skytrap = "Skytrap",
+    sky_chest = "Eldrichest",
     sky_lemur = "Lemur",
-
-    thunder_tree = "Thunder Tree",
-
+    smores = "S'mores",
+    tea_bush = "Tea Bush",
+    tea_leaves = "Tea Leaves",
     thunder_log = "Thunder Log",
-
+    thunder_tree = "Thunder Tree",
     vine = "Vine",
-
-    weaver_bird = "Weaver Bird",
-
-    weavernest = "Weaver Nest",
-
     weather_machine = "Tropospherical Relay",
-
+    weavernest = "Weaver Nest",
+    weaver_bird = "Weaver Bird",
     whirlwind = "Whirlwind",
-
     whitestaff = "White Staff",
-
     winnie_staff = "Shepherd's Staff",
-
-	--[[
-	-- Tea stuff.
-	--]]
-	
-	greentea = "Green Tea",
-
-	blacktea = "Black Tea",
-
-	tea_leaves = "Tea Leaves",
-
-	blacktea_leaves = "Black Tea Leaves",
-
-	tea_bush = "Tea Bush",
-
-	kettle = "Kettle",
-
-	kettle_item = "Kettle",
-
     -- Balloon Hounds.
 
-	[{"balloon_hound", "balloon_icehound", "balloon_firehound"}] = function(prefab)
-		local suf = prefab:match("^BALLOON_(.+)$")
-		return STRINGS.NAMES[suf]
-	end,
+    [{"balloon_hound", "balloon_icehound", "balloon_firehound"}] = function(prefab)
+        local suf = prefab:match("^BALLOON_(.+)$")
+        return STRINGS.NAMES[suf]
+    end,
 }
 
-Add.QuotesFor "beanstalk" {
+Add.QuotesFor "alien" {
 
-    GENERIC = "It reaches the clouds.",    
-    waxwell = "If only my brother Jack was here...",
-    wendy = "All I'd need to do is let go.",    
-    wickerbottom = "The end of the stalk is covered by a layer of cumulonimbus clouds.",
-    willow = "That would make a spectacular fire.",
-    wolfgang = "Is big beanstalk. Reminds Wolfgang of home.",
-    woodie = "Even Lucy can't chop through it.",
-    wx78 = "IT HAS GROWN OUT OF CONTROL.",
-
-    webber = "We can't even see the top of it.",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "beanstalk_sapling" {
-
-    GENERIC = "It's supposed to grow into a beanstalk.",
+    GENERIC = "Is it real?",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "Half lion, half ant, all flammable.",
     wolfgang = "Is colorful hallucination.",
-=======
-    willow = "",
-    wolfgang = "Is small now, big later.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "It's a little baby beanstalk.",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "beanstalk_chunk" {
-
-    GENERIC = "Part of a beanstalk.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-    willow = "",
-    wolfgang = "Piece of big plant.",
-    woodie = "",
-    wx78 = "",
-
-    webber = "It's a little baby beanstalk.",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "beanstalk_exit" {
-
-    GENERIC = "That's the way back to the ground.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "It's like a living ball of fire!",
-    wolfgang = "Is zappy, floaty pest.",
-=======
-    willow = "",
-    wolfgang = "Is a long way down.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "Don't look down, don't look down.",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "magic_beans" {
-
-    GENERIC = "Oldest marketing scam in the book!",
-    waxwell = "I hope the legends aren't full of beans.",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "That should be a statue of me. Or fire.",
-    wolfgang = "Is big stone monster.",
-=======
-    willow = "",
-    wolfgang = "Not enough for my mighty belly.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "I wonder what wonders it contains.",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "magic_beans_cooked" {
-
-    GENERIC = "I don't even know why I did that.",
-    waxwell = "I guess we'll never know if they were real or not.",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "The bigger they are... The better they burn!",
-    wolfgang = "Not little plant at all!",
-=======
-    willow = "",
-    wolfgang = "Not enough for my mighty belly.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "The wonder has been cooked out of them.",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "scarecrow" {
-
-    GENERIC = "",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "A trophy of slaughtered foes.",
-    wolfgang = "Little plants gone.",
-=======
-    willow = "",
-    wolfgang = "Does not scare Wolfgang!",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
     webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "sheep" {
-
-<<<<<<< HEAD
-    GENERIC = "They seem pretty aggressive.",
-    waxwell = "I'd fancy some beans on toast now.",
-    wendy = "",
-    wickerbottom = "",
-    willow = "Reminds me of me, except I worship fire.",
-    wolfgang = "Little plant is very angry!",
-    woodie = "",
-    wx78 = "",
-=======
-    GENERIC = "They make me feel sleepy.",
-    waxwell = "It's cuteness disgusts me greatly.",
-    wendy = " Ignorance. The worst kind of darkness.",
-    wickerbottom = "Ovis Aris. Reminds me of farms.",
-    willow = "Cotton. Very flammable.",
-    wolfgang = "Little sheep is made of soft.",
-    woodie = "Ooh! Lambchops!",
-    wx78 = "DOCILE MAMMAL. HARD TO FRIGHTEN.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-
-    webber = "How did it get up here?",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "sheep.ram" {
-
-<<<<<<< HEAD
-    GENERIC = "They exist as one, much unlike their mother.",
-    waxwell = "I'd fancy some beans on toast now.",
-    wendy = "",
-    wickerbottom = "",
-    willow = "Time for cooked beans.",
-    wolfgang = "Little plant runs around.",
-    woodie = "",
-    wx78 = "",
-=======
-    GENERIC = "Electrifying!",
-    waxwell = "The weather forecast shows a local storm.",
-    wendy = "Their cup hath runneth over.",
-    willow = "Shouldn't have charged him up.",
-    wolfgang = "Sheep is mighty now!",
-    woodie = "Looks like I'm in trouble now. Oops.",
-    wx78 = "APPARENTLY EASY TO ANGER.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-
-    webber = "Have you any wool?",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "shopkeeper" {
-
-<<<<<<< HEAD
-    GENERIC = "Part of a beanstalk.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-    willow = "A torn piece of a Beanstalk.",
-    wolfgang = "Piece of big plant.",
-    woodie = "",
-    wx78 = "",
-=======
-    GENERIC = "Odd place to set up a store.",
-    waxwell = "I forgot to thank you for that book you sold me.",
-    wendy = "A deceiver at heart.",
-    wickerbottom = "Perhaps he has some books for sale.",
-    willow = "I like the flag on his umbrella.",
-    wolfgang = "Is talking umbrella.",
-    woodie = "Men like this ran my lumber yard.",
-    wx78 = "A PEDDLER OF GOODS.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-
-    webber = "We've never seen him before.",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "skyflower" {
-
-<<<<<<< HEAD
-    GENERIC = "That's the way back to the ground.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-    willow = "I wonder how long it would take for fire to reach the bottom?",
-    wolfgang = "Is a long way down.",
-    woodie = "",
-    wx78 = "",
-=======
-    GENERIC = "They smell of dreams.",
-    waxwell = "The urge of stomping on them is still present.",
-    wendy = "A pretty flower to bring brief pleasure. Smells like decay.",
-    wickerbottom = "Their pollen smells different to each person. For me, it is like a new book.",
-    willow = "Mmm. Smells like ashes.",
-    wolfgang = "Pretty flower smells like beef.",
-    woodie = "Ahh. Freshly fallen timber and pine needles.",
-    wx78 = "YOUR TRICKS SHALL NOT WORK ON ME.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-
-    webber = "It smells like one of grandma's pies!",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "skyflower_petals" {
-
-<<<<<<< HEAD
-    GENERIC = "It's supposed to grow into a beanstalk.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-    willow = "This will grow huge. Or burn quick.",
-    wolfgang = "Is small now, big later.",
-    woodie = "",
-    wx78 = "",
-=======
-    GENERIC = "They smell of dreams.",
-    waxwell = "I'll make a bouquet for Charlie with these.",
-    wendy = "A pretty flower to bring brief pleasure. Smells like decay.",
-    wickerbottom = "Their pollen smells different to each person. For me, it is like a new book.",
-    willow = "Mmm. Smells like ashes.",
-    wolfgang = "Pretty flower smells like beef.",
-    woodie = "Ahh. Freshly fallen timber and pine needles.",
-    wx78 = "YOUR TRICKS SHALL NOT WORK ON ME.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-
-    webber = "It smells like one of grandma's pies!",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "skyflower.datura" {
-
-    GENERIC = "It smells of nightmares.",
-    waxwell = "It smells like innocence. Ripe for the taking.",
-    wendy = "A flower to fuel hatred. Smells like a rose.",
-    wickerbottom = "This one is designed to trigger a hate response. Smells like a burned book.",
-    willow = "The stupid thing smells like winter mint.",
-    wolfgang = "Smells like wimpy tears.",
-    woodie = " It smells of wet fur and old pine.",
-    wx78 = "IT OVERLOADS MY SENSORS WITH LIFE.",
-
-    webber = "It makes us feel strange things.",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "datura_petals" {
-
-    GENERIC = "It smells of nightmares.",
-    waxwell = "It smells like innocence. Ripe for the taking. ",
-    wendy = "A flower to fuel hatred. Smells like a rose.",
-    wickerbottom = "This one is designed to trigger a hate response. Smells like a burned book.",
-    willow = "The stupid thing smells like winter mint.",
-    wolfgang = "Smells like wimpy tears.",
-    woodie = " It smells of wet fur and old pine.",
-    wx78 = "IT OVERLOADS MY SENSORS WITH LIFE.",
-
-    webber = "It makes us feel strange things.",
     wathgrithr = "",
 }
 
@@ -588,19 +175,164 @@ Add.QuotesFor "antlion" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "manta" {
+Add.QuotesFor "ball_lightning" {
 
-    GENERIC = "Aren't you supposed to be in the ocean?",
+    GENERIC = "A wandering ball of static.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
+    willow = "It's like a living ball of fire!",
+    wolfgang = "Is zappy, floaty pest.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "bean_giant_statue" {
+
+    GENERIC = "I wouldn't want to run into that thing.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "That should be a statue of me. Or fire.",
+    wolfgang = "Is big stone monster.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "bean_giant" {
+
+    GENERIC = "Someone must bring an end to this reign of giants!",
+    waxwell = "It's not even worth a hill of beans.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "The bigger they are... The better they burn!",
+    wolfgang = "Not little plant at all!",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "beanlet_shell" {
+
+    GENERIC = "A husk of a bean monster.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "A trophy of slaughtered foes.",
+    wolfgang = "Little plants gone.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "beanlet_zealot" {
+
+    GENERIC = "They seem pretty aggressive.",
+    waxwell = "I'd fancy some beans on toast now.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Reminds me of me, except I worship fire.",
+    wolfgang = "Little plant is very angry!",
+    woodie = "",
+    wx78 = "",
+
+    webber = "You don't want to play?",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "beanlet" {
+
+    GENERIC = "They exist as one, much unlike their mother.",
+    waxwell = "I'd fancy some beans on toast now.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Time for cooked beans.",
+    wolfgang = "Little plant runs around.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "Adorable, but not very tasty.",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "beanstalk_chunk" {
+
+    GENERIC = "Part of a beanstalk.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "A torn piece of a Beanstalk.",
+    wolfgang = "Piece of big plant.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "It's a little baby beanstalk.",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "beanstalk_exit" {
+
+    GENERIC = "That's the way back to the ground.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "I wonder how long it would take for fire to reach the bottom?",
+    wolfgang = "Is a long way down.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "Don't look down, don't look down.",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "beanstalk_sapling" {
+
+    GENERIC = "It's supposed to grow into a beanstalk.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "This will grow huge. Or burn quick.",
+    wolfgang = "Is small now, big later.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "It's a little baby beanstalk.",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "beanstalk" {
+
+    GENERIC = "It reaches the clouds.",    
+    waxwell = "If only my brother Jack was here...",
+    wendy = "All I'd need to do is let go.",    
+    wickerbottom = "The end of the stalk is covered by a layer of cumulonimbus clouds.",
+    willow = "That would make a spectacular fire.",
+    wolfgang = "Is big beanstalk. Reminds Wolfgang of home.",
+    woodie = "Even Lucy can't chop through it.",
+    wx78 = "IT HAS GROWN OUT OF CONTROL.",
+
+    webber = "We can't even see the top of it.",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "bee_marshmallow" {
+
+    GENERIC = "A flying marshmallow.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
     willow = "It's a bee. Made of marshmallow.",
     wolfgang = "Is bee or is not too bee? ",
-=======
-    willow = "",
-    wolfgang = "What is creature? Where is from?",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -608,19 +340,14 @@ Add.QuotesFor "manta" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "manta_leather" {
+Add.QuotesFor "blackstaff" {
 
-    GENERIC = "Skin from a flying manta.",
+    GENERIC = "You can charge things with magic.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "I am a dark wizard now.",
     wolfgang = "Makes thunder.",
-=======
-    willow = "",
-    wolfgang = "Is tough skin.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -628,19 +355,14 @@ Add.QuotesFor "manta_leather" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "magnet" {
+Add.QuotesFor "blacktea_leaves" {
 
-    GENERIC = "It's quite magnetic.",
+    GENERIC = "Oxidized tea leaves.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "Stick them in boiling water. Or fire.",
     wolfgang = "Is for making drink.",
-=======
-    willow = "",
-    wolfgang = "",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -648,19 +370,14 @@ Add.QuotesFor "magnet" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "cloud_fruit_tree" {
+Add.QuotesFor "blacktea" {
 
-    GENERIC = "It has a strange fruit on it.",
+    GENERIC = "It's a nice strong tea.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "I prefer Hot Chocolate.",
     wolfgang = "Is nearly as strong as me!",
-=======
-    willow = "",
-    wolfgang = "",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -668,7 +385,6 @@ Add.QuotesFor "cloud_fruit_tree" {
     wathgrithr = "",
 }
 
-<<<<<<< HEAD
 Add.QuotesFor "candy_fruit" {
 
     GENERIC = "Growable candy.",
@@ -685,21 +401,13 @@ Add.QuotesFor "candy_fruit" {
 }
 
 Add.QuotesFor "cauldron" {
-=======
-Add.QuotesFor "cloud_fruit" {
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
 
-    GENERIC = "Cloud fruit. What else would it be?",
+    GENERIC = "A big bucket for magic stuff.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "Cauldron burn and boil and bubble.",
     wolfgang = "Is belong to witch?",
-=======
-    willow = "",
-    wolfgang = "",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -707,13 +415,12 @@ Add.QuotesFor "cloud_fruit" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "gustflower" {
+Add.QuotesFor "cloud_algae" {
 
-    GENERIC = "I should steer clear of it.",
+    GENERIC = "Apparently algae grows on clouds.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "Plants. Great.",
     wolfgang = "Is plant-cloud.",
     woodie = "",
@@ -731,10 +438,6 @@ Add.QuotesFor "cloud_algae_fragment" {
     wickerbottom = "",
     willow = "It's a bit of algae. Let's burn it.",
     wolfgang = "Is plant-cloud.",
-=======
-    willow = "",
-    wolfgang = "",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -742,14 +445,14 @@ Add.QuotesFor "cloud_algae_fragment" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "gustflower_seeds" {
+Add.QuotesFor "cloud_bush.picked" {
 
-    GENERIC = "I can plant this somewhere.",
-    waxwell = "",
+    GENERIC = "No more sugar for me.",
+    waxwell = "It needs manure, but where do I obtain that here?",
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "Is for blowy flower.",
+    wolfgang = "Do I have to poop on it?",
     woodie = "",
     wx78 = "",
 
@@ -757,19 +460,14 @@ Add.QuotesFor "gustflower_seeds" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "skytrap" {
+Add.QuotesFor "cloud_bush" {
 
-    GENERIC = "Something about that flower is off.",
-    waxwell = "",
+    GENERIC = "All plants produce simple sugars.",
+    waxwell = "Heavenly treats await me.",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "It has food. It can live a bit longer.",
     wolfgang = "Sweet food balls. Yum!",
-=======
-    willow = "",
-    wolfgang = "Is a trap.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -777,13 +475,12 @@ Add.QuotesFor "skytrap" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "live_gnome" {
+Add.QuotesFor "cloud_coral" {
 
-    GENERIC = "Is that a gnome?",
+    GENERIC = "A rock that grows.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "Coral. How interesting.",
     wolfgang = "Is plant-rock.",
     woodie = "",
@@ -801,10 +498,6 @@ Add.QuotesFor "cloud_coral_fragment" {
     wickerbottom = "",
     willow = "It's a bit of coral. Not burnable.",
     wolfgang = "Is plant-rock.",
-=======
-    willow = "",
-    wolfgang = "Garden man lives?",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -812,19 +505,14 @@ Add.QuotesFor "cloud_coral_fragment" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "whitestaff" {
+Add.QuotesFor "cloud_cotton" {
 
-    GENERIC = "Packages objects through magic.",
+    GENERIC = "Like baby clouds.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "Cotton is very flammable. ",
     wolfgang = "Is for make clothes.",
-=======
-    willow = "",
-    wolfgang = "Does things. Is always changing.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -832,19 +520,14 @@ Add.QuotesFor "whitestaff" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "blackstaff" {
+Add.QuotesFor "cloud_fruit_tree" {
 
-    GENERIC = "You can charge things with magic.",
+    GENERIC = "It has a strange fruit on it.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "I bet it would smell nice while burning.",
     wolfgang = "Is growing without dirt. Is magic?",
-=======
-    willow = "",
-    wolfgang = "Makes thunder.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -852,792 +535,14 @@ Add.QuotesFor "blackstaff" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "skyflies" {
+Add.QuotesFor "cloud_fruit" {
 
-    GENERIC = "I wonder how they light up like that?",
+    GENERIC = "Cloud fruit. What else would it be?",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "A Cloud Fruit a day keeps the Shopkeeper away.",
     wolfgang = "Fluffy plant. Still yummy.",
-    woodie = "",
-=======
-    willow = "",
-    wolfgang = "",
-    woodie = "Is swarm of bugs. ",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "weaver_bird" {
-
-    GENERIC = "It makes large nests to keep warm.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Cloud. Always cloud.",
-    wolfgang = "Is soft ground.",
-=======
-    willow = "",
-    wolfgang = "Is little birdie.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "greenbean" {
-
-    GENERIC = "Green and nutricious.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "It's more cloud.",
-    wolfgang = "Is mound of cloud.",
-=======
-    willow = "",
-    wolfgang = "Wolfgang has bean green before!",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "beanlet_shell" {
-
-    GENERIC = "A husk of a bean monster.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Something to eat while enjoying fire.",
-    wolfgang = "Is tasty rock.",
-=======
-    willow = "",
-    wolfgang = "Little plants gone.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "beanlet" {
-
-    GENERIC = "They exist as one, much unlike their mother.",
-    waxwell = "I'd fancy some beans on toast now.",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "A tasty treat is second only to fire.",
-    wolfgang = "Is like tasty cloud.",
-=======
-    willow = "",
-    wolfgang = "Little plant runs around.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "Adorable, but not very tasty.",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "beanlet_zealot" {
-
-    GENERIC = "They seem pretty aggressive.",
-    waxwell = "I'd fancy some beans on toast now.",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "I should have burned that cotton.",
-    wolfgang = "Soft on head.",
-=======
-    willow = "",
-    wolfgang = "Little plant is very angry!",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "You don't want to play?",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "bean_giant" {
-
-    GENERIC = "Someone must bring an end to this reign of giants!",
-    waxwell = "It's not even worth a hill of beans.",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "It's warm, at least.",
-    wolfgang = "Is comfy!",
-=======
-    willow = "",
-    wolfgang = "Not little plant at all!",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "flying_fish" {
-
-    GENERIC = "But do they have lungs?",
-    waxwell = "Being able to fly did not aid you at all.",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "It's dark. Fire is light. I know which is better.",
-    wolfgang = "Is dark jewel.",
-=======
-    willow = "",
-    wolfgang = "",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "I thought grandpa was joking about fish that fly.",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "golden_golem" {
-
-    GENERIC = "",
-    waxwell = "How intruiging.",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Piece of crystal.",
-    wolfgang = "Is cracked.",
-=======
-    willow = "",
-    wolfgang = "",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "owl" {
-
-    GENERIC = "Their eyes are unsettling...",
-    waxwell = "These have a secret brotherhoot.",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "It's slightly glowing.",
-    wolfgang = "Is broken.",
-=======
-    willow = "",
-    wolfgang = "Mean birds. More than tallest bird!",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "What big eyes they have!",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "longbill" {
-
-    GENERIC = "Are those claws on its wings?",
-    waxwell = "With it's size it most likely has trouble ducking.",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Someone broke it. Good.",
-    wolfgang = "Is pebble.",
-=======
-    willow = "",
-    wolfgang = "Why long bill? Wolfgang still funny.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "duckraptor" {
-
-    GENERIC = "A nightmare duck! What next?",
-    waxwell = "You will make a rather exquisite duck pâté.",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Ancient junk.",
-    wolfgang = "Is just a piece.",
-=======
-    willow = "",
-    wolfgang = "So many claws.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "rainbowcoon" {
-
-    GENERIC = "Colorful, but it's a ploy for my food.",
-    waxwell = "The rainbow is trying to taste my food!",
-    wendy = "",
-    wickerbottom = "",
-    willow = "",
-    wolfgang = "Is pretty, but food is mine!",
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "cloud_bush" {
-
-    GENERIC = "All plants produce simple sugars.",
-    waxwell = "Heavenly treats await me.",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Hah, it's broken! Good.",
-    wolfgang = "Is smashed.",
-=======
-    willow = "",
-    wolfgang = "Sweet food balls. Yum!",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "cloud_bush.picked" {
-
-    GENERIC = "No more sugar for me.",
-    waxwell = "It needs manure, but where do I obtain that here?",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Smashed.",
-    wolfgang = "Is not whole.",
-=======
-    willow = "",
-    wolfgang = "Do I have to poop on it?",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "lionblob" {
-
-    GENERIC = "Is that supposed to be a joke?",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "I love lamps.",
-    wolfgang = "Pretty rock makes light!",
-=======
-    willow = "",
-    wolfgang = "Is not right.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "octocopter" {
-
-    GENERIC = "Half machine, half octopus.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "It glows like fire.",
-    wolfgang = "Is bright!",
-=======
-    willow = "",
-    wolfgang = "It has many arms!",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "octocopter_wreckage" {
-
-    GENERIC = "Now it's mostly octopus.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "I wish rocks could burn.",
-    wolfgang = "Is stone.",
-=======
-    willow = "",
-    wolfgang = "Is broken!",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "octocopterpart1" {
-
-    GENERIC = "A rotor blade.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Broken ancient junk.",
-    wolfgang = "Is old.",
-=======
-    willow = "",
-    wolfgang = "Is for flying.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "octocopterpart2" {
-
-    GENERIC = "A rotor plate.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "A big shiny rock.",
-    wolfgang = "Is spiky, shiny rock.",
-=======
-    willow = "",
-    wolfgang = "Soon Wolfgang flies.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "octocopterpart3" {
-
-    GENERIC = "A rotor hub.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "I don't like water.",
-    wolfgang = "Is pretty blue.",
-=======
-    willow = "",
-    wolfgang = "Octopus needs this.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "hive_marshmallow" {
-
-    GENERIC = "A giant marshmallow.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "White is boring. Red is better.",
-    wolfgang = "Is blank. Like thoughts.",
-=======
-    willow = "",
-    wolfgang = "",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "bee_marshmallow" {
-
-    GENERIC = "A flying marshmallow.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "It's cloud rock. Why is nothing in this place good to burn?",
-    wolfgang = "Is rock and is cloud.",
-=======
-    willow = "",
-    wolfgang = "Is bee or is not too bee? ",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-
-Add.QuotesFor "marshmallow" {
-
-    GENERIC = "Maybe just one. For science!",
-    waxwell = "Contrary to the name, these do not contain marsh.",
-    wendy = "",
-    wickerbottom = "",
-    willow = "",
-    wolfgang = "Is soft treat!",
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "smores" {
-
-    GENERIC = "A messy ball of chocolate and cream.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Finally, decent fire material.",
-    wolfgang = "Is good wood.",
-=======
-    willow = "",
-    wolfgang = "",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "thunder_tree" {
-
-    GENERIC = "Looks fragile, but dangerous.",
-    waxwell = "I was rather shocked the first time I discovered these.",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "It's all sticky, ugh.",
-    wolfgang = "Does not taste of blood.",
-=======
-    willow = "",
-    wolfgang = "",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "thunder_log" {
-
-    GENERIC = "It ripples with elecricity.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Dragons and trees go together like a forest on fire.",
-    wolfgang = "Strange tree.",
-=======
-    willow = "",
-    wolfgang = "Is tickly to touch.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "cloudcrag" {
-
-    GENERIC = "Super condensed cloud.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "I want it as a pet.",
-    wolfgang = "So many claws.",
-=======
-    willow = "",
-    wolfgang = "Is mound of cloud.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "bean_giant_statue" {
-
-    GENERIC = "I wouldn't want to run into that thing.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "What an strange creature.",
-    wolfgang = "Is fish out of water.",
-=======
-    willow = "",
-    wolfgang = "Is big stone monster.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "crystal_lamp" {
-
-    GENERIC = "It's magically lit by crystals.",
-    waxwell = "Even the light is crystal clear.",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Will it hatch into a metal bird?",
-    wolfgang = "Is not for eating.",
-=======
-    willow = "",
-    wolfgang = "Pretty rock makes light!",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "dragonblood_tree" {
-
-    GENERIC = "I wonder if it breathes fire?",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Metal doesn't burn.",
-    wolfgang = "Metal Giant!",
-=======
-    willow = "",
-    wolfgang = "",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "dragonblood_sap" {
-
-    GENERIC = "Warm, gooey tree sap.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "The only music I like is the sound of fire burning.",
-    wolfgang = "What pretty noises.",
-=======
-    willow = "",
-    wolfgang = "",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "dragonblood_log" {
-
-    GENERIC = "It emits a slight warmth.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "No good to me.",
-    wolfgang = "Is from shiny plant.",
-=======
-    willow = "",
-    wolfgang = "",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "vine" {
-
-    GENERIC = "A sentient vine!",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Roses have thorns. They're okay in my book.",
-    wolfgang = "Shiny flower has sharp thorns.",
-    woodie = "",
-=======
-    willow = "",
-    wolfgang = "",
-    woodie = "Little plant.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "weavernest" {
-
-    GENERIC = "A warm nest made by birds.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "A bit of fire would spice those up.",
-    wolfgang = "This grow big shiny plant.",
-=======
-    willow = "",
-    wolfgang = "Bird lives here.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "jellyshroom_red" {
-
-    GENERIC = "You jelly?",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "It's nothing like the sun. Lame.",
-    wolfgang = "Is big yellow flower.",
-=======
-    willow = "",
-    wolfgang = "Is squeezy.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "jellyshroom_blue" {
-
-    GENERIC = "You jelly?",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "There's a goose on the loose.",
-    wolfgang = "Egg is not tasty. Bird is though.",
-=======
-    willow = "",
-    wolfgang = "Is squishy.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "jellyshroom_green" {
-
-    GENERIC = "You jelly?",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Hey, hands off!",
-    wolfgang = "Is lazy thing.",
-=======
-    willow = "",
-    wolfgang = "Is squidgy.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "cumulostone" {
-
-    GENERIC = "A rock that seems to pulse with light.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "It's bean fun.",
-    wolfgang = "Wolfgang has bean green before!",
-=======
-    willow = "",
-    wolfgang = "Is rock and is cloud.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "ball_lightning" {
-
-    GENERIC = "A wandering ball of static.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Time for tea.",
-    wolfgang = "Is not even green.",
-=======
-    willow = "",
-    wolfgang = "",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -1651,13 +556,8 @@ Add.QuotesFor "cloud_turf" {
     waxwell = "It came from above.",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
-    willow = "I could plant them. Or burn them.",
-    wolfgang = "Is for blowy flower.",
-=======
-    willow = "",
+    willow = "Cloud. Always cloud.",
     wolfgang = "Is soft ground.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -1665,19 +565,14 @@ Add.QuotesFor "cloud_turf" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "crystal_relic" {
+Add.QuotesFor "cloudcrag" {
 
-    GENERIC = "I get a weird feeling from that crystal.",
-    waxwell = "Dare I say they look crystal clear.",
+    GENERIC = "Super condensed cloud.",
+    waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
-    willow = "It makes wind. Not a fan.",
-    wolfgang = "Plant makes whoosh.",
-=======
-    willow = "",
-    wolfgang = "Is old.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
+    willow = "It's more cloud.",
+    wolfgang = "Is mound of cloud.",
     woodie = "",
     wx78 = "",
 
@@ -1685,19 +580,14 @@ Add.QuotesFor "crystal_relic" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "crystal_fragment_relic" {
+Add.QuotesFor "colored_corn" {
 
-    GENERIC = "I get a weird feeling from that crystal.",
-    waxwell = "Dare I say they look crystal clear.",
+    GENERIC = "Rainbow colored corn.",
+    waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Bees live there. I could smoke 'em out.",
-    wolfgang = "Taste of bug.",
-=======
-    willow = "",
-    wolfgang = "Is just a piece.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
+    willow = "Something to eat while enjoying fire.",
+    wolfgang = "Is tasty rock.",
     woodie = "",
     wx78 = "",
 
@@ -1705,19 +595,14 @@ Add.QuotesFor "crystal_fragment_relic" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "crystal_water" {
+Add.QuotesFor "cotton_candy" {
 
-    GENERIC = "It looks like it has water inside.",
-    waxwell = "Dare I say they look crystal clear.",
+    GENERIC = "A bunch of fluffy sugar.",
+    waxwell = "A sugary delicacy for carnivals and common folk.",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Boring. Let's burn something.",
-    wolfgang = "Is squishy.",
-=======
-    willow = "",
-    wolfgang = "Is pretty blue.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
+    willow = "A tasty treat is second only to fire.",
+    wolfgang = "Is like tasty cloud.",
     woodie = "",
     wx78 = "",
 
@@ -1725,14 +610,14 @@ Add.QuotesFor "crystal_water" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "crystal_fragment_water" {
+Add.QuotesFor "cotton_hat" {
 
-    GENERIC = "It looks like it has water inside.",
-    waxwell = "Dare I say they look crystal clear.",
+    GENERIC = "A warm, fluffy cotton hat.",
+    waxwell = "",
     wendy = "",
     wickerbottom = "",
-    willow = "",
-    wolfgang = "Is smashed.",
+    willow = "I should have burned that cotton.",
+    wolfgang = "Soft on head.",
     woodie = "",
     wx78 = "",
 
@@ -1740,39 +625,14 @@ Add.QuotesFor "crystal_fragment_water" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "crystal_quartz" {
+Add.QuotesFor "cotton_vest" {
 
-    GENERIC = "I bet it conducts electricity.",
-    waxwell = "Dare I say they look crystal clear.",
+    GENERIC = "It's silly looking, but very warm.",
+    waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Red is my favourite colour.",
-    wolfgang = "Is squeezy.",
-=======
-    willow = "",
-    wolfgang = "Is stone.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "crystal_fragment_quartz" {
-
-    GENERIC = "I bet it conducts electricity.",
-    waxwell = "Dare I say they look crystal clear.",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "I could make a drink.",
-    wolfgang = "Gets Wolfgang into hot water!",
-=======
-    willow = "",
-    wolfgang = "Is pebble.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
+    willow = "It's warm, at least.",
+    wolfgang = "Is comfy!",
     woodie = "",
     wx78 = "",
 
@@ -1786,13 +646,8 @@ Add.QuotesFor "crystal_black" {
     waxwell = "Dare I say they look crystal clear.",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
-    willow = "I could make a drink.",
-    wolfgang = "Gets Wolfgang into hot water!",
-=======
-    willow = "",
+    willow = "It's dark. Fire is light. I know which is better.",
     wolfgang = "Is dark jewel.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -1806,73 +661,8 @@ Add.QuotesFor "crystal_fragment_black" {
     waxwell = "Dare I say they look crystal clear.",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Mayybe lightning will strike it.",
-    wolfgang = "Is for flying.",
-=======
-    willow = "",
+    willow = "Piece of crystal.",
     wolfgang = "Is cracked.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "crystal_white" {
-
-    GENERIC = "I feel lighter just being near it.",
-    waxwell = "Dare I say they look crystal clear.",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "What in the hell is that?",
-    wolfgang = "Is not right.",
-=======
-    willow = "",
-    wolfgang = "Is blank. Like thoughts.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "crystal_fragment_white" {
-
-    GENERIC = "I feel lighter just being near it.",
-    waxwell = "Dare I say they look crystal clear.",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Those things can move?",
-    wolfgang = "Garden man lives?",
-=======
-    willow = "",
-    wolfgang = "Is not whole.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "crystal_light" {
-
-    GENERIC = "It glows with a strange light.",
-    waxwell = "Dare I say they look crystal clear.",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Ha, it has a big nose!",
-    wolfgang = "Why long bill? Wolfgang still funny.",
-=======
-    willow = "",
-    wolfgang = "Is bright!",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -1886,13 +676,8 @@ Add.QuotesFor "crystal_fragment_light" {
     waxwell = "Dare I say they look crystal clear.",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Magic doesn't stop fire.",
-    wolfgang = "Not enough for my mighty belly.",
-=======
-    willow = "",
+    willow = "It's slightly glowing.",
     wolfgang = "Is broken.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -1900,19 +685,29 @@ Add.QuotesFor "crystal_fragment_light" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "crystal_spire" {
+Add.QuotesFor "crystal_fragment_quartz" {
 
-    GENERIC = "It's a large crystal.",
+    GENERIC = "I bet it conducts electricity.",
     waxwell = "Dare I say they look crystal clear.",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Magic doesn't stop fire.",
-    wolfgang = "Not enough for my mighty belly.",
-=======
-    willow = "",
-    wolfgang = "Is spiky, shiny rock.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
+    willow = "Someone broke it. Good.",
+    wolfgang = "Is pebble.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "crystal_fragment_relic" {
+
+    GENERIC = "I get a weird feeling from that crystal.",
+    waxwell = "Dare I say they look crystal clear.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Ancient junk.",
+    wolfgang = "Is just a piece.",
     woodie = "",
     wx78 = "",
 
@@ -1926,13 +721,8 @@ Add.QuotesFor "crystal_fragment_spire" {
     waxwell = "Dare I say they look crystal clear.",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
-    willow = "It's attracted to metal. I'm attracted to fire.",
-    wolfgang = "",
-=======
     willow = "",
     wolfgang = "Is shiny rock.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -1940,19 +730,14 @@ Add.QuotesFor "crystal_fragment_spire" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "refined_black_crystal" {
+Add.QuotesFor "crystal_fragment_water" {
 
-    GENERIC = "A large chunk of black crystal.",
-    waxwell = "",
+    GENERIC = "It looks like it has water inside.",
+    waxwell = "Dare I say they look crystal clear.",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
-    willow = "It's a piece of skin. Hard to burn.",
-    wolfgang = "Is tough skin.",
-=======
-    willow = "",
-    wolfgang = "",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
+    willow = "Hah, it's broken! Good.",
+    wolfgang = "Is smashed.",
     woodie = "",
     wx78 = "",
 
@@ -1960,19 +745,329 @@ Add.QuotesFor "refined_black_crystal" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "refined_white_crystal" {
+Add.QuotesFor "crystal_fragment_white" {
 
-    GENERIC = "A large chunk of white crystal.",
+    GENERIC = "I feel lighter just being near it.",
+    waxwell = "Dare I say they look crystal clear.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Smashed.",
+    wolfgang = "Is not whole.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "crystal_lamp" {
+
+    GENERIC = "It's magically lit by crystals.",
+    waxwell = "Even the light is crystal clear.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "I love lamps.",
+    wolfgang = "Pretty rock makes light!",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "crystal_light" {
+
+    GENERIC = "It glows with a strange light.",
+    waxwell = "Dare I say they look crystal clear.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "It glows like fire.",
+    wolfgang = "Is bright!",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "crystal_quartz" {
+
+    GENERIC = "I bet it conducts electricity.",
+    waxwell = "Dare I say they look crystal clear.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "I wish rocks could burn.",
+    wolfgang = "Is stone.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "crystal_relic" {
+
+    GENERIC = "I get a weird feeling from that crystal.",
+    waxwell = "Dare I say they look crystal clear.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Broken ancient junk.",
+    wolfgang = "Is old.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "crystal_spire" {
+
+    GENERIC = "It's a large crystal.",
+    waxwell = "Dare I say they look crystal clear.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "A big shiny rock.",
+    wolfgang = "Is spiky, shiny rock.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "crystal_water" {
+
+    GENERIC = "It looks like it has water inside.",
+    waxwell = "Dare I say they look crystal clear.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "I don't like water.",
+    wolfgang = "Is pretty blue.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "crystal_white" {
+
+    GENERIC = "I feel lighter just being near it.",
+    waxwell = "Dare I say they look crystal clear.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "White is boring. Red is better.",
+    wolfgang = "Is blank. Like thoughts.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "cumulostone" {
+
+    GENERIC = "A rock that seems to pulse with light.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
-    willow = "That's new.",
-    wolfgang = "What is creature? Where is from?",
-=======
-    willow = "",
-    wolfgang = "",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
+    willow = "It's cloud rock. Why is nothing in this place good to burn?",
+    wolfgang = "Is rock and is cloud.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "datura_petals" {
+
+    GENERIC = "It smells of nightmares.",
+    waxwell = "It smells like innocence. Ripe for the taking. ",
+    wendy = "A flower to fuel hatred. Smells like a rose.",
+    wickerbottom = "This one is designed to trigger a hate response. Smells like a burned book.",
+    willow = "The stupid thing smells like winter mint.",
+    wolfgang = "Smells like wimpy tears.",
+    woodie = " It smells of wet fur and old pine.",
+    wx78 = "IT OVERLOADS MY SENSORS WITH LIFE.",
+
+    webber = "It makes us feel strange things.",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "dragonblood_log" {
+
+    GENERIC = "It emits a slight warmth.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Finally, decent fire material.",
+    wolfgang = "Is good wood.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "dragonblood_sap" {
+
+    GENERIC = "Warm, gooey tree sap.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "It's all sticky, ugh.",
+    wolfgang = "Does not taste of blood.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "dragonblood_tree" {
+
+    GENERIC = "I wonder if it breathes fire?",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Dragons and trees go together like a forest on fire.",
+    wolfgang = "Strange tree.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "duckraptor" {
+
+    GENERIC = "A nightmare duck! What next?",
+    waxwell = "You will make a rather exquisite duck pâté.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "I want it as a pet.",
+    wolfgang = "So many claws.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "flying_fish" {
+
+    GENERIC = "But do they have lungs?",
+    waxwell = "Being able to fly did not aid you at all.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "What an strange creature.",
+    wolfgang = "Is fish out of water.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "I thought grandpa was joking about fish that fly.",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "golden_egg" {
+
+    GENERIC = "It's warm. And gold. Mostly gold.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Will it hatch into a metal bird?",
+    wolfgang = "Is not for eating.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "golden_golem" {
+
+    GENERIC = "",
+    waxwell = "How intruiging.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Metal doesn't burn.",
+    wolfgang = "Metal Giant!",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "golden_lyre" {
+
+    GENERIC = "A boring golden harp.",
+    waxwell = "Plays a beautiful tune, yet participates in dull conversations.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "The only music I like is the sound of fire burning.",
+    wolfgang = "What pretty noises.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "golden_petals" {
+
+    GENERIC = "Golden flower petals.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "No good to me.",
+    wolfgang = "Is from shiny plant.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "golden_rose" {
+
+    GENERIC = "A rose with golden petals.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Roses have thorns. They're okay in my book.",
+    wolfgang = "Shiny flower has sharp thorns.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "golden_sunflower_seeds" {
+
+    GENERIC = "I can make a gold farm!",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "A bit of fire would spice those up.",
+    wolfgang = "This grow big shiny plant.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "golden_sunflower" {
+
+    GENERIC = "A sunflower made of gold.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "It's nothing like the sun. Lame.",
+    wolfgang = "Is big yellow flower.",
     woodie = "",
     wx78 = "",
 
@@ -1986,13 +1081,323 @@ Add.QuotesFor "goose" {
     waxwell = "For others a source of wealth, for me a source of annoyance.",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
+    willow = "There's a goose on the loose.",
+    wolfgang = "Egg is not tasty. Bird is though.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "grabber" {
+
+    GENERIC = "This reminds me of someone.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Hey, hands off!",
+    wolfgang = "Is lazy thing.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "greenbean" {
+
+    GENERIC = "Green and nutricious.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "It's bean fun.",
+    wolfgang = "Wolfgang has bean green before!",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "greentea" {
+
+    GENERIC = "A healthy green tea.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Time for tea.",
+    wolfgang = "Is not even green.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "gustflower_seeds" {
+
+    GENERIC = "I can plant this somewhere.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "I could plant them. Or burn them.",
+    wolfgang = "Is for blowy flower.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "gustflower" {
+
+    GENERIC = "I should steer clear of it.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "It makes wind. Not a fan.",
+    wolfgang = "Plant makes whoosh.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "hive_marshmallow" {
+
+    GENERIC = "A giant marshmallow.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Bees live there. I could smoke 'em out.",
+    wolfgang = "Taste of bug.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "jellyshroom_blue" {
+
+    GENERIC = "You jelly?",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Boring. Let's burn something.",
+    wolfgang = "Is squishy.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "jellyshroom_green" {
+
+    GENERIC = "You jelly?",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Is squidgy.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "jellyshroom_red" {
+
+    GENERIC = "You jelly?",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Red is my favourite colour.",
+    wolfgang = "Is squeezy.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "kettle_item" {
+
+    GENERIC = "A kettle, for brewing tea.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "I could make a drink.",
+    wolfgang = "Gets Wolfgang into hot water!",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "kettle" {
+
+    GENERIC = "A kettle, for brewing tea.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "I could make a drink.",
+    wolfgang = "Gets Wolfgang into hot water!",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "kite" {
+
+    GENERIC = "Cloth tied to a string.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Mayybe lightning will strike it.",
+    wolfgang = "Is for flying.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "lionblob" {
+
+    GENERIC = "Is that supposed to be a joke?",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "What in the hell is that?",
+    wolfgang = "Is not right.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "live_gnome" {
+
+    GENERIC = "Is that a gnome?",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Those things can move?",
+    wolfgang = "Garden man lives?",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "longbill" {
+
+    GENERIC = "Are those claws on its wings?",
+    waxwell = "With it's size it most likely has trouble ducking.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Ha, it has a big nose!",
+    wolfgang = "Why long bill? Wolfgang still funny.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "magic_beans_cooked" {
+
+    GENERIC = "I don't even know why I did that.",
+    waxwell = "I guess we'll never know if they were real or not.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Magic doesn't stop fire.",
+    wolfgang = "Not enough for my mighty belly.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "The wonder has been cooked out of them.",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "magic_beans" {
+
+    GENERIC = "Oldest marketing scam in the book!",
+    waxwell = "I hope the legends aren't full of beans.",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Magic doesn't stop fire.",
+    wolfgang = "Not enough for my mighty belly.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "I wonder what wonders it contains.",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "magnet" {
+
+    GENERIC = "It's quite magnetic.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "It's attracted to metal. I'm attracted to fire.",
+    wolfgang = "",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "manta_leather" {
+
+    GENERIC = "Skin from a flying manta.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "It's a piece of skin. Hard to burn.",
+    wolfgang = "Is tough skin.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "manta" {
+
+    GENERIC = "Aren't you supposed to be in the ocean?",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "That's new.",
+    wolfgang = "What is creature? Where is from?",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "marshmallow" {
+
+    GENERIC = "Maybe just one. For science!",
+    waxwell = "Contrary to the name, these do not contain marsh.",
+    wendy = "",
+    wickerbottom = "",
     willow = "I eat mine charred.",
     wolfgang = "Is soft treat!",
-=======
-    willow = "",
-    wolfgang = "",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -2015,19 +1420,14 @@ Add.QuotesFor "monolith" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "golden_lyre" {
+Add.QuotesFor "octocopter_wreckage" {
 
-    GENERIC = "A boring golden harp.",
-    waxwell = "Plays a beautiful tune, yet participates in dull conversations.",
+    GENERIC = "Now it's mostly octopus.",
+    waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "It's crashed. I might be able to fix it.",
     wolfgang = "Is broken!",
-=======
-    willow = "",
-    wolfgang = "What pretty noises.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -2035,19 +1435,14 @@ Add.QuotesFor "golden_lyre" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "golden_egg" {
+Add.QuotesFor "octocopter" {
 
-    GENERIC = "It's warm. And gold. Mostly gold.",
+    GENERIC = "Half machine, half octopus.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "I've heard of flying pigs, but never flying octopi.",
     wolfgang = "It has many arms!",
-=======
-    willow = "",
-    wolfgang = "Is not for eating.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -2055,19 +1450,14 @@ Add.QuotesFor "golden_egg" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "golden_rose" {
+Add.QuotesFor "octocopterpart1" {
 
-    GENERIC = "A rose with golden petals.",
+    GENERIC = "A rotor blade.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "I need this for flying.",
     wolfgang = "Is for flying.",
-=======
-    willow = "",
-    wolfgang = "Shiny flower has sharp thorns.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -2075,19 +1465,14 @@ Add.QuotesFor "golden_rose" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "golden_sunflower" {
+Add.QuotesFor "octocopterpart2" {
 
-    GENERIC = "A sunflower made of gold.",
+    GENERIC = "A rotor plate.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "A part of a broken Octocopter.",
     wolfgang = "Soon Wolfgang flies.",
-=======
-    willow = "",
-    wolfgang = "Is big yellow flower.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -2095,19 +1480,14 @@ Add.QuotesFor "golden_sunflower" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "golden_sunflower_seeds" {
+Add.QuotesFor "octocopterpart3" {
 
-    GENERIC = "I can make a gold farm!",
+    GENERIC = "A rotor hub.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "The last piece of an Octocopter.",
     wolfgang = "Octopus needs this.",
-=======
-    willow = "",
-    wolfgang = "This grow big shiny plant.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -2115,40 +1495,29 @@ Add.QuotesFor "golden_sunflower_seeds" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "golden_petals" {
+Add.QuotesFor "owl" {
 
-    GENERIC = "Golden flower petals.",
-    waxwell = "",
+    GENERIC = "Their eyes are unsettling...",
+    waxwell = "These have a secret brotherhoot.",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "A silent, deadly predator. Like me.",
     wolfgang = "Mean birds. More than tallest bird!",
-=======
-    willow = "",
-    wolfgang = "Is from shiny plant.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
-    webber = "",
+    webber = "What big eyes they have!",
     wathgrithr = "",
 }
 
+Add.QuotesFor "package" {
 
-Add.QuotesFor "colored_corn" {
-
-    GENERIC = "Rainbow colored corn.",
+    GENERIC = "There's something in it.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "What's in it? I hope it's fire.",
     wolfgang = "What is inside?",
-=======
-    willow = "",
-    wolfgang = "Is tasty rock.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -2156,19 +1525,74 @@ Add.QuotesFor "colored_corn" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "cotton_candy" {
+Add.QuotesFor "rainbowcoon" {
 
-    GENERIC = "A bunch of fluffy sugar.",
-    waxwell = "A sugary delicacy for carnivals and common folk.",
+    GENERIC = "Colorful, but it's a ploy for my food.",
+    waxwell = "The rainbow is trying to taste my food!",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "Touch my stuff and I'll burn you good!",
     wolfgang = "Is pretty, but food is mine!",
-=======
-    willow = "",
-    wolfgang = "Is like tasty cloud.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "refined_black_crystal" {
+
+    GENERIC = "A large chunk of black crystal.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "It's been improved. Fire would improve it more.",
+    wolfgang = "Is better now.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "refined_white_crystal" {
+
+    GENERIC = "A large chunk of white crystal.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "It's good, but not as good as fire.",
+    wolfgang = "Much nicer.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "refiner" {
+
+    GENERIC = "A refiner. It crushes things into pieces.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "You can't refine fire.",
+    wolfgang = "Is to change stuff.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "research_lectern" {
+
+    GENERIC = "I'm not even sure what's real anymore.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "It shows me where clouds are, I guess.",
+    wolfgang = "Finds clouds?",
     woodie = "",
     wx78 = "",
 
@@ -2182,94 +1606,8 @@ Add.QuotesFor "rubber" {
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
-    willow = "It's been improved. Fire would improve it more.",
-    wolfgang = "Is better now.",
-=======
-    willow = "",
-    wolfgang = "Is stretchy.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "whirlwind" {
-
-    GENERIC = "Who knows where that thing could send me.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "It's good, but not as good as fire.",
-    wolfgang = "Much nicer.",
-=======
-    willow = "",
-    wolfgang = "Is fast air!",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "cauldron" {
-
-    GENERIC = "A big bucket for magic stuff.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "You can't refine fire.",
-    wolfgang = "Is to change stuff.",
-    woodie = "",
-=======
-    willow = "",
-    wolfgang = "",
-    woodie = "Is belong to witch?",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "cloud_cotton" {
-
-    GENERIC = "Like baby clouds.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "It shows me where clouds are, I guess.",
-    wolfgang = "Finds clouds?",
-=======
-    willow = "",
-    wolfgang = "Is for make clothes.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "cotton_hat" {
-
-    GENERIC = "A warm, fluffy cotton hat.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
     willow = "Smells bad when burning.",
     wolfgang = "Is stretchy.",
-=======
-    willow = "",
-    wolfgang = "Soft on head.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -2277,19 +1615,14 @@ Add.QuotesFor "cotton_hat" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "cotton_vest" {
+Add.QuotesFor "scarecrow" {
 
-    GENERIC = "It's silly looking, but very warm.",
+    GENERIC = "",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "Why scare crows when you can burn them?",
     wolfgang = "Does not scare Wolfgang!",
-=======
-    willow = "",
-    wolfgang = "Is comfy!",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -2297,7 +1630,6 @@ Add.QuotesFor "cotton_vest" {
     wathgrithr = "",
 }
 
-<<<<<<< HEAD
 Add.QuotesFor "sheep.ram" {
 
     GENERIC = "Electrifying!",
@@ -2358,30 +1690,20 @@ Add.QuotesFor "sky_chest" {
 }
 
 Add.QuotesFor "skyflies" {
-=======
-Add.QuotesFor "package" {
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
 
-    GENERIC = "There's something in it.",
+    GENERIC = "I wonder how they light up like that?",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "I prefer fireflies.",
     wolfgang = "",
     woodie = "Is swarm of bugs. ",
-=======
-    willow = "",
-    wolfgang = "What is inside?",
-    woodie = "",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     wx78 = "",
 
     webber = "",
     wathgrithr = "",
 }
 
-<<<<<<< HEAD
 Add.QuotesFor "skyflower_petals" {
 
     GENERIC = "They smell of dreams.",
@@ -2443,21 +1765,13 @@ Add.QuotesFor "sky_lemur" {
 }
 
 Add.QuotesFor "skytrap" {
-=======
-Add.QuotesFor "greentea" {
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
 
-    GENERIC = "A healthy green tea.",
+    GENERIC = "Something about that flower is off.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "A trap with no fire is no trap at all.",
     wolfgang = "Is a trap.",
-=======
-    willow = "",
-    wolfgang = "Is not even green.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -2465,19 +1779,14 @@ Add.QuotesFor "greentea" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "blacktea" {
+Add.QuotesFor "smores" {
 
-    GENERIC = "It's a nice strong tea.",
+    GENERIC = "A messy ball of chocolate and cream.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "See, fire improves everything.",
     wolfgang = "Wolfgang is always ready for s'mores.",
-=======
-    willow = "",
-    wolfgang = "Is nearly as strong as me!",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -2491,13 +1800,8 @@ Add.QuotesFor "tea_bush" {
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "I could burn that.",
     wolfgang = "Get leaves, make drink.",
-=======
-    willow = "",
-    wolfgang = "",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -2520,19 +1824,14 @@ Add.QuotesFor "tea_leaves" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "blacktea_leaves" {
+Add.QuotesFor "thunder_log" {
 
-    GENERIC = "Oxidized tea leaves.",
+    GENERIC = "It ripples with elecricity.",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "Will this even burn?",
     wolfgang = "Is tickly to touch.",
-=======
-    willow = "",
-    wolfgang = "Is for making drink.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -2540,19 +1839,14 @@ Add.QuotesFor "blacktea_leaves" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "kite" {
+Add.QuotesFor "thunder_tree" {
 
-    GENERIC = "Cloth tied to a string.",
-    waxwell = "",
+    GENERIC = "Looks fragile, but dangerous.",
+    waxwell = "I was rather shocked the first time I discovered these.",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "Why doesn't the lightning burn it?",
     wolfgang = "Is crackly tree.",
-=======
-    willow = "",
-    wolfgang = "Is for flying.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -2560,119 +1854,14 @@ Add.QuotesFor "kite" {
     wathgrithr = "",
 }
 
-Add.QuotesFor "kettle" {
+Add.QuotesFor "vine" {
 
-    GENERIC = "A kettle, for brewing tea.",
+    GENERIC = "A sentient vine!",
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-<<<<<<< HEAD
     willow = "It's made of plant, and therefore I can burn it.",
     wolfgang = "Little plant.",
-=======
-    willow = "",
-    wolfgang = "Gets Wolfgang into hot water!",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "kettle_item" {
-
-    GENERIC = "A kettle, for brewing tea.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "It does stuff. Not burning, sadly.",
-    wolfgang = "Is... technical.",
-=======
-    willow = "",
-    wolfgang = "Gets Wolfgang into hot water!",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "cloud_algae" {
-
-    GENERIC = "Apparently algae grows on clouds.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "Weave all the homes you want, I'll burn them all.",
-    wolfgang = "Is little birdie.",
-=======
-    willow = "",
-    wolfgang = "Is plant-cloud.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "cloud_coral" {
-
-    GENERIC = "A rock that grows.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "A bird made it. ",
-    wolfgang = "Bird lives here.",
-=======
-    willow = "",
-    wolfgang = "Is plant-rock.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "research_lectern" {
-
-    GENERIC = "I'm not even sure what's real anymore.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "It's made of wind, fire's frenemy.",
-    wolfgang = "Is fast air!",
-=======
-    willow = "",
-    wolfgang = "Finds clouds?",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
-    woodie = "",
-    wx78 = "",
-
-    webber = "",
-    wathgrithr = "",
-}
-
-Add.QuotesFor "refiner" {
-
-    GENERIC = "A refiner. It crushes things into pieces.",
-    waxwell = "",
-    wendy = "",
-    wickerbottom = "",
-<<<<<<< HEAD
-    willow = "You just can't get the staff any more.",
-    wolfgang = "Does things. Is always changing.",
-=======
-    willow = "",
-    wolfgang = "Is to change stuff.",
->>>>>>> cdeae0d863cb5ecd94b592d2674a671ce0f40f13
     woodie = "",
     wx78 = "",
 
@@ -2686,7 +1875,7 @@ Add.QuotesFor "weather_machine" {
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-    willow = "",
+    willow = "It does stuff. Not burning, sadly.",
     wolfgang = "Is... technical.",
     woodie = "",
     wx78 = "",
@@ -2695,11 +1884,71 @@ Add.QuotesFor "weather_machine" {
     wathgrithr = "",
 }
 
+Add.QuotesFor "weaver_bird" {
+
+    GENERIC = "It makes large nests to keep warm.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "Weave all the homes you want, I'll burn them all.",
+    wolfgang = "Is little birdie.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "weavernest" {
+
+    GENERIC = "A warm nest made by birds.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "A bird made it. ",
+    wolfgang = "Bird lives here.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "whirlwind" {
+
+    GENERIC = "Who knows where that thing could send me.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "It's made of wind, fire's frenemy.",
+    wolfgang = "Is fast air!",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
+Add.QuotesFor "whitestaff" {
+
+    GENERIC = "Packages objects through magic.",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "You just can't get the staff any more.",
+    wolfgang = "Does things. Is always changing.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}    
+
 Add.QuotesFor {"balloon_hound", "balloon_icehound", "balloon_firehound"} {
-	ANY = function(character, prefab)
-		local suf = prefab:match("^BALLOON_(.+)$")
-		return STRINGS.CHARACTERS[character].DESCRIBE[suf]
-	end,
+    ANY = function(character, prefab)
+        local suf = prefab:match("^BALLOON_(.+)$")
+        return STRINGS.CHARACTERS[character].DESCRIBE[suf]
+    end,
 }
 
 STRINGS.CHARACTER_TITLES.winnie = "The Curious"
@@ -2724,35 +1973,35 @@ STRINGS.RECIPE_DESC.BLACKSTAFF = "A black staff. Shock therapy!"
 STRINGS.RECIPE_DESC.WHITESTAFF = "A white staff. For heavy lifting."
 
 STRINGS.UPUI = {
-	CLOUDGEN = {
-		VERBS = 
-		{
-			"Deploying",
-			"Decompressing",
-			"Herding",
-			"Replacing",
-			"Assembling",
-			"Insinuating",
-			"Reticulating",
-			"Inserting",
-			"Framing",
-		},
-		
-		NOUNS=
-		{
-			"clouds",
-			"sheep",
-			"candy",
-			"giants",
-			"snowflakes",
-			"skeletons",
-			"static batteries",
-			"castles",
-			"beans",
-			"nature",		
-		},
-	},
-}	
+    CLOUDGEN = {
+        VERBS = 
+        {
+            "Deploying",
+            "Decompressing",
+            "Herding",
+            "Replacing",
+            "Assembling",
+            "Insinuating",
+            "Reticulating",
+            "Inserting",
+            "Framing",
+        },
+        
+        NOUNS=
+        {
+            "clouds",
+            "sheep",
+            "candy",
+            "giants",
+            "snowflakes",
+            "skeletons",
+            "static batteries",
+            "castles",
+            "beans",
+            "nature",       
+        },
+    },
+}   
 
 
 --------------------------------------------------------------------------
