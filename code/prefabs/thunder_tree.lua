@@ -177,7 +177,7 @@ end
 
 local function OnSpawned(inst, child)
     if not GetWorld().components.staticgenerator.charged then
-	   GetSeasonManager():DoLightningStrike(Vector3(child.Transform:GetWorldPosition()))
+	   GetSeasonManager():DoMediumLightning(Vector3(child.Transform:GetWorldPosition()))
     end   
 end
 

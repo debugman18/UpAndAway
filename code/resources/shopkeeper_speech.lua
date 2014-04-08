@@ -44,7 +44,7 @@ local function generateSpeeches()
 		BEAN_QUEST =
 		{
 			disableplayer = false,
-			skippable = true,
+			skippable = false,
 			
 			{
 				string = ("Hello there, %s."):format(char_desc),
