@@ -183,6 +183,8 @@ PrefabFiles = {
 	"thunder_log",
 
 	"octocopter_wreckage",
+
+	"mushroom_hat",
 }
 
 -- The return statement is just for if this file is used externally, at
