@@ -4,11 +4,11 @@ local Add = modrequire 'lib.addstrings'
 
 Add.Names {
 
-	alien = "Aurora",
+    alien = "Aurora",
 
     ball_lightning = "Ball Lightning",
 	
-	balloon_hound = "Balloon Hound",
+    balloon_hound = "Balloon Hound",
 
     bean_giant = "Bean Giant",    
 
@@ -558,7 +558,7 @@ Add.QuotesFor "cloud_fruit_tree" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is growing without dirt. Is magic?",
     woodie = "",
     wx78 = "",
 
@@ -573,7 +573,7 @@ Add.QuotesFor "cloud_fruit" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Fluffy plant. Still yummy.",
     woodie = "",
     wx78 = "",
 
@@ -588,7 +588,7 @@ Add.QuotesFor "gustflower" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Plant makes whoosh.",
     woodie = "",
     wx78 = "",
 
@@ -783,7 +783,7 @@ Add.QuotesFor "flying_fish" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is fish out of water.",
     woodie = "",
     wx78 = "",
 
@@ -798,7 +798,7 @@ Add.QuotesFor "golden_golem" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Metal Giant!",
     woodie = "",
     wx78 = "",
 
@@ -993,7 +993,7 @@ Add.QuotesFor "hive_marshmallow" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Taste of bug.",
     woodie = "",
     wx78 = "",
 
@@ -1039,7 +1039,7 @@ Add.QuotesFor "smores" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Wolfgang is always ready for s'mores.",
     woodie = "",
     wx78 = "",
 
@@ -1129,7 +1129,7 @@ Add.QuotesFor "dragonblood_tree" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Strange tree.",
     woodie = "",
     wx78 = "",
 
@@ -1144,7 +1144,7 @@ Add.QuotesFor "dragonblood_sap" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Does not taste of blood.",
     woodie = "",
     wx78 = "",
 
@@ -1159,7 +1159,7 @@ Add.QuotesFor "dragonblood_log" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is good wood.",
     woodie = "",
     wx78 = "",
 
@@ -1242,6 +1242,21 @@ Add.QuotesFor "jellyshroom_green" {
     wathgrithr = "",
 }
 
+Add.QuotesFor "alien" {
+
+    GENERIC = "Is it real?",
+    waxwell = "",
+    wendy = "",
+    wickerbottom = "",
+    willow = "",
+    wolfgang = "Is colorful hallucination.",
+    woodie = "",
+    wx78 = "",
+
+    webber = "",
+    wathgrithr = "",
+}
+
 Add.QuotesFor "cumulostone" {
 
     GENERIC = "A rock that seems to pulse with light.",
@@ -1264,7 +1279,7 @@ Add.QuotesFor "ball_lightning" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is zappy, floaty pest.",
     woodie = "",
     wx78 = "",
 
@@ -1504,7 +1519,7 @@ Add.QuotesFor "refined_black_crystal" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Is better now.",
     woodie = "",
     wx78 = "",
 
@@ -1519,7 +1534,7 @@ Add.QuotesFor "refined_white_crystal" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Much nicer.",
     woodie = "",
     wx78 = "",
 
@@ -1534,7 +1549,7 @@ Add.QuotesFor "goose" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Egg is not tasty. Bird is though.",
     woodie = "",
     wx78 = "",
 
@@ -1820,7 +1835,7 @@ Add.QuotesFor "tea_bush" {
     wendy = "",
     wickerbottom = "",
     willow = "",
-    wolfgang = "",
+    wolfgang = "Get leaves, make drink.",
     woodie = "",
     wx78 = "",
 
