@@ -151,14 +151,14 @@ local function onperish(inst)
 	inst:Remove()
 end
 
-local function OnSave(inst)
-	return {
-		state = inst.chain:GetState(),
-	}
+local function OnSave(inst, data)
+	if data then
+		data.markov_state = inst.chain:GetState()
+	end
 end
 
 local function OnLoad(inst, data)
-	local s = data and data.state
+	local s = data and data.markov_state
 	if s and inst.chain:IsState(s) then
 		inst.chain:GoTo(s)
 	end
