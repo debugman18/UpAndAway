@@ -152,8 +152,8 @@ Add.QuotesFor "alien" {
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-    willow = "Half lion, half ant, all flammable.",
-    wolfgang = "Is colorful hallucination.",
+    willow = "They're solid? Does that mean they're flammable?",
+    wolfgang = "Wolfgang is confused and scared.",
     woodie = "",
     wx78 = "",
 
@@ -1097,8 +1097,8 @@ Add.QuotesFor "grabber" {
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-    willow = "Hey, hands off!",
-    wolfgang = "Is lazy thing.",
+    willow = "Now you're over there, now you're not!",
+    wolfgang = "Makes things closer.",
     woodie = "",
     wx78 = "",
 
@@ -1607,8 +1607,8 @@ Add.QuotesFor "research_lectern" {
     waxwell = "",
     wendy = "",
     wickerbottom = "",
-    willow = "It shows me where clouds are, I guess.",
-    wolfgang = "Finds clouds?",
+    willow = "Make stuff? I prefer to destroy stuff.",
+    wolfgang = "Is cloud-science. Fluffiest kind of science.",
     woodie = "",
     wx78 = "",
 
