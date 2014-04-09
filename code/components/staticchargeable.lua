@@ -56,7 +56,8 @@ local StaticChargeable = Class(Debuggable, function(self, inst)
 	end
 
 	inst:DoTaskInTime(0, function(inst)
-		if GetStaticGenerator():IsCharged() then
+		local sgen = GetStaticGenerator()
+		if sgen and sgen:IsCharged() then
 			local c = inst.components.staticchargeable
 			if inst:IsValid() and c then
 				c:Charge()

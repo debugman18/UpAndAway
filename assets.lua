@@ -48,10 +48,13 @@ Assets = GLOBAL.JoinArrays(
 		"golden_egg",
 		"cotton_vest",
 		"mushroom_hat",
+
+		"nil",
 	},
 
+	-- These are .tex's without a matching atlas.
 	InventoryImageTextures {
-		"nil",
+		--"nil",
 	},
 
 	--[[
