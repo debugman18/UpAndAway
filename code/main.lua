@@ -230,16 +230,21 @@ local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
 		
 		--Changes the background during worldgen.
 		--self.bg:SetTexture("images/bg_gen.xml", "bg_plain.tex")
-		self.bg:SetTexture("images/bg_up.xml", "bg_plain.tex")
+		
+		--This is a temporary fix because on Windows the background refuses to load
+		--even though the following two lines display the correct information.
+		local bgtest = self.bg:__tostring()
+		print(bgtest)
+		--self.bg:SetTexture("images/bg_up.xml", "bg_plain.tex")
 		--self.bg:SetTint(54, 189, 255, 1.0) --Red
 		--self.bg:SetTint(255, 54, 189, 1.0) --Green
 		--self.bg:SetTint(54, 255, 54, 1.0) --Purple
 		self.bg:SetTint(255, 255, 54, 1.0) --Blue
-		self.bg:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
-		self.bg:SetHRegPoint(GLOBAL.ANCHOR_MIDDLE)
-		self.bg:SetVAnchor(GLOBAL.ANCHOR_MIDDLE)
-		self.bg:SetHAnchor(GLOBAL.ANCHOR_MIDDLE)
-		self.bg:SetScaleMode(GLOBAL.SCALEMODE_FILLSCREEN)	
+		--self.bg:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
+		--self.bg:SetHRegPoint(GLOBAL.ANCHOR_MIDDLE)
+		--self.bg:SetVAnchor(GLOBAL.ANCHOR_MIDDLE)
+		--self.bg:SetHAnchor(GLOBAL.ANCHOR_MIDDLE)
+		--self.bg:SetScaleMode(GLOBAL.SCALEMODE_FILLSCREEN)	
 		
 		--The shadow hands can be changed.
 		--[[
