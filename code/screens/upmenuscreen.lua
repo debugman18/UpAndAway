@@ -210,8 +210,6 @@ local function build_screen(self)
 
 	--local character = GetPlayer().profile:GetValue("characterinthrone") or "wilson"
 
-	local is_rog_enabled = VarExists("IsDLCEnabled") and VarExists("REIGN_OF_GIANTS") and IsDLCEnabled(REIGN_OF_GIANTS)
-
 	self.button = self.proot:AddChild(ImageButton())
 	self.button:SetPosition(0, -0.32*bg_h, 0)
 	self.button:SetText("Return")
@@ -285,7 +283,7 @@ local function build_screen(self)
 			"\nThank you for playtesting, and being a part of our mod's development!",
 		}
 
-		if is_rog_enabled then
+		if IsDLCEnabled(REIGN_OF_GIANTS) then
 			table.insert(lines, 1, "Warning: The Reign of Giants DLC may currently cause bugs in this mod.\n")
 		end
 
