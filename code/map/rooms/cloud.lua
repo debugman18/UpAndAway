@@ -131,8 +131,8 @@ TheMod:AddRoom("CragLanding", {
 	contents = {
 		distributepercent = 0.4,
 		distributeprefabs = {
-			sky_lemur = 0.005,
-			beanlet = 0.005,
+			--sky_lemur = 0.005,
+			beanlet = 0.002,
 			cloud_fruit_tree = 0.01,
 		},
 	    countprefabs = {
@@ -297,7 +297,7 @@ TheMod:AddRoom("Crystal_Fields", {
 		distributepercent = 0.3,
 		distributeprefabs = {
 			crystal_spire = 0.09,
-			rainbowcoon = 0.05,
+			--rainbowcoon = 0.05,
 			jellyshroom_green = 0.05,
 			skyflower = 0.1,
 		},
