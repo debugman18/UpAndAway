@@ -229,13 +229,13 @@ local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
 		TheSim:LoadPrefabs {"MOD_"..modname}
 		
 		--Changes the background during worldgen.
-		--self.bg:SetTexture("images/bg_gen.xml", "bg_plain.tex")
 		local bgtest = self.bg:__tostring()
 		print(bgtest)
 		print("PRE")			
 		--This is a temporary fix because on Windows the background refuses to load
 		--even though the following two lines display the correct information.
-		--self.bg:SetTexture("images/bg_up.xml", "bg_plain.tex")
+		--self.bg:SetTexture("images/bg_up.xml", "images/bg_up.tex")
+		self.bg:SetTexture("images/bg_up.xml", "bg_up.tex")
 		local bgtest = self.bg:__tostring()
 		print(bgtest)
 		print("POST")	
@@ -243,11 +243,12 @@ local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
 		--self.bg:SetTint(255, 54, 189, 1.0) --Green
 		--self.bg:SetTint(54, 255, 54, 1.0) --Purple
 		self.bg:SetTint(255, 255, 54, 1.0) --Blue
-		--self.bg:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
-		--self.bg:SetHRegPoint(GLOBAL.ANCHOR_MIDDLE)
-		--self.bg:SetVAnchor(GLOBAL.ANCHOR_MIDDLE)
-		--self.bg:SetHAnchor(GLOBAL.ANCHOR_MIDDLE)
-		--self.bg:SetScaleMode(GLOBAL.SCALEMODE_FILLSCREEN)	
+		self.bg:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
+		self.bg:SetHRegPoint(GLOBAL.ANCHOR_MIDDLE)
+		self.bg:SetVAnchor(GLOBAL.ANCHOR_MIDDLE)
+		self.bg:SetHAnchor(GLOBAL.ANCHOR_MIDDLE)
+		self.bg:SetScaleMode(GLOBAL.SCALEMODE_FILLSCREEN)
+		self.bg:OnEnable()	
 		
 		--The shadow hands can be changed.
 		--[[
