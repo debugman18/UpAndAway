@@ -14,10 +14,7 @@ local function weather_off(inst)
 end	
 
 local function DoWeatherPick(inst)
-
-	local is_rog_enabled = IsDLCEnabled ~= nil and IsDLCEnabled(REIGN_OF_GIANTS)
-
-	if GetWorld() and is_rog_enabled then
+	if GetWorld() and IsDLCEnabled(REIGN_OF_GIANTS) then
 		weather_id = math.random(1,7)
 		GetPlayer().components.sanity:DoDelta(-40)
 		if weather_id == 1 then

@@ -4,6 +4,18 @@
 -- @author simplex
 
 
+Lambda = wickerrequire "paradigms.functional"
+Logic = wickerrequire "lib.logic"
+Pred = wickerrequire "lib.predicates"
+Game = wickerrequire "game"
+Math = wickerrequire "math"
+
+SearchSpace = wickerrequire "lib.searchspace"
+
+Configurable = wickerrequire "adjectives.configurable"
+Debuggable = wickerrequire "adjectives.debuggable"
+
+
 LOGROOT = MODROOT .. "log/"
 
 --[[
@@ -18,6 +30,14 @@ function GetStaticGenerator()
 	return w and w.components.staticgenerator
 end
 GetStaticGen = GetStaticGenerator
+
+
+if not VarExists("IsDLCEnabled") then
+	IsDLCEnabled = Lambda.False
+end
+if not VarExists("REIGN_OF_GIANTS") then
+	REIGN_OF_GIANTS = false
+end
 
 
 RegisterModEnvironment(_M)

@@ -44,8 +44,7 @@ local function common(Sim)
 
 	inst:AddComponent("inspectable")
 
-	local is_rog_enabled = VarExists("IsDLCEnabled") and VarExists("REIGN_OF_GIANTS") and IsDLCEnabled(REIGN_OF_GIANTS)
-	if not is_rog_enabled then
+	if not IsDLCEnabled(REIGN_OF_GIANTS) then
 		inst:AddComponent("tradable")
 	else 
 		inst:AddComponent("buryable")
@@ -69,8 +68,7 @@ local function cooked()
     inst.components.edible.hungervalue = 100
     inst.components.edible.sanityvalue = -50
 	inst:AddTag("cooked")	
-	local is_rog_enabled = VarExists("IsDLCEnabled") and VarExists("REIGN_OF_GIANTS") and IsDLCEnabled(REIGN_OF_GIANTS)
-	if not is_rog_enabled then
+	if not IsDLCEnabled(REIGN_OF_GIANTS) then
 		inst:RemoveComponent("tradable")
 	end	
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/magic_beans_cooked.xml"
