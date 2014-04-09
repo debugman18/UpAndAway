@@ -10,8 +10,6 @@ Pred = wickerrequire "lib.predicates"
 Game = wickerrequire "game"
 Math = wickerrequire "math"
 
-SearchSpace = wickerrequire "lib.searchspace"
-
 Configurable = wickerrequire "adjectives.configurable"
 Debuggable = wickerrequire "adjectives.debuggable"
 
