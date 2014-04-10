@@ -1,8 +1,12 @@
 ---
 -- Utility functions for filling STRINGS.
 --
--- @author simplex
---
+
+
+local is_character_with_unbelievably_silly_implementation = {
+	WATHGRITHR = true,
+	WEBBER = true,
+}
 
 
 ---
@@ -12,6 +16,10 @@
 -- @name Add
 --
 local Add = {}
+
+
+local FunctionQueue = wickerrequire "gadgets.functionqueue"
+
 
 ---
 -- Returns all characters. To be used as an iterator.
@@ -52,10 +60,24 @@ function Add.Names(names)
 	end
 end
 
-local function add_quote(prefab, character_upper, quote)
-	if not STRINGS.CHARACTERS[character_upper] then return end
 
-	local t = STRINGS.CHARACTERS[character_upper].DESCRIBE
+local sillyness_handler = FunctionQueue()
+TheMod:AddSimPostInit(sillyness_handler:ToFunction())
+
+
+local function add_quote(prefab, character_upper, quote, force)
+	if not force and is_character_with_unbelievably_silly_implementation[character_upper] then
+		table.insert(sillyness_handler, function()
+			add_quote(prefab, character_upper, quote, true)
+		end)
+		return
+	end
+
+	local t = STRINGS.CHARACTERS[character_upper]
+	if not t then return end
+
+	t = t.DESCRIBE
+	if not t then return end
 
 	local pieces = prefab:split(".")
 	local npieces = #pieces
