@@ -57,7 +57,7 @@ local function GetFaceTargetFn(inst)
 end
 
 local function KeepFaceTargetFn(inst, target)
-    return inst:GetDistanceSqToInst(target) <= 20*20
+    return inst:GetDistanceSqToInst(target) <= 15*15
 end
 
 local function ShouldGoHome(inst)
@@ -65,7 +65,7 @@ local function ShouldGoHome(inst)
     local home = inst.components.homeseeker and inst.components.homeseeker.home
     local shouldStay = home and home.components.childspawner
                       and home.components.childspawner:CountChildrenOutside() <= 1
-    return GetClock():IsDay() and not shouldStay
+    return false
 end
 
 function OwlBrain:OnStart()

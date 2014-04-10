@@ -24,24 +24,32 @@ local loot =
 }
 
 local MAX_TARGET_SHARES = 5
-local SHARE_TARGET_DIST = 40
-
-local function worshiprocks(inst)
-    local rock = _G.GetClosestInstWithTag("crystal", inst, 20)
-end    
+local SHARE_TARGET_DIST = 40   
 
 local function ontalk(inst, script)
     inst.SoundEmitter:PlaySound("dontstarve/pig/grunt")
 end
 
-local function RetargetFn(inst)
+local function RetargetFn(inst, target)
+    inst:DoTaskInTime(0, function(inst, target)
+        local x,y,z = inst.Transform:GetWorldPosition()
+        local ents = TheSim:FindEntities(x,y,z, 15, "owl_crystal")
+        for k,v in pairs(ents) do
+            if v and v:HasTag("owl_crystal") then
+                local rock = v
+                print(rock)
+                inst.components.homeseeker.home = rock
+            end    
+        end   
+    end)     
+
     local defenseTarget = inst
     local home = inst.components.homeseeker and inst.components.homeseeker.home
     if home and inst:GetDistanceSqToInst(home) < CFG.OWL.DEFEND_DIST*CFG.OWL.DEFEND_DIST then
         defenseTarget = home
     end
     local invader = FindEntity(defenseTarget or inst, CFG.OWL.DEFEND_DIST, function(guy)
-        return guy:HasTag("character") and not guy:HasTag("owl")
+        return guy.components.health and not guy:HasTag("owl")
     end)
     return invader
 end
@@ -145,8 +153,6 @@ local function fn()
     inst:DoPeriodicTask(5, function() inst.components.talker:Say("Whoo?", 3, noanim) end, 12)
     inst:DoPeriodicTask(5, function() inst.components.talker:ShutUp() end, 12)
 
-    --inst:DoPeriodicTask(1, worshiprocks(inst), 0)
-    
     return inst
 end
 

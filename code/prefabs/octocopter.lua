@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
 	Asset("ANIM", "anim/sky_octopus.zip"),
@@ -23,18 +25,28 @@ local MAX_CHASEAWAY_DIST = 40
 local MAX_TARGET_SHARES = 5
 local SHARE_TARGET_DIST = 40
 
+--Maximum distance for octocopter to target a target.
+local CFG_OCTOCOPTER_TARGET_DIST = 15
+--Maximum distance for octocopter to attack a target.
+local CFG_OCTOCOPTER_RANGE = 5
+--The health of the octocopter.
+local CFG_OCTOCOPTER_HEALTH = 1000
+--Minimum time between octocopter attacks.
+local CFG_OCTOCOPTER_ATTACK_PERIOD = 4
+
 local function Retarget(inst)
 
     local homePos = inst.components.knownlocations:GetLocation("home")
     local myPos = Vector3(inst.Transform:GetWorldPosition() )
-    if (homePos and distsq(homePos, myPos) > TUNING.KNIGHT_TARGET_DIST*TUNING.KNIGHT_TARGET_DIST) and not
+    if (homePos and distsq(homePos, myPos) > CFG_OCTOCOPTER_TARGET_DIST*CFG_OCTOCOPTER_TARGET_DIST) and not
     (inst.components.follower and inst.components.follower.leader) then
         return
     end
     
-    local newtarget = FindEntity(inst, TUNING.KNIGHT_TARGET_DIST, function(guy)
-        return (guy:HasTag("character") or guy:HasTag("monster") ) and inst.components.combat:CanTarget(guy)
+    local newtarget = FindEntity(inst, CFG_OCTOCOPTER_TARGET_DIST, function(guy)
+        return inst.components.combat:CanTarget(guy)
     end)
+
     return newtarget
 end
 
@@ -76,9 +88,14 @@ local function fn(Sim)
 
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "pig_torso"
-    inst.components.combat:SetAttackPeriod(TUNING.KNIGHT_ATTACK_PERIOD)
+    inst.components.combat:SetDefaultDamage(35)
+    --inst.components.combat.playerdamagepercent = .5
+    inst.components.combat.min_attack_period = CFG_OCTOCOPTER_ATTACK_PERIOD
+    inst.components.combat:SetAttackPeriod(CFG_OCTOCOPTER_ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(3, Retarget)
     inst.components.combat:SetKeepTargetFunction(KeepTarget)
+    inst.components.combat:SetRange(CFG_OCTOCOPTER_RANGE, CFG_OCTOCOPTER_RANGE)
+    inst.components.combat:SetAreaDamage(CFG_OCTOCOPTER_RANGE, 0.4)
 
     inst:AddComponent("locomotor")
     inst.components.locomotor.walkspeed = 5
@@ -90,7 +107,8 @@ local function fn(Sim)
     inst:SetStateGraph("SGoctocopter")
 
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(1000)	
+    inst.components.health:SetMaxHealth(CFG_OCTOCOPTER_HEALTH)	
+    print(inst.components.health.current)
 
     inst:AddComponent("knownlocations")
     

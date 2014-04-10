@@ -1,13 +1,14 @@
 BindGlobal()
 
+require "behaviours/chaseandattack"
 require "behaviours/standstill"
 require "behaviours/runaway"
 require "behaviours/doaction"
 require "behaviours/follow"
 require "behaviours/wander"
 
-local START_FACE_DIST = 6
-local KEEP_FACE_DIST = 8
+local START_FACE_DIST = 15
+local KEEP_FACE_DIST = 15
 local GO_HOME_DIST = 1
 local MAX_CHASE_TIME = 10
 local MAX_CHASE_DIST = 20
@@ -57,7 +58,7 @@ local function GetFollowTarget(octocopter)
     end
     
     if not octocopter.brain.followtarget then
-        octocopter.brain.followtarget = FindEntity(octocopter, 10, function(target)
+        octocopter.brain.followtarget = FindEntity(octocopter, 15, function(target)
             return target:HasTag("character") and not (target.components.health and target.components.health:IsDead() )
         end)
     end
@@ -71,12 +72,7 @@ function OctocopterBrain:OnStart()
     
     local root = PriorityNode(
     {
-        WhileNode( function()
-                        return self.inst.components.combat.target == nil or
-                               not self.inst.components.combat:InCooldown()
-                    end,
-                  "AttackMomentarily",
-                  ChaseAndAttack(self.inst, MAX_CHASE_TIME, MAX_CHASE_DIST) ),
+        ChaseAndAttack(self.inst, MAX_CHASE_TIME, MAX_CHASE_DIST),
         Follow(self.inst, function() return GetFollowTarget(self.inst) end, TUNING.GHOST_RADIUS*.25, TUNING.GHOST_RADIUS*.5, TUNING.GHOST_RADIUS),
         FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn),
         WhileNode(function() return ShouldGoHome(self.inst) end, "ShouldGoHome",
@@ -84,7 +80,7 @@ function OctocopterBrain:OnStart()
 
         SequenceNode{
 			ParallelNodeAny{
-				WaitNode(10),
+				WaitNode(3),
 				Wander(self.inst),
 			},
             ActionNode(function() self.inst.sg:GoToState("idle") end),

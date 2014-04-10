@@ -35,6 +35,7 @@ local function fn(Sim)
     MakeObstaclePhysics(inst, 1.)
     inst.AnimState:SetMultColour(1, 1, 1, 0.7)
 	inst:AddTag("crystal")
+	inst:AddTag("owl_crystal")
 
 	inst:AddComponent("inspectable")
 

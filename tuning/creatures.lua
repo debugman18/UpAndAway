@@ -39,8 +39,8 @@ SHEEP.UNCHARGE_DELAY = SHEEP.CHARGE_DELAY
 
 -- Owl tuning.
 OWL.HEALTH = 250
-OWL.DEFEND_DIST = 3
-OWL.DAMAGE = 6
+OWL.DEFEND_DIST = 8
+OWL.DAMAGE = 15
 OWL.ATTACK_PERIOD = .7
 
 BALL_LIGHTNING.HEALTH = 100
@@ -93,3 +93,12 @@ BALLOON_HOUND.FLOAT_AWAY_SPEED = 5
 BALLOON_HOUND.STILL_SPAWN_DIST = {3, 8}
 -- Distance to spawn a hound if the player is moving. {min, max}
 BALLOON_HOUND.MOVING_SPAWN_DIST = {8, 12}
+
+--Maximum distance for octocopter to target a target.
+OCTOCOPTER.TARGET_DIST = 15
+--Maximum distance for octocopter to attack a target.
+OCTOCOPTER.RANGE = 5
+--The health of the octocopter.
+OCTOCOPTER.HEALTH = 1000
+--Minimum time between octocopter attacks.
+OCTOCOPTER.ATTACK_PERIOD = 4

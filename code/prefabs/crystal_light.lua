@@ -39,6 +39,7 @@ local function fn(Sim)
     inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
  
     inst:AddTag("crystal")
+    inst:AddTag("owl_crystal")
   
     inst:AddTag("structure")
     MakeObstaclePhysics(inst, .1)    
