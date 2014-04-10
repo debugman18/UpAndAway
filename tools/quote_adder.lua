@@ -144,6 +144,9 @@ do
 
 	new_quoter = function(name)
 		name = name:lower()
+
+		if rawget(quotesfor, name) then return quotesfor[name] end
+
 		local ret = setmetatable({name, _extra = {}}, meta)
 		quotesfor[name] = ret
 		return ret
@@ -189,7 +192,9 @@ local function parse_quotes(name, str)
 				name = line:match('^%s+(%S+)%s*=%s*'..qt..qt..',?%s*$')
 				if name then
 					matched = true
-					ret[name] = ""
+					if not ret[name] then
+						ret[name] = ""
+					end
 					break
 				end
 			end
@@ -258,32 +263,7 @@ local function chomp(str)
 	end
 end
 
-local function process_strings_script(fname)
-	io.stderr:write("Processing strings script ", printable_in_fname(fname), "...\n")
-	local fh = open_file(fname)
-
-	local contents = fh:read("*a")
-	close_file(fh)
-
-	do
-		local pattern = "\n[^%S\n]*Add%.Names%s*(%b{})"
-
-		local found_names_table = false
-		for names_table_str in contents:gmatch(pattern) do
-			found_names_table = true
-			process_names_table( safe_run("return "..names_table_str) )
-		end
-		assert( found_names_table, "Add.Names block expected in strings script." )
-
-		found_names_table = false
-		contents = contents:gsub(pattern, function(str)
-			if found_names_table then return "" end
-			found_names_table = true
-
-			return "\n"..tostring(names_map)
-		end)
-	end
-
+local function process_lua_quotes_from_contents(contents)
 	local chunks = {}
 	local status, err = pcall(function()
 		local which_quote = 1
@@ -303,7 +283,37 @@ local function process_strings_script(fname)
 		io.stderr:write("FATAL ERROR:\n", err, "\n(did you forget to give it a name in Add.Names?)\nAborted.\n")
 		os.exit(1)
 	end
+	return chunks
+end
 
+local function process_strings_script(fname)
+	io.stderr:write("Processing strings script ", printable_in_fname(fname), "...\n")
+	local fh = open_file(fname)
+
+	local contents = fh:read("*a")
+	close_file(fh)
+
+	do
+		local pattern = "\n[^%S\n]*Add%.Names%s*(%b{})"
+
+		local found_names_table = false
+		for names_table_str in contents:gmatch(pattern) do
+			found_names_table = true
+			process_names_table( safe_run("return "..names_table_str) )
+		end
+		assert( found_names_table, "Add.Names block expected in strings script." )
+
+		found_names_table = false
+		contents = contents:gsub(pattern, function()
+			if found_names_table then return "" end
+			found_names_table = true
+
+			return "\n"..tostring(names_map)
+		end)
+	end
+
+	local chunks = process_lua_quotes_from_contents(contents)
+	
 	io.stderr:write("Processed strings script.\n")
 	return chunks
 end
@@ -311,6 +321,13 @@ end
 local function process_new_strings_file(fname, chunks)
 	io.stderr:write("Processing new strings file ", printable_in_fname(fname), "...\n")
 	local fh = open_file(fname)
+
+	if fname:match("%.lua$") then
+		local contents = fh:read("*a")
+		close_file(fh)
+		process_lua_quotes_from_contents(contents)
+		return chunks
+	end
 
 	local linecnt = 0
 
