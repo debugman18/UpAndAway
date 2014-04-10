@@ -104,7 +104,23 @@ local quotesfor
 
 local new_quoter, is_quoter
 do
-	local sort_keys = new_key_sorter({"ANY", "GENERIC"}, {1, "_extra"})
+	local sort_keys = new_key_sorter({"ANY", "GENERIC"})
+
+	local char_set = {}
+
+	local has_new_char = false
+
+	local get_sorted_char_list = (function()
+		local ret = {}
+
+		return function()
+			if has_new_char then
+				ret = sort_keys(char_set)
+				has_new_char = false
+			end
+			return ret
+		end
+	end)()
 
 	local function normalise_char_name(name)
 		if name == "ANY" or name == "GENERIC" then
@@ -120,21 +136,26 @@ do
 		end,
 
 		__newindex = function(self, k, v)
-			rawset(self, normalise_char_name(k), v)
+			assert( type(k) == "string", "String expected as what to quote." )
+			assert( v == nil or type(v) == "string", "String expected as quote." )
+			k = normalise_char_name(k)
+			if not char_set[k] then
+				char_set[k] = true
+				has_new_char = true
+			end
+			rawset(self, k, v)
 		end,
 
 		__tostring = function(self)
 			local chunks = {('Add.QuotesFor %q {'):format( assert(self[1]) )}
 
-			local quotes = assert( quotesfor[self[1]] )
-
-			for _, k in ipairs(sort_keys(quotes)) do
-				local v = quotes[k]
-				table.insert(chunks, TAB..("%s = %q,"):format(k, v))
-			end
-
-			for _, l in ipairs(self._extra) do
-				table.insert(chunks, l)
+			for _, k in ipairs( get_sorted_char_list() ) do
+				local v = rawget(self, k)
+				if type(v) == "string" and #v > 0 then
+					table.insert(chunks, TAB..("%s = %q,"):format(k, v))
+				else
+					table.insert(chunks, TAB..("%s = nil,"):format(k))
+				end
 			end
 
 			table.insert(chunks, "}")
@@ -143,12 +164,12 @@ do
 	}
 
 	new_quoter = function(name)
-		name = name:lower()
+		name = normalise_prefab_name(name)
 
 		if rawget(quotesfor, name) then return quotesfor[name] end
 
-		local ret = setmetatable({name, _extra = {}}, meta)
-		quotesfor[name] = ret
+		local ret = setmetatable({name}, meta)
+		rawset(quotesfor, name, ret)
 		return ret
 	end
 
@@ -172,12 +193,38 @@ quotesfor = setmetatable({}, {
 	end,
 })
 
+local safe_run = (function()
+	local env = {}
+
+	if _VERSION >= "Lua 5.2" then
+		return function (str)
+			return assert(load(str, nil, nil, env))()
+		end
+	else
+		return function (str)
+			local f = assert(loadstring(str))
+			setfenv(f, env)
+			return f()
+		end
+	end
+end)()
+
 -- Receives the stuff between curly brackets.
 local function parse_quotes(name, str)
-	str = assert(str:match( "^{%s-\n(.-)%s*}$" ))
-
 	local ret = new_quoter(name)
 
+	local raw_quotes = safe_run("return "..str)
+
+	for k, v in pairs(raw_quotes) do
+		if type(v) ~= "string" then
+			return error("String expected as quote for "..tostring(k), 0)
+		end
+		if not ret[k] or #v > 0 then
+			ret[k] = v
+		end
+	end
+
+	--[[
 	for line in str:gmatch("[^\n]+") do
 		local matched = false
 		for _, qt in ipairs{'"', "'"} do
@@ -203,6 +250,7 @@ local function parse_quotes(name, str)
 			table.insert(ret._extra, line)
 		end
 	end
+	]]--
 
 	return ret
 end
@@ -213,18 +261,6 @@ end
 --[[
 -- File/string processing.
 --]]
-
-local function safe_run(str)
-	local f
-	local env = {}
-	if _VERSION >= "Lua 5.2" then
-		f = assert(load(str, nil, nil, env))
-	else
-		f = assert(loadstring(str))
-		setfenv(f, env)
-	end
-	return f()
-end
 
 local function open_file(name, mode)
 	mode = mode or "r"
@@ -280,7 +316,7 @@ local function process_lua_quotes_from_contents(contents)
 		table.insert(chunks, contents:sub(last_pos))
 	end)
 	if not status then
-		io.stderr:write("FATAL ERROR:\n", err, "\n(did you forget to give it a name in Add.Names?)\nAborted.\n")
+		io.stderr:write("FATAL ERROR:\n", err, "\n(did you forget to include a prefab in Add.Names?)\nAborted.\n")
 		os.exit(1)
 	end
 	return chunks
