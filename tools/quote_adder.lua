@@ -322,7 +322,7 @@ local function process_new_strings_file(fname, chunks)
 	io.stderr:write("Processing new strings file ", printable_in_fname(fname), "...\n")
 	local fh = open_file(fname)
 
-	if fname:match("%.lua$") then
+	if type(fname) == "string" and fname:match("%.lua$") then
 		local contents = fh:read("*a")
 		close_file(fh)
 		process_lua_quotes_from_contents(contents)
