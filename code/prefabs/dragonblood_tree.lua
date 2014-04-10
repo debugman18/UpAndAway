@@ -114,6 +114,8 @@ local function fn(Sim, stage)
 
 	inst:AddComponent("inspectable")
 
+   	inst:AddComponent("lootdropper") 
+
 	inst:AddComponent("growable")
     inst.components.growable.stages = growth_stages
     inst.components.growable:SetStage(l_stage)
@@ -125,8 +127,6 @@ local function fn(Sim, stage)
     inst.components.workable:SetWorkLeft(3)
     inst.components.workable:SetOnFinishCallback(chopped)
     inst.components.workable:SetOnWorkCallback(chop)	
-
-   	inst:AddComponent("lootdropper") 
 
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("dragonblood_tree.tex")
