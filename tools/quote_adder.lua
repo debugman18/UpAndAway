@@ -351,7 +351,7 @@ local function process_new_strings_file(fname, chunks)
 		for line in fh:lines() do
 			linecnt = linecnt + 1
 			if not line:match("^%s*$") then
-				local prefab, quote = line:match("^%s*(.-):(.+)$")
+				local prefab, quote = line:match("^%s*(.-)[:=](.+)$")
 				if not prefab or #prefab == 0 then
 					io.stderr:write("Invalid line:\n", " => ", line, "\nAborted.\n")
 					os.exit(1)
