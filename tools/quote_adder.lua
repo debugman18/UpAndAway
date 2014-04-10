@@ -102,11 +102,13 @@ end
 
 local quotesfor
 
-local new_quoter, is_quoter
+local new_quoter, is_character
 do
 	local sort_keys = new_key_sorter({"ANY", "GENERIC"})
 
 	local char_set = {}
+
+	is_character = function(k) return char_set[k] end
 
 	local has_new_char = false
 
@@ -172,10 +174,6 @@ do
 		rawset(quotesfor, name, ret)
 		return ret
 	end
-
-	is_quoter = function(x)
-		return getmetatable(x) == meta
-	end
 end
 
 quotesfor = setmetatable({}, {
@@ -223,34 +221,6 @@ local function parse_quotes(name, str)
 			ret[k] = v
 		end
 	end
-
-	--[[
-	for line in str:gmatch("[^\n]+") do
-		local matched = false
-		for _, qt in ipairs{'"', "'"} do
-			local name, quote
-
-			name, quote = line:match('^%s+(%S+)%s*=%s*'..qt..'(.-[^\\])'..qt..',?%s*$')
-			if name then
-				matched = true
-				ret[name] = quote
-				break
-			else
-				name = line:match('^%s+(%S+)%s*=%s*'..qt..qt..',?%s*$')
-				if name then
-					matched = true
-					if not ret[name] then
-						ret[name] = ""
-					end
-					break
-				end
-			end
-		end
-		if not matched then
-			table.insert(ret._extra, line)
-		end
-	end
-	]]--
 
 	return ret
 end
@@ -380,6 +350,11 @@ local function process_new_strings_file(fname, chunks)
 		return chunks
 	end
 
+	if not is_character(charname) then
+		io.stderr:write("ERROR: ", charname, " is not a valid character name.\nAborted.\n")
+		os.exit(1)
+	end
+
 	io.stderr:write("Got character name: ", charname, "\n")
 
 	io.stderr:write("Processing new quotes for ", charname, "...\n")
@@ -459,7 +434,7 @@ local strings_script_name, new_strings_file_name = ...
 
 if not strings_script_name then
 	print_usage()
-	os.exit(1)
+	os.exit(2)
 end
 
 local chunks = process_strings_script(strings_script_name)
