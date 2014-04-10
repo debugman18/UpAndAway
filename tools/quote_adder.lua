@@ -104,7 +104,7 @@ local quotesfor
 
 local new_quoter, is_quoter
 do
-	local sort_keys = new_key_sorter({"ANY", "GENERIC"}, {1})
+	local sort_keys = new_key_sorter({"ANY", "GENERIC"}, {1, "_extra"})
 
 	local function normalise_char_name(name)
 		if name == "ANY" or name == "GENERIC" then
@@ -133,6 +133,10 @@ do
 				table.insert(chunks, TAB..("%s = %q,"):format(k, v))
 			end
 
+			for _, l in ipairs(self._extra) do
+				table.insert(chunks, l)
+			end
+
 			table.insert(chunks, "}")
 			return table.concat(chunks, "\n")
 		end,
@@ -140,7 +144,7 @@ do
 
 	new_quoter = function(name)
 		name = name:lower()
-		local ret = setmetatable({name}, meta)
+		local ret = setmetatable({name, _extra = {}}, meta)
 		quotesfor[name] = ret
 		return ret
 	end
@@ -167,14 +171,31 @@ quotesfor = setmetatable({}, {
 
 -- Receives the stuff between curly brackets.
 local function parse_quotes(name, str)
+	str = assert(str:match( "^{%s-\n(.-)%s*}$" ))
+
 	local ret = new_quoter(name)
 
-	for _, qt in ipairs{'"', "'"} do
-		for name, quote in str:gmatch('\n%s+(%S+)%s*=%s*'..qt..'(.-[^\\])'..qt..',?') do
-			ret[name] = quote
+	for line in str:gmatch("[^\n]+") do
+		local matched = false
+		for _, qt in ipairs{'"', "'"} do
+			local name, quote
+
+			name, quote = line:match('^%s+(%S+)%s*=%s*'..qt..'(.-[^\\])'..qt..',?%s*$')
+			if name then
+				matched = true
+				ret[name] = quote
+				break
+			else
+				name = line:match('^%s+(%S+)%s*=%s*'..qt..qt..',?%s*$')
+				if name then
+					matched = true
+					ret[name] = ""
+					break
+				end
+			end
 		end
-		for name in str:gmatch('\n%s+(%S+)%s*=%s*'..qt..qt..',?') do
-			ret[name] = ""
+		if not matched then
+			table.insert(ret._extra, line)
 		end
 	end
 

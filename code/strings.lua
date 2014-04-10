@@ -153,7 +153,7 @@ Add.QuotesFor "alien" {
     wickerbottom = "",
     wolfgang = "Wolfgang is confused and scared.",
     woodie = "",
-    wx78 = "",
+    wx78 = "MY OPTICS ARE MALFUNCTIONING",
 }
 
 Add.QuotesFor "antlion" {
@@ -177,12 +177,13 @@ Add.QuotesFor "ball_lightning" {
     wickerbottom = "",
     wolfgang = "Is zappy, floaty pest.",
     woodie = "",
-    wx78 = "",
+    wx78 = "STAY AWAY FROM ME",
 }
 
 Add.QuotesFor "balloon_hound" {
     GENERIC = "How did you get here?",
     wathgrithr = "Full of air and rage.",
+    wx78 = "I WANT TO POP IT",
 }
 
 Add.QuotesFor "bean_giant" {
@@ -195,7 +196,7 @@ Add.QuotesFor "bean_giant" {
     willow = "The bigger they are... The better they burn!",
     wolfgang = "Not little plant at all!",
     woodie = "",
-    wx78 = "",
+    wx78 = "THIS BEAN IS OUT OF CONTROL",
 }
 
 Add.QuotesFor "bean_giant_statue" {
@@ -207,7 +208,7 @@ Add.QuotesFor "bean_giant_statue" {
     wickerbottom = "",
     wolfgang = "Is big stone monster.",
     woodie = "",
-    wx78 = "",
+    wx78 = "IT LOOKS MEAN",
 }
 
 Add.QuotesFor "beanlet" {
@@ -220,7 +221,7 @@ Add.QuotesFor "beanlet" {
     willow = "Time for cooked beans.",
     wolfgang = "Little plant runs around.",
     woodie = "",
-    wx78 = "",
+    wx78 = "WHAT DO YOU WANT, SMALL BEAN?",
 }
 
 Add.QuotesFor "beanlet_shell" {
@@ -232,7 +233,7 @@ Add.QuotesFor "beanlet_shell" {
     wickerbottom = "",
     wolfgang = "Little plants gone.",
     woodie = "",
-    wx78 = "",
+    wx78 = "ITS ARMOR IS MINE NOW",
 }
 
 Add.QuotesFor "beanlet_zealot" {
@@ -245,7 +246,7 @@ Add.QuotesFor "beanlet_zealot" {
     willow = "Reminds me of me, except I worship fire.",
     wolfgang = "Little plant is very angry!",
     woodie = "",
-    wx78 = "",
+    wx78 = "THIS BEAN IS ANGRY",
 }
 
 Add.QuotesFor "beanstalk" {
@@ -258,7 +259,7 @@ Add.QuotesFor "beanstalk" {
     willow = "That would make a spectacular fire.",
     wolfgang = "Is big beanstalk. Reminds Wolfgang of home.",
     woodie = "Even Lucy can't chop through it.",
-    wx78 = "IT HAS GROWN OUT OF CONTROL.",
+    wx78 = "I CANNOT CALCULATE ITS HEIGHT",
 }
 
 Add.QuotesFor "beanstalk_chunk" {
@@ -270,7 +271,7 @@ Add.QuotesFor "beanstalk_chunk" {
     wickerbottom = "",
     wolfgang = "Piece of big plant.",
     woodie = "",
-    wx78 = "",
+    wx78 = "A PIECE OF BEANSTALK",
 }
 
 Add.QuotesFor "beanstalk_exit" {
@@ -282,7 +283,7 @@ Add.QuotesFor "beanstalk_exit" {
     wickerbottom = "",
     wolfgang = "Is a long way down.",
     woodie = "",
-    wx78 = "",
+    wx78 = "IT IS TOO FAR TO JUMP",
 }
 
 Add.QuotesFor "beanstalk_sapling" {
@@ -294,11 +295,12 @@ Add.QuotesFor "beanstalk_sapling" {
     wickerbottom = "",
     wolfgang = "Is small now, big later.",
     woodie = "",
-    wx78 = "",
+    wx78 = "GROW FASTER",
 }
 
 Add.QuotesFor "beanstalk_wall" {
     wathgrithr = "A wall of plant.",
+    wx78 = "A WALL OF BEANSTALK",
 }
 
 Add.QuotesFor "bee_marshmallow" {
@@ -310,11 +312,12 @@ Add.QuotesFor "bee_marshmallow" {
     wickerbottom = "",
     wolfgang = "Is bee or is not too bee? ",
     woodie = "",
-    wx78 = "",
+    wx78 = "SUGAR BUZZ",
 }
 
 Add.QuotesFor "bird_paradise" {
     wathgrithr = "Its feathers would look good on my helmet.",
+    wx78 = "ITS FEATHERS ARE ATTRACTIVE",
 }
 
 Add.QuotesFor "blackstaff" {
@@ -326,7 +329,7 @@ Add.QuotesFor "blackstaff" {
     wickerbottom = "",
     wolfgang = "Makes thunder.",
     woodie = "",
-    wx78 = "",
+    wx78 = "IT IS FOR OVERLOADING CIRCUITS",
 }
 
 Add.QuotesFor "blacktea" {
@@ -338,7 +341,7 @@ Add.QuotesFor "blacktea" {
     wickerbottom = "",
     wolfgang = "Is nearly as strong as me!",
     woodie = "",
-    wx78 = "",
+    wx78 = "A STRONG DRINK",
 }
 
 Add.QuotesFor "blacktea_leaves" {
@@ -350,7 +353,7 @@ Add.QuotesFor "blacktea_leaves" {
     wickerbottom = "",
     wolfgang = "Is for making drink.",
     woodie = "",
-    wx78 = "",
+    wx78 = "ADD HOT WATER",
 }
 
 Add.QuotesFor "candy_fruit" {
@@ -362,7 +365,7 @@ Add.QuotesFor "candy_fruit" {
     wickerbottom = "",
     wolfgang = "",
     woodie = "",
-    wx78 = "",
+    wx78 = "IS IT CANDY OR FRUIT?",
 }
 
 Add.QuotesFor "cauldron" {
@@ -374,15 +377,17 @@ Add.QuotesFor "cauldron" {
     wickerbottom = "",
     wolfgang = "Is belong to witch?",
     woodie = "",
-    wx78 = "",
+    wx78 = "I WANT TO PUT IT ON MY HEAD",
 }
 
 Add.QuotesFor "cheshire" {
     wathgrithr = "It's up to no good.",
+    wx78 = "WHAT ARE YOU SO HAPPY ABOUT?",
 }
 
 Add.QuotesFor "chimera" {
     wathgrithr = "A worthy opponant.",
+    wx78 = "A FREAK OF NATURE",
 }
 
 Add.QuotesFor "cloud_algae" {
@@ -394,7 +399,7 @@ Add.QuotesFor "cloud_algae" {
     wickerbottom = "",
     wolfgang = "Is plant-cloud.",
     woodie = "",
-    wx78 = "",
+    wx78 = "THIS SHOULD NOT GROW HERE",
 }
 
 Add.QuotesFor "cloud_algae_fragment" {
@@ -406,11 +411,12 @@ Add.QuotesFor "cloud_algae_fragment" {
     wickerbottom = "",
     wolfgang = "Is plant-cloud.",
     woodie = "",
-    wx78 = "",
+    wx78 = "I PICKED IT",
 }
 
 Add.QuotesFor "cloud_bomb" {
     wathgrithr = "The sky is exploding!",
+    wx78 = "BOOM",
 }
 
 Add.QuotesFor "cloud_bush" {
@@ -423,7 +429,7 @@ Add.QuotesFor "cloud_bush" {
     willow = "It has food. It can live a bit longer.",
     wolfgang = "Sweet food balls. Yum!",
     woodie = "",
-    wx78 = "",
+    wx78 = "LIVING CLOUD PLANT",
 }
 
 Add.QuotesFor "cloud_bush.picked" {
@@ -447,7 +453,7 @@ Add.QuotesFor "cloud_coral" {
     wickerbottom = "",
     wolfgang = "Is plant-rock.",
     woodie = "",
-    wx78 = "",
+    wx78 = "LIVING CLOUD ROCK",
 }
 
 Add.QuotesFor "cloud_coral_fragment" {
@@ -459,7 +465,7 @@ Add.QuotesFor "cloud_coral_fragment" {
     wickerbottom = "",
     wolfgang = "Is plant-rock.",
     woodie = "",
-    wx78 = "",
+    wx78 = "I BROKE IT",
 }
 
 Add.QuotesFor "cloud_cotton" {
@@ -471,7 +477,7 @@ Add.QuotesFor "cloud_cotton" {
     wickerbottom = "",
     wolfgang = "Is for make clothes.",
     woodie = "",
-    wx78 = "",
+    wx78 = "IT IS VERY SOFT",
 }
 
 Add.QuotesFor "cloud_fruit" {
@@ -483,7 +489,7 @@ Add.QuotesFor "cloud_fruit" {
     wickerbottom = "",
     wolfgang = "Fluffy plant. Still yummy.",
     woodie = "",
-    wx78 = "",
+    wx78 = "IT LOOKS EDIBLE",
 }
 
 Add.QuotesFor "cloud_fruit_tree" {
@@ -495,11 +501,12 @@ Add.QuotesFor "cloud_fruit_tree" {
     wickerbottom = "",
     wolfgang = "Is growing without dirt. Is magic?",
     woodie = "",
-    wx78 = "",
+    wx78 = "HOW DOES IT GROW?",
 }
 
 Add.QuotesFor "cloud_storage" {
     wathgrithr = "A cloud to hold my belongings!",
+    wx78 = "CLOUD STORAGE",
 }
 
 Add.QuotesFor "cloud_turf" {
@@ -512,11 +519,12 @@ Add.QuotesFor "cloud_turf" {
     willow = "Cloud. Always cloud.",
     wolfgang = "Is soft ground.",
     woodie = "",
-    wx78 = "",
+    wx78 = "I SHOULD FALL THROUGH THIS",
 }
 
 Add.QuotesFor "cloud_wall" {
     wathgrithr = "The walls of Valhalla.",
+    wx78 = "A WALL OF FOG",
 }
 
 Add.QuotesFor "cloudcrag" {
@@ -528,7 +536,7 @@ Add.QuotesFor "cloudcrag" {
     wickerbottom = "",
     wolfgang = "Is mound of cloud.",
     woodie = "",
-    wx78 = "",
+    wx78 = "SOLID CLOUDS",
 }
 
 Add.QuotesFor "colored_corn" {
@@ -540,7 +548,7 @@ Add.QuotesFor "colored_corn" {
     wickerbottom = "",
     wolfgang = "Is tasty rock.",
     woodie = "",
-    wx78 = "",
+    wx78 = "COLOURFUL VEGETABLE",
 }
 
 Add.QuotesFor "cotton_candy" {
@@ -553,7 +561,7 @@ Add.QuotesFor "cotton_candy" {
     willow = "A tasty treat is second only to fire.",
     wolfgang = "Is like tasty cloud.",
     woodie = "",
-    wx78 = "",
+    wx78 = "IT IS STRUCTURALLY UNSOUND",
 }
 
 Add.QuotesFor "cotton_hat" {
@@ -565,7 +573,7 @@ Add.QuotesFor "cotton_hat" {
     wickerbottom = "",
     wolfgang = "Soft on head.",
     woodie = "",
-    wx78 = "",
+    wx78 = "IT IS NOT WATERPROOF",
 }
 
 Add.QuotesFor "cotton_vest" {
@@ -577,15 +585,17 @@ Add.QuotesFor "cotton_vest" {
     wickerbottom = "",
     wolfgang = "Is comfy!",
     woodie = "",
-    wx78 = "",
+    wx78 = "I LOOK LIKE A SHEEP",
 }
 
 Add.QuotesFor "crystal_armor" {
     wathgrithr = "Armor made from precious mineral.",
+    wx78 = "SHINY AND PROTECTIVE",
 }
 
 Add.QuotesFor "crystal_axe" {
     wathgrithr = "An artifact of Thor!",
+    wx78 = "THIS IS A BAD IDEA",
 }
 
 Add.QuotesFor "crystal_black" {
@@ -598,11 +608,12 @@ Add.QuotesFor "crystal_black" {
     willow = "It's dark. Fire is light. I know which is better.",
     wolfgang = "Is dark jewel.",
     woodie = "",
-    wx78 = "",
+    wx78 = "DARK CRYSTAL",
 }
 
 Add.QuotesFor "crystal_cap" {
     wathgrithr = "It's almost as good as mine!",
+    wx78 = "DECORATION FOR MY HEAD MODULE",
 }
 
 Add.QuotesFor "crystal_fragment_black" {
@@ -615,7 +626,7 @@ Add.QuotesFor "crystal_fragment_black" {
     willow = "Piece of crystal.",
     wolfgang = "Is cracked.",
     woodie = "",
-    wx78 = "",
+    wx78 = "DARK CRYSTAL",
 }
 
 Add.QuotesFor "crystal_fragment_light" {
@@ -628,7 +639,7 @@ Add.QuotesFor "crystal_fragment_light" {
     willow = "It's slightly glowing.",
     wolfgang = "Is broken.",
     woodie = "",
-    wx78 = "",
+    wx78 = "LIGHT CRYSTAL",
 }
 
 Add.QuotesFor "crystal_fragment_quartz" {
@@ -641,7 +652,7 @@ Add.QuotesFor "crystal_fragment_quartz" {
     willow = "Someone broke it. Good.",
     wolfgang = "Is pebble.",
     woodie = "",
-    wx78 = "",
+    wx78 = "SHINY CRYSTAL",
 }
 
 Add.QuotesFor "crystal_fragment_relic" {
@@ -654,7 +665,7 @@ Add.QuotesFor "crystal_fragment_relic" {
     willow = "Ancient junk.",
     wolfgang = "Is just a piece.",
     woodie = "",
-    wx78 = "",
+    wx78 = "OLD CRYSTAL",
 }
 
 Add.QuotesFor "crystal_fragment_spire" {
@@ -666,7 +677,7 @@ Add.QuotesFor "crystal_fragment_spire" {
     wickerbottom = "",
     willow = "",
     woodie = "",
-    wx78 = "",
+    wx78 = "FORMERLY TALL CRYSTAL",
 }
 
 Add.QuotesFor "crystal_fragment_water" {
@@ -679,7 +690,7 @@ Add.QuotesFor "crystal_fragment_water" {
     willow = "Hah, it's broken! Good.",
     wolfgang = "Is smashed.",
     woodie = "",
-    wx78 = "",
+    wx78 = "WET CRYSTAL",
 }
 
 Add.QuotesFor "crystal_fragment_white" {
@@ -692,7 +703,7 @@ Add.QuotesFor "crystal_fragment_white" {
     willow = "Smashed.",
     wolfgang = "Is not whole.",
     woodie = "",
-    wx78 = "",
+    wx78 = "WHITE CRYSTAL",
 }
 
 Add.QuotesFor "crystal_lamp" {
@@ -705,7 +716,7 @@ Add.QuotesFor "crystal_lamp" {
     willow = "I love lamps.",
     wolfgang = "Pretty rock makes light!",
     woodie = "",
-    wx78 = "",
+    wx78 = "ITS LIGHT IS COMFORTING",
 }
 
 Add.QuotesFor "crystal_light" {
@@ -718,7 +729,7 @@ Add.QuotesFor "crystal_light" {
     willow = "It glows like fire.",
     wolfgang = "Is bright!",
     woodie = "",
-    wx78 = "",
+    wx78 = "LIGHT CRYSTAL",
 }
 
 Add.QuotesFor "crystal_quartz" {
@@ -731,7 +742,7 @@ Add.QuotesFor "crystal_quartz" {
     willow = "I wish rocks could burn.",
     wolfgang = "Is stone.",
     woodie = "",
-    wx78 = "",
+    wx78 = "SHINY CRYSTAL",
 }
 
 Add.QuotesFor "crystal_relic" {
@@ -744,7 +755,7 @@ Add.QuotesFor "crystal_relic" {
     willow = "Broken ancient junk.",
     wolfgang = "Is old.",
     woodie = "",
-    wx78 = "",
+    wx78 = "OLD CRYSTAL",
 }
 
 Add.QuotesFor "crystal_spire" {
@@ -757,11 +768,12 @@ Add.QuotesFor "crystal_spire" {
     willow = "A big shiny rock.",
     wolfgang = "Is spiky, shiny rock.",
     woodie = "",
-    wx78 = "",
+    wx78 = "TALL CRYSTAL",
 }
 
 Add.QuotesFor "crystal_wall" {
     wathgrithr = "It sparkles.",
+    wx78 = "A WALL OF CRYSTAL",
 }
 
 Add.QuotesFor "crystal_water" {
@@ -774,7 +786,7 @@ Add.QuotesFor "crystal_water" {
     willow = "I don't like water.",
     wolfgang = "Is pretty blue.",
     woodie = "",
-    wx78 = "",
+    wx78 = "WET CRYSTAL",
 }
 
 Add.QuotesFor "crystal_white" {
@@ -787,7 +799,7 @@ Add.QuotesFor "crystal_white" {
     willow = "White is boring. Red is better.",
     wolfgang = "Is blank. Like thoughts.",
     woodie = "",
-    wx78 = "",
+    wx78 = "WHITE CRYSTAL",
 }
 
 Add.QuotesFor "cumulostone" {
@@ -799,7 +811,7 @@ Add.QuotesFor "cumulostone" {
     wickerbottom = "",
     wolfgang = "Is rock and is cloud.",
     woodie = "",
-    wx78 = "",
+    wx78 = "SOFT ROCK",
 }
 
 Add.QuotesFor "datura_petals" {
@@ -812,7 +824,7 @@ Add.QuotesFor "datura_petals" {
     willow = "The stupid thing smells like winter mint.",
     wolfgang = "Smells like wimpy tears.",
     woodie = " It smells of wet fur and old pine.",
-    wx78 = "IT OVERLOADS MY SENSORS WITH LIFE.",
+    wx78 = "IT SMELLS LIKE FLESHLINGS",
 }
 
 Add.QuotesFor "dragonblood_log" {
@@ -824,7 +836,7 @@ Add.QuotesFor "dragonblood_log" {
     wickerbottom = "",
     wolfgang = "Is good wood.",
     woodie = "",
-    wx78 = "",
+    wx78 = "IT IS VERY WARM",
 }
 
 Add.QuotesFor "dragonblood_sap" {
@@ -836,7 +848,7 @@ Add.QuotesFor "dragonblood_sap" {
     wickerbottom = "",
     wolfgang = "Does not taste of blood.",
     woodie = "",
-    wx78 = "",
+    wx78 = "TREE BLOOD",
 }
 
 Add.QuotesFor "dragonblood_tree" {
@@ -848,7 +860,7 @@ Add.QuotesFor "dragonblood_tree" {
     wickerbottom = "",
     wolfgang = "Strange tree.",
     woodie = "",
-    wx78 = "",
+    wx78 = "A STRANGE TREE",
 }
 
 Add.QuotesFor "duckraptor" {
@@ -861,7 +873,7 @@ Add.QuotesFor "duckraptor" {
     willow = "I want it as a pet.",
     wolfgang = "So many claws.",
     woodie = "",
-    wx78 = "",
+    wx78 = "IT IS DIFFERENT NOW",
 }
 
 Add.QuotesFor "flying_fish" {
@@ -874,15 +886,17 @@ Add.QuotesFor "flying_fish" {
     willow = "What an strange creature.",
     wolfgang = "Is fish out of water.",
     woodie = "",
-    wx78 = "",
+    wx78 = "I HOPE IT SUFFOCATES",
 }
 
 Add.QuotesFor "flying_fish_pond" {
     wathgrithr = "Can they swim?",
+    wx78 = "IT LOOKS EMPTY",
 }
 
 Add.QuotesFor "golden_amulet" {
     wathgrithr = "An amulet of Freyja.",
+    wx78 = "IT MATCHES MY CHASSIS",
 }
 
 Add.QuotesFor "golden_egg" {
@@ -894,7 +908,7 @@ Add.QuotesFor "golden_egg" {
     wickerbottom = "",
     wolfgang = "Is not for eating.",
     woodie = "",
-    wx78 = "",
+    wx78 = "I LIKE YOU, EGG",
 }
 
 Add.QuotesFor "golden_golem" {
@@ -906,7 +920,7 @@ Add.QuotesFor "golden_golem" {
     willow = "Metal doesn't burn.",
     wolfgang = "Metal Giant!",
     woodie = "",
-    wx78 = "",
+    wx78 = "WE ARE BROTHERS",
 }
 
 Add.QuotesFor "golden_lyre" {
@@ -919,7 +933,7 @@ Add.QuotesFor "golden_lyre" {
     willow = "The only music I like is the sound of fire burning.",
     wolfgang = "What pretty noises.",
     woodie = "",
-    wx78 = "",
+    wx78 = "MUSIC IS OVERRATED",
 }
 
 Add.QuotesFor "golden_petals" {
@@ -931,7 +945,7 @@ Add.QuotesFor "golden_petals" {
     wickerbottom = "",
     wolfgang = "Is from shiny plant.",
     woodie = "",
-    wx78 = "",
+    wx78 = "I KILLED IT",
 }
 
 Add.QuotesFor "golden_rose" {
@@ -943,7 +957,7 @@ Add.QuotesFor "golden_rose" {
     wickerbottom = "",
     wolfgang = "Shiny flower has sharp thorns.",
     woodie = "",
-    wx78 = "",
+    wx78 = "IT IS VERY NICE",
 }
 
 Add.QuotesFor "golden_sunflower" {
@@ -955,7 +969,7 @@ Add.QuotesFor "golden_sunflower" {
     wickerbottom = "",
     wolfgang = "Is big yellow flower.",
     woodie = "",
-    wx78 = "",
+    wx78 = "SOLAR FLOWER",
 }
 
 Add.QuotesFor "golden_sunflower_seeds" {
@@ -967,7 +981,7 @@ Add.QuotesFor "golden_sunflower_seeds" {
     wickerbottom = "",
     wolfgang = "This grow big shiny plant.",
     woodie = "",
-    wx78 = "",
+    wx78 = "I CAN PLANT THEM",
 }
 
 Add.QuotesFor "goose" {
@@ -980,7 +994,7 @@ Add.QuotesFor "goose" {
     willow = "There's a goose on the loose.",
     wolfgang = "Egg is not tasty. Bird is though.",
     woodie = "",
-    wx78 = "",
+    wx78 = "EGG SOURCE DETECTED",
 }
 
 Add.QuotesFor "grabber" {
@@ -992,7 +1006,7 @@ Add.QuotesFor "grabber" {
     wickerbottom = "",
     wolfgang = "Makes things closer.",
     woodie = "",
-    wx78 = "",
+    wx78 = "EXTENDABLE ARM MODULE",
 }
 
 Add.QuotesFor "greenbean" {
@@ -1004,7 +1018,7 @@ Add.QuotesFor "greenbean" {
     wickerbottom = "",
     wolfgang = "Wolfgang has bean green before!",
     woodie = "",
-    wx78 = "",
+    wx78 = "HEALTHY",
 }
 
 Add.QuotesFor "greentea" {
@@ -1016,7 +1030,7 @@ Add.QuotesFor "greentea" {
     wickerbottom = "",
     wolfgang = "Is not even green.",
     woodie = "",
-    wx78 = "",
+    wx78 = "A HOT DRINK",
 }
 
 Add.QuotesFor "gustflower" {
@@ -1028,7 +1042,7 @@ Add.QuotesFor "gustflower" {
     wickerbottom = "",
     wolfgang = "Plant makes whoosh.",
     woodie = "",
-    wx78 = "",
+    wx78 = "WIND PLANT",
 }
 
 Add.QuotesFor "gustflower_seeds" {
@@ -1040,7 +1054,7 @@ Add.QuotesFor "gustflower_seeds" {
     wickerbottom = "",
     wolfgang = "Is for blowy flower.",
     woodie = "",
-    wx78 = "",
+    wx78 = "FOR PLANTING THE WIND PLANT",
 }
 
 Add.QuotesFor "hive_marshmallow" {
@@ -1052,7 +1066,7 @@ Add.QuotesFor "hive_marshmallow" {
     wickerbottom = "",
     wolfgang = "Taste of bug.",
     woodie = "",
-    wx78 = "",
+    wx78 = "A HIVE OF SUGAR",
 }
 
 Add.QuotesFor "jellyshroom_blue" {
@@ -1064,7 +1078,7 @@ Add.QuotesFor "jellyshroom_blue" {
     wickerbottom = "",
     wolfgang = "Is squishy.",
     woodie = "",
-    wx78 = "",
+    wx78 = "BLUE GUMMY CANDY",
 }
 
 Add.QuotesFor "jellyshroom_green" {
@@ -1077,7 +1091,7 @@ Add.QuotesFor "jellyshroom_green" {
     willow = "",
     wolfgang = "Is squidgy.",
     woodie = "",
-    wx78 = "",
+    wx78 = "GREEN GUMMY CANDY",
 }
 
 Add.QuotesFor "jellyshroom_red" {
@@ -1089,7 +1103,7 @@ Add.QuotesFor "jellyshroom_red" {
     wickerbottom = "",
     wolfgang = "Is squeezy.",
     woodie = "",
-    wx78 = "",
+    wx78 = "RED GUMMY CANDY",
 }
 
 Add.QuotesFor "kettle" {
@@ -1101,7 +1115,7 @@ Add.QuotesFor "kettle" {
     wickerbottom = "",
     wolfgang = "Gets Wolfgang into hot water!",
     woodie = "",
-    wx78 = "",
+    wx78 = "IT IS SCREAMING",
 }
 
 Add.QuotesFor "kettle_item" {
@@ -1113,7 +1127,7 @@ Add.QuotesFor "kettle_item" {
     wickerbottom = "",
     wolfgang = "Gets Wolfgang into hot water!",
     woodie = "",
-    wx78 = "",
+    wx78 = "IT IS SCREAMING",
 }
 
 Add.QuotesFor "kite" {
@@ -1125,11 +1139,12 @@ Add.QuotesFor "kite" {
     wickerbottom = "",
     wolfgang = "Is for flying.",
     woodie = "",
-    wx78 = "",
+    wx78 = "A CHILDREN'S TOY",
 }
 
 Add.QuotesFor "lionant" {
     wathgrithr = "A beast from Hel!",
+    wx78 = "THIS IS AN ABOMINATION",
 }
 
 Add.QuotesFor "lionblob" {
@@ -1141,7 +1156,7 @@ Add.QuotesFor "lionblob" {
     wickerbottom = "",
     wolfgang = "Is not right.",
     woodie = "",
-    wx78 = "",
+    wx78 = "STOMP",
 }
 
 Add.QuotesFor "live_gnome" {
@@ -1153,7 +1168,7 @@ Add.QuotesFor "live_gnome" {
     wickerbottom = "",
     wolfgang = "Garden man lives?",
     woodie = "",
-    wx78 = "",
+    wx78 = "ARE YOU AN AUTOMATON?",
 }
 
 Add.QuotesFor "longbill" {
@@ -1166,7 +1181,7 @@ Add.QuotesFor "longbill" {
     willow = "Ha, it has a big nose!",
     wolfgang = "Why long bill? Wolfgang still funny.",
     woodie = "",
-    wx78 = "",
+    wx78 = "DUCK-BASED ORGANISM",
 }
 
 Add.QuotesFor "magic_beans" {
@@ -1179,7 +1194,7 @@ Add.QuotesFor "magic_beans" {
     willow = "Magic doesn't stop fire.",
     wolfgang = "Not enough for my mighty belly.",
     woodie = "",
-    wx78 = "",
+    wx78 = "ONLY SUPERSTITION",
 }
 
 Add.QuotesFor "magic_beans_cooked" {
@@ -1192,7 +1207,7 @@ Add.QuotesFor "magic_beans_cooked" {
     willow = "Magic doesn't stop fire.",
     wolfgang = "Not enough for my mighty belly.",
     woodie = "",
-    wx78 = "",
+    wx78 = "THEY ARE DEAD NOW",
 }
 
 Add.QuotesFor "magnet" {
@@ -1204,7 +1219,7 @@ Add.QuotesFor "magnet" {
     wickerbottom = "",
     wolfgang = "",
     woodie = "",
-    wx78 = "",
+    wx78 = "KEEP IT AWAY FROM ME",
 }
 
 Add.QuotesFor "manta" {
@@ -1216,7 +1231,7 @@ Add.QuotesFor "manta" {
     wickerbottom = "",
     wolfgang = "What is creature? Where is from?",
     woodie = "",
-    wx78 = "",
+    wx78 = "A ROAMING SEA CREATURE",
 }
 
 Add.QuotesFor "manta_leather" {
@@ -1228,7 +1243,7 @@ Add.QuotesFor "manta_leather" {
     wickerbottom = "",
     wolfgang = "Is tough skin.",
     woodie = "",
-    wx78 = "",
+    wx78 = "I STOLE ITS SKIN",
 }
 
 Add.QuotesFor "marshmallow" {
@@ -1241,7 +1256,7 @@ Add.QuotesFor "marshmallow" {
     willow = "I eat mine charred.",
     wolfgang = "Is soft treat!",
     woodie = "",
-    wx78 = "",
+    wx78 = "SQUISHY",
 }
 
 Add.QuotesFor "monolith" {
@@ -1253,19 +1268,19 @@ Add.QuotesFor "monolith" {
     wickerbottom = "",
     willow = "",
     woodie = "",
-    wx78 = "",
+    wx78 = "IT'S FULL OF STARS",
 }
 
 Add.QuotesFor "mushroom_hat" {
     GENERIC = "",
-    wathgrithr = "",
+    wathgrithr = "A helmet of vegetables.",
     waxwell = "",
     webber = "",
     wendy = "",
     wickerbottom = "",
     willow = "",
     woodie = "",
-    wx78 = "",
+    wx78 = "HEAD FUNGUS",
 }
 
 Add.QuotesFor "octocopter" {
@@ -1277,7 +1292,7 @@ Add.QuotesFor "octocopter" {
     wickerbottom = "",
     wolfgang = "It has many arms!",
     woodie = "",
-    wx78 = "",
+    wx78 = "I HATE ITS FLESHY PARTS",
 }
 
 Add.QuotesFor "octocopter_wreckage" {
@@ -1289,7 +1304,7 @@ Add.QuotesFor "octocopter_wreckage" {
     wickerbottom = "",
     wolfgang = "Is broken!",
     woodie = "",
-    wx78 = "",
+    wx78 = "IT IS BETTER OFF THIS WAY",
 }
 
 Add.QuotesFor "octocopterpart1" {
@@ -1301,7 +1316,7 @@ Add.QuotesFor "octocopterpart1" {
     wickerbottom = "",
     wolfgang = "Is for flying.",
     woodie = "",
-    wx78 = "",
+    wx78 = "I SHOULD ATTACH IT TO MY BODY",
 }
 
 Add.QuotesFor "octocopterpart2" {
@@ -1313,7 +1328,7 @@ Add.QuotesFor "octocopterpart2" {
     wickerbottom = "",
     wolfgang = "Soon Wolfgang flies.",
     woodie = "",
-    wx78 = "",
+    wx78 = "A METAL PLATE",
 }
 
 Add.QuotesFor "octocopterpart3" {
@@ -1325,7 +1340,7 @@ Add.QuotesFor "octocopterpart3" {
     wickerbottom = "",
     wolfgang = "Octopus needs this.",
     woodie = "",
-    wx78 = "",
+    wx78 = "IT LOOKS IMPORTANT",
 }
 
 Add.QuotesFor "owl" {
@@ -1338,7 +1353,7 @@ Add.QuotesFor "owl" {
     willow = "A silent, deadly predator. Like me.",
     wolfgang = "Mean birds. More than tallest bird!",
     woodie = "",
-    wx78 = "",
+    wx78 = "BIRD HUMANOID",
 }
 
 Add.QuotesFor "package" {
@@ -1350,15 +1365,21 @@ Add.QuotesFor "package" {
     wickerbottom = "",
     wolfgang = "What is inside?",
     woodie = "",
-    wx78 = "",
+    wx78 = "CONTENTS UNKNOWN",
+}
+
+Add.QuotesFor "pineapple_bush" {
+    wx78 = "IT GROWS PINEAPPLES",
 }
 
 Add.QuotesFor "pineapple_fruit" {
     wathgrithr = "I won't eat something this sharp.",
+    wx78 = "TANGY",
 }
 
 Add.QuotesFor "quartz_torch" {
     wathgrithr = "A magical torch?",
+    wx78 = "HOW DOES IT BURN?",
 }
 
 Add.QuotesFor "rainbowcoon" {
@@ -1371,7 +1392,7 @@ Add.QuotesFor "rainbowcoon" {
     willow = "Touch my stuff and I'll burn you good!",
     wolfgang = "Is pretty, but food is mine!",
     woodie = "",
-    wx78 = "",
+    wx78 = "STAY AWAY FROM MY NUTRIENTS",
 }
 
 Add.QuotesFor "refined_black_crystal" {
@@ -1383,7 +1404,7 @@ Add.QuotesFor "refined_black_crystal" {
     wickerbottom = "",
     wolfgang = "Is better now.",
     woodie = "",
-    wx78 = "",
+    wx78 = "FANCY DARK CRYSTAL",
 }
 
 Add.QuotesFor "refined_white_crystal" {
@@ -1395,7 +1416,7 @@ Add.QuotesFor "refined_white_crystal" {
     wickerbottom = "",
     wolfgang = "Much nicer.",
     woodie = "",
-    wx78 = "",
+    wx78 = "FANCY WHITE CRYSTAL",
 }
 
 Add.QuotesFor "refiner" {
@@ -1407,7 +1428,7 @@ Add.QuotesFor "refiner" {
     wickerbottom = "",
     wolfgang = "Is to change stuff.",
     woodie = "",
-    wx78 = "",
+    wx78 = "LET'S BE FRIENDS",
 }
 
 Add.QuotesFor "research_lectern" {
@@ -1419,7 +1440,7 @@ Add.QuotesFor "research_lectern" {
     wickerbottom = "",
     wolfgang = "Is cloud-science. Fluffiest kind of science.",
     woodie = "",
-    wx78 = "",
+    wx78 = "I WILL LEARN IMPOSSIBLE THINGS",
 }
 
 Add.QuotesFor "rubber" {
@@ -1431,7 +1452,7 @@ Add.QuotesFor "rubber" {
     wickerbottom = "",
     wolfgang = "Is stretchy.",
     woodie = "",
-    wx78 = "",
+    wx78 = "IT DOES NOT CONDUCT ELECTRICITY",
 }
 
 Add.QuotesFor "scarecrow" {
@@ -1444,7 +1465,7 @@ Add.QuotesFor "scarecrow" {
     willow = "Why scare crows when you can burn them?",
     wolfgang = "Does not scare Wolfgang!",
     woodie = "",
-    wx78 = "",
+    wx78 = "I AM NOT SCARED",
 }
 
 Add.QuotesFor "sheep" {
@@ -1457,7 +1478,7 @@ Add.QuotesFor "sheep" {
     willow = "Cotton. Very flammable.",
     wolfgang = "Little sheep is made of soft.",
     woodie = "Ooh! Lambchops!",
-    wx78 = "DOCILE MAMMAL. HARD TO FRIGHTEN.",
+    wx78 = "A DOCILE MEATBAG",
 }
 
 Add.QuotesFor "sheep.ram" {
@@ -1469,7 +1490,7 @@ Add.QuotesFor "sheep.ram" {
     willow = "Shouldn't have charged him up.",
     wolfgang = "Sheep is mighty now!",
     woodie = "Looks like I'm in trouble now. Oops.",
-    wx78 = "APPARENTLY EASY TO ANGER.",
+    wx78 = "IT IS NOT DOCILE",
 }
 
 Add.QuotesFor "shopkeeper" {
@@ -1482,8 +1503,8 @@ Add.QuotesFor "shopkeeper" {
     willow = "I like the flag on his umbrella.",
     wolfgang = "Is talking umbrella.",
     woodie = "Men like this ran my lumber yard.",
-    wx78 = "A PEDDLER OF GOODS.",
-}
+    wx78 = "HEAD MODULE NOT DETECTED",
+}    
 
 Add.QuotesFor "sky_chest" {
     GENERIC = "I wonder who's it is?",
@@ -1494,8 +1515,8 @@ Add.QuotesFor "sky_chest" {
     wickerbottom = "",
     wolfgang = "",
     woodie = "",
-    wx78 = "",
-}    
+    wx78 = "IT BEHAVES STRANGELY",
+}
 
 Add.QuotesFor "sky_lemur" {
     GENERIC = "",
@@ -1507,7 +1528,7 @@ Add.QuotesFor "sky_lemur" {
     willow = "Must be up to monkey business.",
     wolfgang = "",
     woodie = "",
-    wx78 = "",
+    wx78 = "STRIPED FLESHLING",
 }
 
 Add.QuotesFor "skyflies" {
@@ -1518,7 +1539,7 @@ Add.QuotesFor "skyflies" {
     wendy = "",
     wickerbottom = "",
     wolfgang = "",
-    wx78 = "",
+    wx78 = "SPARKLY",
 }
 
 Add.QuotesFor "skyflower" {
@@ -1531,7 +1552,7 @@ Add.QuotesFor "skyflower" {
     willow = "Mmm. Smells like ashes.",
     wolfgang = "Pretty flower smells like beef.",
     woodie = "Ahh. Freshly fallen timber and pine needles.",
-    wx78 = "YOUR TRICKS SHALL NOT WORK ON ME.",
+    wx78 = "IT SMELLS LIKE DESTRUCTION",
 }
 
 Add.QuotesFor "skyflower.datura" {
@@ -1549,7 +1570,7 @@ Add.QuotesFor "skyflower.datura" {
 
 Add.QuotesFor "skyflower_petals" {
     GENERIC = "They smell of dreams.",
-    wathgrithr = "",
+    wathgrithr = "I should make myself a crown.",
     waxwell = "I'll make a bouquet for Charlie with these.",
     webber = "It smells like one of grandma's pies!",
     wendy = "A pretty flower to bring brief pleasure. Smells like decay.",
@@ -1557,7 +1578,7 @@ Add.QuotesFor "skyflower_petals" {
     willow = "Mmm. Smells like ashes.",
     wolfgang = "Pretty flower smells like beef.",
     woodie = "Ahh. Freshly fallen timber and pine needles.",
-    wx78 = "YOUR TRICKS SHALL NOT WORK ON ME.",
+    wx78 = "IT SMELLS LIKE DESTRUCTION",
 }
 
 Add.QuotesFor "skytrap" {
@@ -1569,7 +1590,7 @@ Add.QuotesFor "skytrap" {
     wickerbottom = "",
     wolfgang = "Is a trap.",
     woodie = "",
-    wx78 = "",
+    wx78 = "DANGER DETECTED",
 }
 
 Add.QuotesFor "smores" {
@@ -1581,7 +1602,7 @@ Add.QuotesFor "smores" {
     wickerbottom = "",
     wolfgang = "Wolfgang is always ready for s'mores.",
     woodie = "",
-    wx78 = "",
+    wx78 = "STICKY BUT DELICIOUS",
 }
 
 Add.QuotesFor "tea_bush" {
@@ -1593,7 +1614,7 @@ Add.QuotesFor "tea_bush" {
     wickerbottom = "",
     wolfgang = "Get leaves, make drink.",
     woodie = "",
-    wx78 = "",
+    wx78 = "I CAN USE ITS LEAVES",
 }
 
 Add.QuotesFor "tea_leaves" {
@@ -1605,7 +1626,7 @@ Add.QuotesFor "tea_leaves" {
     wickerbottom = "",
     wolfgang = "Put in water.",
     woodie = "",
-    wx78 = "",
+    wx78 = "ADD HOT WATER",
 }
 
 Add.QuotesFor "thunder_log" {
@@ -1617,7 +1638,7 @@ Add.QuotesFor "thunder_log" {
     wickerbottom = "",
     wolfgang = "Is tickly to touch.",
     woodie = "",
-    wx78 = "",
+    wx78 = "I NEED TO KEEP IT AWAY FROM MY CIRCUITS",
 }
 
 Add.QuotesFor "thunder_tree" {
@@ -1630,7 +1651,7 @@ Add.QuotesFor "thunder_tree" {
     willow = "Why doesn't the lightning burn it?",
     wolfgang = "Is crackly tree.",
     woodie = "",
-    wx78 = "",
+    wx78 = "I SHOULD BE CAREFUL",
 }
 
 Add.QuotesFor "vine" {
@@ -1642,7 +1663,7 @@ Add.QuotesFor "vine" {
     wickerbottom = "",
     wolfgang = "Little plant.",
     woodie = "",
-    wx78 = "",
+    wx78 = "MOVING PLANT MATTER",
 }
 
 Add.QuotesFor "weather_machine" {
@@ -1654,7 +1675,7 @@ Add.QuotesFor "weather_machine" {
     wickerbottom = "",
     wolfgang = "Is... technical.",
     woodie = "",
-    wx78 = "",
+    wx78 = "I CONTROL THE ELEMENTS",
 }
 
 Add.QuotesFor "weaver_bird" {
@@ -1666,7 +1687,7 @@ Add.QuotesFor "weaver_bird" {
     wickerbottom = "",
     wolfgang = "Is little birdie.",
     woodie = "",
-    wx78 = "",
+    wx78 = "HE IS AN ADEPT WEAVER",
 }
 
 Add.QuotesFor "weavernest" {
@@ -1678,7 +1699,7 @@ Add.QuotesFor "weavernest" {
     wickerbottom = "",
     wolfgang = "Bird lives here.",
     woodie = "",
-    wx78 = "",
+    wx78 = "I CAN DO BETTER",
 }
 
 Add.QuotesFor "whirlwind" {
@@ -1690,7 +1711,7 @@ Add.QuotesFor "whirlwind" {
     wickerbottom = "",
     wolfgang = "Is fast air!",
     woodie = "",
-    wx78 = "",
+    wx78 = "WOOSH",
 }
 
 Add.QuotesFor "whitestaff" {
@@ -1702,13 +1723,13 @@ Add.QuotesFor "whitestaff" {
     wickerbottom = "",
     wolfgang = "Does things. Is always changing.",
     woodie = "",
-    wx78 = "",
+    wx78 = "FOR MOVING THINGS",
 }
 
 Add.QuotesFor "winnie_staff" {
     wathgrithr = "For herding mindless beasts.",
+    wx78 = "FOLLOW ME, MEATSACKS",
 }
-
 
 ------------------------------------------------------------------------
 
