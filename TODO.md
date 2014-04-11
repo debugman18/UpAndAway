@@ -14,8 +14,6 @@
 
 	+ Manta (All functionality needed)
 
-	+ Water Crystal and Flying Fish (A nearly mined water crystal should launch a flying fish into the nearest nearly mined water crystal / or just launch them periodically with them disappearing through the ground)
-
 	+ Recipes and Unique Tech Tree
 
 	+ Setpieces, setpieces, setpieces
