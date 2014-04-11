@@ -19,37 +19,36 @@ local prefabs =
 	"magic_beans",
 }
 
-local generateSpeeches = modrequire 'resources.shopkeeper_speech'
+local shopkeeper_speech = modrequire "resources.shopkeeper_speech"
 
 
 -------------------------------------------------------------------------------------------------
 --This makes it so that you cannot kill the shopkeeper.
-local function OnHit(inst, attacker)
-	local fx = SpawnPrefab("maxwell_smoke")
+--It is used as a callback for the HIT speech.
+local function onhit_speechcallback(inst, speech_mgr)
+	local doer = speech_mgr.listener
 
-	local doer = attacker
-	if doer then
-		local pos = Vector3( doer.Transform:GetWorldPosition() )
-		GetSeasonManager():DoLightningStrike(pos)
-		
-		if doer.components.combat then
-			doer.components.combat:GetAttacked(nil, 0)
-		end
-	end
-	inst.components.maxwelltalker.speech = "HIT"
-	inst.components.maxwelltalker:SetSpeech("HIT")
+	local pos = Vector3( doer.Transform:GetWorldPosition() )
+	GetSeasonManager():DoLightningStrike(pos)
 	
-	if inst.components.maxwelltalker:IsTalking() then
-		inst.components.maxwelltalker:StopTalking()
+	if doer.components.combat then
+		doer.components.combat:GetAttacked(nil, 0)
 	end
-	
-	--inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
 	
 	inst.SoundEmitter:PlaySound("dontstarve/maxwell/disappear")
-	fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
+
+	local fx = SpawnPrefab("maxwell_smoke")
+	if fx then
+		fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
+	end
+
 	inst:Remove()
 end
 
+-- This works even if the attacker is not the player.
+local function OnHit(inst, attacker)
+	inst.components.speechgiver:PlaySpeech("HIT", attacker or GetPlayer())
+end
 
 -------------------------------------------------------------------------------------------------
 -- Functions for trading cows for beans.
@@ -63,9 +62,7 @@ end
 
 local function performTransaction(buyer, seller, cow)
 	if seller.components.inventory then
-		local reward = SpawnPrefab("magic_beans")
-
-		seller.components.inventory:GiveItem(reward)
+		buyer.beans_to_give = (buyer.beans_to_give or 0) + 1
 
 		if seller.components.leader then
 			seller.components.leader:RemoveFollower(cow)
@@ -92,57 +89,32 @@ local function negotiateCows(buyer, seller)
 
 	local maxdistsq = CFG.SHOPKEEPER.MAX_COW_DIST^2
 
-	local completed_transaction = false
-
 	for cow in pairs(seller.components.leader.followers) do
 		if not canNegotiate(buyer, seller) then break end
 
 		if cow:IsValid() and is_a_cow(cow) and distsq(cow:GetPosition(), buyer:GetPosition()) <= maxdistsq then
-			if performTransaction(buyer, seller, cow) then
-				completed_transaction = true
-			end
+			performTransaction(buyer, seller, cow)
 		end
 	end
 
-	return completed_transaction
+	return buyer.beans_to_give and buyer.beans_to_give > 0
 end
 
 -------------------------------------------------------------------------------------------------
 
-local function greetPlayer(inst)
-	if not inst.flagger or inst.customer then return end
-
-	if inst.components.maxwelltalker then
-		if inst.components.maxwelltalker:IsTalking() then return end
-		inst.components.maxwelltalker:SetSpeech("FLAG_PLAYER")
-		inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
-	end
-end
-
 local function flagplayer(inst)
-	if not inst.flagger then return end
-
-	if inst.components.maxwelltalker and inst.components.maxwelltalker:IsTalking() then return end
+	if inst.components.speechgiver:IsSpeaking() then return end
 
 	if not inst.customer then
-		greetPlayer(inst)	
+		inst.components.speechgiver:PlaySpeech("FLAG_PLAYER", GetPlayer())
 	elseif not inst.gavebeans and inst.numbeans > 0 then
-		if inst.components.maxwelltalker then
-			if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
-			inst.components.maxwelltalker:SetSpeech("BEAN_REMINDER")
-			inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
-		end
+		inst.components.speechgiver:PlaySpeech("BEAN_REMINDER", GetPlayer())
 	elseif not inst.gavebeans then
 		TheMod:DebugSay "I have nothing to give you!"
-	elseif inst.gavebeans then
-		if inst.components.maxwelltalker then
-			inst.components.maxwelltalker:SetSpeech("BEANS_HINT")
-			inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
-			if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
-		end
-		inst.flagger = false
 	else
-		TheMod:Say "If this is printing, there's new flagging logic to account for!"
+		if not inst.gavebeans then
+			TheMod:Say "If this is printing, there's new flagging logic to account for!"
+		end
 	end
 end
 
@@ -150,44 +122,26 @@ end
 
 -- This handles explicit interaction through clicking on him.
 -- (speech triggers and cow trading)
+--
+-- The setting of flags such as inst.gavebeans is done as speech callbacks.
+-- See the configuration of the speechgiver component below.
 local function onactivate(inst, doer)
-	if inst.components.maxwelltalker and inst.components.maxwelltalker:IsTalking() then
-		inst.components.maxwelltalker:StopTalking()
-	end
+	inst.components.speechgiver:CancelAll()
 
 	inst:DoTaskInTime(0, function(inst)
 		if inst.components.activatable then inst.components.activatable.inactive = true end
 	end)
 
 	if not inst.customer then
-		if inst.components.maxwelltalker then
-			if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
-			inst.components.maxwelltalker:SetSpeech("BEAN_QUEST")
-			inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
-		end
-		inst.customer = true
+		inst.components.speechgiver:PlaySpeech("BEAN_QUEST", doer)
 	elseif inst.numbeans > 0 and negotiateCows(inst, doer) then
-		TheMod:DebugSay "This should be a pause."
-		
-		--Confirms the trade via short dialogue.
-		inst:DoTaskInTime(1, function()
-		if inst.components.maxwelltalker then
-			if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
-				inst.components.maxwelltalker:SetSpeech("BEAN_SUCCESS")
-				inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
-			end
-		end)
-
-		inst.gavebeans = true
-	elseif inst.numbeans > 0 then
-		-- When explicitly clicking on him, I think he should remind the player even if he gave beans already.
-		--TheCamera:SetDistance(14)
-	
-		if inst.components.maxwelltalker then
-			if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
-			inst.components.maxwelltalker:SetSpeech("BEAN_REMINDER")
-			inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
-		end
+		inst.components.speechgiver:PlaySpeech("BEAN_SUCCESS", doer)
+		inst.components.speechgiver:PushSpeech("BEAN_HINT", doer)
+	elseif inst.numbeans > 0 and not inst.gavebeans then
+		inst.components.speechgiver:PlaySpeech("BEAN_REMINDER", doer)
+	elseif inst.gavebeans then
+		inst.components.speechgiver:PlaySpeech("BEAN_HINT", doer)
+		inst.components.speechgiver:ForbidCutScenesInQueue()
 	else
 		TheMod:DebugSay "What else do you expect from me?"
 	end
@@ -218,20 +172,25 @@ end
 
 --This handles the remembering.
 local function onsave(inst, data)
-	data.gavebeans = inst.gavebeans or nil
 	data.customer  = inst.customer or nil
-	-- It's best to store a value which, if absent (save corruption, mod disabling, etc.), should default to false (or nil).
-	data.doneflagging = not inst.flagger or nil
+	data.gavebeans = inst.gavebeans or nil
+
 	data.numbeans = inst.numbeans
+	data.beans_to_give = inst.beans_to_give ~= 0 and inst.beans_to_give or nil
 end
 
 local function onload(inst, data)
 	if not data then return end
 
-	inst.gavebeans = data.gavebeans
 	inst.customer = data.customer
-	inst.flagger = not data.doneflagging
+	inst.gavebeans = data.gavebeans
+
 	inst.numbeans = data.numbeans or inst.numbeans
+	inst.beans_to_give = data.beans_to_give
+
+	if inst.beans_to_give == 0 then
+		inst.beans_to_give = nil
+	end
 
 	-- This is just for inconsistent save data.
 	if inst.gavebeans then
@@ -257,34 +216,14 @@ end
 
 --This knows what to do if the player successfully gives us a particular item.
 local function OnGetItemFromPlayer(inst, giver, item)
-	inst.customer = true
-	
 	--This gives you magic beans in exchange for gold. For testing purposes only.
-	if item.prefab == "goldnugget" then
-	
-		--This knows what to spawn.
-		local beanprize = SpawnPrefab("magic_beans")
-		local fx = SpawnPrefab("maxwell_smoke")
-		
-		--onTalk(inst)
-		
-		--Gives the player the magic beans.
-		beanprize.Transform:SetPosition(GetPlayer().Transform:GetWorldPosition())
-		
-		--Creates smoke for effect.
-		inst.SoundEmitter:PlaySound("dontstarve/maxwell/disappear")
-		fx.Transform:SetPosition(beanprize.Transform:GetWorldPosition())
-		TheMod:DebugSay "This should be a pause."
-		
-		--Confirms the trade via short dialogue.
-		inst:DoTaskInTime(1.5, function()
-			if inst.components.maxwelltalker then
-				if inst.components.maxwelltalker:IsTalking() then inst.components.maxwelltalker:StopTalking() end
-				inst.components.maxwelltalker:SetSpeech("BEAN_SUCCESS")
-				inst.task = inst:StartThread(function() inst.components.maxwelltalker:DoTalk(inst) end)
-			end
-			inst.gavebeans = true
-		end)
+	if ShouldAcceptItem(inst, item) then
+		inst.customer = true
+
+		inst.beans_to_give = 1
+
+		inst.components.speechgiver:PlaySpeech("BEAN_SUCCESS", doer)
+		inst.components.speechgiver:PushSpeech("BEAN_HINT", doer)
 	end
 end
 
@@ -304,6 +243,7 @@ local function fn(Sim)
 	MakeObstaclePhysics(inst, 1)
 
 	inst:AddTag("shopkeeper")
+	inst:AddTag("character")
 	
 	------------------------------------------------------
 	
@@ -315,19 +255,17 @@ local function fn(Sim)
     --This will be his own minimap icon.
     --minimap:SetIcon("monkey_barrel.png")	
 
-	inst.flagger = true
 	inst.numbeans = CFG.SHOPKEEPER.NUMBEANS
 
  
-	inst:AddComponent("talker")
 	inst.entity:AddLabel()
+	inst:AddComponent("talker")
 	inst.Label:SetFontSize(35)
 	inst.Label:SetFont(TALKINGFONT)
 	inst.Label:SetPos(0,5,0)
 
 	------------------------------------------------------
  
-	--[[
 	if TheMod:Debug() then
 		--All of this is related to trading.
 		
@@ -336,7 +274,6 @@ local function fn(Sim)
 		inst.components.trader.onaccept = OnGetItemFromPlayer
 		inst.components.trader.onrefuse = OnRefuseItem
 	end
-	]]--
 	
 	------------------------------------------------------
 
@@ -348,8 +285,37 @@ local function fn(Sim)
 	inst.OnSave = onsave
 	
 	--All of this is related to the speeches.
-	inst:AddComponent("maxwelltalker")
-	inst.components.maxwelltalker.speeches = generateSpeeches()
+	inst:AddComponent("speechgiver")
+	do
+		local speechgiver = inst.components.speechgiver
+
+		speechgiver:AddSpeechTable(shopkeeper_speech.SPEECHES)
+		speechgiver:AddWordMapTable(shopkeeper_speech.WORD_MAP)
+
+		speechgiver:AddSpeechCallback("HIT", onhit_speechcallback)
+		speechgiver:AddSpeechCallback("BEAN_QUEST", function(inst)
+			inst.customer = true
+		end)
+
+		speechgiver:AddSpeechData("BEAN_SUCCESS", {
+			givebeans = function(inst, player)
+				if inst.beans_to_give and inst.beans_to_give > 0 then
+					for i = 1, inst.beans_to_give do
+						if i ~= 1 then
+							Sleep(0.5)
+						end
+						local reward = SpawnPrefab("magic_beans")
+						player.components.inventory:GiveItem(reward)
+						-- This is just to ensure the game saves correctly
+						-- in the middle of this.
+						inst.beans_to_give = inst.beans_to_give - 1
+					end
+				end
+				inst.gavebeans = true
+				inst.beans_to_give = nil
+			end,
+		})
+	end
 	
 	inst:AddComponent("playerprox")
 	inst.components.playerprox:SetDist(8, 8)
@@ -376,8 +342,12 @@ local function fn(Sim)
     inst.MiniMapEntity:SetIcon("shopkeeper.tex")
 
 	inst:ListenForEvent("rainstop", function() try_despawn(inst) end, GetWorld())
-	inst:ListenForEvent("entitysleep", try_despawn)
-	inst:DoTaskInTime(0, try_despawn)
+	inst:DoTaskInTime(0, function(inst)
+		try_despawn(inst)
+		if inst:IsValid() then
+			inst:ListenForEvent("entitysleep", try_despawn)
+		end
+	end)
 
 	return inst
 end

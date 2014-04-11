@@ -1,242 +1,176 @@
-BindGlobal()
+--[[
+-- This function takes an entity and returns its gender, caching the result
+-- (since  GetGenderStrings() is quite inefficient)
+--]]
+local get_inst_gender = (function()
+	local cache = {}
 
+	return function(inst)
+		local p = inst.prefab
+		if not p then return "MALE" end
+
+		local ret = cache[p]
+		if not ret then
+			ret = _G.GetGenderStrings(p) or "MALE"
+			cache[p] = ret
+		end
+
+		return ret
+	end
+end)()
 
 --[[
--- We generate the speech through a function so that it may tweak it according
--- to dynamic data (i.e., player gender).
+-- This defines translations of words in the speeches below according to
+-- the specified function.
+--
+-- The original word can be specified in any combination of lower/upper case.
+--
+-- When mapping a word, the final word preserved the capitalization of the
+-- word as found in the text.
 --]]
+WORD_MAP = {
+	fella = function(listener)
+		return get_inst_gender(listener) == "FEMALE" and "darling" or "fella"
+	end
+}
 
-local function generateSpeeches()
-	local character = SaveGameIndex:GetSlotCharacter()
+-- These are the shopkeeper's speeches.
+--
+-- Each speech is a function receiving a SpeechManager object as its first
+-- parameter (see components/speechgiver.lua and search for the "@README@"
+-- string in a comment).
+--
+-- The speaker entity (the Shopkeeper) is in the "speaker" field, and the
+-- listening entity (the player) in the "listener" field.
+--
+-- I hope the following usage is simple and self-explanatory, even without
+-- checking the speechgiver.lua file.
+SPEECHES = {}
 
-	local gender = GetGenderStrings(character)
+
+local metalsnd = "dontstarve/common/destroy_metal"
 
 
-	-- How we describe (i.e., refer) to the character.
-	local char_desc = gender == "FEMALE" and "darling" or "fella"
+--This is the speech where he asks for beefalo in exchange for magic beans.
+SPEECHES.BEAN_QUEST = function(mgr)
+	-- FIXME: uncomment line below.
+	--mgr:MakeNonInterruptible()
+	mgr:EnterCutScene()
 
+	mgr "Hello there, fella."
+	mgr:PlaySound(metalsnd)
 
-	--These are the shopkeeper's speeches.
-	return {
-		--This is the speech that is loaded if no speech is defined.
-		NULL_SPEECH=
-		{
-			
-			delay = 2,
-			disableplayer = false,
-			skippable = false,
-			
-			{
-				string = "You... You shouldn't be here.",
-				wait = 2,
-				anim = nil,
-				sound = nil,
-			},
-			{
-				string = "Really. Something is off in this universe.",
-				wait = 1,
-				anim = nil,
-				sound = nil,
-			},
-		},
-		
-		--This is the speech where he asks for beefalo in exchange for magic beans.
-		BEAN_QUEST =
-		{
-			disableplayer = false,
-			skippable = false,
-			
-			{
-				string = ("Hello there, %s."):format(char_desc),
-				wait = 3,
-				anim = nil,
-				sound = "dontstarve/common/destroy_metal",
-			},
-			{
-				string = "You look tired.",
-				wait = 2,
-				anim = nil,
-				sound = nil,
-			},
-			{
-				string = "What if I told you I had something that could get you out?",
-				wait = 3,
-				anim = nil,
-				sound = nil,
-			},
-			{
-				string = "That could whisk you away from this miserable plane?",
-				wait = 3,
-				anim = nil,
-				sound = nil,
-			},
-			{
-				string = "Interested?",
-				wait = 2,
-				anim = nil,
-				sound = nil,
-			},
-			{
-				string = "Then let's make a deal.",
-				wait = 3,
-				anim = nil,
-				sound = nil,
-			},
-			{
-				string = "I have need of a Beefalo.",
-				wait = 3,
-				anim = nil,
-				sound = nil,
-			},
-			{
-				string = "Those hairy beasts you've seen roaming the grasslands.",
-				wait = 3,
-				anim = nil,
-				sound = nil,
-			},
-			{
-				string = "Bring me one...",
-				wait = 3,
-				anim = nil,
-				sound = nil,
-			},
-			{
-				string = "...And I'll give you the ticket out.",
-				wait = 3,
-				anim = nil,
-				sound = nil,
-			},
-			{
-				string = ("Get to it, %s."):format(char_desc),
-				wait = 2,
-				anim = nil,
-				sound = "dontstarve/common/destroy_metal",
-			},
-		},
-			
-		--This is for when a trade is successful.
-		BEAN_SUCCESS =
-		{
-			
-			disableplayer = false,
-			skippable = false,
-			
-			{
-				string = "You fulfilled your end of the bargain.",
-				wait = 3,
-				anim = nil,
-				sound = "dontstarve/common/destroy_metal",
-			},
-			{
-				string = "Now for me to keep mine.",
-				wait = 2,
-				anim = nil,
-				sound = "dontstarve/common/destroy_metal",
-			},
-			{
-				string = "Your ticket out of here.",
-				wait = 2,
-				anim = nil,
-				sound = "dontstarve/common/destroy_metal",
-			},
-			{
-				string = ("Best of luck, %s."):format(char_desc),
-				wait = 2,
-				anim = nil,
-				sound = "dontstarve/common/destroy_metal",
-			},
-		},
-	
-		--This is for when the player attacks the shopkeeper.
-		--(the entity gets removed, it will never run!)
-		HIT =
-		{
-			
-			delay = 2,
-			disableplayer = false,
-			skippable = false,
-			
-			{
-				string = "...",
-				wait = 2,
-				anim = nil,
-				sound = "dontstarve/common/destroy_metal",
-			},
-		},
-		
-		--This is for when the player keeps bugging the shopkeeper about the beans.
-		BEAN_REMINDER =
-		{
-			
-			delay = 0.25,
-			disableplayer = false,
-			skippable = false,
-			
-			{
-				string = ("Get to it, %s."):format(char_desc),
-				wait = 3,
-				anim = nil,
-				sound = "dontstarve/common/destroy_metal",
-			},
-		},
-		
-		--This is to flag the player down.
-		FLAG_PLAYER =
-		{
-			
-			delay = 0.25,
-			disableplayer = false,
-			skippable = true,
-			
-			{
-				string = "Hey you! Yes, you there!",
-				wait = 3,
-				anim = nil,
-				sound = "dontstarve/common/destroy_metal",
-			},
-		},
-	
-		--This gives the player a hint about the beans.
-		BEANS_HINT =
-		{
-			
-			delay = 0.25,
-			disableplayer = false,
-			skippable = true,
-			
-			{
-				string = "Now, you can't just plant those beans in any old soil.",
-				wait = 3,
-				anim = nil,
-				sound = "dontstarve/common/destroy_metal",
-			},
-			{
-				string = "They require a powerful fertilizer.",
-				wait = 3,
-				anim = nil,
-				sound = "dontstarve/common/destroy_metal",
-			},
-			{
-				string = "Bonemeal, perhaps. A grave?",
-				wait = 3,
-				anim = nil,
-				sound = "dontstarve/common/destroy_metal",
-			},
-			{
-				string = "Then...",
-				wait = 3,
-				anim = nil,
-				sound = "dontstarve/common/destroy_metal",
-			},
-			{
-				string = "...Just let the moon do the rest.",
-				wait = 3,
-				anim = nil,
-				sound = "dontstarve/common/destroy_metal",
-			},
-		},
-	}
+	mgr "You look tired."
+
+	Sleep(0.5)
+
+	mgr "What if I told you I had something that could get you out?"
+	mgr "That could whisk you away from this miserable plane?"
+
+	Sleep(0.5)
+
+	mgr "Interested?"
+	mgr "Then let's make a deal."
+
+	Sleep(0.5)
+
+	mgr "I have need of a Beefalo."
+	mgr "Those hairy beasts you've seen roaming the grasslands."
+	mgr "Bring me one..."
+	Sleep(1)
+	mgr "...And I'll give you the ticket out."
+
+	mgr:ExitCutScene()
+	Sleep(0.5)
+
+	mgr "Get to it, fella."
+	mgr:PlaySound(metalsnd)
 end
 
 
-return generateSpeeches
+--This is for when a trade is successful.
+--
+--args is the table specified in inst.components.speechgiver:AddSpeechData()
+--in the shopkeeper constructor.
+SPEECHES.BEAN_SUCCESS = function(mgr, args)
+	assert( args.givebeans )
+
+	mgr:MakeNonInterruptible()
+	mgr:EnterCutScene()
+
+	Sleep(1.5)
+
+	mgr "You fulfilled your end of the bargain."
+	mgr:PlaySound(metalsnd)
+
+	mgr "Now for me to keep mine."
+	mgr:PlaySound(metalsnd)
+
+	args.givebeans(mgr.speaker, mgr.listener)
+
+	mgr "Your ticket out of here."
+	mgr:PlaySound(metalsnd)
+
+	-- Goes straight into the BEANS_HINT speech, so I removed the part below.
+
+	--[[
+	mgr:ExitCutScene()
+	Sleep(0.5)
+
+	mgr "Best of luck, fella."
+	mgr:PlaySound(metalsnd)
+	]]--
+end
+
+
+--This is for when the player attacks the shopkeeper.
+--(the entity gets removed, it will never run!)
+SPEECHES.HIT = function(mgr)
+	if mgr.listener:HasTag("player") then
+		mgr:EnterCutScene()
+
+		Sleep(1)
+		mgr "..."
+		Sleep(1)
+	end
+end
+
+--This is for when the player keeps bugging the shopkeeper about the beans.
+SPEECHES.BEAN_REMINDER = function(mgr)
+	Sleep(0.25)
+
+	mgr "Get to it, fella."
+	mgr:PlaySound(metalsnd)
+end
+
+--This is to flag the player down.
+SPEECHES.FLAG_PLAYER = function(mgr)
+	Sleep(0.25)
+
+	mgr "Hey you! Yes, you there!"
+	mgr:PlaySound(metalsnd)
+end
+
+--This gives the player a hint about the beans.
+SPEECHES.BEAN_HINT = function(mgr)
+	if not mgr.speaker.gavebeans then return end
+
+	if mgr:EnterCutScene() then
+		Sleep(1.5)
+	end
+
+	mgr "Now, you can't just plant those beans in any old soil."
+	mgr:PlaySound(metalsnd)
+
+	mgr "They require a powerful fertilizer."
+	mgr:PlaySound(metalsnd)
+
+	mgr "Bonemeal, perhaps. A grave?"
+	mgr:PlaySound(metalsnd)
+
+	mgr "Then..."
+	Sleep(1.5)
+
+	mgr "...Just let the moon do the rest."
+	mgr:PlaySound(metalsnd)
+end
