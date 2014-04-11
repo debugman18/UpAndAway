@@ -24,8 +24,7 @@ local function onhit(inst, attacker, target)
 end
 
 local function stopkicking(inst)
-    inst.AnimState:PlayAnimation("dead")
-    inst:RemoveTag("flying_fish")
+	print("Todo, eventually, possibly.")
 end
 
 local function commonfn()
@@ -57,16 +56,26 @@ local function commonfn()
 	inst.components.perishable.onperishreplacement = "spoiled_food"
 
     inst:AddComponent("projectile")
-    inst.components.projectile:SetSpeed(8)
+    inst.components.projectile:SetSpeed(2)
     inst.components.projectile:SetOnHitFn(onhit)
-    local crystal = GetClosestInstWithTag("crystal_water_broken", inst, 10)
-    if crystal then
-    	inst:DoTaskInTime(2, function()
-    		inst.components.projectile.target = crystal
-    		inst.components.projectile:Throw(inst, target, inst)
-    	end)	
-    end	
-	
+
+    inst:DoTaskInTime(0, function(inst, target)
+        local x,y,z = inst.Transform:GetWorldPosition()
+        local ents = TheSim:FindEntities(x,y,z, 15, "crystal_water_broken")
+        for k,v in pairs(ents) do
+            if v and v.prefab == "crystal_water" and v:HasTag("crystal_water_broken") then
+                local crystal = v
+                print(crystal)
+                if crystal then
+			    	inst:DoTaskInTime(0, function()
+			    		--inst.Physics:SetVel(sp*math.cos(angle), math.random()*2+8, sp*math.sin(angle))
+			    		inst.components.projectile:Throw(inst, crystal, inst)
+			    	end)
+			    end	
+            end    
+        end   
+    end)    
+
 	inst:AddComponent("inspectable")
 	
 	inst:AddComponent("inventoryitem")
@@ -98,9 +107,24 @@ local function rawfn()
 	inst.components.dryable:SetProduct("smallmeat_dried")
 	inst.components.dryable:SetDryTime(TUNING.DRY_FAST)
 	inst:DoTaskInTime(5, stopkicking)
-	inst.components.inventoryitem:SetOnPickupFn(function(pickupguy) stopkicking(inst) end)
+	inst.components.inventoryitem:SetOnPickupFn(function(pickupguy) 
+		inst:RemoveComponent("projectile") 
+	end)
 	inst.OnLoad = function() stopkicking(inst) end
 	
+	return inst
+end
+
+local function deadfn()
+	local inst = commonfn()
+	inst.Physics:Stop()
+	--inst.AnimState:PlayAnimation("dead")
+	inst.Physics:SetVel(0, 0, 0)
+	
+	inst.components.edible.healthvalue = TUNING.HEALING_TINY
+	inst.components.edible.hungervalue = TUNING.CALORIES_SMALL
+	inst.components.perishable:SetPerishTime(TUNING.PERISH_FAST)
+
 	return inst
 end
 
@@ -117,5 +141,6 @@ end
 
 return {
     Prefab("common/inventory/flying_fish", rawfn, assets, prefabs),
+    Prefab("common/inventory/flying_fish_dead", deadfn, assets, prefabs),
     Prefab("common/inventory/flying_fish_cooked", cookedfn, assets, prefabs),
 }

@@ -17,10 +17,19 @@ local loot =
 }
 
 local function MakeFishSpawner(inst)
-    inst:AddTag("crystal_water_broken")
     local fish = SpawnPrefab("flying_fish")
-    local pt = Vector3(inst.Transform:GetWorldPosition())
+    local pt = Vector3(inst.Transform:GetWorldPosition()) + Vector3(0,4.5,0)
+    
     fish.Transform:SetPosition(pt:Get())
+    local down = TheCamera:GetDownVec()
+    local angle = math.atan2(down.z, down.x) + (math.random()*60-30)*DEGREES
+    --local angle = (-TUNING.CAM_ROT-90 + math.random()*60-30)/180*PI
+    local sp = math.random()*4+2
+    fish.Physics:SetVel(sp*math.cos(angle), math.random()*2+8, sp*math.sin(angle))
+    
+    inst:DoTaskInTime(3, function()
+        inst:AddTag("crystal_water_broken")
+    end)
 end
 
 local function onMined(inst, worker)

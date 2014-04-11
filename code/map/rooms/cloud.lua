@@ -11,7 +11,8 @@ TheMod:AddRoom("BGCloud", {
 			skyflower = 1.6,
 			tea_bush = 0.05,
 			crystal_light = 0.065,
-			cloud_fruit_tree = 0.04,
+			cloud_fruit_tree = 0.008,
+			owl = 0.007,
 		},
 	    countprefabs = {
 	        --lionblob = 1,
@@ -133,8 +134,8 @@ TheMod:AddRoom("CragLanding", {
 		distributepercent = 0.4,
 		distributeprefabs = {
 			--sky_lemur = 0.005,
-			beanlet = 0.002,
-			cloud_fruit_tree = 0.01,
+			beanlet = 0.0003,
+			cloud_fruit_tree = 0.0003,
 		},
 	    countprefabs = {
 	        goose = 1,
@@ -243,10 +244,10 @@ TheMod:AddRoom("Manta_Room", {
 		distributeprefabs = {
 			cloud_bush = 0.03,
 			manta = 0.02,
-			cloud_fruit_tree = 0.02,
-			colored_corn = 0.02,
+			cloud_fruit_tree = 0.04,
+			colored_corn = 0.04,
 			jellyshroom_blue = 0.08,
-			owl = 0.004,
+			owl = 0.007,
 			skyflower = 0.1,
 		},
 	},
@@ -264,8 +265,8 @@ TheMod:AddRoom("BGRainbow", {
 	contents = {
 		distributepercent = 0.6,
 		distributeprefabs = {
-			jellyshroom_red = 0.04,
-			jellyshroom_blue = 0.04,
+			jellyshroom_red = 0.02,
+			jellyshroom_blue = 0.03,
 			jellyshroom_green = 0.04,
 			skyflower = 0.1,
 		},
@@ -282,7 +283,7 @@ TheMod:AddRoom("Rainbow_Room", {
 			hive_marshmallow = 0.03,
 			jellyshroom_red = 0.02,
 			bee_marshmallow = 0.1,
-			skyflower = 0.1,			
+			skyflower = 0.1,		
 		},
 	    countprefabs= {
 	        crystal_white = 4,
@@ -297,10 +298,13 @@ TheMod:AddRoom("Crystal_Fields", {
 	contents = {
 		distributepercent = 0.3,
 		distributeprefabs = {
-			crystal_spire = 0.09,
+			crystal_spire = 0.025,
+			crystal_water = 0.025,
+			crystal_light = 0.025,
 			--rainbowcoon = 0.05,
 			jellyshroom_green = 0.05,
 			skyflower = 0.1,
+			owl = 0.007,
 		},
 		countprefabs= {
 	        crystal_black = 4,
@@ -316,7 +320,7 @@ TheMod:AddRoom("Fish_Fields", {
 		distributepercent = 0.3,
 		distributeprefabs = {
 			cloudcrag = 0.03,
-			crystal_water = 0.01,
+			crystal_water = 0.025,
 			golden_sunflower = 0.02,
 			jellyshroom_blue = 0.05,
 			skyflower = 0.1,
