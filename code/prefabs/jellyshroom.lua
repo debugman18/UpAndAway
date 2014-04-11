@@ -1,101 +1,123 @@
 BindGlobal()
 
 local Configurable = wickerrequire 'adjectives.configurable'
-local goodcfg = Configurable("SKYFLOWER")
+local cfg = Configurable("JELLYSHROOM")
 
-local assets =
+
+local picked_assets =
 {
-	Asset("ANIM", "anim/jelly shrooms.zip"),
-	Asset("ANIM", "anim/jelly caps.zip"),
+	Asset("ANIM", "anim/jelly_caps.zip"),
 }
 
-local function redfn(inst)
+local unpicked_assets =
+{
+	Asset("ANIM", "anim/jelly_shrooms.zip"),
+
+	-- The unpack must be at the bottom.
+	unpack(picked_assets)
+}
+
+
+--[[
+-- Returns a random colour (as a table with 3 elements).
+--
+-- Receives as argument either "red", "green" and "blue", indicating
+-- which colour should be stronger.
+--]]
+local random_colour = (function()
+	local index_map = {
+		red = 1,
+		green = 2,
+		blue = 3,
+	}
+
+	return function(major_name)
+		local major = 0.6 + 0.4*math.random()
+		local minor = 0.3 + 0.2*math.random()
+
+		local ret = {minor, minor, minor}
+		ret[index_map[major_name] or 1] = major
+		return ret
+	end
+end)()
+
+
+local function unpicked_setscale(inst, scale)
+	inst.Transform:SetScale(scale, scale, scale)
+	inst.scale = scale
+end
+
+local function unpicked_setcolour(inst, colour)
+    inst.AnimState:SetMultColour( colour[1], colour[2], colour[3], 1 )  
+	inst.colour = colour
+end
+
+local function unpicked_common_onsave(inst, data)
+	data.scale = inst.scale
+	data.colour = inst.colour
+end
+
+local function unpicked_common_onload(inst, data)
+	if data then
+		if data.scale then unpicked_setscale(inst, data.scale) end
+		if data.colour then unpicked_setcolour(inst, data.colour) end
+	end
+end
+
+local function unpickedfn_common(bank, name)
 	local inst = CreateEntity()
+
+	inst.setc = unpicked_setcolour
+
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("Redjellyshroom") 
-	inst.AnimState:SetBuild("jelly shrooms")  
-	local color = 0.7 + math.random() * 0.7
-    inst.AnimState:SetMultColour(color, color, color, 1)  
+	inst.AnimState:SetBank(bank) 
+	inst.AnimState:SetBuild("jelly_shrooms")  
     inst.AnimState:PlayAnimation("idle")	
     inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
 
-    local basescale = math.random(8,14)
-    local scale = basescale / 10
-    inst.Transform:SetScale(scale, scale, scale)
+	unpicked_setcolour(inst, random_colour(name))
+
+	unpicked_setscale(inst, 0.8 + 0.6*math.random())
 
 	inst:AddComponent("inspectable") 
 
     inst.entity:AddMiniMapEntity()
-    inst.MiniMapEntity:SetIcon("jellyshroom_red.tex")		   
+    inst.MiniMapEntity:SetIcon("jellyshroom_"..name..".tex")		   
 
+	inst.OnSave = unpicked_common_onsave
+	inst.OnLoad = unpicked_common_onload
+
+    return inst
+end
+
+local function unpickedfn_red()
+	local inst = unpickedfn_common("Redjellyshroom", "red")
     return inst
 end	
 
-local function greenfn(inst)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
-
-	inst.AnimState:SetBank("Greenjellyshroom") 
-	inst.AnimState:SetBuild("jelly shrooms")  
-	local color = 0.7 + math.random() * 0.7
-    inst.AnimState:SetMultColour(color, color, color, 1)  
-    inst.AnimState:PlayAnimation("idle")
-    inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
-
-    local basescale = math.random(8,14)
-    local scale = basescale / 10
-    inst.Transform:SetScale(scale, scale, scale)
-
-	inst:AddComponent("inspectable")  
-
-    inst.entity:AddMiniMapEntity()
-    inst.MiniMapEntity:SetIcon("jellyshroom_green.tex")		  
-
+local function unpickedfn_green(inst)
+	local inst = unpickedfn_common("Greenjellyshroom", "green")
     return inst	
 end	
 
-local function bluefn(inst)	
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
-
-	inst.AnimState:SetBank("Bluejellyshroom") 
-	inst.AnimState:SetBuild("jelly shrooms") 
-	local color = 0.7 + math.random() * 0.7
-    inst.AnimState:SetMultColour(color, color, color, 1)   
-    inst.AnimState:PlayAnimation("idle")
-    inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )	
-
-    local basescale = math.random(8,14)
-    local scale = basescale / 10
-    inst.Transform:SetScale(scale, scale, scale)
-
-	inst:AddComponent("inspectable")  
-
-    inst.entity:AddMiniMapEntity()
-    inst.MiniMapEntity:SetIcon("jellyshroom_blue.tex")		 
-
+local function unpickedfn_blue(inst)	
+	local inst = unpickedfn_common("Bluejellyshroom", "blue")
     return inst
 end	
 
-local function pickedfn_red(Sim)
+-- name is currently unused.
+local function pickedfn_common(bank, name)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("Redjellycap")
-	inst.AnimState:SetBuild("jelly caps")
+	inst.AnimState:SetBank(bank)
+	inst.AnimState:SetBuild("jelly_caps")
 	inst.AnimState:PlayAnimation("idle")
 
 	inst:AddComponent("stackable")
@@ -106,56 +128,30 @@ local function pickedfn_red(Sim)
 	inst:AddComponent("inventoryitem")	
 	
 	return inst
-end	
+end
 
-local function pickedfn_blue(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
-
-	inst.AnimState:SetBank("Bluejellycap")
-	inst.AnimState:SetBuild("jelly caps")
-	inst.AnimState:PlayAnimation("idle")
-
-	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
-
-	inst:AddComponent("inspectable")
-
-	inst:AddComponent("inventoryitem")	
-	
+local function pickedfn_red(Sim)
+	local inst = pickedfn_common("Redjellycap", "red")
 	return inst
 end	
 
 local function pickedfn_green(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
-
-	inst.AnimState:SetBank("Greenjellycap")
-	inst.AnimState:SetBuild("jelly caps")
-	inst.AnimState:PlayAnimation("idle")
-
-	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
-
-	inst:AddComponent("inspectable")
-
-	inst:AddComponent("inventoryitem")	
-	
+	local inst = pickedfn_common("Greenjellycap", "green")
 	return inst
 end	
 
-return {
-	Prefab ("cloudrealm/flora/jellyshroom_red", redfn, assets),
-	Prefab ("cloudrealm/flora/jellyshroom_green", greenfn, assets),
-	Prefab ("cloudrealm/flora/jellyshroom_blue", bluefn, assets),		
+local function pickedfn_blue(Sim)
+	local inst = pickedfn_common("Bluejellycap", "blue")
+	return inst
+end	
 
-	Prefab ("cloudrealm/inventory/jellycap_red", pickedfn_red, assets),
-	Prefab ("cloudrealm/inventory/jellycap_green", pickedfn_green, assets),
-	Prefab ("cloudrealm/inventory/jellycap_blue", pickedfn_blue, assets),
+
+return {
+	Prefab ("cloudrealm/flora/jellyshroom_red", unpickedfn_red, unpicked_assets),
+	Prefab ("cloudrealm/flora/jellyshroom_green", unpickedfn_green, unpicked_assets),
+	Prefab ("cloudrealm/flora/jellyshroom_blue", unpickedfn_blue, unpicked_assets),		
+
+	Prefab ("cloudrealm/inventory/jellycap_red", pickedfn_red, picked_assets),
+	Prefab ("cloudrealm/inventory/jellycap_green", pickedfn_green, picked_assets),
+	Prefab ("cloudrealm/inventory/jellycap_blue", pickedfn_blue, picked_assets),
 }	   

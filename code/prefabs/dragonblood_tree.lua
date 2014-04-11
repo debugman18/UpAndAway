@@ -8,6 +8,7 @@ local assets =
 local prefabs =
 {
 	"dragonblood_sap",
+	"dragonblood_log",
 	"log",
 }
 
@@ -28,6 +29,7 @@ local normal_loot =
 {
 	"dragonblood_log",
 	"dragonblood_log",	
+	"log",
 }
 
 local tall_loot = 
@@ -35,6 +37,7 @@ local tall_loot =
 	"dragonblood_log",
 	"dragonblood_log",
 	"dragonblood_log",		
+	"log",
 }
 
 local function SetShort(inst)
@@ -91,36 +94,50 @@ local growth_stages =
     {name="tall", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[3].base, TUNING.EVERGREEN_GROW_TIME[3].random) end, fn = function(inst) SetTall(inst) end, growfn = function(inst) GrowTall(inst) end, leifscale=1.25 },
 }
 
-local function fn(Sim, stage)
+local function random_colour()
+	local ret = {}
+	for i = 1, 3 do
+		ret[i] = 0.5 + 0.5*math.random()
+	end
+	return ret
+end
+
+local function set_colour(inst, colour)
+	inst.AnimState:SetMultColour( colour[1], colour[2], colour[3], 1 )
+	inst.colour = colour
+end	
+
+local function onsave(inst, data)
+	data.colour = inst.colour
+end
+
+local function onload(inst, data)
+	if data then
+		if data.colour then
+			set_colour(inst, data.colour)
+		end
+	end
+end
+
+local function fn()
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
 
-	if stage == nil then
-		stage = math.random(1,3)
-	end
+	MakeObstaclePhysics(inst, 0.25)
 
-	local l_stage = stage
-	if l_stage == 0 then
-		l_stage = math.random(1,3)
-	end	
+	local stage = math.random(1, 3)
 
     inst.AnimState:SetBank("dragonblood_tree")
     inst.AnimState:SetBuild("dragonblood_tree")
-    local color = 0.5 + math.random() * 0.5
-    inst.AnimState:SetMultColour(color, color, color, 1)
 	inst.AnimState:PlayAnimation("idle")
+
+	set_colour(inst, random_colour())
 
 	inst:AddComponent("inspectable")
 
    	inst:AddComponent("lootdropper") 
-
-	inst:AddComponent("growable")
-    inst.components.growable.stages = growth_stages
-    inst.components.growable:SetStage(l_stage)
-    inst.components.growable.loopstages = true
-    inst.components.growable:StartGrowing()
 
 	inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.CHOP)
@@ -128,10 +145,20 @@ local function fn(Sim, stage)
     inst.components.workable:SetOnFinishCallback(chopped)
     inst.components.workable:SetOnWorkCallback(chop)	
 
+	inst:AddComponent("growable")
+    inst.components.growable.stages = growth_stages
+    inst.components.growable:SetStage(stage)
+    inst.components.growable.loopstages = true
+    inst.components.growable:StartGrowing()
+
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("dragonblood_tree.tex")
 
-    inst:ListenForEvent("onremove", removesockets)	   	
+	-- The following function is not defined.
+    --inst:ListenForEvent("onremove", removesockets)	   	
+
+	inst.OnSave = onsave
+	inst.OnLoad = onload
 
 	return inst
 end
