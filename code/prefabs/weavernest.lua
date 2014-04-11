@@ -373,8 +373,8 @@ local function MakeWeaverNestFn(den_level)
 		inst:ListenForEvent("unfreeze", OnUnFreeze)
 		-------------------
 
-		inst:ListenForEvent("dusktime", function() StartSpawning(inst) end, GetWorld())
-		inst:ListenForEvent("daytime", function() StopSpawning(inst) end , GetWorld())
+		inst:ListenForEvent("dusktime", function() StopSpawning(inst) end, GetWorld())
+		inst:ListenForEvent("daytime", function() StartSpawning(inst) end , GetWorld())
 
 		-------------------
 

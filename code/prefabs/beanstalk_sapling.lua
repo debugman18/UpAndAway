@@ -20,9 +20,9 @@ local function GrowBeanstalk(inst)
 	GetPlayer().components.talker:Say("What could that be?!")
     if tree then 
 		tree.Transform:SetPosition(inst.Transform:GetWorldPosition() ) 
-		inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentapiller_emerge") 
-		inst.AnimState:PlayAnimation("emerge")		
-        inst.AnimState:PushAnimation("idle", "loop")		
+		tree.SoundEmitter:PlaySound("dontstarve/tentacle/tentapiller_emerge") 
+		tree.AnimState:PlayAnimation("emerge")		
+        tree.AnimState:PushAnimation("idle", true)		
 		GetPlayer().AnimState:PlayAnimation("wakeup")
         inst:Remove()
 	end

@@ -1822,7 +1822,7 @@ Add.QuotesFor "smores" {
 }
 
 Add.QuotesFor "tea_bush" {
-    GENERIC = "Tea leave grow on this bush.",
+    GENERIC = "Tea leaves grow on this bush.",
     wathgrithr = "It grows tea.",
     waxwell = nil,
     webber = nil,

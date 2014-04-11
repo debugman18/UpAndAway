@@ -11,12 +11,12 @@ TheMod:AddRoom("BGCloud", {
 			skyflower = 1.6,
 			tea_bush = 0.05,
 			crystal_light = 0.065,
-			sheep = 0.03,
 			cloud_fruit_tree = 0.04,
 		},
 	    countprefabs = {
-	        lionblob = 1,
+	        --lionblob = 1,
 	        golden_sunflower = 6,
+	        sheepherd = 4,
 	    }		
 	}
 })
@@ -45,11 +45,11 @@ TheMod:AddRoom("SkyflowerGarden", {
 			skyflower = 0.3,
 			skytrap = 0.3,
 			golden_rose = 0.1,
-			sheep = 0.4,
 			cloud_bush = 0.02,
 		},
 	    countprefabs= {
 	        weavernest = 4,
+	        sheepherd = 4,
 	    }			
 	},
 })
@@ -61,7 +61,8 @@ TheMod:AddRoom("SheepHerd", {
 	contents = {
 		distributepercent = 0.3,
 		distributeprefabs = {
-			sheep = 0.4,
+			sheep = 0.1,
+			sheepherd = 0.07,
 			skyflower = 0.6,
 		},
 	},
@@ -117,7 +118,7 @@ TheMod:AddRoom("Vine_Room", {
 		distributeprefabs = {
 			vine = 0.3,
 			dragonblood_tree = 0.4,
-			beanlet = 0.5,
+			beanlet = 0.07,
 			gustflower = 0.2,
 			skeleton = 0.3,
 		},

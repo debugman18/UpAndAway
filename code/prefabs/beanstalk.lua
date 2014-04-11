@@ -265,7 +265,7 @@ local function fn(Sim)
 
 	anim:SetBank("tentaclepillar")
 	anim:SetBuild("beanstalk")
-	anim:PlayAnimation("idle", "loop")	
+	anim:PushAnimation("idle", true)	
 
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon( "beanstalk.tex" )

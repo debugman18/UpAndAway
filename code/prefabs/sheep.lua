@@ -285,7 +285,8 @@ local function fn()
 	inst.components.inspectable.getstatus = GetStatus
 
 	inst:AddComponent("knownlocations")
-	inst:AddComponent("herdmember")
+    inst:AddComponent("herdmember")
+    inst.components.herdmember.herdprefab = "sheepherd"
 	
 	inst:AddComponent("leader")
 

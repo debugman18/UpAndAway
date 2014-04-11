@@ -17,6 +17,18 @@ local function onpickedfn(inst)
 	inst.components.pickable:MakeEmpty()
 end
 
+local function StopSpawning(inst)
+    if inst.components.childspawner then
+        inst.components.childspawner:StopSpawning()
+    end
+end
+
+local function StartSpawning(inst)
+    if inst.components.childspawner and GetSeasonManager() and GetSeasonManager():IsWinter() then
+        inst.components.childspawner:StartSpawning()  
+    end
+end
+
 local function OnSpawned(inst, child)
     if GetClock():IsDay() and inst.components.childspawner and inst.components.childspawner:CountChildrenOutside() >= 1 then
         StopSpawning(inst)
@@ -29,18 +41,6 @@ local function OnSpawned(inst, child)
     local angle = math.atan2(down.z, down.x) + (math.random()*60-30)*DEGREES
     local sp = math.random()*4+2
     seeds.Physics:SetVel(sp*math.cos(angle), math.random()*2+8, sp*math.sin(angle))
-end
-
-local function StartSpawning(inst)
-    if inst.components.childspawner and GetSeasonManager() and GetSeasonManager():IsWinter() then
-        inst.components.childspawner:StartSpawning()  
-    end
-end
-
-local function StopSpawning(inst)
-    if inst.components.childspawner then
-        inst.components.childspawner:StopSpawning()
-    end
 end
 
 local function onunchargedfn(inst)
