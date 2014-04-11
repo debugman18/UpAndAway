@@ -11,6 +11,19 @@ TheMod = use 'start_wicker'
 modimport "assets.lua"
 modimport "prefabfiles.lua"
 
+--Dirty overrides for adding our own tech branch.
+
+-- Defines the function AddTechBranch.
+modimport "branchadder.lua"
+
+-- Overrides Builder:KnowsRecipe()...
+modimport "nasty_overridings.lua"
+
+--[[
+-- Here we add a new tech branch, SHENANIGANS, and create entries in TECH for
+-- levels 1-3, called SHENANIGANS_1, ..., SHENANIGANS_3.
+--]]
+AddTechBranch("FABLE", 3)
 
 --RemapSoundEvent("dontstarve/music/music_FE", "upandaway/music/music_FE")
 
@@ -34,7 +47,6 @@ if TheMod:Debug() then
 	end)
 end
 --]]
-
 
 TheMod:Run("main")
 

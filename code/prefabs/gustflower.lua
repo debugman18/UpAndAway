@@ -14,7 +14,7 @@ local prefabs=
 local cfg = wickerrequire("adjectives.configurable")("GUSTFLOWER")
 
 local function onpickedfn(inst)
-	inst.components.pickable:MakeEmpty()
+	inst.components.pickable.cycles_left = 0
 end
 
 local function StopSpawning(inst)
@@ -72,7 +72,7 @@ local function fn(Sim)
     
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
-    inst.components.pickable:SetUp("gustflower_seeds", 1)
+    inst.components.pickable:SetUp("gustflower_seeds", 1, 1)
 	inst.components.pickable.onpickedfn = onpickedfn
     
     inst.components.pickable.quickpick = false

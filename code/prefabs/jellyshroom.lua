@@ -41,6 +41,9 @@ local random_colour = (function()
 	end
 end)()
 
+local function onpickedfn(inst)
+	inst.components.pickable.cycles_left = 0
+end	
 
 local function unpicked_setscale(inst, scale)
 	inst.Transform:SetScale(scale, scale, scale)
@@ -84,6 +87,11 @@ local function unpickedfn_common(bank, name)
 
 	inst:AddComponent("inspectable") 
 
+    inst:AddComponent("pickable")
+    inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
+	inst.components.pickable.onpickedfn = onpickedfn
+    inst.components.pickable.quickpick = false
+
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("jellyshroom_"..name..".tex")		   
 
@@ -95,16 +103,19 @@ end
 
 local function unpickedfn_red()
 	local inst = unpickedfn_common("Redjellyshroom", "red")
+	inst.components.pickable:SetUp("jellycap_red", 1, 1)
     return inst
 end	
 
 local function unpickedfn_green(inst)
 	local inst = unpickedfn_common("Greenjellyshroom", "green")
+	inst.components.pickable:SetUp("jellycap_green", 1, 1)
     return inst	
 end	
 
 local function unpickedfn_blue(inst)	
 	local inst = unpickedfn_common("Bluejellyshroom", "blue")
+	inst.components.pickable:SetUp("jellycap_blue", 1, 1)
     return inst
 end	
 
