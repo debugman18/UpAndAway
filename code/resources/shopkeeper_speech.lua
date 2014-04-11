@@ -105,7 +105,12 @@ SPEECHES.BEAN_SUCCESS = function(mgr, args)
 	mgr "Now for me to keep mine."
 	mgr:PlaySound(metalsnd)
 
+	mgr:KillVoice()
+	Sleep(0.5)
+
 	args.givebeans(mgr.speaker, mgr.listener)
+
+	Sleep(0.5)
 
 	mgr "Your ticket out of here."
 	mgr:PlaySound(metalsnd)
