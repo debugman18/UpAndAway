@@ -20,6 +20,8 @@
 
 	+ Setpieces, setpieces, setpieces
 
+	+ Dependency of mushroom hat effects on its spoilage.
+
 ******
 
 Anything else that needs to be added will be added, current version is from memory. 
