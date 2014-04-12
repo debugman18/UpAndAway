@@ -125,23 +125,26 @@ end
 --
 -- The setting of flags such as inst.gavebeans is done as speech callbacks.
 -- See the configuration of the speechgiver component below.
-local function onactivate(inst, doer)
+--
+-- When this does not return true, the "I can't do that." message is displayed
+-- by the player.
+local function oninteract(inst, doer)
 	inst.components.speechgiver:CancelAll()
-
-	inst:DoTaskInTime(0, function(inst)
-		if inst.components.activatable then inst.components.activatable.inactive = true end
-	end)
 
 	if not inst.customer then
 		inst.components.speechgiver:PlaySpeech("BEAN_QUEST", doer)
+		return true
 	elseif inst.numbeans > 0 and negotiateCows(inst, doer) then
 		inst.components.speechgiver:PlaySpeech("BEAN_SUCCESS", doer)
 		inst.components.speechgiver:PushSpeech("BEAN_HINT", doer)
+		return true
 	elseif inst.numbeans > 0 and not inst.gavebeans then
 		inst.components.speechgiver:PlaySpeech("BEAN_REMINDER", doer)
+		return true
 	elseif inst.gavebeans then
 		inst.components.speechgiver:PlaySpeech("BEAN_HINT", doer)
 		inst.components.speechgiver:ForbidCutScenesInQueue()
+		return true
 	else
 		TheMod:DebugSay "What else do you expect from me?"
 	end
@@ -292,6 +295,8 @@ local function fn(Sim)
 		speechgiver:AddSpeechTable(shopkeeper_speech.SPEECHES)
 		speechgiver:AddWordMapTable(shopkeeper_speech.WORD_MAP)
 
+		speechgiver:SetOnInteractFn(oninteract)
+
 		speechgiver:AddSpeechCallback("HIT", onhit_speechcallback)
 		speechgiver:AddSpeechCallback("BEAN_QUEST", function(inst)
 			inst.customer = true
@@ -334,10 +339,6 @@ local function fn(Sim)
 	inst:AddComponent("health")
 	inst.components.health:SetMaxHealth(10000000)
 	
-	inst:AddComponent("activatable")
-	inst.components.activatable.OnActivate = onactivate
-	inst.components.activatable.quickaction = true
-
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("shopkeeper.tex")
 

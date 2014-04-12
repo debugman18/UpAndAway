@@ -1,6 +1,6 @@
 --[[
 -- This function takes an entity and returns its gender, caching the result
--- (since  GetGenderStrings() is quite inefficient)
+-- (since GetGenderStrings() is quite inefficient)
 --]]
 local get_inst_gender = (function()
 	local cache = {}
@@ -25,7 +25,7 @@ end)()
 --
 -- The original word can be specified in any combination of lower/upper case.
 --
--- When mapping a word, the final word preserved the capitalization of the
+-- When mapping a word, the final word preserves the capitalization of the
 -- word as found in the text.
 --]]
 WORD_MAP = {

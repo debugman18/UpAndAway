@@ -39,3 +39,25 @@ AddStategraphActionHandler("wilson", ActionHandler(Withdraw, function(inst, acti
 		return un.quickwithdraw and "doshortaction" or "dolongaction"
 	end
 end))
+
+
+-- Ugly name, but avoids confusion with vanilla's TALKTO action.
+local BeginSpeech = Action(-1, false, false, TheMod:GetConfig("SPEECHGIVER", "MAX_DIST"))
+BeginSpeech.str = ACTIONS.TALKTO.str
+BeginSpeech.id = "BEGINSPEECH"
+BeginSpeech.fn = function(act)
+	local doer = act.doer
+	local targ = act.target
+	if doer and targ and targ.components.speechgiver then
+		return targ.components.speechgiver:InteractWith(doer)
+	end
+end
+
+AddAction(BeginSpeech)
+
+AddStategraphActionHandler("wilson", ActionHandler(BeginSpeech, function(inst, action)
+	if action.target and action.target.components.speechgiver then
+		inst:PerformBufferedAction()
+		return "idle"
+	end
+end))

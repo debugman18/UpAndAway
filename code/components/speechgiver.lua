@@ -10,7 +10,8 @@ local Debuggable = wickerrequire "adjectives.debuggable"
 
 local function new_speechmanager_queue()
 	return {
-		allow_cutscenes = true,
+		allows_cutscenes = true,
+		user_allows_cutscenes = true,
 	}
 end
 
@@ -43,8 +44,10 @@ local SpeechGiver = Class(Debuggable, function(self, inst)
 	self.speeches = {}
 	self.wordmaps = {}
 
+	self.oninteractfn = nil
+
 	self.speechmanagers = new_speechmanager_queue()
-	self.allow_cutscenes = true
+	self.allows_cutscenes = true
 end)
 local IsSpeechGiver = Pred.IsInstanceOf(SpeechGiver)
 local IsSpeechFn = Pred.IsCallable
@@ -86,6 +89,11 @@ end
 
 function SpeechGiver:GetSpeechData(name)
 	return self.speeches[name]
+end
+
+function SpeechGiver:HasSpeech(name)
+	local speech = self:GetSpeechData(name)
+	return Pred.IsTable(speech) and IsSpeechFn(speech.fn)
 end
 
 local function get_speech_datatable(self, name)
@@ -144,13 +152,31 @@ function SpeechGiver:AddWordMapTable(t)
 	end
 end
 
+local function default_oninteractfn(inst, doer)
+	local self = inst.components.speechgiver
+	if self and self:HasSpeech("NULL_SPEECH") then
+		self:PlaySpeech("NULL_SPEECH", doer)
+		return true
+	end
+end
+
+function SpeechGiver:GetOnInteractFn()
+	return self.oninteractfn or default_oninteractfn
+end
+
+function SpeechGiver:SetOnInteractFn(fn)
+	assert( fn == nil or Pred.IsCallable(fn), "Function expected as oninteract handler." )
+	self.oninteractfn = fn
+end
+
+
 function SpeechGiver:ForbidCutScenes()
-	self.allow_cutscenes = false
+	self.allows_cutscenes = false
 end
 SpeechGiver.ForbidCutscenes = SpeechGiver.ForbidCutScenes
 
 function SpeechGiver:ForbidCutScenesInQueue()
-	self.speechmanagers.allow_cutscenes = false
+	self.speechmanagers.allows_cutscenes = false
 end
 SpeechGiver.ForbidCutscenesInQueue = SpeechGiver.ForbidCutScenesInQueue
 
@@ -161,12 +187,12 @@ SpeechGiver.ForbidCutscenesInQueue = SpeechGiver.ForbidCutScenesInQueue
 --]]
 
 function SpeechGiver:AllowsCutScenes()
-	return self.allow_cutscenes and self.speechmanagers.allow_cutscenes
+	return self.allows_cutscenes and self.speechmanagers.allows_cutscenes and self.speechmanagers.user_allows_cutscenes
 end
 SpeechGiver.AllowsCutscenes = SpeechGiver.AllowsCutScenes
 
 function SpeechGiver:IsSpeaking()
-	return #self.speechmanagers > 0 and self.speechmanagers[1]:IsRunning()
+	return self.speechmanagers[1] and self.speechmanagers[1]:IsRunning()
 end
 SpeechGiver.IsTalking = SpeechGiver.IsSpeaking
 
@@ -232,10 +258,10 @@ end
 local function speechgiver_onfinishspeech(self)
 	if not self.inst:IsValid() then return end
 
-	if #self.speechmanagers > 0 then
+	if self.speechmanagers[1] then
 		table.remove(self.speechmanagers, 1)
 	end
-	if #self.speechmanagers == 0 then
+	if not self.speechmanagers[1] then
 		self:ClearQueue()
 	else
 		self.speechmanagers[1]:Start()
@@ -274,6 +300,7 @@ local SpeechManager = Class(Debuggable, function(self, speechgiver, speechname, 
 	self.inputhandlers = nil
 
 	self.interruptible = true
+	self.wants_cutscene = false
 	self.is_cutscene = false
 	self.thread = nil
 
@@ -353,33 +380,52 @@ local function enable_listener(self)
 end
 
 local function setup_input_handlers(self)
-	if not self.listener:IsValid() then return end
+	if not (self.inst:IsValid() and self.listener:IsValid()) then return end
 
 	disable_listener(self)
 
-	if not self:IsInterruptible() or self.inputhandlers then return end
 
-	self:DebugSay("Setting up input handlers.")
+	self.inst:DoTaskInTime(0, function()
+		if not (self.inst:IsValid() and self.listener:IsValid()) then return end
 
-	local TheInput = _G.TheInput
+		if not (self.inst.components.speechgiver and self:IsInterruptible()) or self.inputhandlers then return end
 
-	local function cb()
-		self:Interrupt()
-	end
+		self:DebugSay("Setting up input handlers.")
 
-	local function delayed_cb()
-		self.inst:DoTaskInTime(0, cb)
-	end
+		local TheInput = _G.TheInput
 
-	self.inputhandlers = {
-		TheInput:AddKeyUpHandler(_G.KEY_ESCAPE, delayed_cb),
-		TheInput:AddControlHandler(_G.CONTROL_PRIMARY, cb),
-		TheInput:AddControlHandler(_G.CONTROL_SECONDARY, cb),
-		TheInput:AddControlHandler(_G.CONTROL_ATTACK, cb),
-		TheInput:AddControlHandler(_G.CONTROL_INSPECT, cb),
-		TheInput:AddControlHandler(_G.CONTROL_ACTION, cb),
-		TheInput:AddControlHandler(_G.CONTROL_CONTROLLER_ACTION, cb),
-	}
+		local function new_key_handler(name)
+			return TheInput:AddKeyUpHandler(_G[name], function()
+				if self.inst:IsValid() then
+					self.inst:DoTaskInTime(0, function()
+						if self.inst:IsValid() then
+							self:DebugSay("Interrupted by ", name, ".")
+							self:Interrupt()
+						end
+					end)
+				end
+			end)
+		end
+
+		local function new_control_handler(name)
+			return TheInput:AddControlHandler(_G[name], function(down)
+				if down and self.inst:IsValid() then
+					self:DebugSay("Interrupted by ", name, ".")
+					self:Interrupt()
+				end
+			end)
+		end
+
+		self.inputhandlers = {
+			new_key_handler "KEY_ESCAPE",
+			new_control_handler "CONTROL_PRIMARY",
+			new_control_handler "CONTROL_SECONDARY",
+			new_control_handler "CONTROL_ATTACK",
+			new_control_handler "CONTROL_INSPECT",
+			new_control_handler "CONTROL_ACTION",
+			new_control_handler "CONTROL_CONTROLLER_ACTION",
+		}
+	end)
 end
 
 function SpeechManager:GetSpeechName()
@@ -390,7 +436,9 @@ function SpeechManager:IsInterruptible()
 	return self.interruptible
 end
 
-
+function SpeechManager:WantsCutScene()
+	return self.wants_cutscene
+end
 
 function SpeechManager:IsCutScene()
 	return self.is_cutscene
@@ -476,9 +524,9 @@ function SpeechManager:Interrupt()
 
 	self:DebugSay("Interrupt()")
 
-	self.speechgiver.speechmanagers.allow_cutscenes = false
+	self.speechgiver.speechmanagers.user_allows_cutscenes = false
 
-	self:ExitCutScene()
+	self:AbortCutScene()
 end
 
 function SpeechManager:PlayVoice()
@@ -652,6 +700,8 @@ end
 
 -- May be called outside of a speech.
 function SpeechManager:EnterCutScene()
+	self.wants_cutscene = true
+
 	if self.is_cutscene then return true end
 
 	self:DebugSay("EnterCutScene()")
@@ -664,6 +714,10 @@ function SpeechManager:EnterCutScene()
 	self.is_cutscene = true
 
 	setup_input_handlers(self)
+
+	if self.inst.components.highlight then
+		self.inst.components.highlight:UnHighlight()
+	end
 
 
 	local cameracfg = self:GetConfig("CUTSCENE_CAMERA")
@@ -697,12 +751,14 @@ end
 SpeechManager.EnterCutscene = SpeechManager.EnterCutScene
 
 -- May be called outside of a speech.
-function SpeechManager:ExitCutScene()
-	if not self.is_cutscene or not self.listener:HasTag("player") then return end
+function SpeechManager:AbortCutScene()
+	if not self.is_cutscene or not self.listener:HasTag("player") then return true end
 
-	self:DebugSay("ExitCutScene()")
+	self:DebugSay("AbortCutScene()")
 
-	self.is_cutscene = false
+	if self.inst:IsValid() then
+		self.inst:DoTaskInTime(0.1, function() self.is_cutscene = false end)
+	end
 
 	enable_listener(self)
 
@@ -716,6 +772,15 @@ function SpeechManager:ExitCutScene()
 	if self.listener.HUD then
 		self.listener.HUD:Show()
 	end
+
+	return true
+end
+SpeechManager.AbortCutscene = SpeechManager.AbortCutScene
+
+-- May be called outside of a speech.
+function SpeechManager:ExitCutScene()
+	self.wants_cutscene = false
+	return self:AbortCutScene()
 end
 SpeechManager.ExitCutscene = SpeechManager.ExitCutScene
 
@@ -737,10 +802,11 @@ end
 function SpeechGiver:PushSpeech(speechname, listener)
 	assert( Pred.IsEntityScript(listener), "Entity expected as listener argument." )
 
-	local speech = self:GetSpeechData(speechname)
-	if not speech or not IsSpeechFn(speech.fn) then
+	if not self:HasSpeech(speechname) then
 		return error("Invalid speech '"..tostring(speechname).."'", 2)
 	end
+
+	local speech = self:GetSpeechData(speechname)
 	
 	speechgiver_pushspeechmanager( self, SpeechManager(self, speechname, speech, listener) )
 end
@@ -751,7 +817,7 @@ function SpeechGiver:PlaySpeech(speechname, listener)
 end
 
 function SpeechGiver:Cancel()
-	if #self.speechmanagers > 0 then
+	if self.speechmanagers[1] then
 		self.speechmanagers[1]:Cancel()
 	end
 end
@@ -766,15 +832,47 @@ end
 SpeechGiver.CancelAll = SpeechGiver.ClearQueue
 
 function SpeechGiver:Interrupt()
-	if #self.speechmanagers > 0 then
+	if self.speechmanagers[1] then
 		self.speechmanagers[1]:Interrupt()
+	end
+end
+
+function SpeechGiver:IsInCutScene()
+	local sm = self.speechmanagers[1]
+	if sm then
+		return sm:IsRunning() and sm:IsCutScene()
+	end
+end
+SpeechGiver.IsInCutscene = SpeechGiver.IsInCutScene
+
+function SpeechGiver:CanInteractWith(someone)
+	return self.inst:IsValid()
+		and someone and someone:IsValid()
+		and not self:IsInCutScene()
+end
+
+function SpeechGiver:InteractWith(someone)
+	if self:CanInteractWith(someone) then
+		self:DebugSay("Interacting with [", someone, "].")
+
+		self.speechmanagers.user_allows_cutscenes = true
+		
+		if self:IsSpeaking() and self.speechmanagers[1]:WantsCutScene() then
+			if self.speechmanagers[1]:EnterCutScene() then
+				return true
+			end
+		end
+
+		return self:GetOnInteractFn()(self.inst, someone)
+	elseif self:IsInCutScene() then
+		return true
 	end
 end
 
 ------------------------------------------------------------------------
 
 --[[
--- Saving, loading and related functions.
+-- Saving, loading and related functions. (and miscellanea)
 --]]
 
 function SpeechManager:Save(refs)
@@ -793,8 +891,7 @@ function SpeechManager.LoadFrom(speechgiver, data, newents)
 	local listener = newents[data.listener]
 	if not listener then return end
 
-	local speech = speechgiver:GetSpeechData(speechname)
-	if not (Pred.IsTable(speech) and IsSpeechFn(speech.fn)) then return end
+	if not speechgiver:HasSpeech(speechname) then return end
 
 	return SpeechManager(speechgiver, speechname, speech, listener)
 end
@@ -840,7 +937,7 @@ function SpeechGiver:LoadPostPass(newents, data)
 		end
 	end
 
-	if #self.speechmanagers == 0 then
+	if not self.speechmanagers[1] then
 		self:ClearQueue()
 	end
 end
@@ -858,6 +955,12 @@ end
 function SpeechGiver:OnEntitySleep()
 	self:DebugSay("OnEntitySleep()")
 	self:ClearQueue()
+end
+
+function SpeechGiver:CollectSceneActions(doer, actions)
+	if self:CanInteractWith(doer) and not (doer.sg and doer.sg:HasStateTag("moving")) then
+		table.insert(actions, _G.ACTIONS.BEGINSPEECH)
+	end
 end
 
 ------------------------------------------------------------------------
