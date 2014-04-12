@@ -30,10 +30,14 @@ end
 GetStaticGen = GetStaticGenerator
 
 
-if not VarExists("IsDLCEnabled") then
+if VarExists("IsDLCEnabled") then
+	IsDLCEnabled = _G.IsDLCEnabled
+else
 	IsDLCEnabled = Lambda.False
 end
-if not VarExists("REIGN_OF_GIANTS") then
+if VarExists("REIGN_OF_GIANTS") then
+	REIGN_OF_GIANTS = _G.REIGN_OF_GIANTS
+else
 	REIGN_OF_GIANTS = false
 end
 

@@ -26,6 +26,8 @@ local shopkeeper_speech = modrequire "resources.shopkeeper_speech"
 --This makes it so that you cannot kill the shopkeeper.
 --It is used as a callback for the HIT speech.
 local function onhit_speechcallback(inst, speech_mgr)
+	if inst:HasTag("permanent") then return end
+
 	local doer = speech_mgr.listener
 
 	local pos = Vector3( doer.Transform:GetWorldPosition() )
@@ -155,7 +157,7 @@ local function has_given_quest(inst)
 end
 
 local function try_despawn(inst)
-	if not inst:IsValid() then return end
+	if not inst:IsValid() or inst:HasTag("permanent") then return end
 
 	TheMod:DebugSay("Attempting to despawn [", inst, "]...")
 	
@@ -180,6 +182,8 @@ local function onsave(inst, data)
 
 	data.numbeans = inst.numbeans
 	data.beans_to_give = inst.beans_to_give ~= 0 and inst.beans_to_give or nil
+
+	data.permanent = inst:HasTag("permanent") or nil
 end
 
 local function onload(inst, data)
@@ -190,6 +194,10 @@ local function onload(inst, data)
 
 	inst.numbeans = data.numbeans or inst.numbeans
 	inst.beans_to_give = data.beans_to_give
+
+	if data.permanent then
+		inst:AddTag("permanent")
+	end
 
 	if inst.beans_to_give == 0 then
 		inst.beans_to_give = nil
@@ -337,7 +345,7 @@ local function fn(Sim)
 	inst.components.combat.onhitfn = OnHit
 	
 	inst:AddComponent("health")
-	inst.components.health:SetMaxHealth(10000000)
+	inst.components.health:SetInvincible(true)
 	
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("shopkeeper.tex")

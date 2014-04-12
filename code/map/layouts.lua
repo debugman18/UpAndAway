@@ -21,3 +21,7 @@ Layouts["CloudBase1"] = StaticLayout.Get("map.static_layouts.cloudbase1")
 Layouts["OctocopterPart1"] = StaticLayout.Get("map.static_layouts.octocopterpart1")
 Layouts["OctocopterPart2"] = StaticLayout.Get("map.static_layouts.octocopterpart2")
 Layouts["OctocopterPart3"] = StaticLayout.Get("map.static_layouts.octocopterpart3")
+
+---
+
+Layouts["UpAndAway_TestStart"] = StaticLayout.Get("map.static_layouts.upandaway_test_start")
