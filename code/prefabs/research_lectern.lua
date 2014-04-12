@@ -30,7 +30,7 @@ local function fn(Sim)
     inst:AddTag("structure")
 
 	inst:AddComponent("prototyper")        
-	inst.components.prototyper.trees = FABLE_1   
+	inst.components.prototyper.trees = TUNING.PROTOTYPER_TREES.RESEARCH_LECTERN
 	inst.components.prototyper.onactivate = function() end  
 	inst.components.prototyper.onturnoff = OnTurnOff      
 	inst.components.prototyper.onturnon = OnTurnOn	

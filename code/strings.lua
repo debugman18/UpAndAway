@@ -2029,10 +2029,7 @@ STRINGS.UPUI = {
             "nature",       
         },
     },
+	CRAFTING = {
+		NEEDRESEARCHLECTERN = ("Use a %s to build a prototype!"):format( STRINGS.NAMES.RESEARCH_LECTERN ),
+	},
 }   
-
-
---------------------------------------------------------------------------
--- This cleans up the memory used by the temporary objects above.
---------------------------------------------------------------------------
-_G.collectgarbage("step")
