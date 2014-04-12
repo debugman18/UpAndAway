@@ -6,6 +6,9 @@ local function OnCreate(inst, scenariorunner)
 	local items = 
 	{
 		{
+			item = "horn",
+		},
+		{
 			item = "goldenshovel",
 		},
 		{
@@ -19,22 +22,6 @@ local function OnCreate(inst, scenariorunner)
 		},
 		{
 			item = "beefalohat",
-		},
-		{
-			item = "log",
-			count = 20,
-		},
-		{
-			item = "flint",
-			count = 40,
-		},
-		{
-			item = "cutgrass",
-			count = 40,
-		},
-		{
-			item = "twigs",
-			count = 40
 		},
 	}
 
