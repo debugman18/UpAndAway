@@ -23,6 +23,7 @@ local function onMined(inst, worker)
 end
 
 local function onhit(inst, worker)
+	inst.components.childspawner:ReleaseAllChildren()
 	inst.thief = worker
 	inst.components.childspawner.noregen = true
 	if inst.components.childspawner and worker then
@@ -93,7 +94,7 @@ local function fn(Sim)
 	inst.components.childspawner:SetGoHomeFn(OnGoHome)
 	inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*7)
 	inst.components.childspawner:SetSpawnPeriod(10)
-	inst.components.childspawner:SetMaxChildren(5)     
+	inst.components.childspawner:SetMaxChildren(2)     
 
 	return inst
 end

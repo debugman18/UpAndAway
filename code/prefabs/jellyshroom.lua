@@ -79,7 +79,7 @@ local function unpickedfn_common(bank, name)
 	inst.AnimState:SetBank(bank) 
 	inst.AnimState:SetBuild("jelly_shrooms")  
     inst.AnimState:PlayAnimation("idle")	
-    inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
+    --inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
 
 	unpicked_setcolour(inst, random_colour(name))
 

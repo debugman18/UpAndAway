@@ -38,7 +38,9 @@ local function RetargetFn(inst, target)
             if v and v:HasTag("owl_crystal") then
                 local rock = v
                 print(rock)
-                inst.components.homeseeker.home = rock
+                if inst.components.homeseeker then
+                    inst.components.homeseeker:SetHome(rock)
+                end    
             end    
         end   
     end)     
@@ -151,8 +153,8 @@ local function fn()
     inst.components.talker.offset = Vector3(0,-400,0)  
     inst.components.talker:StopIgnoringAll()  
 
-    inst:DoPeriodicTask(5, function() inst.components.talker:Say("Whoo?", 3, noanim) end, 12)
-    inst:DoPeriodicTask(5, function() inst.components.talker:ShutUp() end, 12)
+    inst:DoPeriodicTask(math.random(1,4), function() inst.components.talker:Say("Whoo?", math.random(1,4), noanim) end, 12)
+    inst:DoPeriodicTask(math.random(1,4), function() inst.components.talker:ShutUp() end, 12)
 
     return inst
 end

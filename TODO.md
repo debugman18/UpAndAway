@@ -12,11 +12,13 @@
 
 + **Code assets in need of attention**
 
-	+ Manta (All functionality needed)
+	+ Manta (All functionality needed).
 
-	+ Recipes and Unique Tech Tree
+	+ Day/night cycles in the cloudrealm.
 
-	+ Setpieces, setpieces, setpieces
+	+ Various means to deal with night in the cloudrealm.
+
+	+ Setpieces, setpieces, setpieces.
 
 	+ Dependency of mushroom hat effects on its spoilage.
 

@@ -47,7 +47,6 @@ Add.Names {
     cotton_hat = "Cotton Hat",
     cotton_vest = "Cotton Vest",
     crystal_armor = "Crystal Armor",
-    crystal_axe = "Axe of Storms",
     crystal_black = "Black Crystal",
     crystal_cap = "Crystal Cap",
     crystal_fragment_black = "Black Crystal Fragment",
@@ -142,6 +141,7 @@ Add.Names {
     weavernest = "Weaver Nest",
     whirlwind = "Whirlwind",
     whitestaff = "White Staff",
+    wind_axe = "Axe of Storms",
     winnie_staff = "Shepherd's Staff",
 }
 
@@ -702,19 +702,6 @@ Add.QuotesFor "crystal_armor" {
     wolfgang = "My mighty body is even mightier!",
     woodie = nil,
     wx78 = "SHINY AND PROTECTIVE",
-}
-
-Add.QuotesFor "crystal_axe" {
-    GENERIC = nil,
-    wathgrithr = "An artifact of Thor!",
-    waxwell = nil,
-    webber = nil,
-    wendy = nil,
-    wickerbottom = nil,
-    willow = "I'd prefer an Axe of Infernos.",
-    wolfgang = "Yes! I like this new weapon!",
-    woodie = "Not a patch on Lucy.",
-    wx78 = "THIS IS A BAD IDEA",
 }
 
 Add.QuotesFor "crystal_black" {
@@ -1963,6 +1950,19 @@ Add.QuotesFor "whitestaff" {
     wolfgang = "Does things. Is always changing.",
     woodie = "Makeshift post office.",
     wx78 = "FOR MOVING THINGS",
+}
+
+Add.QuotesFor "wind_axe" {
+    GENERIC = nil,
+    wathgrithr = "An artifact of Thor!",
+    waxwell = nil,
+    webber = nil,
+    wendy = nil,
+    wickerbottom = nil,
+    willow = "I'd prefer an Axe of Infernos.",
+    wolfgang = "Yes! I like this new weapon!",
+    woodie = "Not a patch on Lucy.",
+    wx78 = "THIS IS A BAD IDEA",
 }
 
 Add.QuotesFor "winnie_staff" {

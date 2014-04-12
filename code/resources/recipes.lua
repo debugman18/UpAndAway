@@ -40,7 +40,7 @@ mushroom_hat.atlas = "images/winnie.xml"
 local weather_machine = Recipe("weather_machine", { Ingredient("gears", 6), Ingredient("crystal_fragment_black", 6, "images/inventoryimages/crystal_fragment_relic.xml") , Ingredient("bluegem", 4)}, RECIPETABS.SCIENCE, TECH.FABLE_1)
 weather_machine.atlas = "images/winnie.xml"
 
-local research_lectern = Recipe("weather_machine", { Ingredient("gears", 4), Ingredient("crystal_fragment_relic", 6, "images/inventoryimages/crystal_fragment_relic.xml") , Ingredient("papyrus", 4)}, RECIPETABS.SCIENCE, TECH.SCIENCE_TWO)
+local research_lectern = Recipe("research_lectern", { Ingredient("gears", 4), Ingredient("crystal_fragment_relic", 6, "images/inventoryimages/crystal_fragment_relic.xml") , Ingredient("papyrus", 4)}, RECIPETABS.SCIENCE, TECH.SCIENCE_TWO)
 research_lectern.atlas = "images/winnie.xml"
 
 local cotton_candy = Recipe("cotton_candy", { Ingredient("cloud_cotton", 6, "images/inventoryimages/cloud_cotton.xml"), Ingredient("candy_fruit", 6, "images/inventoryimages/candy_fruit.xml") }, RECIPETABS.FARM, TECH.SCIENCE_TWO)
@@ -48,6 +48,9 @@ cotton_candy.atlas = "images/winnie.xml"
 
 local grabber = Recipe("grabber", { Ingredient("magnet", 2, "images/inventoryimages/cloud_cotton.xml"), Ingredient("twigs", 8), Ingredient("rubber", 4, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.TOOLS, TECH.FABLE_1)
 grabber.atlas = "images/winnie.xml"
+
+local wind_axe = Recipe("wind_axe", { Ingredient("crystal_fragment_water", 2, "images/inventoryimages/cloud_cotton.xml"), Ingredient("twigs", 8), Ingredient("rope", 2) }, RECIPETABS.WAR, TECH.FABLE_1)
+wind_axe.atlas = "images/winnie.xml"
 
 local magnet = Recipe("magnet", { Ingredient("gears", 2), Ingredient("crystal_fragment_spire", 3, "images/inventoryimages/cloud_cotton.xml"), Ingredient("rope", 4) }, RECIPETABS.SCIENCE, TECH.FABLE_1)
 magnet.atlas = "images/winnie.xml"

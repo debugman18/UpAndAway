@@ -99,7 +99,7 @@ end
 local function onhit(inst, worker)
 	--inst.AnimState:PlayAnimation("hit_rundown")
 	--inst.AnimState:PushAnimation("rundown")
-
+	inst.components.childspawner:ReleaseAllChildren()
 	inst.thief = worker
 	inst.components.childspawner.noregen = true
 	if inst.components.childspawner and worker then

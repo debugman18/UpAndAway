@@ -36,7 +36,6 @@ local function fn(Sim)
     anim:SetBank("crystal")
     anim:SetBuild("crystal")
     anim:PlayAnimation("crystal_light")
-    inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
  
     inst:AddTag("crystal")
     inst:AddTag("owl_crystal")

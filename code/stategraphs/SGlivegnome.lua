@@ -203,6 +203,7 @@ CommonStates.AddWalkStates(states,
         TimeEvent(12*FRAMES, PlayFootstep ),
     },
 })
+
 CommonStates.AddRunStates(states,
 {
     runtimeline = {
@@ -215,5 +216,5 @@ CommonStates.AddIdle(states, "funny_idle")
 
 CommonStates.AddFrozenStates(states)
 
-return StateGraph("livegnome", states, events, "idle", actionhandlers)
+return StateGraph("livegnome", states, events, "idle")
 
