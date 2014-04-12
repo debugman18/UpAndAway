@@ -88,7 +88,7 @@ local function fn(Sim)
 
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "pig_torso"
-    inst.components.combat:SetDefaultDamage(35)
+    inst.components.combat:SetDefaultDamage(60)
     --inst.components.combat.playerdamagepercent = .5
     inst.components.combat.min_attack_period = CFG_OCTOCOPTER_ATTACK_PERIOD
     inst.components.combat:SetAttackPeriod(CFG_OCTOCOPTER_ATTACK_PERIOD)
