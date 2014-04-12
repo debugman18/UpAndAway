@@ -18,6 +18,7 @@ Add.Names {
     beanstalk_chunk = "Beanstalk Chunk",
     beanstalk_exit = "Beanstalk Tip",
     beanstalk_sapling = "Beanstalk Sapling",
+    beanstalk_wall_item = "Beanstalk Wall",
     beanstalk_wall = "Beanstalk Wall",
     bee_marshmallow = "Marshmallow Bee",
     bird_paradise = "Bird of Paradise",
@@ -311,6 +312,19 @@ Add.QuotesFor "beanstalk_sapling" {
     wolfgang = "Is small now, big later.",
     woodie = "That'll grow right up into a monster, eh?",
     wx78 = "GROW FASTER",
+}
+
+Add.QuotesFor "beanstalk_wall_item" {
+    GENERIC = nil,
+    wathgrithr = "A wall of plant.",
+    waxwell = nil,
+    webber = nil,
+    wendy = nil,
+    wickerbottom = nil,
+    willow = "Plants aren't good protection.",
+    wolfgang = "Wolfgang prefers mighty walls!",
+    woodie = "Not very useful.",
+    wx78 = "A WALL OF BEANSTALK",
 }
 
 Add.QuotesFor "beanstalk_wall" {

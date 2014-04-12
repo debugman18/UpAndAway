@@ -25,7 +25,7 @@ local function fn(Sim)
 
 	inst:AddComponent("repairer")
 	inst.components.repairer.repairmaterial = "beanstalk"
-	inst.components.repairer.value = 1	
+	inst.components.repairer.healthrepairvalue = 5
 
 	inst:AddTag("beanstalk_chunk")
 

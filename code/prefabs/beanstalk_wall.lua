@@ -15,11 +15,10 @@ local prefabs =
 }
 
 local loot = "beanstalk_chunk"
-local maxloots = 2
-local maxhealth = TUNING.RUINSWALL_HEALTH
+local maxloots = 4
+local maxhealth = 30
 
 local function ondeploywall(inst, pt, deployer)
-	--inst.SoundEmitter:PlaySound("dontstarve/creatures/spider/spider_egg_sack")
 	local wall = SpawnPrefab("beanstalk_wall") 
 	if wall then 
 		pt = Vector3(math.floor(pt.x)+.5, 0, math.floor(pt.z)+.5)
@@ -35,7 +34,7 @@ local function ondeploywall(inst, pt, deployer)
 	end 		
 end
 
-local function onhammered(inst, worker)
+local function onchopped(inst, worker)
 	if maxloots and loot then
 		local num_loots = math.max(1, math.floor(maxloots*inst.components.health:GetPercent()))
 		for k = 1, num_loots do
@@ -135,7 +134,7 @@ local function onhealthchange(inst, old_percent, new_percent)
 	end
 end
 	
-local function itemfn(Sim)
+local function itemfn(inst)
 
 	local inst = CreateEntity()
 	inst:AddTag("wallbuilder")
@@ -156,30 +155,28 @@ local function itemfn(Sim)
 		
 	inst:AddComponent("repairer")
 	inst.components.repairer.repairmaterial = "beanstalk"
-
 	inst.components.repairer.healthrepairvalue = maxhealth / 6
+	inst.components.repairer.workrepairvalue = TUNING.REPAIR_THULECITE_WORK
 	    	
-	if data.flammable then
-		MakeSmallBurnable(inst, TUNING.MED_BURNTIME)
-		MakeSmallPropagator(inst)
+	MakeSmallBurnable(inst, TUNING.MED_BURNTIME)
+	MakeSmallPropagator(inst)
 			
-		inst:AddComponent("fuel")
-		inst.components.fuel.fuelvalue = TUNING.SMALL_FUEL
-	end
+	inst:AddComponent("fuel")
+	inst.components.fuel.fuelvalue = TUNING.SMALL_FUEL
 		
 	inst:AddComponent("deployable")
 	inst.components.deployable.ondeploy = ondeploywall
 	inst.components.deployable.test = test_wall
 	inst.components.deployable.min_spacing = 0
-	inst.components.deployable.placer = "wall_ruins_placer"
+	inst.components.deployable.placer = "beanstalk_wall_placer"
 		
 	return inst
 end
 
 local function onhit(inst)
-	if data.destroysound then
-		inst.SoundEmitter:PlaySound(data.destroysound)		
-	end
+	--if data.destroysound then
+		--inst.SoundEmitter:PlaySound(data.destroysound)		
+	--end
 
 	local healthpercent = inst.components.health:GetPercent()
 	local anim_to_play = resolveanimtoplay(healthpercent)
@@ -191,9 +188,9 @@ local function onhit(inst)
 end
 
 local function onrepaired(inst)
-	if data.buildsound then
-		inst.SoundEmitter:PlaySound(data.buildsound)		
-	end
+	--if data.buildsound then
+		--inst.SoundEmitter:PlaySound(data.buildsound)		
+	--end
 	makeobstacle(inst)
 end
 	    
@@ -209,12 +206,11 @@ local function onremoveentity(inst)
 	clearobstacle(inst)
 end
 
-local function fn(Sim)
+local function fn(inst)
 	local inst = CreateEntity()
 	local trans = inst.entity:AddTransform()
 	local anim = inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
-	--trans:SetScale(1.3,1.3,1.3)
 	inst:AddTag("wall")
 	MakeObstaclePhysics(inst, .5)    
 	inst.entity:SetCanSleep(false)
@@ -226,7 +222,8 @@ local function fn(Sim)
 	inst:AddComponent("lootdropper")
 				
 	inst:AddComponent("repairable")
-	inst.components.repairable.repairmaterial = "thulecite"
+	inst.components.repairable.repairmaterial = "beanstalk"
+	inst.components.repairable.announcecanfix = false
 
 	inst.components.repairable.onrepaired = onrepaired
 		
@@ -243,7 +240,7 @@ local function fn(Sim)
 		
 	MakeLargeBurnable(inst)
 	MakeLargePropagator(inst)
-	inst.components.burnable.flammability = .5
+	inst.components.burnable.flammability = 1
 			
 	--inst.components.propagator.flashpoint = 30+math.random()*10			
 	--inst.components.health.fire_damage_scale = 0
@@ -251,22 +248,19 @@ local function fn(Sim)
 	--inst.SoundEmitter:PlaySound(buildsound)		
 		
 	inst:AddComponent("workable")
-	inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
+	inst.components.workable:SetWorkAction(ACTIONS.CHOP)
 	inst.components.workable:SetWorkLeft(3)
-	inst.components.workable:SetOnFinishCallback(onhammered)
+	inst.components.workable:SetOnFinishCallback(onchopped)
 	inst.components.workable:SetOnWorkCallback(onhit) 
 						
 	inst.OnLoad = onload
 	inst.OnRemoveEntity = onremoveentity
 		
-	MakeSnowCovered(inst)
-		
 	return inst
 end
-
---MakePlacer("common/wall_"..data.name.."_placer", "wall", "wall_"..data.name, "1_2", false, false, true) 
 
 return {
 	Prefab ("common/inventory/beanstalk_wall", fn, assets, prefabs),
 	Prefab ("common/inventoryitem/beanstalk_wall_item", itemfn, assets, prefabs),
+	MakePlacer("common/beanstalk_wall_placer", "wall", "wall_ruins", "1_2", false, false, true),
 }

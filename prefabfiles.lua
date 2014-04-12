@@ -75,7 +75,7 @@ PrefabFiles = {
 	
 	--"golden_amulet",
 
-	--"wind_axe",
+	"wind_axe",
 	--"kite",
 
 	"duckraptor",
@@ -98,7 +98,7 @@ PrefabFiles = {
 	"research_lectern",	
 
 	"bean_giant",	
-	--"beanstalk_wall",	
+	"beanstalk_wall",	
 	--"cloud_wall",
 
 	"smores",
