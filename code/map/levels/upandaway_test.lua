@@ -65,43 +65,40 @@ TheMod:AddLevel(LEVELTYPE.SURVIVAL, {
 })
 
 
-TheMod:AddPostRun(function(file)
-	if file ~= "main" then return end
-	TheMod:AddSimPostInit(function(player)
-		if SaveGameIndex:GetCurrentMode() ~= "survival" then return end
+local patched_world = false
+local function patch_preview_world(world)
+	if world.meta then
+		if patched_world then return end
+		patched_world = true
 
-		local world = GetWorld()
+		if world.meta.level_id == "UPANDAWAY_SURVIVAL_TEST" then
+			--[[
+			-- General tweaks to the world.
+			--]]
 
-		if not world or not world.meta or world.meta.level_id ~= "UPANDAWAY_SURVIVAL_TEST" then return end
+			TheMod:DebugSay("Patching preview world.")
 
-
-		--[[
-		-- General tweaks to the world.
-		--]]
-
-		world.components.clock.GetMoonPhase = Lambda.Constant("full")
-
-
-		if not (SaveGameIndex:GetSlotDay() == 1 and GetClock():GetNormTime() == 0) then return end
-
-
-		--[[
-		-- Tweaks for the first time the world is loaded.
-		--]]
-
-		--[[
-		if player.components.inventory then
-			for _, prefabs in ipairs{ {"boards", 10} } do
-				local inst = SpawnPrefab(prefabs[1])
-				if inst then
-					if inst.components.stackable then
-						inst.components.stackable:SetStackSize(prefabs[2] or 1)
-					end
-
-					player.components.inventory:GiveItem(inst)
-				end
+			if world.components.clock then
+				TheMod:DebugSay("Overriding moon cycle to permanent full moon.")
+				world.components.clock.GetMoonPhase = Lambda.Constant("full")
 			end
 		end
-		]]--
+	end
+end
+
+local function wrap_with_patch(fn)
+	return function(world, ...)
+		patch_preview_world(world)
+		return fn(world, ...)
+	end
+end
+
+TheMod:AddPostRun(function(file)
+	if file ~= "main" then return end
+	TheMod:AddPrefabPostInit("forest", function(world)
+		if SaveGameIndex:GetCurrentMode() ~= "survival" then return end
+
+		world.SetPersistData = wrap_with_patch(world.SetPersistData)
+		world.LoadPostPass = wrap_with_patch(world.LoadPostPass)
 	end)
 end)
