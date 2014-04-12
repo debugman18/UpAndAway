@@ -108,8 +108,6 @@ do
 
 	local char_set = {}
 
-	is_character = function(k) return char_set[k] end
-
 	local has_new_char = false
 
 	local get_sorted_char_list = (function()
@@ -131,6 +129,8 @@ do
 			return name:lower()
 		end
 	end
+
+	is_character = function(k) return char_set[normalise_char_name(k)] end
 
 	local meta = {
 		__index = function(self, k)
@@ -414,9 +414,9 @@ end
 --]]
 
 local function print_usage()
-	io.stderr:write("Usage: "..arg[0]..[[ <STRINGS-SCRIPT> [NEW-STRINGS-FILE]
+	io.stderr:write("Usage: "..arg[0]..[[ <STRINGS-SCRIPT> [NEW-STRINGS-FILES...]
 
-Embeds the new quotes in NEW-STRINGS-FILE into STRINGS-SCRIPT, printing
+Embeds the new quotes in NEW-STRINGS-FILES into STRINGS-SCRIPT, printing
 the new script to standard output.
 
 The first line of NEW-STRINGS-FILE must consist of the name of the
@@ -430,7 +430,7 @@ NEW-STRINGS-FILE defaults to standard input.
 ]])
 end
 
-local strings_script_name, new_strings_file_name = ...
+local strings_script_name = ...
 
 if not strings_script_name then
 	print_usage()
@@ -438,5 +438,7 @@ if not strings_script_name then
 end
 
 local chunks = process_strings_script(strings_script_name)
-chunks = process_new_strings_file(new_strings_file_name, chunks)
+for i = 2, math.max(2, #arg) do
+	chunk = process_new_strings_file(arg[i], chunks)
+end
 print_resulting_strings_script(nil, chunks)

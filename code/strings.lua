@@ -164,9 +164,9 @@ Add.QuotesFor "antlion" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
+    willow = "Half lion, half ant, all flammable.",
     wolfgang = "Is cat? Is bug? Is catbug.",
-    woodie = nil,
+    woodie = "What a weirdo.",
     wx78 = nil,
 }
 
@@ -179,7 +179,7 @@ Add.QuotesFor "ball_lightning" {
     wickerbottom = nil,
     willow = "It's like a living ball of fire!",
     wolfgang = "Is zappy, floaty pest.",
-    woodie = "Moving weather? Taht ain't fair.",
+    woodie = "Moving weather? That ain't fair.",
     wx78 = "STAY AWAY FROM ME",
 }
 
@@ -190,8 +190,8 @@ Add.QuotesFor "balloon_hound" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
+    willow = "Aw, it's out of reach!",
+    wolfgang = "The dog, it floats!",
     woodie = "How did it get the balloon on?",
     wx78 = "I WANT TO POP IT",
 }
@@ -281,7 +281,7 @@ Add.QuotesFor "beanstalk_chunk" {
     webber = "It's a little baby beanstalk.",
     wendy = nil,
     wickerbottom = nil,
-    willow = "A torn piece of a Beanstalk.",
+    willow = "A torn piece of beanstalk.",
     wolfgang = "Piece of big plant.",
     woodie = "It's a slice of a beanstalk.",
     wx78 = "A PIECE OF BEANSTALK",
@@ -320,8 +320,8 @@ Add.QuotesFor "beanstalk_wall" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
+    willow = "Plants aren't good protection.",
+    wolfgang = "Wolfgang prefers mighty walls!",
     woodie = "Not very useful.",
     wx78 = "A WALL OF BEANSTALK",
 }
@@ -346,8 +346,8 @@ Add.QuotesFor "bird_paradise" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
+    willow = "Those feathers would combust nicely.",
+    wolfgang = "Is all feathery.",
     woodie = "Fancy feathers don't disguise your evil, bird!",
     wx78 = "ITS FEATHERS ARE ATTRACTIVE",
 }
@@ -372,7 +372,7 @@ Add.QuotesFor "blacktea" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = "I prefer Hot Chocolate.",
+    willow = "I prefer hot chocolate.",
     wolfgang = "Is nearly as strong as me!",
     woodie = "I prefer a wee spot of whiskey.",
     wx78 = "A STRONG DRINK",
@@ -399,7 +399,7 @@ Add.QuotesFor "candy_fruit" {
     wendy = nil,
     wickerbottom = nil,
     willow = "It's sweet.",
-    wolfgang = nil,
+    wolfgang = "Tasty plant!",
     woodie = "It's very sweet, eh?",
     wx78 = "IS IT CANDY OR FRUIT?",
 }
@@ -424,8 +424,8 @@ Add.QuotesFor "cheshire" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
+    willow = "What a nice smile.",
+    wolfgang = "Has big smile. Is friend.",
     woodie = "I love cats.",
     wx78 = "WHAT ARE YOU SO HAPPY ABOUT?",
 }
@@ -437,8 +437,8 @@ Add.QuotesFor "chimera" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
+    willow = "That's horrid looking, even for me.",
+    wolfgang = "Is creature from nightmares!",
     woodie = "That's not normal, eh?",
     wx78 = "A FREAK OF NATURE",
 }
@@ -476,8 +476,8 @@ Add.QuotesFor "cloud_bomb" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
+    willow = "An explosive cloud, my favourite kind of cloud.",
+    wolfgang = "Is for going boom.",
     woodie = "That's dangerous, eh?",
     wx78 = "BOOM",
 }
@@ -502,9 +502,9 @@ Add.QuotesFor "cloud_bush.picked" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
+    willow = "I hate waiting.",
     wolfgang = "Do I have to poop on it?",
-    woodie = nil,
+    woodie = "There's nothing left, eh?",
     wx78 = nil,
 }
 
@@ -580,8 +580,8 @@ Add.QuotesFor "cloud_storage" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
+    willow = "For holding stuff.",
+    wolfgang = "Is roomy.",
     woodie = "Good for storing stuff, eh?",
     wx78 = "CLOUD STORAGE",
 }
@@ -606,8 +606,8 @@ Add.QuotesFor "cloud_wall" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
+    willow = "Flimsy and damp. Useless.",
+    wolfgang = "Is not mighty enough.",
     woodie = "Better than nothing, I suppose.",
     wx78 = "A WALL OF FOG",
 }
@@ -684,8 +684,8 @@ Add.QuotesFor "crystal_armor" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
+    willow = "Might save my life, I guess.",
+    wolfgang = "My mighty body is even mightier!",
     woodie = nil,
     wx78 = "SHINY AND PROTECTIVE",
 }
@@ -697,8 +697,8 @@ Add.QuotesFor "crystal_axe" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
+    willow = "I'd prefer an Axe of Infernos.",
+    wolfgang = "Yes! I like this new weapon!",
     woodie = "Not a patch on Lucy.",
     wx78 = "THIS IS A BAD IDEA",
 }
@@ -723,9 +723,9 @@ Add.QuotesFor "crystal_cap" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
-    woodie = nil,
+    willow = "Use your brain, protect your head.",
+    wolfgang = "Stone helps head.",
+    woodie = "Clashes with my hair.",
     wx78 = "DECORATION FOR MY HEAD MODULE",
 }
 
@@ -788,9 +788,9 @@ Add.QuotesFor "crystal_fragment_spire" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
+    willow = "Looks like you were cut down to size.",
     wolfgang = "Is shiny rock.",
-    woodie = nil,
+    woodie = "Not quite as big any more.",
     wx78 = "FORMERLY TALL CRYSTAL",
 }
 
@@ -892,8 +892,8 @@ Add.QuotesFor "crystal_wall" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
+    willow = "Might protect me from enemies I can't burn.",
+    wolfgang = "Is tough, like Wolfgang.",
     woodie = "Strong and durable.",
     wx78 = "A WALL OF CRYSTAL",
 }
@@ -1009,7 +1009,7 @@ Add.QuotesFor "flying_fish" {
     webber = "I thought grandpa was joking about fish that fly.",
     wendy = nil,
     wickerbottom = nil,
-    willow = "What an strange creature.",
+    willow = "What a strange creature.",
     wolfgang = "Is fish out of water.",
     woodie = "It's suspiciously birdlike.",
     wx78 = "I HOPE IT SUFFOCATES",
@@ -1022,8 +1022,8 @@ Add.QuotesFor "flying_fish_pond" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
+    willow = "Fish live there. Watery cowards.",
+    wolfgang = "Where oh where did the fishie go?",
     woodie = "Smells a bit fishy.",
     wx78 = "IT LOOKS EMPTY",
 }
@@ -1035,8 +1035,8 @@ Add.QuotesFor "golden_amulet" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
+    willow = "It's nice enough, I guess.",
+    wolfgang = "Is shiny neck jewelery.",
     woodie = "It's very pretty, eh?",
     wx78 = "IT MATCHES MY CHASSIS",
 }
@@ -1243,7 +1243,7 @@ Add.QuotesFor "jellyshroom_green" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
+    willow = "Green plants burn slower.",
     wolfgang = "Is squidgy.",
     woodie = "Green is nice.",
     wx78 = "GREEN GUMMY CANDY",
@@ -1284,7 +1284,7 @@ Add.QuotesFor "kettle_item" {
     wickerbottom = nil,
     willow = "I could make a drink.",
     wolfgang = "Gets Wolfgang into hot water!",
-    woodie = nil,
+    woodie = "For making tea.",
     wx78 = "IT IS SCREAMING",
 }
 
@@ -1295,7 +1295,7 @@ Add.QuotesFor "kite" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = "Mayybe lightning will strike it.",
+    willow = "Maybe lightning will strike it.",
     wolfgang = "Is for flying.",
     woodie = "No time to play with kites, there are trees to chop!",
     wx78 = "A CHILDREN'S TOY",
@@ -1375,7 +1375,7 @@ Add.QuotesFor "magic_beans_cooked" {
     wickerbottom = nil,
     willow = "Magic doesn't stop fire.",
     wolfgang = "Not enough for my mighty belly.",
-    woodie = nil,
+    woodie = "No good for growing now.",
     wx78 = "THEY ARE DEAD NOW",
 }
 
@@ -1387,7 +1387,7 @@ Add.QuotesFor "magnet" {
     wendy = nil,
     wickerbottom = nil,
     willow = "It's attracted to metal. I'm attracted to fire.",
-    wolfgang = nil,
+    wolfgang = "Is metal flycatcher.",
     woodie = "It's a bugzapper.",
     wx78 = "KEEP IT AWAY FROM ME",
 }
@@ -1438,9 +1438,9 @@ Add.QuotesFor "monolith" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
+    willow = "Why would anyone waste time making that when they could be setting fires?",
     wolfgang = "Is...art?",
-    woodie = nil,
+    woodie = "Now that's right fancy.",
     wx78 = "IT'S FULL OF STARS",
 }
 
@@ -1451,9 +1451,9 @@ Add.QuotesFor "mushroom_hat" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = "Is...art?",
-    woodie = nil,
+    willow = "This is awful.",
+    wolfgang = "There is mush room on my head. Hah.",
+    woodie = "Not my usual fare, but it'll do.",
     wx78 = "HEAD FUNGUS",
 }
 
@@ -1555,9 +1555,9 @@ Add.QuotesFor "pineapple_bush" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
-    woodie = nil,
+    willow = "More fruit. Better than starving.",
+    wolfgang = "Is little spiky fruit bush.",
+    woodie = "Not many fruits grow on the ground.",
     wx78 = "IT GROWS PINEAPPLES",
 }
 
@@ -1568,8 +1568,8 @@ Add.QuotesFor "pineapple_fruit" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
+    willow = "It's all spiky. My kind of plant.",
+    wolfgang = "Pointy fruit!",
     woodie = "Never seen the like of this before, eh?",
     wx78 = "TANGY",
 }
@@ -1581,8 +1581,8 @@ Add.QuotesFor "quartz_torch" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
+    willow = "Needs fire.",
+    wolfgang = "Is glowing rock on stick.",
     woodie = "Thankfully it can't burn trees.",
     wx78 = "HOW DOES IT BURN?",
 }
@@ -1725,7 +1725,7 @@ Add.QuotesFor "sky_chest" {
     wendy = nil,
     wickerbottom = nil,
     willow = "Put stuff in there and it stays there. It's magic.",
-    wolfgang = nil,
+    wolfgang = "Is magic box.",
     woodie = "That's ominous, eh?",
     wx78 = "IT BEHAVES STRANGELY",
 }
@@ -1738,7 +1738,7 @@ Add.QuotesFor "sky_lemur" {
     wendy = nil,
     wickerbottom = nil,
     willow = "Must be up to monkey business.",
-    wolfgang = nil,
+    wolfgang = "Is my mate, the primate.",
     woodie = "What a cheeky fella.",
     wx78 = "STRIPED FLESHLING",
 }
@@ -1751,7 +1751,7 @@ Add.QuotesFor "skyflies" {
     wendy = nil,
     wickerbottom = nil,
     willow = "I prefer fireflies.",
-    wolfgang = nil,
+    wolfgang = "Is hot swarm of bugs.",
     woodie = "They're warm.",
     wx78 = "SPARKLY",
 }
@@ -1958,8 +1958,8 @@ Add.QuotesFor "winnie_staff" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
+    willow = "I could probably make a torch out of this.",
+    wolfgang = "Is big carved stick.",
     woodie = "I'm quite good at making staves.",
     wx78 = "FOLLOW ME, MEATSACKS",
 }
