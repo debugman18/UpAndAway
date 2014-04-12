@@ -4,7 +4,7 @@ local CFG = TheMod:GetConfig()
 
 local assets=
 {
-	Asset("ANIM", "anim/merm_build.zip"),
+	Asset("ANIM", "anim/owl.zip"),
 	Asset("ANIM", "anim/ds_pig_basic.zip"),
 	Asset("ANIM", "anim/ds_pig_actions.zip"),
 	Asset("ANIM", "anim/ds_pig_attacks.zip"),
@@ -92,11 +92,12 @@ local function fn()
 	local shadow = inst.entity:AddDynamicShadow()
 	shadow:SetSize(1.5, .75)
     inst.Transform:SetFourFaced()
+    inst.Transform:SetScale(1.2, 1.2, 1.2)
 
     MakeCharacterPhysics(inst, 50, .5)
 
     anim:SetBank("pigman")
-    anim:SetBuild("merm_build")
+    anim:SetBuild("owl")
     
     inst:AddComponent("locomotor")
     inst.components.locomotor.runspeed = 10

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+    <folder id="0">
+        <file id="0" name="jelly shroom.png" width="459" height="644" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="jelly shroom2.png" width="459" height="644" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="jelly shroom3.png" width="459" height="644" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <folder id="1" name="jellycaps">
+        <file id="0" name="jellycaps/blue cap.png" width="459" height="644" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="jellycaps/green cap.png" width="459" height="644" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="jellycaps/red cap.png" width="459" height="644" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="Redjellyshroom">
+        <animation id="0" name="idle" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="jelly shroom" folder="0" file="0" abs_x="-234.186376" abs_y="602.482759" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1.110007" abs_scale_y="1.110133" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="jelly shroom">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-234.186376" y="602.482759" angle="0" scale_x="1.110007" scale_y="1.110133"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="1" name="Bluejellyshroom">
+        <animation id="0" name="idle" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="jelly shroom2" folder="0" file="1" abs_x="-242.978579" abs_y="556.344828" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1.042841" abs_scale_y="1.042888" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="jelly shroom2">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-242.978579" y="556.344828" angle="0" scale_x="1.042841" scale_y="1.042888"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="2" name="Greenjellyshroom">
+        <animation id="0" name="idle" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="jelly shroom3" folder="0" file="2" abs_x="-281.024194" abs_y="542.59448" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1.020577" abs_scale_y="1.017936" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="jelly shroom3">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-281.024194" y="542.59448" angle="0" scale_x="1.020577" scale_y="1.017936"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="3" name="Redjellycap">
+        <animation id="0" name="idle" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="red cap" folder="1" file="2" abs_x="-305.357143" abs_y="628.571429" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="red cap">
+                <key id="0" spin="0">
+                    <object folder="1" file="2" x="-305.357143" y="628.571429"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="4" name="Greenjellycap">
+        <animation id="0" name="idle" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="green cap" folder="1" file="1" abs_x="-235.714286" abs_y="435.714286" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="green cap">
+                <key id="0" spin="0">
+                    <object folder="1" file="1" x="-235.714286" y="435.714286"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="5" name="Bluejellycap">
+        <animation id="0" name="idle" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="blue cap" folder="1" file="0" abs_x="-133.928571" abs_y="357.142857" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="blue cap">
+                <key id="0" spin="0">
+                    <object folder="1" file="0" x="-133.928571" y="357.142857"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

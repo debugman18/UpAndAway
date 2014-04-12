@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+    <folder id="0">
+        <file id="0" name="red cap.png" width="459" height="644" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="green cap.png" width="459" height="644" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="blue cap.png" width="459" height="644" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="redcap">
+        <animation id="0" name="idle" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="red cap" folder="0" file="0" abs_x="-306.308255" abs_y="568.268548" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="red cap">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-306.308255" y="568.268548" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="1" name="greencap">
+        <animation id="0" name="idle" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="green cap" folder="0" file="1" abs_x="-234.848485" abs_y="365.151515" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="green cap">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-234.848485" y="365.151515" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="2" name="bluecap">
+        <animation id="0" name="idle" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="blue cap" folder="0" file="2" abs_x="1.515152" abs_y="221.212121" abs_pivot_x="0" abs_pivot_y="1" abs_angle="306.469234" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="blue cap">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="1.515152" y="221.212121" angle="306.469234"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

@@ -142,17 +142,17 @@ local function pickedfn_common(bank, name)
 end
 
 local function pickedfn_red(Sim)
-	local inst = pickedfn_common("Redjellycap", "red")
+	local inst = pickedfn_common("Redcap", "red")
 	return inst
 end	
 
 local function pickedfn_green(Sim)
-	local inst = pickedfn_common("Greenjellycap", "green")
+	local inst = pickedfn_common("Greencap", "green")
 	return inst
 end	
 
 local function pickedfn_blue(Sim)
-	local inst = pickedfn_common("Bluejellycap", "blue")
+	local inst = pickedfn_common("Bluecap", "blue")
 	return inst
 end	
 
