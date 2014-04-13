@@ -270,6 +270,7 @@ end
 
 local function set_floating(inst)
 	inst.grounded = false
+	inst:AddTag("flying")
 
 	inst.DynamicShadow:Enable(false)
 	inst.shadowinst:ReturnToScene()
@@ -294,6 +295,7 @@ end
 
 local function set_grounded(inst)
 	inst.grounded = true
+	inst:RemoveTag("flying")
 
 	inst.ballooninst:RemoveFromScene()
 
