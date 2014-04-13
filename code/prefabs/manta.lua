@@ -7,9 +7,14 @@ local assets =
 	    Asset("SOUND", "sound/birds.fsb"),
 }
 
-local prefabs = 
-{
-	--"cloud_jelly",
+local prefabs = {
+	"cloud_jelly",
+	"manta_leather",
+}
+
+local loot = {
+	"manta_leather",
+	"manta_leather",
 }
 
 local function OnHit(inst, owner, target)
@@ -37,10 +42,9 @@ local function fn(Sim)
     inst.components.health:SetMaxHealth(30)
     
     inst:AddComponent("lootdropper")
-    --inst.components.lootdropper:SetLoot(loot)
-    --inst.components.lootdropper:AddChanceLoot("jellyegg")
+    inst.components.lootdropper:SetLoot(loot)
+    --inst.components.lootdropper:AddChanceLoot("cloud_jelly")
     
-        
     --local brain = require "brains/beebrain"
     --inst:SetBrain(brain)    
 

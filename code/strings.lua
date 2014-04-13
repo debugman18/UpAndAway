@@ -38,6 +38,7 @@ Add.Names {
     cloud_cotton = "Cloud Cotton",
     cloud_fruit = "Cloud Fruit",
     cloud_fruit_tree = "Cloudfruit Tree",
+    cloud_jelly = "Cloud Jelly",
     cloud_storage = "Cloud Chest",
     cloud_turf = "Cloud Turf",
     cloud_wall = "Cloud Wall",
@@ -585,6 +586,19 @@ Add.QuotesFor "cloud_fruit_tree" {
     wolfgang = "Is growing without dirt. Is magic?",
     woodie = "Look, Lucy, new trees!",
     wx78 = "HOW DOES IT GROW?",
+}
+
+Add.QuotesFor "cloud_jelly" {
+    GENERIC = nil,
+    wathgrithr = nil,
+    waxwell = nil,
+    webber = nil,
+    wendy = nil,
+    wickerbottom = nil,
+    willow = nil,
+    wolfgang = nil,
+    woodie = nil,
+    wx78 = nil,
 }
 
 Add.QuotesFor "cloud_storage" {

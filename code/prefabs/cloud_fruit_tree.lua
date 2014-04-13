@@ -5,6 +5,14 @@ local assets =
 	Asset("ANIM", "anim/cave_banana_tree.zip"),
 }
 
+local prefabs = {
+	"cloud_fruit",
+}
+
+local function onpickedfn(inst)
+	inst.components.pickable.cycles_left = 2
+end	
+
 local function fn(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
@@ -20,7 +28,11 @@ local function fn(Sim)
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("cloud_fruit_tree.tex") 
 
+    inst:AddComponent("pickable")
+	inst.components.pickable:SetUp("cloud_fruit", 40)	
+	inst.components.pickable.onpickedfn = onpickedfn    
+
 	return inst
 end
 
-return Prefab ("common/inventory/cloud_fruit_tree", fn, assets) 
+return Prefab ("common/inventory/cloud_fruit_tree", fn, assets, prefabs) 

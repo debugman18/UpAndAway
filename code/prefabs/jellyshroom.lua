@@ -3,6 +3,9 @@ BindGlobal()
 local Configurable = wickerrequire 'adjectives.configurable'
 local cfg = Configurable("JELLYSHROOM")
 
+local prefabs = {
+	"cloud_jelly",
+}
 
 local picked_assets =
 {
@@ -79,7 +82,7 @@ local function unpickedfn_common(bank, name)
 	inst.AnimState:SetBank(bank) 
 	inst.AnimState:SetBuild("jelly_shrooms")  
     inst.AnimState:PlayAnimation("idle")	
-    --inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
+    inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
 
 	unpicked_setcolour(inst, random_colour(name))
 
@@ -103,19 +106,25 @@ end
 
 local function unpickedfn_red()
 	local inst = unpickedfn_common("Redjellyshroom", "red")
-	inst.components.pickable:SetUp("jellycap_red", 1, 1)
+	if math.random(1,4) == 1 then
+		inst.components.pickable:SetUp("cloud_jelly", 1, 1)
+	else inst.components.pickable:SetUp("jellycap_red", 1, 1) end	
     return inst
 end	
 
 local function unpickedfn_green(inst)
 	local inst = unpickedfn_common("Greenjellyshroom", "green")
-	inst.components.pickable:SetUp("jellycap_green", 1, 1)
+	if math.random(1,4) == 1 then
+		inst.components.pickable:SetUp("cloud_jelly", 1, 1)
+	else inst.components.pickable:SetUp("jellycap_green", 1, 1) end	
     return inst	
 end	
 
 local function unpickedfn_blue(inst)	
 	local inst = unpickedfn_common("Bluejellyshroom", "blue")
-	inst.components.pickable:SetUp("jellycap_blue", 1, 1)
+	if math.random(1,4) == 1 then
+		inst.components.pickable:SetUp("cloud_jelly", 1, 1)
+	else inst.components.pickable:SetUp("jellycap_blue", 1, 1) end	
     return inst
 end	
 

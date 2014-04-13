@@ -53,10 +53,7 @@ local function onpickedfn(inst, picker)
 	if picker and picker.components.sanity then
 		picker.components.sanity:DoDelta(TUNING.SANITY_TINY)
 	end
-	if picker then
-		local cotton = SpawnPrefab("cloud_cotton")
-		cotton.Transform:SetPosition(inst.Transform:GetWorldPosition())
-	end
+
 	inst:Remove()
 end
 
@@ -71,7 +68,9 @@ local function onunchargefn(inst)
     --inst:AddTag("flower")	
 	
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
-    inst.components.pickable:SetUp("skyflower_petals", 10)
+	if math.random(1,4) == 1 then
+		inst.components.pickable:SetUp("cloud_cotton", 30)
+	else inst.components.pickable:SetUp("skyflower_petals", 40) end	
 	inst.components.pickable.onpickedfn = onpickedfn
 
     inst.components.sanityaura.aura = TUNING.SANITYAURA_LARGE		
@@ -91,7 +90,9 @@ local function onchargefn(inst)
     inst:AddTag("flower_datura")
     
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
-    inst.components.pickable:SetUp("datura_petals", 10)
+	if math.random(1,4) == 1 then
+		inst.components.pickable:SetUp("cloud_cotton", 30)
+	else inst.components.pickable:SetUp("datura_petals", 40) end	
 	inst.components.pickable.onpickedfn = onpickedfn
 	
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_LARGE		
