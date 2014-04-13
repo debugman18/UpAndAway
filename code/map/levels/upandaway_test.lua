@@ -1,11 +1,9 @@
+--[[
+-- RoG only parameters (like "onlyautumn") get translated into their vanilla
+-- counterparts automatically by patches.world_customisation_compat.
+--]]
+
 local LEVELTYPE = _G.LEVELTYPE
-
--- FIXME: Replace with a decent method, when possible.
---local has_rog = IsDLCEnabled(REIGN_OF_GIANTS)
-local has_rog = true
-
-local season_start = has_rog and "autumn" or "summer"
-local season_mode = has_rog and "onlyautumn" or "onlysummer"
 
 TheMod:AddLevel(LEVELTYPE.SURVIVAL, {
 	id="UPANDAWAY_SURVIVAL_TEST",
@@ -18,8 +16,8 @@ TheMod:AddLevel(LEVELTYPE.SURVIVAL, {
 		{"day", 			"longday"}, 
 		{"looping",			"more"},
 
-		{"season_start", 	season_start},		
-		{"season_mode",		season_mode},
+		{"season_start", 	"autumn"},		
+		{"season_mode",		"onlyautumn"},
 		{"weather", 		"never"},
 		{"boons",			"often"},
 		{"roads", 			"never"},	

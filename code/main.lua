@@ -31,7 +31,7 @@ local Pred = wickerrequire 'lib.predicates'
 
 require 'mainfunctions'
 
-modrequire('api_abstractions')()
+modrequire 'api_abstractions'
 
 modrequire 'profiling'
 modrequire 'debugtools'
