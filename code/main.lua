@@ -92,16 +92,11 @@ end
 --[[
 -- This is just to prevent changes in our implementation breaking old saves.
 --]]
-AddPrefabPostInit("world", function(inst)
-	local Climbing = modrequire 'lib.climbing'
-
-	local metadata_key = "upandaway_metadata"
-	if not inst.components[metadata_key] then
-		inst:AddComponent(metadata_key)
-	end
-	
-	if inst.components[metadata_key]:Get("height") == nil then
-		inst.components[metadata_key]:Set("height", Climbing.GetLevelHeight())
+AddSimPostInit(function()
+	local LevelMeta = modrequire 'lib.level_metadata'
+	if LevelMeta.Get("height") == nil then
+		local Climbing = modrequire 'lib.climbing'
+		LevelMeta.Set("height", Climbing.GetLevelHeight())
 	end
 end)
 

@@ -163,9 +163,9 @@ end
 -- Works both under normal game and under worldgen (using different methods).
 -- <br /><br />
 -- At worldgen, the level number is used. At normal game, we check for the
--- existence of the upandaway_metadata component in the world entity. If it
--- exists and has a field "height" stored, that value is adopted, otherwise
--- the level number is used as in worldgen.
+-- existence of a height value stored as metadata in the world entity. If it
+-- exists, that value is adopted, otherwise the level number is used as in
+-- worldgen.
 -- <br />
 -- Savedata is given preference because the level number can possibly change,
 -- so this allows us to keep our system compatible with older saves.
@@ -175,13 +175,10 @@ end
 --
 function GetLevelHeight(slot, cavenum)
 	if not Pred.IsWorldGen() and is_current(slot, cavenum) then
-		local world = rawget(_G, "GetWorld") and GetWorld()
-		local metadata_key = "upandaway_metadata"
-		if world and world.components[metadata_key] then
-			local height = world.components[metadata_key]:Get("height")
-			if height ~= nil then
-				return height
-			end
+		local LevelMeta = modrequire "lib.level_metadata"
+		local height = LevelMeta.Get("height")
+		if height ~= nil then
+			return height
 		end
 	end
 	return GetRawLevelHeight(slot, cavenum)
