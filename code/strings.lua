@@ -1211,9 +1211,9 @@ Add.QuotesFor "gummybear" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
-    woodie = nil,
+    willow = "I wonder if they burn or melt.",
+    wolfgang = "Wolfgang knew dancing bear in circus.",
+    woodie = "They're nothing like the bears back home.",
     wx78 = nil,
 }
 
@@ -1224,9 +1224,9 @@ Add.QuotesFor "gummybear_den" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
-    woodie = nil,
+    willow = "Arson is a favourite pastime of mine.",
+    wolfgang = "Reminds me of tale form childhood.",
+    woodie = "What a waste of wood.",
     wx78 = nil,
 }
 
