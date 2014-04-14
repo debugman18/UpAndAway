@@ -42,7 +42,6 @@
 + scarecrow
 + skyflies
 + smores
-+ thunder_log
 + turf_test
 + weaver_bird
 + white_staff

@@ -10,6 +10,15 @@ local prefabs = {
 local picked_assets =
 {
 	Asset("ANIM", "anim/jelly_caps.zip"),
+
+	Asset( "ATLAS", "images/inventoryimages/jellycap_blue.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/jellycap_blue.tex" ),
+
+	Asset( "ATLAS", "images/inventoryimages/jellycap_green.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/jellycap_green.tex" ),	
+
+	Asset( "ATLAS", "images/inventoryimages/jellycap_red.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/jellycap_red.tex" ),			
 }
 
 local unpicked_assets =
@@ -152,16 +161,19 @@ end
 
 local function pickedfn_red(Sim)
 	local inst = pickedfn_common("Redcap", "red")
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/jellycap_red.xml"
 	return inst
 end	
 
 local function pickedfn_green(Sim)
 	local inst = pickedfn_common("Greencap", "green")
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/jellycap_green.xml"
 	return inst
 end	
 
 local function pickedfn_blue(Sim)
 	local inst = pickedfn_common("Bluecap", "blue")
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/jellycap_blue.xml"
 	return inst
 end	
 

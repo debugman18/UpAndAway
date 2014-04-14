@@ -18,7 +18,7 @@ local function fn(Sim)
     anim:SetBank("gears")
     anim:SetBuild("cloudcotton")
     anim:PlayAnimation("idle")
-	trans:SetScale(0.4, 0.6, 0.6)
+	trans:SetScale(0.7, 0.7, 0.7)
     
     inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
@@ -28,17 +28,20 @@ local function fn(Sim)
     inst:AddComponent("inventoryitem") 
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/cloud_cotton.xml"
     
+    inst:AddComponent("fuel")
+    inst.components.fuel.fuelvalue = 8
+
 	--Is not filling.
     inst:AddComponent("edible")
     inst.components.edible.foodtype = "VEGGIE"
-    inst.components.edible.healthvalue = 0
-    inst.components.edible.hungervalue = 0
-    inst.components.edible.sanityvalue = 1
+    inst.components.edible.healthvalue = -5
+    inst.components.edible.hungervalue = 2
+    inst.components.edible.sanityvalue = 5
 
 	--Is like snow on its structures.
 	inst:AddComponent("repairer")
 	inst.components.repairer.repairmaterial = "cloud"
-	inst.components.repairer.value = 1
+	inst.components.repairer.healthrepairvalue = 5
     
     return inst
 end
