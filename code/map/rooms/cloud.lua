@@ -277,6 +277,9 @@ TheMod:AddRoom("BGRainbow", {
 			jellyshroom_green = 0.04,
 			skyflower = 0.1,
 		},
+	    countprefabs= {
+	        gummybear_den = math.random(2,4),
+	    }
 	},
 })
 

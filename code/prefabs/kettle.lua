@@ -13,6 +13,9 @@ local basic_assets=
 {
 	Asset("ANIM", "anim/cook_pot.zip"),
 	Asset("ANIM", "anim/cook_pot_food.zip"),
+
+	Asset( "ATLAS", "images/inventoryimages/kettle_item.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/kettle_item.tex" ),	
 }
 
 

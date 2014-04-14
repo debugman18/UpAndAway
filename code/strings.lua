@@ -85,6 +85,8 @@ Add.Names {
     grabber = "Grabber",
     greenbean = "Greenbean",
     greentea = "Green Tea",
+    gummybear = "Gummy Bear",
+    gummybear_den = "Log Den",
     gustflower = "Gustflower",
     gustflower_seeds = "Gustflower Seeds",
     hive_marshmallow = "Marshmallow Hive",
@@ -2030,6 +2032,26 @@ STRINGS.RECIPE_DESC.COTTON_CANDY = "Carnival food. Rots your teeth."
 STRINGS.RECIPE_DESC.GRABBER = "A hookshot. You can grab and poke things."
 STRINGS.RECIPE_DESC.BLACKSTAFF = "A black staff. Shock therapy!"
 STRINGS.RECIPE_DESC.WHITESTAFF = "A white staff. For heavy lifting."
+
+STRINGS.GUMMYBEAR_NAMES = { 
+    "Moisty", 
+    "Yummy", 
+    "Chewy", 
+    "Sticky", 
+    "Skippy", 
+    "Laughy", 
+    "Cutey", 
+    "Cuddly", 
+    "Gnawry", 
+    "Gooey", 
+    "Jumpy", 
+    "Play-y", 
+    "Stabby", 
+    "Cutty", 
+    "Devourer-y", 
+    "Hungry", 
+    "Tenderly", 
+}
 
 STRINGS.UPUI = {
     CLOUDGEN = {

@@ -189,6 +189,9 @@ PrefabFiles = {
 	"sheepherd",
 	"mantaspawner",
 	"cloud_jelly",
+
+	"gummybear",
+	"gummybear_den",
 }
 
 -- The return statement is just for if this file is used externally, at
