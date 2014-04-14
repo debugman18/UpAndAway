@@ -33,7 +33,6 @@ local GummyBearBrain = Class(Brain, function(self, inst)
 end)
 
 local function EatFoodAction(inst)
-
     local target = FindEntity(inst, SEE_FOOD_DIST, function(item) return inst.components.eater:CanEat(item) and item:IsOnValidGround() end)
     if target then
         return BufferedAction(inst, target, ACTIONS.EAT)
@@ -41,12 +40,12 @@ local function EatFoodAction(inst)
 end
 
 local function GoHomeAction(inst)
-    if inst.components.homeseeker and 
-       inst.components.homeseeker.home and 
-       inst.components.homeseeker.home:IsValid() and 
-       inst.components.homeseeker.home.components.childspawner then
-        return BufferedAction(inst, inst.components.homeseeker.home, ACTIONS.GOHOME)
-    end
+	if inst.components.homeseeker and 
+		inst.components.homeseeker.home and 
+		inst.components.homeseeker.home:IsValid() and 
+		inst.components.homeseeker.home.components.childspawner then
+		return BufferedAction(inst, inst.components.homeseeker.home, ACTIONS.GOHOME)
+	end
 end
 
 local function InvestigateAction(inst)
@@ -70,28 +69,25 @@ function GummyBearBrain:OnStart()
         {
             WhileNode( function() return self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst)),
             IfNode(function() return self.inst:HasTag("spider_hider") end, "IsHider", 
-                UseShield(self.inst, DAMAGE_UNTIL_SHIELD, SHIELD_TIME, AVOID_PROJECTILE_ATTACKS)),
+            UseShield(self.inst, DAMAGE_UNTIL_SHIELD, SHIELD_TIME, AVOID_PROJECTILE_ATTACKS)),
             AttackWall(self.inst),
             ChaseAndAttack(self.inst, MAX_CHASE_TIME),
             DoAction(self.inst, function() return EatFoodAction(self.inst) end ),
             Follow(self.inst, function() return self.inst.components.follower.leader end, MIN_FOLLOW_DIST, TARGET_FOLLOW_DIST, MAX_FOLLOW_DIST),
             IfNode(function() return self.inst.components.follower.leader ~= nil end, "HasLeader",
-				FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn )),            
+			FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn )),            
             DoAction(self.inst, function() return InvestigateAction(self.inst) end ),
-           -- WhileNode(function() return not GetClock():IsDay() end, "IsDay",
-                    --DoAction(self.inst, function() return GoHomeAction(self.inst) end ) ),
+            -- WhileNode(function() return not GetClock():IsDay() end, "IsDay",
+            --DoAction(self.inst, function() return GoHomeAction(self.inst) end ) ),
             Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST)            
         },1)
     
     
     self.bt = BT(self.inst, root)
-    
-         
 end
 
 function GummyBearBrain:OnInitializationComplete()
     self.inst.components.knownlocations:RememberLocation("home", Point(self.inst.Transform:GetWorldPosition()))
-
 end
 
 return GummyBearBrain

@@ -20,14 +20,14 @@ local loot =
 }
   
 local function onlightning(inst)
-   inst.SoundEmitter:PlaySound("dontstarve/common/lightningrod")
-   SpawnPrefab("lightning").Transform:SetPosition(inst:GetPosition():Get())
-   SpawnPrefab("lightning_rod_fx").Transform:SetPosition(inst:GetPosition():Get())
+	inst.SoundEmitter:PlaySound("dontstarve/common/lightningrod")
+	SpawnPrefab("lightning").Transform:SetPosition(inst:GetPosition():Get())
+	SpawnPrefab("lightning_rod_fx").Transform:SetPosition(inst:GetPosition():Get())
 
-	    inst:DoTaskInTime(1, function()
-   inst.SoundEmitter:PlaySound("dontstarve/common/lightningrod")
-   SpawnPrefab("lightning_rod_fx").Transform:SetPosition(inst:GetPosition():Get())
-   SpawnPrefab("sparks").Transform:SetPosition(inst:GetPosition():Get())
+	inst:DoTaskInTime(1, function()
+		inst.SoundEmitter:PlaySound("dontstarve/common/lightningrod")
+		SpawnPrefab("lightning_rod_fx").Transform:SetPosition(inst:GetPosition():Get())
+		SpawnPrefab("sparks").Transform:SetPosition(inst:GetPosition():Get())
 	end)
 end
 
@@ -49,6 +49,11 @@ local function onhit(inst, worker)
     end
 end
 
+local function IsSpawnTime()
+	local c = GetClock()
+	return c and (c:IsDay() or c:CurrentPhaseIsAlways())
+end
+
 local function StartSpawning(inst)
 	if inst.components.childspawner then
 		inst.components.childspawner:StartSpawning()
@@ -63,17 +68,17 @@ end
 
 local function OnSpawned(inst, child)
 	inst.SoundEmitter:PlaySound("dontstarve/common/pighouse_door")
-	if not GetClock():IsDay() and inst.components.childspawner and inst.components.childspawner:CountChildrenOutside() >= 1 and not child.components.combat.target then
+	if not IsSpawnTime() and inst.components.childspawner and inst.components.childspawner:CountChildrenOutside() >= 1 and not child.components.combat.target then
         StopSpawning(inst)
     end
-if inst:HasTag("zapped") then
-    inst:RemoveTag("zapped")
-   SpawnPrefab("sparks").Transform:SetPosition(inst:GetPosition():Get())
-    inst.SoundEmitter:PlaySound("dontstarve/pig/pighut_lightoff")
-   inst.SoundEmitter:PlaySound("dontstarve/common/lightningrod")
-    inst.Light:Enable(false)
-    inst.AnimState:PlayAnimation("full")
-    inst.AnimState:SetBloomEffectHandle("")
+	if inst:HasTag("zapped") then
+		inst:RemoveTag("zapped")
+		SpawnPrefab("sparks").Transform:SetPosition(inst:GetPosition():Get())
+		inst.SoundEmitter:PlaySound("dontstarve/pig/pighut_lightoff")
+		inst.SoundEmitter:PlaySound("dontstarve/common/lightningrod")
+		inst.Light:Enable(false)
+		inst.AnimState:PlayAnimation("full")
+		inst.AnimState:SetBloomEffectHandle("")
 	end
 end
 
@@ -83,16 +88,67 @@ local function OnGoHome(inst, child)
         StartSpawning(inst)
     end
     inst:DoTaskInTime(1, function()
-	if not inst:HasTag("zapped") then
-    inst:AddTag("zapped") 
-	inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
-    inst.SoundEmitter:PlaySound("dontstarve/pig/pighut_lighton")
-   inst.SoundEmitter:PlaySound("dontstarve/common/lightningrod")
-   SpawnPrefab("sparks").Transform:SetPosition(inst:GetPosition():Get())
-    inst.Light:Enable(true)
-    inst.AnimState:PlayAnimation("med")
-	end
+		if not inst:HasTag("zapped") then
+			inst:AddTag("zapped") 
+			inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
+			inst.SoundEmitter:PlaySound("dontstarve/pig/pighut_lighton")
+			inst.SoundEmitter:PlaySound("dontstarve/common/lightningrod")
+			SpawnPrefab("sparks").Transform:SetPosition(inst:GetPosition():Get())
+			inst.Light:Enable(true)
+			inst.AnimState:PlayAnimation("med")
+		end
 	end)
+end
+
+-- Called in a inst:DoPeriodicTask().
+-- Disabled when the entity is asleep.
+local function AttemptLightFlicker(inst)
+	if inst.components.childspawner and inst.components.childspawner.childreninside > 0 then
+		if math.random() < flickerchance then
+			inst.SoundEmitter:PlaySound("dontstarve/common/lightningrod")
+			SpawnPrefab("lightning_rod_fx").Transform:SetPosition(inst:GetPosition():Get())
+			inst.AnimState:PlayAnimation("med")
+			inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
+
+			inst:DoTaskInTime(0.1, function()
+				inst.Light:Enable(false)
+				inst.AnimState:PlayAnimation("full")
+				inst.AnimState:SetBloomEffectHandle("")
+			end)
+			inst:DoTaskInTime(0.2, function()
+				inst.Light:Enable(true)
+				inst.AnimState:PlayAnimation("med")
+				inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
+			end)
+			inst:DoTaskInTime(0.3, function()
+				inst.Light:Enable(false)
+				inst.AnimState:PlayAnimation("full")
+				inst.AnimState:SetBloomEffectHandle("")
+			end)
+			inst:DoTaskInTime(0.4, function()
+				inst.Light:Enable(true)
+				inst.AnimState:PlayAnimation("med")
+				inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
+			end)
+		end
+	else
+		inst.AnimState:PlayAnimation("full")
+		inst.AnimState:SetBloomEffectHandle("")
+		inst.Light:Enable(false)
+	end
+end
+
+local function StartFlickerTask(inst)
+	if not inst.flickertask then
+		inst.flickertask = inst:DoPeriodicTask(100/100, AttemptLightFlicker)
+	end
+end
+
+local function StopFlickerTask(inst)
+	if inst.flickertask then
+		inst.flickertask:Cancel()
+		inst.flickertask = nil
+	end
 end
 
 local function fn(Sim)
@@ -104,8 +160,7 @@ local function fn(Sim)
 	local minimap = inst.entity:AddMiniMapEntity()
 	minimap:SetIcon( "mermhouse.png" )
     
-        MakeObstaclePhysics(inst, 2)
-
+    MakeObstaclePhysics(inst, 2)
 
 	inst.Transform:SetScale(1.4, 1.4, 1.4)
 	inst.AnimState:SetBank("rock_stalagmite")
@@ -139,52 +194,23 @@ local function fn(Sim)
 	inst.components.childspawner:SetSpawnPeriod(10)
 	inst.components.childspawner:SetMaxChildren(3)
 
-	--[[
-	inst:ListenForEvent("daytime", function() 
-		    inst.components.childspawner:ReleaseAllChildren()
-		StartSpawning(inst)
-	end, GetWorld())
-	inst:ListenForEvent("dusktime", function() StopSpawning(inst) end , GetWorld())
-	]]
-	StartSpawning(inst)
-
-	inst:DoPeriodicTask(100/100, function()
-	if inst.components.childspawner and inst.components.childspawner.childreninside > 0 then
-	if math.random() < flickerchance then
-   inst.SoundEmitter:PlaySound("dontstarve/common/lightningrod")
-   SpawnPrefab("lightning_rod_fx").Transform:SetPosition(inst:GetPosition():Get())
-    inst.AnimState:PlayAnimation("med")
-	inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
-
-	    inst:DoTaskInTime(0.1, function()
-    inst.Light:Enable(false)
-    inst.AnimState:PlayAnimation("full")
-    inst.AnimState:SetBloomEffectHandle("")
-	end)
-	    inst:DoTaskInTime(0.2, function()
-    inst.Light:Enable(true)
-    inst.AnimState:PlayAnimation("med")
-	inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
-
-	end)
-	    inst:DoTaskInTime(0.3, function()
-    inst.Light:Enable(false)
-    inst.AnimState:PlayAnimation("full")
-    inst.AnimState:SetBloomEffectHandle("")
-	end)
-	    inst:DoTaskInTime(0.4, function()
-    inst.Light:Enable(true)
-    inst.AnimState:PlayAnimation("med")
-	inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
-
-	end)
+	-- Ensures clock savedata has been loaded.
+	inst:DoTaskInTime(0, function(inst)
+		if not GetClock():CurrentPhaseIsAlways() then
+			inst:ListenForEvent("daytime", function() 
+				inst.components.childspawner:ReleaseAllChildren()
+				StartSpawning(inst)
+			end, GetWorld())
+			inst:ListenForEvent("dusktime", function() StopSpawning(inst) end , GetWorld())
 		end
-	else
-    inst.AnimState:PlayAnimation("full")
-    inst.AnimState:SetBloomEffectHandle("")
-    inst.Light:Enable(false)
+		if IsSpawnTime() then
+			StartSpawning(inst)
 		end
-	end) 
+	end)
+
+	StartFlickerTask(inst)
+	inst:ListenForEvent("entitysleep", StopFlickerTask)
+	inst:ListenForEvent("entitywake", StartFlickerTask)
 
     inst:AddComponent("inspectable")
 

@@ -21,9 +21,24 @@ local prefabs =
     "nightmarefuel",
 }
 
+local function become_nice(inst)
+	if inst:HasTag("cuddly") then return end
+	inst.AnimState:SetBuild("gummybear_nice")
+	-- Tag added in the stategraph event handler.
+	inst:PushEvent("becomenice")
+end
+
+local function become_naughty(inst)
+	if not inst:HasTag("cuddly") then return end
+	inst.AnimState:SetBuild("gummybear_naughty")
+	-- Tag removed in the stategraph event handler.
+	inst:PushEvent("becomenaughty")
+end
+
 local function OnNewTarget(inst, data)
-        --print(inst, "OnNewTarget", data.target)
+	--print(inst, "OnNewTarget", data.target)
     inst.components.combat:ShareTarget(inst.components.combat.target, 30, function(dude) return dude:HasTag("gumbear") and not dude.components.health:IsDead() end, 12)
+	become_naughty(inst)
 end
 
 local function retargetfn(inst)
@@ -50,7 +65,7 @@ end
 local function commonfn()
 	local inst = CreateEntity()
 
-        inst:AddComponent("health")
+    inst:AddComponent("health")
 
     return inst
 end
@@ -58,11 +73,11 @@ end
 
 local function bear()
 	local inst = commonfn()
-	    local trans = inst.entity:AddTransform()
-	    local anim = inst.entity:AddAnimState()
-        local physics = inst.entity:AddPhysics()
-	    local sound = inst.entity:AddSoundEmitter()
-        inst.Transform:SetFourFaced()
+	local trans = inst.entity:AddTransform()
+	local anim = inst.entity:AddAnimState()
+	local physics = inst.entity:AddPhysics()
+	local sound = inst.entity:AddSoundEmitter()
+	inst.Transform:SetFourFaced()
  
 	local shadow = inst.entity:AddDynamicShadow()
 	shadow:SetSize( 1.5, .75 )    	
@@ -71,7 +86,7 @@ local function bear()
     MakeCharacterPhysics(inst, 50, .5)
 
     inst.AnimState:SetBank("pigman")
-    inst.AnimState:SetBuild("gummybear_naughty")
+    inst.AnimState:SetBuild("gummybear_nice")
     inst.AnimState:PlayAnimation("idle", true)
 
     local color1 = 0.1 + math.random() * 0.9
@@ -96,13 +111,13 @@ local function bear()
 
     inst:AddComponent("knownlocations")
 
-        inst:AddTag("monster")
-	    inst:AddTag("hostile")
-       inst:AddTag("cuddly")
-       inst:AddTag("gumbear")
+    inst:AddTag("monster")
+	inst:AddTag("hostile")
+    inst:AddTag("cuddly")
+    inst:AddTag("gumbear")
     inst:AddTag("wet")
 
-        inst:AddTag("notraptrigger")
+    inst:AddTag("notraptrigger")
 
     inst:AddComponent("inspectable")
 
@@ -110,60 +125,78 @@ local function bear()
     inst.components.named.possiblenames = STRINGS.GUMMYBEAR_NAMES
     inst.components.named:PickNewName()
 
-      local brain = require "brains/gummybearbrain"
+    local brain = require "brains/gummybearbrain"
     inst:SetBrain(brain)
     inst:SetStateGraph("SGgummybear")
         
-	    inst:AddComponent("sanityaura")
-	    inst.components.sanityaura.aurafn = CalcSanityAura
-        
-        inst.components.health:SetMaxHealth(360)
+	inst:AddComponent("sanityaura")
+	inst.components.sanityaura.aurafn = CalcSanityAura
+	
+	inst.components.health:SetMaxHealth(360)
 
     inst:AddComponent("eater")
     inst.components.eater:SetCarnivore()
 	inst.components.eater:SetCanEatHorrible()
     inst.components.eater.strongstomach = true -- can eat monster meat!
 
-        inst:AddComponent("combat")
-        inst.components.combat:SetDefaultDamage(34)
+    inst:AddComponent("combat")
+    inst.components.combat:SetDefaultDamage(34)
     inst.components.combat:SetAttackPeriod(2)
     inst.components.combat:SetRange(2)
-        inst.components.combat:SetRetargetFunction(3, retargetfn)
+    inst.components.combat:SetRetargetFunction(3, retargetfn)
 
-        inst:ListenForEvent("attacked", OnAttacked)	
+    inst:ListenForEvent("attacked", OnAttacked)	
 
+	-- Already handled by the periodic task.
+	--[[
     inst:ListenForEvent("losttarget", function(inst) 
        inst:AddTag("cuddly")
     end)
     inst:ListenForEvent("giveuptarget", function(inst) 
        inst:AddTag("cuddly")
     end)
+	]]--
     inst:ListenForEvent("newcombattarget", function(inst, data) 
         if data.target ~= nil then
-       inst:RemoveTag("cuddly")
-	OnNewTarget(inst)
+			OnNewTarget(inst)
         end
     end)
 
-	inst:DoPeriodicTask(1/100, function()
-	if not inst.components.combat.target then
-       inst:AddTag("cuddly")
-    inst.AnimState:SetBuild("gummybear_nice")
-		else
-           inst:RemoveTag("cuddly")
-    inst.AnimState:SetBuild("gummybear_naughty")
+	local cuddlyness_thread
+	cuddlyness_thread = inst:StartThread(function()
+		local function resume()
+			WakeTask(cuddlyness_thread)
+		end
+
+		while inst:IsValid() do
+			Sleep(30/100)
+
+			if inst:IsAsleep() then
+				Game.ListenForEventOnce("entitywake", resume)
+				Hibernate()
+			end
+
+			if not inst.components.combat.target then
+				Sleep(1)
+				if not inst.components.combat.target then
+					become_nice(inst)
+				end
+			else
+				become_naughty(inst)
+			end
 		end
 	end) 
 
-        return inst
-    end
+    return inst
+end
 
 
 local function rainbow()
-	local inst = commonfn()
+	local inst = CreateEntity()
+	inst.persists = false
 
-    	inst.entity:AddTransform()
-    	inst.entity:AddAnimState()
+	inst.entity:AddTransform()
+	inst.entity:AddAnimState()
 
     inst.AnimState:SetBank("collapse")
     inst.AnimState:SetBuild("structure_collapse_fx")
@@ -171,31 +204,29 @@ local function rainbow()
 
     inst.AnimState:PlayAnimation("collapse_large")
 
-        inst:AddTag("FX")
-        inst.persists = false
-        inst:ListenForEvent("animover", function() inst:Remove() end)
+	inst:AddTag("FX")
+	inst:ListenForEvent("animover", function() inst:Remove() end)
 
-    inst:DoTaskInTime(0, function() inst.AnimState:SetMultColour(0.7, 0.3, 0.3, 1)  
-	end)
-
-    inst:DoTaskInTime(0.25, function() inst.AnimState:SetMultColour(0.7, 0.7, 0.3, 1)  
-	end)
-
-    inst:DoTaskInTime(0.5, function() inst.AnimState:SetMultColour(0.3, 0.7, 0.3, 1)  
-	end)
-
-    inst:DoTaskInTime(0.75, function() inst.AnimState:SetMultColour(0.3, 0.7, 0.7, 1)  
-	end)
-
-    inst:DoTaskInTime(1, function() inst.AnimState:SetMultColour(0.3, 0.3, 0.7, 1)  
+	inst:StartThread(function()
+		inst.AnimState:SetMultColour(0.7, 0.3, 0.3, 1)  
+		Sleep(0.25)
+		inst.AnimState:SetMultColour(0.7, 0.7, 0.3, 1)  
+		Sleep(0.25)
+		inst.AnimState:SetMultColour(0.3, 0.7, 0.3, 1)  
+		Sleep(0.25)
+		inst.AnimState:SetMultColour(0.3, 0.7, 0.7, 1)  
+		Sleep(0.25)
+		inst.AnimState:SetMultColour(0.3, 0.3, 0.7, 1)  
 	end)
 
 	return inst
 end
 
+--[[
 local function KeepTarget(isnt, target)
     return true
 end
+]]--
 
 return {
     Prefab( "common/monsters/gummybear", bear, assets, prefabs),
