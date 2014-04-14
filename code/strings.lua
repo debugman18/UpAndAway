@@ -1204,6 +1204,32 @@ Add.QuotesFor "greentea" {
     wx78 = "A HOT DRINK",
 }
 
+Add.QuotesFor "gummybear" {
+    GENERIC = nil,
+    wathgrithr = nil,
+    waxwell = nil,
+    webber = nil,
+    wendy = nil,
+    wickerbottom = nil,
+    willow = nil,
+    wolfgang = nil,
+    woodie = nil,
+    wx78 = nil,
+}
+
+Add.QuotesFor "gummybear_den" {
+    GENERIC = nil,
+    wathgrithr = nil,
+    waxwell = nil,
+    webber = nil,
+    wendy = nil,
+    wickerbottom = nil,
+    willow = nil,
+    wolfgang = nil,
+    woodie = nil,
+    wx78 = nil,
+}
+
 Add.QuotesFor "gustflower" {
     GENERIC = "I should steer clear of it.",
     wathgrithr = "It makes its own wind.",
