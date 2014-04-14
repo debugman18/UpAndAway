@@ -99,6 +99,7 @@ Assets = GLOBAL.JoinArrays(
 		"hive_marshmallow",
 		"cloud_bush",
 		"thunder_tree",
+		"tea_bush",
 		--"cloud_fruit_tree",
 		--"bean_giant_statue",
 		--"weather_machine",

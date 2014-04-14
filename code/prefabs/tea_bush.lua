@@ -11,7 +11,7 @@ local function ontransplantfn(inst)
 end
 
 local function makeemptyfn(inst)
-	inst.AnimState:PlayAnimation("empty", true)
+	inst.AnimState:PlayAnimation("idle_dead", true)
 end
 
 local function pickanim(inst)
@@ -32,12 +32,12 @@ local function pickanim(inst)
 			if inst.components.pickable:IsBarren() then
 				return "idle_dead"
 			else
-				return "idle"
+				return "idle_dead"
 			end
 		end
 	end
 
-	return "idle"
+	return "idle_dead"
 end
 
 
@@ -66,7 +66,7 @@ local function onpickedfn(inst, picker)
 		if inst.components.pickable:IsBarren() then
 			inst.AnimState:PushAnimation("idle_dead")
 		else
-			inst.AnimState:PushAnimation("idle")
+			inst.AnimState:PushAnimation("idle_dead")
 		end
 	end
 end
@@ -113,7 +113,7 @@ end
 
 local assets =
 {
-	Asset("ANIM", "anim/berrybush.zip"),
+	Asset("ANIM", "anim/tea_bush.zip"),
 }
 
 local prefabs =
@@ -130,13 +130,15 @@ local function fn(Sim)
 	local minimap = inst.entity:AddMiniMapEntity()
 
 	inst:AddTag("bush")
-	minimap:SetIcon( "berrybush.png" )
 
 	MakeObstaclePhysics(inst, .1)
    
 	anim:SetBank("berrybush")
-	anim:SetBuild("berrybush")
+	anim:SetBuild("tea_bush")
 	anim:PlayAnimation("berriesmost", false)
+
+    inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("tea_bush.tex")	
 	
 	inst:AddComponent("pickable")
 	inst.components.pickable.picksound = "dontstarve/wilson/harvest_berries"

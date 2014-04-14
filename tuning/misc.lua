@@ -17,7 +17,7 @@ NEW_TILES = {"poopcloud", "aurora", "snow", "rainbow"}
 -- An infinite value means instant extinguishing.
 --]]
 FIRE.EXTINGUISH.SPEED = {
-	[1] = 10,
+	[1] = 4,
 
 	default = math.huge
 }
