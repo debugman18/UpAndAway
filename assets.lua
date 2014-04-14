@@ -48,7 +48,6 @@ Assets = GLOBAL.JoinArrays(
 		"golden_egg",
 		"cotton_vest",
 		"mushroom_hat",
-		"brass_lantern",
 		"kettle_item"
 		"nil",
 	},
