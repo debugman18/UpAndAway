@@ -1225,7 +1225,7 @@ Add.QuotesFor "gummybear_den" {
     wendy = nil,
     wickerbottom = nil,
     willow = "Arson is a favourite pastime of mine.",
-    wolfgang = "Reminds me of tale form childhood.",
+    wolfgang = "Reminds me of tale from childhood.",
     woodie = "What a waste of wood.",
     wx78 = nil,
 }
