@@ -17,6 +17,7 @@ local prefabs =
 {
 	"maxwell_smoke",
 	"magic_beans",
+	"kettle_item",
 }
 
 local shopkeeper_speech = modrequire "resources.shopkeeper_speech"
@@ -99,7 +100,16 @@ local function negotiateCows(buyer, seller)
 		end
 	end
 
-	return buyer.beans_to_give and buyer.beans_to_give > 0
+	if buyer.beans_to_give and buyer.beans_to_give > 0 then
+		-- This is just to prevent Beefalos from hanging out mooing, distracting from the speech.
+		for cow in pairs(seller.components.leader.followers) do
+			if cow:IsValid() and cow.components.follower and is_a_cow(cow) then
+				cow.components.follower:SetLeader(nil)
+			end
+		end
+
+		return true
+	end
 end
 
 -------------------------------------------------------------------------------------------------
@@ -139,6 +149,9 @@ local function oninteract(inst, doer)
 	elseif inst.numbeans > 0 and negotiateCows(inst, doer) then
 		inst.components.speechgiver:PlaySpeech("BEAN_SUCCESS", doer)
 		inst.components.speechgiver:PushSpeech("BEAN_HINT", doer)
+		if not inst.gavegifts then
+			inst.components.speechgiver:PushSpeech("GIVE_GIFTS", doer)
+		end
 		return true
 	elseif inst.numbeans > 0 and not inst.gavebeans then
 		inst.components.speechgiver:PlaySpeech("BEAN_REMINDER", doer)
@@ -183,6 +196,8 @@ local function onsave(inst, data)
 	data.numbeans = inst.numbeans
 	data.beans_to_give = inst.beans_to_give ~= 0 and inst.beans_to_give or nil
 
+	data.gavegifts = inst.gavegifts or nil
+
 	data.permanent = inst:HasTag("permanent") or nil
 end
 
@@ -195,6 +210,8 @@ local function onload(inst, data)
 	inst.numbeans = data.numbeans or inst.numbeans
 	inst.beans_to_give = data.beans_to_give
 
+	inst.gavegifts = data.gavegifts
+
 	if data.permanent then
 		inst:AddTag("permanent")
 	end
@@ -204,6 +221,9 @@ local function onload(inst, data)
 	end
 
 	-- This is just for inconsistent save data.
+	if inst.gavegifts then
+		inst.gavebeans = true
+	end
 	if inst.gavebeans then
 		inst.customer = true
 	end
@@ -235,6 +255,9 @@ local function OnGetItemFromPlayer(inst, giver, item)
 
 		inst.components.speechgiver:PlaySpeech("BEAN_SUCCESS", doer)
 		inst.components.speechgiver:PushSpeech("BEAN_HINT", doer)
+		if not inst.gavegifts then
+			inst.components.speechgiver:PushSpeech("GIVE_GIFTS", doer)
+		end
 	end
 end
 
@@ -326,6 +349,16 @@ local function fn(Sim)
 				end
 				inst.gavebeans = true
 				inst.beans_to_give = nil
+			end,
+		})
+
+		speechgiver:AddSpeechData("GIVE_GIFTS", {
+			givegifts = function(inst, player)
+				if inst.gavegifts or not player.components.inventory then return end
+				inst.gavegifts = true
+
+				local kettle = SpawnPrefab("kettle_item")
+				player.components.inventory:GiveItem(kettle)
 			end,
 		})
 	end

@@ -56,8 +56,8 @@ SPEECHES.BEAN_QUEST = function(mgr)
 	mgr:MakeNonInterruptible()
 	mgr:EnterCutScene()
 
-	mgr "Hello there, fella."
 	mgr:PlaySound(metalsnd)
+	mgr "Hello there, fella."
 
 	mgr "You look tired."
 
@@ -82,8 +82,8 @@ SPEECHES.BEAN_QUEST = function(mgr)
 	mgr:ExitCutScene()
 	Sleep(0.5)
 
-	mgr "Get to it, fella."
 	mgr:PlaySound(metalsnd)
+	mgr "Get to it, fella."
 end
 
 
@@ -99,11 +99,11 @@ SPEECHES.BEAN_SUCCESS = function(mgr, args)
 
 	Sleep(1.5)
 
+	mgr:PlaySound(metalsnd)
 	mgr "You fulfilled your end of the bargain."
-	mgr:PlaySound(metalsnd)
 
-	mgr "Now for me to keep mine."
 	mgr:PlaySound(metalsnd)
+	mgr "Now for me to keep mine."
 
 	mgr:KillVoice()
 	Sleep(0.5)
@@ -112,18 +112,12 @@ SPEECHES.BEAN_SUCCESS = function(mgr, args)
 
 	Sleep(0.5)
 
-	mgr "Your ticket out of here."
 	mgr:PlaySound(metalsnd)
+	mgr "Your ticket out of here."
+
+	Sleep(0.75)
 
 	-- Goes straight into the BEANS_HINT speech, so I removed the part below.
-
-	--[[
-	mgr:ExitCutScene()
-	Sleep(0.5)
-
-	mgr "Best of luck, fella."
-	mgr:PlaySound(metalsnd)
-	]]--
 end
 
 
@@ -143,38 +137,63 @@ end
 SPEECHES.BEAN_REMINDER = function(mgr)
 	Sleep(0.25)
 
-	mgr "Get to it, fella."
 	mgr:PlaySound(metalsnd)
+	mgr "Get to it, fella."
 end
 
 --This is to flag the player down.
 SPEECHES.FLAG_PLAYER = function(mgr)
 	Sleep(0.25)
 
-	mgr "Hey you! Yes, you there!"
 	mgr:PlaySound(metalsnd)
+	mgr "Hey you! Yes, you there!"
 end
 
 --This gives the player a hint about the beans.
 SPEECHES.BEAN_HINT = function(mgr)
-	if not mgr.speaker.gavebeans then return end
-
 	if mgr:EnterCutScene() then
-		Sleep(1.5)
+		mgr:MakeNonInterruptible()
+		Sleep(0.75)
 	end
 
+	mgr:PlaySound(metalsnd)
 	mgr "Now, you can't just plant those beans in any old soil."
-	mgr:PlaySound(metalsnd)
 
+	mgr:PlaySound(metalsnd)
 	mgr "They require a powerful fertilizer."
-	mgr:PlaySound(metalsnd)
 
-	mgr "Bonemeal, perhaps. A grave?"
 	mgr:PlaySound(metalsnd)
+	mgr "Bonemeal, perhaps. A grave?"
 
 	mgr "Then..."
 	Sleep(1.5)
 
-	mgr "...Just let the moon do the rest."
 	mgr:PlaySound(metalsnd)
+	mgr "...Just let the moon do the rest."
+
+	Sleep(0.75)
+end
+
+--This gives the player the kettle.
+SPEECHES.GIVE_GIFTS = function(mgr, args)
+	assert( args.givegifts )
+
+	mgr:EnterCutScene()
+	mgr:MakeNonInterruptible()
+
+	Sleep(0.75)
+
+	mgr "But first, a gift."
+
+	mgr "After all."
+
+	mgr:PlaySound(metalsnd)
+	mgr "No gentleman should be without a good cup of tea."
+
+	Sleep(0.75)
+	mgr:KillVoice()
+
+	args.givegifts(mgr.speaker, mgr.listener)
+
+	Sleep(1)
 end

@@ -6,7 +6,7 @@ SHOPKEEPER_SPAWNER.REMOVE_DELAY = 30
 
 -- Number of beans the Shopkeeper has.
 -- (should we make it regen with time?)
-SHOPKEEPER.NUMBEANS = 3
+SHOPKEEPER.NUMBEANS = 1
 
 -- Defining functions in the cfg file should be limited for very simple things,
 -- since the environment is very slim.

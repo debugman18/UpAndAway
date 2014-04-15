@@ -698,6 +698,15 @@ function SpeechManager:WaitForAnimationQueue(src)
 	end
 end
 
+local SLOW_GAINS = {
+	-- pan
+	3,
+	-- heading
+	7,
+	-- distance
+	1,
+}
+
 -- May be called outside of a speech.
 function SpeechManager:EnterCutScene()
 	self.wants_cutscene = true
@@ -728,6 +737,9 @@ function SpeechManager:EnterCutScene()
 	local distance = math.max(8, cameracfg.RELATIVE_DISTANCE*participants_distance)
 
 	local angle = -self.listener:GetAngleToPoint(self.inst.Transform:GetWorldPosition()) - 90
+	if _G.TheCamera.heading and math.abs(angle - _G.TheCamera.heading) > 90 then
+		angle = angle + 180
+	end
 
 	local camerapos = (self.inst:GetPosition() + self.listener:GetPosition())/2 + Vector3(0, height, 0)
 	if _G.TheCamera.target then
@@ -740,7 +752,7 @@ function SpeechManager:EnterCutScene()
 	_G.TheCamera:SetHeadingTarget(angle)
 	_G.TheCamera:SetOffset(camerapos)
 	_G.TheCamera:SetDistance(distance)
-	--_G.TheCamera:Snap()
+	_G.TheCamera:SetGains( unpack(SLOW_GAINS) )
 
 	if self.listener:HasTag("player") and self.listener.HUD then
 		self.listener.HUD:Hide() 
@@ -757,7 +769,7 @@ function SpeechManager:AbortCutScene()
 	self:DebugSay("AbortCutScene()")
 
 	if self.inst:IsValid() then
-		self.inst:DoTaskInTime(0.1, function() self.is_cutscene = false end)
+		self.inst:DoTaskInTime(_G.FRAMES, function() self.is_cutscene = false end)
 	end
 
 	enable_listener(self)
@@ -766,11 +778,38 @@ function SpeechManager:AbortCutScene()
 		_G.TheCamera:SetHeadingTarget(self.last_camera_heading)
 		self.last_camera_heading = nil
 	end
-	_G.TheCamera:SetDefault()
+
 	_G.TheCamera:SetControllable(true)
 
-	if self.listener.HUD then
-		self.listener.HUD:Show()
+	local function reset_condition()
+		return not (self.inst:IsValid() and self.inst.components.speechgiver and self.inst.components.speechgiver:IsInCutScene())
+	end
+
+	local function do_abort()
+		if reset_condition() then
+			if self.listener.HUD then
+				self.listener.HUD:Show()
+			end
+			_G.TheCamera:SetDefault()
+			if self.inst:IsValid() then
+				_G.TheCamera:SetGains( unpack(SLOW_GAINS) )
+				self.inst:DoTaskInTime(5, function()
+					if reset_condition() then
+						_G.TheCamera:SetDefault()
+					end
+				end)
+			end
+		end
+	end
+
+	if self.inst:IsValid() then
+		_G.TheCamera:SetPaused(true)
+		self.inst:DoTaskInTime(2*_G.FRAMES, function(inst)
+			_G.TheCamera:SetPaused(false)
+			do_abort()
+		end)
+	else
+		do_abort()
 	end
 
 	return true
