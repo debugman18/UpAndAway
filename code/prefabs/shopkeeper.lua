@@ -22,6 +22,9 @@ local prefabs =
 
 local shopkeeper_speech = modrequire "resources.shopkeeper_speech"
 
+-- Name of the quest for reaching the cloudrealm.
+local PRIMARY_QUEST = "reachtheclouds"
+
 
 -------------------------------------------------------------------------------------------------
 --This makes it so that you cannot kill the shopkeeper.
@@ -60,7 +63,9 @@ end
 -- (the player).
 
 local function canNegotiate(buyer, seller)
-	return buyer.numbeans > 0
+	local quester = seller.components.quester
+	local numbeans = quester and quester:GetAttribute(PRIMARY_QUEST, "numbeans")
+	return numbeans and numbeans > 0
 end
 
 local function performTransaction(buyer, seller, cow)
@@ -78,11 +83,17 @@ local function performTransaction(buyer, seller, cow)
 		fx.SoundEmitter:PlaySound("dontstarve/maxwell/disappear")
 
 		cow:Remove()
-		buyer.numbeans = buyer.numbeans - 1
+
+		local quester = assert( seller.components.quester )
+		local numbeans = assert( quester:GetAttribute(PRIMARY_QUEST, "numbeans") )
+		quester:SetAttribute(PRIMARY_QUEST, "numbeans", math.max(0, numbeans - 1))
 
 		return true
 	end
 end
+
+
+local MAX_COW_DIST_SQ = CFG.SHOPKEEPER.MAX_COW_DIST^2
 
 -- Under "normal usage", buyer is the shopkeeper and seller is the player.
 --
@@ -90,12 +101,10 @@ end
 local function negotiateCows(buyer, seller)
 	if not seller.components.leader or not seller.components.leader.followers then return false end
 
-	local maxdistsq = CFG.SHOPKEEPER.MAX_COW_DIST^2
-
 	for cow in pairs(seller.components.leader.followers) do
 		if not canNegotiate(buyer, seller) then break end
 
-		if cow:IsValid() and is_a_cow(cow) and distsq(cow:GetPosition(), buyer:GetPosition()) <= maxdistsq then
+		if cow:IsValid() and is_a_cow(cow) and distsq(cow:GetPosition(), buyer:GetPosition()) <= MAX_COW_DIST_SQ then
 			performTransaction(buyer, seller, cow)
 		end
 	end
@@ -115,18 +124,17 @@ end
 -------------------------------------------------------------------------------------------------
 
 local function flagplayer(inst)
-	if inst.components.speechgiver:IsSpeaking() then return end
+	local player = GetPlayer()
+	local quester = player and player.components.quester
 
-	if not inst.customer then
-		inst.components.speechgiver:PlaySpeech("FLAG_PLAYER", GetPlayer())
-	elseif not inst.gavebeans and inst.numbeans > 0 then
-		inst.components.speechgiver:PlaySpeech("BEAN_REMINDER", GetPlayer())
-	elseif not inst.gavebeans then
+	if not quester or inst.components.speechgiver:IsSpeaking() then return end
+
+	if not quester:StartedQuest(PRIMARY_QUEST) then
+		inst.components.speechgiver:PlaySpeech("FLAG_PLAYER", player)
+	elseif not quester:GetFlag(PRIMARY_QUEST, "gotbeans") and quester:GetAttribute(PRIMARY_QUEST, "numbeans") > 0 then
+		inst.components.speechgiver:PlaySpeech("BEAN_REMINDER", player)
+	elseif not quester:GetFlag(PRIMARY_QUEST, "gotbeans") then
 		TheMod:DebugSay "I have nothing to give you!"
-	else
-		if not inst.gavebeans then
-			TheMod:Say "If this is printing, there's new flagging logic to account for!"
-		end
 	end
 end
 
@@ -141,22 +149,33 @@ end
 -- When this does not return true, the "I can't do that." message is displayed
 -- by the player.
 local function oninteract(inst, doer)
+	local quester = doer.components.quester
+	if not quester then return end
+
+	quester:AddQuest(PRIMARY_QUEST)
+	if not quester:HasAttribute(PRIMARY_QUEST, "numbeans") then
+		quester:SetAttribute(PRIMARY_QUEST, "numbeans", CFG.SHOPKEEPER.NUMBEANS)
+	end
+
+	local numbeans = quester:GetAttribute(PRIMARY_QUEST, "numbeans")
+	local gavebeans = quester:GetFlag(PRIMARY_QUEST, "gotbeans")
+
 	inst.components.speechgiver:CancelAll()
 
-	if not inst.customer then
+	if not quester:StartedQuest(PRIMARY_QUEST) then
 		inst.components.speechgiver:PlaySpeech("BEAN_QUEST", doer)
 		return true
-	elseif inst.numbeans > 0 and negotiateCows(inst, doer) then
+	elseif numbeans > 0 and negotiateCows(inst, doer) then
 		inst.components.speechgiver:PlaySpeech("BEAN_SUCCESS", doer)
 		inst.components.speechgiver:PushSpeech("BEAN_HINT", doer)
-		if not inst.gavegifts then
+		if not (quester:GetFlag(PRIMARY_QUEST, "gotkettle") and quester:GetFlag(PRIMARY_QUEST, "gotlectern")) then
 			inst.components.speechgiver:PushSpeech("GIVE_GIFTS", doer)
 		end
 		return true
-	elseif inst.numbeans > 0 and not inst.gavebeans then
+	elseif numbeans > 0 and not gavebeans then
 		inst.components.speechgiver:PlaySpeech("BEAN_REMINDER", doer)
 		return true
-	elseif inst.gavebeans then
+	elseif gavebeans then
 		inst.components.speechgiver:PlaySpeech("BEAN_HINT", doer)
 		inst.components.speechgiver:ForbidCutScenesInQueue()
 		return true
@@ -166,7 +185,8 @@ local function oninteract(inst, doer)
 end
 
 local function has_given_quest(inst)
-	return inst.customer
+	local p = GetPlayer()
+	return p and p.components.quester and p.components.quester:StartedQuest(PRIMARY_QUEST)
 end
 
 local function try_despawn(inst)
@@ -177,7 +197,7 @@ local function try_despawn(inst)
 	local sm = GetSeasonManager()
 	if not has_given_quest(inst)
 		and inst:IsAsleep()
-		and sm and not sm:IsRaining()
+		and not (sm and sm:IsRaining())
 	then
 		TheMod:DebugSay("Despawned [", inst, "].")
 		inst:Remove()
@@ -190,80 +210,23 @@ end
 
 --This handles the remembering.
 local function onsave(inst, data)
-	data.customer  = inst.customer or nil
-	data.gavebeans = inst.gavebeans or nil
-
-	data.numbeans = inst.numbeans
 	data.beans_to_give = inst.beans_to_give ~= 0 and inst.beans_to_give or nil
-
-	data.gavekettle = inst.gavekettle or nil
-	data.gavelectern = inst.gavelectern or nil
-
 	data.permanent = inst:HasTag("permanent") or nil
 end
 
 local function onload(inst, data)
 	if not data then return end
 
-	inst.customer = data.customer
-	inst.gavebeans = data.gavebeans
-
-	inst.numbeans = data.numbeans or inst.numbeans
 	inst.beans_to_give = data.beans_to_give
-
-	inst.gavekettle = inst.gavekettle
-	data.gavelectern = inst.gavelectern
-
-	if data.permanent then
-		inst:AddTag("permanent")
-	end
-
 	if inst.beans_to_give == 0 then
 		inst.beans_to_give = nil
 	end
 
-	-- This is just for inconsistent save data.
-	if inst.gavekettle or inst.gavelectern then
-		inst.gavebeans = true
-	end
-	if inst.gavebeans then
-		inst.customer = true
+	if data.permanent then
+		inst:AddTag("permanent")
 	end
 end
 
--------------------------------------------------------------------------------------------------
--- Testing functions
-
---This knows what to do if the player doesn't do the trades requirements.
-local function OnRefuseItem(inst, item)
-	TheMod:DebugSay "Item refused."
-end
-
---This checks if the item fulfils particular requirements, and if it does, it returns true.
-local function ShouldAcceptItem(inst, item)
-	--Example trade. Gold nugget is what we give the shopkeep.
-	if item.prefab == "goldnugget" then
-		return true
-	end
-end
-
---This knows what to do if the player successfully gives us a particular item.
-local function OnGetItemFromPlayer(inst, giver, item)
-	--This gives you magic beans in exchange for gold. For testing purposes only.
-	if ShouldAcceptItem(inst, item) then
-		inst.customer = true
-
-		inst.beans_to_give = 1
-
-		inst.components.speechgiver:PlaySpeech("BEAN_SUCCESS", doer)
-		inst.components.speechgiver:PushSpeech("BEAN_HINT", doer)
-		if not inst.gavegifts then
-			inst.components.speechgiver:PushSpeech("GIVE_GIFTS", doer)
-		end
-	end
-end
-
--- End of testing functions
 -------------------------------------------------------------------------------------------------
 	
 --This is the constructor for the shopkeeper prefab.
@@ -291,8 +254,6 @@ local function fn(Sim)
     --This will be his own minimap icon.
     --minimap:SetIcon("monkey_barrel.png")	
 
-	inst.numbeans = CFG.SHOPKEEPER.NUMBEANS
-
  
 	inst.entity:AddLabel()
 	inst:AddComponent("talker")
@@ -300,17 +261,6 @@ local function fn(Sim)
 	inst.Label:SetFont(TALKINGFONT)
 	inst.Label:SetPos(0,5,0)
 
-	------------------------------------------------------
- 
-	if TheMod:Debug() then
-		--All of this is related to trading.
-		
-		inst:AddComponent("trader")
-		inst.components.trader:SetAcceptTest(ShouldAcceptItem)
-		inst.components.trader.onaccept = OnGetItemFromPlayer
-		inst.components.trader.onrefuse = OnRefuseItem
-	end
-	
 	------------------------------------------------------
 
 	inst:AddComponent("named")
@@ -331,8 +281,11 @@ local function fn(Sim)
 		speechgiver:SetOnInteractFn(oninteract)
 
 		speechgiver:AddSpeechCallback("HIT", onhit_speechcallback)
-		speechgiver:AddSpeechCallback("BEAN_QUEST", function(inst)
-			inst.customer = true
+		speechgiver:AddSpeechCallback("BEAN_QUEST", function(inst, mgr)
+			local quester = mgr.listener.components.quester
+			if quester then
+				quester:StartQuest(PRIMARY_QUEST)
+			end
 		end)
 
 		speechgiver:AddSpeechData("BEAN_SUCCESS", {
@@ -349,22 +302,28 @@ local function fn(Sim)
 						inst.beans_to_give = inst.beans_to_give - 1
 					end
 				end
-				inst.gavebeans = true
+				if player.components.quester then
+					player.components.quester:SetFlag(PRIMARY_QUEST, "gotbeans", true)
+				end
 				inst.beans_to_give = nil
 			end,
 		})
 
 		speechgiver:AddSpeechData("GIVE_GIFTS", {
 			givekettle = function(inst, player)
-				if inst.gavekettle or not player.components.inventory then return end
-				inst.gavekettle = true
+				local quester = player.components.quester
+
+				if not quester or quester:GetFlag(PRIMARY_QUEST, "gotkettle") or not player.components.inventory then return end
+				quester:SetFlag(PRIMARY_QUEST, "gotkettle", true)
 
 				local kettle = assert( SpawnPrefab("kettle_item"), "Failed to spawn kettle_item." )
 				player.components.inventory:GiveItem(kettle)
 			end,
 			givelectern = function(inst, player)
-				if inst.gavelectern or not player.components.inventory then return end
-				inst.gavelectern = true
+				local quester = player.components.quester
+
+				if not quester or quester:GetFlag(PRIMARY_QUEST, "gotlectern") or not player.components.inventory then return end
+				quester:SetFlag(PRIMARY_QUEST, "gotlectern", true)
 
 				local blueprint = assert( SpawnPrefab("research_lectern_blueprint"), "Failed to spawn research_lectern_blueprint." )
 				player.components.inventory:GiveItem(blueprint)

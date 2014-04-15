@@ -6,6 +6,10 @@ local function OnCreate(inst, scenariorunner)
 	local items = 
 	{
 		{
+			item = "goldnugget",
+			count = 8,
+		},
+		{
 			item = "log",
 			count = 20,
 		},
