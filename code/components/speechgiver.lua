@@ -470,7 +470,7 @@ local function speechmanager_onstartspeech(self)
 	end
 end
 
-local function speechmanager_onfinishspeech(self)
+local function speechmanager_onfinishspeech(self, instant)
 	self:ExitCutscene()
 
 	self:DebugSay("Finishing speech.")
@@ -479,7 +479,7 @@ local function speechmanager_onfinishspeech(self)
 
 	if not self.inst:IsValid() then return end
 
-	if self.inst:IsValid() then
+	if not instant and self.inst:IsValid() then
 		self.inst:DoTaskInTime(0.15, function()
 			if not self.speechgiver:IsSpeaking() then
 				self:Silence()
@@ -526,7 +526,7 @@ function SpeechManager:Cancel()
 	_G.KillThread(self.thread)
 	self.thread = nil
 
-	speechmanager_onfinishspeech(self)
+	speechmanager_onfinishspeech(self, true)
 end
 
 function SpeechManager:Interrupt()
@@ -874,8 +874,8 @@ end
 
 function SpeechGiver:ClearQueue()
 	self:DebugSay("ClearQueue()")
-	for _, mgr in ipairs(self.speechmanagers) do
-		mgr:Cancel()
+	while #self.speechmanagers > 0 do
+		self.speechmanagers[1]:Cancel()
 	end
 	self.speechmanagers = new_speechmanager_queue()
 end

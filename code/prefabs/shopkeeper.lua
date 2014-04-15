@@ -52,7 +52,19 @@ local function onhit_speechcallback(inst, speech_mgr)
 end
 
 -- This works even if the attacker is not the player.
-local function OnHit(inst, attacker)
+local function OnHit(inst, data)
+	local attacker = data.attacker
+
+	if inst.components.speechgiver:IsInCutScene() and not (attacker and attacker:HasTag("player")) then
+		return
+	end
+
+	inst.components.speechgiver:CancelAll()
+	local quester = attacker and attacker.components.quester
+	if quester then
+		quester:AddQuest(PRIMARY_QUEST)
+		quester:SetFlag(PRIMARY_QUEST, "hitshopkeeper", true)
+	end
 	inst.components.speechgiver:PlaySpeech("HIT", attacker or GetPlayer())
 end
 
@@ -162,21 +174,26 @@ local function oninteract(inst, doer)
 
 	inst.components.speechgiver:CancelAll()
 
+	if quester:GetFlag(PRIMARY_QUEST, "hitshopkeeper") then
+		inst.components.speechgiver:PlaySpeech("ALL_IS_FORGIVEN", doer)
+	end
+
 	if not quester:StartedQuest(PRIMARY_QUEST) then
-		inst.components.speechgiver:PlaySpeech("BEAN_QUEST", doer)
+		inst.components.speechgiver:PushSpeech("BEAN_QUEST", doer)
 		return true
 	elseif numbeans > 0 and negotiateCows(inst, doer) then
-		inst.components.speechgiver:PlaySpeech("BEAN_SUCCESS", doer)
+		inst.components.speechgiver:PushSpeech("BEAN_SUCCESS", doer)
 		inst.components.speechgiver:PushSpeech("BEAN_HINT", doer)
 		if not (quester:GetFlag(PRIMARY_QUEST, "gotkettle") and quester:GetFlag(PRIMARY_QUEST, "gotlectern")) then
 			inst.components.speechgiver:PushSpeech("GIVE_GIFTS", doer)
 		end
 		return true
 	elseif numbeans > 0 and not gavebeans then
-		inst.components.speechgiver:PlaySpeech("BEAN_REMINDER", doer)
+		inst.components.speechgiver:PushSpeech("BEAN_REMINDER", doer)
+		inst.components.speechgiver:ForbidCutScenesInQueue()
 		return true
 	elseif gavebeans then
-		inst.components.speechgiver:PlaySpeech("BEAN_HINT", doer)
+		inst.components.speechgiver:PushSpeech("BEAN_HINT", doer)
 		inst.components.speechgiver:ForbidCutScenesInQueue()
 		return true
 	else
@@ -281,6 +298,14 @@ local function fn(Sim)
 		speechgiver:SetOnInteractFn(oninteract)
 
 		speechgiver:AddSpeechCallback("HIT", onhit_speechcallback)
+
+		speechgiver:AddSpeechCallback("ALL_IS_FORGIVEN", function(inst, mgr)
+			local quester = mgr.listener.components.quester
+			if quester then
+				quester:SetFlag(PRIMARY_QUEST, "hitshopkeeper", false)
+			end
+		end)
+
 		speechgiver:AddSpeechCallback("BEAN_QUEST", function(inst, mgr)
 			local quester = mgr.listener.components.quester
 			if quester then
@@ -343,7 +368,8 @@ local function fn(Sim)
 	--inst:ListenForEvent( "donetalking", function(inst, data) anim:PushAnimation("idle", "loop") end)
 	
 	inst:AddComponent("combat")
-	inst.components.combat.onhitfn = OnHit
+	inst:ListenForEvent("attacked", OnHit)
+	inst:ListenForEvent("blocked", OnHit)
 	
 	inst:AddComponent("health")
 	inst.components.health:SetInvincible(true)

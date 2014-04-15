@@ -129,6 +129,7 @@ end
 SPEECHES.HIT = function(mgr)
 	if mgr.listener:HasTag("player") then
 		mgr:EnterCutScene()
+		mgr:MakeNonInterruptible()
 
 		Sleep(1)
 		mgr "..."
@@ -216,6 +217,22 @@ SPEECHES.GIVE_GIFTS = function(mgr, args)
 	mgr "And summarily lost."
 	Sleep(0.5)
 	mgr "But perhaps they were lost with good reason, hmm?"
+
+	Sleep(1)
+end
+
+-- This is played in the first encounter after the player hit the shopkeeper.
+SPEECHES.ALL_IS_FORGIVEN = function(mgr)
+	if mgr:EnterCutScene() then
+		mgr:MakeNonInterruptible()
+		Sleep(0.75)
+	end
+
+	mgr "Well, have we calmed down finally?"
+
+	Sleep(1.5)
+
+	mgr "Good."
 
 	Sleep(1)
 end
