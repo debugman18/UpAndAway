@@ -31,7 +31,10 @@ end)()
 WORD_MAP = {
 	fella = function(listener)
 		return get_inst_gender(listener) == "FEMALE" and "darling" or "fella"
-	end
+	end,
+	gentleman = function(listener)
+		return get_inst_gender(listener) == "FEMALE" and "lady" or "gentleman"
+	end,
 }
 
 -- These are the shopkeeper's speeches.
@@ -176,24 +179,43 @@ end
 
 --This gives the player the kettle.
 SPEECHES.GIVE_GIFTS = function(mgr, args)
-	assert( args.givegifts )
+	assert( args.givekettle )
+	assert( args.givelectern )
 
 	mgr:EnterCutScene()
 	mgr:MakeNonInterruptible()
 
 	Sleep(0.75)
 
-	mgr "But first, a gift."
+	mgr "But I have some gifts."
 
-	mgr "After all."
+	Sleep(0.5)
 
-	mgr:PlaySound(metalsnd)
-	mgr "No gentleman should be without a good cup of tea."
+
+	mgr "First, a kettle."
 
 	Sleep(0.75)
 	mgr:KillVoice()
+	args.givekettle(mgr.speaker, mgr.listener)
+	Sleep(0.75)
+	
+	mgr "After all,"
+	mgr "no gentleman should be without a good cup of tea."
 
-	args.givegifts(mgr.speaker, mgr.listener)
+
+	Sleep(0.75)
+
+	
+	mgr "Second, a blueprint for something to help you learn."
+	Sleep(0.75)
+	mgr:KillVoice()
+	args.givelectern(mgr.speaker, mgr.listener)
+	Sleep(0.75)
+	mgr "Many strange and wonderful things were discovered up there."
+	Sleep(0.5)
+	mgr "And summarily lost."
+	Sleep(0.5)
+	mgr "But perhaps they were lost with good reason, hmm?"
 
 	Sleep(1)
 end

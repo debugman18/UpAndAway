@@ -196,7 +196,8 @@ local function onsave(inst, data)
 	data.numbeans = inst.numbeans
 	data.beans_to_give = inst.beans_to_give ~= 0 and inst.beans_to_give or nil
 
-	data.gavegifts = inst.gavegifts or nil
+	data.gavekettle = inst.gavekettle or nil
+	data.gavelectern = inst.gavelectern or nil
 
 	data.permanent = inst:HasTag("permanent") or nil
 end
@@ -210,7 +211,8 @@ local function onload(inst, data)
 	inst.numbeans = data.numbeans or inst.numbeans
 	inst.beans_to_give = data.beans_to_give
 
-	inst.gavegifts = data.gavegifts
+	inst.gavekettle = inst.gavekettle
+	data.gavelectern = inst.gavelectern
 
 	if data.permanent then
 		inst:AddTag("permanent")
@@ -221,7 +223,7 @@ local function onload(inst, data)
 	end
 
 	-- This is just for inconsistent save data.
-	if inst.gavegifts then
+	if inst.gavekettle or inst.gavelectern then
 		inst.gavebeans = true
 	end
 	if inst.gavebeans then
@@ -353,12 +355,19 @@ local function fn(Sim)
 		})
 
 		speechgiver:AddSpeechData("GIVE_GIFTS", {
-			givegifts = function(inst, player)
-				if inst.gavegifts or not player.components.inventory then return end
-				inst.gavegifts = true
+			givekettle = function(inst, player)
+				if inst.gavekettle or not player.components.inventory then return end
+				inst.gavekettle = true
 
-				local kettle = SpawnPrefab("kettle_item")
+				local kettle = assert( SpawnPrefab("kettle_item"), "Failed to spawn kettle_item." )
 				player.components.inventory:GiveItem(kettle)
+			end,
+			givelectern = function(inst, player)
+				if inst.gavelectern or not player.components.inventory then return end
+				inst.gavelectern = true
+
+				local blueprint = assert( SpawnPrefab("research_lectern_blueprint"), "Failed to spawn research_lectern_blueprint." )
+				player.components.inventory:GiveItem(blueprint)
 			end,
 		})
 	end

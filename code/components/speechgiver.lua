@@ -449,8 +449,8 @@ function SpeechManager:IsRunning()
 	return self.thread ~= nil
 end
 
-local function speechmanager_silence(self)
-	self:DebugSay("Silencing speaker.")
+function SpeechManager:Silence()
+	self:DebugSay("Silence()")
 	self:ShutUp()
 	self:KillSound()
 end
@@ -459,8 +459,6 @@ local function speechmanager_onstartspeech(self)
 	if not self.inst:IsValid() then return end
 
 	self:DebugSay("Starting speech.")
-
-	speechmanager_silence(self)
 
 	if self.listener:IsValid() then
 		self.inst:FacePoint(self.listener.Transform:GetWorldPosition())
@@ -481,12 +479,24 @@ local function speechmanager_onfinishspeech(self)
 
 	if not self.inst:IsValid() then return end
 
-	speechmanager_silence(self)
+	if self.inst:IsValid() then
+		self.inst:DoTaskInTime(0.15, function()
+			if not self.speechgiver:IsSpeaking() then
+				self:Silence()
+			end
+		end)
+	else
+		self:Silence()
+	end
 
-	if self.listener:IsValid() then
+	do
 		local sname = self:GetSpeechName()
-		self.inst:PushEvent("finishedspeaking", {speech = sname, listener = self.listener})
-		self.listener:PushEvent("finishedlistening", {speech = sname, speaker = self.inst})
+		if self.inst:IsValid() then
+			self.inst:PushEvent("finishedspeaking", {speech = sname, listener = self.listener})
+		end
+		if self.listener:IsValid() then
+			self.listener:PushEvent("finishedlistening", {speech = sname, speaker = self.inst})
+		end
 	end
 
 	speechgiver_onfinishspeech(self.speechgiver)
@@ -834,6 +844,7 @@ local function speechgiver_pushspeechmanager(self, mgr)
 	self:DebugSay("Pushing speech ", mgr.speechname, " to be heard by [", mgr.listener, "].")
 	table.insert(self.speechmanagers, mgr)
 	if not self.speechmanagers[1]:IsRunning() then
+		self.speechmanagers[1]:Silence()
 		self.speechmanagers[1]:Start()
 	end
 end	
