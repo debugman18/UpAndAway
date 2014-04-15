@@ -338,7 +338,7 @@ Add.QuotesFor "beanstalk_wall_item" {
     wathgrithr = "A wall of plant.",
     waxwell = nil,
     webber = nil,
-    wendy = nil,
+    wendy = "Even the ravages of time shall find you unafraid.",
     wickerbottom = nil,
     willow = "Plants aren't good protection.",
     wolfgang = "Wolfgang prefers mighty walls!",
