@@ -4,8 +4,8 @@ local assets =
 {
 	Asset("ANIM", "anim/void_placeholder.zip"),
 
-	Asset( "ATLAS", "images/inventoryimages/crystal_fragment_white.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/crystal_fragment_white.tex" ),		
+	Asset( "ATLAS", "images/inventoryimages/refined_white_crystal.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/refined_white_crystal.tex" ),		
 }
 
 local function fn(Sim)
@@ -25,7 +25,7 @@ local function fn(Sim)
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("inventoryitem")
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/crystal_fragment_white.xml"		
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/refined_white_crystal.xml"		
 
 	return inst
 end

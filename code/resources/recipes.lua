@@ -50,7 +50,7 @@ local grabber = Recipe("grabber", { Ingredient("magnet", 2, "images/inventoryima
 grabber.atlas = "images/winnie.xml"
 
 local wind_axe = Recipe("wind_axe", { Ingredient("crystal_fragment_water", 2, "images/inventoryimages/cloud_cotton.xml"), Ingredient("twigs", 8), Ingredient("rope", 2) }, RECIPETABS.WAR, TECH.FABLE_1)
-wind_axe.atlas = "images/winnie.xml"
+wind_axe.atlas = "images/inventoryimages/wind_axe.xml"
 
 local magnet = Recipe("magnet", { Ingredient("gears", 2), Ingredient("crystal_fragment_spire", 3, "images/inventoryimages/cloud_cotton.xml"), Ingredient("rope", 4) }, RECIPETABS.SCIENCE, TECH.FABLE_1)
 magnet.atlas = "images/winnie.xml"
@@ -61,14 +61,14 @@ crystal_lamp.atlas = "images/winnie.xml"
 local beanstalk_wall_item = Recipe("beanstalk_wall_item", { Ingredient("beanstalk_chunk", 4, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.TOWN, TECH.FABLE_1)
 beanstalk_wall_item.atlas = "images/winnie.xml"
 
-local refined_black_crystal = Recipe("refined_black_crystal", { Ingredient("black_crystal_fragment", 9, "images/inventoryimages/crystal_fragment_black.xml") }, RECIPETABS.REFINE, TECH.FABLE_1)
-refined_black_crystal.atlas = "images/inventoryimages/crystal_fragment_black.xml"
+local refined_black_crystal = Recipe("refined_black_crystal", { Ingredient("crystal_fragment_black", 9, "images/inventoryimages/crystal_fragment_black.xml") }, RECIPETABS.REFINE, TECH.FABLE_1)
+refined_black_crystal.atlas = "images/inventoryimages/refined_black_crystal.xml"
 
-local refined_white_crystal = Recipe("refined_white_crystal", { Ingredient("white_crystal_fragment", 9, "images/inventoryimages/crystal_fragment_white.xml") }, RECIPETABS.REFINE, TECH.FABLE_1)
-refined_white_crystal.atlas = "images/inventoryimages/crystal_fragment_white.xml"
+local refined_white_crystal = Recipe("refined_white_crystal", { Ingredient("crystal_fragment_white", 9, "images/inventoryimages/crystal_fragment_white.xml") }, RECIPETABS.REFINE, TECH.FABLE_1)
+refined_white_crystal.atlas = "images/inventoryimages/refined_white_crystal.xml"
 
-local black_crystal_staff = Recipe("blackstaff", { Ingredient("spear", 1), Ingredient("refined_black_crystal", 1, "images/inventoryimages/cloud_cotton.xml"), Ingredient("shadow_fuel", 6) }, RECIPETABS.MAGIC, TECH.FABLE_1)
+local black_crystal_staff = Recipe("blackstaff", { Ingredient("spear", 1), Ingredient("refined_black_crystal", 1, "images/inventoryimages/refined_black_crystal.xml"), Ingredient("shadow_fuel", 6) }, RECIPETABS.MAGIC, TECH.FABLE_1)
 black_crystal_staff.atlas = "images/winnie.xml"
 
-local white_crystal_staff = Recipe("whitestaff", { Ingredient("spear", 1), Ingredient("refined_white_crystal", 1, "images/inventoryimages/cloud_cotton.xml"), Ingredient("shadow_fuel", 6) }, RECIPETABS.MAGIC, TECH.FABLE_1)
+local white_crystal_staff = Recipe("whitestaff", { Ingredient("spear", 1), Ingredient("refined_white_crystal", 1, "images/inventoryimages/refined_white_crystal.xml"), Ingredient("shadow_fuel", 6) }, RECIPETABS.MAGIC, TECH.FABLE_1)
 white_crystal_staff.atlas = "images/winnie.xml"

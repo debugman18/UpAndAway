@@ -19,7 +19,6 @@ local function fn(Sim)
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
 
 	inst.AnimState:SetBank("scarecrow")
 	inst.AnimState:SetBuild("scarecrow")
@@ -27,8 +26,6 @@ local function fn(Sim)
 
 	inst:AddComponent("inspectable")
 
-	inst:AddComponent("inventoryitem")
-	
 	inst:AddComponent("childspawner")
 	inst.components.childspawner.childname = "cheshire"
 	inst.components.childspawner:SetSpawnedFn(OnSpawn)
