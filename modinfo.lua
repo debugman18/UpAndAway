@@ -5,9 +5,11 @@ version = "prealpha"
 id = "upandaway"
 branch = "dev"
 
-description = [[A massive mod that adds many new things to the traditional Don't Starve experience, including new items, new monsters, new food, new structures, new recipes, and more.
+description = ([[
+A massive mod that adds many new things to the traditional Don't Starve experience, including new items, new monsters, new food, new structures, new recipes, and more.
 
-Original concept by debugman18.]]
+Original concept by debugman18.
+]]):gsub("^%s+", ""):gsub("%s+$", "")
 
 
 forumthread = "/topic/26501-up-and-away-mod-collaboration-thread"

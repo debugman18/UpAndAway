@@ -73,4 +73,15 @@ return {
 	empty_directories = {
 		"log",
 	},
+
+	--[[
+	-- Receives the modinfo file as a table, to be modified.
+	--
+	-- The resulting table is then (turned back into a file) placed in the zip.
+	--]]
+	modinfo_filter = function(modinfo)
+		modinfo.branch = "release"
+
+		return modinfo
+	end,
 }

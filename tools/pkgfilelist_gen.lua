@@ -177,6 +177,108 @@ local function NewParsingEnv(modname)
 	return env
 end
 
+--[[
+-- Tracks the order of variable declaration in the numerical entries.
+--]]
+local function NewModinfoEnv()
+	local meta = {}
+
+	local discovered_vars = {}
+
+	function meta:__newindex(k, v)
+		rawset(self, k, v)
+		if type(k) == "string" and not discovered_vars[k] then
+			discovered_vars[k] = true
+			table.insert(self, k)
+		end
+	end
+
+	return setmetatable({}, meta)
+end
+
+-- Turns a value x into a string.
+local DumpValue = (function()
+	local dovalue
+
+	local doarray
+	local dokey
+	local dotable
+
+	local function isarray(t)
+		local k = nil
+		for i = 1, #t do
+			k = next(t, k)
+			assert( k ~= nil )
+		end
+		return next(t, k) == nil
+	end
+
+	dovalue = function(x)
+		if x == nil then return "nil" end
+
+		local ty = type(x)
+		if ty == "number" then
+			if x == math.floor(x) then
+				return ("%d"):format(x)
+			else
+				return ("%.4f"):format(x)
+			end
+		elseif ty == "string" then
+			return ("%q"):format(x)
+		elseif ty == "boolean" then
+			return tostring(x)
+		elseif ty == "table" then
+			return dotable(x)
+		else
+			return error("Cannot dump value "..tostring(x).." of type "..ty..".")
+		end
+	end
+
+	doarray = function(t)
+		local els = {}
+		for i, v in ipairs(t) do
+			els[i] = dovalue(v)
+		end
+		return "{"..table.concat(els, ", ").."}"
+	end
+
+	dokey = function(k)
+		if type(k) == "table" then
+			return error("Cannot serialize a table as a key.")
+		end
+		return "["..dovalue(k).."]"
+	end
+
+	dotable = function(t)
+		if isarray(t) then
+			return doarray(t)
+		else
+			local pieces = {}
+			for k, v in pairs(t) do
+				table.insert(pieces, dokey(k).." = "..dovalue(v))
+			end
+			return "{"..table.concat(pieces, ", ").."}"
+		end
+	end
+
+	return dovalue
+end)()
+
+--[[
+-- Returns a modinfo parsed in the environment as a string corresponding to a file.
+--]]
+local function DumpModinfo(modinfo)
+	local chunks = {}
+	for _, varname in ipairs(modinfo) do
+		if type(varname) ~= "string" then
+			return error("Modinfo key "..tostring(varname).." is not a string!")
+		end
+		table.insert(chunks, varname.." = "..DumpValue(modinfo[varname]))
+	end
+	table.insert(chunks, "")
+	return table.concat(chunks, "\n")
+end
+
 
 --[[
 -- Actual work.
@@ -195,9 +297,23 @@ local function ProcessPkginfo(pkginfo_name, fh)
 		return assert(loadfile_in_env( moddir..name, parsing_env ))()
 	end
 
+	local function parse_modinfo()
+		local modinfo = NewModinfoEnv()
+		assert(loadfile_in_env( moddir.."modinfo.lua", modinfo ))()
+		return modinfo
+	end
+
 
 	local pkginfo = assert(loadfile_in_env( pkginfo_name, NewBasicEnv() ))()
 	assert( type(pkginfo) == "table", ("File %s didn't return a table."):format(pkginfo_name) )
+
+	
+	local modinfo
+	if pkginfo.modinfo_filter then
+		modinfo = parse_modinfo()
+		modinfo = pkginfo.modinfo_filter(modinfo)
+	end
+
 
 	fh:write("# Package mod dir\n")
 	fh:write(pkginfo.moddir, "\n")
@@ -209,9 +325,9 @@ local function ProcessPkginfo(pkginfo_name, fh)
 
 	fh:write("\n")
 
-	fh:write("# Exclusion wildcards\n")
+	fh:write("# Excluded suffixes\n")
 	for _, ext in ipairs(pkginfo.exclude_extensions) do
-		fh:write("!*.", ext, "\n")
+		fh:write("!.", ext, "\n")
 	end
 
 	fh:write("\n")
@@ -234,7 +350,9 @@ local function ProcessPkginfo(pkginfo_name, fh)
 
 	fh:write("# Extra\n")
 	for _, extra in ipairs(pkginfo.extra) do
-		fh:write(extra, "\n")
+		if not modinfo or extra ~= "modinfo.lua" then
+			fh:write(extra, "\n")
+		end
 	end
 
 	fh:write("\n")
@@ -242,6 +360,16 @@ local function ProcessPkginfo(pkginfo_name, fh)
 	fh:write("# Empty dirs\n")
 	for _, dir in ipairs(pkginfo.empty_directories) do
 		fh:write("%EMPTY ", dir, "\n")
+	end
+
+	if modinfo then
+		local modinfo_str = DumpModinfo(modinfo)
+
+		fh:write("\n")
+
+		fh:write("# Custom modinfo\n")
+		fh:write("%OCTET STREAM ", tostring(#modinfo_str), " ", "modinfo.lua\n")
+		fh:write(modinfo_str)
 	end
 end
 

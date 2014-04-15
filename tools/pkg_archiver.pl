@@ -33,7 +33,7 @@ sub file_filter {
 	my $fname = $_[0];
 
 	foreach my $suf (@poison_suffixes) {
-		return 0 if $fname =~ /${suf}$/;
+		return 0 if $fname =~ /\Q$suf\E$/;
 	}
 
 	return 1;
@@ -89,11 +89,21 @@ sub parse_input {
 			}
 			next;
 		}
+		if(/^%OCTET STREAM\s+(\d+)\s+(.+)/) {
+			my $len = $1;
+			my $fname = $2;
+			print "Adding raw string of length $len as file $fname" if DEBUG;
+
+			my $data;
+			read $fh, $data, $len;
+			$zip->addString($data, $root . '/' . $fname, COMPRESSION_LEVEL);
+			next;
+		}
 
 
 		# Exclusion wildcards.
 
-		if(/^!\*(.*)$/) {
+		if(/^!(.*)$/) {
 			print "Got exclusion wildcard *$1\n" if DEBUG;
 			push @poison_suffixes, $1;
 			next;
