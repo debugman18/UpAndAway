@@ -90,9 +90,13 @@ local sky_level_1 = {
 	},
 	
 	tasks = {
+		"Cloud_Innocent_Generic_Biome",
 		"Cloud_Generic_Biome",
+		"Cloud_Innocent_Aurora_Biome",
 		"Cloud_Aurora_Biome",
+		"Cloud_Innocent_Rainbow_Biome",
 		"Cloud_Rainbow_Biome",
+		"Cloud_Innocent_Snow_Biome",
 		"Cloud_Snow_Biome",
 	},
 	

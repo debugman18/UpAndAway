@@ -172,7 +172,7 @@ local function bear()
 			Sleep(30/100)
 
 			if inst:IsAsleep() then
-				Game.ListenForEventOnce("entitywake", resume)
+				Game.ListenForEventOnce(inst, "entitywake", resume)
 				Hibernate()
 			end
 
