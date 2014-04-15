@@ -5,6 +5,9 @@ local assets = {
 	Asset("ANIM", "anim/wind_axe.zip"),
 	Asset("ANIM", "anim/swap_axe.zip"),
 	Asset("ANIM", "anim/swap_wind_axe.zip"),	
+
+    Asset( "ATLAS", "images/inventoryimages/wind_axe.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/wind_axe.tex" ),
 }
 
 local prefabs = {
@@ -66,6 +69,7 @@ local function fn(inst)
     inst:AddComponent("inspectable")
     
     inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/wind_axe.xml"
 
     --[[
     inst:AddComponent("finiteuses")

@@ -122,8 +122,8 @@ Add.Names {
     pineapple_fruit = "Pineapple",
     quartz_torch = "Quartz Torch",
     rainbowcoon = "Rainbowcoon",
-    refined_black_crystal = "Refined Black Crystal",
-    refined_white_crystal = "Refined White Crystal",
+    refined_black_crystal = "Black Crystal",
+    refined_white_crystal = "White Crystal",
     refiner = "Refiner",
     research_lectern = "Cumulocator Station",
     rubber = "Rubber",
@@ -2058,6 +2058,8 @@ STRINGS.RECIPE_DESC.COTTON_CANDY = "Carnival food. Rots your teeth."
 STRINGS.RECIPE_DESC.GRABBER = "A hookshot. You can grab and poke things."
 STRINGS.RECIPE_DESC.BLACKSTAFF = "A black staff. Shock therapy!"
 STRINGS.RECIPE_DESC.WHITESTAFF = "A white staff. For heavy lifting."
+STRINGS.RECIPE_DESC.REFINED_WHITE_CRYSTAL = "Condensed white crystals."
+STRINGS.RECIPE_DESC.REFINED_BLACK_CRYSTAL = "Condensed black crystals."
 
 STRINGS.GUMMYBEAR_NAMES = { 
     "Moisty", 

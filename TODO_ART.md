@@ -3,8 +3,6 @@
 
 ### Inventory images in need of attention
 + beanlet_shell
-+ beanstalk_chunk
-+ beanstalk_wall
 + bee_marshmallow
 + black_staff
 + cloud_algae_fragment
@@ -18,26 +16,20 @@
 + crystal_wall
 + cumulostone
 + dragonblood_log
-+ dragonblood_sap
 + flying_fish
 + golden_petals
-+ golden_sunflower_seeds
 + grabber
-+ greenbean
 + gustflower_seeds
 + kettle (portable mode)
 + magnet
-+ manta_leather
 + marshmallow
-+ octocopte pieces (3 different pieces)
++ octocopter pieces (3 different pieces)
 + package (it's currently a sack, but I believe the intention is to make it a box)
 + rubber
 + skyflies
-+ smores
 + weaver_bird
 + white_staff
 + winnie_staff
-
 
 ### Atlases (with existing animation banks) in need of attention
 + Weaver Den (spiderden bank or custom animations)

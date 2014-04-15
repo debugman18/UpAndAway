@@ -9,6 +9,7 @@ local assets=
 local prefabs=
 {
 	"golden_sunflower_seeds",
+    "goldnugget",
 }
 
 local function onpickedfn(inst)
@@ -31,7 +32,9 @@ local function fn(Sim)
     
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
-    inst.components.pickable:SetUp("golden_sunflower_seeds", 1)
+    if math.random(1,6) == 1 then
+        inst.components.pickable:SetUp("golden_sunflower_seeds", 1, 1)
+    else inst.components.pickable:SetUp("goldnugget", 1, 1) end
 	inst.components.pickable.onpickedfn = onpickedfn
     
     inst.components.pickable.quickpick = true

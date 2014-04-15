@@ -6,6 +6,9 @@ local assets =
 {
 	Asset("ANIM", "anim/wall.zip"),
 	Asset("ANIM", "anim/wall_ruins.zip"),
+
+    Asset( "ATLAS", "images/inventoryimages/beanstalk_wall_item.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/beanstalk_wall_item.tex" ),
 }
 
 local prefabs =
@@ -152,6 +155,7 @@ local function itemfn(inst)
 
 	inst:AddComponent("inspectable")
 	inst:AddComponent("inventoryitem")
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/beanstalk_wall_item.xml"
 		
 	inst:AddComponent("repairer")
 	inst.components.repairer.repairmaterial = "beanstalk"

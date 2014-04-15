@@ -4,16 +4,15 @@ BindGlobal()
 local assets=
 {
 	Asset("ANIM", "anim/silk.zip"),
+
+    Asset( "ATLAS", "images/inventoryimages/golden_sunflower_seeds.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/golden_sunflower_seeds.tex" ),
 }
-
-
 
 local function fn(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
-    
-    
     MakeInventoryPhysics(inst)
     
     inst.AnimState:SetBank("silk")
@@ -26,7 +25,7 @@ local function fn(Sim)
     inst:AddComponent("inspectable")
     
     inst:AddComponent("inventoryitem")
-    
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/golden_sunflower_seeds.xml"
     
     return inst
 end

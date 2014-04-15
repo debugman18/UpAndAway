@@ -1,3 +1,1 @@
-<Atlas><Texture filename="beanstalk_chunk.tex" />
-    <Elements><Element name="beanstalk_chunk.tex" u1="0" u2="1" v1="0" v2="1" />
-</Elements></Atlas>
+<Atlas><Texture filename="beanstalk_chunk.tex" /><Elements><Element name="beanstalk_chunk.tex" u1="0.0078125" u2="0.9921875" v1="0.0078125" v2="0.9921875" /></Elements></Atlas>
