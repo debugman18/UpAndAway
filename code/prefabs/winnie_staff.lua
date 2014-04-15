@@ -4,7 +4,9 @@ local assets=
 {
 	Asset("ANIM", "anim/cane.zip"),
 	Asset("ANIM", "anim/swap_cane.zip"),
-    
+
+    Asset( "ATLAS", "images/inventoryimages/winnie_staff.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/winnie_staff.tex" ),
 }
 
 local prefabs = {}

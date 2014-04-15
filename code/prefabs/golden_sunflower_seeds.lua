@@ -3,7 +3,7 @@ BindGlobal()
 
 local assets=
 {
-	Asset("ANIM", "anim/silk.zip"),
+	Asset("ANIM", "anim/golden_sunflower_seeds.zip"),
 
     Asset( "ATLAS", "images/inventoryimages/golden_sunflower_seeds.xml" ),
     Asset( "IMAGE", "images/inventoryimages/golden_sunflower_seeds.tex" ),
@@ -15,8 +15,8 @@ local function fn(Sim)
 	inst.entity:AddAnimState()
     MakeInventoryPhysics(inst)
     
-    inst.AnimState:SetBank("silk")
-    inst.AnimState:SetBuild("silk")
+    inst.AnimState:SetBank("flint")
+    inst.AnimState:SetBuild("golden_sunflower_seeds")
     inst.AnimState:PlayAnimation("idle")
     
     inst:AddComponent("stackable")

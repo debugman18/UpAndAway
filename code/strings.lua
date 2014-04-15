@@ -4,6 +4,7 @@ local Add = modrequire 'lib.addstrings'
 
 Add.Names {
     alien = "Aurora",
+    ambrosia = "Ambrosia",
     antlion = "Antlion",
     ball_lightning = "Ball Lightning",
     balloon_firehound = "Red Hound",
@@ -139,6 +140,7 @@ Add.Names {
     smores = "S'mores",
     tea_bush = "Tea Bush",
     tea_leaves = "Tea Leaves",
+    thunderboards = "Thundertree Boards",
     thunder_log = "Thunder Log",
     thunder_tree = "Thunder Tree",
     vine = "Vine",

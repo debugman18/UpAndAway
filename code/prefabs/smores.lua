@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/smores.zip"),
 
     Asset( "ATLAS", "images/inventoryimages/smores.xml" ),
     Asset( "IMAGE", "images/inventoryimages/smores.tex" ),
@@ -16,7 +16,7 @@ local function fn(Sim)
 	MakeInventoryPhysics(inst)
 
 	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("void_placeholder")
+	inst.AnimState:SetBuild("smores")
 	inst.AnimState:PlayAnimation("anim")
 
 	inst:AddComponent("stackable")

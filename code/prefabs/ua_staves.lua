@@ -13,6 +13,12 @@ local basic_assets =
 	Asset("ANIM", "anim/swap_staffs.zip"), 
     Asset("IMAGE", "minimap/minimap_atlas.tex"),
     Asset("ATLAS", "minimap/minimap_data.xml"),
+
+    Asset( "ATLAS", "images/inventoryimages/blackstaff.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/blackstaff.tex" ),
+
+    Asset( "ATLAS", "images/inventoryimages/whitestaff.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/whitestaff.tex" ),
 }
 
 local basic_prefabs = 
@@ -124,6 +130,8 @@ local function make_black_staff()
 
 				finiteuses:SetMaxUses(uses)
 				finiteuses:SetUses(uses)
+
+				inst.components.inventoryitem.atlasname = "images/inventoryimages/blackstaff.xml"
 			end
 
 			inst:AddComponent("spellcaster")
@@ -197,6 +205,7 @@ local function make_white_staff()
 
 				finiteuses:SetMaxUses(uses)
 				finiteuses:SetUses(uses)
+				inst.components.inventoryitem.atlasname = "images/inventoryimages/whitestaff.xml"
 			end
 
 			inst:AddComponent("spellcaster")

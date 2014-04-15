@@ -17,11 +17,6 @@ Assets = GLOBAL.JoinArrays(
 	InventoryImageAssets {
 		"skyflower_petals",
 		"datura_petals",
-		--"crystal_shard",
-		--"crystal_moss",
-		--"crystal_wall",
-		--"crystal_cap",
-		--"gustflower_seeds",
 		"magic_beans",
 		"magic_beans_cooked",
 		"cloud_cotton",
@@ -33,10 +28,6 @@ Assets = GLOBAL.JoinArrays(
 		"crystal_fragment_black",
 		"crystal_fragment_white",
 		"crystal_fragment_spire",
-		--"pineapple_fruit",
-		--"cloud_fruit",
-		--"golden_amulet",
-		--"kite",
 		"greentea",
 		"blacktea",
 		"tea_leaves",
@@ -58,8 +49,25 @@ Assets = GLOBAL.JoinArrays(
 		"golden_sunflower_seeds",
 		"greenbean",
 		"dragonblood_sap",
+		"ambrosia",
 
-		--"marshmallow",
+		"blackstaff",
+		"whitestaff",
+		"cloud_fruit",
+		"cloud_fruit_cooked",
+		"cumulostone",
+		"dragonblood_log",
+		"winnie_staff",
+		"marshmallow",
+		"gustflower_seeds",
+		"bee_marshmallow",
+		"thunderboards",
+		"beanlet_shell",
+		
+		--"octocopterpart1",
+		--"octocopterpart2",
+		--"octocopterpart3",
+		--"golden_petals",
 	},
 
 	-- These are .tex's without a matching atlas.
@@ -74,8 +82,7 @@ Assets = GLOBAL.JoinArrays(
 	-- InventoryImageAssets.
 	--]]
 	InventoryImageAtlases {
-		"kettle_item",
-		"winnie_staff",
+		--"nil",
 	},
 
 	{

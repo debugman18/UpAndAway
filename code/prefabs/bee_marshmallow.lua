@@ -27,6 +27,9 @@ local assets=
     Asset("ANIM", "anim/bee_build.zip"),
     Asset("ANIM", "anim/bee.zip"),
 	Asset("SOUND", "sound/bee.fsb"),
+
+    Asset( "ATLAS", "images/inventoryimages/bee_marshmallow.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/bee_marshmallow.tex" ), 
 }
     
 local prefabs =
@@ -163,6 +166,7 @@ local function commonfn()
     inst:SetStateGraph("SGbee")
     
 	inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/bee_marshmallow.xml"
 	inst:AddComponent("stackable")
 	inst.components.inventoryitem.nobounce = true
 	inst.components.inventoryitem:SetOnDroppedFn(OnDropped)

@@ -2,8 +2,10 @@ BindGlobal()
 
 local assets=
 {
-	Asset("ANIM", "anim/silk.zip"),
-    Asset("ANIM", "anim/gustflower.zip"),
+    Asset("ANIM", "anim/gustflower_seeds.zip"),
+
+    Asset( "ATLAS", "images/inventoryimages/gustflower_seeds.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/gustflower_seeds.tex" ), 
 }
 
 local function ondeploy (inst, pt) 
@@ -50,9 +52,9 @@ local function fn(Sim)
     
     MakeInventoryPhysics(inst)
     
-    inst.AnimState:SetBank("silk")
-    inst.AnimState:SetBuild("silk")
-    inst.AnimState:PlayAnimation("idle")
+    inst.AnimState:SetBank("icebox")
+    inst.AnimState:SetBuild("gustflower_seeds")
+    inst.AnimState:PlayAnimation("closed")
     
     inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
@@ -60,6 +62,7 @@ local function fn(Sim)
     inst:AddComponent("inspectable")
     
     inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/gustflower_seeds.xml"
 
     inst:AddComponent("deployable")
     inst.components.deployable.test = test_ground

@@ -7,8 +7,10 @@ local assets =
 
 local prefabs =
 {
-	""
+	"ambrosia",
 }
+
+local loot = {"ambrosia"}
 
 local function retargetfn(inst)
     return FindEntity(inst, TUNING.EYEPLANT_ATTACK_DIST, function(guy) 
@@ -50,6 +52,9 @@ local function fn(Sim)
     inst.components.combat:SetKeepTargetFunction(shouldKeepTarget)
     inst.components.combat:SetDefaultDamage(10)	
 
+    inst:AddComponent("lootdropper")
+    inst.components.lootdropper:SetLoot(loot)
+
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(30)    
 
@@ -64,4 +69,4 @@ local function fn(Sim)
 	return inst
 end
 
-return Prefab ("common/inventory/skytrap", fn, assets) 
+return Prefab ("common/inventory/skytrap", fn, assets, prefabs) 

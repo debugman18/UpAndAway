@@ -2,7 +2,10 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/cumulostone.zip"),
+
+    Asset( "ATLAS", "images/inventoryimages/cumulostone.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/cumulostone.tex" ),
 }
 
 local function fn(Sim)
@@ -12,13 +15,14 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("void_placeholder")
-	inst.AnimState:PlayAnimation("anim")
+	inst.AnimState:SetBank("nitre")
+	inst.AnimState:SetBuild("cumulostone")
+	inst.AnimState:PlayAnimation("idle")
 
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("inventoryitem")
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/cumulostone.xml"
 
 	return inst
 end

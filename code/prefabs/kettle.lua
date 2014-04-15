@@ -14,6 +14,8 @@ local basic_assets=
 	Asset("ANIM", "anim/cook_pot.zip"),
 	Asset("ANIM", "anim/cook_pot_food.zip"),
 
+	Asset("ANIM", "anim/kettle_item.zip"),
+
 	Asset( "ATLAS", "images/inventoryimages/kettle_item.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/kettle_item.tex" ),	
 }
@@ -254,9 +256,9 @@ local function BuildKettleItemPrefab()
 		local anim = inst.entity:AddAnimState()
 		MakeInventoryPhysics(inst)
 
-		anim:SetBank("marble")
-		anim:SetBuild("void_placeholder")
-		anim:PlayAnimation("anim")
+	    inst.AnimState:SetBank("icebox")
+	    inst.AnimState:SetBuild("kettle")
+	    inst.AnimState:PlayAnimation("closed")
 
 
 		inst:AddComponent("inspectable")

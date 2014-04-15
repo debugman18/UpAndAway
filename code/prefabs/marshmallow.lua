@@ -2,10 +2,10 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/cloudcotton.zip"),
+	--Asset("ANIM", "anim/marshmallow.zip"),
 	
-	Asset( "ATLAS", "images/inventoryimages/cloud_cotton.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/cloud_cotton.tex" ),	
+	Asset( "ATLAS", "images/inventoryimages/marshmallow.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/marshmallow.tex" ),	
 }
 
 local prefabs =
@@ -20,10 +20,9 @@ local function fn(Sim)
 
     MakeInventoryPhysics(inst)
     
-    anim:SetBank("gears")
-    anim:SetBuild("cloudcotton")
-    anim:PlayAnimation("idle")
-	trans:SetScale(0.4, 0.6, 0.6)
+    anim:SetBank("icebox")
+    anim:SetBuild("marshmallow")
+    anim:PlayAnimation("closed")
     
     inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
@@ -31,7 +30,7 @@ local function fn(Sim)
     inst:AddComponent("inspectable")  
     
     inst:AddComponent("inventoryitem") 
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/cloud_cotton.xml"
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/marshmallow.xml"
     
 	--Is not filling.
     inst:AddComponent("edible")

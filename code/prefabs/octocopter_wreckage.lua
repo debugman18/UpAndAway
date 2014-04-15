@@ -5,6 +5,16 @@ local PopupDialogScreen = require "screens/popupdialog"
 local assets = {
 	Asset("ANIM", "anim/sky_octopus.zip"), 	
 	Asset("ANIM", "anim/sewing_kit.zip"),
+	--Asset("ANIM", "anim/octocopterpart.zip"),
+
+	--Asset( "ATLAS", "images/inventoryimages/octocopterpart1.xml" ),
+	--Asset( "IMAGE", "images/inventoryimages/octocopterpart1.tex" ),	
+
+	--Asset( "ATLAS", "images/inventoryimages/octocopterpart2.xml" ),
+	--Asset( "IMAGE", "images/inventoryimages/octocopterpart2.tex" ),	
+
+	--Asset( "ATLAS", "images/inventoryimages/octocopterpart3.xml" ),
+	--Asset( "IMAGE", "images/inventoryimages/octocopterpart3.tex" ),			
 }
 
 local function RepairOctocopter(inst)

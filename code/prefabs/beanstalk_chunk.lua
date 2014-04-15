@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/beanstalk_chunk.zip"),
 
     Asset( "ATLAS", "images/inventoryimages/beanstalk_chunk.xml" ),
     Asset( "IMAGE", "images/inventoryimages/beanstalk_chunk.tex" ),
@@ -16,7 +16,7 @@ local function fn(Sim)
 	MakeInventoryPhysics(inst)
 
 	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("marble")
+	inst.AnimState:SetBuild("beanstalk_chunk")
 	inst.AnimState:PlayAnimation("anim")
 
 	inst:AddComponent("stackable")

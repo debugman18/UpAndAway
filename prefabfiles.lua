@@ -192,6 +192,9 @@ PrefabFiles = {
 
 	"gummybear",
 	"gummybear_den",
+
+	"thunderboards",
+	"ambrosia",
 }
 
 -- The return statement is just for if this file is used externally, at
