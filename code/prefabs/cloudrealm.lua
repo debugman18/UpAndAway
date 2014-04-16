@@ -7,9 +7,9 @@
 
 
 
---local Lambda = wickerrequire 'paradigms.functional'
---local Logic = wickerrequire 'paradigms.logic'
---local Pred = wickerrequire 'lib.predicates'
+local Lambda = wickerrequire 'paradigms.functional'
+local Logic = wickerrequire 'paradigms.logic'
+local Pred = wickerrequire 'lib.predicates'
 
 local Configurable = wickerrequire 'adjectives.configurable'
 
@@ -192,6 +192,7 @@ local function fn(Sim)
 	end
 
 	inst:AddComponent("seasonmanager")
+	inst.components.seasonmanager.SetCaves = Lambda.Nil
 
 	--AddNeutralComponent(inst, "quaker")
    

@@ -35,7 +35,6 @@ TheMod:AddSimPostInit(function(player)
 	if Pred.IsCloudLevel() then
 		local sm = GetSeasonManager()
 		if sm then
-			sm:SetOverworld()
 			sm:AlwaysDry()
 		end
 
