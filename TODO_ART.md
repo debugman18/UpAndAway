@@ -2,8 +2,6 @@
 
 
 ### Inventory images in need of attention
-+ cloud_algae_fragment
-+ cloud_coral_fragment
 + cloud_wall
 + cotton_hat
 + crystal_wall
