@@ -1919,6 +1919,7 @@ Add.QuotesFor "thunderboards" {
     wolfgang = "Is tickly flat wood.",
     woodie = "They still have a spark in them.",
     wx78 = nil,
+}    
 
 Add.QuotesFor "thunder_log" {
     GENERIC = "It ripples with elecricity.",
