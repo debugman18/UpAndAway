@@ -162,6 +162,38 @@ end
 ]]--
 
 
+local function PatchSeasonManager(sm)
+	if not sm then return end
+
+	local pending_stopprecip = false
+
+	local oldOnUpdate = assert( sm.OnUpdate )
+	local oldStopPrecip = assert( sm.StopPrecip )
+
+	function sm:OnUpdate(dt)
+		self.OnUpdate = oldOnUpdate
+		self.StopPrecip = oldStopPrecip
+
+		oldOnUpdate(self, dt)
+
+		if pending_stopprecip then
+			pending_stopprecip = false
+			oldStopPrecip(self)
+		end
+	end
+
+	function sm:StopPrecip()
+		if not pending_stopprecip then
+			pending_stopprecip = true
+			self.inst:DoTaskInTime(0, function(inst)
+				if inst.components.seasonmanager then
+					inst.components.seasonmanager:OnUpdate(0)
+				end
+			end)
+		end
+	end
+end
+
 local function SetupLevelTypeFix(inst, new_level_type)
 	new_level_type = new_level_type or "cloudrealm"
 	
@@ -172,7 +204,12 @@ local function SetupLevelTypeFix(inst, new_level_type)
 		self.topology.level_type = new_level_type
 
 		if oldLoadPostPass then
-			return oldLoadPostPass(self, ...)
+			oldLoadPostPass(self, ...)
+		end
+
+		local sm = inst.components.seasonmanager
+		if sm then
+			sm.incaves = false
 		end
 	end
 end
