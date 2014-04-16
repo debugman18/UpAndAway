@@ -167,7 +167,7 @@ local function fn(Sim)
 	
 	inst:AddComponent("inspectable")
 	
-	MakeSnowCovered(inst, .01)
+	--MakeSnowCovered(inst, .01)
 	return inst
 end
 

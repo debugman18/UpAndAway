@@ -133,9 +133,9 @@ local sky_level_1 = {
 		"hive_marshmallow",
 		"beanlet",
 		"octocopter",
-	    "octocopterpart1",
-	    "octocopterpart2",
-	    "octocopterpart3",
+	    "part1spawner",
+	    "part2spawner",
+	    "part3spawner",
 	},
 
 }

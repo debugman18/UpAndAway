@@ -4,10 +4,10 @@ local PopupDialogScreen = require "screens/popupdialog"
 
 local assets = {
 	Asset("ANIM", "anim/sky_octopus.zip"), 	
-	Asset("ANIM", "anim/sewing_kit.zip"),
-	--Asset("ANIM", "anim/octocopterpart1.zip"),
-	--Asset("ANIM", "anim/octocopterpart2.zip"),
-	--Asset("ANIM", "anim/octocopterpart3.zip"),
+
+	Asset("ANIM", "anim/octocopterpart1.zip"),
+	Asset("ANIM", "anim/octocopterpart2.zip"),
+	Asset("ANIM", "anim/octocopterpart3.zip"),
 
 	Asset( "ATLAS", "images/inventoryimages/octocopterpart1.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/octocopterpart1.tex" ),	
@@ -100,6 +100,8 @@ local function fn(inst)
 
 	inst.collectedParts = {octocopterpart1 = false, octocopterpart2 = false, octocopterpart3 = false}
 
+	GetWorld():PushEvent("octocoptercrash")
+
 	inst.OnSave = OnSave
 	inst.OnLoad = OnLoad
 	
@@ -115,13 +117,9 @@ local function part1fn(inst)
 
 	--Rotor Blade
 
-    inst.AnimState:SetBank("sewing_kit")
-    inst.AnimState:SetBuild("sewing_kit")
-    inst.AnimState:PlayAnimation("idle")
-
-    --inst.AnimState:SetBank("icebox")
-    --inst.AnimState:SetBuild("octocopterpart1")
-    --inst.AnimState:PlayAnimation("closed")
+    inst.AnimState:SetBank("icebox")
+    inst.AnimState:SetBuild("octocopterpart1")
+    inst.AnimState:PlayAnimation("closed")
 
 	inst:AddComponent("inspectable")
 	inst:AddComponent("inventoryitem")
@@ -143,13 +141,9 @@ local function part2fn(inst)
 
 	--Rotor Plate
 
-    inst.AnimState:SetBank("sewing_kit")
-    inst.AnimState:SetBuild("sewing_kit")
-    inst.AnimState:PlayAnimation("idle")
-
-    --inst.AnimState:SetBank("icebox")
-    --inst.AnimState:SetBuild("octocopterpart2")
-    --inst.AnimState:PlayAnimation("closed")
+    inst.AnimState:SetBank("icebox")
+    inst.AnimState:SetBuild("octocopterpart2")
+    inst.AnimState:PlayAnimation("closed")
 
 	inst:AddComponent("inspectable")
 	inst:AddComponent("inventoryitem")
@@ -171,13 +165,9 @@ local function part3fn(inst)
 
 	--Rotor Hub
 
-    inst.AnimState:SetBank("sewing_kit")
-    inst.AnimState:SetBuild("sewing_kit")
-    inst.AnimState:PlayAnimation("idle")
-
-    --inst.AnimState:SetBank("icebox")
-    --inst.AnimState:SetBuild("octocopterpart3")
-    --inst.AnimState:PlayAnimation("closed")
+    inst.AnimState:SetBank("icebox")
+    inst.AnimState:SetBuild("octocopterpart3")
+    inst.AnimState:PlayAnimation("closed")
 
 	inst:AddComponent("inspectable")
 	inst:AddComponent("inventoryitem")
@@ -190,10 +180,56 @@ local function part3fn(inst)
 	return inst
 end	
 
+local function part1spawner(inst)
+	local inst = CreateEntity()
+	inst.entity:AddTransform()	
+	GetWorld().octocopterpart1 = inst
+	inst:ListenForEvent("octocoptercrash", 
+		function(inst) 
+			local part1 = SpawnPrefab("octocopterpart1")
+			part1.Transform:SetPosition(GetWorld().octocopterpart1.Transform:GetWorldPosition())
+			print(GetWorld().octocopterpart1.Transform:GetWorldPosition())
+		end, GetWorld()
+		)
+	return inst
+end
+
+local function part2spawner(inst)
+	local inst = CreateEntity()
+	inst.entity:AddTransform()	
+	GetWorld().octocopterpart2 = inst
+	inst:ListenForEvent("octocoptercrash", 
+		function(inst) 
+			local part2 = SpawnPrefab("octocopterpart2")
+			part2.Transform:SetPosition(GetWorld().octocopterpart2.Transform:GetWorldPosition())
+			print(GetWorld().octocopterpart2.Transform:GetWorldPosition())
+		end, GetWorld()
+		)
+	return inst
+end
+
+local function part3spawner(inst)
+	local inst = CreateEntity()
+	inst.entity:AddTransform()	
+	GetWorld().octocopterpart3 = inst
+	inst:ListenForEvent("octocoptercrash", 
+		function(inst) 
+			local part3 = SpawnPrefab("octocopterpart3")
+			part3.Transform:SetPosition(GetWorld().octocopterpart3.Transform:GetWorldPosition())
+			print(GetWorld().octocopterpart3.Transform:GetWorldPosition())
+		end, GetWorld()
+		)
+	return inst
+end
+
 return {
 	Prefab ("cloudrealm/octocopter_wreckage", fn, assets),
 
 	Prefab ("cloudrealm/octocopterpart1", part1fn, assets),
 	Prefab ("cloudrealm/octocopterpart2", part2fn, assets),	
-	Prefab ("cloudrealm/octocopterpart3", part3fn, assets),		
+	Prefab ("cloudrealm/octocopterpart3", part3fn, assets),	
+
+	Prefab ("cloudrealm/part1spawner", part1spawner, assets),
+	Prefab ("cloudrealm/part2spawner", part2spawner, assets),	
+	Prefab ("cloudrealm/part3spawner", part3spawner, assets),			
 }	

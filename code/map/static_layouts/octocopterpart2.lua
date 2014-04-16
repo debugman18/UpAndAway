@@ -53,7 +53,7 @@ return {
       objects = {
         {
           name = "",
-          type = "octocopterpart2",
+          type = "part2spawner",
           shape = "rectangle",
           x = 200,
           y = 150,
