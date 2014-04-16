@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	--Asset("ANIM", "anim/marshmallow.zip"),
+	Asset("ANIM", "anim/marshmallow.zip"),
 	
 	Asset( "ATLAS", "images/inventoryimages/marshmallow.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/marshmallow.tex" ),	

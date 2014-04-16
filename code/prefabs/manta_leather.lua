@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/manta_leather.zip"),
 
     Asset( "ATLAS", "images/inventoryimages/manta_leather.xml" ),
     Asset( "IMAGE", "images/inventoryimages/manta_leather.tex" ),
@@ -15,9 +15,9 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("void_placeholder")
-	inst.AnimState:PlayAnimation("anim")
+	inst.AnimState:SetBank("icebox")
+	inst.AnimState:SetBuild("manta_leather")
+	inst.AnimState:PlayAnimation("closed")
 
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM

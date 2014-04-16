@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/golden_petals.zip"),
 
 	Asset( "ATLAS", "images/inventoryimages/golden_petals.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/golden_petals.tex" ),
@@ -15,9 +15,9 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("void_placeholder")
-	inst.AnimState:PlayAnimation("anim")
+	inst.AnimState:SetBank("icebox")
+	inst.AnimState:SetBuild("golden_petals")
+	inst.AnimState:PlayAnimation("closed")
 
 	inst:AddComponent("inspectable")
 

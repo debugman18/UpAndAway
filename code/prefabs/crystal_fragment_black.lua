@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/crystal_fragment_black.zip"),
 
 	Asset( "ATLAS", "images/inventoryimages/crystal_fragment_black.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/crystal_fragment_black.tex" ),		
@@ -15,9 +15,9 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("void_placeholder")
-	inst.AnimState:PlayAnimation("anim")
+	inst.AnimState:SetBank("icebox")
+	inst.AnimState:SetBuild("crystal_fragment_black")
+	inst.AnimState:PlayAnimation("closed")
 
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM

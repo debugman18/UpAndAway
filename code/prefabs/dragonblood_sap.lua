@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/dragonblood_sap.zip"),
 
     Asset( "ATLAS", "images/inventoryimages/dragonblood_sap.xml" ),
     Asset( "IMAGE", "images/inventoryimages/dragonblood_sap.tex" ),
@@ -15,9 +15,9 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("void_placeholder")
-	inst.AnimState:PlayAnimation("anim")
+	inst.AnimState:SetBank("icebox")
+	inst.AnimState:SetBuild("dragonblood_sap")
+	inst.AnimState:PlayAnimation("closed")
 
 	inst:AddComponent("inspectable")
 

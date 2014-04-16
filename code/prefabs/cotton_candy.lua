@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/cloudcotton.zip"),
+	Asset("ANIM", "anim/cotton_candy.zip"),
 	
 	Asset( "ATLAS", "images/inventoryimages/cotton_candy.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/cotton_candy.tex" ),	
@@ -15,9 +15,9 @@ local function fn(Sim)
 
     MakeInventoryPhysics(inst)
     
-    anim:SetBank("gears")
-    anim:SetBuild("cloudcotton")
-    anim:PlayAnimation("idle")
+	inst.AnimState:SetBank("icebox")
+	inst.AnimState:SetBuild("cotton_candy")
+	inst.AnimState:PlayAnimation("closed")
     
     inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
