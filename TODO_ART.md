@@ -5,14 +5,11 @@
 + cloud_algae_fragment
 + cloud_coral_fragment
 + cloud_wall
-+ cotton_candy
 + cotton_hat
 + crystal_wall
 + flying_fish
-+ golden_petals
 + grabber
 + magnet
-+ octocopter pieces (3 different pieces)
 + package (it's currently a sack, but I believe the intention is to make it a box)
 + rubber
 + skyflies

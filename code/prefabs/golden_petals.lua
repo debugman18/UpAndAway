@@ -3,6 +3,9 @@ BindGlobal()
 local assets =
 {
 	Asset("ANIM", "anim/void_placeholder.zip"),
+
+	Asset( "ATLAS", "images/inventoryimages/golden_petals.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/golden_petals.tex" ),
 }
 
 local function fn(Sim)
@@ -19,6 +22,7 @@ local function fn(Sim)
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("inventoryitem")
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/golden_petals.xml"
 
 	return inst
 end

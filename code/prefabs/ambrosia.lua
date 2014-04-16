@@ -25,7 +25,7 @@ local function fn(Sim)
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/ambrosia.xml"
 
     inst:AddComponent("edible")
-    inst.components.edible.foodtype = "vegetable"
+    inst.components.edible.foodtype = "VEGGIE"
     inst.components.edible.healthvalue = 0
     inst.components.edible.hungervalue = math.random(-20,20)
     inst.components.edible.sanityvalue = math.random(-20,20)

@@ -5,16 +5,18 @@ local PopupDialogScreen = require "screens/popupdialog"
 local assets = {
 	Asset("ANIM", "anim/sky_octopus.zip"), 	
 	Asset("ANIM", "anim/sewing_kit.zip"),
-	--Asset("ANIM", "anim/octocopterpart.zip"),
+	--Asset("ANIM", "anim/octocopterpart1.zip"),
+	--Asset("ANIM", "anim/octocopterpart2.zip"),
+	--Asset("ANIM", "anim/octocopterpart3.zip"),
 
-	--Asset( "ATLAS", "images/inventoryimages/octocopterpart1.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/octocopterpart1.tex" ),	
+	Asset( "ATLAS", "images/inventoryimages/octocopterpart1.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/octocopterpart1.tex" ),	
 
-	--Asset( "ATLAS", "images/inventoryimages/octocopterpart2.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/octocopterpart2.tex" ),	
+	Asset( "ATLAS", "images/inventoryimages/octocopterpart2.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/octocopterpart2.tex" ),	
 
-	--Asset( "ATLAS", "images/inventoryimages/octocopterpart3.xml" ),
-	--Asset( "IMAGE", "images/inventoryimages/octocopterpart3.tex" ),			
+	Asset( "ATLAS", "images/inventoryimages/octocopterpart3.xml" ),
+	Asset( "IMAGE", "images/inventoryimages/octocopterpart3.tex" ),			
 }
 
 local function RepairOctocopter(inst)
@@ -111,12 +113,19 @@ local function part1fn(inst)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
+	--Rotor Blade
+
     inst.AnimState:SetBank("sewing_kit")
     inst.AnimState:SetBuild("sewing_kit")
     inst.AnimState:PlayAnimation("idle")
 
+    --inst.AnimState:SetBank("icebox")
+    --inst.AnimState:SetBuild("octocopterpart1")
+    --inst.AnimState:PlayAnimation("closed")
+
 	inst:AddComponent("inspectable")
 	inst:AddComponent("inventoryitem")
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/octocopterpart1.xml"
 
 	inst:AddTag("octocopter_part")
 	inst:AddComponent("tradable")    
@@ -132,12 +141,19 @@ local function part2fn(inst)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
+	--Rotor Plate
+
     inst.AnimState:SetBank("sewing_kit")
     inst.AnimState:SetBuild("sewing_kit")
     inst.AnimState:PlayAnimation("idle")
 
+    --inst.AnimState:SetBank("icebox")
+    --inst.AnimState:SetBuild("octocopterpart2")
+    --inst.AnimState:PlayAnimation("closed")
+
 	inst:AddComponent("inspectable")
 	inst:AddComponent("inventoryitem")
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/octocopterpart2.xml"
 
 	inst:AddTag("octocopter_part")
 	inst:AddComponent("tradable")    
@@ -153,12 +169,19 @@ local function part3fn(inst)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
+	--Rotor Hub
+
     inst.AnimState:SetBank("sewing_kit")
     inst.AnimState:SetBuild("sewing_kit")
     inst.AnimState:PlayAnimation("idle")
 
+    --inst.AnimState:SetBank("icebox")
+    --inst.AnimState:SetBuild("octocopterpart3")
+    --inst.AnimState:PlayAnimation("closed")
+
 	inst:AddComponent("inspectable")
 	inst:AddComponent("inventoryitem")
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/octocopterpart3.xml"
 
 	inst:AddTag("octocopter_part")
 	inst:AddComponent("tradable")    
