@@ -166,6 +166,19 @@ Add.QuotesFor "alien" {
     wx78 = "MY OPTICS ARE MALFUNCTIONING",
 }
 
+Add.QuotesFor "ambrosia" {
+    GENERIC = nil,
+    wathgrithr = nil,
+    waxwell = nil,
+    webber = nil,
+    wendy = nil,
+    wickerbottom = nil,
+    willow = "Each berry tastes different.",
+    wolfgang = "Is strange tasty berry.",
+    woodie = "Food of the gods.",
+    wx78 = nil,
+}
+
 Add.QuotesFor "antlion" {
     GENERIC = "What sick breeding produced this?",
     wathgrithr = nil,
@@ -602,9 +615,9 @@ Add.QuotesFor "cloud_jelly" {
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
-    woodie = nil,
+    willow = "I'm not sure if that will burn or not.",
+    wolfgang = "Is wobbly.",
+    woodie = "It's plant slime, eh?",
     wx78 = nil,
 }
 
@@ -1894,6 +1907,18 @@ Add.QuotesFor "tea_leaves" {
     woodie = "Dip them in hot water.",
     wx78 = "ADD HOT WATER",
 }
+
+Add.QuotesFor "thunderboards" {
+    GENERIC = nil,
+    wathgrithr = nil,
+    waxwell = nil,
+    webber = nil,
+    wendy = nil,
+    wickerbottom = nil,
+    willow = "I called down the thunder.",
+    wolfgang = "Is tickly flat wood.",
+    woodie = "They still have a spark in them.",
+    wx78 = nil,
 
 Add.QuotesFor "thunder_log" {
     GENERIC = "It ripples with elecricity.",
