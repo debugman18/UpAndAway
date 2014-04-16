@@ -2,8 +2,8 @@ local Game = wickerrequire "game"
 local Math = wickerrequire "math"
 local Pred = wickerrequire "lib.predicates"
 
--- This needs to be require'd to build road info on game post init.
-wickerrequire "game.topology.roads"
+local GameRoads = Game.Topology.Roads
+
 
 local function spawn_shopkeeper_spawner()
 	TheMod:DebugSay("Attempting to spawn shopkeeper_spawner...")
@@ -17,7 +17,7 @@ local function spawn_shopkeeper_spawner()
 	end
 
 	-- 64 is the number of tries.
-	local searcher = Math.SearchSpace( Game.Topology.Roads.TheRoad, 64 )
+	local searcher = Math.SearchSpace( GameRoads.TheRoad, 64 )
 
 	local pt = searcher( Pred.IsUnblockedPoint )
 	if pt then
@@ -29,16 +29,13 @@ local function spawn_shopkeeper_spawner()
 	end
 end
 
--- This has two "locks": topology data gathering and sim post init.
-local shopkeeper_spawner_setup = coroutine.wrap(function()
-	coroutine.yield()
+local function shopkeeper_spawner_setup()
 	if SaveGameIndex:GetCurrentMode() == "survival" then
 		local world = GetWorld()
 		if world then
 			world:ListenForEvent("rainstart", spawn_shopkeeper_spawner)
 		end
 	end
-end)
+end
 
 TheMod:AddSimPostInit(shopkeeper_spawner_setup)
-Game.Topology.Roads.AddRoadDataPostInit(shopkeeper_spawner_setup)
