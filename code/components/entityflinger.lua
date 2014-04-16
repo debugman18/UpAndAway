@@ -1,11 +1,11 @@
 local Pred = wickerrequire 'lib.predicates'
 
-local Game = wickerrequire 'utils.game'
+local Game = wickerrequire 'game'
 
 local Debuggable = wickerrequire 'adjectives.debuggable'
 
+local Topo = Game.Topology
 
-local TopoMeta = modrequire 'lib.topology_metadata'
 
 local Physics = modrequire 'lib.physics'
 
@@ -38,7 +38,7 @@ local function nodes_within_distance(pt, min_dist, max_dist)
 		local tile = world.Map:GetTileAtPoint(node.x, 0, node.y)
 		if tile and tile ~= GROUND.IMPASSABLE then
 			local dist = Game.DistanceToNode(pt, node)
-			local inradius = TopoMeta.GetNodeInradius(node)
+			local inradius = Topo.GetNodeInradius(node)
 			if dist - inradius >= min_dist and dist + inradius <= max_dist then
 				table.insert(ret, {
 					node = node,
@@ -88,7 +88,7 @@ local function random_pt_at_distance(node, origin, dist)
 	origin = Game.ToPoint(origin) + Point()
 	origin.y = 0
 
-	local r = TopoMeta.GetNodeInradius(node)
+	local r = Topo.GetNodeInradius(node)
 
 
 	--[[

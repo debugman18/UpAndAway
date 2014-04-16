@@ -1,8 +1,6 @@
 ---
 -- Postinits to tweak the burnable behaviour.
 --
--- @author simplex
-
 
 
 

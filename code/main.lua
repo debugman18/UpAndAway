@@ -44,12 +44,6 @@ modrequire 'resources.recipes'
 wickerrequire 'plugins.addplayerprefabpostinit'
 
 
-AddPlayerPrefabPostInit(function(player)
-	if not player.components.quester then
-		player:AddComponent("quester")
-	end
-end)
-
 do
 	local oldSpawnPrefab = _G.SpawnPrefab
 	function _G.SpawnPrefab(name)

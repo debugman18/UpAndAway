@@ -3,7 +3,7 @@ local Math = wickerrequire "math"
 local Pred = wickerrequire "lib.predicates"
 
 -- This needs to be require'd to build road info on game post init.
-wickerrequire "game.topology"
+wickerrequire "game.topology.roads"
 
 local function spawn_shopkeeper_spawner()
 	TheMod:DebugSay("Attempting to spawn shopkeeper_spawner...")
@@ -17,7 +17,7 @@ local function spawn_shopkeeper_spawner()
 	end
 
 	-- 64 is the number of tries.
-	local searcher = Math.SearchSpace( Game.Topology.TheRoad, 64 )
+	local searcher = Math.SearchSpace( Game.Topology.Roads.TheRoad, 64 )
 
 	local pt = searcher( Pred.IsUnblockedPoint )
 	if pt then
@@ -41,4 +41,4 @@ local shopkeeper_spawner_setup = coroutine.wrap(function()
 end)
 
 TheMod:AddSimPostInit(shopkeeper_spawner_setup)
-Game.Topology.AddRoadDataPostInit(shopkeeper_spawner_setup)
+Game.Topology.Roads.AddRoadDataPostInit(shopkeeper_spawner_setup)
