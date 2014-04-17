@@ -32,6 +32,8 @@ return {
 		"bin",
 
 		"scml",
+
+		"Makefile",
 	},
 
 	--[[
