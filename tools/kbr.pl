@@ -104,6 +104,9 @@ else {
 my $outfh;
 my $out_is_temp = 0;
 if(abs_path($outname) eq abs_path($ARGV[0])) {
+	if($oldname eq $newname) {
+		exit 0;
+	}
 	$outfh = File::Temp->new(UNLINK => 0);
 	$out_is_temp = 1;
 }

@@ -1,0 +1,2 @@
+WARNING: the atlas-0.png in this folder was generated from atlas-0.tex.
+Replacing it with the original png, if possible, is preferable.
