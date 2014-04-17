@@ -111,13 +111,13 @@ local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
 	--Check for cloudrealm.
 	local Climbing = modrequire 'lib.climbing'
 
-	DebugSay "update worldgen!"
+	TheMod:DebugSay "update worldgen!"
 
 	-- The old version only worked for the 1st save slot, because
 	-- there's no selected slot in the SaveIndex when this runs.
 	if Climbing.IsCloudLevelNumber(world_gen_options.level_world) then
 
-		DebugSay "update worldgen passed!"
+		TheMod:DebugSay "update worldgen passed!"
 
 		TheSim:LoadPrefabs {"MOD_"..modname}
 		
