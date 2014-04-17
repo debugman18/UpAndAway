@@ -34,7 +34,7 @@ all: $(BUILD_ZIPS)
 
 %.zip: %/build.bin %/atlas-0.tex
 	$(TOOLS_DIR)/kbr.pl -i -n "$*" "$<"
-	(cd "$*"; zip "$(CURDIR)/$@" $(patsubst $*/%,%,$^))
+	(cd "$*"; zip -q "$(CURDIR)/$@" $(patsubst $*/%,%,$^))
 
 clean:
 	$(RM) $(BUILD_ZIPS)
