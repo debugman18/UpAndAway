@@ -29,9 +29,9 @@ local function fn(Sim)
 	
 	--Is not filling.
     inst:AddComponent("edible")
-    inst.components.edible.foodtype = "CANDY"
-    inst.components.edible.healthvalue = -15
-    inst.components.edible.hungervalue = 5
+    inst.components.edible.foodtype = "VEGGIE"
+    inst.components.edible.healthvalue = -20
+    inst.components.edible.hungervalue = 40
     inst.components.edible.sanityvalue = 20	
 
 	return inst
