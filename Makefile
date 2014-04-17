@@ -19,7 +19,7 @@ WICKER_SCRIPT_DIR:=wicker
 WICKER_TOOLS_DIR:=wickertools
 
 
-MOD_VERSION=$(shell $(LUA) -e 'dofile("modinfo.lua"); io.write(version)')
+MOD_VERSION=$(shell $(TOOLS_DIR)/get_modversion.lua modinfo.lua)
 
 
 # Paths to the Lua and Perl interpreters, and to ktech.
