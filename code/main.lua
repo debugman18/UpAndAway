@@ -433,6 +433,8 @@ AddMinimapAtlas("images/jellyshroom_green.xml")
 AddMinimapAtlas("images/jellyshroom_blue.xml")
 AddMinimapAtlas("images/cloud_bush.xml")
 AddMinimapAtlas("images/tea_bush.xml")
+
+AddMinimapAtlas("images/crystal_lamp.xml")
 --AddMinimapAtlas("images/cloud_coral.xml")
 --AddMinimapAtlas("images/cloud_fruit_tree.xml")
 --AddMinimapAtlas("images/bean_giant_statue.xml")
