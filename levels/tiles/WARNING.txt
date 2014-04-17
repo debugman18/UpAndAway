@@ -1,0 +1,2 @@
+WARNING: all the pngs in this folder were generated from the texes.
+Replacing them with the original pngs, if possible, is preferable.

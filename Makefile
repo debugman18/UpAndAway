@@ -43,9 +43,9 @@ export PERL
 export KTECH
 
 
-.PHONY: all anim images dist clean distclean wicker wickertools
+.PHONY: all anim images levels dist clean distclean wicker wickertools
 
-all: anim images
+all: anim images levels
 
 anim:
 	$(MAKE) -C anim all
@@ -53,16 +53,21 @@ anim:
 images:
 	$(MAKE) -C images all
 
+levels:
+	$(MAKE) -C levels all
+
 dist: all
 	$(LUA) $(TOOLS_DIR)/pkgfilelist_gen.lua "$(PKGINFO)" | $(PERL) $(TOOLS_DIR)/pkg_archiver.pl $(ZIPNAME)
 
 clean: distclean
 	$(MAKE) -C anim clean
 	$(MAKE) -C images clean
+	$(MAKE) -C levels clean
 
 distclean:
 	$(MAKE) -C anim distclean
 	$(MAKE) -C images distclean
+	$(MAKE) -C levels distclean
 	$(RM) $(ZIPNAME)
 
 include make/doc.mk
