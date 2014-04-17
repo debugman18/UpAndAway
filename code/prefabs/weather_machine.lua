@@ -5,6 +5,29 @@ local assets =
 	Asset("ANIM", "anim/void_placeholder.zip"),
 }
 
+local notags = {'NOBLOCK', 'player', 'FX'}
+local function test_ground(inst, pt)
+    local tiletype = GetGroundTypeAtPosition(pt)
+    local ground_OK = tiletype ~= GROUND.ROCKY and tiletype ~= GROUND.ROAD and tiletype ~= GROUND.IMPASSABLE and
+                        tiletype ~= GROUND.UNDERROCK and tiletype ~= GROUND.WOODFLOOR and 
+                        tiletype ~= GROUND.CARPET and tiletype ~= GROUND.CHECKER and tiletype < GROUND.UNDERGROUND
+    
+    if ground_OK then
+        local ents = TheSim:FindEntities(pt.x,pt.y,pt.z, 4, nil, notags) -- or we could include a flag to the search?
+        local min_spacing = inst.components.deployable.min_spacing or 2
+
+        for k, v in pairs(ents) do
+            if v ~= inst and v.entity:IsValid() and v.entity:IsVisible() and not v.components.placer and v.parent == nil then
+                if distsq( Vector3(v.Transform:GetWorldPosition()), pt) < min_spacing*min_spacing then
+                    return false
+                end
+            end
+        end
+        return true
+    end
+    return false
+end
+
 local function weather_off(inst)
 	if GetWorld() and not GetWorld():HasTag("cloudrealm") then
 		print "Weather Machine Reset"
@@ -26,7 +49,7 @@ local function DoWeatherPick(inst)
 		elseif weather_id == 3 then
 			print(weather_id)
 			GetSeasonManager():StartPrecip()
-		elseif weather_id == 4 then
+		elseif weather_id == 4 and GetSeasonManager().precip then
 			print(weather_id)
 			GetSeasonManager():StopPrecip()
 		elseif weather_id == 5 then	
@@ -51,7 +74,7 @@ local function DoWeatherPick(inst)
 		elseif weather_id == 3 then
 			print(weather_id)
 			GetSeasonManager():StartPrecip()
-		elseif weather_id == 4 then
+		elseif weather_id == 4 and GetSeasonManager().precip then
 			print(weather_id)
 			GetSeasonManager():StopPrecip()
 		elseif weather_id == 5 then	
@@ -92,7 +115,16 @@ local function fn(Sim)
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("weather_machine.tex") 
 
+    inst:AddComponent("deployable")
+    inst.components.deployable.test = test_ground
+    --inst.components.deployable.ondeploy = ondeploy
+
+    inst:AddTag("structure")
+
 	return inst
 end
 
-return Prefab ("common/inventory/weather_machine", fn, assets) 
+return {
+	Prefab ("common/inventory/weather_machine", fn, assets),
+	MakePlacer ("common/weather_machine_placer", "marble", "void_placeholder", "anim"), 
+}	

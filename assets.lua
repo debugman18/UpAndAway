@@ -71,6 +71,7 @@ Assets = GLOBAL.JoinArrays(
 		"cotton_candy",
 		"cloud_algae_fragment",
 		"cloud_coral_fragment",
+		"crystal_lamp",
 	},
 
 	-- These are .tex's without a matching atlas.
@@ -120,6 +121,7 @@ Assets = GLOBAL.JoinArrays(
 		"cloud_bush",
 		"thunder_tree",
 		"tea_bush",
+		"crystal_lamp",
 		--"cloud_fruit_tree",
 		--"bean_giant_statue",
 		--"weather_machine",

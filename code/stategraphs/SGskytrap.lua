@@ -115,7 +115,7 @@ local states=
         tags = {"busy"},
         
         onenter = function(inst)
-            RemovePhysicsColliders(inst) 
+            inst.components.lootdropper:DropLoot(Vector3(inst.Transform:GetWorldPosition())) 
             inst.SoundEmitter:PlaySound("dontstarve/creatures/eyeplant/eye_retract")      
 
         end,        

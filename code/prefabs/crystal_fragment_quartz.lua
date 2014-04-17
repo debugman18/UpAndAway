@@ -19,6 +19,8 @@ local function fn(Sim)
 	inst.AnimState:SetBuild("crystal_fragment_quartz")
 	inst.AnimState:PlayAnimation("closed")
 
+	inst.Transform:SetScale(.6,.6,.6)
+
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
