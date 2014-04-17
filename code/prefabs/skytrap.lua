@@ -2,15 +2,20 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/skytrap.zip"),
+    Asset("ANIM", "anim/skytrap.zip"),
 }
 
 local prefabs =
 {
-	"ambrosia",
+    "ambrosia",
 }
 
 local loot = {
+    "cloud_jelly",
+    "cloud_cotton",
+}
+
+local rareloot = {
     "ambrosia",
 }
 
@@ -33,10 +38,10 @@ local function shouldKeepTarget(inst, target)
 end
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
 
     MakeCharacterPhysics(inst, 0, .5)
 
@@ -46,17 +51,19 @@ local function fn(Sim)
     inst.AnimState:SetBuild("skytrap")
     inst.AnimState:PushAnimation("idle")
 
-	inst:AddComponent("inspectable")	
+    inst:AddComponent("inspectable")    
 
     inst:AddComponent("combat")
     inst.components.combat:SetAttackPeriod(TUNING.EYEPLANT_ATTACK_PERIOD)
     inst.components.combat:SetRange(6)
     inst.components.combat:SetRetargetFunction(0.2, retargetfn)
     inst.components.combat:SetKeepTargetFunction(shouldKeepTarget)
-    inst.components.combat:SetDefaultDamage(10)	
+    inst.components.combat:SetDefaultDamage(16) 
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot(loot)
+    if math.random(1,8) == 1 then
+        inst.components.lootdropper:SetLoot(rareloot)
+    else inst.components.lootdropper:SetLoot(loot) end    
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(30)    
@@ -69,7 +76,7 @@ local function fn(Sim)
 
     inst:SetStateGraph("SGskytrap")    
 
-	return inst
+    return inst
 end
 
 return Prefab ("common/inventory/skytrap", fn, assets, prefabs) 
