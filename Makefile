@@ -43,10 +43,14 @@ export PERL
 export KTECH
 
 
-.PHONY: all dist clean distclean wicker wickertools
+.PHONY: all anim images dist clean distclean wicker wickertools
 
-all:
+all: anim images
+
+anim:
 	$(MAKE) -C anim all
+
+images:
 	$(MAKE) -C images all
 
 dist: all
