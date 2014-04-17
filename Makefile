@@ -22,10 +22,11 @@ WICKER_TOOLS_DIR:=wickertools
 MOD_VERSION=$(shell $(LUA) -e 'dofile("modinfo.lua"); io.write(version)')
 
 
-# Paths to the Lua and Perl interpreters.
+# Paths to the Lua and Perl interpreters, and to ktech.
 # If you need to change this, see the remark about config.mk below.
 LUA:=lua
 PERL:=perl
+KTECH:=ktech
 
 
 #
@@ -37,16 +38,28 @@ ifneq ($(wildcard make/config.mk),)
  include make/config.mk
 endif
 
+export LUA
+export PERL
+export KTECH
 
-.PHONY: dist clean wicker wickertools
 
+.PHONY: all dist clean distclean wicker wickertools
 
-dist:
+all:
+	$(MAKE) -C anim all
+	$(MAKE) -C images all
+
+dist: all
 	$(LUA) $(TOOLS_DIR)/pkgfilelist_gen.lua "$(PKGINFO)" | $(PERL) $(TOOLS_DIR)/pkg_archiver.pl $(ZIPNAME)
 
-clean:
+clean: distclean
+	$(MAKE) -C anim clean
+	$(MAKE) -C images clean
+
+distclean:
+	$(MAKE) -C anim distclean
+	$(MAKE) -C images distclean
 	$(RM) $(ZIPNAME)
 
 include make/doc.mk
-#include make/build_rename.mk
 include $(WICKER_SCRIPT_DIR)/make/utils.mk
