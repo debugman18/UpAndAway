@@ -5,4 +5,4 @@ endif
 
 KTECH_EXTRA_ARGS=
 %.tex: %.png
-	$(KTECH) -q -f bicubic $(KTECH_EXTRA_ARGS) "$<" "$@"
+	$(KTECH) -q -f lanczos $(KTECH_EXTRA_ARGS) "$<" "$@"
