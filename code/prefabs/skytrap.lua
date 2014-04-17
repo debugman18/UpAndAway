@@ -10,7 +10,9 @@ local prefabs =
 	"ambrosia",
 }
 
-local loot = {"ambrosia"}
+local loot = {
+    "ambrosia",
+}
 
 local function retargetfn(inst)
     return FindEntity(inst, TUNING.EYEPLANT_ATTACK_DIST, function(guy) 
@@ -35,7 +37,8 @@ local function fn(Sim)
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
+
+    MakeCharacterPhysics(inst, 0, .5)
 
     inst.Transform:SetFourFaced()
 
