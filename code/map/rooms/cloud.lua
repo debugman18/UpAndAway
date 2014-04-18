@@ -2,6 +2,8 @@ local function randomness()
 	return 0.1 + 0.5*math.random()
 end
 
+BindGlobal()
+
 --Generic Biome Rooms
 
 --Generic BG
@@ -309,6 +311,17 @@ TheMod:AddRoom("Crystal_Fields", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.RAINBOW,
 	contents = {
+		custom_tiles={
+			GeneratorFunction = RUNCA.GeneratorFunction,
+			data = {iterations=12, seed_mode=CA_SEED_MODE.SEED_RANDOM, num_random_points=2,
+						translate={	{tile=GROUND.RAINBOW, items={"crystal_spire"}, item_count=4},
+									{tile=GROUND.RAINBOW, items={"crystal_water"},	item_count=4},
+									{tile=GROUND.RAINBOW, items={"crystal_light"}, item_count=4},
+									{tile=GROUND.RAINBOW, items={"crystal_black"},	item_count=1},
+									{tile=GROUND.RAINBOW, items={"crystal_white"}, item_count=1},
+								},
+			},
+		},
 		distributepercent = randomness(),
 		distributeprefabs = {
 			crystal_spire = 0.025,

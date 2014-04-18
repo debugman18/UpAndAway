@@ -24,6 +24,7 @@ end
 
 local function onhit(inst, worker)
 	inst.components.childspawner:ReleaseAllChildren()
+	inst.AnimState:PlayAnimation("idle")
 	inst.thief = worker
 	inst.components.childspawner.noregen = true
 	if inst.components.childspawner and worker then

@@ -81,11 +81,14 @@ local function fn(inst)
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
 
 	inst.AnimState:SetBank("sky_octopus")
 	inst.AnimState:SetBuild("sky_octopus")
-	inst.AnimState:PlayAnimation("idle", true)
+	inst.AnimState:PushAnimation("death", false)
+
+	local physics = inst.entity:AddPhysics()  
+	MakeObstaclePhysics(inst, 1)
+	inst.AnimState:Hide("propeller")
 
 	inst.Transform:SetScale(1.4, 1.4, 1.4)
 
