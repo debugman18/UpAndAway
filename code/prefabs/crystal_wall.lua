@@ -214,6 +214,7 @@ local function fn(inst)
 	anim:SetBank("wall")
 	anim:SetBuild("crystal_wall")
 	anim:PlayAnimation("1_2", false)
+	anim:SetBloomEffectHandle("shaders/anim.ksh") 
 	    
 	inst:AddComponent("inspectable")
 	inst:AddComponent("lootdropper")

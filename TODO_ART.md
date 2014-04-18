@@ -4,7 +4,7 @@
 ### Inventory images in need of attention
 + cloud_wall
 + cotton_hat
-+ crystal_wall
++ cotton_vest
 + flying_fish
 + grabber
 + magnet
@@ -13,10 +13,10 @@
 + skyflies
 + weaver_bird
 
+
 ### Atlases (with existing animation banks) in need of attention
 + Weaver Den (spiderden bank or custom animations)
 + Manta (buzzard bank or custom animations)
-+ Three Different Octocopter pieces (All art assets, still images); undecided bank
 
 
 ### Custom animation banks/builds in need of attention
@@ -35,7 +35,10 @@
 + Bean Giant (All art assets, using deerclops bank or custom animations)
 + Bean Giant Statue (All art assets, still image)
 + Golden Sunflower (All art assets, still image)
-
++ Beanstalk Wall (All art assets, using wall bank)
++ Cloud Wall (All art assets, using wall bank)
++ Cotton Vest (All art assets, using dapper vest bank)
++ Cotton Hat (All art assets, using any hat bank)
 
 ### Miscellanea
 + Various minimap icons. (For various objects in the world, still images)
