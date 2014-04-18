@@ -158,6 +158,7 @@ local function fn(Sim)
     anim:SetBank("deerclops")
     anim:SetBuild("deerclops_build")
     anim:PlayAnimation("idle_loop", true)
+    anim:SetMultColour(0,50,0,1)
     
     ------------------------------------------
 

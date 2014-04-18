@@ -5,7 +5,7 @@ require "prefabutil"
 local assets =
 {
 	Asset("ANIM", "anim/wall.zip"),
-	Asset("ANIM", "anim/wall_ruins.zip"),
+	Asset("ANIM", "anim/wall_stone.zip"),
 
     Asset( "ATLAS", "images/inventoryimages/beanstalk_wall_item.xml" ),
     Asset( "IMAGE", "images/inventoryimages/beanstalk_wall_item.tex" ),
@@ -17,9 +17,140 @@ local prefabs =
 	"beanstalk_wall_item",
 }
 
-local loot = "beanstalk_chunk"
+local stage0loot = {
+}
+
+local stage1loot = {
+	"beanstalk_chunk",
+}	
+
+local stage2loot = {
+	"beanstalk_chunk",
+	"beanstalk_chunk",		
+}	
+
+local stage3loot = {
+	"beanstalk_chunk",
+	"beanstalk_chunk",
+	"beanstalk_chunk",	
+}	
+
+local stage4loot = {
+	"beanstalk_chunk",
+	"beanstalk_chunk",
+	"beanstalk_chunk",
+	"beanstalk_chunk",		
+}	
+
+
 local maxloots = 4
 local maxhealth = 30
+
+local function resolveanimtoplay(percent)
+	local anim_to_play = nil
+	if percent <= 0 then
+		anim_to_play = "0"
+	elseif percent <= .4 then
+		anim_to_play = "1_4"
+	elseif percent <= .5 then
+		anim_to_play = "1_2"
+	elseif percent < 1 then
+		anim_to_play = "3_4"
+	else
+		anim_to_play = "1"
+	end
+	return anim_to_play
+end
+
+local function onchopped(inst, worker)
+	local debris = SpawnPrefab("collapse_small")
+	debris.AnimState:SetMultColour(0,50,0,1)
+	debris.Transform:SetPosition(inst.Transform:GetWorldPosition())
+
+	inst.SoundEmitter:PlaySound("dontstarve/common/destroy_straw")	
+
+	inst.components.lootdropper:DropLoot()	
+		
+	inst:Remove()
+end
+
+local function onhit(inst)
+	--if data.destroysound then
+		--inst.SoundEmitter:PlaySound(data.destroysound)		
+	--end
+
+	local healthpercent = inst.components.health:GetPercent()
+	local anim_to_play = resolveanimtoplay(healthpercent)
+	if healthpercent > 0 then
+		inst.AnimState:PlayAnimation(anim_to_play.."_hit")		
+		inst.AnimState:PushAnimation(anim_to_play, false)	
+	end	
+
+end
+
+local function SetShort(inst)
+	inst:AddComponent("workable")
+	inst.components.workable:SetWorkAction(ACTIONS.CHOP)
+	inst.components.workable:SetOnFinishCallback(onchopped)
+	inst.components.workable:SetOnWorkCallback(onhit) 
+	if inst.components.workable then
+	    inst.components.workable:SetWorkLeft(1)
+	end
+
+	inst.components.lootdropper:SetLoot(stage1loot)
+end
+
+local function GrowShort(inst)
+    inst.AnimState:PlayAnimation("1_4")
+    inst.components.health.currenthealth = maxhealth / 4
+end
+
+local function SetNormal(inst)
+	if inst.components.workable then
+	    inst.components.workable:SetWorkLeft(2)
+	end
+
+	inst.components.lootdropper:SetLoot(stage2loot)
+end
+
+local function GrowNormal(inst)
+    inst.AnimState:PlayAnimation("1_2")
+    inst.components.health.currenthealth = maxhealth / 2
+end
+
+local function SetTall(inst)
+	if inst.components.workable then
+	    inst.components.workable:SetWorkLeft(3)
+	end
+
+	inst.components.lootdropper:SetLoot(stage3loot)
+end
+
+local function GrowTall(inst)
+    inst.AnimState:PlayAnimation("3_4")
+    inst.components.health.currenthealth = maxhealth - (maxhealth / 4)
+end
+
+local function SetOld(inst)
+	if inst.components.workable then
+	    inst.components.workable:SetWorkLeft(4)
+	end
+
+	inst.components.lootdropper:SetLoot(stage4loot)
+end
+
+local function GrowOld(inst)
+    inst.AnimState:PlayAnimation("1")
+    inst.components.health.currenthealth = maxhealth
+end
+
+local growth_stages =
+{
+    {name="short", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[1].base, TUNING.EVERGREEN_GROW_TIME[1].random) end, fn = function(inst) SetShort(inst) end,  growfn = function(inst) GrowShort(inst) end},
+    {name="normal", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[2].base, TUNING.EVERGREEN_GROW_TIME[2].random) end, fn = function(inst) SetNormal(inst) end, growfn = function(inst) GrowNormal(inst) end},
+    {name="tall", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[3].base, TUNING.EVERGREEN_GROW_TIME[3].random) end, fn = function(inst) SetTall(inst) end, growfn = function(inst) GrowTall(inst) end},
+    {name="old", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[4].base, TUNING.EVERGREEN_GROW_TIME[4].random) end, fn = function(inst) SetOld(inst) end, growfn = function(inst) GrowOld(inst) end},
+}
 
 local function ondeploywall(inst, pt, deployer)
 	local wall = SpawnPrefab("beanstalk_wall") 
@@ -35,21 +166,6 @@ local function ondeploywall(inst, pt, deployer)
 		    ground.Pathfinder:AddWall(pt.x, pt.y, pt.z)
 		end
 	end 		
-end
-
-local function onchopped(inst, worker)
-	if maxloots and loot then
-		local num_loots = math.max(1, math.floor(maxloots*inst.components.health:GetPercent()))
-		for k = 1, num_loots do
-			inst.components.lootdropper:SpawnLootPrefab(loot)
-		end
-	end		
-		
-	SpawnPrefab("collapse_small").Transform:SetPosition(inst.Transform:GetWorldPosition())
-
-	inst.SoundEmitter:PlaySound("dontstarve/common/destroy_straw")		
-		
-	inst:Remove()
 end
 
 local function test_wall(inst, pt)
@@ -81,7 +197,6 @@ local function makeobstacle(inst)
 		
 	inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)	
 	inst.Physics:ClearCollisionMask()
-	--inst.Physics:CollidesWith(COLLISION.WORLD)
 	inst.Physics:SetMass(0)
 	inst.Physics:CollidesWith(COLLISION.ITEMS)
 	inst.Physics:CollidesWith(COLLISION.CHARACTERS)
@@ -89,15 +204,11 @@ local function makeobstacle(inst)
 	local ground = GetWorld()
 	if ground then
 	    local pt = Point(inst.Transform:GetWorldPosition())
-		--print("    at: ", pt)
 	    ground.Pathfinder:AddWall(pt.x, pt.y, pt.z)
 	end
 end
 
 local function clearobstacle(inst)
-	-- Alia: 
-	-- Since we are removing the wall anytway we may as well not bother setting the physics    
-	   -- We had better wait for the callback to complete before trying to remove ourselves
 	inst:DoTaskInTime(2*FRAMES, function() inst.Physics:SetActive(false) end)
 
 	local ground = GetWorld()
@@ -105,22 +216,6 @@ local function clearobstacle(inst)
 	    local pt = Point(inst.Transform:GetWorldPosition())
 	    ground.Pathfinder:RemoveWall(pt.x, pt.y, pt.z)
 	end
-end
-
-local function resolveanimtoplay(percent)
-	local anim_to_play = nil
-	if percent <= 0 then
-		anim_to_play = "0"
-	elseif percent <= .4 then
-		anim_to_play = "1_4"
-	elseif percent <= .5 then
-		anim_to_play = "1_2"
-	elseif percent < 1 then
-		anim_to_play = "3_4"
-	else
-		anim_to_play = "1"
-	end
-	return anim_to_play
 end
 
 local function onhealthchange(inst, old_percent, new_percent)
@@ -147,7 +242,7 @@ local function itemfn(inst)
 	MakeInventoryPhysics(inst)
 	    
 	inst.AnimState:SetBank("wall")
-	inst.AnimState:SetBuild("wall_ruins")
+	inst.AnimState:SetBuild("wall_stone")
 	inst.AnimState:PlayAnimation("idle")
 
 	inst:AddComponent("stackable")
@@ -156,11 +251,6 @@ local function itemfn(inst)
 	inst:AddComponent("inspectable")
 	inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/beanstalk_wall_item.xml"
-		
-	inst:AddComponent("repairer")
-	inst.components.repairer.repairmaterial = "beanstalk"
-	inst.components.repairer.healthrepairvalue = maxhealth / 6
-	inst.components.repairer.workrepairvalue = TUNING.REPAIR_THULECITE_WORK
 	    	
 	MakeSmallBurnable(inst, TUNING.MED_BURNTIME)
 	MakeSmallPropagator(inst)
@@ -175,20 +265,6 @@ local function itemfn(inst)
 	inst.components.deployable.placer = "beanstalk_wall_placer"
 		
 	return inst
-end
-
-local function onhit(inst)
-	--if data.destroysound then
-		--inst.SoundEmitter:PlaySound(data.destroysound)		
-	--end
-
-	local healthpercent = inst.components.health:GetPercent()
-	local anim_to_play = resolveanimtoplay(healthpercent)
-	if healthpercent > 0 then
-		inst.AnimState:PlayAnimation(anim_to_play.."_hit")		
-		inst.AnimState:PushAnimation(anim_to_play, false)	
-	end	
-
 end
 
 local function onrepaired(inst)
@@ -214,33 +290,33 @@ local function fn(inst)
 	local inst = CreateEntity()
 	local trans = inst.entity:AddTransform()
 	local anim = inst.entity:AddAnimState()
+	local l_stage = stage or 1
 	inst.entity:AddSoundEmitter()
 	inst:AddTag("wall")
 	MakeObstaclePhysics(inst, .5)    
 	inst.entity:SetCanSleep(false)
 	anim:SetBank("wall")
-	anim:SetBuild("wall_ruins")
-	anim:PlayAnimation("1_2", false)
+	anim:SetBuild("wall_stone")
+	anim:PlayAnimation("0", false)
+	anim:SetMultColour(0,50,0,1)
 	    
 	inst:AddComponent("inspectable")
 	inst:AddComponent("lootdropper")
-				
-	inst:AddComponent("repairable")
-	inst.components.repairable.repairmaterial = "beanstalk"
-	inst.components.repairable.announcecanfix = false
-
-	inst.components.repairable.onrepaired = onrepaired
+	inst.components.lootdropper:SetLoot(stage0loot)
 		
 	inst:AddComponent("combat")
 	inst.components.combat.onhitfn = onhit
 		
 	inst:AddComponent("health")
 	inst.components.health:SetMaxHealth(maxhealth)
-	inst.components.health.currenthealth = maxhealth / 2
+	inst.components.health.currenthealth = maxhealth / 4
 	inst.components.health.ondelta = onhealthchange
 	inst.components.health.nofadeout = true
 	inst.components.health.canheal = false
 	inst:AddTag("noauradamage")
+
+	inst:AddComponent("repairable")
+	inst.components.repairable.announcecanfix = false
 		
 	MakeLargeBurnable(inst)
 	MakeLargePropagator(inst)
@@ -250,12 +326,12 @@ local function fn(inst)
 	--inst.components.health.fire_damage_scale = 0
 
 	--inst.SoundEmitter:PlaySound(buildsound)		
-		
-	inst:AddComponent("workable")
-	inst.components.workable:SetWorkAction(ACTIONS.CHOP)
-	inst.components.workable:SetWorkLeft(3)
-	inst.components.workable:SetOnFinishCallback(onchopped)
-	inst.components.workable:SetOnWorkCallback(onhit) 
+
+    inst:AddComponent("growable")
+    inst.components.growable.stages = growth_stages
+    inst.components.growable:SetStage(l_stage)
+    inst.components.growable.loopstages = false
+    inst.components.growable:StartGrowing()
 						
 	inst.OnLoad = onload
 	inst.OnRemoveEntity = onremoveentity

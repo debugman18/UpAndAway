@@ -14,7 +14,17 @@ local assets =
 local prefabs =
 {
 	"crystal_wall_item",
+	"crystal_fragment_light",
+	"crystal_fragment_water",
+	"crystal_fragment_spire",
 }
+
+SetSharedLootTable( 'crystalwallloot',
+{
+	{'crystal_fragment_light', .6},
+	{'crystal_fragment_water', .6},
+	{'crystal_fragment_spire', .6},
+})
 
 --local loot = "beanstalk_chunk"
 local maxloots = 4
@@ -180,7 +190,7 @@ local function onhit(inst)
 	if healthpercent > 0 then
 		inst.AnimState:PlayAnimation(anim_to_play.."_hit")		
 		inst.AnimState:PushAnimation(anim_to_play, false)	
-	end	
+	else inst.components.lootdropper:DropLoot() end	
 
 end
 
@@ -214,10 +224,14 @@ local function fn(inst)
 	anim:SetBank("wall")
 	anim:SetBuild("crystal_wall")
 	anim:PlayAnimation("1_2", false)
-	anim:SetBloomEffectHandle("shaders/anim.ksh") 
+
+	inst:ListenForEvent("dusktime", function(inst) anim:SetBloomEffectHandle("shaders/anim.ksh") end, GetWorld())
+
+	inst:ListenForEvent("daytime", function(inst) anim:SetBloomEffectHandle("") end, GetWorld())
 	    
 	inst:AddComponent("inspectable")
 	inst:AddComponent("lootdropper")
+	inst.components.lootdropper:SetChanceLootTable('crystalwallloot')
 				
 	inst:AddComponent("repairable")
 	inst.components.repairable.repairmaterial = "crystal"
@@ -238,11 +252,11 @@ local function fn(inst)
 
 	--inst.SoundEmitter:PlaySound(buildsound)		
 		
-	inst:AddComponent("workable")
-	inst.components.workable:SetWorkAction(ACTIONS.MINE)
-	inst.components.workable:SetWorkLeft(3)
-	inst.components.workable:SetOnFinishCallback(onmined)
-	inst.components.workable:SetOnWorkCallback(onhit) 
+	--inst:AddComponent("workable")
+	--inst.components.workable:SetWorkAction(ACTIONS.MINE)
+	--inst.components.workable:SetWorkLeft(3)
+	--inst.components.workable:SetOnFinishCallback(onmined)
+	--inst.components.workable:SetOnWorkCallback(onhit) 
 						
 	inst.OnLoad = onload
 	inst.OnRemoveEntity = onremoveentity
