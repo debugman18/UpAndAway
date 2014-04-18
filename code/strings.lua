@@ -169,7 +169,7 @@ Add.QuotesFor "alien" {
 
 Add.QuotesFor "ambrosia" {
     GENERIC = nil,
-    wathgrithr = nil,
+    wathgrithr = "The fruit of Valhalla!",
     waxwell = nil,
     webber = nil,
     wendy = nil,
@@ -177,7 +177,7 @@ Add.QuotesFor "ambrosia" {
     willow = "Each berry tastes different.",
     wolfgang = "Is strange tasty berry.",
     woodie = "Food of the gods.",
-    wx78 = nil,
+    wx78 = "FLAVORFUL",
 }
 
 Add.QuotesFor "antlion" {
@@ -611,7 +611,7 @@ Add.QuotesFor "cloud_fruit_tree" {
 
 Add.QuotesFor "cloud_jelly" {
     GENERIC = nil,
-    wathgrithr = nil,
+    wathgrithr = "Ugh, too sweet for me.",
     waxwell = nil,
     webber = nil,
     wendy = nil,
@@ -619,7 +619,7 @@ Add.QuotesFor "cloud_jelly" {
     willow = "I'm not sure if that will burn or not.",
     wolfgang = "Is wobbly.",
     woodie = "It's plant slime, eh?",
-    wx78 = nil,
+    wx78 = "ERROR: TOAST NOT FOUND",
 }
 
 Add.QuotesFor "cloud_storage" {
@@ -1911,7 +1911,7 @@ Add.QuotesFor "tea_leaves" {
 
 Add.QuotesFor "thunderboards" {
     GENERIC = nil,
-    wathgrithr = nil,
+    wathgrithr = "Blessed by Thor.",
     waxwell = nil,
     webber = nil,
     wendy = nil,
@@ -1919,7 +1919,7 @@ Add.QuotesFor "thunderboards" {
     willow = "I called down the thunder.",
     wolfgang = "Is tickly flat wood.",
     woodie = "They still have a spark in them.",
-    wx78 = nil,
+    wx78 = "FLAT BUT STILL HAZARDOUS",
 }    
 
 Add.QuotesFor "thunder_log" {
