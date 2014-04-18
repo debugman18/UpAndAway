@@ -46,6 +46,15 @@ TheMod:AddRoom("SkyflowerGarden", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.POOPCLOUD,
 	contents = {
+		custom_tiles={
+			GeneratorFunction = RUNCA.GeneratorFunction,
+			data = {iterations=6, seed_mode=CA_SEED_MODE.SEED_WALLS, num_random_points=1,
+						translate={	{tile=GROUND.POOPCLOUD, items={"sheep"}, item_count=3},
+									{tile=GROUND.POOPCLOUD, items={"cloud_bush"}, item_count=5},
+									{tile=GROUND.POOPCLOUD, items={"skytrap"}, item_count=6},
+								   },
+			},
+		},	
 		distributepercent = randomness(),
 		distributeprefabs = {
 			skyflower = 0.3,
@@ -102,6 +111,18 @@ TheMod:AddRoom("BGAurora", {
 	colour={r=.2,g=.2,b=.2,a=1},
 	value = GROUND.AURORA,
 	contents =  {
+		custom_tiles={
+			GeneratorFunction = RUNCA.GeneratorFunction,
+			data = {iterations=1, seed_mode=CA_SEED_MODE.SEED_CENTROID, num_random_points=1,
+						translate={	{tile=GROUND.AURORA, items={"alien"}, item_count=3},
+									{tile=GROUND.AURORA, items={"skeleton"}, item_count=5},
+									{tile=GROUND.AURORA, items={"cloudcrag"}, item_count=17},
+									{tile=GROUND.AURORA, items={"dragonblood_tree"}, item_count=6},
+									{tile=GROUND.AURORA, items={"skyflower"}, item_count=30},
+							},
+					centroid= 	{tile=GROUND.SNOW, items={"scarecrow"}, item_count=1},
+			},
+		},
 		distributepercent = randomness(),
 		distributeprefabs = {
 			alien = 0.02,		
