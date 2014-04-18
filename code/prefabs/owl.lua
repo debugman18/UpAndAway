@@ -37,7 +37,7 @@ local function RetargetFn(inst, target)
         for k,v in pairs(ents) do
             if v and v:HasTag("owl_crystal") then
                 local rock = v
-                print(rock)
+                --print(rock)
                 if inst.components.homeseeker then
                     inst.components.homeseeker:SetHome(rock)
                 end    
