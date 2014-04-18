@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-    Asset("ANIM", "anim/beanlet.zip"),  -- same name as the .scml
+    Asset("ANIM", "anim/beanlet_zealot.zip"),  -- same name as the .scml
     Asset("SOUND", "sound/pengull.fsb"),
 }
 
@@ -77,8 +77,8 @@ local function fn(Sim)
 
     MakeCharacterPhysics(inst, 50, .5)  
 
-    inst.AnimState:SetBank("beanlet") -- name of the animation root
-    inst.AnimState:SetBuild("beanlet")  -- name of the file
+    inst.AnimState:SetBank("beanlet_zealot") -- name of the animation root
+    inst.AnimState:SetBuild("beanlet_zealot")  -- name of the file
     inst.AnimState:PlayAnimation("idle", true) -- name of the animation
 
     inst:AddTag("animal")
