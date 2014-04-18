@@ -28,7 +28,7 @@ SetSharedLootTable( 'crystalwallloot',
 
 --local loot = "beanstalk_chunk"
 local maxloots = 4
-local maxhealth = 30
+local maxhealth = 60
 
 local function ondeploywall(inst, pt, deployer)
 	local wall = SpawnPrefab("crystal_wall") 
@@ -225,6 +225,9 @@ local function fn(inst)
 	anim:SetBuild("crystal_wall")
 	anim:PlayAnimation("1_2", false)
 
+	if not GetWorld().components.clock:IsDay() then
+		anim:SetBloomEffectHandle("shaders/anim.ksh")
+	end
 	inst:ListenForEvent("dusktime", function(inst) anim:SetBloomEffectHandle("shaders/anim.ksh") end, GetWorld())
 
 	inst:ListenForEvent("daytime", function(inst) anim:SetBloomEffectHandle("") end, GetWorld())
