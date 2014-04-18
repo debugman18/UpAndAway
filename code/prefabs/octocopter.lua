@@ -30,9 +30,9 @@ local CFG_OCTOCOPTER_TARGET_DIST = 15
 --Maximum distance for octocopter to attack a target.
 local CFG_OCTOCOPTER_RANGE = 5
 --The health of the octocopter.
-local CFG_OCTOCOPTER_HEALTH = 1000
+local CFG_OCTOCOPTER_HEALTH = 3000
 --Minimum time between octocopter attacks.
-local CFG_OCTOCOPTER_ATTACK_PERIOD = 4
+local CFG_OCTOCOPTER_ATTACK_PERIOD = 2
 
 local function Retarget(inst)
 
@@ -88,8 +88,7 @@ local function fn(Sim)
 
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "pig_torso"
-    inst.components.combat:SetDefaultDamage(60)
-    --inst.components.combat.playerdamagepercent = .5
+    inst.components.combat:SetDefaultDamage(100)
     inst.components.combat.min_attack_period = CFG_OCTOCOPTER_ATTACK_PERIOD
     inst.components.combat:SetAttackPeriod(CFG_OCTOCOPTER_ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(3, Retarget)
@@ -98,8 +97,8 @@ local function fn(Sim)
     inst.components.combat:SetAreaDamage(CFG_OCTOCOPTER_RANGE, 0.4)
 
     inst:AddComponent("locomotor")
-    inst.components.locomotor.walkspeed = 5
-    inst.components.locomotor.runspeed = 5
+    inst.components.locomotor.walkspeed = 3
+    inst.components.locomotor.runspeed = 4
     inst.components.locomotor.directdrive = true
 
     inst.Transform:SetScale(1.4, 1.4, 1.4)

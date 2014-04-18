@@ -63,6 +63,7 @@ Add.Names {
     crystal_quartz = "Quartz Crystal",
     crystal_relic = "Crystal Relic",
     crystal_spire = "Crystal Spire",
+    crystal_wall_item = "Crystal Wall",
     crystal_wall = "Crystal Wall",
     crystal_water = "Water Crystal",
     crystal_white = "White Crystal",
@@ -2085,9 +2086,12 @@ STRINGS.RECIPE_DESC.MAGNET = "It's a magnet fueled by magic."
 STRINGS.RECIPE_DESC.COTTON_CANDY = "Carnival food. Rots your teeth."
 STRINGS.RECIPE_DESC.GRABBER = "A hookshot. You can grab and poke things."
 STRINGS.RECIPE_DESC.BLACKSTAFF = "A black staff. Shock therapy!"
-STRINGS.RECIPE_DESC.WHITESTAFF = "A white staff. For heavy lifting."
-STRINGS.RECIPE_DESC.REFINED_WHITE_CRYSTAL = "Condensed white crystals."
-STRINGS.RECIPE_DESC.REFINED_BLACK_CRYSTAL = "Condensed black crystals."
+STRINGS.RECIPE_DESC.WHITESTAFF = "A white staff, for heavy lifting."
+STRINGS.RECIPE_DESC.REFINED_WHITE_CRYSTAL = "A smoothed white gemstone."
+STRINGS.RECIPE_DESC.REFINED_BLACK_CRYSTAL = "A pointy carved black gemstone."
+STRINGS.RECIPE_DESC.THUNDERBOARDS = "Shocking blue planks of wood."
+STRINGS.RECIPE_DESC.BEANSTALK_WALL_ITEM = "Grow your own walls."
+STRINGS.RECIPE_DESC.CRYSTAL_WALL_ITEM = "Elegant yet durable."
 
 STRINGS.GUMMYBEAR_NAMES = { 
     "Moisty", 

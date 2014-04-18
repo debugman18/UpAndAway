@@ -58,8 +58,11 @@ magnet.atlas = "images/winnie.xml"
 local crystal_lamp = Recipe("crystal_lamp", { Ingredient("beanlet_shell", 1, "images/inventoryimages/beanlet_shell.xml"), Ingredient("crystal_fragment_light", 4, "images/inventoryimages/crystal_fragment_light.xml"), Ingredient("rope", 3) }, RECIPETABS.LIGHT, TECH.FABLE_1, "crystal_lamp_placer")
 crystal_lamp.atlas = "images/inventoryimages/crystal_lamp.xml"
 
-local beanstalk_wall_item = Recipe("beanstalk_wall_item", { Ingredient("beanstalk_chunk", 4, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.TOWN, TECH.FABLE_1)
-beanstalk_wall_item.atlas = "images/winnie.xml"
+local beanstalk_wall_item = Recipe("beanstalk_wall_item", { Ingredient("beanstalk_chunk", 4, "images/inventoryimages/beanstalk_chunk.xml") }, RECIPETABS.TOWN, TECH.FABLE_1,nil,nil,nil,6)
+beanstalk_wall_item.atlas = "images/inventoryimages/beanstalk_wall_item.xml"
+
+local crystal_wall_item = Recipe("crystal_wall_item", { Ingredient("crystal_fragment_light", 4, "images/inventoryimages/crystal_fragment_light.xml"), Ingredient("crystal_fragment_water", 4, "images/inventoryimages/crystal_fragment_water.xml"), Ingredient("crystal_fragment_spire", 4, "images/inventoryimages/crystal_fragment_spire.xml") }, RECIPETABS.TOWN, TECH.FABLE_1,nil,nil,nil,6)
+crystal_wall_item.atlas = "images/inventoryimages/crystal_wall_item.xml"
 
 local refined_black_crystal = Recipe("refined_black_crystal", { Ingredient("crystal_fragment_black", 6, "images/inventoryimages/crystal_fragment_black.xml") }, RECIPETABS.REFINE, TECH.FABLE_1)
 refined_black_crystal.atlas = "images/inventoryimages/refined_black_crystal.xml"
