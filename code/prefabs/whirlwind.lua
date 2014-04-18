@@ -48,6 +48,8 @@ local function fn(Sim)
 	anim:PlayAnimation("spin_loop", true)
 	anim:SetMultColour(.6, .6, .6, .3)
 
+	inst.Transform:SetScale(1.7,1.7,1.7)
+
 	local physics = inst.entity:AddPhysics()
 	physics:SetMass(1)
 	physics:SetCylinder(.3, 3)

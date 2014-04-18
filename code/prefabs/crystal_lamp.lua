@@ -31,18 +31,21 @@ local function test_ground(inst, pt)
 end
 
 local function onLight(inst)
-    local partner = game.FindClosestEntity(inst, 12, function(e)
-        return e ~= inst and e.components.machine and not e.components.machine:IsOn()
-    end, {"crystal_lamp"})
+    if inst.components.fueled.currentfuel >= 1 then
+        local partner = game.FindClosestEntity(inst, 12, function(e)
+            return e ~= inst and e.components.machine and not e.components.machine:IsOn()
+        end, {"crystal_lamp"})
 
-    inst.Light:Enable(true)
+        inst.Light:Enable(true)
+        inst.components.fueled:StartConsuming()
 
-    if partner and not partner.components.machine.ison then
-        partner.components.machine.turnonfn = onLight
-        partner:DoTaskInTime(0.3, function(inst, data) partner.components.machine:TurnOn() end)    
+        if partner and not partner.components.machine.ison then
+            partner.components.machine.turnonfn = onLight
+            partner:DoTaskInTime(0.3, function(inst, data) partner.components.machine:TurnOn() end)    
 
-        TheMod:DebugSay("Partner lamp [", partner, "] lit.")
-    end    
+            TheMod:DebugSay("Partner lamp [", partner, "] lit.")
+        end  
+    end      
 end
 
 --[[
@@ -67,6 +70,7 @@ local function onDim(inst)
     end, {"crystal_lamp"})
 
     inst.Light:Enable(false)
+    inst.components.fueled.consuming = false
 
     if partner and partner.components.machine.ison then
         partner.components.machine.turnofffn = onDim
@@ -91,7 +95,18 @@ local function onDim(inst)
 		print "Partner lamp dimmed."
 	end	
 end
-]]
+]] 
+
+local function onEmpty(inst)
+    inst.components.machine:TurnOff()  
+    inst.components.machine.caninteractfn = function(inst) return false end
+end  
+
+local function onFill(inst)
+    inst.components.machine:TurnOn()
+    inst.components.machine.caninteractfn = function(inst) return true end
+end  
+
 
 local function fn(Sim)
 
@@ -116,16 +131,34 @@ local function fn(Sim)
 	inst.components.machine.turnonfn = onLight
 	inst.components.machine.turnofffn = onDim	
 
-    local light = inst.entity:AddLight()
-    inst.Light:Enable(false)
-	inst.Light:SetRadius(4)
-    inst.Light:SetFalloff(5)
-    inst.Light:SetIntensity(.7)
-    inst.Light:SetColour(135/255,221/255,12/255)
-
     inst:AddComponent("deployable")
     inst.components.deployable.test = test_ground
     --inst.components.deployable.ondeploy = ondeploy	
+
+    inst:AddComponent("fueled")
+    inst.components.fueled.maxfuel = 100
+    inst.components.fueled.fueltype = "CRYSTAL"
+    inst.components.fueled:SetDepletedFn(onEmpty)  
+    inst.components.fueled.ontakefuelfn = onFill
+    inst.components.fueled.accepting = true
+    inst.components.fueled:InitializeFuelLevel(10)
+
+    local light = inst.entity:AddLight()
+    inst:DoPeriodicTask(0, function(inst)
+        print(inst.components.fueled.currentfuel)
+        if inst.components.fueled.currentfuel and inst.components.fueled.currentfuel >= 0 then
+            inst.Light:SetRadius(inst.components.fueled.currentfuel / 20)
+        else
+            if inst.components.fueled.currentfuel == 0 then
+                onEmpty(inst)
+                inst.Light:SetRadius(0) 
+            end
+        end    
+    end)
+    inst.Light:Enable(false)
+    inst.Light:SetFalloff(5)
+    inst.Light:SetIntensity(.7)
+    inst.Light:SetColour(135/255,221/255,12/255)
 
 	return inst
 end

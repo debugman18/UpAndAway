@@ -29,6 +29,10 @@ local function fn(Sim)
 	inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/crystal_fragment_light.xml"		
 
+	inst:AddComponent("fuel")
+	inst.components.fuel.fueltype = "CRYSTAL"
+	inst.components.fuel.fuelvalue = 15
+
 	return inst
 end
 
