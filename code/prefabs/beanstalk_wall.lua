@@ -52,7 +52,32 @@ local stage4loot = {
 }		
 
 local maxloots = 4
-local maxhealth = 30
+local maxhealth = 10
+
+local function makeobstacle(inst)
+		
+	inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)	
+	inst.Physics:ClearCollisionMask()
+	inst.Physics:SetMass(0)
+	inst.Physics:CollidesWith(COLLISION.ITEMS)
+	inst.Physics:CollidesWith(COLLISION.CHARACTERS)
+	inst.Physics:SetActive(true)
+	local ground = GetWorld()
+	if ground then
+	    local pt = Point(inst.Transform:GetWorldPosition())
+	    ground.Pathfinder:AddWall(pt.x, pt.y, pt.z)
+	end
+end
+
+local function clearobstacle(inst)
+	inst:DoTaskInTime(2*FRAMES, function() inst.Physics:SetActive(false) end)
+
+	local ground = GetWorld()
+	if ground then
+	    local pt = Point(inst.Transform:GetWorldPosition())
+	    ground.Pathfinder:RemoveWall(pt.x, pt.y, pt.z)
+	end
+end
 
 local function resolveanimtoplay(percent, inst)
 	local anim_to_play = nil
@@ -103,6 +128,10 @@ end
 
 local function SetSapling(inst)
 	inst.components.lootdropper:SetLoot(stage0loot)
+	if inst.components.workable then
+		inst:RemoveComponent("workable")
+	end	
+	clearobstacle(inst)
 end
 
 local function GrowSapling(inst)
@@ -122,6 +151,7 @@ local function SetShort(inst)
 	end
 
 	inst.components.lootdropper:SetLoot(stage1loot)
+	makeobstacle(inst)
 end
 
 local function GrowShort(inst)
@@ -135,6 +165,7 @@ local function SetNormal(inst)
 	end
 
 	inst.components.lootdropper:SetLoot(stage2loot)
+	makeobstacle(inst)
 end
 
 local function GrowNormal(inst)
@@ -148,6 +179,7 @@ local function SetTall(inst)
 	end
 
 	inst.components.lootdropper:SetLoot(stage3loot)
+	makeobstacle(inst)
 end
 
 local function GrowTall(inst)
@@ -161,6 +193,7 @@ local function SetOld(inst)
 	end
 
 	inst.components.lootdropper:SetLoot(stage4loot)
+	makeobstacle(inst)
 end
 
 local function GrowOld(inst)
@@ -216,31 +249,6 @@ local function test_wall(inst, pt)
 	end
 	return false
 		
-end
-
-local function makeobstacle(inst)
-		
-	inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)	
-	inst.Physics:ClearCollisionMask()
-	inst.Physics:SetMass(0)
-	inst.Physics:CollidesWith(COLLISION.ITEMS)
-	inst.Physics:CollidesWith(COLLISION.CHARACTERS)
-	inst.Physics:SetActive(true)
-	local ground = GetWorld()
-	if ground then
-	    local pt = Point(inst.Transform:GetWorldPosition())
-	    ground.Pathfinder:AddWall(pt.x, pt.y, pt.z)
-	end
-end
-
-local function clearobstacle(inst)
-	inst:DoTaskInTime(2*FRAMES, function() inst.Physics:SetActive(false) end)
-
-	local ground = GetWorld()
-	if ground then
-	    local pt = Point(inst.Transform:GetWorldPosition())
-	    ground.Pathfinder:RemoveWall(pt.x, pt.y, pt.z)
-	end
 end
 
 local function onhealthchange(inst, old_percent, new_percent)
@@ -359,19 +367,24 @@ local function fn(inst)
 	inst.OnLoad = onload
 	inst.OnRemoveEntity = onremoveentity
 
-	print("Stage is " .. inst.components.growable.stage)
+	--print("Stage is " .. inst.components.growable.stage)
 
 	local stage = inst.components.growable.stage
 	if stage and stage == 1 then
 		anim:PlayAnimation("0", false)
+		clearobstacle(inst)
 	elseif stage and stage == 2 then
 		anim:PlayAnimation("1_4", false)
+		makeobstacle(inst)
 	elseif stage and stage == 3 then
 		anim:PlayAnimation("1_2", false)
+		makeobstacle(inst)
 	elseif stage and stage == 4 then
 		anim:PlayAnimation("3_4", false)
+		makeobstacle(inst)
 	elseif stage and stage == 5 then
 		anim:PlayAnimation("1", false)
+		makeobstacle(inst)
 	end	
 
 	return inst

@@ -26,6 +26,7 @@ local function onattackfn(inst, owner, target)
         lightning.Transform:SetPosition(target_pt.x, target_pt.y, target_pt.z)
     elseif outcome == 2 then
         lightning.Transform:SetPosition(owner_pt.x, owner_pt.y, owner_pt.z)
+        owner.components.health:DoDelta(-30)
     --elseif outcome == 3 then
         --whirlwind.Transform:SetPosition(target_pt.x, target_pt.y, target_pt.z)
     --elseif outcome == 4 then
@@ -60,7 +61,7 @@ local function fn(inst)
     anim:PlayAnimation("idle")
 
     inst:AddComponent("weapon")
-    inst.components.weapon:SetDamage(TUNING.AXE_DAMAGE)
+    inst.components.weapon:SetDamage(60)
     inst.components.weapon:SetOnAttack(onattackfn)
 
     inst:AddComponent("tool")
