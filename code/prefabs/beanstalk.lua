@@ -296,10 +296,10 @@ local function fn(Sim)
 
 	---------------------  
 	
-	inst:AddComponent("workable")
-	inst.components.workable:SetWorkAction(ACTIONS.CHOP)
-	inst.components.workable:SetOnWorkCallback(chopbeanstalk)
-	inst.components.workable:SetOnFinishCallback(chopdownbeanstalk)
+	--inst:AddComponent("workable")
+	--inst.components.workable:SetWorkAction(ACTIONS.CHOP)
+	--inst.components.workable:SetOnWorkCallback(chopbeanstalk)
+	--inst.components.workable:SetOnFinishCallback(chopdownbeanstalk)
 
 	---------------------  
 	
