@@ -73,8 +73,8 @@ refined_white_crystal.atlas = "images/inventoryimages/refined_white_crystal.xml"
 local thunderboards = Recipe("thunderboards", { Ingredient("thunder_log", 6, "images/inventoryimages/thunder_log.xml") }, RECIPETABS.REFINE, TECH.FABLE_1)
 thunderboards.atlas = "images/inventoryimages/thunderboards.xml"
 
-local blackstaff = Recipe("blackstaff", { Ingredient("spear", 1), Ingredient("refined_black_crystal", 1, "images/inventoryimages/refined_black_crystal.xml"), Ingredient("shadow_fuel", 6) }, RECIPETABS.MAGIC, TECH.FABLE_1)
+local blackstaff = Recipe("blackstaff", { Ingredient("spear", 1), Ingredient("refined_black_crystal", 1, "images/inventoryimages/refined_black_crystal.xml"), Ingredient("nightmarefuel", 6) }, RECIPETABS.MAGIC, TECH.FABLE_1)
 blackstaff.atlas = "images/inventoryimages/blackstaff.xml"
 
-local whitestaff = Recipe("whitestaff", { Ingredient("spear", 1), Ingredient("refined_white_crystal", 1, "images/inventoryimages/refined_white_crystal.xml"), Ingredient("shadow_fuel", 6) }, RECIPETABS.MAGIC, TECH.FABLE_1)
+local whitestaff = Recipe("whitestaff", { Ingredient("spear", 1), Ingredient("refined_white_crystal", 1, "images/inventoryimages/refined_white_crystal.xml"), Ingredient("nightmarefuel", 6) }, RECIPETABS.MAGIC, TECH.FABLE_1)
 whitestaff.atlas = "images/inventoryimages/whitestaff.xml"
