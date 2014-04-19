@@ -28,7 +28,7 @@ BUILD_ZIPS:=$(addprefix $(MODDIR)/anim/, $(addsuffix .zip, $(BUILD_NAMES)))
 INTERMEDIATE_ZIPS=$(foreach f, $(BUILD_NAMES), $(f)/$(f).zip)
 
 
-SCML_FLAGS:=$(if $(FORCEDRUN),-f,)
+SCML_FLAGS:=$(if $(FORCEDRUN),-f,) --ignore-self-date
 
 # This specifies the log file path used by the scml compiler.
 export MODTOOLS_LOG=$(MODDIR)/log/scml_log.txt
