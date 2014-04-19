@@ -2,8 +2,6 @@
 
 + **Current bugs:**
 
-	+ All objects using custom animations (Tiny player action hitboxes; Vanilla bug)
-
 	+ Whirlwind physics bug
 
 + **Art assets in need of attention**
