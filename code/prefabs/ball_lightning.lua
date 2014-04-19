@@ -9,7 +9,7 @@ local prefabs =
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/ball_lightning.zip"),
 }
 
 local SLEEP_DIST_FROMHOME = 10
@@ -47,9 +47,30 @@ local function fn(Sim)
 
 	inst:AddTag("ball_lightning")
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("void_placeholder")
-	inst:DoPeriodicTask(0.5, function() inst.AnimState:PlayAnimation("anim") end)
+	inst.AnimState:SetBank("ball_lightning")
+	inst.AnimState:SetBuild("ball_lightning")
+	inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
+	inst:DoPeriodicTask(0, function() 
+		inst.AnimState:PlayAnimation("idle", true) 
+	end)
+	inst:DoPeriodicTask(0, function()
+		local lighting = SpawnPrefab("lightning_rod_fx")
+		lighting.Transform:SetScale(.8,.3,.3)
+		lighting.AnimState:SetMultColour(150,150,0,.1)
+		lighting.Transform:SetPosition(inst.Transform:GetWorldPosition())
+		inst:DoTaskInTime(0.2, function(inst)
+			lighting:Remove()
+		end)
+		local roll = math.random(1,3)
+		if roll == 1 then
+			inst.AnimState:SetMultColour(250,250,0,.5)
+		elseif roll == 2 then	
+			inst.AnimState:SetMultColour(150,150,0,.5)
+		elseif roll == 3 then
+			inst.AnimState:SetMultColour(60,60,0,.5)
+		end	
+	end)
+	inst.Transform:SetScale(1.5,1.5,1.5)
 
 	inst:AddComponent("inspectable")
 
