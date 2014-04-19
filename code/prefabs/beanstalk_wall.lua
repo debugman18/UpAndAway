@@ -40,8 +40,16 @@ local stage4loot = {
 	"beanstalk_chunk",
 	"beanstalk_chunk",
 	"beanstalk_chunk",		
-}	
+}
 
+local stage4loot = {
+	"beanstalk_chunk",
+	"beanstalk_chunk",
+	"beanstalk_chunk",
+	"beanstalk_chunk",	
+	"beanstalk_chunk",
+	"beanstalk_chunk",		
+}		
 
 local maxloots = 4
 local maxhealth = 30
@@ -93,11 +101,22 @@ local function onhit(inst)
 
 end
 
+local function SetSapling(inst)
+	inst.components.lootdropper:SetLoot(stage0loot)
+end
+
+local function GrowSapling(inst)
+    inst.AnimState:PlayAnimation("0")
+    inst.components.health.currenthealth = 0
+end
+
 local function SetShort(inst)
-	inst:AddComponent("workable")
+	if not inst.components.workable then
+		inst:AddComponent("workable")
+	end	
 	inst.components.workable:SetWorkAction(ACTIONS.CHOP)
 	inst.components.workable:SetOnFinishCallback(onchopped)
-	inst.components.workable:SetOnWorkCallback(onhit) 
+	--inst.components.workable:SetOnWorkCallback(onchop) 
 	if inst.components.workable then
 	    inst.components.workable:SetWorkLeft(1)
 	end
@@ -151,6 +170,7 @@ end
 
 local growth_stages =
 {
+	{name="sapling", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[1].base, TUNING.EVERGREEN_GROW_TIME[1].random) end, fn = function(inst) SetSapling(inst) end,  growfn = function(inst) GrowSapling(inst) end},
     {name="short", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[1].base, TUNING.EVERGREEN_GROW_TIME[1].random) end, fn = function(inst) SetShort(inst) end,  growfn = function(inst) GrowShort(inst) end},
     {name="normal", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[2].base, TUNING.EVERGREEN_GROW_TIME[2].random) end, fn = function(inst) SetNormal(inst) end, growfn = function(inst) GrowNormal(inst) end},
     {name="tall", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[3].base, TUNING.EVERGREEN_GROW_TIME[3].random) end, fn = function(inst) SetTall(inst) end, growfn = function(inst) GrowTall(inst) end},
@@ -295,7 +315,6 @@ local function fn(inst)
 	local inst = CreateEntity()
 	local trans = inst.entity:AddTransform()
 	local anim = inst.entity:AddAnimState()
-	local l_stage = stage or 1
 	inst.entity:AddSoundEmitter()
 	inst:AddTag("wall")
 	MakeObstaclePhysics(inst, .5)    
@@ -313,7 +332,7 @@ local function fn(inst)
 		
 	inst:AddComponent("health")
 	inst.components.health:SetMaxHealth(maxhealth)
-	inst.components.health.currenthealth = maxhealth / 4
+	inst.components.health.currenthealth = 0
 	inst.components.health.ondelta = onhealthchange
 	inst.components.health.nofadeout = true
 	inst.components.health.canheal = false
@@ -333,7 +352,7 @@ local function fn(inst)
 
     inst:AddComponent("growable")
     inst.components.growable.stages = growth_stages
-    inst.components.growable:SetStage(l_stage)
+    inst.components.growable:SetStage(1)
     inst.components.growable.loopstages = false
     inst.components.growable:StartGrowing()
 						
@@ -351,7 +370,7 @@ local function fn(inst)
 		anim:PlayAnimation("1_2", false)
 	elseif stage and stage == 4 then
 		anim:PlayAnimation("3_4", false)
-	elseif stage and stage == 4 then
+	elseif stage and stage == 5 then
 		anim:PlayAnimation("1", false)
 	end	
 
