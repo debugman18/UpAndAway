@@ -3,6 +3,8 @@
 + **Current bugs:**
 
 	+ Whirlwind physics bug
+	
+	+ Ground setpieces occasionally appear in cloud realm.
 
 + **Art assets in need of attention**
 
