@@ -251,6 +251,7 @@ local function fn(inst)
 	inst.components.health.ondelta = onhealthchange
 	inst.components.health.nofadeout = true
 	inst.components.health.canheal = false
+	inst.components.health.fire_damage_scale = 0
 	inst:AddTag("noauradamage")
 
 	--inst.SoundEmitter:PlaySound(buildsound)		

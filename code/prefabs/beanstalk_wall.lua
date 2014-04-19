@@ -46,18 +46,23 @@ local stage4loot = {
 local maxloots = 4
 local maxhealth = 30
 
-local function resolveanimtoplay(percent)
+local function resolveanimtoplay(percent, inst)
 	local anim_to_play = nil
 	if percent <= 0 then
 		anim_to_play = "0"
+		inst.components.growable:SetStage(1)
 	elseif percent <= .4 then
 		anim_to_play = "1_4"
+		inst.components.growable:SetStage(2)
 	elseif percent <= .5 then
 		anim_to_play = "1_2"
+		inst.components.growable:SetStage(3)
 	elseif percent < 1 then
 		anim_to_play = "3_4"
+		inst.components.growable:SetStage(4)
 	else
 		anim_to_play = "1"
+		inst.components.growable:SetStage(5)
 	end
 	return anim_to_play
 end
@@ -80,7 +85,7 @@ local function onhit(inst)
 	--end
 
 	local healthpercent = inst.components.health:GetPercent()
-	local anim_to_play = resolveanimtoplay(healthpercent)
+	local anim_to_play = resolveanimtoplay(healthpercent, inst)
 	if healthpercent > 0 then
 		inst.AnimState:PlayAnimation(anim_to_play.."_hit")		
 		inst.AnimState:PushAnimation(anim_to_play, false)	
@@ -223,7 +228,7 @@ local function onhealthchange(inst, old_percent, new_percent)
 	if old_percent <= 0 and new_percent > 0 then makeobstacle(inst) end
 	if old_percent > 0 and new_percent <= 0 then clearobstacle(inst) end
 
-	local anim_to_play = resolveanimtoplay(new_percent)
+	local anim_to_play = resolveanimtoplay(new_percent, inst)
 	if new_percent > 0 then
 		inst.AnimState:PlayAnimation(anim_to_play.."_hit")		
 		inst.AnimState:PushAnimation(anim_to_play, false)		
@@ -297,7 +302,6 @@ local function fn(inst)
 	inst.entity:SetCanSleep(false)
 	anim:SetBank("wall")
 	anim:SetBuild("wall_stone")
-	anim:PlayAnimation("0", false)
 	anim:SetMultColour(0,50,0,1)
 	    
 	inst:AddComponent("inspectable")
@@ -335,7 +339,22 @@ local function fn(inst)
 						
 	inst.OnLoad = onload
 	inst.OnRemoveEntity = onremoveentity
-		
+
+	print("Stage is " .. inst.components.growable.stage)
+
+	local stage = inst.components.growable.stage
+	if stage and stage == 1 then
+		anim:PlayAnimation("0", false)
+	elseif stage and stage == 2 then
+		anim:PlayAnimation("1_4", false)
+	elseif stage and stage == 3 then
+		anim:PlayAnimation("1_2", false)
+	elseif stage and stage == 4 then
+		anim:PlayAnimation("3_4", false)
+	elseif stage and stage == 4 then
+		anim:PlayAnimation("1", false)
+	end	
+
 	return inst
 end
 
