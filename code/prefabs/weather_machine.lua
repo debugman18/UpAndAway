@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/portal_adventure.zip"),
 }
 
 local notags = {'NOBLOCK', 'player', 'FX'}
@@ -34,6 +34,7 @@ local function weather_off(inst)
 		GetSeasonManager():Cycle()
 		GetPlayer().components.sanity:DoDelta(-10)
 	end
+	inst.AnimState:PlayAnimation("idle_off", true)
 end	
 
 local function DoWeatherPick(inst)
@@ -93,6 +94,7 @@ local function weather_on(inst)
 		print "In another world."
 		DoWeatherPick()
 	end
+	inst.AnimState:PlayAnimation("idle_loop_on", true)
 end	
 
 local function fn(Sim)
@@ -102,9 +104,11 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("void_placeholder")
-	inst.AnimState:PlayAnimation("anim")
+	inst.AnimState:SetBank("portal_adventure")
+	inst.AnimState:SetBuild("portal_adventure")
+	inst.AnimState:PlayAnimation("idle_off", true)
+	inst.Transform:SetScale(.5,.5,.5)
+	inst.AnimState:SetMultColour(0, 229, 0, 1)
 
 	inst:AddComponent("inspectable")
 

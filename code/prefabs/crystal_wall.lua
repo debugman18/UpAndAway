@@ -238,7 +238,7 @@ local function fn(inst)
 				
 	inst:AddComponent("repairable")
 	inst.components.repairable.repairmaterial = "crystal"
-	inst.components.repairable.announcecanfix = false
+	inst.components.repairable.announcecanfix = true
 
 	inst.components.repairable.onrepaired = onrepaired
 		

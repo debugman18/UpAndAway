@@ -32,28 +32,31 @@ local cotton_vest = Recipe("cotton_vest", { Ingredient("silk", 4), Ingredient("c
 cotton_vest.atlas = "images/inventoryimages/cotton_vest.xml"
 
 local cotton_hat = Recipe("cotton_hat", { Ingredient("silk", 2), Ingredient("cloud_cotton", 6, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.DRESS, TECH.FABLE_1)
-cotton_hat.atlas = "images/winnie.xml"
+cotton_hat.atlas = "images/inventoryimages/cotton_hat.xml"
 
 local mushroom_hat = Recipe("mushroom_hat", { Ingredient("red_cap", 3), Ingredient("blue_cap", 3), Ingredient("green_cap", 3) }, RECIPETABS.DRESS, TECH.FABLE_1)
 mushroom_hat.atlas = "images/inventoryimages/mushroom_hat.xml"
 
 local weather_machine = Recipe("weather_machine", { Ingredient("gears", 6), Ingredient("crystal_fragment_black", 6, "images/inventoryimages/crystal_fragment_black.xml") , Ingredient("bluegem", 4)}, RECIPETABS.SCIENCE, TECH.FABLE_1, "weather_machine_placer")
-weather_machine.atlas = "images/winnie.xml"
+weather_machine.atlas = "images/inventoryimages/weather_machine.xml"
+
+local refiner = Recipe("refiner", { Ingredient("crystal_fragment_spire", 6, "images/inventoryimages/crystal_fragment_spire.xml"), Ingredient("cloud_coral_fragment", 6, "images/inventoryimages/cloud_coral_fragment.xml"), Ingredient("thunderboards", 3, "images/inventoryimages/thunderboards.xml") }, RECIPETABS.SCIENCE, TECH.FABLE_1, "refiner_placer")
+refiner.atlas = "images/inventoryimages/refiner.xml"
 
 local research_lectern = Recipe("research_lectern", { Ingredient("goldnugget", 4), Ingredient("crystal_fragment_relic", 2, "images/inventoryimages/crystal_fragment_relic.xml"), Ingredient("thunder_log", 6, "images/inventoryimages/thunder_log.xml") }, RECIPETABS.SCIENCE, TECH.SCIENCE_TWO, "research_lectern_placer")
-research_lectern.atlas = "images/winnie.xml"
+research_lectern.atlas = "images/inventoryimages/research_lectern.xml"
 
 local cotton_candy = Recipe("cotton_candy", { Ingredient("cloud_cotton", 6, "images/inventoryimages/cloud_cotton.xml"), Ingredient("candy_fruit", 6, "images/inventoryimages/candy_fruit.xml") }, RECIPETABS.FARM, TECH.FABLE_1)
-cotton_candy.atlas = "images/winnie.xml"
+cotton_candy.atlas = "images/inventoryimages/cotton_candy.xml"
 
 local grabber = Recipe("grabber", { Ingredient("magnet", 2, "images/inventoryimages/cloud_cotton.xml"), Ingredient("twigs", 8), Ingredient("rubber", 4, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.TOOLS, TECH.FABLE_1)
-grabber.atlas = "images/winnie.xml"
+grabber.atlas = "images/inventoryimages/grabber.xml"
 
 local wind_axe = Recipe("wind_axe", { Ingredient("crystal_fragment_water", 2, "images/inventoryimages/crystal_fragment_water.xml"), Ingredient("twigs", 8), Ingredient("rope", 2) }, RECIPETABS.WAR, TECH.FABLE_1)
 wind_axe.atlas = "images/inventoryimages/wind_axe.xml"
 
 local magnet = Recipe("magnet", { Ingredient("gears", 2), Ingredient("crystal_fragment_spire", 3, "images/inventoryimages/crystal_fragment_spire.xml"), Ingredient("rope", 4) }, RECIPETABS.SCIENCE, TECH.FABLE_1)
-magnet.atlas = "images/winnie.xml"
+magnet.atlas = "images/inventoryimages/magnet.xml"
 
 local crystal_lamp = Recipe("crystal_lamp", { Ingredient("beanlet_shell", 1, "images/inventoryimages/beanlet_shell.xml"), Ingredient("crystal_fragment_light", 4, "images/inventoryimages/crystal_fragment_light.xml"), Ingredient("rope", 3) }, RECIPETABS.LIGHT, TECH.FABLE_1, "crystal_lamp_placer")
 crystal_lamp.atlas = "images/inventoryimages/crystal_lamp.xml"

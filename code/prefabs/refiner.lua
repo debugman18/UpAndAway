@@ -6,7 +6,7 @@ local RefiningRecipeBook = modrequire 'resources.refining_recipebook'
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/refiner.zip"),
 }
 
 local prefabs =
@@ -138,9 +138,11 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	--MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("void_placeholder")
-	inst.AnimState:PlayAnimation("anim")
+	inst.AnimState:SetBank("accomplishment_shrine")
+	inst.AnimState:SetBuild("refiner")
+	inst.AnimState:PlayAnimation("idle", true)
+    inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
+    inst.Transform:SetScale(1.4,1.4,1.4)
 
     inst:AddTag("structure")
 
@@ -188,5 +190,5 @@ end
 
 return {
     Prefab ("common/inventory/refiner", fn, assets, prefabs),
-    MakePlacer ("common/refiner_placer", "marble", "void_placeholder", "anim"),
+    MakePlacer ("common/refiner_placer", "accomplishment_shrine", "refiner", "idle"),
 }    

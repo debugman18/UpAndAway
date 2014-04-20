@@ -40,7 +40,7 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 
     inst.AnimState:SetBank("pinecone")
-    inst.AnimState:SetBuild("beancone")
+    inst.AnimState:SetBuild("beanstalk_sapling")
     inst.AnimState:PlayAnimation("idle_planted")
 
     inst:AddComponent("inspectable")

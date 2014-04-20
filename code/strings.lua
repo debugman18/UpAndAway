@@ -2098,6 +2098,7 @@ STRINGS.RECIPE_DESC.REFINED_BLACK_CRYSTAL = "A pointy carved black gemstone."
 STRINGS.RECIPE_DESC.THUNDERBOARDS = "Shocking blue planks of wood."
 STRINGS.RECIPE_DESC.BEANSTALK_WALL_ITEM = "Grow your own walls."
 STRINGS.RECIPE_DESC.CRYSTAL_WALL_ITEM = "Elegant yet durable."
+STRINGS.RECIPE_DESC.REFINER = "Smash, crunch, create."
 
 STRINGS.GUMMYBEAR_NAMES = { 
     "Moisty", 

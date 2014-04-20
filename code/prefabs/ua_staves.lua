@@ -9,7 +9,7 @@ local cfg = Configurable "STAFF"
 
 local basic_assets =
 {
-	Asset("ANIM", "anim/staffs.zip"),
+	Asset("ANIM", "anim/ua_staves.zip"),
 	Asset("ANIM", "anim/swap_staffs.zip"), 
     Asset("IMAGE", "minimap/minimap_atlas.tex"),
     Asset("ATLAS", "minimap/minimap_data.xml"),
@@ -57,7 +57,7 @@ local function make_staff(data)
 		MakeInventoryPhysics(inst)
 		
 		anim:SetBank(data.bank or "staffs")
-		anim:SetBuild(data.build or "staffs")
+		anim:SetBuild(data.build or "ua_staves")
 		anim:PlayAnimation(data.anim)
 
 
@@ -119,7 +119,7 @@ local function make_black_staff()
 	return make_staff {
 		name = "blackstaff",
 
-		anim = "greenstaff",
+		anim = "yellowstaff",
 		swap_symbol = "greenstaff",
 
 		postinit = function(inst)
@@ -194,7 +194,7 @@ local function make_white_staff()
 	return make_staff {
 		name = "whitestaff",
 
-		anim = "greenstaff",
+		anim = "orangestaff",
 		swap_symbol = "greenstaff",
 
 		postinit = function(inst)

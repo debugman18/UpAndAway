@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets=
 {
-	Asset("ANIM", "anim/cane.zip"),
+	Asset("ANIM", "anim/ua_staves.zip"),
 	Asset("ANIM", "anim/swap_cane.zip"),
 
     Asset( "ATLAS", "images/inventoryimages/winnie_staff.xml" ),
@@ -145,9 +145,9 @@ local function fn(Sim)
     inst.entity:AddSoundEmitter()        
     MakeInventoryPhysics(inst)
     
-    anim:SetBank("cane")
-    anim:SetBuild("cane")
-    anim:PlayAnimation("idle")
+    anim:SetBank("staffs")
+    anim:SetBuild("ua_staves")
+    anim:PlayAnimation("redstaff")
     
     inst:AddTag("horn")
 

@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/researchlab.zip"),
 }
 
 local function OnTurnOn(inst)  
@@ -43,9 +43,10 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("void_placeholder")
-	inst.AnimState:PlayAnimation("anim")
+	inst.AnimState:SetBank("researchlab")
+	inst.AnimState:SetBuild("researchlab")
+	inst.AnimState:PlayAnimation("idle")
+	inst.AnimState:SetMultColour(100, 100, 100, 1)
 
 	inst:AddComponent("inspectable")
 
@@ -68,5 +69,5 @@ end
 
 return {
 	Prefab ("common/inventory/research_lectern", fn, assets),
-	MakePlacer ("common/research_lectern_placer", "marble", "void_placeholder", "anim"),
+	MakePlacer ("common/research_lectern_placer", "researchlab", "researchlab", "idle"),
 }	 
