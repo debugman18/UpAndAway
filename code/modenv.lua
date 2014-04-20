@@ -16,6 +16,12 @@ Debuggable = wickerrequire "adjectives.debuggable"
 
 LOGROOT = MODROOT .. "log/"
 
+
+AddSelfPostInit(function()
+	Climbing = modrequire "lib.climbing"
+end)
+
+
 --[[
 -- Note that this does NOT run in a "global" environment, things should be
 -- explicitly imported (unless they are by wicker itself already).

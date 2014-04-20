@@ -25,6 +25,9 @@ if _G.kleifileexists(MODROOT .. "dev.rc.defaults.lua") then LoadConfiguration "d
 if _G.kleifileexists(MODROOT .. "dev.rc.lua") then LoadConfiguration "dev.rc.lua" end
 
 
+modrequire 'worldgen_patches'
+
+
 ----------------------------------
 -- Custom Level mod example
 --

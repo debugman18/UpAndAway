@@ -46,6 +46,7 @@ function IsCloudLevelNumber(level_number)
 		return current_level <= level_number and level_number <= start_level
 	end
 end
+Pred.IsCloudLevelNumber = IsCloudLevelNumber
 
 
 ---
