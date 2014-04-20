@@ -2,9 +2,7 @@
 
 + **Current bugs:**
 
-	+ Whirlwind physics bug
-	
-	+ Ground setpieces occasionally appear in cloud realm.
+	+ Nothing
 
 + **Art assets in need of attention**
 
@@ -13,10 +11,6 @@
 + **Code assets in need of attention**
 
 	+ Manta (All functionality needed).
-
-	+ Day/night cycles in the cloudrealm.
-
-	+ Various means to deal with night in the cloudrealm.
 
 	+ Setpieces, setpieces, setpieces.
 
