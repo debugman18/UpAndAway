@@ -36,12 +36,12 @@ local function new_entity_table(onclear)
 	end
 
 	local next = next
-	local function next(t, k)
+	local function proxy_next(t, k)
 		return next(inner_t)
 	end
 
 	local pairs = pairs
-	local function pairs(t)
+	local function proxy_pairs(t)
 		return pairs(inner_t)
 	end
 
@@ -50,8 +50,8 @@ local function new_entity_table(onclear)
 	return setmetatable(t, {
 		__index = inner_t,
 		__newindex = SetInstEntry,
-		__next = next,
-		__pairs = pairs,
+		__next = proxy_next,
+		__pairs = proxy_pairs,
 	})
 end
 

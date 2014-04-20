@@ -698,7 +698,7 @@ end
 function EntityFlinger:OnSave()
 	local data = {}
 	local tracked_guids = {}
-	
+
 	for _, kind in ipairs{"pre_fling", "post_fling"} do
 		local tracked_insts = self[kind]
 		local datum = {}
@@ -721,7 +721,7 @@ function EntityFlinger:LoadPostPass(newents, data)
 		local datum = data[kind]
 		if datum then
 			for _, guid  in ipairs(datum) do
-				local inst = newents[guid]
+				local inst = newents[guid] and newents[guid].entity
 				if inst then
 					self.inst:DoTaskInTime(0.1, function()
 						Begin[kind](self, inst)
