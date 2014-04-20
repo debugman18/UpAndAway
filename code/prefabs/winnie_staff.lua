@@ -3,7 +3,7 @@ BindGlobal()
 local assets=
 {
 	Asset("ANIM", "anim/ua_staves.zip"),
-	Asset("ANIM", "anim/swap_cane.zip"),
+	Asset("ANIM", "anim/swap_ua_staves.zip"),
 
     Asset( "ATLAS", "images/inventoryimages/winnie_staff.xml" ),
     Asset( "IMAGE", "images/inventoryimages/winnie_staff.tex" ),
@@ -124,7 +124,7 @@ local function herd_enable(inst)
 end    
 
 local function onequip(inst, owner) 
-    owner.AnimState:OverrideSymbol("swap_object", "swap_cane", "swap_cane")
+    owner.AnimState:OverrideSymbol("swap_object", "swap_ua_staves", "purplestaff")
     owner.AnimState:Show("ARM_carry") 
     owner.AnimState:Hide("ARM_normal") 
 
@@ -147,7 +147,7 @@ local function fn(Sim)
     
     anim:SetBank("staffs")
     anim:SetBuild("ua_staves")
-    anim:PlayAnimation("redstaff")
+    anim:PlayAnimation("orangestaff")
     
     inst:AddTag("horn")
 

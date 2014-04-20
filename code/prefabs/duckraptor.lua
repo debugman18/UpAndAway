@@ -32,8 +32,9 @@ local function fn(Sim)
     shadow:SetSize( 1.5, .75 )
     inst.Transform:SetFourFaced()
     --inst.Transform:SetScale(.8, 1, 1.2)
-    inst.Transform:SetScale(2.4, 3, 3.6)
-    anim:SetMultColour(.9, .9, .9, .3)
+    inst.Transform:SetScale(1.6, 1.6, 1.6)
+    anim:SetMultColour(.9, .9, .9, .6)
+    anim:SetBloomEffectHandle("shaders/anim.ksh")
     
     MakeCharacterPhysics(inst, 50, .5)    
     anim:SetBank("perd") -- name of the animation root
@@ -66,7 +67,7 @@ local function fn(Sim)
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "pig_torso"
     inst.components.combat:SetRetargetFunction(3, retargetfn)    
-    inst.components.combat:SetDefaultDamage(20)
+    inst.components.combat:SetDefaultDamage(50)
     inst.components.combat:SetAttackPeriod(.8)
 
     inst:AddComponent("lootdropper")

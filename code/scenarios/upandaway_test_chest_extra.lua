@@ -29,6 +29,14 @@ local function OnCreate(inst, scenariorunner)
 			item = "mandrake",
 			count = 5,
 		},
+		{
+			item = "meat_dried",
+			count = 10,
+		},
+		{
+			item = "stuffedeggplant",
+			count = 10,
+		},		
 	}
 
 	chestfunctions.AddChestItems(inst, items)

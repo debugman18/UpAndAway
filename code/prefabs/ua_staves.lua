@@ -10,7 +10,7 @@ local cfg = Configurable "STAFF"
 local basic_assets =
 {
 	Asset("ANIM", "anim/ua_staves.zip"),
-	Asset("ANIM", "anim/swap_staffs.zip"), 
+	Asset("ANIM", "anim/swap_ua_staves.zip"), 
     Asset("IMAGE", "minimap/minimap_atlas.tex"),
     Asset("ATLAS", "minimap/minimap_data.xml"),
 
@@ -37,7 +37,7 @@ local function make_staff(data)
 	end
 
 	local onequip = function(inst, owner) 
-		owner.AnimState:OverrideSymbol("swap_object", data.swap_build or "swap_staffs", data.swap_symbol)
+		owner.AnimState:OverrideSymbol("swap_object", data.swap_build or "swap_ua_staves", data.swap_symbol)
 		owner.AnimState:Show("ARM_carry") 
 		owner.AnimState:Hide("ARM_normal") 
 	end
@@ -120,7 +120,7 @@ local function make_black_staff()
 		name = "blackstaff",
 
 		anim = "yellowstaff",
-		swap_symbol = "greenstaff",
+		swap_symbol = "yellowstaff",
 
 		postinit = function(inst)
 			do
@@ -194,7 +194,7 @@ local function make_white_staff()
 	return make_staff {
 		name = "whitestaff",
 
-		anim = "orangestaff",
+		anim = "redstaff",
 		swap_symbol = "greenstaff",
 
 		postinit = function(inst)

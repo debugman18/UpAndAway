@@ -293,7 +293,12 @@ local function fn()
 	inst:AddComponent("follower")
 
 	inst:AddComponent("periodicspawner")
-	inst.components.periodicspawner:SetPrefab("skyflower")	
+	inst.components.periodicspawner:SetPrefab("poop")	
+    inst.components.periodicspawner:SetPrefab("poop")
+    inst.components.periodicspawner:SetRandomTimes(30, 80)
+    inst.components.periodicspawner:SetDensityInRange(40, 3)
+    inst.components.periodicspawner:SetMinimumSpacing(10)
+    inst.components.periodicspawner:Start()
 
 	MakeLargeBurnableCharacter(inst, "beefalo_body")
 	MakeLargeFreezableCharacter(inst, "beefalo_body")

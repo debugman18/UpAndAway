@@ -338,7 +338,7 @@ Add.QuotesFor "beanstalk_sapling" {
 
 Add.QuotesFor "beanstalk_wall" {
 	ANY = "It's a... thing.",
-    GENERIC = nil,
+    GENERIC = "That's not very safe.",
     wathgrithr = "A wall of plant.",
     waxwell = nil,
     webber = nil,
@@ -351,7 +351,7 @@ Add.QuotesFor "beanstalk_wall" {
 }
 
 Add.QuotesFor "beanstalk_wall_item" {
-    GENERIC = nil,
+    GENERIC = "That's not very safe.",
     wathgrithr = "A wall of plant.",
     waxwell = nil,
     webber = nil,
@@ -377,7 +377,7 @@ Add.QuotesFor "bee_marshmallow" {
 }
 
 Add.QuotesFor "bird_paradise" {
-    GENERIC = nil,
+    GENERIC = "I'm starting to hate birds.",
     wathgrithr = "Its feathers would look good on my helmet.",
     waxwell = nil,
     webber = nil,
@@ -455,7 +455,7 @@ Add.QuotesFor "cauldron" {
 }
 
 Add.QuotesFor "cheshire" {
-    GENERIC = nil,
+    GENERIC = "He's way too happy.",
     wathgrithr = "It's up to no good.",
     waxwell = nil,
     webber = nil,
@@ -468,7 +468,7 @@ Add.QuotesFor "cheshire" {
 }
 
 Add.QuotesFor "chimera" {
-    GENERIC = nil,
+    GENERIC = "A wicked creature.",
     wathgrithr = "A worthy opponant.",
     waxwell = nil,
     webber = nil,
@@ -507,11 +507,11 @@ Add.QuotesFor "cloud_algae_fragment" {
 }
 
 Add.QuotesFor "cloud_bomb" {
-    GENERIC = nil,
+    GENERIC = "That shouldn't work.",
     wathgrithr = "The sky is exploding!",
     waxwell = nil,
     webber = nil,
-    wendy = "Let me blow me enemies to tiny bits.",
+    wendy = "Let me blow my enemies to tiny bits.",
     wickerbottom = nil,
     willow = "An explosive cloud, my favourite kind of cloud.",
     wolfgang = "Is for going boom.",
@@ -611,7 +611,7 @@ Add.QuotesFor "cloud_fruit_tree" {
 }
 
 Add.QuotesFor "cloud_jelly" {
-    GENERIC = nil,
+    GENERIC = "Goopy planty matter.",
     wathgrithr = "Ugh, too sweet for me.",
     waxwell = nil,
     webber = nil,
@@ -624,7 +624,7 @@ Add.QuotesFor "cloud_jelly" {
 }
 
 Add.QuotesFor "cloud_storage" {
-    GENERIC = nil,
+    GENERIC = "A light and fluffy chest.",
     wathgrithr = "A cloud to hold my belongings!",
     waxwell = nil,
     webber = nil,
@@ -650,7 +650,7 @@ Add.QuotesFor "cloud_turf" {
 }
 
 Add.QuotesFor "cloud_wall" {
-    GENERIC = nil,
+    GENERIC = "I have to ask why.",
     wathgrithr = "The walls of Valhalla.",
     waxwell = nil,
     webber = nil,
@@ -728,7 +728,7 @@ Add.QuotesFor "cotton_vest" {
 }
 
 Add.QuotesFor "crystal_armor" {
-    GENERIC = nil,
+    GENERIC = "It's a bit heavy, but quite useful.",
     wathgrithr = "Armor made from precious mineral.",
     waxwell = nil,
     webber = nil,
@@ -754,7 +754,7 @@ Add.QuotesFor "crystal_black" {
 }
 
 Add.QuotesFor "crystal_cap" {
-    GENERIC = nil,
+    GENERIC = "I'm not sure I want to wear that.",
     wathgrithr = "It's almost as good as mine!",
     waxwell = nil,
     webber = nil,
@@ -923,7 +923,8 @@ Add.QuotesFor "crystal_spire" {
 }
 
 Add.QuotesFor "crystal_wall" {
-    GENERIC = nil,
+    ANY = "It's... a thing.",
+    GENERIC = "A crystalline wall.",
     wathgrithr = "It sparkles.",
     waxwell = nil,
     webber = nil,
@@ -1066,7 +1067,7 @@ Add.QuotesFor "flying_fish_pond" {
 }
 
 Add.QuotesFor "golden_amulet" {
-    GENERIC = nil,
+    GENERIC = "An amulet of luck.",
     wathgrithr = "An amulet of Freyja.",
     waxwell = nil,
     webber = nil,
@@ -1092,7 +1093,7 @@ Add.QuotesFor "golden_egg" {
 }
 
 Add.QuotesFor "golden_golem" {
-    GENERIC = nil,
+    GENERIC = "It's worthless as long as it wants to kill me.",
     wathgrithr = "Imagine how many spears I could make from this!",
     waxwell = "How intruiging.",
     webber = nil,
@@ -1222,7 +1223,7 @@ Add.QuotesFor "greentea" {
 }
 
 Add.QuotesFor "gummybear" {
-    GENERIC = nil,
+    GENERIC = "How beary nice to meet you.",
     wathgrithr = nil,
     waxwell = nil,
     webber = nil,
@@ -1235,7 +1236,7 @@ Add.QuotesFor "gummybear" {
 }
 
 Add.QuotesFor "gummybear_den" {
-    GENERIC = nil,
+    GENERIC = "I couldn't fit in it if I tried.",
     wathgrithr = nil,
     waxwell = nil,
     webber = nil,
@@ -1365,7 +1366,7 @@ Add.QuotesFor "kite" {
 }
 
 Add.QuotesFor "lionant" {
-    GENERIC = nil,
+    GENERIC = "Probably nothing to worry about.",
     wathgrithr = "A beast from Hel!",
     waxwell = nil,
     webber = nil,
@@ -1508,7 +1509,7 @@ Add.QuotesFor "monolith" {
 }
 
 Add.QuotesFor "mushroom_hat" {
-    GENERIC = nil,
+    GENERIC = "I feel silly, oh so silly.",
     wathgrithr = "A helmet of vegetables.",
     waxwell = nil,
     webber = nil,
@@ -1729,7 +1730,7 @@ Add.QuotesFor "rubber" {
 }
 
 Add.QuotesFor "scarecrow" {
-    GENERIC = nil,
+    GENERIC = "It doesn't seem like it's working.",
     wathgrithr = "A target for my spear!",
     waxwell = nil,
     webber = nil,
@@ -1911,7 +1912,7 @@ Add.QuotesFor "tea_leaves" {
 }
 
 Add.QuotesFor "thunderboards" {
-    GENERIC = nil,
+    GENERIC = "Flat lightning.",
     wathgrithr = "Blessed by Thor.",
     waxwell = nil,
     webber = nil,
@@ -2028,7 +2029,7 @@ Add.QuotesFor "whitestaff" {
 }
 
 Add.QuotesFor "wind_axe" {
-    GENERIC = nil,
+    GENERIC = "It feels tingly.",
     wathgrithr = "An artifact of Thor!",
     waxwell = nil,
     webber = nil,
