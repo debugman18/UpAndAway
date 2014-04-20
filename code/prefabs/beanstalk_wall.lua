@@ -347,7 +347,7 @@ local function fn(inst)
 	inst:AddTag("noauradamage")
 
 	inst:AddComponent("repairable")
-	inst.components.repairable.announcecanfix = false
+	--inst.components.repairable.announcecanfix = false
 		
 	MakeLargeBurnable(inst)
 	MakeLargePropagator(inst)

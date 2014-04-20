@@ -337,6 +337,7 @@ Add.QuotesFor "beanstalk_sapling" {
 }
 
 Add.QuotesFor "beanstalk_wall" {
+	ANY = "It's a... thing.",
     GENERIC = nil,
     wathgrithr = "A wall of plant.",
     waxwell = nil,
@@ -2066,6 +2067,11 @@ Add.QuotesFor {"balloon_icehound", "balloon_firehound"} {
 
 ------------------------------------------------------------------------
 
+Add.StringsBy "ANY" {
+	ANNOUNCE_CANFIX = "\nI think I can fix this!",
+}
+
+------------------------------------------------------------------------
 
 STRINGS.CHARACTER_TITLES.winnie = "The Curious"
 STRINGS.CHARACTER_NAMES.winnie = "Winnie"
