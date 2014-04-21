@@ -13,7 +13,12 @@ local prefabs =
 }
 
 local function chopped(inst)
-	--
+	if inst.components.lootdropper then
+		inst.components.lootdropper:DropLoot()
+	end
+	
+	inst:RemoveComponent("workable")
+	inst.components.growable:SetStage(1)	--
 end
 
 local function chop(inst)
@@ -42,7 +47,7 @@ local tall_loot =
 
 local function SetShort(inst)
     if inst.components.workable then
-	    inst.components.workable:SetWorkLeft(TUNING.EVERGREEN_CHOPS_SMALL)
+	    inst.components.workable:SetWorkLeft(3)
 	end
 	if not inst.components.lootdropper then
 		inst:AddComponent("lootdropper")
@@ -58,7 +63,7 @@ end
 
 local function SetNormal(inst)
     if inst.components.workable then
-	    inst.components.workable:SetWorkLeft(TUNING.EVERGREEN_CHOPS_NORMAL)
+	    inst.components.workable:SetWorkLeft(4)
 	end
 	if not inst.components.lootdropper then
 		inst:AddComponent("lootdropper")
@@ -74,7 +79,7 @@ end
 
 local function SetTall(inst)
 	if inst.components.workable then
-		inst.components.workable:SetWorkLeft(TUNING.EVERGREEN_CHOPS_TALL)
+		inst.components.workable:SetWorkLeft(5)
 	end
 	if not inst.components.lootdropper then
 		inst:AddComponent("lootdropper")

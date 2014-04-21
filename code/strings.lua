@@ -38,6 +38,7 @@ Add.Names {
     cloud_coral_fragment = "Cloud Coral",
     cloud_cotton = "Cloud Cotton",
     cloud_fruit = "Cloud Fruit",
+    cloud_fruit_cooked = "Cooked Cloud Fruit",
     cloud_fruit_tree = "Cloudfruit Tree",
     cloud_jelly = "Cloud Jelly",
     cloud_storage = "Cloud Chest",
@@ -168,7 +169,7 @@ Add.QuotesFor "alien" {
 }
 
 Add.QuotesFor "ambrosia" {
-    GENERIC = nil,
+    GENERIC = "Suppedly it can bring immortality.",
     wathgrithr = "The fruit of Valhalla!",
     waxwell = nil,
     webber = nil,
@@ -585,6 +586,19 @@ Add.QuotesFor "cloud_cotton" {
 }
 
 Add.QuotesFor "cloud_fruit" {
+    GENERIC = "Cloud fruit. What else would it be?",
+    wathgrithr = "The fruit of Valhalla.",
+    waxwell = nil,
+    webber = nil,
+    wendy = "Wispy outside hides a fleshy heart.",
+    wickerbottom = nil,
+    willow = "A Cloud Fruit a day keeps the Shopkeeper away.",
+    wolfgang = "Fluffy plant. Still yummy.",
+    woodie = "Tasty.",
+    wx78 = "IT LOOKS EDIBLE",
+}
+
+Add.QuotesFor "cloud_fruit_cooked" {
     GENERIC = "Cloud fruit. What else would it be?",
     wathgrithr = "The fruit of Valhalla.",
     waxwell = nil,

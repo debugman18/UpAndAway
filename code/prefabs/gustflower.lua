@@ -34,13 +34,15 @@ local function OnSpawned(inst, child)
         StopSpawning(inst)
     end
 
+    if math.random(1,5) == 1 then
     local seeds = SpawnPrefab("gustflower_seeds")
-    local pt = Vector3(inst.Transform:GetWorldPosition()) + Vector3(0,4.5,0)
-    seeds.Transform:SetPosition(pt:Get())
-    local down = TheCamera:GetDownVec()
-    local angle = math.atan2(down.z, down.x) + (math.random()*60-30)*DEGREES
-    local sp = math.random()*4+2
-    seeds.Physics:SetVel(sp*math.cos(angle), math.random()*2+8, sp*math.sin(angle))
+        local pt = Vector3(inst.Transform:GetWorldPosition()) + Vector3(0,4.5,0)
+        seeds.Transform:SetPosition(pt:Get())
+        local down = TheCamera:GetDownVec()
+        local angle = math.atan2(down.z, down.x) + (math.random()*60-30)*DEGREES
+        local sp = math.random()*4+2
+        seeds.Physics:SetVel(sp*math.cos(angle), math.random()*2+8, sp*math.sin(angle))
+    end
 end
 
 local function onunchargedfn(inst)
@@ -49,7 +51,7 @@ local function onunchargedfn(inst)
 end
 
 local function onchargedfn(inst)
-    inst:DoTaskInTime(0, function(inst)
+    inst:DoTaskInTime(math.random(1,2), function(inst)
         inst.components.childspawner:ReleaseAllChildren() 
         inst.components.childspawner:StartSpawning() 
         inst.AnimState:PlayAnimation("idle_1")         
