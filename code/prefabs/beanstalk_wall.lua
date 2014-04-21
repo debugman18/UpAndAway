@@ -370,5 +370,5 @@ end
 return {
 	Prefab ("common/inventory/beanstalk_wall", fn, assets, prefabs),
 	Prefab ("common/inventoryitem/beanstalk_wall_item", itemfn, assets, prefabs),
-	MakePlacer("common/beanstalk_wall_placer", "wall", "beanstalk_wall", "1_2", false, false, true),
+	MakePlacer("common/beanstalk_wall_placer", "beanstalk_wall", "beanstalk_wall", "0", false, false, true),
 }
