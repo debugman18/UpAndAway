@@ -5,7 +5,7 @@ require "prefabutil"
 local assets =
 {
 	Asset("ANIM", "anim/wall.zip"),
-	Asset("ANIM", "anim/wall_stone.zip"),
+	Asset("ANIM", "anim/beanstalk_wall.zip"),
 
     Asset( "ATLAS", "images/inventoryimages/beanstalk_wall_item.xml" ),
     Asset( "IMAGE", "images/inventoryimages/beanstalk_wall_item.tex" ),
@@ -25,34 +25,28 @@ local stage1loot = {
 }	
 
 local stage2loot = {
-	"beanstalk_chunk",
 	"beanstalk_chunk",		
 }	
 
 local stage3loot = {
 	"beanstalk_chunk",
-	"beanstalk_chunk",
-	"beanstalk_chunk",	
 }	
 
 local stage4loot = {
 	"beanstalk_chunk",
 	"beanstalk_chunk",
-	"beanstalk_chunk",
-	"beanstalk_chunk",		
+		
 }
 
 local stage4loot = {
 	"beanstalk_chunk",
 	"beanstalk_chunk",
 	"beanstalk_chunk",
-	"beanstalk_chunk",	
-	"beanstalk_chunk",
-	"beanstalk_chunk",		
+	"beanstalk_chunk",			
 }		
 
 local maxloots = 4
-local maxhealth = 10
+local maxhealth = 20
 
 local function makeobstacle(inst)
 		
@@ -70,34 +64,14 @@ local function makeobstacle(inst)
 end
 
 local function clearobstacle(inst)
-	inst:DoTaskInTime(2*FRAMES, function() inst.Physics:SetActive(false) end)
+	--inst:DoTaskInTime(2*FRAMES, function() inst.Physics:SetActive(false) end)
+	inst.Physics:SetActive(false)
 
 	local ground = GetWorld()
 	if ground then
 	    local pt = Point(inst.Transform:GetWorldPosition())
 	    ground.Pathfinder:RemoveWall(pt.x, pt.y, pt.z)
 	end
-end
-
-local function resolveanimtoplay(percent, inst)
-	local anim_to_play = nil
-	if percent <= 0 then
-		anim_to_play = "0"
-		inst.components.growable:SetStage(1)
-	elseif percent <= .4 then
-		anim_to_play = "1_4"
-		inst.components.growable:SetStage(2)
-	elseif percent <= .5 then
-		anim_to_play = "1_2"
-		inst.components.growable:SetStage(3)
-	elseif percent < 1 then
-		anim_to_play = "3_4"
-		inst.components.growable:SetStage(4)
-	else
-		anim_to_play = "1"
-		inst.components.growable:SetStage(5)
-	end
-	return anim_to_play
 end
 
 local function onchopped(inst, worker)
@@ -113,17 +87,28 @@ local function onchopped(inst, worker)
 end
 
 local function onhit(inst)
-	--if data.destroysound then
-		--inst.SoundEmitter:PlaySound(data.destroysound)		
-	--end
-
 	local healthpercent = inst.components.health:GetPercent()
-	local anim_to_play = resolveanimtoplay(healthpercent, inst)
-	if healthpercent > 0 then
-		inst.AnimState:PlayAnimation(anim_to_play.."_hit")		
-		inst.AnimState:PushAnimation(anim_to_play, false)	
+	if healthpercent == 1 then
+		inst.AnimState:PlayAnimation("1_hit")		
+		inst.AnimState:PushAnimation("1")	
+		inst.components.growable:SetStage(5)
+	elseif healthpercent == .75 then
+		inst.AnimState:PlayAnimation("3_4_hit")		
+		inst.AnimState:PushAnimation("3_4")	
+		inst.components.growable:SetStage(4)
+	elseif healthpercent == .5 then
+		inst.AnimState:PlayAnimation("1_2_hit")		
+		inst.AnimState:PushAnimation("1")
+		inst.components.growable:SetStage(3)	
+	elseif healthpercent == .25 then
+		inst.AnimState:PlayAnimation("1_4_hit")		
+		inst.AnimState:PushAnimation("1")	
+		inst.components.growable:SetStage(2)
+	elseif healthpercent == 0 then
+		--inst.AnimState:PlayAnimation("0_hit")		
+		inst.AnimState:PushAnimation("0")
+		inst.components.growable:SetStage(1)				
 	end	
-
 end
 
 local function SetSapling(inst)
@@ -132,10 +117,13 @@ local function SetSapling(inst)
 		inst:RemoveComponent("workable")
 	end	
 	clearobstacle(inst)
+	inst.AnimState:PlayAnimation("0")
+	print("set1")
 end
 
 local function GrowSapling(inst)
     inst.AnimState:PlayAnimation("0")
+    clearobstacle(inst)
     inst.components.health.currenthealth = 0
 end
 
@@ -145,59 +133,85 @@ local function SetShort(inst)
 	end	
 	inst.components.workable:SetWorkAction(ACTIONS.CHOP)
 	inst.components.workable:SetOnFinishCallback(onchopped)
-	--inst.components.workable:SetOnWorkCallback(onchop) 
 	if inst.components.workable then
 	    inst.components.workable:SetWorkLeft(1)
 	end
 
 	inst.components.lootdropper:SetLoot(stage1loot)
-	makeobstacle(inst)
+	clearobstacle(inst)
+	inst.AnimState:PlayAnimation("1_4")
+	print("set2")
 end
 
 local function GrowShort(inst)
     inst.AnimState:PlayAnimation("1_4")
+    clearobstacle(inst)
     inst.components.health.currenthealth = maxhealth / 4
 end
 
 local function SetNormal(inst)
+	if not inst.components.workable then
+		inst:AddComponent("workable")
+	end	
+	inst.components.workable:SetWorkAction(ACTIONS.CHOP)
+	inst.components.workable:SetOnFinishCallback(onchopped)	
 	if inst.components.workable then
 	    inst.components.workable:SetWorkLeft(2)
 	end
 
 	inst.components.lootdropper:SetLoot(stage2loot)
-	makeobstacle(inst)
+	clearobstacle(inst)
+	inst.AnimState:PlayAnimation("1_2")
+	print("set3")
 end
 
 local function GrowNormal(inst)
     inst.AnimState:PlayAnimation("1_2")
+    clearobstacle(inst)
     inst.components.health.currenthealth = maxhealth / 2
 end
 
 local function SetTall(inst)
+	if not inst.components.workable then
+		inst:AddComponent("workable")
+	end	
+	inst.components.workable:SetWorkAction(ACTIONS.CHOP)
+	inst.components.workable:SetOnFinishCallback(onchopped)
 	if inst.components.workable then
 	    inst.components.workable:SetWorkLeft(3)
 	end
 
 	inst.components.lootdropper:SetLoot(stage3loot)
 	makeobstacle(inst)
+	inst.AnimState:PlayAnimation("3_4")
+	print("set4")
 end
 
 local function GrowTall(inst)
     inst.AnimState:PlayAnimation("3_4")
+    makeobstacle(inst)
     inst.components.health.currenthealth = maxhealth - (maxhealth / 4)
 end
 
 local function SetOld(inst)
+	if not inst.components.workable then
+		inst:AddComponent("workable")
+	end	
+	inst.components.workable:SetWorkAction(ACTIONS.CHOP)
+	inst.components.workable:SetOnFinishCallback(onchopped)
 	if inst.components.workable then
 	    inst.components.workable:SetWorkLeft(4)
 	end
 
 	inst.components.lootdropper:SetLoot(stage4loot)
 	makeobstacle(inst)
+	inst.AnimState:PlayAnimation("1")
+	print("set5")
 end
 
 local function GrowOld(inst)
     inst.AnimState:PlayAnimation("1")
+    makeobstacle(inst)
     inst.components.health.currenthealth = maxhealth
 end
 
@@ -251,20 +265,23 @@ local function test_wall(inst, pt)
 		
 end
 
-local function onhealthchange(inst, old_percent, new_percent)
-		
-	if old_percent <= 0 and new_percent > 0 then makeobstacle(inst) end
-	if old_percent > 0 and new_percent <= 0 then clearobstacle(inst) end
+local function onsave(inst, data)
+	--data.stage = inst.components.growable.stage
+end
 
-	local anim_to_play = resolveanimtoplay(new_percent, inst)
-	if new_percent > 0 then
-		inst.AnimState:PlayAnimation(anim_to_play.."_hit")		
-		inst.AnimState:PushAnimation(anim_to_play, false)		
+local function onload(inst, data)
+	print("Stage should be" .. inst.components.growable.stage)
+	if inst.components.growable.stage >= 4 then
+		makeobstacle(inst)
 	else
-		inst.AnimState:PlayAnimation(anim_to_play)		
+		clearobstacle(inst)
 	end
 end
-	
+
+local function onremoveentity(inst)
+	clearobstacle(inst)
+end
+
 local function itemfn(inst)
 
 	local inst = CreateEntity()
@@ -274,9 +291,10 @@ local function itemfn(inst)
 	inst.entity:AddAnimState()
 	MakeInventoryPhysics(inst)
 	    
-	inst.AnimState:SetBank("wall")
-	inst.AnimState:SetBuild("wall_stone")
-	inst.AnimState:PlayAnimation("idle")
+	inst.AnimState:SetBank("beanstalk_wall")
+	inst.AnimState:SetBuild("beanstalk_wall")
+	inst.AnimState:PlayAnimation("0")
+	inst.Transform:SetScale(1.6,1.6,1.6)
 
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_MEDITEM
@@ -300,25 +318,6 @@ local function itemfn(inst)
 	return inst
 end
 
-local function onrepaired(inst)
-	--if data.buildsound then
-		--inst.SoundEmitter:PlaySound(data.buildsound)		
-	--end
-	makeobstacle(inst)
-end
-	    
-local function onload(inst, data)
-	--print("walls - onload")
-	makeobstacle(inst)
-	if inst.components.health:GetPercent() <= 0 then
-		clearobstacle(inst)
-	end
-end
-
-local function onremoveentity(inst)
-	clearobstacle(inst)
-end
-
 local function fn(inst)
 	local inst = CreateEntity()
 	local trans = inst.entity:AddTransform()
@@ -327,9 +326,9 @@ local function fn(inst)
 	inst:AddTag("wall")
 	MakeObstaclePhysics(inst, .5)    
 	inst.entity:SetCanSleep(false)
-	anim:SetBank("wall")
-	anim:SetBuild("wall_stone")
-	anim:SetMultColour(0,50,0,1)
+	anim:SetBank("beanstalk_wall")
+	anim:SetBuild("beanstalk_wall")
+	inst.Transform:SetScale(3,3,3)
 	    
 	inst:AddComponent("inspectable")
 	inst:AddComponent("lootdropper")
@@ -352,9 +351,6 @@ local function fn(inst)
 	MakeLargeBurnable(inst)
 	MakeLargePropagator(inst)
 	inst.components.burnable.flammability = 1
-			
-	--inst.components.propagator.flashpoint = 30+math.random()*10			
-	--inst.components.health.fire_damage_scale = 0
 
 	--inst.SoundEmitter:PlaySound(buildsound)		
 
@@ -365,27 +361,8 @@ local function fn(inst)
     inst.components.growable:StartGrowing()
 						
 	inst.OnLoad = onload
+	inst.OnSave = onsave
 	inst.OnRemoveEntity = onremoveentity
-
-	--print("Stage is " .. inst.components.growable.stage)
-
-	local stage = inst.components.growable.stage
-	if stage and stage == 1 then
-		anim:PlayAnimation("0", false)
-		clearobstacle(inst)
-	elseif stage and stage == 2 then
-		anim:PlayAnimation("1_4", false)
-		makeobstacle(inst)
-	elseif stage and stage == 3 then
-		anim:PlayAnimation("1_2", false)
-		makeobstacle(inst)
-	elseif stage and stage == 4 then
-		anim:PlayAnimation("3_4", false)
-		makeobstacle(inst)
-	elseif stage and stage == 5 then
-		anim:PlayAnimation("1", false)
-		makeobstacle(inst)
-	end	
 
 	return inst
 end
@@ -393,5 +370,5 @@ end
 return {
 	Prefab ("common/inventory/beanstalk_wall", fn, assets, prefabs),
 	Prefab ("common/inventoryitem/beanstalk_wall_item", itemfn, assets, prefabs),
-	MakePlacer("common/beanstalk_wall_placer", "wall", "wall_ruins", "1_2", false, false, true),
+	MakePlacer("common/beanstalk_wall_placer", "wall", "beanstalk_wall", "1_2", false, false, true),
 }
