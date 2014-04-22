@@ -20,7 +20,7 @@ ifndef TOOLS_DIR
 endif
 
 
-define ADD_ANIM_DEPENDENCY =
+define ADD_ANIM_DEPENDENCY
 $(1).zip: $(1)/anim.bin
 endef
 

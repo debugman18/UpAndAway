@@ -34,7 +34,7 @@ SCML_FLAGS:=$(if $(FORCEDRUN),-f,) --ignore-self-date
 export MODTOOLS_LOG=$(MODDIR)/log/scml_log.txt
 
 
-define ADD_BUILD_RULE =
+define ADD_BUILD_RULE
  $(MODDIR)/anim/$(1).zip $(1)/$(1).zip: $(1)/$(1).scml cleanlog
 	$(TOOLSDIR)/scml_wrapper.sh $(SCML_FLAGS) "$$<" "$(MODDIR)"
 endef
