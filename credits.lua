@@ -15,14 +15,17 @@ return {
 		"MilleniumCount",
 		"Sukoushi",
 		"TheDanaAddams",
-		"Thelefthelix",
+		"TheLeftHelix",
 		"Willette",
+		"Mr. Tiddles",
 	}},
 	{"writing", {
 		title = "Writers",
 
 		"Luggs",
-		"KidneyBeanBoy",
+		"Buttercup",
+		"Lium",
+
 	}},
 	{"misc", sort = false, {
 		title = "Collaborators",
@@ -33,9 +36,10 @@ return {
 		"Lord_Battal",
 		"Rabbitfist",
 		"Stephenmrush",
-		"TeoSS69",
 		"TheHockeyGods",
+		"TeoSS69",
 		"Wilbur",
 		"Xjurwi",
+		"KidneyBeanBoy",
 	}},
 }

@@ -291,7 +291,9 @@ local function fn()
 	inst:AddComponent("leader")
 
 	inst:AddComponent("follower")
-
+    inst.components.follower.maxfollowtime = TUNING.BEEFALO_FOLLOW_TIME
+    inst.components.follower.canaccepttarget = false
+    
 	inst:AddComponent("periodicspawner")
 	inst.components.periodicspawner:SetPrefab("poop")	
     inst.components.periodicspawner:SetPrefab("poop")

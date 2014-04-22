@@ -44,14 +44,14 @@ TheMod:AddRoom("BeanstalkSpawn", {
 --Skyflowers
 TheMod:AddRoom("SkyflowerGarden", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.POOPCLOUD,
+	value = GROUND.CLOUDSWIRL,
 	contents = {
 		custom_tiles={
 			GeneratorFunction = RUNCA.GeneratorFunction,
 			data = {iterations=6, seed_mode=CA_SEED_MODE.SEED_WALLS, num_random_points=1,
-						translate={	{tile=GROUND.POOPCLOUD, items={"sheep"}, item_count=3},
-									{tile=GROUND.POOPCLOUD, items={"cloud_bush"}, item_count=5},
-									{tile=GROUND.POOPCLOUD, items={"skytrap"}, item_count=6},
+						translate={	{tile=GROUND.CLOUDSWIRL, items={"sheep"}, item_count=3},
+									{tile=GROUND.CLOUDSWIRL, items={"cloud_bush"}, item_count=5},
+									{tile=GROUND.CLOUDSWIRL, items={"skytrap"}, item_count=6},
 								   },
 			},
 		},	
@@ -72,7 +72,7 @@ TheMod:AddRoom("SkyflowerGarden", {
 --Sheep
 TheMod:AddRoom("SheepHerd", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.POOPCLOUD,
+	value = GROUND.CLOUDLAND,
 	contents = {
 		distributepercent = randomness(),
 		distributeprefabs = {

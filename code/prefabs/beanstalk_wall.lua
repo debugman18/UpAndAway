@@ -348,8 +348,8 @@ local function fn(inst)
 	inst:AddComponent("repairable")
 	--inst.components.repairable.announcecanfix = false
 		
-	MakeLargeBurnable(inst)
-	MakeLargePropagator(inst)
+	MakeSmallBurnable(inst)
+	MakeSmallPropagator(inst)
 	inst.components.burnable.flammability = 1
 
 	--inst.SoundEmitter:PlaySound(buildsound)		
@@ -370,5 +370,5 @@ end
 return {
 	Prefab ("common/inventory/beanstalk_wall", fn, assets, prefabs),
 	Prefab ("common/inventoryitem/beanstalk_wall_item", itemfn, assets, prefabs),
-	MakePlacer("common/beanstalk_wall_placer", "beanstalk_wall", "beanstalk_wall", "0", false, false, true),
+	MakePlacer("common/beanstalk_wall_placer", "beanstalk_wall", "beanstalk_wall", "0", false, false, true, 3),
 }
