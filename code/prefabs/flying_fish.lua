@@ -3,6 +3,8 @@ BindGlobal()
 local assets=
 {
 	Asset("ANIM", "anim/flying_fish.zip"),
+    Asset( "ATLAS", "images/inventoryimages/flying_fish.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/flying_fish.tex" ),
 }
 
 local prefabs =
@@ -79,6 +81,7 @@ local function commonfn()
 	inst:AddComponent("inspectable")
 	
 	inst:AddComponent("inventoryitem")
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/flying_fish.xml"
 
 	inst:AddComponent("workable")
 	inst.components.workable:SetWorkAction(ACTIONS.NET)

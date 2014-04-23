@@ -2,7 +2,11 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/rubber.zip"),
+
+
+    Asset( "ATLAS", "images/inventoryimages/rubber.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/rubber.tex" ),
 }
 
 --This thing is made of gnome rubber, and will be used to catch skyflies, etcetera.
@@ -13,13 +17,15 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("void_placeholder")
-	inst.AnimState:PlayAnimation("anim")
+	inst.AnimState:SetBank("rubber")
+	inst.AnimState:SetBuild("rubber")
+	inst.AnimState:PlayAnimation("idle")
+	inst.Transform:SetScale(3,3,3)
 
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("inventoryitem")
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/rubber.xml"
 
 	return inst
 end

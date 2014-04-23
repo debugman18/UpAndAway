@@ -5,6 +5,9 @@ local assets =
     Asset("ANIM", "anim/crow.zip"),
     Asset("ANIM", "anim/weaver_bird.zip"),
     Asset("SOUND", "sound/birds.fsb"),
+
+    Asset( "ATLAS", "images/inventoryimages/weaver_bird.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/weaver_bird.tex" ),
 }
 
 local prefabs =
@@ -114,6 +117,7 @@ local function fn()
     inst.components.inventoryitem.nobounce = true
     inst.components.inventoryitem.canbepickedup = false
     inst.components.inventoryitem:SetOnDroppedFn(ondrop)
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/weaver_bird.xml"
     
     inst:AddComponent("cookable")
     inst.components.cookable.product = "cookedsmallmeat"

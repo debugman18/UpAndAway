@@ -82,6 +82,10 @@ Assets = GLOBAL.JoinArrays(
 		"research_lectern",
 		"cotton_hat",
 		"weather_machine",
+
+		"skyflies",
+		"rubber",
+		"weaver_bird",
 	},
 
 	-- These are .tex's without a matching atlas.

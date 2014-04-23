@@ -4,7 +4,7 @@ require "prefabutil"
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+	Asset("ANIM", "anim/package.zip"),
 
 	Asset( "ATLAS", "images/inventoryimages/package.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/package.tex" ),	
@@ -32,9 +32,10 @@ local function fn(Sim, iteminside)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("marble")
-	inst.AnimState:SetBuild("void_placeholder")
-	inst.AnimState:PlayAnimation("anim")
+	inst.AnimState:SetBank("package")
+	inst.AnimState:SetBuild("package")
+	inst.AnimState:PlayAnimation("idle")
+	inst.Transform:SetScale(3,3,3)
 
 	inst:AddComponent("inspectable")
 
@@ -74,5 +75,5 @@ end
 
 return {
 	Prefab("common/inventory/package", fn, assets),
-	MakePlacer("common/inventory/package_placer", "marble", "void_placeholder", "anim"),
+	MakePlacer("common/inventory/package_placer", "package", "package", "idle", false, false, true, 3),
 }
