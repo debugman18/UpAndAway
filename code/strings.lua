@@ -74,6 +74,7 @@ Add.Names {
     dragonblood_sap = "Dragonblood Sap",
     dragonblood_tree = "Dragonblood Tree",
     duckraptor = "Duckraptor",
+    dug_tea_bush = "Tea Bush",
     flying_fish = "Flying Fish",
     flying_fish_pond = "Flying Fish Pond",
     golden_amulet = "Golden Amulet",
@@ -1052,6 +1053,19 @@ Add.QuotesFor "duckraptor" {
     wolfgang = "So many claws.",
     woodie = "This bird shows its vile nature.",
     wx78 = "IT IS DIFFERENT NOW",
+}
+
+Add.QuotesFor "dug_tea_bush" {
+    GENERIC = "Tea leaves grow on this bush.",
+    wathgrithr = "It grows tea.",
+    waxwell = nil,
+    webber = nil,
+    wendy = "From this grows the drink of diviners.",
+    wickerbottom = nil,
+    willow = "I could burn that.",
+    wolfgang = "Get leaves, make drink.",
+    woodie = "It's got tea on it.",
+    wx78 = "I CAN USE ITS LEAVES",
 }
 
 Add.QuotesFor "flying_fish" {

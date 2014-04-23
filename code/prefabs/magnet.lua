@@ -17,9 +17,6 @@ local function fn(Sim)
 	inst.AnimState:PlayAnimation("idle")
 	inst.Transform:SetScale(3,3,3)
 
-	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
-
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("inventoryitem")

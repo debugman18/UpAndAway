@@ -6,6 +6,34 @@ local Configurable = wickerrequire 'adjectives.configurable'
 local cfg = Configurable("TEA_BUSH")
 
 
+require "prefabutil"
+
+local notags = {'NOBLOCK', 'player', 'FX'}
+local function test_ground(inst, pt)
+	local tiletype = GetGroundTypeAtPosition(pt)
+	local ground_OK = tiletype ~= GROUND.ROCKY and tiletype ~= GROUND.ROAD and tiletype ~= GROUND.IMPASSABLE and
+						tiletype ~= GROUND.UNDERROCK and tiletype ~= GROUND.WOODFLOOR and 
+						tiletype ~= GROUND.CARPET and tiletype ~= GROUND.CHECKER and tiletype < GROUND.UNDERGROUND
+	
+	if ground_OK then
+	    local ents = TheSim:FindEntities(pt.x,pt.y,pt.z, 4, nil, notags) -- or we could include a flag to the search?
+		local min_spacing = inst.components.deployable.min_spacing or 2
+
+	    for k, v in pairs(ents) do
+			if v ~= inst and v.entity:IsValid() and v.entity:IsVisible() and not v.components.placer and v.parent == nil then
+				if distsq( Vector3(v.Transform:GetWorldPosition()), pt) < min_spacing*min_spacing then
+					return false
+				end
+			end
+		end
+		
+		return true
+
+	end
+	return false
+	
+end
+
 local function ontransplantfn(inst)
 	inst.components.pickable:MakeBarren()
 end
@@ -100,13 +128,12 @@ local function dig_up(inst, chopper)
 		if inst.components.pickable:IsBarren() then
 			inst.components.lootdropper:SpawnLootPrefab("twigs")
 			inst.components.lootdropper:SpawnLootPrefab("twigs")
-		else
-			
+		else		
 			if inst.components.pickable and inst.components.pickable:CanBePicked() then
 				inst.components.lootdropper:SpawnLootPrefab("tea_leaves")
 			end
 			
-			inst.components.lootdropper:SpawnLootPrefab("dug_berrybush")
+			inst.components.lootdropper:SpawnLootPrefab("dug_tea_bush")
 		end
 	end	
 end
@@ -119,9 +146,49 @@ local assets =
 local prefabs =
 {
 	"tea_leaves",
-	"dug_berrybush",
+	"dug_tea_bush",
 	"twigs",
 }   
+
+local function ondeploy(inst, pt)
+	local tree = SpawnPrefab("tea_bush") 
+	if tree then 
+		tree.Transform:SetPosition(pt.x, pt.y, pt.z) 
+		inst.components.stackable:Get():Remove()
+		tree.components.pickable:OnTransplant()
+	end 
+end
+
+local function dugfn(inst)
+	local inst = CreateEntity()
+	local trans = inst.entity:AddTransform()
+	local anim = inst.entity:AddAnimState()
+	MakeInventoryPhysics(inst)
+
+	inst.AnimState:SetBank("berrybush")
+	inst.AnimState:SetBuild("tea_bush")
+	inst.AnimState:PlayAnimation("dropped")
+
+	inst:AddComponent("inspectable")
+
+	inst:AddComponent("inventoryitem")
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/dug_tea_bush.xml"
+
+	inst:AddComponent("fuel")
+	inst.components.fuel.fuelvalue = TUNING.LARGE_FUEL
+    
+    MakeMediumBurnable(inst, TUNING.LARGE_BURNTIME)
+	MakeSmallPropagator(inst)
+	
+    inst:AddComponent("deployable")
+    inst.components.deployable.ondeploy = ondeploy
+    inst.components.deployable.test = test_ground
+    inst.components.deployable.min_spacing = 2
+
+    inst:AddComponent("stackable")
+
+	return inst
+end
 
 local function fn(Sim)
 	local inst = CreateEntity()
@@ -171,4 +238,8 @@ local function fn(Sim)
 	return inst
 end
 
-return Prefab( "common/objects/tea_bush", fn, assets, prefabs)	
+return {
+	Prefab( "common/objects/tea_bush", fn, assets, prefabs),
+	Prefab( "common/objects/dug_tea_bush", dugfn, assets, prefabs),
+	MakePlacer("common/inventory/dug_tea_bush_placer", "berrybush", "tea_bush", "idle_dead"),
+}	
