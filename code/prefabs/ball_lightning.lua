@@ -29,8 +29,9 @@ local function uncharge(inst)
 end	
 
 local function FindMagnet(inst)
-	local magnetholder = GetPlayer().components.inventory:FindItem(function(item) return item.prefab == "magnet" end )
-	if magnetholder then
+	local magnetholder = GetPlayer().components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
+	--local magnetholder = GetPlayer().components.inventory:FindItem(function(item) return item.prefab == "magnet" end )
+	if magnetholder then	
 		print("Magnet found.")
 		inst.components.follower:SetLeader(GetPlayer())
 	else inst.components.follower:SetLeader() end	
@@ -63,11 +64,11 @@ local function fn(Sim)
 		end)
 		local roll = math.random(1,3)
 		if roll == 1 then
-			inst.AnimState:SetMultColour(250,250,0,.5)
+			inst.AnimState:SetMultColour(250,250,0,0)
 		elseif roll == 2 then	
-			inst.AnimState:SetMultColour(150,150,0,.5)
+			inst.AnimState:SetMultColour(150,150,0,0)
 		elseif roll == 3 then
-			inst.AnimState:SetMultColour(60,60,0,.5)
+			inst.AnimState:SetMultColour(60,60,0,0)
 		end	
 	end)
 	inst.Transform:SetScale(1.5,1.5,1.5)
@@ -100,7 +101,7 @@ local function fn(Sim)
 	inst.components.temperature.current = 80
 	inst.components.temperature.inherentinsulation = TUNING.INSULATION_MED  
 
-	inst:DoPeriodicTask(0, FindMagnet)
+	inst:DoPeriodicTask(0.5, FindMagnet)
 
 	inst:AddComponent("heater")	  
 	inst.components.heater.heat = 80

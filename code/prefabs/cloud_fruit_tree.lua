@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/cave_banana_tree.zip"),
+	Asset("ANIM", "anim/cloud_fruit_tree.zip"),
 }
 
 local prefabs = {
@@ -11,6 +11,7 @@ local prefabs = {
 
 local function onpickedfn(inst)
 	inst.components.pickable.cycles_left = 2
+	inst.AnimState:Hide("BANANA") 
 end	
 
 local function fn(Sim)
@@ -20,7 +21,7 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 
     inst.AnimState:SetBank("cave_banana_tree")
-    inst.AnimState:SetBuild("cave_banana_tree")
+    inst.AnimState:SetBuild("cloud_fruit_tree")
 	inst.AnimState:PlayAnimation("idle_loop", true)
 
 	inst:AddComponent("inspectable")

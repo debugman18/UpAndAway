@@ -3,7 +3,7 @@
 
 ### Inventory images in need of attention
 + cotton_hat --Willette is working on this.
-+ cotton_vest
++ cotton_vest --Battal is working on this.
 
 
 ### Atlases (with existing animation banks) in need of attention
@@ -20,10 +20,9 @@
 + Weather Machine (All art assets, still image) + Recipe Image
 + Kettle (All art assets, still image)
 + Refiner (All art assets, still image) + Recipe Image
-+ Cloud Fruit Tree (All art assets, still image, idle and idle_harvested)
 + Bean Giant (All art assets, using deerclops bank or custom animations)
 + Golden Sunflower (All art assets, still image)
-+ Cotton Vest (All art assets, using dapper vest bank)
++ Cotton Vest (All art assets, using dapper vest bank) --Battal is working on this.
 + Cotton Hat (All art assets, using any hat bank) --Willette is working on this.
 
 

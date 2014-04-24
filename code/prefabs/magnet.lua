@@ -3,7 +3,20 @@ BindGlobal()
 local assets =
 {
 	Asset("ANIM", "anim/magnet.zip"),
+	Asset("ANIM", "anim/swap_magnet.zip"),
+	Asset("ANIM", "anim/swap_ham_bat.zip"),
 }
+
+local function onequip(inst, owner) 
+    owner.AnimState:OverrideSymbol("swap_object", "swap_magnet", "swap_ham_bat")
+    owner.AnimState:Show("ARM_carry") 
+    owner.AnimState:Hide("ARM_normal") 
+end
+
+local function onunequip(inst, owner) 
+    owner.AnimState:Hide("ARM_carry") 
+    owner.AnimState:Show("ARM_normal")
+end
 
 local function fn(Sim)
 	local inst = CreateEntity()
@@ -21,6 +34,10 @@ local function fn(Sim)
 
 	inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/magnet.xml"
+
+    inst:AddComponent("equippable")
+    inst.components.equippable:SetOnEquip(onequip)
+    inst.components.equippable:SetOnUnequip(onunequip) 
 	
 	return inst
 end

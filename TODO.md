@@ -2,7 +2,7 @@
 
 + **Current bugs:**
 
-	+ Nothing
+	+ Invisible whirlwind in non-RoG
 
 + **Art assets in need of attention**
 
