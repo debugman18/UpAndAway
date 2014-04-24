@@ -13,6 +13,13 @@ local prefabs =
     "beanstalk_chunk",
 }
 
+local function OnHit(inst, attacker, damage)
+    if attacker and attacker.prefab == bean_giant then
+        damage = 0
+    end 
+    return damage   
+end    
+
 local function Retarget(inst)
     local newtarget = FindEntity(inst, 20, function(guy)
             return (guy:HasTag("character") or guy:HasTag("monster"))
@@ -51,15 +58,16 @@ local function fn(Sim)
     inst:AddTag("beanmonster")
 
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(15)
+    inst.components.health:SetMaxHealth(25)
     
     
     inst:AddComponent("combat")
-    inst.components.combat:SetRange(3)
-    inst.components.combat:SetDefaultDamage(10)
-    inst.components.combat:SetAttackPeriod(2)
+    inst.components.combat:SetRange(2.5)
+    inst.components.combat:SetDefaultDamage(20)
+    inst.components.combat:SetAttackPeriod(4)
     inst.components.combat:SetRetargetFunction(1, Retarget)
     inst.components.combat:SetKeepTargetFunction(KeepTarget)	
+    inst.components.combat:SetOnHit(OnHit)
     
     MakeLargeFreezableCharacter(inst)
     
@@ -69,6 +77,8 @@ local function fn(Sim)
     inst:AddComponent("inspectable")
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot({"beanstalk_chunk", "beanstalk_chunk"})
+
+    inst:ListenForEvent("attacked", OnAttacked)
 	
     inst:AddComponent("locomotor")
     inst.components.locomotor.walkspeed = 8.5

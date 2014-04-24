@@ -30,11 +30,11 @@ end
 
 local function FindMagnet(inst)
 	local magnetholder = GetPlayer().components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-	--local magnetholder = GetPlayer().components.inventory:FindItem(function(item) return item.prefab == "magnet" end )
-	if magnetholder then	
-		print("Magnet found.")
+	if magnetholder and magnetholder:HasTag("ball_lightning") then	
 		inst.components.follower:SetLeader(GetPlayer())
-	else inst.components.follower:SetLeader() end	
+	else 
+		inst.components.follower:SetLeader() 
+	end	
 end	
 
 local function fn(Sim)

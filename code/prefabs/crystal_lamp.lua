@@ -116,6 +116,9 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
+    local shadow = inst.entity:AddDynamicShadow()
+    shadow:SetSize(2.5, 1.5)
+
 	inst.AnimState:SetBank("crystal_lamp")
 	inst.AnimState:SetBuild("crystal_lamp")
 	inst.AnimState:PlayAnimation("idle")

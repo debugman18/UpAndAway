@@ -55,10 +55,10 @@ local function fn(Sim)
 
     inst:AddComponent("combat")
     inst.components.combat:SetAttackPeriod(TUNING.EYEPLANT_ATTACK_PERIOD)
-    inst.components.combat:SetRange(6)
+    inst.components.combat:SetRange(4)
     inst.components.combat:SetRetargetFunction(0.2, retargetfn)
     inst.components.combat:SetKeepTargetFunction(shouldKeepTarget)
-    inst.components.combat:SetDefaultDamage(16) 
+    inst.components.combat:SetDefaultDamage(60) 
 
     inst:AddComponent("lootdropper")
     if math.random(1,8) == 1 then
@@ -66,7 +66,7 @@ local function fn(Sim)
     else inst.components.lootdropper:SetLoot(loot) end    
 
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(30)    
+    inst.components.health:SetMaxHealth(50)    
 
     inst:ListenForEvent("newcombattarget", function(inst, data)
         if data.target and not inst.sg:HasStateTag("attack") and not inst.sg:HasStateTag("hit") and not inst.components.health:IsDead() then

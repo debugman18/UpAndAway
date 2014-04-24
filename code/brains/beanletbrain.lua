@@ -4,6 +4,7 @@ require "behaviours/wander"
 require "behaviours/runaway"
 require "behaviours/doaction"
 require "behaviours/panic"
+require "behaviours/faceentity"
 
 local STOP_RUN_DIST = 10
 local SEE_PLAYER_DIST = 10

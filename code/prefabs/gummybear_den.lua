@@ -158,7 +158,7 @@ local function fn(Sim)
     inst.entity:AddSoundEmitter()
 
 	local minimap = inst.entity:AddMiniMapEntity()
-	minimap:SetIcon( "mermhouse.png" )
+	minimap:SetIcon("gummybear_den.tex")
     
     MakeObstaclePhysics(inst, 2)
 

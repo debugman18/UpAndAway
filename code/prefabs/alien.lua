@@ -103,14 +103,11 @@ local function fn()
     inst:AddComponent("sanityaura")
     inst.components.sanityaura.aurafn = CalcSanityAura
     
-    --inst:AddComponent("transparentonsanity")
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(20)
-    
-	--inst.sanityreward = data.sanityreward
+    inst.components.health:SetMaxHealth(35)
 	
     inst:AddComponent("combat")
-    inst.components.combat:SetDefaultDamage(10)
+    inst.components.combat:SetDefaultDamage(50)
     inst.components.combat:SetAttackPeriod(5)
     inst.components.combat:SetRetargetFunction(3, retargetfn)
     inst.components.combat.onkilledbyother = onkilledbyother

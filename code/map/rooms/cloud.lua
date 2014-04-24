@@ -58,7 +58,7 @@ TheMod:AddRoom("SkyflowerGarden", {
 		distributepercent = randomness(),
 		distributeprefabs = {
 			skyflower = 0.3,
-			skytrap = 0.3,
+			skytrap = 0.08,
 			golden_rose = 0.1,
 			cloud_bush = 0.02,
 		},
@@ -162,9 +162,9 @@ TheMod:AddRoom("CragLanding", {
 		distributepercent = randomness(),
 		distributeprefabs = {
 			--sky_lemur = 0.005,
-			beanlet = 0.0002,
-			cloud_fruit_tree = 0.0003,
-			goose = 0.00007,
+			beanlet = 0.00002,
+			cloud_fruit_tree = 0.00003,
+			goose = 0.000007,
 		},
 	    countprefabs = {
 	        goose = 1,

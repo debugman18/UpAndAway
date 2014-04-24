@@ -13,8 +13,8 @@ local assets =
 local prefabs =
 {
     "meat",
-    "deerclops_eyeball",
     "vine",
+    "beanlet_zealot",
 }
 
 local TARGET_DIST = 30
@@ -26,10 +26,9 @@ end
 local function onchargedfn(inst)
 	inst:AddComponent("childspawner")
 	inst.components.childspawner.childname = "vine"
-	--inst.components.childspawner:SetSpawnedFn(OnSpawned)
-	--inst.components.childspawner:SetGoHomeFn(OnGoHome)
+	inst.components.childspawner:SetRareChild("beanlet_zealot", .2)
 	inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*.1)
-	inst.components.childspawner:SetSpawnPeriod(1)
+	inst.components.childspawner:SetSpawnPeriod(.5)
 	inst.components.childspawner:SetMaxChildren(30)
 	inst.components.childspawner:StartSpawning()
 end
@@ -125,7 +124,7 @@ local function oncollide(inst, other)
 
 end
 
-local loot = {"meat", "meat", "meat", "meat", "meat", "meat", "meat", "meat", "deerclops_eyeball"}
+local loot = {"meat", "meat", "meat", "meat", "meat", "meat", "meat", "meat"}
 
 local function fn(Sim)
     
@@ -134,10 +133,10 @@ local function fn(Sim)
     local anim = inst.entity:AddAnimState()
     local sound = inst.entity:AddSoundEmitter()
     local shadow = inst.entity:AddDynamicShadow()
-    local s  = 1.65
-    inst.Transform:SetScale(s,s,s)
     shadow:SetSize( 6, 3.5 )
     inst.Transform:SetFourFaced()
+    local size  = 1.65
+    --inst.Transform:SetScale(size,size,size)
     
     inst.structuresDestroyed = 0
     inst.shouldGoAway = false
@@ -184,10 +183,10 @@ local function fn(Sim)
     ------------------
     
     inst:AddComponent("combat")
-    inst.components.combat:SetDefaultDamage(25)
+    inst.components.combat:SetDefaultDamage(100)
     inst.components.combat.playerdamagepercent = .5
-    inst.components.combat:SetRange(6)
-    inst.components.combat:SetAreaDamage(6, 0.8)
+    inst.components.combat:SetRange(4)
+    inst.components.combat:SetAreaDamage(1, 0.8)
     inst.components.combat.hiteffectsymbol = "deerclops_body"
     inst.components.combat:SetAttackPeriod(TUNING.DEERCLOPS_ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(3, RetargetFn)

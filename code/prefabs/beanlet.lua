@@ -59,6 +59,7 @@ local function fn(Sim)
     local anim = inst.entity:AddAnimState()
     local physics = inst.entity:AddPhysics()
     local sound = inst.entity:AddSoundEmitter()
+    inst.Transform:SetTwoFaced()
 
     local brain = require "brains/beanletbrain"
     inst:SetBrain(brain)
@@ -87,7 +88,7 @@ local function fn(Sim)
     inst:AddComponent("combat")
 
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(25)
+    inst.components.health:SetMaxHealth(90)
 
     MakeMediumBurnable(inst)
     inst.components.burnable:SetOnIgniteFn(OnIgnite)

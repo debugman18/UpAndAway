@@ -41,9 +41,10 @@ local function fn()
 	anim:SetBank("crystal")
 	anim:SetBuild("crystal")
 	anim:PlayAnimation("crystal_spire")
-	inst.AnimState:SetMultColour(1, 1, 1, 0.7)
-	inst.entity:AddMiniMapEntity()
-	inst.MiniMapEntity:SetIcon( "statue_small.png" )
+	inst.AnimState:SetMultColour(1, 1, 1, 0.8)
+
+	--inst.entity:AddMiniMapEntity()
+	--inst.MiniMapEntity:SetIcon( "statue_small.png" )
 
     local basescale = math.random(8,14)
     local scale = basescale / 10

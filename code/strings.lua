@@ -64,8 +64,8 @@ Add.Names {
     crystal_quartz = "Quartz Crystal",
     crystal_relic = "Crystal Relic",
     crystal_spire = "Crystal Spire",
-    crystal_wall_item = "Crystal Wall",
     crystal_wall = "Crystal Wall",
+    crystal_wall_item = "Crystal Wall",
     crystal_water = "Water Crystal",
     crystal_white = "White Crystal",
     cumulostone = "Cumolostone",
@@ -143,9 +143,9 @@ Add.Names {
     smores = "S'mores",
     tea_bush = "Tea Bush",
     tea_leaves = "Tea Leaves",
-    thunderboards = "Thundertree Boards",
     thunder_log = "Thunder Log",
     thunder_tree = "Thunder Tree",
+    thunderboards = "Thundertree Boards",
     vine = "Vine",
     weather_machine = "Tropospherical Relay",
     weaver_bird = "Weaver Bird",
@@ -157,12 +157,13 @@ Add.Names {
 }
 
 Add.QuotesFor "alien" {
+    ANY = nil,
     GENERIC = "Is it real?",
     wathgrithr = "Is this an illusion?",
     waxwell = nil,
-    webber = nil,
+    webber = "I had a comic about something like him.",
     wendy = nil,
-    wickerbottom = nil,
+    wickerbottom = "I must look strange to them too.",
     willow = "They're solid? Does that mean they're flammable?",
     wolfgang = "Wolfgang is confused and scared.",
     woodie = "I swear I'm sane.",
@@ -170,6 +171,7 @@ Add.QuotesFor "alien" {
 }
 
 Add.QuotesFor "ambrosia" {
+    ANY = nil,
     GENERIC = "Suppedly it can bring immortality.",
     wathgrithr = "The fruit of Valhalla!",
     waxwell = nil,
@@ -183,6 +185,7 @@ Add.QuotesFor "ambrosia" {
 }
 
 Add.QuotesFor "antlion" {
+    ANY = nil,
     GENERIC = "What sick breeding produced this?",
     wathgrithr = nil,
     waxwell = "Even my Tallbirds were a bigger success than this one.",
@@ -196,12 +199,13 @@ Add.QuotesFor "antlion" {
 }
 
 Add.QuotesFor "ball_lightning" {
+    ANY = nil,
     GENERIC = "A wandering ball of static.",
     wathgrithr = "A follower of Thor?",
     waxwell = nil,
-    webber = nil,
+    webber = "We we both scared of lightning.",
     wendy = "A spark of life in a dead land.",
-    wickerbottom = nil,
+    wickerbottom = "Listen to that crackling.",
     willow = "It's like a living ball of fire!",
     wolfgang = "Is zappy, floaty pest.",
     woodie = "Moving weather? That ain't fair.",
@@ -209,12 +213,13 @@ Add.QuotesFor "ball_lightning" {
 }
 
 Add.QuotesFor "balloon_hound" {
+    ANY = nil,
     GENERIC = "How did you get here?",
     wathgrithr = "Full of air and rage.",
     waxwell = nil,
-    webber = nil,
+    webber = "Stick it with a pin!",
     wendy = "Struggle all you want, you shall not get free.",
-    wickerbottom = nil,
+    wickerbottom = "Inflated and irate.",
     willow = "Aw, it's out of reach!",
     wolfgang = "The dog, it floats!",
     woodie = "How did it get the balloon on?",
@@ -222,12 +227,13 @@ Add.QuotesFor "balloon_hound" {
 }
 
 Add.QuotesFor "bean_giant" {
+    ANY = nil,
     GENERIC = "Someone must bring an end to this reign of giants!",
     wathgrithr = "Vegetables are no match for my might!",
     waxwell = "It's not even worth a hill of beans.",
-    webber = nil,
+    webber = "Yikes! Don't hurt us!",
     wendy = "Does he avenge innocent blood, or does he thirst for it?",
-    wickerbottom = nil,
+    wickerbottom = "Gargantuan!",
     willow = "The bigger they are... The better they burn!",
     wolfgang = "Not little plant at all!",
     woodie = "That's a big 'un, eh?",
@@ -235,12 +241,13 @@ Add.QuotesFor "bean_giant" {
 }
 
 Add.QuotesFor "bean_giant_statue" {
+    ANY = nil,
     GENERIC = "I wouldn't want to run into that thing.",
     wathgrithr = "I want to meet a real one.",
     waxwell = nil,
-    webber = nil,
+    webber = "Seems a little silly to us.",
     wendy = "What lurked up here so long ago.",
-    wickerbottom = nil,
+    wickerbottom = "A vanity structure.",
     willow = "That should be a statue of me. Or fire.",
     wolfgang = "Is big stone monster.",
     woodie = "What a big hoser.",
@@ -248,12 +255,13 @@ Add.QuotesFor "bean_giant_statue" {
 }
 
 Add.QuotesFor "beanlet" {
+    ANY = nil,
     GENERIC = "They exist as one, much unlike their mother.",
     wathgrithr = "A tiny, fearful creature.",
     waxwell = "I'd fancy some beans on toast now.",
-    webber = "Adorable, but not very tasty.",
+    webber = "A baby bean.",
     wendy = "They cower in their own body.",
-    wickerbottom = nil,
+    wickerbottom = "The small shall grow strong.",
     willow = "Time for cooked beans.",
     wolfgang = "Little plant runs around.",
     woodie = "It's cute.",
@@ -261,12 +269,13 @@ Add.QuotesFor "beanlet" {
 }
 
 Add.QuotesFor "beanlet_shell" {
+    ANY = nil,
     GENERIC = "A husk of a bean monster.",
     wathgrithr = "Rest well, little vegetable.",
     waxwell = nil,
-    webber = nil,
+    webber = "A bean shell.",
     wendy = "A protective shell in pieces. Rather ineffective.",
-    wickerbottom = nil,
+    wickerbottom = "The remnants of a Fabaceae.",
     willow = "A trophy of slaughtered foes.",
     wolfgang = "Little plants gone.",
     woodie = "I'm sorry, friend.",
@@ -274,12 +283,13 @@ Add.QuotesFor "beanlet_shell" {
 }
 
 Add.QuotesFor "beanlet_zealot" {
+    ANY = nil,
     GENERIC = "They seem pretty aggressive.",
     wathgrithr = "A vegetable with a fighting spirit!",
     waxwell = "I'd fancy some beans on toast now.",
-    webber = "You don't want to play?",
+    webber = "We eat you, not the other way around!",
     wendy = "You run to your death for one that cares not for your life.",
-    wickerbottom = nil,
+    wickerbottom = "This bean bites back.",
     willow = "Reminds me of me, except I worship fire.",
     wolfgang = "Little plant is very angry!",
     woodie = "Not very friendly.",
@@ -287,12 +297,13 @@ Add.QuotesFor "beanlet_zealot" {
 }
 
 Add.QuotesFor "beanstalk" {
+    ANY = nil,
     GENERIC = "It reaches the clouds.",
     wathgrithr = "The Rainbow Bridge!",
     waxwell = "If only my brother Jack was here...",
-    webber = "We can't even see the top of it.",
+    webber = "Wow! It goes through the clouds!",
     wendy = "All I'd have to do is let go.",
-    wickerbottom = "The end of the stalk is covered by a layer of cumulonimbus clouds.",
+    wickerbottom = "I filed the book pertaining to this under \"youngster.\"",
     willow = "That would make a spectacular fire.",
     wolfgang = "Is big beanstalk. Reminds Wolfgang of home.",
     woodie = "Even Lucy can't chop through it.",
@@ -300,12 +311,13 @@ Add.QuotesFor "beanstalk" {
 }
 
 Add.QuotesFor "beanstalk_chunk" {
+    ANY = nil,
     GENERIC = "Part of a beanstalk.",
     wathgrithr = "A piece of the Bifrost.",
     waxwell = nil,
-    webber = "It's a little baby beanstalk.",
+    webber = "A part of the beanstalk.",
     wendy = "A piece of a crumbled colossus",
-    wickerbottom = nil,
+    wickerbottom = "A remnant of the beanstalk.",
     willow = "A torn piece of beanstalk.",
     wolfgang = "Piece of big plant.",
     woodie = "It's a slice of a beanstalk.",
@@ -313,12 +325,13 @@ Add.QuotesFor "beanstalk_chunk" {
 }
 
 Add.QuotesFor "beanstalk_exit" {
+    ANY = nil,
     GENERIC = "That's the way back to the ground.",
     wathgrithr = "Once more to the realms of man.",
     waxwell = nil,
-    webber = "Don't look down, don't look down.",
+    webber = "Too high! I wanna go back down!",
     wendy = "End of the line.",
-    wickerbottom = nil,
+    wickerbottom = "How to leave this place.",
     willow = "I wonder how long it would take for fire to reach the bottom?",
     wolfgang = "Is a long way down.",
     woodie = "It's the end of a giant.",
@@ -326,12 +339,13 @@ Add.QuotesFor "beanstalk_exit" {
 }
 
 Add.QuotesFor "beanstalk_sapling" {
+    ANY = nil,
     GENERIC = "It's supposed to grow into a beanstalk.",
     wathgrithr = "It will reach the heavens someday.",
     waxwell = nil,
-    webber = "It's a little baby beanstalk.",
+    webber = "One day it will grow tall.",
     wendy = "Soon it shall tower overhead.",
-    wickerbottom = nil,
+    wickerbottom = "An angiosperm in youth.",
     willow = "This will grow huge. Or burn quick.",
     wolfgang = "Is small now, big later.",
     woodie = "That'll grow right up into a monster, eh?",
@@ -339,13 +353,13 @@ Add.QuotesFor "beanstalk_sapling" {
 }
 
 Add.QuotesFor "beanstalk_wall" {
-	ANY = "It's a... thing.",
+    ANY = "It's a... thing.",
     GENERIC = "That's not very safe.",
     wathgrithr = "A wall of plant.",
     waxwell = nil,
-    webber = nil,
+    webber = "Veggie wall.",
     wendy = "Even the ravages of time shall find you unafraid.",
-    wickerbottom = nil,
+    wickerbottom = "I really hope this works.",
     willow = "Plants aren't good protection.",
     wolfgang = "Wolfgang prefers mighty walls!",
     woodie = "Not very useful.",
@@ -353,6 +367,7 @@ Add.QuotesFor "beanstalk_wall" {
 }
 
 Add.QuotesFor "beanstalk_wall_item" {
+    ANY = nil,
     GENERIC = "That's not very safe.",
     wathgrithr = "A wall of plant.",
     waxwell = nil,
@@ -366,12 +381,13 @@ Add.QuotesFor "beanstalk_wall_item" {
 }
 
 Add.QuotesFor "bee_marshmallow" {
+    ANY = nil,
     GENERIC = "A flying marshmallow.",
     wathgrithr = "Do they make honey?",
     waxwell = nil,
-    webber = nil,
+    webber = "A candy bee!",
     wendy = "A mindless drone made of sugar.",
-    wickerbottom = nil,
+    wickerbottom = "A confectionist bee.",
     willow = "It's a bee. Made of marshmallow.",
     wolfgang = "Is bee or is not too bee? ",
     woodie = "What a sweet little bee.",
@@ -379,12 +395,13 @@ Add.QuotesFor "bee_marshmallow" {
 }
 
 Add.QuotesFor "bird_paradise" {
+    ANY = nil,
     GENERIC = "I'm starting to hate birds.",
     wathgrithr = "Its feathers would look good on my helmet.",
     waxwell = nil,
-    webber = nil,
+    webber = "Look at those feathers!",
     wendy = "Even your beauty shall fade away.",
-    wickerbottom = nil,
+    wickerbottom = "A member of the Paradisaeidae family.",
     willow = "Those feathers would combust nicely.",
     wolfgang = "Is all feathery.",
     woodie = "Fancy feathers don't disguise your evil, bird!",
@@ -392,12 +409,13 @@ Add.QuotesFor "bird_paradise" {
 }
 
 Add.QuotesFor "blackstaff" {
+    ANY = nil,
     GENERIC = "You can charge things with magic.",
     wathgrithr = "Charge!",
     waxwell = nil,
-    webber = nil,
+    webber = "You shall not come through!",
     wendy = "Madness weaponized.",
-    wickerbottom = nil,
+    wickerbottom = "Black magic; in staff form.",
     willow = "I am a dark wizard now.",
     wolfgang = "Makes thunder.",
     woodie = "I shouldn't mess with nature.",
@@ -405,12 +423,13 @@ Add.QuotesFor "blackstaff" {
 }
 
 Add.QuotesFor "blacktea" {
+    ANY = nil,
     GENERIC = "It's a nice strong tea.",
     wathgrithr = "It's stronger, but still not mead.",
     waxwell = nil,
-    webber = nil,
+    webber = "Mother used to enjoy this.",
     wendy = "What does fate tell me.",
-    wickerbottom = nil,
+    wickerbottom = "Goes well with a good book.",
     willow = "I prefer hot chocolate.",
     wolfgang = "Is nearly as strong as me!",
     woodie = "I prefer a wee spot of whiskey.",
@@ -418,12 +437,13 @@ Add.QuotesFor "blacktea" {
 }
 
 Add.QuotesFor "blacktea_leaves" {
+    ANY = nil,
     GENERIC = "Oxidized tea leaves.",
     wathgrithr = "I can brew this!",
     waxwell = nil,
-    webber = nil,
+    webber = "Tea; without the bag.",
     wendy = "Perhaps I shall read the future.",
-    wickerbottom = nil,
+    wickerbottom = "These need a good brewing.",
     willow = "Stick them in boiling water. Or fire.",
     wolfgang = "Is for making drink.",
     woodie = "Makes for a strong cuppa.",
@@ -431,12 +451,13 @@ Add.QuotesFor "blacktea_leaves" {
 }
 
 Add.QuotesFor "candy_fruit" {
+    ANY = nil,
     GENERIC = "Growable candy.",
     wathgrithr = "Eating this would be out of character.",
     waxwell = nil,
-    webber = nil,
+    webber = "Yum!",
     wendy = "Sweets in the shape of something healthy.",
-    wickerbottom = nil,
+    wickerbottom = "I'll eat it; but I'm not a fan of sweets.",
     willow = "It's sweet.",
     wolfgang = "Tasty plant!",
     woodie = "It's very sweet, eh?",
@@ -444,12 +465,13 @@ Add.QuotesFor "candy_fruit" {
 }
 
 Add.QuotesFor "cauldron" {
+    ANY = nil,
     GENERIC = "A big bucket for magic stuff.",
     wathgrithr = "I'm not a sorceress!",
     waxwell = nil,
-    webber = nil,
+    webber = "I heard witches eat children.",
     wendy = "Fire burn and cauldron bubble.",
-    wickerbottom = nil,
+    wickerbottom = "A witches brewing pot.",
     willow = "Cauldron burn and boil and bubble.",
     wolfgang = "Is belong to witch?",
     woodie = "There must be a hag about.",
@@ -457,12 +479,13 @@ Add.QuotesFor "cauldron" {
 }
 
 Add.QuotesFor "cheshire" {
+    ANY = nil,
     GENERIC = "He's way too happy.",
     wathgrithr = "It's up to no good.",
     waxwell = nil,
-    webber = nil,
+    webber = "Cats smile?",
     wendy = "Smiles are a core part of deception.",
-    wickerbottom = nil,
+    wickerbottom = "Curiouser and curiouser",
     willow = "What a nice smile.",
     wolfgang = "Has big smile. Is friend.",
     woodie = "I love cats.",
@@ -470,12 +493,13 @@ Add.QuotesFor "cheshire" {
 }
 
 Add.QuotesFor "chimera" {
+    ANY = nil,
     GENERIC = "A wicked creature.",
     wathgrithr = "A worthy opponant.",
     waxwell = nil,
-    webber = nil,
+    webber = "Leave us be beast!",
     wendy = "A grabbag of parts.",
-    wickerbottom = nil,
+    wickerbottom = "Lion, snake, goat; all in one.",
     willow = "That's horrid looking, even for me.",
     wolfgang = "Is creature from nightmares!",
     woodie = "That's not normal, eh?",
@@ -483,12 +507,13 @@ Add.QuotesFor "chimera" {
 }
 
 Add.QuotesFor "cloud_algae" {
+    ANY = nil,
     GENERIC = "Apparently algae grows on clouds.",
     wathgrithr = "You should be in the sea, little plant.",
     waxwell = nil,
-    webber = nil,
+    webber = "I hated this stuff at the seaside.",
     wendy = "It bleeds the land dry.",
-    wickerbottom = nil,
+    wickerbottom = "Odd, Chlorella is ocean based.",
     willow = "Plants. Great.",
     wolfgang = "Is plant-cloud.",
     woodie = "Bit out of place.",
@@ -496,12 +521,13 @@ Add.QuotesFor "cloud_algae" {
 }
 
 Add.QuotesFor "cloud_algae_fragment" {
+    ANY = nil,
     GENERIC = "Apparently algae grows on clouds.",
     wathgrithr = "You should be in the sea, little plant.",
     waxwell = nil,
-    webber = nil,
+    webber = "Slimy and yucky and gross.",
     wendy = "A fragment of",
-    wickerbottom = nil,
+    wickerbottom = "Seaweed from the sky.",
     willow = "It's a bit of algae. Let's burn it.",
     wolfgang = "Is plant-cloud.",
     woodie = "It's a patch of algae.",
@@ -509,12 +535,13 @@ Add.QuotesFor "cloud_algae_fragment" {
 }
 
 Add.QuotesFor "cloud_bomb" {
+    ANY = nil,
     GENERIC = "That shouldn't work.",
     wathgrithr = "The sky is exploding!",
     waxwell = nil,
-    webber = nil,
+    webber = "Boom! We like!",
     wendy = "Let me blow my enemies to tiny bits.",
-    wickerbottom = nil,
+    wickerbottom = "Pacification; by cloud.",
     willow = "An explosive cloud, my favourite kind of cloud.",
     wolfgang = "Is for going boom.",
     woodie = "That's dangerous, eh?",
@@ -522,12 +549,13 @@ Add.QuotesFor "cloud_bomb" {
 }
 
 Add.QuotesFor "cloud_bush" {
+    ANY = nil,
     GENERIC = "All plants produce simple sugars.",
     wathgrithr = "Is it a plant?",
     waxwell = "Heavenly treats await me.",
-    webber = nil,
+    webber = "A good place to hide.",
     wendy = "It grows sugary treats.",
-    wickerbottom = nil,
+    wickerbottom = "Now I've seen everything.",
     willow = "It has food. It can live a bit longer.",
     wolfgang = "Sweet food balls. Yum!",
     woodie = "It's got good food on it.",
@@ -535,6 +563,7 @@ Add.QuotesFor "cloud_bush" {
 }
 
 Add.QuotesFor "cloud_bush.picked" {
+    ANY = nil,
     GENERIC = "No more sugar for me.",
     wathgrithr = nil,
     waxwell = "It needs manure, but where do I obtain that here?",
@@ -548,12 +577,13 @@ Add.QuotesFor "cloud_bush.picked" {
 }
 
 Add.QuotesFor "cloud_coral" {
+    ANY = nil,
     GENERIC = "A rock that grows.",
     wathgrithr = "A rock that grows.",
     waxwell = nil,
-    webber = nil,
+    webber = "Pretty stuff!",
     wendy = "Are we in the air or under the sea?",
-    wickerbottom = nil,
+    wickerbottom = "Ocean life...in the clouds.",
     willow = "Coral. How interesting.",
     wolfgang = "Is plant-rock.",
     woodie = "It's a sky sea rock.",
@@ -561,12 +591,13 @@ Add.QuotesFor "cloud_coral" {
 }
 
 Add.QuotesFor "cloud_coral_fragment" {
+    ANY = nil,
     GENERIC = "A rock that grows.",
     wathgrithr = "A growing rock.",
     waxwell = nil,
-    webber = nil,
+    webber = "Dang, it's broken.",
     wendy = "Once living rock.",
-    wickerbottom = nil,
+    wickerbottom = "Anthozoa pieces.",
     willow = "It's a bit of coral. Not burnable.",
     wolfgang = "Is plant-rock.",
     woodie = "Some kind of pebble.",
@@ -574,12 +605,13 @@ Add.QuotesFor "cloud_coral_fragment" {
 }
 
 Add.QuotesFor "cloud_cotton" {
+    ANY = nil,
     GENERIC = "Like baby clouds.",
     wathgrithr = "It would make good padding for my armour.",
     waxwell = nil,
-    webber = nil,
+    webber = "Granddad's beard looked like this!",
     wendy = "I'd need a spinning wheel to sleep.",
-    wickerbottom = nil,
+    wickerbottom = "The wisps of a cloud.",
     willow = "Cotton is very flammable. ",
     wolfgang = "Is for make clothes.",
     woodie = "It's soft and warm.",
@@ -587,12 +619,13 @@ Add.QuotesFor "cloud_cotton" {
 }
 
 Add.QuotesFor "cloud_fruit" {
+    ANY = nil,
     GENERIC = "Cloud fruit. What else would it be?",
     wathgrithr = "The fruit of Valhalla.",
     waxwell = nil,
-    webber = nil,
+    webber = "We need to eat healthy.",
     wendy = "Wispy outside hides a fleshy heart.",
-    wickerbottom = nil,
+    wickerbottom = "Tangy and mild.",
     willow = "A Cloud Fruit a day keeps the Shopkeeper away.",
     wolfgang = "Fluffy plant. Still yummy.",
     woodie = "Tasty.",
@@ -600,6 +633,7 @@ Add.QuotesFor "cloud_fruit" {
 }
 
 Add.QuotesFor "cloud_fruit_cooked" {
+    ANY = nil,
     GENERIC = "Cloud fruit. What else would it be?",
     wathgrithr = "The fruit of Valhalla.",
     waxwell = nil,
@@ -613,12 +647,13 @@ Add.QuotesFor "cloud_fruit_cooked" {
 }
 
 Add.QuotesFor "cloud_fruit_tree" {
+    ANY = nil,
     GENERIC = "It has a strange fruit on it.",
     wathgrithr = "The trees of Valhalla.",
     waxwell = nil,
-    webber = nil,
+    webber = "I wish we were that tall.",
     wendy = "If only I were a bit taller.",
-    wickerbottom = nil,
+    wickerbottom = "These clouds have a biological means of reproduction.",
     willow = "I bet it would smell nice while burning.",
     wolfgang = "Is growing without dirt. Is magic?",
     woodie = "Look, Lucy, new trees!",
@@ -626,6 +661,7 @@ Add.QuotesFor "cloud_fruit_tree" {
 }
 
 Add.QuotesFor "cloud_jelly" {
+    ANY = nil,
     GENERIC = "Goopy planty matter.",
     wathgrithr = "Ugh, too sweet for me.",
     waxwell = nil,
@@ -639,12 +675,13 @@ Add.QuotesFor "cloud_jelly" {
 }
 
 Add.QuotesFor "cloud_storage" {
+    ANY = nil,
     GENERIC = "A light and fluffy chest.",
     wathgrithr = "A cloud to hold my belongings!",
     waxwell = nil,
-    webber = nil,
+    webber = "My toy chest was bigger than this.",
     wendy = "Thieves could simply reach through it.",
-    wickerbottom = nil,
+    wickerbottom = "A fluffy container.",
     willow = "For holding stuff.",
     wolfgang = "Is roomy.",
     woodie = "Good for storing stuff, eh?",
@@ -652,12 +689,13 @@ Add.QuotesFor "cloud_storage" {
 }
 
 Add.QuotesFor "cloud_turf" {
+    ANY = nil,
     GENERIC = "The ground... Err, cloud beneath my feet.",
     wathgrithr = "Like walking on air.",
     waxwell = "It came from above.",
-    webber = nil,
+    webber = "Spongy.",
     wendy = "Shall I dig the earth from under me.",
-    wickerbottom = nil,
+    wickerbottom = "Sopping wet.",
     willow = "Cloud. Always cloud.",
     wolfgang = "Is soft ground.",
     woodie = "It's some cloud from the floor.",
@@ -665,12 +703,13 @@ Add.QuotesFor "cloud_turf" {
 }
 
 Add.QuotesFor "cloud_wall" {
+    ANY = nil,
     GENERIC = "I have to ask why.",
     wathgrithr = "The walls of Valhalla.",
     waxwell = nil,
-    webber = nil,
+    webber = "Soft but I'm not sure if we're safe.",
     wendy = "It's practically not there.",
-    wickerbottom = nil,
+    wickerbottom = "A barrier of water.",
     willow = "Flimsy and damp. Useless.",
     wolfgang = "Is not mighty enough.",
     woodie = "Better than nothing, I suppose.",
@@ -678,12 +717,13 @@ Add.QuotesFor "cloud_wall" {
 }
 
 Add.QuotesFor "cloudcrag" {
+    ANY = nil,
     GENERIC = "Super condensed cloud.",
     wathgrithr = "The mountains of Valhalla.",
     waxwell = nil,
-    webber = nil,
+    webber = "A hole in the clouds.",
     wendy = "Are you rock or air?",
-    wickerbottom = nil,
+    wickerbottom = "A crack in the clouds.",
     willow = "It's more cloud.",
     wolfgang = "Is mound of cloud.",
     woodie = "It's a lump of cloud.",
@@ -691,12 +731,13 @@ Add.QuotesFor "cloudcrag" {
 }
 
 Add.QuotesFor "colored_corn" {
+    ANY = nil,
     GENERIC = "Rainbow colored corn.",
     wathgrithr = "It's pretty, but still a vegetable.",
     waxwell = nil,
-    webber = nil,
+    webber = "I might cook this.",
     wendy = "A menagerie of colours that's hard as rock.",
-    wickerbottom = nil,
+    wickerbottom = "Amazing maize.",
     willow = "Something to eat while enjoying fire.",
     wolfgang = "Is tasty rock.",
     woodie = "It's a weird sweet.",
@@ -704,12 +745,13 @@ Add.QuotesFor "colored_corn" {
 }
 
 Add.QuotesFor "cotton_candy" {
+    ANY = nil,
     GENERIC = "A bunch of fluffy sugar.",
     wathgrithr = "All fluff and no substance.",
     waxwell = "A sugary delicacy for carnivals and common folk.",
-    webber = nil,
+    webber = "Yum! A special treat at the carnival.",
     wendy = "Wispy and sweet like dreams. Disgusting...",
-    wickerbottom = nil,
+    wickerbottom = "A fairground favourite.",
     willow = "A tasty treat is second only to fire.",
     wolfgang = "Is like tasty cloud.",
     woodie = "Not had this before.",
@@ -717,12 +759,13 @@ Add.QuotesFor "cotton_candy" {
 }
 
 Add.QuotesFor "cotton_hat" {
+    ANY = nil,
     GENERIC = "A warm, fluffy cotton hat.",
     wathgrithr = "I prefer my helm.",
     waxwell = nil,
-    webber = nil,
+    webber = "Matches my beard, when I have one.",
     wendy = "It traps the warmth to the point of cooking my flesh.",
-    wickerbottom = nil,
+    wickerbottom = "The cotton gets tangled in my bun.",
     willow = "I should have burned that cotton.",
     wolfgang = "Soft on head.",
     woodie = "Had something similar back home.",
@@ -730,12 +773,13 @@ Add.QuotesFor "cotton_hat" {
 }
 
 Add.QuotesFor "cotton_vest" {
+    ANY = nil,
     GENERIC = "It's silly looking, but very warm.",
     wathgrithr = "This looks ridiculous.",
     waxwell = nil,
-    webber = nil,
+    webber = "Snug as a bug in a rug.",
     wendy = "Sweltering heat to survive this frozen land.",
-    wickerbottom = nil,
+    wickerbottom = "Comfy and water absorbent.",
     willow = "It's warm, at least.",
     wolfgang = "Is comfy!",
     woodie = "Nice and warm, eh?",
@@ -743,12 +787,13 @@ Add.QuotesFor "cotton_vest" {
 }
 
 Add.QuotesFor "crystal_armor" {
+    ANY = nil,
     GENERIC = "It's a bit heavy, but quite useful.",
     wathgrithr = "Armor made from precious mineral.",
     waxwell = nil,
-    webber = nil,
+    webber = "Ouch! This is heavy and pointy.",
     wendy = "Look into it and you can see yourself die.",
-    wickerbottom = nil,
+    wickerbottom = "Imagine how many books I could buy with this!",
     willow = "Might save my life, I guess.",
     wolfgang = "My mighty body is even mightier!",
     woodie = nil,
@@ -756,12 +801,13 @@ Add.QuotesFor "crystal_armor" {
 }
 
 Add.QuotesFor "crystal_black" {
+    ANY = nil,
     GENERIC = "It looks like there's a dark storm inside.",
     wathgrithr = "A black crystal.",
     waxwell = "Dare I say they look crystal clear.",
-    webber = nil,
+    webber = "He likes this. I don't.",
     wendy = nil,
-    wickerbottom = nil,
+    wickerbottom = "This crystal is full of impurities.",
     willow = "It's dark. Fire is light. I know which is better.",
     wolfgang = "Is dark jewel.",
     woodie = "Contains the dark void.",
@@ -769,12 +815,13 @@ Add.QuotesFor "crystal_black" {
 }
 
 Add.QuotesFor "crystal_cap" {
+    ANY = nil,
     GENERIC = "I'm not sure I want to wear that.",
     wathgrithr = "It's almost as good as mine!",
     waxwell = nil,
-    webber = nil,
+    webber = "Don't I look swell?",
     wendy = "Beware. For the abyss looks into you.",
-    wickerbottom = nil,
+    wickerbottom = "This is not smart if it shatters.",
     willow = "Use your brain, protect your head.",
     wolfgang = "Stone helps head.",
     woodie = "Clashes with my hair.",
@@ -782,12 +829,13 @@ Add.QuotesFor "crystal_cap" {
 }
 
 Add.QuotesFor "crystal_fragment_black" {
+    ANY = nil,
     GENERIC = "It looks like there's a dark storm inside.",
     wathgrithr = "Like a piece of the night sky.",
     waxwell = "Dare I say they look crystal clear.",
-    webber = nil,
+    webber = "He doesn't like it in pieces. I do.",
     wendy = "I see faces shifting across its surface.",
-    wickerbottom = nil,
+    wickerbottom = "The shards of impure crystals.",
     willow = "Piece of crystal.",
     wolfgang = "Is cracked.",
     woodie = "Something broke it, eh?",
@@ -795,12 +843,13 @@ Add.QuotesFor "crystal_fragment_black" {
 }
 
 Add.QuotesFor "crystal_fragment_light" {
+    ANY = nil,
     GENERIC = "It glows with a strange light.",
     wathgrithr = "Twinkle, twinkle.",
     waxwell = "Dare I say they look crystal clear.",
-    webber = nil,
+    webber = "I don't like this in pieces. He does.",
     wendy = "The shine dims but is still there.",
-    wickerbottom = nil,
+    wickerbottom = "The remnants of a crystal.",
     willow = "It's slightly glowing.",
     wolfgang = "Is broken.",
     woodie = "There's a faint light coming off it.",
@@ -808,12 +857,13 @@ Add.QuotesFor "crystal_fragment_light" {
 }
 
 Add.QuotesFor "crystal_fragment_quartz" {
+    ANY = nil,
     GENERIC = "I bet it conducts electricity.",
     wathgrithr = "A piece of crystal.",
     waxwell = "Dare I say they look crystal clear.",
-    webber = nil,
+    webber = "Eh, never like this stuff.",
     wendy = "It still attempts to hold in the light.",
-    wickerbottom = nil,
+    wickerbottom = "I understand this, crystal clear.",
     willow = "Someone broke it. Good.",
     wolfgang = "Is pebble.",
     woodie = "Just a shard of crystal.",
@@ -821,12 +871,13 @@ Add.QuotesFor "crystal_fragment_quartz" {
 }
 
 Add.QuotesFor "crystal_fragment_relic" {
+    ANY = nil,
     GENERIC = "I get a weird feeling from that crystal.",
     wathgrithr = "An ancient piece of crystal.",
     waxwell = "Dare I say they look crystal clear.",
-    webber = nil,
+    webber = "I wonder who made this.",
     wendy = "Some things are better left unknown.",
-    wickerbottom = nil,
+    wickerbottom = "Something from yesteryear.",
     willow = "Ancient junk.",
     wolfgang = "Is just a piece.",
     woodie = "It's been shattered.",
@@ -834,12 +885,13 @@ Add.QuotesFor "crystal_fragment_relic" {
 }
 
 Add.QuotesFor "crystal_fragment_spire" {
+    ANY = nil,
     GENERIC = "It's a large crystal.",
     wathgrithr = nil,
     waxwell = "Dare I say they look crystal clear.",
-    webber = nil,
+    webber = "Why do pretty things break?",
     wendy = nil,
-    wickerbottom = nil,
+    wickerbottom = "A stalagmite of crystal.",
     willow = "Looks like you were cut down to size.",
     wolfgang = "Is shiny rock.",
     woodie = "Not quite as big any more.",
@@ -847,12 +899,13 @@ Add.QuotesFor "crystal_fragment_spire" {
 }
 
 Add.QuotesFor "crystal_fragment_water" {
+    ANY = nil,
     GENERIC = "It looks like it has water inside.",
     wathgrithr = "It's damp to the touch.",
     waxwell = "Dare I say they look crystal clear.",
-    webber = nil,
+    webber = "Might put this in a glass of juice.",
     wendy = "Now to harness the storm.",
-    wickerbottom = nil,
+    wickerbottom = "Isn't this technically ice?",
     willow = "Hah, it's broken! Good.",
     wolfgang = "Is smashed.",
     woodie = "Just a trickle inside.",
@@ -860,12 +913,13 @@ Add.QuotesFor "crystal_fragment_water" {
 }
 
 Add.QuotesFor "crystal_fragment_white" {
+    ANY = nil,
     GENERIC = "I feel lighter just being near it.",
     wathgrithr = "A shard of winter.",
     waxwell = "Dare I say they look crystal clear.",
-    webber = nil,
+    webber = "Now who broke this?",
     wendy = "Even broken, it is without flaw.",
-    wickerbottom = nil,
+    wickerbottom = "Broken shards of a crystal.",
     willow = "Smashed.",
     wolfgang = "Is not whole.",
     woodie = "It's dim.",
@@ -873,12 +927,13 @@ Add.QuotesFor "crystal_fragment_white" {
 }
 
 Add.QuotesFor "crystal_lamp" {
+    ANY = nil,
     GENERIC = "It's magically lit by crystals.",
     wathgrithr = "It has a fire within.",
     waxwell = "Even the light is crystal clear.",
-    webber = nil,
+    webber = "Shiny light for the night.",
     wendy = "Bottled lightning.",
-    wickerbottom = nil,
+    wickerbottom = "This would be great to read next to!",
     willow = "I love lamps.",
     wolfgang = "Pretty rock makes light!",
     woodie = "It's bright.",
@@ -886,12 +941,13 @@ Add.QuotesFor "crystal_lamp" {
 }
 
 Add.QuotesFor "crystal_light" {
+    ANY = nil,
     GENERIC = "It glows with a strange light.",
     wathgrithr = "Like a star.",
     waxwell = "Dare I say they look crystal clear.",
-    webber = nil,
+    webber = "It makes me safe. Not him though.",
     wendy = "Its shine rises from its depths.",
-    wickerbottom = nil,
+    wickerbottom = "It give off a comforting light.",
     willow = "It glows like fire.",
     wolfgang = "Is bright!",
     woodie = "It's quite bright, eh?",
@@ -899,12 +955,13 @@ Add.QuotesFor "crystal_light" {
 }
 
 Add.QuotesFor "crystal_quartz" {
+    ANY = nil,
     GENERIC = "I bet it conducts electricity.",
     wathgrithr = "A crystal.",
     waxwell = "Dare I say they look crystal clear.",
-    webber = nil,
+    webber = "I think this is quartz.",
     wendy = "It radiates with heat.",
-    wickerbottom = nil,
+    wickerbottom = "A somewhat precious gemstone.",
     willow = "I wish rocks could burn.",
     wolfgang = "Is stone.",
     woodie = "It's a wee rock.",
@@ -912,12 +969,13 @@ Add.QuotesFor "crystal_quartz" {
 }
 
 Add.QuotesFor "crystal_relic" {
+    ANY = nil,
     GENERIC = "I get a weird feeling from that crystal.",
     wathgrithr = "Old and probably powerful.",
     waxwell = "Dare I say they look crystal clear.",
-    webber = nil,
+    webber = "I should be an historian.",
     wendy = "Lost knowledge made known.",
-    wickerbottom = nil,
+    wickerbottom = "A piece of history in my hands.",
     willow = "Broken ancient junk.",
     wolfgang = "Is old.",
     woodie = "Wonder who made that, eh?",
@@ -925,12 +983,13 @@ Add.QuotesFor "crystal_relic" {
 }
 
 Add.QuotesFor "crystal_spire" {
+    ANY = nil,
     GENERIC = "It's a large crystal.",
     wathgrithr = "A spire worthy of the gods!",
     waxwell = "Dare I say they look crystal clear.",
-    webber = nil,
+    webber = "Gee whiz! I'll be a billionaire!",
     wendy = "But what do you support.",
-    wickerbottom = nil,
+    wickerbottom = "My word, that would be worth a fortune!",
     willow = "A big shiny rock.",
     wolfgang = "Is spiky, shiny rock.",
     woodie = "It's a big, pointy rock.",
@@ -942,9 +1001,9 @@ Add.QuotesFor "crystal_wall" {
     GENERIC = "A crystalline wall.",
     wathgrithr = "It sparkles.",
     waxwell = nil,
-    webber = nil,
+    webber = "A bull couldn't break this.",
     wendy = "My image distorts across its surface.",
-    wickerbottom = nil,
+    wickerbottom = "I'd like to see you get through that!",
     willow = "Might protect me from enemies I can't burn.",
     wolfgang = "Is tough, like Wolfgang.",
     woodie = "Strong and durable.",
@@ -952,12 +1011,13 @@ Add.QuotesFor "crystal_wall" {
 }
 
 Add.QuotesFor "crystal_water" {
+    ANY = nil,
     GENERIC = "It looks like it has water inside.",
     wathgrithr = "I can hear the sea inside.",
     waxwell = "Dare I say they look crystal clear.",
-    webber = nil,
+    webber = "A water gem.",
     wendy = "A swirling torrent dwells within.",
-    wickerbottom = nil,
+    wickerbottom = "Isn't this technically ice?",
     willow = "I don't like water.",
     wolfgang = "Is pretty blue.",
     woodie = "It rages like the sea.",
@@ -965,12 +1025,13 @@ Add.QuotesFor "crystal_water" {
 }
 
 Add.QuotesFor "crystal_white" {
+    ANY = nil,
     GENERIC = "I feel lighter just being near it.",
     wathgrithr = "Like winter snow.",
     waxwell = "Dare I say they look crystal clear.",
-    webber = nil,
+    webber = "I like this. He doesn't.",
     wendy = "Unnaturally flawless.",
-    wickerbottom = nil,
+    wickerbottom = "Tabula rasa crystal.",
     willow = "White is boring. Red is better.",
     wolfgang = "Is blank. Like thoughts.",
     woodie = "It glows like the sun.",
@@ -978,12 +1039,13 @@ Add.QuotesFor "crystal_white" {
 }
 
 Add.QuotesFor "cumulostone" {
+    ANY = nil,
     GENERIC = "A rock that seems to pulse with light.",
     wathgrithr = "The building blocks of Valhalla.",
     waxwell = nil,
-    webber = nil,
+    webber = "I wonder what this is?",
     wendy = "It crackles with energy.",
-    wickerbottom = nil,
+    wickerbottom = "A magnet for clouds.",
     willow = "It's cloud rock. Why is nothing in this place good to burn?",
     wolfgang = "Is rock and is cloud.",
     woodie = "It's rock. Wood's better.",
@@ -991,12 +1053,13 @@ Add.QuotesFor "cumulostone" {
 }
 
 Add.QuotesFor "datura_petals" {
+    ANY = nil,
     GENERIC = "It smells of nightmares.",
     wathgrithr = nil,
     waxwell = "It smells like innocence. Ripe for the taking. ",
-    webber = "It makes us feel strange things.",
+    webber = "We had these in our garden.",
     wendy = "A flower to fuel hatred. Smells like a rose.",
-    wickerbottom = "This one is designed to trigger a hate response. Smells like a burned book.",
+    wickerbottom = "Solanaceae petals.",
     willow = "The stupid thing smells like winter mint.",
     wolfgang = "Smells like wimpy tears.",
     woodie = " It smells of wet fur and old pine.",
@@ -1004,12 +1067,13 @@ Add.QuotesFor "datura_petals" {
 }
 
 Add.QuotesFor "dragonblood_log" {
+    ANY = nil,
     GENERIC = "It emits a slight warmth.",
     wathgrithr = "The tree dragon has fallen!",
     waxwell = nil,
-    webber = nil,
+    webber = "All logs look the same to us.",
     wendy = "It's petrified.",
-    wickerbottom = nil,
+    wickerbottom = "I'm guessing this comes from a Daemonorops.",
     willow = "Finally, decent fire material.",
     wolfgang = "Is good wood.",
     woodie = "Not my usual fare, but I'll take it.",
@@ -1017,12 +1081,13 @@ Add.QuotesFor "dragonblood_log" {
 }
 
 Add.QuotesFor "dragonblood_sap" {
+    ANY = nil,
     GENERIC = "Warm, gooey tree sap.",
     wathgrithr = "Warm and sticky, but it doesn't smell like blood.",
     waxwell = nil,
-    webber = nil,
+    webber = "Yuck! Probably not as nice as maple.",
     wendy = "Blood from a tree. Now to get blood from a stone.",
-    wickerbottom = nil,
+    wickerbottom = "Isn't sap technically blood?",
     willow = "It's all sticky, ugh.",
     wolfgang = "Does not taste of blood.",
     woodie = "Maybe I can make some syrup.",
@@ -1030,12 +1095,13 @@ Add.QuotesFor "dragonblood_sap" {
 }
 
 Add.QuotesFor "dragonblood_tree" {
+    ANY = nil,
     GENERIC = "I wonder if it breathes fire?",
     wathgrithr = "It doesn't look like a dragon.",
     waxwell = nil,
-    webber = nil,
+    webber = "Looks fun to climb!",
     wendy = "If it bleeds, does it feel?",
-    wickerbottom = nil,
+    wickerbottom = "If I have to identify this, I'm guessing Daemonorops.",
     willow = "Dragons and trees go together like a forest on fire.",
     wolfgang = "Strange tree.",
     woodie = "Now that's a beauty, eh?",
@@ -1043,12 +1109,13 @@ Add.QuotesFor "dragonblood_tree" {
 }
 
 Add.QuotesFor "duckraptor" {
+    ANY = nil,
     GENERIC = "A nightmare duck! What next?",
     wathgrithr = "Fight me, duck creature!",
     waxwell = "You will make a rather exquisite duck pâté.",
-    webber = nil,
+    webber = "Will it breath fire or just quack?",
     wendy = "A monster of greed and rage.",
-    wickerbottom = nil,
+    wickerbottom = "I could never imagine something like that!",
     willow = "I want it as a pet.",
     wolfgang = "So many claws.",
     woodie = "This bird shows its vile nature.",
@@ -1056,6 +1123,7 @@ Add.QuotesFor "duckraptor" {
 }
 
 Add.QuotesFor "dug_tea_bush" {
+    ANY = nil,
     GENERIC = "Tea leaves grow on this bush.",
     wathgrithr = "It grows tea.",
     waxwell = nil,
@@ -1069,12 +1137,13 @@ Add.QuotesFor "dug_tea_bush" {
 }
 
 Add.QuotesFor "flying_fish" {
+    ANY = nil,
     GENERIC = "But do they have lungs?",
     wathgrithr = "A skyfaring fish.",
     waxwell = "Being able to fly did not aid you at all.",
-    webber = "I thought grandpa was joking about fish that fly.",
+    webber = "Look a fish that flies!",
     wendy = "A creature of two worlds that belongs in neither.",
-    wickerbottom = nil,
+    wickerbottom = "Who studies this; an ornithologist or an ichthyologist?",
     willow = "What a strange creature.",
     wolfgang = "Is fish out of water.",
     woodie = "It's suspiciously birdlike.",
@@ -1082,12 +1151,13 @@ Add.QuotesFor "flying_fish" {
 }
 
 Add.QuotesFor "flying_fish_pond" {
+    ANY = nil,
     GENERIC = nil,
     wathgrithr = "Can they swim?",
     waxwell = nil,
-    webber = nil,
+    webber = "I don't have my water wings.",
     wendy = "What can I fish from empty void?",
-    wickerbottom = nil,
+    wickerbottom = "Where the flying fish come to sleep.",
     willow = "Fish live there. Watery cowards.",
     wolfgang = "Where oh where did the fishie go?",
     woodie = "Smells a bit fishy.",
@@ -1095,12 +1165,13 @@ Add.QuotesFor "flying_fish_pond" {
 }
 
 Add.QuotesFor "golden_amulet" {
+    ANY = nil,
     GENERIC = "An amulet of luck.",
     wathgrithr = "An amulet of Freyja.",
     waxwell = nil,
-    webber = nil,
+    webber = "Mum would like this.",
     wendy = "What use shall this one have.",
-    wickerbottom = nil,
+    wickerbottom = "My husband gave me something similar to this.",
     willow = "It's nice enough, I guess.",
     wolfgang = "Is shiny neck jewelery.",
     woodie = "It's very pretty, eh?",
@@ -1108,12 +1179,13 @@ Add.QuotesFor "golden_amulet" {
 }
 
 Add.QuotesFor "golden_egg" {
+    ANY = nil,
     GENERIC = "It's warm. And gold. Mostly gold.",
     wathgrithr = "Good for winter nights.",
     waxwell = nil,
-    webber = nil,
+    webber = "Look at that!",
     wendy = "All that glitters isn't gold.",
-    wickerbottom = nil,
+    wickerbottom = "Will I get a golden Anatidae from this?",
     willow = "Will it hatch into a metal bird?",
     wolfgang = "Is not for eating.",
     woodie = "I don't think there's a bird in that, thankfully.",
@@ -1121,12 +1193,13 @@ Add.QuotesFor "golden_egg" {
 }
 
 Add.QuotesFor "golden_golem" {
+    ANY = nil,
     GENERIC = "It's worthless as long as it wants to kill me.",
     wathgrithr = "Imagine how many spears I could make from this!",
     waxwell = "How intruiging.",
-    webber = nil,
+    webber = "Don't eat us! We don't want to be three!",
     wendy = "Its shine hides the stains of victims past.",
-    wickerbottom = nil,
+    wickerbottom = "A monster from myth.",
     willow = "Metal doesn't burn.",
     wolfgang = "Metal Giant!",
     woodie = "Very shiny.",
@@ -1134,12 +1207,13 @@ Add.QuotesFor "golden_golem" {
 }
 
 Add.QuotesFor "golden_lyre" {
+    ANY = nil,
     GENERIC = "A boring golden harp.",
     wathgrithr = "It plays the music of battle!",
     waxwell = "Plays a beautiful tune, yet participates in dull conversations.",
-    webber = nil,
+    webber = "I think that's a harp.",
     wendy = "What say you, Soothsayer.",
-    wickerbottom = nil,
+    wickerbottom = "An angelic harp.",
     willow = "The only music I like is the sound of fire burning.",
     wolfgang = "What pretty noises.",
     woodie = "I know a thing or two about music.",
@@ -1147,12 +1221,13 @@ Add.QuotesFor "golden_lyre" {
 }
 
 Add.QuotesFor "golden_petals" {
+    ANY = nil,
     GENERIC = "Golden flower petals.",
     wathgrithr = "Flowers of the gods!",
     waxwell = nil,
-    webber = nil,
+    webber = "I hope this never rot.",
     wendy = "Am I to be taken a fool.",
-    wickerbottom = nil,
+    wickerbottom = "I wonder if this colour attracts bees?",
     willow = "No good to me.",
     wolfgang = "Is from shiny plant.",
     woodie = "All that glitters.",
@@ -1160,12 +1235,13 @@ Add.QuotesFor "golden_petals" {
 }
 
 Add.QuotesFor "golden_rose" {
+    ANY = nil,
     GENERIC = "A rose with golden petals.",
     wathgrithr = "Flowers of the gods!",
     waxwell = nil,
-    webber = nil,
+    webber = "Roses are red and gold somehow too.",
     wendy = "A gift for a lady. Why would they grow here?",
-    wickerbottom = nil,
+    wickerbottom = "A rose by any other name will smell as sweet.",
     willow = "Roses have thorns. They're okay in my book.",
     wolfgang = "Shiny flower has sharp thorns.",
     woodie = "I bet Lucy would like one.",
@@ -1173,12 +1249,13 @@ Add.QuotesFor "golden_rose" {
 }
 
 Add.QuotesFor "golden_sunflower" {
+    ANY = nil,
     GENERIC = "A sunflower made of gold.",
     wathgrithr = "It shines like my spear.",
     waxwell = nil,
-    webber = nil,
+    webber = "These grew in the gardens close to home.",
     wendy = "Shines as the sun.",
-    wickerbottom = nil,
+    wickerbottom = "Helianthus annuus; gold version.",
     willow = "It's nothing like the sun. Lame.",
     wolfgang = "Is big yellow flower.",
     woodie = "A miracle of nature, eh?",
@@ -1186,12 +1263,13 @@ Add.QuotesFor "golden_sunflower" {
 }
 
 Add.QuotesFor "golden_sunflower_seeds" {
+    ANY = nil,
     GENERIC = "I can make a gold farm!",
     wathgrithr = "A good snack, for some people.",
     waxwell = nil,
-    webber = nil,
+    webber = "We can make the world better, one seed at a time.",
     wendy = "They shine with a gilded light.",
-    wickerbottom = nil,
+    wickerbottom = "Helianthus annuus seeds.",
     willow = "A bit of fire would spice those up.",
     wolfgang = "This grow big shiny plant.",
     woodie = "More farming?",
@@ -1199,12 +1277,13 @@ Add.QuotesFor "golden_sunflower_seeds" {
 }
 
 Add.QuotesFor "goose" {
+    ANY = nil,
     GENERIC = "I wonder if it lays golden eggs?",
     wathgrithr = "Lay me an egg!",
     waxwell = "For others a source of wealth, for me a source of annoyance.",
-    webber = nil,
+    webber = "Honk yourself.",
     wendy = "Are you golden or merely gilded.",
-    wickerbottom = nil,
+    wickerbottom = "A member of Anatidae. Too noisy.",
     willow = "There's a goose on the loose.",
     wolfgang = "Egg is not tasty. Bird is though.",
     woodie = "Golden presents aren't enough to sway me, fiend!",
@@ -1212,12 +1291,13 @@ Add.QuotesFor "goose" {
 }
 
 Add.QuotesFor "grabber" {
+    ANY = nil,
     GENERIC = "This reminds me of someone.",
     wathgrithr = "To reach far-off things.",
     waxwell = nil,
-    webber = nil,
+    webber = "Grab-O-hand.",
     wendy = "It possesses Death's iron grip.",
-    wickerbottom = nil,
+    wickerbottom = "Extends my range of acquisition.",
     willow = "Now you're over there, now you're not!",
     wolfgang = "Makes things closer.",
     woodie = "Good for reaching stuff.",
@@ -1225,12 +1305,13 @@ Add.QuotesFor "grabber" {
 }
 
 Add.QuotesFor "greenbean" {
+    ANY = nil,
     GENERIC = "Green and nutricious.",
     wathgrithr = "Disgusting!",
     waxwell = nil,
-    webber = nil,
+    webber = "Mother used to try and feed us these.",
     wendy = "It looks afraid.",
-    wickerbottom = nil,
+    wickerbottom = "A bit bland.",
     willow = "It's bean fun.",
     wolfgang = "Wolfgang has bean green before!",
     woodie = "Good on toast.",
@@ -1238,12 +1319,13 @@ Add.QuotesFor "greenbean" {
 }
 
 Add.QuotesFor "greentea" {
+    ANY = nil,
     GENERIC = "A healthy green tea.",
     wathgrithr = "I prefer mead.",
     waxwell = nil,
-    webber = nil,
+    webber = "I really don't think we'll like this.",
     wendy = "Perhaps I can calm my nerves.",
-    wickerbottom = nil,
+    wickerbottom = "An acquired taste; but worth it.",
     willow = "Time for tea.",
     wolfgang = "Is not even green.",
     woodie = "I guess one won't kill me.",
@@ -1251,6 +1333,7 @@ Add.QuotesFor "greentea" {
 }
 
 Add.QuotesFor "gummybear" {
+    ANY = nil,
     GENERIC = "How beary nice to meet you.",
     wathgrithr = nil,
     waxwell = nil,
@@ -1264,6 +1347,7 @@ Add.QuotesFor "gummybear" {
 }
 
 Add.QuotesFor "gummybear_den" {
+    ANY = nil,
     GENERIC = "I couldn't fit in it if I tried.",
     wathgrithr = nil,
     waxwell = nil,
@@ -1277,12 +1361,13 @@ Add.QuotesFor "gummybear_den" {
 }
 
 Add.QuotesFor "gustflower" {
+    ANY = nil,
     GENERIC = "I should steer clear of it.",
     wathgrithr = "It makes its own wind.",
     waxwell = nil,
-    webber = nil,
+    webber = "Windy flower.",
     wendy = "They send any threats away with powerful winds.",
-    wickerbottom = nil,
+    wickerbottom = "A breezy bloomer.",
     willow = "It makes wind. Not a fan.",
     wolfgang = "Plant makes whoosh.",
     woodie = "What a windbag.",
@@ -1290,12 +1375,13 @@ Add.QuotesFor "gustflower" {
 }
 
 Add.QuotesFor "gustflower_seeds" {
+    ANY = nil,
     GENERIC = "I can plant this somewhere.",
     wathgrithr = "I can plant the wind itself.",
     waxwell = nil,
-    webber = nil,
+    webber = "Isn't life amazing?",
     wendy = "They shake with the power of a gale.",
-    wickerbottom = nil,
+    wickerbottom = "I can plant some more wind flowers with these.",
     willow = "I could plant them. Or burn them.",
     wolfgang = "Is for blowy flower.",
     woodie = "I don't grow stuff.",
@@ -1303,12 +1389,13 @@ Add.QuotesFor "gustflower_seeds" {
 }
 
 Add.QuotesFor "hive_marshmallow" {
+    ANY = nil,
     GENERIC = "A giant marshmallow.",
     wathgrithr = "Full of candy bees.",
     waxwell = nil,
-    webber = nil,
+    webber = "Buzzy bees making treats.",
     wendy = "The home of the mindless drones.",
-    wickerbottom = nil,
+    wickerbottom = "A hive of activity.",
     willow = "Bees live there. I could smoke 'em out.",
     wolfgang = "Taste of bug.",
     woodie = "Bees. Keep them away from your face.",
@@ -1316,12 +1403,13 @@ Add.QuotesFor "hive_marshmallow" {
 }
 
 Add.QuotesFor "jellyshroom_blue" {
+    ANY = nil,
     GENERIC = "You jelly?",
     wathgrithr = "It's still a vegetable.",
     waxwell = nil,
-    webber = nil,
+    webber = "Yum! Blue flavour!",
     wendy = "Blue gelatin.",
-    wickerbottom = nil,
+    wickerbottom = "A cerulean sweet.",
     willow = "Boring. Let's burn something.",
     wolfgang = "Is squishy.",
     woodie = "Is that safe to eat?",
@@ -1329,12 +1417,13 @@ Add.QuotesFor "jellyshroom_blue" {
 }
 
 Add.QuotesFor "jellyshroom_green" {
+    ANY = nil,
     GENERIC = "You jelly?",
     wathgrithr = "It's still a vegetable.",
     waxwell = nil,
-    webber = nil,
+    webber = "Yum! Lime flavour!",
     wendy = "Ugh. Too many sweets.",
-    wickerbottom = nil,
+    wickerbottom = "A guppie green gummy.",
     willow = "Green plants burn slower.",
     wolfgang = "Is squidgy.",
     woodie = "Green is nice.",
@@ -1342,12 +1431,13 @@ Add.QuotesFor "jellyshroom_green" {
 }
 
 Add.QuotesFor "jellyshroom_red" {
+    ANY = nil,
     GENERIC = "You jelly?",
     wathgrithr = "It's still a vegetable.",
     waxwell = nil,
-    webber = nil,
+    webber = "Yum! Strawberry flavour!",
     wendy = "Ugh. Too many sweets.",
-    wickerbottom = nil,
+    wickerbottom = "A crimson confection.",
     willow = "Red is my favourite colour.",
     wolfgang = "Is squeezy.",
     woodie = "Red like my hair.",
@@ -1355,12 +1445,13 @@ Add.QuotesFor "jellyshroom_red" {
 }
 
 Add.QuotesFor "kettle" {
+    ANY = nil,
     GENERIC = "A kettle, for brewing tea.",
     wathgrithr = "Brews hot beverages.",
     waxwell = nil,
-    webber = nil,
+    webber = "Where is the plug?",
     wendy = "It howls like a banshee when it's ready.",
-    wickerbottom = nil,
+    wickerbottom = "A water boiling vessel.",
     willow = "I could make a drink.",
     wolfgang = "Gets Wolfgang into hot water!",
     woodie = "For making tea.",
@@ -1368,12 +1459,13 @@ Add.QuotesFor "kettle" {
 }
 
 Add.QuotesFor "kettle_item" {
+    ANY = nil,
     GENERIC = "A kettle, for brewing tea.",
     wathgrithr = nil,
     waxwell = nil,
-    webber = nil,
+    webber = "Do I have to heat it on fire?",
     wendy = nil,
-    wickerbottom = nil,
+    wickerbottom = "Hot water; perfect for drinking or bathing.",
     willow = "I could make a drink.",
     wolfgang = "Gets Wolfgang into hot water!",
     woodie = "For making tea.",
@@ -1381,12 +1473,13 @@ Add.QuotesFor "kettle_item" {
 }
 
 Add.QuotesFor "kite" {
+    ANY = nil,
     GENERIC = "Cloth tied to a string.",
     wathgrithr = "It soars above the clouds!",
     waxwell = nil,
-    webber = nil,
+    webber = "I had two of these.",
     wendy = "Shall I tempt fate?",
-    wickerbottom = nil,
+    wickerbottom = "Ah, to be young again!",
     willow = "Maybe lightning will strike it.",
     wolfgang = "Is for flying.",
     woodie = "No time to play with kites, there are trees to chop!",
@@ -1394,12 +1487,13 @@ Add.QuotesFor "kite" {
 }
 
 Add.QuotesFor "lionant" {
+    ANY = nil,
     GENERIC = "Probably nothing to worry about.",
     wathgrithr = "A beast from Hel!",
     waxwell = nil,
-    webber = nil,
+    webber = "We hate bugs. Well I do.",
     wendy = "That's just....silly.",
-    wickerbottom = nil,
+    wickerbottom = "A Myrmeleontidae. Wow, I'm surprised I could pronounce that!",
     willow = nil,
     wolfgang = nil,
     woodie = "What a weirdo.",
@@ -1407,12 +1501,13 @@ Add.QuotesFor "lionant" {
 }
 
 Add.QuotesFor "lionblob" {
+    ANY = nil,
     GENERIC = "Is that supposed to be a joke?",
     wathgrithr = "What foul thing is this?",
     waxwell = nil,
-    webber = nil,
+    webber = "A blob.",
     wendy = "What is your purpose?",
-    wickerbottom = nil,
+    wickerbottom = "A blob of ant lion.",
     willow = "What in the hell is that?",
     wolfgang = "Is not right.",
     woodie = "That's beyond nature.",
@@ -1420,12 +1515,13 @@ Add.QuotesFor "lionblob" {
 }
 
 Add.QuotesFor "live_gnome" {
+    ANY = nil,
     GENERIC = "Is that a gnome?",
     wathgrithr = "The small man lives!",
     waxwell = nil,
-    webber = nil,
+    webber = "Gnoming around are we?",
     wendy = "Zealots of order.",
-    wickerbottom = nil,
+    wickerbottom = "I have a few porcelain versions in my garden.",
     willow = "Those things can move?",
     wolfgang = "Garden man lives?",
     woodie = "It's a little man, eh?",
@@ -1433,12 +1529,13 @@ Add.QuotesFor "live_gnome" {
 }
 
 Add.QuotesFor "longbill" {
+    ANY = nil,
     GENERIC = "Are those claws on its wings?",
     wathgrithr = "What a large beak.",
     waxwell = "With it's size it most likely has trouble ducking.",
-    webber = nil,
+    webber = "Is that a woodpecker?",
     wendy = "It looks for fights.",
-    wickerbottom = nil,
+    wickerbottom = "A Melanocharitida with a beautiful tweet.",
     willow = "Ha, it has a big nose!",
     wolfgang = "Why long bill? Wolfgang still funny.",
     woodie = "Die, nasally-challenged monster!",
@@ -1446,12 +1543,13 @@ Add.QuotesFor "longbill" {
 }
 
 Add.QuotesFor "magic_beans" {
+    ANY = nil,
     GENERIC = "Oldest marketing scam in the book!",
     wathgrithr = "I should bury them.",
     waxwell = "I hope the legends aren't full of beans.",
-    webber = "I wonder what wonders it contains.",
+    webber = "Magic! In beans!",
     wendy = "A trickster's gift.",
-    wickerbottom = nil,
+    wickerbottom = "Worth exactly one bovine.",
     willow = "Magic doesn't stop fire.",
     wolfgang = "Not enough for my mighty belly.",
     woodie = "Magic? Not sure about that.",
@@ -1459,12 +1557,13 @@ Add.QuotesFor "magic_beans" {
 }
 
 Add.QuotesFor "magic_beans_cooked" {
+    ANY = nil,
     GENERIC = "I don't even know why I did that.",
     wathgrithr = "What a waste.",
     waxwell = "I guess we'll never know if they were real or not.",
-    webber = "The wonder has been cooked out of them.",
+    webber = "Well that was stupid of us.",
     wendy = nil,
-    wickerbottom = nil,
+    wickerbottom = "I've cooked all the charm out of them.",
     willow = "Magic doesn't stop fire.",
     wolfgang = "Not enough for my mighty belly.",
     woodie = "No good for growing now.",
@@ -1472,12 +1571,13 @@ Add.QuotesFor "magic_beans_cooked" {
 }
 
 Add.QuotesFor "magnet" {
+    ANY = nil,
     GENERIC = "It's quite magnetic.",
     wathgrithr = "How does it work?",
     waxwell = nil,
-    webber = nil,
+    webber = "Come to me metal.",
     wendy = "Come to me",
-    wickerbottom = nil,
+    wickerbottom = "Thank goodness my glasses are non-ferrous.",
     willow = "It's attracted to metal. I'm attracted to fire.",
     wolfgang = "Is metal flycatcher.",
     woodie = "It's a bugzapper.",
@@ -1485,12 +1585,13 @@ Add.QuotesFor "magnet" {
 }
 
 Add.QuotesFor "manta" {
+    ANY = nil,
     GENERIC = "Aren't you supposed to be in the ocean?",
     wathgrithr = "Why are you so far from home?",
     waxwell = nil,
-    webber = nil,
+    webber = "I think I saw this at the aquarium.",
     wendy = "To fly without a care. If only.",
-    wickerbottom = nil,
+    wickerbottom = "A Manta, from Mobulidae.",
     willow = "That's new.",
     wolfgang = "What is creature? Where is from?",
     woodie = "Very majestic, eh?",
@@ -1498,12 +1599,13 @@ Add.QuotesFor "manta" {
 }
 
 Add.QuotesFor "manta_leather" {
+    ANY = nil,
     GENERIC = "Skin from a flying manta.",
     wathgrithr = "This could be useful.",
     waxwell = nil,
-    webber = nil,
+    webber = "Doesn't help me swim though.",
     wendy = "What shall I make from this flesh.",
-    wickerbottom = nil,
+    wickerbottom = "My word this stinks.",
     willow = "It's a piece of skin. Hard to burn.",
     wolfgang = "Is tough skin.",
     woodie = "Reminds me of the women back home.",
@@ -1511,12 +1613,13 @@ Add.QuotesFor "manta_leather" {
 }
 
 Add.QuotesFor "marshmallow" {
+    ANY = nil,
     GENERIC = "Maybe just one. For science!",
     wathgrithr = "I don't have much of a sweet tooth.",
     waxwell = "Contrary to the name, these do not contain marsh.",
-    webber = nil,
+    webber = "We need a stick and fire and we'd be good to go.",
     wendy = "Yet another way to rot me further.",
-    wickerbottom = nil,
+    wickerbottom = "The modern version of a Althaea officinalis product.",
     willow = "I eat mine charred.",
     wolfgang = "Is soft treat!",
     woodie = "Good on campfires.",
@@ -1524,12 +1627,13 @@ Add.QuotesFor "marshmallow" {
 }
 
 Add.QuotesFor "monolith" {
+    ANY = nil,
     GENERIC = "What is this? A giant golden potato?",
     wathgrithr = "A monument to Freyja.",
     waxwell = "It's artistic value is greatly underrated.",
-    webber = nil,
+    webber = "Tall rock.",
     wendy = nil,
-    wickerbottom = nil,
+    wickerbottom = "Is this a natural obelisk?",
     willow = "Why would anyone waste time making that when they could be setting fires?",
     wolfgang = "Is...art?",
     woodie = "Now that's right fancy.",
@@ -1537,12 +1641,13 @@ Add.QuotesFor "monolith" {
 }
 
 Add.QuotesFor "mushroom_hat" {
+    ANY = nil,
     GENERIC = "I feel silly, oh so silly.",
     wathgrithr = "A helmet of vegetables.",
     waxwell = nil,
-    webber = nil,
+    webber = "This makes me feel really sick.",
     wendy = nil,
-    wickerbottom = nil,
+    wickerbottom = "A mycologist's head piece.",
     willow = "This is awful.",
     wolfgang = "There is mush room on my head. Hah.",
     woodie = "Not my usual fare, but it'll do.",
@@ -1550,12 +1655,13 @@ Add.QuotesFor "mushroom_hat" {
 }
 
 Add.QuotesFor "octocopter" {
+    ANY = nil,
     GENERIC = "Half machine, half octopus.",
     wathgrithr = "I can use it to travel between realms.",
     waxwell = nil,
-    webber = nil,
+    webber = "A flying octopus.",
     wendy = "Rise.",
-    wickerbottom = nil,
+    wickerbottom = "Never seen that in my teuthology encyclopaedias.",
     willow = "I've heard of flying pigs, but never flying octopi.",
     wolfgang = "It has many arms!",
     woodie = "It's a flying sea creature.",
@@ -1563,12 +1669,13 @@ Add.QuotesFor "octocopter" {
 }
 
 Add.QuotesFor "octocopter_wreckage" {
+    ANY = nil,
     GENERIC = "Now it's mostly octopus.",
     wathgrithr = "Poor thing.",
     waxwell = nil,
-    webber = nil,
+    webber = "If only I was eaten by that instead.",
     wendy = "Perhaps I can make my own monster...",
-    wickerbottom = nil,
+    wickerbottom = "I pity it...on some level.",
     willow = "It's crashed. I might be able to fix it.",
     wolfgang = "Is broken!",
     woodie = "It's hurt. Sorry, friend.",
@@ -1576,12 +1683,13 @@ Add.QuotesFor "octocopter_wreckage" {
 }
 
 Add.QuotesFor "octocopterpart1" {
+    ANY = nil,
     GENERIC = "A rotor blade.",
     wathgrithr = "This could be a fine sword.",
     waxwell = nil,
-    webber = nil,
+    webber = "A piece from the flying octopus.",
     wendy = "Slice the air.",
-    wickerbottom = nil,
+    wickerbottom = "A part from an octopoda.",
     willow = "I need this for flying.",
     wolfgang = "Is for flying.",
     woodie = "What's that?",
@@ -1589,12 +1697,13 @@ Add.QuotesFor "octocopterpart1" {
 }
 
 Add.QuotesFor "octocopterpart2" {
+    ANY = nil,
     GENERIC = "A rotor plate.",
     wathgrithr = "Aha, a shield!",
     waxwell = nil,
-    webber = nil,
+    webber = "A piece from the flying octopus.",
     wendy = "Hold it down.",
-    wickerbottom = nil,
+    wickerbottom = "A piece from an octopoda.",
     willow = "A part of a broken Octocopter.",
     wolfgang = "Soon Wolfgang flies.",
     woodie = "Not for eating off of.",
@@ -1602,12 +1711,13 @@ Add.QuotesFor "octocopterpart2" {
 }
 
 Add.QuotesFor "octocopterpart3" {
+    ANY = nil,
     GENERIC = "A rotor hub.",
     wathgrithr = "Maybe I should fix the poor thing.",
     waxwell = nil,
-    webber = nil,
+    webber = "A piece from the flying octopus.",
     wendy = "Bring it together",
-    wickerbottom = nil,
+    wickerbottom = "A procurement from an octopoda.",
     willow = "The last piece of an Octocopter.",
     wolfgang = "Octopus needs this.",
     woodie = "Looks mechanical, eh?",
@@ -1615,12 +1725,13 @@ Add.QuotesFor "octocopterpart3" {
 }
 
 Add.QuotesFor "owl" {
+    ANY = nil,
     GENERIC = "Their eyes are unsettling...",
     wathgrithr = "A being cloaked in feathers.",
     waxwell = "These have a secret brotherhoot.",
-    webber = "What big eyes they have!",
+    webber = "An owl!",
     wendy = "Zealots of madness.",
-    wickerbottom = nil,
+    wickerbottom = "Minerva's pet; my favourite creature!",
     willow = "A silent, deadly predator. Like me.",
     wolfgang = "Mean birds. More than tallest bird!",
     woodie = "I am not fond of them.",
@@ -1628,12 +1739,13 @@ Add.QuotesFor "owl" {
 }
 
 Add.QuotesFor "package" {
+    ANY = nil,
     GENERIC = "There's something in it.",
     wathgrithr = "Oh, a surprise!",
     waxwell = nil,
-    webber = nil,
+    webber = "Being small is not always a good thing.",
     wendy = "What's in the box?!",
-    wickerbottom = nil,
+    wickerbottom = "It's rude to open someone else's mail.",
     willow = "What's in it? I hope it's fire.",
     wolfgang = "What is inside?",
     woodie = "Is it for me?",
@@ -1641,12 +1753,13 @@ Add.QuotesFor "package" {
 }
 
 Add.QuotesFor "pineapple_bush" {
+    ANY = nil,
     GENERIC = nil,
     wathgrithr = nil,
     waxwell = nil,
-    webber = nil,
+    webber = "A pineapple bush",
     wendy = nil,
-    wickerbottom = nil,
+    wickerbottom = "This bush grows Ananas comosus.",
     willow = "More fruit. Better than starving.",
     wolfgang = "Is little spiky fruit bush.",
     woodie = "Not many fruits grow on the ground.",
@@ -1654,12 +1767,13 @@ Add.QuotesFor "pineapple_bush" {
 }
 
 Add.QuotesFor "pineapple_fruit" {
+    ANY = nil,
     GENERIC = nil,
     wathgrithr = "I won't eat something this sharp.",
     waxwell = nil,
-    webber = nil,
+    webber = "Dad had an ukulele shaped like one of these.",
     wendy = "A fruit that eats you back.",
-    wickerbottom = nil,
+    wickerbottom = "Ananas comosus; lovely taste.",
     willow = "It's all spiky. My kind of plant.",
     wolfgang = "Pointy fruit!",
     woodie = "Never seen the like of this before, eh?",
@@ -1667,12 +1781,13 @@ Add.QuotesFor "pineapple_fruit" {
 }
 
 Add.QuotesFor "quartz_torch" {
+    ANY = nil,
     GENERIC = nil,
     wathgrithr = "A magical torch?",
     waxwell = nil,
-    webber = nil,
+    webber = "My portable night light.",
     wendy = "And a light shall shine in the dark.",
-    wickerbottom = nil,
+    wickerbottom = "Now this, I don't understand.",
     willow = "Needs fire.",
     wolfgang = "Is glowing rock on stick.",
     woodie = "Thankfully it can't burn trees.",
@@ -1680,12 +1795,13 @@ Add.QuotesFor "quartz_torch" {
 }
 
 Add.QuotesFor "rainbowcoon" {
+    ANY = nil,
     GENERIC = "Colorful, but it's a ploy for my food.",
     wathgrithr = "A colourful mischief-maker.",
     waxwell = "The rainbow is trying to taste my food!",
-    webber = nil,
+    webber = "Looks like he fell in buckets of paint.",
     wendy = "A thief in deceptively cheery colours.",
-    wickerbottom = nil,
+    wickerbottom = "Look at that hue.",
     willow = "Touch my stuff and I'll burn you good!",
     wolfgang = "Is pretty, but food is mine!",
     woodie = "Colourful little thief.",
@@ -1693,12 +1809,13 @@ Add.QuotesFor "rainbowcoon" {
 }
 
 Add.QuotesFor "refined_black_crystal" {
+    ANY = nil,
     GENERIC = "A large chunk of black crystal.",
     wathgrithr = "It's better now!",
     waxwell = nil,
-    webber = nil,
+    webber = "He really likes this. I don't",
     wendy = nil,
-    wickerbottom = nil,
+    wickerbottom = "I've made the darkness stronger.",
     willow = "It's been improved. Fire would improve it more.",
     wolfgang = "Is better now.",
     woodie = "It looks nicer, eh?",
@@ -1706,12 +1823,13 @@ Add.QuotesFor "refined_black_crystal" {
 }
 
 Add.QuotesFor "refined_white_crystal" {
+    ANY = nil,
     GENERIC = "A large chunk of white crystal.",
     wathgrithr = "It's better now!",
     waxwell = nil,
-    webber = nil,
+    webber = "I really like this. He doesn't.",
     wendy = "Can you really improve that which is flawless.",
-    wickerbottom = nil,
+    wickerbottom = "I've made the brightness stronger.",
     willow = "It's good, but not as good as fire.",
     wolfgang = "Much nicer.",
     woodie = "It's gotten brighter.",
@@ -1719,12 +1837,13 @@ Add.QuotesFor "refined_white_crystal" {
 }
 
 Add.QuotesFor "refiner" {
+    ANY = nil,
     GENERIC = "A refiner. It crushes things into pieces.",
     wathgrithr = "Finally, a machine to break things!",
     waxwell = nil,
-    webber = nil,
+    webber = "Makes things better.",
     wendy = "Destroy. Then improve.",
-    wickerbottom = nil,
+    wickerbottom = "A device to remove the impurities.",
     willow = "You can't refine fire.",
     wolfgang = "Is to change stuff.",
     woodie = "Put stuff in, get stuff out, eh?",
@@ -1732,12 +1851,13 @@ Add.QuotesFor "refiner" {
 }
 
 Add.QuotesFor "research_lectern" {
+    ANY = nil,
     GENERIC = "I'm not even sure what's real anymore.",
     wathgrithr = "A machine of myths and magic!",
     waxwell = nil,
-    webber = nil,
+    webber = "A book stand.",
     wendy = "Or I could look up.",
-    wickerbottom = nil,
+    wickerbottom = "Ah, reminds me of my university days.",
     willow = "Make stuff? I prefer to destroy stuff.",
     wolfgang = "Is cloud-science. Fluffiest kind of science.",
     woodie = "More of that nasty science stuff.",
@@ -1745,12 +1865,13 @@ Add.QuotesFor "research_lectern" {
 }
 
 Add.QuotesFor "rubber" {
+    ANY = nil,
     GENERIC = "It doesn't conduct electricity very well.",
     wathgrithr = "It's useless as armor.",
     waxwell = nil,
-    webber = nil,
+    webber = "Stretchy; like gum.",
     wendy = "This is rubber, I'm glue.",
-    wickerbottom = nil,
+    wickerbottom = "Caoutchouc, if it's natural that is.",
     willow = "Smells bad when burning.",
     wolfgang = "Is stretchy.",
     woodie = "It's rough and stretchable.",
@@ -1758,12 +1879,13 @@ Add.QuotesFor "rubber" {
 }
 
 Add.QuotesFor "scarecrow" {
+    ANY = nil,
     GENERIC = "It doesn't seem like it's working.",
     wathgrithr = "A target for my spear!",
     waxwell = nil,
-    webber = nil,
+    webber = "Scaring things is fun.",
     wendy = "Not at all frightening.",
-    wickerbottom = nil,
+    wickerbottom = "An avian pest deterrent.",
     willow = "Why scare crows when you can burn them?",
     wolfgang = "Does not scare Wolfgang!",
     woodie = "A friend against the onslaught of feathered monsters.",
@@ -1771,12 +1893,13 @@ Add.QuotesFor "scarecrow" {
 }
 
 Add.QuotesFor "sheep" {
+    ANY = nil,
     GENERIC = "They make me feel sleepy.",
     wathgrithr = "A passive beast.",
     waxwell = "It's cuteness disgusts me greatly.",
-    webber = "How did it get up here?",
+    webber = "I count fourteen, then I fall asleep!",
     wendy = " Ignorance. The worst kind of darkness.",
-    wickerbottom = "Ovis Aris. Reminds me of farms.",
+    wickerbottom = "Nice to meet ewe.",
     willow = "Cotton. Very flammable.",
     wolfgang = "Little sheep is made of soft.",
     woodie = "Very fluffy, eh?",
@@ -1784,12 +1907,13 @@ Add.QuotesFor "sheep" {
 }
 
 Add.QuotesFor "sheep.ram" {
+    ANY = nil,
     GENERIC = "Electrifying!",
     wathgrithr = "A sheep with a warrior's heart.",
     waxwell = "The weather forecast shows a local storm.",
-    webber = "Have you any wool?",
+    webber = "A male sheep.",
     wendy = "Their cup hath runneth over.",
-    wickerbottom = nil,
+    wickerbottom = "Is it a ram or a wether? I don't want to know.",
     willow = "Shouldn't have charged him up.",
     wolfgang = "Sheep is mighty now!",
     woodie = "Looks like I'm in trouble now. Oops.",
@@ -1797,12 +1921,13 @@ Add.QuotesFor "sheep.ram" {
 }
 
 Add.QuotesFor "shopkeeper" {
+    ANY = nil,
     GENERIC = "Odd place to set up a store.",
     wathgrithr = "Another traveller from the mortal world.",
     waxwell = "I forgot to thank you for that book you sold me.",
-    webber = "We've never seen him before.",
+    webber = "Hello sir, can you help?",
     wendy = "A deceiver at heart.",
-    wickerbottom = "Perhaps he has some books for sale.",
+    wickerbottom = "A barterer.",
     willow = "I like the flag on his umbrella.",
     wolfgang = "Is talking umbrella.",
     woodie = "Men like this ran my lumber yard.",
@@ -1810,12 +1935,13 @@ Add.QuotesFor "shopkeeper" {
 }    
 
 Add.QuotesFor "sky_chest" {
+    ANY = nil,
     GENERIC = "I wonder who's it is?",
     wathgrithr = "I don't trust it.",
     waxwell = nil,
-    webber = nil,
+    webber = "To put stuff we don't need.",
     wendy = "To transform some into others.",
-    wickerbottom = nil,
+    wickerbottom = "I can store what I don't need.",
     willow = "Put stuff in there and it stays there. It's magic.",
     wolfgang = "Is magic box.",
     woodie = "That's ominous, eh?",
@@ -1823,12 +1949,13 @@ Add.QuotesFor "sky_chest" {
 }
 
 Add.QuotesFor "sky_lemur" {
+    ANY = nil,
     GENERIC = nil,
     wathgrithr = "Mmm, monkey meat.",
     waxwell = nil,
-    webber = nil,
+    webber = "Stop monkeying around!",
     wendy = "What is your purpose?",
-    wickerbottom = nil,
+    wickerbottom = "A flying Lemuroidea.",
     willow = "Must be up to monkey business.",
     wolfgang = "Is my mate, the primate.",
     woodie = "What a cheeky fella.",
@@ -1836,12 +1963,13 @@ Add.QuotesFor "sky_lemur" {
 }
 
 Add.QuotesFor "skyflies" {
+    ANY = nil,
     GENERIC = "I wonder how they light up like that?",
     wathgrithr = "Bright bugs.",
     waxwell = nil,
-    webber = nil,
+    webber = "Flying bugs.",
     wendy = "Small lights of innocence.",
-    wickerbottom = nil,
+    wickerbottom = "A fly from the sky.",
     willow = "I prefer fireflies.",
     wolfgang = "Is hot swarm of bugs.",
     woodie = "They're warm.",
@@ -1849,12 +1977,13 @@ Add.QuotesFor "skyflies" {
 }
 
 Add.QuotesFor "skyflower" {
+    ANY = nil,
     GENERIC = "They smell of dreams.",
     wathgrithr = "The smell of victory!",
     waxwell = "The urge of stomping on them is still present.",
-    webber = "It smells like one of grandma's pies!",
+    webber = "Why do they only grow up here?",
     wendy = "A pretty flower to bring brief pleasure. Smells like decay.",
-    wickerbottom = "Their pollen smells different to each person. For me, it is like a new book.",
+    wickerbottom = "It's amazing the places things can grow.",
     willow = "Mmm. Smells like ashes.",
     wolfgang = "Pretty flower smells like beef.",
     woodie = "Ahh. Freshly fallen timber and pine needles.",
@@ -1862,6 +1991,7 @@ Add.QuotesFor "skyflower" {
 }
 
 Add.QuotesFor "skyflower.datura" {
+    ANY = nil,
     GENERIC = "It smells of nightmares.",
     wathgrithr = "Smells like defeat.",
     waxwell = "It smells like innocence. Ripe for the taking.",
@@ -1875,12 +2005,13 @@ Add.QuotesFor "skyflower.datura" {
 }
 
 Add.QuotesFor "skyflower_petals" {
+    ANY = nil,
     GENERIC = "They smell of dreams.",
     wathgrithr = "I should make myself a crown.",
     waxwell = "I'll make a bouquet for Charlie with these.",
-    webber = "It smells like one of grandma's pies!",
+    webber = "He hates me. He hates me not.",
     wendy = "A pretty flower to bring brief pleasure. Smells like decay.",
-    wickerbottom = "Their pollen smells different to each person. For me, it is like a new book.",
+    wickerbottom = "Petals from a flower from the clouds.",
     willow = "Mmm. Smells like ashes.",
     wolfgang = "Pretty flower smells like beef.",
     woodie = "Ahh. Freshly fallen timber and pine needles.",
@@ -1888,12 +2019,13 @@ Add.QuotesFor "skyflower_petals" {
 }
 
 Add.QuotesFor "skytrap" {
+    ANY = nil,
     GENERIC = "Something about that flower is off.",
     wathgrithr = "Suspicious.",
     waxwell = nil,
-    webber = nil,
+    webber = "I know what it's like being trapped.",
     wendy = "A Ya-Te-Veo?",
-    wickerbottom = nil,
+    wickerbottom = "Why do things need to cause harm?",
     willow = "A trap with no fire is no trap at all.",
     wolfgang = "Is a trap.",
     woodie = "Not too sure about that.",
@@ -1901,12 +2033,13 @@ Add.QuotesFor "skytrap" {
 }
 
 Add.QuotesFor "smores" {
+    ANY = nil,
     GENERIC = "A messy ball of chocolate and cream.",
     wathgrithr = "It makes a real mess.",
     waxwell = nil,
-    webber = nil,
+    webber = "Granddad made these on fishing trips!",
     wendy = "A fireside treat.",
-    wickerbottom = nil,
+    wickerbottom = "A camping consumable.",
     willow = "See, fire improves everything.",
     wolfgang = "Wolfgang is always ready for s'mores.",
     woodie = "That's a right yummy treat.",
@@ -1914,12 +2047,13 @@ Add.QuotesFor "smores" {
 }
 
 Add.QuotesFor "tea_bush" {
+    ANY = nil,
     GENERIC = "Tea leaves grow on this bush.",
     wathgrithr = "It grows tea.",
     waxwell = nil,
-    webber = nil,
+    webber = "Smells like tea.",
     wendy = "From this grows the drink of diviners.",
-    wickerbottom = nil,
+    wickerbottom = "I could use those leaves for a beverage.",
     willow = "I could burn that.",
     wolfgang = "Get leaves, make drink.",
     woodie = "It's got tea on it.",
@@ -1927,19 +2061,49 @@ Add.QuotesFor "tea_bush" {
 }
 
 Add.QuotesFor "tea_leaves" {
+    ANY = nil,
     GENERIC = "Regular old tea leaves.",
     wathgrithr = "I can brew it!",
     waxwell = nil,
-    webber = nil,
+    webber = "Oh! So they don't come in a bag!",
     wendy = "Time to set the kettle.",
-    wickerbottom = nil,
+    wickerbottom = "These need a good stewing.",
     willow = " Leave me alone.",
     wolfgang = "Put in water.",
     woodie = "Dip them in hot water.",
     wx78 = "ADD HOT WATER",
 }
 
+Add.QuotesFor "thunder_log" {
+    ANY = nil,
+    GENERIC = "It ripples with elecricity.",
+    wathgrithr = "It sparks.",
+    waxwell = nil,
+    webber = "This log sounds funny.",
+    wendy = "Electricfied.",
+    wickerbottom = "A wooden battery; electricity is stored.",
+    willow = "Will this even burn?",
+    wolfgang = "Is tickly to touch.",
+    woodie = "That's a right strange log.",
+    wx78 = "I NEED TO KEEP IT AWAY FROM MY CIRCUITS",
+}    
+
+Add.QuotesFor "thunder_tree" {
+    ANY = nil,
+    GENERIC = "Looks fragile, but dangerous.",
+    wathgrithr = "Planted by Thor himself.",
+    waxwell = "I was rather shocked the first time I discovered these.",
+    webber = "Yikes! It gathers lightning.",
+    wendy = "It rumbles agianst its rooted restraints.",
+    wickerbottom = "A tree with bio electricity; amazing!",
+    willow = "Why doesn't the lightning burn it?",
+    wolfgang = "Is crackly tree.",
+    woodie = "Ah, I like a challenge.",
+    wx78 = "I SHOULD BE CAREFUL",
+}
+
 Add.QuotesFor "thunderboards" {
+    ANY = nil,
     GENERIC = "Flat lightning.",
     wathgrithr = "Blessed by Thor.",
     waxwell = nil,
@@ -1950,41 +2114,16 @@ Add.QuotesFor "thunderboards" {
     wolfgang = "Is tickly flat wood.",
     woodie = "They still have a spark in them.",
     wx78 = "FLAT BUT STILL HAZARDOUS",
-}    
-
-Add.QuotesFor "thunder_log" {
-    GENERIC = "It ripples with elecricity.",
-    wathgrithr = "It sparks.",
-    waxwell = nil,
-    webber = nil,
-    wendy = "Electricfied.",
-    wickerbottom = nil,
-    willow = "Will this even burn?",
-    wolfgang = "Is tickly to touch.",
-    woodie = "That's a right strange log.",
-    wx78 = "I NEED TO KEEP IT AWAY FROM MY CIRCUITS",
-}
-
-Add.QuotesFor "thunder_tree" {
-    GENERIC = "Looks fragile, but dangerous.",
-    wathgrithr = "Planted by Thor himself.",
-    waxwell = "I was rather shocked the first time I discovered these.",
-    webber = nil,
-    wendy = "It rumbles agianst its rooted restraints.",
-    wickerbottom = nil,
-    willow = "Why doesn't the lightning burn it?",
-    wolfgang = "Is crackly tree.",
-    woodie = "Ah, I like a challenge.",
-    wx78 = "I SHOULD BE CAREFUL",
 }
 
 Add.QuotesFor "vine" {
+    ANY = nil,
     GENERIC = "A sentient vine!",
     wathgrithr = "A leafy serpent.",
     waxwell = nil,
-    webber = nil,
+    webber = "A fine vine.",
     wendy = "The land itself despises my presence.",
-    wickerbottom = nil,
+    wickerbottom = "Often found on *ahem* wicker work.",
     willow = "It's made of plant, and therefore I can burn it.",
     wolfgang = "Little plant.",
     woodie = "Lucy, let's have some fun.",
@@ -1992,12 +2131,13 @@ Add.QuotesFor "vine" {
 }
 
 Add.QuotesFor "weather_machine" {
+    ANY = nil,
     GENERIC = "It's not a very consistent weather machine.",
     wathgrithr = "Too scientific. Where's my lightning?",
     waxwell = nil,
-    webber = nil,
+    webber = "It's good to know things.",
     wendy = "What is your purpose.",
-    wickerbottom = nil,
+    wickerbottom = "A anemometer to measure the winds.",
     willow = "It does stuff. Not burning, sadly.",
     wolfgang = "Is... technical.",
     woodie = "More science? I'd rather go and chop wood.",
@@ -2005,12 +2145,13 @@ Add.QuotesFor "weather_machine" {
 }
 
 Add.QuotesFor "weaver_bird" {
+    ANY = nil,
     GENERIC = "It makes large nests to keep warm.",
     wathgrithr = "It keeps a warm home.",
     waxwell = nil,
-    webber = nil,
+    webber = "A yellow bird. Tweet!",
     wendy = "You build against the wind. You shall lose.",
-    wickerbottom = nil,
+    wickerbottom = "A golden Ploceidae.",
     willow = "Weave all the homes you want, I'll burn them all.",
     wolfgang = "Is little birdie.",
     woodie = "Weaver? More like w-evil.",
@@ -2018,12 +2159,13 @@ Add.QuotesFor "weaver_bird" {
 }
 
 Add.QuotesFor "weavernest" {
+    ANY = nil,
     GENERIC = "A warm nest made by birds.",
     wathgrithr = "A cozy home for little birds.",
     waxwell = nil,
-    webber = nil,
+    webber = "I wonder if there are any eggs?",
     wendy = "One strong gust shall undo your work",
-    wickerbottom = nil,
+    wickerbottom = "A home for Ploceidae.",
     willow = "A bird made it. ",
     wolfgang = "Bird lives here.",
     woodie = "The lair of a devil.",
@@ -2031,12 +2173,13 @@ Add.QuotesFor "weavernest" {
 }
 
 Add.QuotesFor "whirlwind" {
+    ANY = nil,
     GENERIC = "Who knows where that thing could send me.",
     wathgrithr = "A gift from Yggdrasill itself.",
     waxwell = nil,
-    webber = nil,
+    webber = "Ah! And no cellar to hide in.",
     wendy = "Whisk me away from this miserable place.",
-    wickerbottom = nil,
+    wickerbottom = "That reminds me of an anemology book I need to read.",
     willow = "It's made of wind, fire's frenemy.",
     wolfgang = "Is fast air!",
     woodie = "Bit windy, eh?",
@@ -2044,12 +2187,13 @@ Add.QuotesFor "whirlwind" {
 }
 
 Add.QuotesFor "whitestaff" {
+    ANY = nil,
     GENERIC = "Packages objects through magic.",
     wathgrithr = "It moves the immovable.",
     waxwell = nil,
-    webber = nil,
+    webber = "I like this staff.",
     wendy = "Now I just need an egg, a duck and a hare.",
-    wickerbottom = nil,
+    wickerbottom = "Sometimes you've got to move mountains.",
     willow = "You just can't get the staff any more.",
     wolfgang = "Does things. Is always changing.",
     woodie = "Makeshift post office.",
@@ -2057,12 +2201,13 @@ Add.QuotesFor "whitestaff" {
 }
 
 Add.QuotesFor "wind_axe" {
+    ANY = nil,
     GENERIC = "It feels tingly.",
     wathgrithr = "An artifact of Thor!",
     waxwell = nil,
-    webber = nil,
+    webber = "You can never have enough logs.",
     wendy = "Nature's wrath in the palm of my hand.",
-    wickerbottom = nil,
+    wickerbottom = "Sharp as a diamond.",
     willow = "I'd prefer an Axe of Infernos.",
     wolfgang = "Yes! I like this new weapon!",
     woodie = "Not a patch on Lucy.",
@@ -2070,12 +2215,13 @@ Add.QuotesFor "wind_axe" {
 }
 
 Add.QuotesFor "winnie_staff" {
+    ANY = nil,
     GENERIC = nil,
     wathgrithr = "For herding mindless beasts.",
     waxwell = nil,
-    webber = nil,
+    webber = "Follow the leader!",
     wendy = "To lead the ignorant masses.",
-    wickerbottom = nil,
+    wickerbottom = "A shepherds staff",
     willow = "I could probably make a torch out of this.",
     wolfgang = "Is big carved stick.",
     woodie = "I'm quite good at making staves.",
@@ -2097,7 +2243,7 @@ Add.QuotesFor {"balloon_icehound", "balloon_firehound"} {
 ------------------------------------------------------------------------
 
 Add.StringsBy "ANY" {
-	ANNOUNCE_CANFIX = "\nI think I can fix this!",
+    ANNOUNCE_CANFIX = "\nI think I can fix this!",
 }
 
 ------------------------------------------------------------------------
@@ -2178,7 +2324,7 @@ STRINGS.UPUI = {
             "nature",       
         },
     },
-	CRAFTING = {
-		NEEDRESEARCHLECTERN = ("Use a %s to build a prototype!"):format( STRINGS.NAMES.RESEARCH_LECTERN ),
-	},
+    CRAFTING = {
+        NEEDRESEARCHLECTERN = ("Use a %s to build a prototype!"):format( STRINGS.NAMES.RESEARCH_LECTERN ),
+    },
 }   

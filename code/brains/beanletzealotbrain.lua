@@ -5,6 +5,7 @@ require "behaviours/doaction"
 require "behaviours/panic"
 require "behaviours/chaseandattack"
 require "behaviours/runaway"
+require "behaviours/faceentity"
 
 local STOP_RUN_DIST = 10
 local SEE_PLAYER_DIST = 10
@@ -20,9 +21,22 @@ local MAX_CHASE_TIME = 10
 
 local MAX_WANDER_DIST = 200
 
+local START_FACE_DIST = 4
+
 local BeanletZealotBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
 end)
+
+local function GetFaceTargetFn(inst)
+    local target = GetClosestInstWithTag("player", inst, START_FACE_DIST)
+    if target and not target:HasTag("notarget") then
+        return target
+    end
+end
+
+local function KeepFaceTargetFn(inst, target)
+    return inst:GetDistanceSqToInst(target) <= KEEP_FACE_DIST*KEEP_FACE_DIST and not target:HasTag("notarget")
+end
 
 local function GoHomeAction(inst)
     if inst.components.homeseeker and inst.components.homeseeker.home and inst.components.homeseeker.home:IsValid() then
@@ -38,6 +52,7 @@ function BeanletZealotBrain:OnStart()
         WhileNode( function() return self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst)),
         WhileNode( function() return self.inst.components.combat.target == nil or not self.inst.components.combat:InCooldown() end, "AttackMomentarily", ChaseAndAttack(self.inst, MAX_CHASE_TIME, MAX_CHASE_DIST) ),
         WhileNode( function() return self.inst.components.combat.target and self.inst.components.combat:InCooldown() end, "Dodge", RunAway(self.inst, function() return self.inst.components.combat.target end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST) ),
+        --FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn),
         RunAway(self.inst, "scarytoprey", AVOID_PLAYER_DIST, AVOID_PLAYER_STOP),
         RunAway(self.inst, "scarytoprey", SEE_PLAYER_DIST, STOP_RUN_DIST, nil, true),
         EventNode(self.inst, "gohome", 

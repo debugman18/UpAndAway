@@ -2,7 +2,6 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/blocker.zip"),
     Asset("ANIM", "anim/whirlwind.zip")	
 }
 

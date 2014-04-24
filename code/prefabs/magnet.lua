@@ -11,11 +11,13 @@ local function onequip(inst, owner)
     owner.AnimState:OverrideSymbol("swap_object", "swap_magnet", "swap_ham_bat")
     owner.AnimState:Show("ARM_carry") 
     owner.AnimState:Hide("ARM_normal") 
+    inst:AddTag("ball_lightning")
 end
 
 local function onunequip(inst, owner) 
     owner.AnimState:Hide("ARM_carry") 
     owner.AnimState:Show("ARM_normal")
+    inst:RemoveTag("ball_lightning")
 end
 
 local function fn(Sim)

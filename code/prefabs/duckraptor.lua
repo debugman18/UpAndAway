@@ -62,7 +62,7 @@ local function fn(Sim)
     inst.components.sleeper:SetWakeTest( function() return true end)    --always wake up if we're asleep
     
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(40)
+    inst.components.health:SetMaxHealth(300)
 
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "pig_torso"

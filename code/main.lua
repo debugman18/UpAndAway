@@ -153,12 +153,14 @@ AddMinimapAtlas("images/cloud_bush.xml")
 AddMinimapAtlas("images/tea_bush.xml")
 
 AddMinimapAtlas("images/crystal_lamp.xml")
+AddMinimapAtlas("images/cloud_fruit_tree.xml")
+AddMinimapAtlas("images/kettle.xml")
+AddMinimapAtlas("images/gummybear_den.xml")
+
 --AddMinimapAtlas("images/cloud_coral.xml")
---AddMinimapAtlas("images/cloud_fruit_tree.xml")
 --AddMinimapAtlas("images/bean_giant_statue.xml")
 --AddMinimapAtlas("images/weather_machine.xml")
 --AddMinimapAtlas("images/refiner.xml")
---AddMinimapAtlas("images/kettle.xml")
 
 AddModCharacter("winnie")
 

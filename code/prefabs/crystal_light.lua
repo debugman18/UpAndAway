@@ -30,8 +30,8 @@ local function fn(Sim)
 	local anim = inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
 
-    local minimap = inst.entity:AddMiniMapEntity()
-    minimap:SetIcon("maxwelltorch.png")
+    --local minimap = inst.entity:AddMiniMapEntity()
+    --minimap:SetIcon("maxwelltorch.png")
 
     anim:SetBank("crystal")
     anim:SetBuild("crystal")

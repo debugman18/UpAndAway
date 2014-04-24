@@ -143,8 +143,8 @@ local function fn()
 	local anim = inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
 
-	local minimap = inst.entity:AddMiniMapEntity()
-	minimap:SetIcon("mermhouse.png")
+	--local minimap = inst.entity:AddMiniMapEntity()
+	--minimap:SetIcon("mermhouse.png")
     
     MakeObstaclePhysics(inst, 1)
 

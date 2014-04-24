@@ -137,11 +137,12 @@ Assets = GLOBAL.JoinArrays(
 		"thunder_tree",
 		"tea_bush",
 		"crystal_lamp",
-		--"cloud_fruit_tree",
+		"cloud_fruit_tree",
+		"kettle",
+		"gummybear_den",
 		--"bean_giant_statue",
 		--"weather_machine",
 		--"refiner",
-		--"kettle",
 	},
 
 	--Winnie assets.

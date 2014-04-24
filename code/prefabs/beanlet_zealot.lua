@@ -24,6 +24,13 @@ SetSharedLootTable( 'beanlet',
 local MAX_TARGET_SHARES = 5
 local SHARE_TARGET_DIST = 30
 
+local function OnHit(inst, attacker, damage)
+    if attacker and attacker.prefab == bean_giant then
+        damage = 0
+    end 
+    return damage   
+end    
+
 local function RetargetFn(inst)
     return FindEntity(inst, 8, function(guy)
         return inst.components.combat:CanTarget(guy)
@@ -71,6 +78,7 @@ local function fn(Sim)
     local anim = inst.entity:AddAnimState()
     local physics = inst.entity:AddPhysics()
     local sound = inst.entity:AddSoundEmitter()
+    --inst.Transform:SetTwoFaced()
 
     local brain = require "brains/beanletzealotbrain"
     inst:SetBrain(brain)
@@ -89,8 +97,8 @@ local function fn(Sim)
     inst:AddComponent("knownlocations")
 
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
-    inst.components.locomotor.walkspeed = 5
-    inst.components.locomotor.runspeed = 7
+    inst.components.locomotor.walkspeed = 4
+    inst.components.locomotor.runspeed = 5
     inst:SetStateGraph("SGbeanlet")
 
     inst.Transform:SetScale(1.4, 1.4, 1.4)
@@ -98,13 +106,14 @@ local function fn(Sim)
     inst.data = {}  
 
     inst:AddComponent("combat")
-    inst.components.combat:SetDefaultDamage(TUNING.PIG_GUARD_DAMAGE)
+    inst.components.combat:SetDefaultDamage(35)
     inst.components.combat:SetAttackPeriod(TUNING.PIG_GUARD_ATTACK_PERIOD)
+    inst.components.combat:SetOnHit(OnHit)
 
     inst:RemoveComponent("burnable")
 
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(25)
+    inst.components.health:SetMaxHealth(150)
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable('beanlet')

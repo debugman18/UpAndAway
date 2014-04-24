@@ -132,7 +132,7 @@ local function bear()
 	inst:AddComponent("sanityaura")
 	inst.components.sanityaura.aurafn = CalcSanityAura
 	
-	inst.components.health:SetMaxHealth(360)
+	inst.components.health:SetMaxHealth(300) --Old was 360
 
     inst:AddComponent("eater")
     inst.components.eater:SetCarnivore()
