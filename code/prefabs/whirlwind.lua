@@ -42,7 +42,7 @@ local function fn(Sim)
 	local anim = inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
 
-	anim:SetBank("mossling")
+	anim:SetBank("whirlwind")
     anim:SetBuild("whirlwind")
 	anim:PlayAnimation("spin_loop", true)
 	anim:SetMultColour(.6, .6, .6, .3)
