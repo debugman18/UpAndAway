@@ -117,6 +117,8 @@ local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
 	-- there's no selected slot in the SaveIndex when this runs.
 	if Climbing.IsCloudLevelNumber(world_gen_options.level_world) then
 
+		MIN_GEN_TIME = 5.0
+
 		TheMod:DebugSay "update worldgen passed!"
 
 		TheSim:LoadPrefabs {"MOD_"..modname}

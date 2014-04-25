@@ -2,8 +2,6 @@ BindGlobal()
 
 local assets =
 {
-	--Asset("ANIM", "anim/grass.zip"),
-	--Asset("ANIM", "anim/grass1.zip"),
 	Asset("ANIM", "anim/cloud_algae.zip"),
 }
 
@@ -14,6 +12,7 @@ local prefabs =
 
 local loot =
 {
+	"cloud_algae_fragment",
 	"cloud_algae_fragment",
 	"cloud_algae_fragment",
 }
@@ -33,21 +32,22 @@ local function fn(Sim)
 	local sound = inst.entity:AddSoundEmitter()
 
 	inst.entity:AddMiniMapEntity()
-	inst.MiniMapEntity:SetIcon( "cloud_algae.tex" )
+	--inst.MiniMapEntity:SetIcon("cloud_algae.tex")
 	    
 	anim:SetBank("cloud_algae")
 	anim:SetBuild("cloud_algae")
 	anim:PlayAnimation("idle", true)
+	inst.Transform:SetScale(1.5,1.5,1.5)
 
 	inst:AddComponent("inspectable")
 
+   	inst:AddComponent("lootdropper") 
+   	inst.components.lootdropper:SetLoot(loot) 
+
 	inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.DIG)
-    inst.components.workable:SetWorkLeft(3)
+    inst.components.workable:SetWorkLeft(1)
     inst.components.workable:SetOnFinishCallback(OnDug) 
-
-   	inst:AddComponent("lootdropper") 
-   	inst.components.lootdropper:SetLoot(loot)        
 
 	return inst
 end

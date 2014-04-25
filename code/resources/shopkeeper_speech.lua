@@ -128,7 +128,7 @@ end
 --(the entity gets removed, it will never run!)
 SPEECHES.HIT = function(mgr)
 	if mgr.listener:HasTag("player") then
-		mgr:EnterCutScene()
+		--mgr:EnterCutScene()
 		mgr:MakeNonInterruptible()
 
 		Sleep(1)

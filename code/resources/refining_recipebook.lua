@@ -19,4 +19,5 @@ return RecipeBook {
 	refined_beans = Recipe("twigs", Ingredient("beanstalk_chunk", 2), 0),
 	refined_sugar = Recipe("honey", Ingredient("candy_fruit", 4), 0),
 	refined_silk = Recipe("silk", Ingredient("cloud_cotton", 4), 0),
+	refined_golden_petals = Recipe("petals", Ingredient("golden_petals", 1), 1)
 }

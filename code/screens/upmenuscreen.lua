@@ -284,7 +284,7 @@ local function build_screen(self)
 		}
 
 		if IsDLCEnabled(REIGN_OF_GIANTS) then
-			table.insert(lines, 1, "Warning: The Reign of Giants DLC may currently cause bugs in this mod.\n")
+			table.insert(lines, 1, "Warning: Disabling Reign of Giants may currently produce bugs.\n")
 		end
 
 		self.text:SetString(table.concat(lines, "\n"))
