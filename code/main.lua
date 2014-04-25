@@ -98,6 +98,13 @@ local function OnUnlockMound(inst)
 	inst:Remove()
 end
 --]]
+ 
+for _, moddir in ipairs(_G.KnownModIndex:GetModsToLoad()) do 
+	if _G.KnownModIndex:GetModInfo(moddir).name == "Always On Status" then 
+	AddPrefabPostInit("winnie", function(inst) inst:AddComponent("switch") end) 
+	end 
+end
+
 
 local function addmoundtag(inst)
 
