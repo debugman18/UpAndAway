@@ -32,7 +32,7 @@ local function fn(Sim)
 	local sound = inst.entity:AddSoundEmitter()
 
 	inst.entity:AddMiniMapEntity()
-	--inst.MiniMapEntity:SetIcon("cloud_algae.tex")
+	inst.MiniMapEntity:SetIcon("cloud_algae.tex")
 	    
 	anim:SetBank("cloud_algae")
 	anim:SetBuild("cloud_algae")

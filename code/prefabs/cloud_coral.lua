@@ -2,12 +2,58 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/marble_pillar.zip"),
+	Asset("ANIM", "anim/cloud_coral.zip"),
 }
 
-local function mine_remove(inst, chopper)
-	inst.components.lootdropper:SpawnLootPrefab("cloud_coral_fragment")
+local prefabs = {
+	"cloud_coral_fragment",
+}
+
+local loot1 = {
+	"cloud_coral_fragment",
+}
+
+local loot2 = {
+	"cloud_coral_fragment",
+	"cloud_coral_fragment",
+	"cloud_coral_fragment",
+}
+
+local function grow(inst, dt)
+    if inst.components.scaler.scale < 2 then
+        local new_scale = math.min(inst.components.scaler.scale + TUNING.ROCKY_GROW_RATE*dt, 2)
+        inst.components.scaler:SetScale(new_scale)
+    else
+        if inst.growtask then
+            inst.growtask:Cancel()
+            inst.growtask = nil
+        end
+    end
+end
+
+local function applyscale(inst, scale)
+    inst.components.workable:SetWorkLeft(scale*TUNING.ROCKS_MINE)
+    if scale == 1 and inst.components.lootdropper then
+    	inst.components.lootdropper:SetLoot(loot1)
+    elseif scale == 2 and inst.components.lootdropper then
+    	inst.components.lootdropper:SetLoot(loot2)
+    end	
+end
+
+local function onMined(inst, chopper)
+	inst.components.lootdropper:DropLoot()
 	inst:Remove()
+end
+
+local function OnWork(inst, worker, workleft)
+	local pt = Point(inst.Transform:GetWorldPosition())			
+	if workleft < TUNING.ROCKS_MINE*(1/3) then
+		inst.AnimState:PlayAnimation("idle_low")
+	elseif workleft < TUNING.ROCKS_MINE*(2/3) then
+		inst.AnimState:PlayAnimation("idle_med")
+	else
+		inst.AnimState:PlayAnimation("idle_full")
+	end
 end
 
 local function fn(Sim)
@@ -15,11 +61,12 @@ local function fn(Sim)
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
 	
-	inst.AnimState:SetBank("marble_pillar")
-	inst.AnimState:SetBuild("marble_pillar")
-	inst.AnimState:PlayAnimation("full")
+	inst.AnimState:SetBank("cloud_coral")
+	inst.AnimState:SetBuild("cloud_coral")
+	inst.AnimState:PlayAnimation("idle_full")
+
+	inst.Transform:SetScale(1,1,1)
 
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("cloud_coral.tex") 	
@@ -28,13 +75,23 @@ local function fn(Sim)
 	
 	inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.MINE)
-    inst.components.workable:SetOnFinishCallback(mine_remove)
-    inst.components.workable:SetWorkLeft(2)	
+    inst.components.workable:SetOnFinishCallback(onMined)
+	inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE)
+	inst.components.workable:SetOnWorkCallback(OnWork)
+
+    inst:AddComponent("scaler")
+    inst.components.scaler.OnApplyScale = applyscale
 
    	inst:AddComponent("lootdropper") 
-   	--inst.components.lootdropper:SetLoot(loot)     
 
+    local start_scale = math.random(1, 2)
+    inst.components.scaler:SetScale(start_scale)
+    local dt = 60+math.random()*10
+    inst.growtask = inst:DoPeriodicTask(dt, grow, nil, dt)
+	
+    inst.OnLongUpdate = grow
+    
 	return inst
 end
 
-return Prefab ("common/inventory/cloud_coral", fn, assets) 
+return Prefab ("common/inventory/cloud_coral", fn, assets, prefabs) 

@@ -16,7 +16,6 @@
 
 
 ### Entities with no art assets and undefined status (between using custom animations or not)
-+ Cloud Coral (All art assets, still image, animations idle and idle_harvested)
 + Weather Machine (All art assets, still image) + Recipe Image
 + Kettle (All art assets, still image)
 + Refiner (All art assets, still image) + Recipe Image
