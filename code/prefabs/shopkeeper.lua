@@ -126,6 +126,9 @@ local function negotiateCows(buyer, seller)
 		for cow in pairs(seller.components.leader.followers) do
 			if cow:IsValid() and cow.components.follower and is_a_cow(cow) then
 				cow.components.follower:SetLeader(nil)
+				if cow.brain and cow.brain.bt then
+					cow.brain.bt:Reset()
+				end
 			end
 		end
 
