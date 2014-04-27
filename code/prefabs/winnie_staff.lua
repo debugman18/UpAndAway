@@ -21,7 +21,7 @@ local function herd_enable(inst, owner)
         for k,v in pairs(ents) do
             if v.components.follower and not v.components.follower.leader  and not owner.components.leader:IsFollower(v) and owner.components.leader.numfollowers < 5 then
                 owner.components.leader:AddFollower(v)
-                print("Follower is "..v.prefab)
+                TheMod:DebugSay("Follower is ", v.prefab)
             end
         end
 
@@ -48,7 +48,10 @@ local function herd_disable(inst, owner)
             if v.components.follower and owner.components.leader:IsFollower(v) then
                 GetPlayer().components.leader:RemoveFollower(v)
                 v.components.follower:SetLeader(nil)
-                print("Removing follower "..v.prefab)
+				if v.brain and v.brain.bt then
+					v.brain.bt:Reset()
+				end
+                TheMod:DebugSay("Removing follower ",v.prefab)
             end
         end
     end 
@@ -58,7 +61,10 @@ end
 local function onequip(inst, owner) 
     owner.AnimState:OverrideSymbol("swap_object", "swap_ua_staves", "purplestaff")
     owner.AnimState:Show("ARM_carry") 
-    owner.AnimState:Hide("ARM_normal") 
+    owner.AnimState:Hide("ARM_normal")
+	if inst.updatetask then
+		inst.updatetask:Cancel()
+	end
     inst.updatetask = inst:DoPeriodicTask(1, herd_enable, 1)
 end
 
