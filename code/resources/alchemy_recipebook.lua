@@ -15,13 +15,19 @@ BindModModule 'lib.brewing'
 --]]
 
 local potions = {
-	sweet = Recipe("honey", Ingredient("taffy"), 0),
 }
 
+local foods = {
+	deadlyfeast = Recipe("deadlyfeast", Ingredient("bonestew", 1) + Ingredient("nightmarefuel", 3), 0, 4)
+	jammyred = Recipe("jammypreserves", Ingredient("jellycap_red", 3) + Ingredient("cloud_jelly", 1), 0, 1),
+	jammyblue = Recipe("jammypreserves", Ingredient("jellycap_blue", 3) + Ingredient("cloud_jelly", 1), 0, 1),
+	jammygreen = Recipe("jammypreserves", Ingredient("jellycap_green", 3) + Ingredient("cloud_jelly", 1), 0, 1),		
+}
 --[[
 -- Here you can list either individual recipes or tables of them. The RecipeBook
 -- takes care of "flattening" the tables into a single list of recipes.
 --]]
 return RecipeBook {
 	potions,
+	foods,
 }

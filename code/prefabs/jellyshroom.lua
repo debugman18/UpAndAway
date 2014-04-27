@@ -99,6 +99,8 @@ local function unpickedfn_common(bank, name)
 
 	inst:AddComponent("inspectable") 
 
+	inst:AddTag("jelly")
+
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
 	inst.components.pickable.onpickedfn = onpickedfn
@@ -153,6 +155,9 @@ local function pickedfn_common(bank, name)
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
 	inst:AddComponent("inspectable")
+
+	inst:AddTag("alchemy")
+	inst:AddTag("jelly")
 
 	inst:AddComponent("inventoryitem")	
 	

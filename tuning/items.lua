@@ -24,6 +24,8 @@ TEA_BUSH.REGROW_TIME = 5*TUNING.TOTAL_DAY_TIME
 -- Staves.
 --]]
 STAFF.BLACK.USES = 5
+STAFF.WHITE.USES = 3
+
 -- How long the forced static induced by it lasts.
 STAFF.BLACK.EFFECT_DURATION = 120
 

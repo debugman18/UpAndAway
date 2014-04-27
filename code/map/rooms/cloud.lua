@@ -37,6 +37,7 @@ TheMod:AddRoom("BeanstalkSpawn", {
 			skeleton = 0.03,
 			tea_bush = 0.06,
 			skyflower = 1.3,
+			beanlet = 0.002,
 		},
 	}
 })
@@ -183,7 +184,6 @@ TheMod:AddRoom("Bigbird_Nest", {
 			goose = 0.00006,
 			longbill = 0.00002,
 			dragonblood_tree = 0.0001,
-			beanlet = 0.00001,
 			skyflower = 0.1,
 		},
 	    countprefabs = {
@@ -225,7 +225,7 @@ TheMod:AddRoom("BGSnow", {
 			ball_lightning = 0.001,
 			frog = 0.002,
 			skyflower = 0.1,
-			owl = 0.001,
+			--owl = 0.001,
 			skyflower = 0.1,
 		},
 	}
@@ -240,7 +240,7 @@ TheMod:AddRoom("Thunder_Forest", {
 		distributeprefabs = {
 			thunder_tree = 0.0009,
 			crystal_quartz = 0.0009,
-			owl = 0.004,
+			--owl = 0.004,
 			live_gnome = 0.0002,
 			skyflower = 0.1,
 		},
@@ -262,7 +262,7 @@ TheMod:AddRoom("Sea_Mimic", {
 			skyflower = 0.2,
 		},
 		countprefabs = {
-			mantaspawner = math.random(1,4),
+			--mantaspawner = math.random(1,4),
 		}
 	},
 })
@@ -281,7 +281,7 @@ TheMod:AddRoom("Manta_Room", {
 			skyflower = 0.1,
 		},
 		countprefabs = {
-			mantaspawner = math.random(1,4),
+			--mantaspawner = math.random(1,4),
 		}
 	},
 })

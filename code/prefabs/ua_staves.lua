@@ -201,7 +201,7 @@ local function make_white_staff()
 			do
 				local finiteuses = inst.components.finiteuses
 
-				local uses = cfg:GetConfig("BLACK", "USES")
+				local uses = cfg:GetConfig("WHITE", "USES")
 
 				finiteuses:SetMaxUses(uses)
 				finiteuses:SetUses(uses)

@@ -8,6 +8,7 @@
 
 	+ Crash on loading a save saved inside of snow biome.
 
+	+ Incompatibility with RPG Hud
 
 + **Art assets in need of attention**
 
