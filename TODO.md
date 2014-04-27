@@ -10,7 +10,7 @@
 
 + **Code assets in need of attention**
 
-	+ Dependency of mushroom hat effects on its spoilage.
+	+ nil
 
 ******
 
