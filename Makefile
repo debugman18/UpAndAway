@@ -29,14 +29,14 @@ PERL:=perl
 KTECH:=ktech
 
 
+include make/utils.mk
+
 #
 # If you need to customize something for your system (such as changing the
 # paths to the Lua or Perl interpreters), create a file make/config.mk with
 # the customizations and it'll be automatically loaded.
 #
-ifneq ($(wildcard make/config.mk),)
- include make/config.mk
-endif
+include make/config_loader.mk
 
 export LUA
 export PERL

@@ -1,3 +1,7 @@
+include ../make/config_loader.mk
+include ../make/common_rules.mk
+
+
 # Tile and noise pngs.
 PNG_ASSETS:=$(wildcard tiles/*.png textures/*.png)
 
@@ -14,7 +18,5 @@ clean:
 	$(RM) $(TEX_ASSETS)
 
 distclean:
-
-include ../make/common_rules.mk
 
 textures/%.tex : KTECH_EXTRA_ARGS = -c dxt1

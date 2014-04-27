@@ -1,3 +1,7 @@
+include ../make/config_loader.mk
+include ../make/common_rules.mk
+
+
 # Lists all directories with a build.bin in them.
 POSSIBLE_BUILD_DIRS:=$(patsubst %/build.bin,%,$(wildcard */build.bin))
 
@@ -47,5 +51,3 @@ $(foreach dir, $(BUILD_DIRS),\
 		$(eval $(call ADD_ANIM_DEPENDENCY,$(dir))),\
 	)\
 )
-
-include ../make/common_rules.mk

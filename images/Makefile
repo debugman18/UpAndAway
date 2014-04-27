@@ -1,3 +1,7 @@
+include ../make/config_loader.mk
+include ../make/common_rules.mk
+
+
 # List of png assets.
 PNG_ASSETS:=$(wildcard *.png inventoryimages/*.png saveslot_portraits/*.png selectscreen_portraits/*.png)
 
@@ -14,8 +18,6 @@ clean:
 	$(RM) $(TEX_ASSETS)
 
 distclean:
-
-include ../make/common_rules.mk
 
 selectscreen_portraits/%.tex : KTECH_EXTRA_ARGS = --pow2 --extend
 saveslot_portraits/%.tex : KTECH_EXTRA_ARGS = --pow2 --extend

@@ -1,3 +1,6 @@
+include ../make/config_loader.mk
+
+
 ifndef SCML_COMPILER
  $(error Define and export the path to the scml compiler executable in the variable SCML_COMPILER of your config.mk)
 else
