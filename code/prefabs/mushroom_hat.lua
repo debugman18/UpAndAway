@@ -24,10 +24,8 @@ local build_markov_chain, new_state_updater
 do
 	local MarkovChain = wickerrequire "math.probability.markovchain"
 
-	local persistency = cfg:GetConfig "PERSISTENCY"
-
-
-	local function buildStateHandler(effects)
+	local function buildStateHandler(state)
+		local effects = assert( state.effects )
 		return function(inst, dt, overtime)
 			for k, v in pairs(effects) do
 				local cmp = inst.components[k]
@@ -38,7 +36,8 @@ do
 		end
 	end
 
-	local state_handlers = Lambda.Map(buildStateHandler, pairs(cfg:GetConfig("STATES")))
+	local state_map = cfg:GetConfig("STATES")
+	local state_handlers = Lambda.Map(buildStateHandler, pairs(state_map))
 	local state_list = Lambda.CompactlyInjectInto({}, table.keys(state_handlers))
 	assert( #state_list > 0 )
 
@@ -48,9 +47,22 @@ do
 		return 1/math.ceil(dt/UPDATE_PERIOD)
 	end
 
-	-- Probability of switching to any other state.
-	local nonpersistency_p = average_time_to_probability(persistency)/(#state_list - 1)
+	-- Probability of switching to any other state, per state.
+	-- Each takes the entity as a parameters.
+	local nonpersistency_p = Lambda.Map(function(state)
+		local persistency = state.persistency
+		assert( Pred.IsCallable(persistency) )
 
+		-- Factor to account for the number of states.
+		local normalizer = 1/(#state_list - 1)
+		return function(inst)
+			local perishable = inst.components.perishable
+			if not perishable then return 0 end
+			local f = perishable:GetPercent()
+			return average_time_to_probability(persistency(f))*normalizer
+		end
+	end, pairs(state_map))
+	
 	build_markov_chain = function(inst)
 		local chain = MarkovChain()
 
@@ -64,7 +76,7 @@ do
 		for i, state in ipairs(state_list) do
 			for j, other_state in ipairs(state_list) do
 				if i ~= j then
-					chain:SetTransitionProbability(state, other_state, nonpersistency_p)
+					chain:SetTransitionProbability(state, other_state, Lambda.BindFirst(nonpersistency_p[state], inst))
 				end
 			end
 		end
