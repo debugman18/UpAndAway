@@ -15,10 +15,6 @@
 
 + **Code assets in need of attention**
 
-	+ Manta (All functionality needed).
-
-	+ Setpieces, setpieces, setpieces.
-
 	+ Dependency of mushroom hat effects on its spoilage.
 
 ******

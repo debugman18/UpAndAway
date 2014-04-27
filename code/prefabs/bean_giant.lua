@@ -1,6 +1,6 @@
 BindGlobal()
 
-local brain = require "brains/deerclopsbrain"
+local brain = require "brains/beangiantbrain"
 
 local assets =
 {
@@ -165,7 +165,7 @@ local function fn(Sim)
     inst.components.locomotor.walkspeed = 4 
     
     ------------------------------------------
-    inst:SetStateGraph("SGdeerclops")
+    inst:SetStateGraph("SGbeangiant")
 
     ------------------------------------------
 

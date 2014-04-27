@@ -22,6 +22,10 @@
 
 + Paradise bird implementation.
 
++ Manta (All functionality needed).
+
++ Setpieces, setpieces, setpieces.
+
 ******
 
 Anything else that needs to be added will be added. Possible additions will be pulled from suggestions.

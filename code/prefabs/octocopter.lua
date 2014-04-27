@@ -77,7 +77,7 @@ local function fn(Sim)
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
+    MakeGhostPhysics(inst, 1, .5)
 
 	inst.AnimState:SetBank("sky_octopus")
 	inst.AnimState:SetBuild("sky_octopus")
@@ -105,6 +105,7 @@ local function fn(Sim)
     inst.components.locomotor.walkspeed = 3
     inst.components.locomotor.runspeed = 4
     inst.components.locomotor.directdrive = true
+
 
     inst.Transform:SetScale(1.4, 1.4, 1.4)
     

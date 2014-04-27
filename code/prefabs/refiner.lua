@@ -64,6 +64,12 @@ local function itemtest(inst, item, slot)
         or item.prefab == "cloud_coral_fragment"
         or item.prefab == "cloud_algae_fragment"
         or item.prefab == "cloud_cotton"
+        or item.prefab == "bonestew"
+        or item.prefab == "cloud_jelly"
+        or item.prefab == "jellycap_red"
+        or item.prefab == "jellycap_blue"
+        or item.prefab == "jellycap_green"
+        or item.prefab == "golden_petals"
 end
 
 --[[
