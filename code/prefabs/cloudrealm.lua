@@ -192,6 +192,8 @@ local function PatchSeasonManager(sm)
 			end)
 		end
 	end
+
+	sm.SetCaves = Lambda.Nil
 end
 
 local function SetupLevelTypeFix(inst, new_level_type)
@@ -229,7 +231,7 @@ local function fn(Sim)
 	end
 
 	inst:AddComponent("seasonmanager")
-	inst.components.seasonmanager.SetCaves = Lambda.Nil
+	PatchSeasonManager(inst.components.seasonmanager)
 
 	--AddNeutralComponent(inst, "quaker")
    

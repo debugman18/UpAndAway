@@ -116,24 +116,26 @@ local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
 	-- The old version only worked for the 1st save slot, because
 	-- there's no selected slot in the SaveIndex when this runs.
 	if Climbing.IsCloudLevelNumber(world_gen_options.level_world) then
-
-		MIN_GEN_TIME = 5.0
-
 		TheMod:DebugSay "update worldgen passed!"
 
 		TheSim:LoadPrefabs {"MOD_"..modname}
 		
 		--Changes the background during worldgen.
+		--[[
 		local bgtest = self.bg:__tostring()
 		print(bgtest)
 		print("PRE")			
+		]]--
+
 		--This is a temporary fix because on Windows the background refuses to load
 		--even though the following two lines display the correct information.
 		--self.bg:SetTexture("images/bg_up.xml", "images/bg_up.tex")
 		self.bg:SetTexture("images/bg_up.xml", "bg_up.tex")
+		--[[
 		local bgtest = self.bg:__tostring()
 		print(bgtest)
 		print("POST")	
+		]]--
 		--self.bg:SetTint(54, 189, 255, 1.0) --Red
 		--self.bg:SetTint(255, 54, 189, 1.0) --Green
 		--self.bg:SetTint(54, 255, 54, 1.0) --Purple
