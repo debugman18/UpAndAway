@@ -106,13 +106,15 @@ local function corruptegg(inst)
 
 	local chargeable = inst.components.staticchargeable
 	if chargeable and chargeable:IsCharged() then
-		chargeable:HoldState(1.5)
+		chargeable:HoldState(30*_G.FRAMES)
 	end
 
 	inst.SoundEmitter:PlaySound("dontstarve/creatures/egg/egg_hot_jump")
 	inst.AnimState:PlayAnimation("toohot")
 
 	inst:DoTaskInTime(20*_G.FRAMES, function(inst)
+		inst.corrupting = false
+
 		inst.SoundEmitter:PlaySound("dontstarve/creatures/egg/egg_hot_explo")
 
 		local corruption = SpawnPrefab("duckraptor")
@@ -273,6 +275,8 @@ local function fn()
 
 	inst.OnSave = OnSave
 	inst.OnLoad = OnLoad
+
+	inst:ListenForEvent("entitywake", recalculate_graphics)
 
 	recalculate_graphics(inst)
 
