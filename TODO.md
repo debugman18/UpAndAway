@@ -2,13 +2,7 @@
 
 + **Current bugs:**
 
-	+ Golden egg frozen animation issue.
-
 	+ World generation time is too short.
-
-	+ Crash on loading a save saved inside of snow biome.
-
-	+ Incompatibility with RPG Hud
 
 + **Art assets in need of attention**
 

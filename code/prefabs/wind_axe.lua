@@ -26,7 +26,14 @@ local function onattackfn(inst, owner, target)
         lightning.Transform:SetPosition(target_pt.x, target_pt.y, target_pt.z)
     elseif outcome == 2 then
         lightning.Transform:SetPosition(owner_pt.x, owner_pt.y, owner_pt.z)
-        owner.components.health:DoDelta(-30)
+        if IsDLCEnabled(REIGN_OF_GIANTS) then
+            local headinsulator = GetPlayer().components.inventory:GetEquippedItem(EQUIPSLOTS.HEAD)
+            local bodyinsulator = GetPlayer().components.inventory:GetEquippedItem(EQUIPSLOTS.BODY)
+            local insulator = headinsulator or bodyinsulator
+            if insulator and insulator.components.insulator then
+                print("Insulated; no extra damage.")
+            else owner.components.health:DoDelta(-30) end
+        else owner.components.health:DoDelta(-30) end
     --elseif outcome == 3 then
         --whirlwind.Transform:SetPosition(target_pt.x, target_pt.y, target_pt.z)
     --elseif outcome == 4 then
@@ -72,13 +79,11 @@ local function fn(inst)
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.atlasname = "images/inventoryimages/wind_axe.xml"
 
-    --[[
     inst:AddComponent("finiteuses")
-    inst.components.finiteuses:SetMaxUses(TUNING.AXE_USES)
-    inst.components.finiteuses:SetUses(TUNING.AXE_USES)
+    inst.components.finiteuses:SetMaxUses(20)
+    inst.components.finiteuses:SetUses(20)
     inst.components.finiteuses:SetOnFinished(onfinishedfn)
-    inst.components.finiteuses:SetConsumption(ACTIONS.CHOP, 1)
-    ]]
+    --inst.components.finiteuses:SetConsumption(ACTIONS.CHOP, 1)
     
     inst:AddComponent("equippable")
 
