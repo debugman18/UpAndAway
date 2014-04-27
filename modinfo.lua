@@ -18,3 +18,5 @@ api_version = 4
 
 icon_atlas = "favicon/upandaway.xml"
 icon = "upandaway.tex"
+
+priority = -1
