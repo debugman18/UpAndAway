@@ -26,9 +26,8 @@ local function Retarget(inst)
                    and not (inst.components.follower and inst.components.follower.leader == guy)
                    and not guy:HasTag("eel")
                    and not guy:HasTag("beanmonster")
-                   and not guy.prefab == "goose"
-                   and not guy.prefab == "owl"
-                   and not guy.prefab == "skytrap"
+				   and not guy:HasTag("beanprotector")
+                   and not guy:HasTag("cloudneutral")
                    and inst.components.combat:CanTarget(guy)
     end)
     return newtarget
@@ -57,7 +56,8 @@ local function fn(Sim)
     inst:AddTag("monster")    
     inst:AddTag("hostile")
     inst:AddTag("eel")
-
+	inst:AddTag("cloudmonster")
+	inst:AddTag("beanprotector")
     inst:AddTag("beanmonster")
 
     inst:AddComponent("health")
@@ -90,6 +90,8 @@ local function fn(Sim)
     
     inst:SetStateGraph("SGeel")
 	inst:SetBrain(brain)
+
+	inst:ListenForEvent("death", function(inst) inst:StopBrain() end)
 	
     return inst
 end

@@ -22,7 +22,15 @@ local rareloot = {
 local function retargetfn(inst)
     return FindEntity(inst, TUNING.EYEPLANT_ATTACK_DIST, function(guy) 
         if guy.components.combat and guy.components.health and not guy.components.health:IsDead() then
-            return (guy:HasTag("character") or guy:HasTag("monster") or guy:HasTag("animal") or guy:HasTag("prey"))
+            return (
+				guy:HasTag("character")
+				or guy:HasTag("monster")
+				or guy:HasTag("animal")
+				or guy:HasTag("prey")
+			) and not (
+				guy:HasTag("cloudneutral")
+				or guy:HasTag("cloudmonster")
+			)
         end
     end)
 end
@@ -50,6 +58,9 @@ local function fn(Sim)
     inst.AnimState:SetBank("skytrap")
     inst.AnimState:SetBuild("skytrap")
     inst.AnimState:PushAnimation("idle")
+
+	-- This means they're neutral to the cloud realm, not the player.
+	inst:AddTag("cloudneutral")
 
     inst:AddComponent("inspectable")    
 

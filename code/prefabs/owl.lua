@@ -54,11 +54,9 @@ local function RetargetFn(inst, target)
         return guy.components.health 
         and not guy:HasTag("owl") 
         and not guy:HasTag("epic")
-        and not guy:HasTag("eel")
         and not guy:HasTag("beanmonster")
-        and not guy.prefab == "goose"
-        and not guy.prefab == "owl"        
-        and not guy.prefab == "skytrap"
+		and not guy:HasTag("beanprotector")
+		and not guy:HasTag("cloudneutral")
     end)
     return invader
 end
@@ -117,6 +115,7 @@ local function fn()
 
     inst:AddTag("character")
     inst:AddTag("owl")
+	inst:AddTag("cloudmonster")
 
     local brain = require "brains/owlbrain"
     inst:SetBrain(brain)

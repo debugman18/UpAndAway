@@ -45,7 +45,7 @@ local function retargetfn(inst)
     local entity = FindEntity(inst, 10, function(guy) 
 		return inst.components.combat:CanTarget(guy) 
 		and not guy:HasTag("gumbear")
-        and not guy.prefab == "skytrap"
+        and not guy:HasTag("cloudneutral")
     end)
     return entity
 end
@@ -118,6 +118,7 @@ local function bear()
     inst:AddTag("cuddly")
     inst:AddTag("gumbear")
     inst:AddTag("wet")
+	inst:AddTag("cloudmonster")
 
     inst:AddTag("notraptrigger")
 
