@@ -1,4 +1,6 @@
-include ../make/config_loader.mk
+ifneq ($(wildcard ../make/config.mk),)
+ include ../make/config.mk
+endif
 
 
 ifndef SCML_COMPILER

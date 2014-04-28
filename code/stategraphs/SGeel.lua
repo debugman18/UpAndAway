@@ -150,7 +150,6 @@ local states=
             inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentacle_death_VO")
             inst.AnimState:PlayAnimation("death")
             inst.Physics:Stop()
-			inst.components.locomotor:Stop()
             RemovePhysicsColliders(inst)            
             inst.components.lootdropper:DropLoot(Vector3(inst.Transform:GetWorldPosition()))            
         end,

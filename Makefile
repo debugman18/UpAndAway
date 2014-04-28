@@ -34,7 +34,9 @@ KTECH:=ktech
 # paths to the Lua or Perl interpreters), create a file make/config.mk with
 # the customizations and it'll be automatically loaded.
 #
-include make/config_loader.mk
+ifneq ($(wildcard make/config.mk),)
+ include make/config.mk
+endif
 
 export LUA
 export PERL
