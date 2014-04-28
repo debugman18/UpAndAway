@@ -39,6 +39,8 @@ local function fn(Sim)
 	anim:PlayAnimation("idle", true)
 	inst.Transform:SetScale(1.5,1.5,1.5)
 
+	MakeObstaclePhysics(inst, .8)
+
 	inst:AddComponent("inspectable")
 
    	inst:AddComponent("lootdropper") 

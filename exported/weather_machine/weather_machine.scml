@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+    <folder id="0">
+        <file id="0" name="weather_base.png" width="482" height="446" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="weather_rod.png" width="440" height="400" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="weather_orb.png" width="440" height="400" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="weather_machine">
+        <animation id="0" name="idle_off" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="weather_base" folder="0" file="0" abs_x="-198.390286" abs_y="322.017854" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="weather_rod" folder="0" file="1" abs_x="-171.25" abs_y="285" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" name="weather_orb" folder="0" file="2" abs_x="-172.5" abs_y="287.5" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="weather_base">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-198.390286" y="322.017854"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="weather_rod">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-171.25" y="285"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="weather_orb">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-172.5" y="287.5"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="idle_on" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="weather_base" folder="0" file="0" abs_x="-198.390286" abs_y="322.017854" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="weather_rod" folder="0" file="1" abs_x="107.782258" abs_y="402.741935" abs_pivot_x="0" abs_pivot_y="1" abs_angle="310.028445" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" name="weather_orb" folder="0" file="2" abs_x="21.048387" abs_y="364.919355" abs_pivot_x="0" abs_pivot_y="1" abs_angle="324.689785" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="weather_base">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-198.390286" y="322.017854"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="weather_rod">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="107.782258" y="402.741935" angle="310.028445"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="weather_orb">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="21.048387" y="364.919355" angle="324.689785" scale_y="1"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

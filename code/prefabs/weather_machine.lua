@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/portal_adventure.zip"),
+	Asset("ANIM", "anim/weather_machine.zip"),
 }
 
 local notags = {'NOBLOCK', 'player', 'FX'}
@@ -94,7 +94,7 @@ local function weather_on(inst)
 		print "In another world."
 		DoWeatherPick()
 	end
-	inst.AnimState:PlayAnimation("idle_loop_on", true)
+	inst.AnimState:PlayAnimation("idle_on", true)
 end	
 
 local function fn(Sim)
@@ -104,11 +104,13 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("portal_adventure")
-	inst.AnimState:SetBuild("portal_adventure")
+	inst.AnimState:SetBank("weather_machine")
+	inst.AnimState:SetBuild("weather_machine")
 	inst.AnimState:PlayAnimation("idle_off", true)
-	inst.Transform:SetScale(.5,.5,.5)
-	inst.AnimState:SetMultColour(0, 229, 0, 1)
+	--inst.Transform:SetScale(.5,.5,.5)
+	--inst.AnimState:SetMultColour(0, 229, 0, 1)
+
+	MakeObstaclePhysics(inst, .8)
 
 	inst:AddComponent("inspectable")
 
@@ -130,5 +132,5 @@ end
 
 return {
 	Prefab ("common/inventory/weather_machine", fn, assets),
-	MakePlacer ("common/weather_machine_placer", "marble", "void_placeholder", "anim"), 
+	MakePlacer ("common/weather_machine_placer", "weather_machine", "weather_machine", "idle_off"), 
 }	

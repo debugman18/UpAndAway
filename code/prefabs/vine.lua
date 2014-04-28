@@ -61,13 +61,13 @@ local function fn(Sim)
     inst:AddTag("beanmonster")
 
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(25)
+    inst.components.health:SetMaxHealth(20)
     
     
     inst:AddComponent("combat")
     inst.components.combat:SetRange(2.5)
-    inst.components.combat:SetDefaultDamage(20)
-    inst.components.combat:SetAttackPeriod(4)
+    inst.components.combat:SetDefaultDamage(12)
+    inst.components.combat:SetAttackPeriod(3)
     inst.components.combat:SetRetargetFunction(1, Retarget)
     inst.components.combat:SetKeepTargetFunction(KeepTarget)	
     inst.components.combat:SetOnHit(OnHit)
@@ -84,8 +84,8 @@ local function fn(Sim)
     inst:ListenForEvent("attacked", OnAttacked)
 	
     inst:AddComponent("locomotor")
-    inst.components.locomotor.walkspeed = 8.5
-	inst.components.locomotor.runspeed = 8.5
+    inst.components.locomotor.walkspeed = 6.5
+	inst.components.locomotor.runspeed = 6.7
 	inst.components.locomotor.directdrive = true
     
     inst:SetStateGraph("SGeel")

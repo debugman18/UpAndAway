@@ -6,8 +6,8 @@ require "behaviours/wander"
 require "behaviours/doaction"
 require "behaviours/faceentity"
 
-local MAX_CHASE_TIME = 20
-local MAX_CHASE_DIST = 40
+local MAX_CHASE_TIME = 10
+local MAX_CHASE_DIST = 20
 
 local MAX_WANDER_DIST = 20
 
@@ -34,7 +34,7 @@ local function GetFaceTargetFn(inst)
 
     local homePos = inst.components.knownlocations:GetLocation("home")
     local myPos = Vector3(inst.Transform:GetWorldPosition() )
-    if (homePos and distsq(homePos, myPos) > 40*40) then
+    if (homePos and distsq(homePos, myPos) > MAX_CHASE_DIST*MAX_CHASE_DIST) then
         return
     end
 
@@ -48,7 +48,7 @@ local function KeepFaceTargetFn(inst, target)
     
     local homePos = inst.components.knownlocations:GetLocation("home")
     local myPos = Vector3(inst.Transform:GetWorldPosition() )
-    if (homePos and distsq(homePos, myPos) > 40*40) then
+    if (homePos and distsq(homePos, myPos) > MAX_CHASE_DIST*MAX_CHASE_DIST) then
         return false
     end
 

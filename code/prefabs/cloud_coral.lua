@@ -66,6 +66,8 @@ local function fn(Sim)
 	inst.AnimState:SetBuild("cloud_coral")
 	inst.AnimState:PlayAnimation("idle_full")
 
+	MakeObstaclePhysics(inst, .6)
+
 	inst.Transform:SetScale(1,1,1)
 
     inst.entity:AddMiniMapEntity()

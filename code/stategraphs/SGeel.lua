@@ -20,14 +20,13 @@ local states=
         tags = {"idle", "invisible", "canrotate"},
         onenter = function(inst)
             inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentacle_rumble_LP", "tentacle")
-            inst.SoundEmitter:SetParameter( "tentacle", "state", 0)
+            inst.SoundEmitter:SetParameter("tentacle", "state", 0)
             inst.AnimState:PlayAnimation("ground_pre")
             inst.AnimState:PushAnimation("ground_loop", true)
             inst.sg:SetTimeout(GetRandomWithVariance(10, 5) )
         end,
         ontimeout = function(inst)
             inst.AnimState:PushAnimation("ground_pst", false)
-            --inst.sg:GoToState("idle")
         end,
 
         onexit = function(inst)
@@ -86,7 +85,7 @@ local states=
 			if not inst.SoundEmitter:PlayingSound("tentacle") then
 				inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentacle_rumble_LP", "tentacle")
 			end      
-			inst.SoundEmitter:SetParameter( "tentacle", "state", 1) 
+			inst.SoundEmitter:SetParameter("tentacle", "state", 1) 
 			inst.Physics:Stop()
         end,
         events=
@@ -106,7 +105,7 @@ local states=
         onenter = function(inst)
 		    inst.components.combat:StartAttack()
             inst.AnimState:PlayAnimation("atk_loop")
-            inst.AnimState:PushAnimation("atk_idle", false)
+            --inst.AnimState:PushAnimation("atk_idle", false)
 			inst.Physics:Stop()
         end,
         
@@ -138,9 +137,95 @@ local states=
         },
     },
     
-    State{
-        name = "start_walk",
-    },  
+    State{  name = "run_start",
+            tags = {"moving", "running", "canrotate"},
+            
+            onenter = function(inst)
+                inst.components.locomotor:RunForward()
+                inst.AnimState:PlayAnimation("atk_pst")
+            end,
+
+            events =
+            {   
+                EventHandler("animover", function(inst) inst.sg:GoToState("run") end ),        
+            },       
+        },
+
+    State{  name = "run",
+            tags = {"moving", "running", "canrotate"},
+            
+            onenter = function(inst) 
+                inst.components.locomotor:RunForward()
+                inst.AnimState:PlayAnimation("idle")
+            end,
+            
+            timeline=
+            {
+            },
+            
+            events=
+            {   
+                EventHandler("animover", function(inst) inst.sg:GoToState("run") end ),        
+            },
+        },
+    
+    State{  name = "run_stop",
+            tags = {"canrotate", "idle"},
+            
+            onenter = function(inst) 
+                inst.components.locomotor:Stop()
+                inst.AnimState:PlayAnimation("idle")
+            end,
+            
+            events=
+            {   
+                EventHandler("animover", function(inst) inst.sg:GoToState("walk_start") end ),        
+            },
+        },    
+
+    
+    State{  name = "walk_start",
+            tags = {"moving", "canrotate"},
+            
+            onenter = function(inst)
+                inst.components.locomotor:WalkForward()
+                inst.AnimState:PlayAnimation("idle")
+            end,
+
+            events=
+            {   
+                EventHandler("animover", function(inst) inst.sg:GoToState("walk") end ),        
+            },
+        },      
+    
+    State{  name = "walk",
+            tags = {"moving", "canrotate"},
+            
+            onenter = function(inst) 
+                inst.components.locomotor:WalkForward()
+                inst.AnimState:PlayAnimation("idle", true)
+            end,
+    
+            events=
+            {   
+                EventHandler("animover", function(inst) inst.sg:GoToState("walk") end ),        
+            },
+        },
+
+    State{  name = "walk_stop",
+            tags = {"canrotate", "idle"},
+            
+            onenter = function(inst) 
+                inst.components.locomotor:Stop()
+                inst.AnimState:PlayAnimation("atk_pst")
+                inst.AnimState:PushAnimation("idle", true)
+            end,
+
+            events=
+            {   
+                EventHandler("animover", function(inst) inst.sg:GoToState("idle") end ),        
+            },
+        }, 
     
 	State{
         name = "death",
@@ -184,6 +269,8 @@ local states=
 }
 
 CommonStates.AddFrozenStates(states)
+
+--[[
 CommonStates.AddWalkStates(
     states,
     {
@@ -202,6 +289,7 @@ CommonStates.AddRunStates(
             TimeEvent(40*FRAMES, function(inst) inst.SoundEmitter:PlaySound(inst.sounds.walk) end),
         }
     })	
-    
+]]    
+
 return StateGraph("eel", states, events, "idle")
 
