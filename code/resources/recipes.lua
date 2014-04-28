@@ -73,7 +73,7 @@ refined_black_crystal.atlas = "images/inventoryimages/refined_black_crystal.xml"
 local refined_white_crystal = Recipe("refined_white_crystal", { Ingredient("crystal_fragment_white", 6, "images/inventoryimages/crystal_fragment_white.xml") }, RECIPETABS.REFINE, TECH.FABLE_1)
 refined_white_crystal.atlas = "images/inventoryimages/refined_white_crystal.xml"
 
-local thunderboards = Recipe("thunderboards", { Ingredient("thunder_log", 6, "images/inventoryimages/thunder_log.xml") }, RECIPETABS.REFINE, TECH.FABLE_1)
+local thunderboards = Recipe("thunderboards", { Ingredient("thunder_log", 4, "images/inventoryimages/thunder_log.xml") }, RECIPETABS.REFINE, TECH.FABLE_1)
 thunderboards.atlas = "images/inventoryimages/thunderboards.xml"
 
 local blackstaff = Recipe("blackstaff", { Ingredient("spear", 1), Ingredient("refined_black_crystal", 1, "images/inventoryimages/refined_black_crystal.xml"), Ingredient("nightmarefuel", 6) }, RECIPETABS.MAGIC, TECH.FABLE_1)

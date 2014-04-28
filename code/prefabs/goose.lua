@@ -42,39 +42,42 @@ local loot =
 -- *The actual period will be this value plus the delay.
 --]]
 local function NewEggDropper(period, delay)
-	local lastlay = GetTime() - period
 
-	local task = nil
+	if math.random(1,4) == 4 then
+		local lastlay = GetTime() - period
 
-	local function getdelay()
-		return math.max(1, Pred.IsCallable(delay) and delay() or delay)
-	end
+		local task = nil
 
-	local function task_callback(inst)
-		task = nil
+		local function getdelay()
+			return math.max(1, Pred.IsCallable(delay) and delay() or delay)
+		end
 
-		if GetStaticGenerator():IsCharged() then
-			if inst:IsAsleep() then
-				local egg = SpawnPrefab("golden_egg")
-				egg.Transform:SetPosition(inst.Transform:GetWorldPosition())
-				TheMod:DebugSay("[", inst, "] laid [", egg, "]!")
-				lastlay = GetTime()
-			else
+		local function task_callback(inst)
+			task = nil
+
+			if GetStaticGenerator():IsCharged() then
+				if inst:IsAsleep() then
+					local egg = SpawnPrefab("golden_egg")
+					egg.Transform:SetPosition(inst.Transform:GetWorldPosition())
+					TheMod:DebugSay("[", inst, "] laid [", egg, "]!")
+					lastlay = GetTime()
+				else
+					task = inst:DoTaskInTime(getdelay(), task_callback)
+				end
+			end
+		end
+
+		return function(inst)
+			if task then
+				task:Cancel()
+				task = nil
+			end
+
+			if GetTime() >= lastlay + period then
 				task = inst:DoTaskInTime(getdelay(), task_callback)
 			end
 		end
-	end
-
-	return function(inst)
-		if task then
-			task:Cancel()
-			task = nil
-		end
-
-		if GetTime() >= lastlay + period then
-			task = inst:DoTaskInTime(getdelay(), task_callback)
-		end
-	end
+	else TheMod:DebugSay("No egg laid this time.")	
 end
 
  

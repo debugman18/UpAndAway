@@ -26,6 +26,9 @@ local function Retarget(inst)
                    and not (inst.components.follower and inst.components.follower.leader == guy)
                    and not guy:HasTag("eel")
                    and not guy:HasTag("beanmonster")
+                   and not guy.prefab == "goose"
+                   and not guy.prefab == "owl"
+                   and not guy.prefab == "skytrap"
                    and inst.components.combat:CanTarget(guy)
     end)
     return newtarget

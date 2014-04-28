@@ -51,7 +51,14 @@ local function RetargetFn(inst, target)
         defenseTarget = home
     end
     local invader = FindEntity(defenseTarget or inst, CFG.OWL.DEFEND_DIST, function(guy)
-        return guy.components.health and not guy:HasTag("owl") and not guy:HasTag("epic")
+        return guy.components.health 
+        and not guy:HasTag("owl") 
+        and not guy:HasTag("epic")
+        and not guy:HasTag("eel")
+        and not guy:HasTag("beanmonster")
+        and not guy.prefab == "goose"
+        and not guy.prefab == "owl"        
+        and not guy.prefab == "skytrap"
     end)
     return invader
 end

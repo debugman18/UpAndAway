@@ -43,7 +43,9 @@ end
 
 local function retargetfn(inst)
     local entity = FindEntity(inst, 10, function(guy) 
-		return inst.components.combat:CanTarget(guy) and not guy:HasTag("gumbear")
+		return inst.components.combat:CanTarget(guy) 
+		and not guy:HasTag("gumbear")
+        and not guy.prefab == "skytrap"
     end)
     return entity
 end
