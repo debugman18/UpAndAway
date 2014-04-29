@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+    <folder id="0">
+        <file id="0" name="kettle_base.png" width="288" height="400" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="kettle_lid.png" width="288" height="400" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="kettle_spout.png" width="288" height="400" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="kettle">
+        <animation id="0" name="idle_off" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="kettle_base" folder="0" file="0" abs_x="-147" abs_y="344" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="kettle_lid" folder="0" file="1" abs_x="-147" abs_y="344" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" name="kettle_spout" folder="0" file="2" abs_x="-149" abs_y="338" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="kettle_base">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-147" y="344"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="kettle_lid">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-147" y="344"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="kettle_spout">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-149" y="338"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="idle_on" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="kettle_base" folder="0" file="0" abs_x="-147" abs_y="344" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="kettle_lid" folder="0" file="1" abs_x="-147" abs_y="344" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" name="kettle_spout" folder="0" file="2" abs_x="-149" abs_y="338" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                </key>
+                <key id="1" time="148">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                </key>
+                <key id="2" time="296">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                </key>
+                <key id="3" time="439">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="3" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                </key>
+                <key id="4" time="588">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="4" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                </key>
+                <key id="5" time="737">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="5" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                </key>
+                <key id="6" time="881">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="6" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="kettle_base">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-147" y="344"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="kettle_lid">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-147" y="344"/>
+                </key>
+                <key id="1" time="148" spin="0">
+                    <object folder="0" file="1" x="-147" y="346"/>
+                </key>
+                <key id="2" time="296" spin="0">
+                    <object folder="0" file="1" x="-147" y="343.652582"/>
+                </key>
+                <key id="3" time="439" spin="0">
+                    <object folder="0" file="1" x="-147" y="346.723151"/>
+                </key>
+                <key id="4" time="588" spin="0">
+                    <object folder="0" file="1" x="-147" y="342.99989"/>
+                </key>
+                <key id="5" time="737" spin="0">
+                    <object folder="0" file="1" x="-147" y="346.36158"/>
+                </key>
+                <key id="6" time="881" spin="0">
+                    <object folder="0" file="1" x="-147" y="342.068548"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="kettle_spout">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-149" y="338"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="idle_open" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="kettle_base" folder="0" file="0" abs_x="-147" abs_y="344" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="kettle_lid" folder="0" file="1" abs_x="186.333333" abs_y="379.416667" abs_pivot_x="0" abs_pivot_y="1" abs_angle="273.051037" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" name="kettle_spout" folder="0" file="2" abs_x="-149" abs_y="338" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="kettle_base">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-147" y="344"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="kettle_lid">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="186.333333" y="379.416667" angle="273.051037"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="kettle_spout">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-149" y="338"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
