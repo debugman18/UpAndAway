@@ -142,9 +142,11 @@ Assets = GLOBAL.JoinArrays(
 		"gummybear_den",
 		"cloud_algae",
 		
-		--"bean_giant_statue",
-		--"weather_machine",
+		"weather_machine",
 		--"refiner",
+		--"research_lectern",
+
+		--"bean_giant_statue",
 	},
 
 	--Winnie assets.

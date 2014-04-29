@@ -2,11 +2,11 @@ BindGlobal()
 
 local assets=
 {
-	Asset("ANIM", "anim/armor_sweatervest.zip"),
+	Asset("ANIM", "anim/cotton_vest.zip"),
 }
 
 local function onequip(inst, owner) 
-    owner.AnimState:OverrideSymbol("swap_body", "armor_sweatervest", "swap_body")
+    owner.AnimState:OverrideSymbol("swap_body", "cotton_vest", "swap_body")
     inst.components.fueled:StartConsuming()
 end
 
@@ -26,8 +26,8 @@ local function fn(Sim)
 	inst.entity:AddAnimState()
     MakeInventoryPhysics(inst)
     
-    inst.AnimState:SetBank("armor_sweatervest")
-    inst.AnimState:SetBuild("armor_sweatervest")
+    inst.AnimState:SetBank("armor_sanity")
+    inst.AnimState:SetBuild("cotton_vest")
     inst.AnimState:PlayAnimation("anim")
     
     inst:AddComponent("inspectable")
@@ -37,11 +37,12 @@ local function fn(Sim)
 
     inst:AddComponent("dapperness")
     inst.components.dapperness.dapperness = TUNING.DAPPERNESS_TINY
+
     inst:AddComponent("equippable")
     inst.components.equippable.equipslot = EQUIPSLOTS.BODY
     
-    inst.components.equippable:SetOnEquip( onequip )
-    inst.components.equippable:SetOnUnequip( onunequip )
+    inst.components.equippable:SetOnEquip(onequip)
+    inst.components.equippable:SetOnUnequip(onunequip)
 
     inst:AddComponent("fueled")
     inst.components.fueled.fueltype = "USAGE"
@@ -51,7 +52,29 @@ local function fn(Sim)
 	inst:AddComponent("insulator")
     inst.components.insulator.insulation = TUNING.INSULATION_LARGE
 
-    inst:ListenForEvent("rainstart", function() inst.components.fueled:MakeEmpty() end)
+    local function melt(inst)
+        TheMod:DebugSay("Rain start.")
+        inst.updatetask = inst:DoPeriodicTask(0.5, function()
+            TheMod:DebugSay("Still raining.")
+            inst.components.fueled:DoDelta(-25)
+        end)
+    end    
+
+    inst:ListenForEvent("rainstart", function() 
+        melt(inst)
+    end, GetWorld())
+
+    inst:ListenForEvent("rainstop", function()
+        TheMod:DebugSay("Rain stop.")
+        if inst.updatetask then
+            inst.updatetask:Cancel()
+            inst.updatetask = nil
+        end    
+    end, GetWorld())
+
+    if GetSeasonManager().precip and GetSeasonManager().preciptype == "rain" then
+        melt(inst)
+    end
 
     return inst
 end

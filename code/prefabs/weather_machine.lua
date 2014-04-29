@@ -5,6 +5,10 @@ local assets =
 	Asset("ANIM", "anim/weather_machine.zip"),
 }
 
+local function onload(inst, data)
+	inst.components.machine:TurnOff()
+end
+
 local notags = {'NOBLOCK', 'player', 'FX'}
 local function test_ground(inst, pt)
     local tiletype = GetGroundTypeAtPosition(pt)
@@ -31,7 +35,6 @@ end
 local function weather_off(inst)
 	if GetWorld() and not GetWorld():HasTag("cloudrealm") then
 		print "Weather Machine Reset"
-		GetSeasonManager():Cycle()
 		GetPlayer().components.sanity:DoDelta(-10)
 	end
 	inst.AnimState:PlayAnimation("idle_off", true)
@@ -52,7 +55,11 @@ local function DoWeatherPick(inst)
 			GetSeasonManager():StartPrecip()
 		elseif weather_id == 4 and GetSeasonManager().precip then
 			print(weather_id)
-			GetSeasonManager():StopPrecip()
+			if GetSeasonManager().preciptype == "rain" then
+				GetSeasonManager():StopPrecip()
+			elseif GetSeasonManager().preciptype == "snow" then
+			 	GetSeasonManager():StopPrecip()
+			else end
 		elseif weather_id == 5 then	
 			print(weather_id)
 			GetSeasonManager():Cycle()
@@ -126,6 +133,11 @@ local function fn(Sim)
     --inst.components.deployable.ondeploy = ondeploy
 
     inst:AddTag("structure")
+
+    inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("weather_machine.tex") 
+
+    inst.OnLoad = onload
 
 	return inst
 end

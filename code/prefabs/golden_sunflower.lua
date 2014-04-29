@@ -3,7 +3,7 @@ BindGlobal()
 
 local assets=
 {
-	Asset("ANIM", "anim/carrot.zip"),
+	Asset("ANIM", "anim/golden_sunflower.zip"),
 }
 
 local prefabs=
@@ -23,10 +23,11 @@ local function fn(Sim)
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
    
-    inst.AnimState:SetBank("carrot")
-    inst.AnimState:SetBuild("carrot")
-    inst.AnimState:PlayAnimation("planted")
+    inst.AnimState:SetBank("golden_sunflower")
+    inst.AnimState:SetBuild("golden_sunflower")
+    inst.AnimState:PlayAnimation("idle")
     inst.AnimState:SetRayTestOnBB(true);
+    inst.Transform:SetScale(2.3,2.3,2.3)
     
     inst:AddComponent("inspectable")
     

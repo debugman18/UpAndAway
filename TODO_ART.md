@@ -3,7 +3,6 @@
 
 ### Inventory images in need of attention
 + Cotton Hat --Willette is working on this.
-+ Cotton Vest --Battal is working on this.
 
 
 ### Atlases (with existing animation banks) in need of attention
@@ -15,17 +14,13 @@
 
 
 ### Entities with no art assets and undefined status (between using custom animations or not)
-+ Weather Machine (All art assets, still image) + Recipe Image --Debug is working on this.
-+ Kettle (All art assets, still image)
++ Kettle (All art assets, still image) --Debug is working on this.
 + Refiner (All art assets, still image) + Recipe Image --Debug is working on this.
-+ Bean Giant (All art assets, using deerclops bank or custom animations)
-+ Golden Sunflower (All art assets, still image)
-+ Cotton Vest (All art assets, using dapper vest bank) --Battal is (was?) working on this.
++ Bean Giant (All art assets, using deerclops bank or custom animations) --Florian is working on this.
 + Cotton Hat (All art assets, using any hat bank) --Willette is working on this.
 
 
 ### Miscellanea
-+ Weather Machine minimap
 + Refiner minimap
 + Research Lectern minimap
 

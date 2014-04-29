@@ -275,7 +275,7 @@ TheMod:AddRoom("Manta_Room", {
 		distributeprefabs = {
 			cloud_bush = 0.03,
 			cloud_fruit_tree = 0.04,
-			colored_corn = 0.04,
+			--colored_corn = 0.04,
 			jellyshroom_blue = 0.08,
 			owl = 0.007,
 			skyflower = 0.1,

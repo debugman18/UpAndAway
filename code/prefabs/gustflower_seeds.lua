@@ -13,6 +13,7 @@ local function ondeploy (inst, pt)
     inst.Transform:SetPosition(pt:Get() )
     local gustflower = SpawnPrefab("gustflower")
     gustflower.Transform:SetPosition(inst.Transform:GetWorldPosition())
+    inst:Remove()
 end
 
 local notags = {'NOBLOCK', 'player', 'FX'}

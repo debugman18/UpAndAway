@@ -166,9 +166,11 @@ AddMinimapAtlas("images/gummybear_den.xml")
 
 AddMinimapAtlas("images/cloud_algae.xml")
 
---AddMinimapAtlas("images/bean_giant_statue.xml")
---AddMinimapAtlas("images/weather_machine.xml")
+AddMinimapAtlas("images/weather_machine.xml")
 --AddMinimapAtlas("images/refiner.xml")
+--AddMinimapAtlas("images/research_lectern.xml")
+
+--AddMinimapAtlas("images/bean_giant_statue.xml"
 
 AddModCharacter("winnie")
 
