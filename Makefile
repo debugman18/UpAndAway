@@ -43,15 +43,18 @@ export PERL
 export KTECH
 
 
-.PHONY: all anim images levels exported fiximages dist clean distclean wicker wickertools
+.PHONY: all anim images bigportraits levels exported fiximages dist clean distclean wicker wickertools
 
-all: anim images levels exported
+all: anim images bigportraits levels exported
 
 anim:
 	$(MAKE) -C anim all
 
 images:
 	$(MAKE) -C images all
+
+bigportraits:
+	$(MAKE) -C bigportraits all
 
 levels:
 	$(MAKE) -C levels all
@@ -68,12 +71,14 @@ dist: all
 clean: distclean
 	$(MAKE) -C anim clean
 	$(MAKE) -C images clean
+	$(MAKE) -C bigportraits clean
 	$(MAKE) -C levels clean
 	$(MAKE) -C exported clean
 
 distclean:
 	$(MAKE) -C anim distclean
 	$(MAKE) -C images distclean
+	$(MAKE) -C bigportraits distclean
 	$(MAKE) -C levels distclean
 	$(MAKE) -C exported clean
 	$(RM) $(ZIPNAME)
