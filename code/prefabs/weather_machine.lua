@@ -95,8 +95,10 @@ end
 local function weather_on(inst)
 	if GetWorld() and GetWorld():HasTag("cloudrealm") then
 		print "In cloudrealm."
-		GetSeasonManager():StartSummer()
-		inst:DoPeriodicTask(10, function(inst) GetWorld().components.staticgenerator:Charge() end)
+		if IsDLCEnabled(REIGN_OF_GIANTS) then
+			GetSeasonManager():StartAutumn()
+		else GetSeasonManager():StartAutumn() end	
+		inst:ListenForEvent("upandaway_uncharge", function() GetWorld().components.staticgenerator:Charge() end, GetWorld())
 	else 
 		print "In another world."
 		DoWeatherPick()
