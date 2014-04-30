@@ -23,26 +23,39 @@ end
 
 local function explosive_common(explosive, inst)
 	inst:DoTaskInTime(0, function(inst)
-		if inst:IsValid() and inst.components.explosive then
-			local explosive = inst.components.explosive
+		local explosive = inst.components.explosive
+		if inst:IsValid() and explosive then
 			explosive.OnIgnite = Lambda.Nil
 			explosive.OnBurnt = Lambda.Nil
+
+			local burnable = inst.components.burnable
+			if burnable then
+				local oldonextinguish = burnable.onextinguish
+				burnable.onextinguish = function(inst)
+					local persisted = inst.persists
+					if oldextinguish then oldextinguish(inst) end
+					inst.persists = persisted
+				end
+			end
 		end
 	end)
 end
 
 local function burnable_common(burnable, inst)
 	inst:DoTaskInTime(0, function(inst)
-		if inst:IsValid() and inst.components.burnable then
-			local burnable = inst.components.burnable
+		local burnable = inst.components.burnable
+		if inst:IsValid() and burnable then
 
-			burnable:Extinguish()
+			if get_extinguish_factor() == math.huge then
+				burnable:Extinguish()
+			end
 			burnable:SetOnIgniteFn(function(inst)
 				local burnable = inst.components.burnable
 			
 				if burnable and burnable.burntime then
 					local dt = inst.components.burnable.burntime/get_extinguish_factor()
 					dt = math.min(dt, inst.components.burnable.burntime - 0.2)
+					dt = math.max(dt, 0)
 
 					inst:DoTaskInTime(dt, function(inst)
 						if inst.components.burnable then
@@ -60,7 +73,7 @@ local function fueled_common(fueled, inst)
 		local fueled = inst.components.fueled
 		local factor = get_extinguish_factor()
 
-		if fueled and inst.components.burnable then
+		if inst:IsValid() and fueled and fueled.fueltype == "BURNABLE" then
 			local oldDoUpdate = fueled.DoUpdate
 			fueled.DoUpdate = function(self, ...)
 				local oldrate = self.rate
