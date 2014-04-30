@@ -33,6 +33,9 @@ local function fn(Sim)
 	inst.components.heater.heatfn = HeatFn
 	inst.components.heater.carriedheatfn = HeatFn
 
+    inst:AddComponent("fuel")
+    inst.components.fuel.fuelvalue = 5
+
 	inst:AddComponent("inspectable")
 
     inst:AddComponent("stackable")

@@ -167,6 +167,7 @@ local function commonfn()
     
 	inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.atlasname = "images/inventoryimages/bee_marshmallow.xml"
+
 	inst:AddComponent("stackable")
 	inst.components.inventoryitem.nobounce = true
 	inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
@@ -176,7 +177,7 @@ local function commonfn()
 	---------------------
 	
 	inst:AddComponent("lootdropper")
-	inst.components.lootdropper:AddRandomLoot("honey", 1)
+	inst.components.lootdropper:AddRandomLoot("marshmallow", 1)
 	inst.components.lootdropper:AddRandomLoot("stinger", 5)   
 	inst.components.lootdropper.numrandomloot = 1
 	

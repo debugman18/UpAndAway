@@ -34,6 +34,9 @@ local function fn(Sim)
     inst.components.edible.hungervalue = 30
     inst.components.edible.sanityvalue = -20	
 
+    inst:AddComponent("fuel")
+    inst.components.fuel.fuelvalue = 5
+
 	return inst
 end
 

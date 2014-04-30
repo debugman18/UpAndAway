@@ -24,6 +24,9 @@ local function fn(Sim)
 
 	inst:AddComponent("inspectable")
 
+    inst:AddComponent("fuel")
+    inst.components.fuel.fuelvalue = 5
+
 	inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/cloud_algae_fragment.xml"
 

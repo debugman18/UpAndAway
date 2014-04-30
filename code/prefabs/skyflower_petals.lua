@@ -41,6 +41,9 @@ local function fncommon(Sim)
 	
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+
+    inst:AddComponent("fuel")
+    inst.components.fuel.fuelvalue = 5
 	
 	inst:AddComponent("edible")
 	inst.components.edible.healthvalue = -1

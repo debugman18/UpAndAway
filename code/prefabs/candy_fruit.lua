@@ -35,11 +35,9 @@ local function fn(Sim)
     inst.components.edible.hungervalue = 0
     inst.components.edible.sanityvalue = 1
 
-	--Is like snow on its structures.
-	inst:AddComponent("repairer")
-	inst.components.repairer.repairmaterial = "cloud"
-	inst.components.repairer.value = 1
-    
+    inst:AddComponent("fuel")
+    inst.components.fuel.fuelvalue = 5
+
     return inst
 end
 

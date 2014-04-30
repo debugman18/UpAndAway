@@ -50,6 +50,9 @@ local function Retarget(inst)
     
     local newtarget = FindEntity(inst, CFG_OCTOCOPTER_TARGET_DIST, function(guy)
         return inst.components.combat:CanTarget(guy)
+        and not guy:HasTag("owl") 
+        and not guy:HasTag("beanmonster")
+        and not guy:HasTag("cloudneutral")
     end)
 
     return newtarget

@@ -14,13 +14,17 @@ local assets=
 local prefabs =
 {
    --"beak",
-   --"feather",
+   --"owl_feather",
+   --"owl_amulet",
+   "crystal_fragment_black",
 }
 
 local loot = 
 {
     --"beak",
-    --"feather",
+    --"owl_feather",
+    --"owl_amulet",
+    "crystal_fragment_black",
 }
 
 local MAX_TARGET_SHARES = 5

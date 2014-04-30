@@ -10,7 +10,9 @@
 
 + **Code assets in need of attention**
 
-	+ nil
+	+ One time use of weather machine; also make it cheaper.
+
+	+ Nerf the duckraptor spawning to 60%.
 
 ******
 

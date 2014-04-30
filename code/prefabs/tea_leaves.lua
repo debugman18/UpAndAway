@@ -33,6 +33,9 @@ local function make_leaf(name, data)
 		
 		inst:AddComponent("inspectable")
 
+	    inst:AddComponent("fuel")
+	    inst.components.fuel.fuelvalue = 5
+
 		inst:AddComponent("inventoryitem")
 		do
 			local inventoryitem = inst.components.inventoryitem
