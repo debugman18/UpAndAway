@@ -144,7 +144,8 @@ local function fn(Sim)
     inst.components.fueled:SetDepletedFn(onEmpty)  
     inst.components.fueled.ontakefuelfn = onFill
     inst.components.fueled.accepting = true
-    inst.components.fueled:InitializeFuelLevel(10)
+    inst.components.fueled:InitializeFuelLevel(60)
+    inst.components.fueled.rate = 0.7
 
     local light = inst.entity:AddLight()
     inst:DoPeriodicTask(0, function(inst)
