@@ -2,12 +2,13 @@ BindGlobal()
 
 local assets=
 {
-	Asset("ANIM", "anim/hat_winter.zip"),
+	Asset("ANIM", "anim/cotton_hat.zip"),
+    Asset("ANIM", "anim/hat_miner_off.zip"),
 }
 
 
 local function onequip(inst, owner)
-    owner.AnimState:OverrideSymbol("swap_hat", "hat_winter", "swap_hat")
+    owner.AnimState:OverrideSymbol("swap_hat", "cotton_hat", "swap_hat")
     owner.AnimState:Show("HAT")
     owner.AnimState:Show("HAT_HAIR")
     owner.AnimState:Hide("HAIR_NOHAT")
@@ -50,8 +51,8 @@ local function fn(Sim)
         inst.entity:AddAnimState()
         MakeInventoryPhysics(inst)
 
-        inst.AnimState:SetBank("winter_hat")
-        inst.AnimState:SetBuild("hat_winter")
+        inst.AnimState:SetBank("strawhat")
+        inst.AnimState:SetBuild("cotton_hat")
         inst.AnimState:PlayAnimation("anim")
 
         inst:AddTag("hat")
@@ -59,6 +60,8 @@ local function fn(Sim)
         inst:AddComponent("inspectable")
 
         inst:AddComponent("inventoryitem")
+        inst.components.inventoryitem.atlasname = "images/inventoryimages/cotton_hat.xml"
+
         inst:AddComponent("tradable")
 
         inst:AddComponent("equippable")
