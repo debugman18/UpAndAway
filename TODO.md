@@ -14,6 +14,8 @@
 
 	+ Nerf the duckraptor spawning to 60%.
 
+	+ Tea acts incorrectly, lowering your temperature with RoG.
+
 ******
 
 Anything else that needs to be added will be added, current version is from memory. 

@@ -156,7 +156,7 @@ local function BuildKettlePrefab()
 		inst.AnimState:PlayAnimation("idle_off")
 
 		MakeObstaclePhysics(inst, .5)
-		inst.Transform:SetScale(.8,.8,.8)
+		inst.Transform:SetScale(.7,.7,.7)
 		
 		local minimap = inst.entity:AddMiniMapEntity()
 		minimap:SetIcon( "cookpot.png" )
@@ -292,5 +292,5 @@ end
 return {
 	BuildKettlePrefab(),
 	BuildKettleItemPrefab(),
-	MakePlacer( "common/kettle_placer", "kettle", "kettle", "idle_off" ),
+	MakePlacer( "common/kettle_placer", "kettle", "kettle", "idle_off", false, false, 0.7 ),
 }
