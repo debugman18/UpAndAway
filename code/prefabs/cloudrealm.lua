@@ -266,6 +266,7 @@ local function fn(Sim)
 
 		staticgen:SetAverageUnchargedTime( cfg:GetConfig "AVERAGE_UNCHARGED_TIME" )
 		staticgen:SetAverageChargedTime( cfg:GetConfig "AVERAGE_CHARGED_TIME" )
+		staticgen:SetCooldown( cfg:GetConfig "COOLDOWN" )
 
 		staticgen:StartGenerating()
 	end

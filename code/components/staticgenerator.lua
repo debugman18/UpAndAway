@@ -1,5 +1,3 @@
-
-
 local Pred = wickerrequire 'lib.predicates'
 
 local Debuggable = wickerrequire 'adjectives.debuggable'
@@ -11,12 +9,36 @@ local MarkovChain = wickerrequire 'math.probability.markovchain'
 local UPDATING_PERIOD = 2
 
 
-local events_map = {
-	UNCHARGED = "upandaway_uncharge",
-	CHARGED = "upandaway_charge",
-}
+---
+-- Returns a new state transition function.
+local function NewStateTransitionFunction(self)
+	local events_map = {
+		UNCHARGED = "upandaway_uncharge",
+		CHARGED = "upandaway_charge",
+	}
 
-local generic_event = "upandaway_chargechange"
+	local generic_event = "upandaway_chargechange"
+
+	return function(old, new)
+		if self.inst:IsValid() then
+			local event = assert( events_map[new] )
+			if self:Debug() then
+				self:Say("Pushing event ", ("%q"):format(event))
+			end
+			self.inst:PushEvent(event)
+
+			if self:Debug() then
+				self:Say("Pushing generic event ",("(%q, {state = %q})"):format(generic_event, new))
+			end
+			self.inst:PushEvent(generic_event, {state = new})
+
+			local cooldown = self:GetCooldown()
+			if cooldown then
+				self:HoldState(cooldown)
+			end
+		end
+	end
+end
 
 ---
 --
@@ -34,28 +56,20 @@ local StaticGenerator = Class(Debuggable, function(self, inst)
 
 	self:SetConfigurationKey("STATIC")
 
-	local COOLDOWN = self:GetConfig "COOLDOWN"
-	assert( Pred.IsPositiveNumber(COOLDOWN) )
 
 	local chain = MarkovChain()
 	chain:AddState("CHARGED")
 	chain:AddState("UNCHARGED")
 	chain:SetInitialState("NONE")
 	chain:SetTransitionProbability("NONE", "UNCHARGED", 1)
-	chain:SetTransitionFn(function(old, new)
-		local event = assert( events_map[new] )
-		self:DebugSay("Pushing event ", ("%q"):format(event))
-		self.inst:PushEvent(event)
-		self:DebugSay("Pushing generic event ",("(%q, {state = %q})"):format(generic_event, new))
-		self.inst:PushEvent(generic_event, {state = new})
-		self:StopGenerating()
-		self.inst:DoTaskInTime(COOLDOWN, function(inst)
-			if inst:IsValid() and inst.components.staticgenerator then
-				inst.components.staticgenerator:StartGenerating()
-			end
-		end)
-	end)
+	chain:SetTransitionFn(NewStateTransitionFunction(self))
 	self.chain = chain
+
+	self.cooldown = nil
+
+	-- When to release the currently held state.
+	-- nil if no state is being held.
+	self.state_release_time = nil
 
 	self.task = nil
 end)
@@ -84,6 +98,20 @@ function StaticGenerator:SetAverageUnchargedTime(dt)
 	self.chain:SetTransitionProbability( "UNCHARGED", "CHARGED", average_time_to_probability(dt) )
 end
 
+---
+-- Sets the cooldown for state transition updating.
+--
+-- @param dt Cooldown, in seconds.
+function StaticGenerator:SetCooldown(dt)
+	assert( dt == nil or Pred.IsNonNegativeNumber(dt), "Nil or non-negative number expected as cooldown." )
+	self.cooldown = dt
+end
+
+---
+-- Returns the cooldown, in seconds.
+function StaticGenerator:GetCooldown()
+	return self.cooldown
+end
 
 ---
 -- Returns whether the prefab is CHARGED.
@@ -96,6 +124,8 @@ end
 ---
 -- Starts updating the state transition.
 function StaticGenerator:StartGenerating()
+	if self:IsHoldingState() then return end
+
 	if not self.task and self.inst:IsValid() then
 		self.task = self.inst:DoPeriodicTask(UPDATING_PERIOD, function(inst)
 			if inst:IsValid() and inst.components.staticgenerator then
@@ -117,9 +147,73 @@ end
 ---
 -- Handles long updates by simply going to the UNCHARGED state.
 function StaticGenerator:LongUpdate(dt)
+	if self.state_release_time then
+		self.state_release_time = self.state_release_time - dt
+		if self.state_release_time <= GetTime() then
+			self:ReleaseState()
+		else
+			return
+		end
+	end
 	self.chain:GoTo("UNCHARGED")
 end
 
+function StaticGenerator:IsHoldingState()
+	if self.state_release_time then
+		assert( self.state_release_time + 0.5 >= GetTime() )
+		return true
+	else
+		return false
+	end
+end
+
+local function cancelReleaseTask(self)
+	if self.releasetask then
+		self.releasetask:Cancel()
+		self.releasetask = nil
+	end
+end
+
+---
+-- Holds the state for the specified amount of seconds (which may be infinite).
+function StaticGenerator:HoldState(dt)
+	assert( Pred.IsNonNegativeNumber(dt), "Non-negative number expected as amount of seconds to hold state." )
+
+	if not self.inst:IsValid() then return end
+
+	local release_time = GetTime() + dt
+	if self.state_release_time then
+		if self.state_release_time < release_time then
+			cancelReleaseTask(self)
+		else
+			return
+		end
+	end
+
+	self.state_release_time = release_time
+
+	self:StopGenerating()
+
+	if self.state_release_time == math.huge then return end
+
+	self.releasetask = self.inst:DoTaskInTime(dt, function(inst)
+		local self = inst.components.staticgenerator
+		if inst:IsValid() and self then
+			self:ReleaseState()
+		end
+	end)
+end
+
+---
+-- Releases the held state.
+function StaticGenerator:ReleaseState()
+	self.state_release_time = nil
+
+	assert( not self:IsHoldingState() )
+	self:StartGenerating()
+
+	cancelReleaseTask(self)
+end
 
 --[[
 -- These are just convenience functions, mostly for testing.
@@ -128,12 +222,16 @@ end
 ---
 -- Goes to the CHARGED state.
 function StaticGenerator:Charge()
+	if self:IsHoldingState() then return end
+
 	self.chain:GoTo("CHARGED")
 end
 
 ---
 -- Goes to the UNCHARGED state.
 function StaticGenerator:Uncharge()
+	if self:IsHoldingState() then return end
+
 	self.chain:GoTo("UNCHARGED")
 end
 
@@ -147,25 +245,43 @@ function StaticGenerator:Toggle()
 	end
 end
 
+
 ---
 -- Saves the current state.
 function StaticGenerator:OnSave()
+	local release_delay
+	if self.state_release_time then
+		if self.state_release_time == math.huge then
+			release_delay = -1
+		else
+			release_delay = math.max(0, self.state_release_time - GetTime())
+		end
+	end
 	return {
 		state = self.chain:GetState(),
+		state_release_delay = release_delay,
 	}
 end
 
 ---
 -- Loads the saved state and goes to it.
-function StaticGenerator:OnLoad(data)
-	local state = data and data.state
+function StaticGenerator:LoadPostPass(newents, data)
+	if not data then return end
+
+	local state = data.state
 	if type(state) == "string" then
 		state = state:upper()
 		if self.chain:IsState(state) then
-			self.LoadPostPass = function()
-				self.chain:GoTo(state)
-			end
+			self.chain:GoTo(state)
 		end
+	end
+
+	local release_delay = data.state_release_delay
+	if release_delay then
+		if release_delay < 0 then
+			release_delay = math.huge
+		end
+		self:HoldState(release_delay)
 	end
 end
 

@@ -204,7 +204,9 @@ function IsCloudLevel(slot, cavenum)
 	end
 	return GetLevelHeight(slot, cavenum) >= 1
 end
+IsCloudRealm = IsCloudLevel
 Pred.IsCloudLevel = IsCloudLevel
+Pred.IsCloudRealm = IsCloudRealm
 
 ---
 -- @description Returns the next level number (for climbing up).

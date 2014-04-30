@@ -1,107 +1,98 @@
 BindGlobal()
 
+local Pred = wickerrequire "lib.predicates"
+
 local assets =
 {
 	Asset("ANIM", "anim/weather_machine.zip"),
 }
 
-local function onload(inst, data)
-	inst.components.machine:TurnOff()
+
+-- List of surface weather effects.
+-- Each effect takes the seasonmanager as the parameter.
+local surface_weather_effects = {
+	function(sm)
+		sm:StartWinter()
+	end,
+	function(sm)
+		sm:StartSummer()
+	end,
+	function(sm)
+		if sm:GetPOP() >= 1 then
+			sm:StopPrecip()
+		else
+			sm:ForcePrecip()
+			sm:StartPrecip()
+		end
+	end,
+	function(sm)
+		sm:Cycle()
+	end,
+}
+if IsDLCEnabled(REIGN_OF_GIANTS) then
+	table.insert(surface_weather_effects, function(sm)
+		sm:StartAutumn()
+	end)
+	table.insert(surface_weather_effects, function(sm)
+		sm:StartSpring()
+	end)
 end
 
-local notags = {'NOBLOCK', 'player', 'FX'}
-local function test_ground(inst, pt)
-    local tiletype = GetGroundTypeAtPosition(pt)
-    local ground_OK = tiletype ~= GROUND.ROCKY and tiletype ~= GROUND.ROAD and tiletype ~= GROUND.IMPASSABLE and
-                        tiletype ~= GROUND.UNDERROCK and tiletype ~= GROUND.WOODFLOOR and 
-                        tiletype ~= GROUND.CARPET and tiletype ~= GROUND.CHECKER and tiletype < GROUND.UNDERGROUND
-    
-    if ground_OK then
-        local ents = TheSim:FindEntities(pt.x,pt.y,pt.z, 4, nil, notags) -- or we could include a flag to the search?
-        local min_spacing = inst.components.deployable.min_spacing or 2
 
-        for k, v in pairs(ents) do
-            if v ~= inst and v.entity:IsValid() and v.entity:IsVisible() and not v.components.placer and v.parent == nil then
-                if distsq( Vector3(v.Transform:GetWorldPosition()), pt) < min_spacing*min_spacing then
-                    return false
-                end
-            end
-        end
-        return true
-    end
-    return false
+local function onload(inst, data)
+	if inst.components.machine:IsOn() then
+		inst.AnimState:PlayAnimation("idle_on", true)
+	end
 end
 
 local function weather_off(inst)
-	if GetWorld() and not GetWorld():HasTag("cloudrealm") then
-		print "Weather Machine Reset"
-		GetPlayer().components.sanity:DoDelta(-10)
+	if not inst.components.machine:IsOn() then
+		if not Pred.IsCloudRealm() then
+			TheMod:DebugSay("Weather Machine Reset")
+			GetPlayer().components.sanity:DoDelta(-10)
+		end
 	end
 	inst.AnimState:PlayAnimation("idle_off", true)
 end	
 
 local function DoWeatherPick(inst)
-	if GetWorld() and IsDLCEnabled(REIGN_OF_GIANTS) then
-		weather_id = math.random(1,7)
-		GetPlayer().components.sanity:DoDelta(-40)
-		if weather_id == 1 then
-			print(weather_id)
-			GetSeasonManager():StartWinter()
-		elseif weather_id == 2 then
-			print(weather_id)
-			GetSeasonManager():StartSummer()
-		elseif weather_id == 3 then
-			print(weather_id)
-			GetSeasonManager():StartPrecip()
-		elseif weather_id == 4 and GetSeasonManager().precip then
-			print(weather_id)
-			if GetSeasonManager().preciptype == "rain" then
-				GetSeasonManager():StopPrecip()
-			elseif GetSeasonManager().preciptype == "snow" then
-			 	GetSeasonManager():StopPrecip()
-			else end
-		elseif weather_id == 5 then	
-			print(weather_id)
-			GetSeasonManager():Cycle()
-		elseif weather_id == 6 then
-			print(weather_id)
-			GetSeasonManager():StartAutumn()
-		elseif weather_id == 7 then
-			print(weather_id)
-			GetSeasonManager():StartSpring()								
-		end	
-	else	
-		weather_id = math.random(1,5)
-		GetPlayer().components.sanity:DoDelta(-40)
-		if weather_id == 1 then
-			print(weather_id)
-			GetSeasonManager():StartWinter()
-		elseif weather_id == 2 then
-			print(weather_id)
-			GetSeasonManager():StartSummer()
-		elseif weather_id == 3 then
-			print(weather_id)
-			GetSeasonManager():StartPrecip()
-		elseif weather_id == 4 and GetSeasonManager().precip then
-			print(weather_id)
-			GetSeasonManager():StopPrecip()
-		elseif weather_id == 5 then	
-			print(weather_id)
-			GetSeasonManager():Cycle()
-		end	
-	end	
+	local sm = GetSeasonManager()
+	if not sm then return end
+
+	local weather_id = math.random(#surface_weather_effects)
+	TheMod:DebugSay("[", inst, "] DoWeatherPick() weather_id = ", weather_id)
+
+	surface_weather_effects[weather_id](sm)
 end	
 
-local function weather_on(inst)
-	if GetWorld() and GetWorld():HasTag("cloudrealm") then
-		print "In cloudrealm."
+local function DoCloudrealmEffect(inst)
+	local sm = GetSeasonManager()
+	if sm then
 		if IsDLCEnabled(REIGN_OF_GIANTS) then
-			GetSeasonManager():StartAutumn()
-		else GetSeasonManager():StartAutumn() end	
-		inst:ListenForEvent("upandaway_uncharge", function() GetWorld().components.staticgenerator:Charge() end, GetWorld())
+			sm:StartAutumn()
+		else
+			sm:StartSummer()
+		end	
+	end
+
+	local sgen = GetStaticGenerator()
+	if sgen then
+		sgen:ReleaseState()
+		sgen:Charge()
+		sgen:HoldState(math.huge)
+	end
+end
+
+local function weather_on(inst)
+	if inst.components.machine:IsOn() then return end
+
+
+	if Pred.IsCloudRealm() then
+		TheMod:DebugSay("[", inst, "] In cloudrealm.")
+		DoCloudrealmEffect(inst)
 	else 
-		print "In another world."
-		DoWeatherPick()
+		TheMod:DebugSay("[", inst, "] In another world.")
+		DoWeatherPick(inst)
 	end
 	inst.AnimState:PlayAnimation("idle_on", true)
 end	
@@ -131,7 +122,7 @@ local function fn(Sim)
     inst.MiniMapEntity:SetIcon("weather_machine.tex") 
 
     inst:AddComponent("deployable")
-    inst.components.deployable.test = test_ground
+    inst.components.deployable.test = Pred.IsDeployablePoint
     --inst.components.deployable.ondeploy = ondeploy
 
     inst:AddTag("structure")
