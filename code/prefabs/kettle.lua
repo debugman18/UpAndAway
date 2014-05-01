@@ -11,10 +11,9 @@ require "prefabutil"
 
 local basic_assets=
 {
-	Asset("ANIM", "anim/cook_pot.zip"),
+	Asset("ANIM", "anim/kettle.zip"),
 	Asset("ANIM", "anim/cook_pot_food.zip"),
 
-	Asset("ANIM", "anim/kettle.zip"),
 	Asset("ANIM", "anim/kettle_item.zip"),
 
 	Asset( "ATLAS", "images/inventoryimages/kettle_item.xml" ),
@@ -61,7 +60,7 @@ local function BuildKettlePrefab()
 	--anim and sound callbacks
 
 	local function startbrewfn(inst)
-		inst.AnimState:PlayAnimation("idle_on", true)
+		inst.AnimState:PlayAnimation("cooking_loop", true)
 		--play a looping sound
 		inst.SoundEmitter:KillSound("snd")
 		inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot_rattle", "snd")
@@ -70,23 +69,23 @@ local function BuildKettlePrefab()
 
 
 	local function onopen(inst)
-		inst.AnimState:PlayAnimation("idle_open", true)
+		inst.AnimState:PlayAnimation("cooking_pre_loop", true)
 		inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot_open", "open")
 		inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot", "snd")
 	end
 
 	local function onclose(inst)
 		if not inst.components.brewer.cooking then
-			inst.AnimState:PlayAnimation("idle_off")
+			inst.AnimState:PlayAnimation("idle_empty")
 			inst.SoundEmitter:KillSound("snd")
 		end
 		inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot_close", "close")
 	end
 
 	local function donebrewfn(inst)
-		--inst.AnimState:PlayAnimation("cooking_pst")
-		inst.AnimState:PushAnimation("idle_off")
-		--inst.AnimState:OverrideSymbol("swap_cooked", "cook_pot_food", inst.components.brewer.product)
+		inst.AnimState:PlayAnimation("cooking_pst")
+		inst.AnimState:PushAnimation("idle_full")
+		inst.AnimState:OverrideSymbol("swap_cooked", "cook_pot_food", inst.components.brewer.product)
 		
 		inst.SoundEmitter:KillSound("snd")
 		inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot_finish", "snd")
@@ -95,12 +94,12 @@ local function BuildKettlePrefab()
 	end
 
 	local function continuedonefn(inst)
-		inst.AnimState:PlayAnimation("idle_on")
+		inst.AnimState:PlayAnimation("idle_full")
 		--inst.AnimState:OverrideSymbol("swap_cooked", "cook_pot_food", inst.components.brewer.product)
 	end
 
 	local function continuebrewfn(inst)
-		inst.AnimState:PlayAnimation("idle_on", true)
+		inst.AnimState:PlayAnimation("cooking_loop", true)
 		--play a looping sound
 		inst.Light:Enable(true)
 
@@ -108,7 +107,7 @@ local function BuildKettlePrefab()
 	end
 
 	local function harvestfn(inst)
-		inst.AnimState:PlayAnimation("idle_off")
+		inst.AnimState:PlayAnimation("idle_empty")
 	end
 
 	local function onwithdrawfn(inst)
@@ -136,8 +135,8 @@ local function BuildKettlePrefab()
 	end
 
 	local function onbuilt(inst)
-		--inst.AnimState:PlayAnimation("place")
-		inst.AnimState:PushAnimation("idle_off")
+		inst.AnimState:PlayAnimation("place")
+		inst.AnimState:PushAnimation("idle_empty")
 	end
 
 
@@ -153,7 +152,7 @@ local function BuildKettlePrefab()
 		
 		inst.AnimState:SetBank("kettle")
 		inst.AnimState:SetBuild("kettle")
-		inst.AnimState:PlayAnimation("idle_off")
+		inst.AnimState:PlayAnimation("idle_empty")
 
 		MakeObstaclePhysics(inst, .5)
 		inst.Transform:SetScale(.7,.7,.7)
@@ -292,5 +291,5 @@ end
 return {
 	BuildKettlePrefab(),
 	BuildKettleItemPrefab(),
-	MakePlacer( "common/kettle_placer", "kettle", "kettle", "idle_off", false, false, 0.7 ),
+	MakePlacer( "common/kettle_placer", "kettle", "kettle", "idle_empty", false, false, true, .7 ),
 }

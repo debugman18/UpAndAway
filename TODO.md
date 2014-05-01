@@ -4,6 +4,8 @@
 
 	+ World generation time is too short.
 
+	+ A kettle that is withdrawn while full loses its tea.
+
 + **Art assets in need of attention**
 
 	+ Check our [dedicated TODO list](TODO_ART.md).
