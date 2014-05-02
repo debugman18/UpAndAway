@@ -114,7 +114,7 @@ local function fn(Sim)
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
+	MakeObstaclePhysics(inst, 1)
 
     local shadow = inst.entity:AddDynamicShadow()
     shadow:SetSize(2.5, 1.5)

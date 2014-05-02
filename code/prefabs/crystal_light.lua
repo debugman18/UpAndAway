@@ -13,6 +13,8 @@ local prefabs =
 local loot = 
 {
    "crystal_fragment_light",
+   "crystal_fragment_light",
+   "crystal_fragment_light",
 }
 
 local function onMined(inst, worker)

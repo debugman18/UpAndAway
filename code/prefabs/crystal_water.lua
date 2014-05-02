@@ -14,6 +14,8 @@ local prefabs =
 local loot = 
 {
    "crystal_fragment_water",
+   "crystal_fragment_water",
+   "crystal_fragment_water",
 }
 
 local function MakeFishSpawner(inst)

@@ -13,7 +13,7 @@ TheMod:AddRoom("BGCloud", {
 	contents = {
 		distributepercent = randomness(),
 		distributeprefabs = {
-			skyflower = 1.6,
+			skyflower = 1.3,
 			tea_bush = 0.05,
 			crystal_light = 0.065,
 			cloud_fruit_tree = 0.008,
@@ -22,6 +22,7 @@ TheMod:AddRoom("BGCloud", {
 	    countprefabs = {
 	        lionblob = function() if math.random(1,4) == 4 then return 1 end return 0 end,
 	        golden_sunflower = 6,
+	        thunder_tree = math.random(2,3),
 	        sheepherd = math.random(1,4),
 	    }		
 	}
@@ -36,8 +37,8 @@ TheMod:AddRoom("BeanstalkSpawn", {
 		distributeprefabs = {
 			skeleton = 0.03,
 			tea_bush = 0.06,
-			skyflower = 1.3,
-			beanlet = 0.002,
+			skyflower = 1.1,
+			beanlet = 0.004,
 		},
 	}
 })
@@ -58,7 +59,7 @@ TheMod:AddRoom("SkyflowerGarden", {
 		},	
 		distributepercent = randomness(),
 		distributeprefabs = {
-			skyflower = 0.3,
+			skyflower = 0.1,
 			skytrap = 0.08,
 			golden_rose = 0.1,
 			cloud_bush = 0.02,
@@ -238,14 +239,15 @@ TheMod:AddRoom("Thunder_Forest", {
 	contents = {
 		distributepercent = randomness(),
 		distributeprefabs = {
-			thunder_tree = 0.0009,
+			thunder_tree = 0.0011,
 			crystal_quartz = 0.0009,
 			--owl = 0.004,
-			live_gnome = 0.0002,
+			live_gnome = 0.0006,
 			skyflower = 0.1,
 		},
 	    countprefabs= {
 	        weavernest = 4,
+	        crystal_black = 4,
 	    }
 	}
 })

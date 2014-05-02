@@ -56,6 +56,18 @@ local function OnWork(inst, worker, workleft)
 	end
 end
 
+local function onsave(inst, data)
+	if inst.components.scaler.scale then
+		data.scale = inst.components.scaler.scale
+	end
+end
+
+local function onload(inst, data)
+	if data then
+		inst.components.scaler:SetScale(data.scale)
+	end	
+end
+
 local function fn(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
@@ -92,6 +104,8 @@ local function fn(Sim)
     inst.growtask = inst:DoPeriodicTask(dt, grow, nil, dt)
 	
     inst.OnLongUpdate = grow
+    inst.OnLoad = onload
+    inst.OnSave = onsave
     
 	return inst
 end

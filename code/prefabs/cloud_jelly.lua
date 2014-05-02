@@ -8,6 +8,14 @@ local assets =
     Asset( "IMAGE", "images/inventoryimages/cloud_jelly.tex" ),
 }
 
+local function FuelTaken(inst, taker)
+    local cloud = SpawnPrefab("poopcloud")
+    if cloud then
+    	cloud.AnimState:SetMultColour(130,10,10,.5)
+        cloud.Transform:SetPosition(taker.Transform:GetWorldPosition() )
+    end
+end
+
 local function fn(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
@@ -26,6 +34,7 @@ local function fn(Sim)
 
     inst:AddComponent("fuel")
     inst.components.fuel.fuelvalue = 5
+    inst.components.fuel:SetOnTakenFn(FuelTaken)
 
 	inst:AddTag("alchemy")
 

@@ -93,6 +93,8 @@ local function fn(Sim)
     inst:SetBrain(brain)
 
     inst:AddTag("epic")
+    inst:AddTag("monster")
+    inst:AddTag("cloudneutral")
 
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "pig_torso"

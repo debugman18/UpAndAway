@@ -70,9 +70,9 @@ local function fn(Sim)
 		-- Height at which a thrown entity appears.
 		entityflinger:SetHeight(64)
 		-- Radius for attracting entities closer.
-		entityflinger:SetAttractionRadius(6)
+		entityflinger:SetAttractionRadius(4)
 		-- Radius to stop attracting and start lifting.
-		entityflinger:SetActivityRadius(.25)
+		entityflinger:SetActivityRadius(.40) --.25
 		-- Speed of attraction.
 		entityflinger:SetAttractionSpeed(2)
 		-- Attraction test.

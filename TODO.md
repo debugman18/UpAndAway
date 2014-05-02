@@ -18,6 +18,8 @@
 
 	+ Tea acts incorrectly, lowering your temperature with RoG.
 
+	+ Kettle to have two item slots.
+
 ******
 
 Anything else that needs to be added will be added, current version is from memory. 
