@@ -136,33 +136,6 @@ end
 
 AddPrefabPostInit("mound", addmoundtag)
 
-local function checkfordragons(inst)
-	local function onloaddragon(inst, data)
-		if data and data.dragonblood_fire then
-			print(data.dragonblood_fire)
-			inst:AddTag("dragonblood_fire")
-		end	
-		if inst:HasTag("dragonblood_fire") and inst.prefab == "firepit" then
-			inst.components.burnable:AddBurnFX("campfirefire_dragon", Vector3(0,.4,0))
-			inst.components.burnable:KillFX()
-			inst.components.burnable:Extinguish()
-			inst.components.fueled.rate = 15
-		end		
-	end
-
-	local function onsavedragon(inst, data)
-		if inst:HasTag("dragonblood_fire") then
-			data.dragonblood_fire = inst.dragonblood_fire
-			print(data.dragonblood_fire)
-		end		
-	end
-
-	inst.OnLoad = onloaddragon
-	inst.OnSave = onsavedragon
-end	
-
-AddPrefabPostInit("firepit", checkfordragons)
-
 table.insert(GLOBAL.CHARACTER_GENDERS.FEMALE, "winnie")
 
 --This adds our minimap atlases.
