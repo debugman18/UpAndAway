@@ -8,7 +8,7 @@ local events=
     CommonHandlers.OnDeath(),
     EventHandler("attacked", function(inst) 
         if not inst.components.health:IsDead() and not inst.sg:HasStateTag("attack") then           
-            inst.sg:GoToState("hit") 
+            inst.sg:GoToState("idle") 
         end 
     end),
 }
@@ -22,7 +22,8 @@ local states=
 
         onenter = function(inst, playanim)
             inst.Physics:Stop()
-            inst.SoundEmitter:PlaySound("dontstarve/creatures/eyeplant/eye_emerge")        
+            inst.SoundEmitter:PlaySound("dontstarve/creatures/eyeplant/eye_emerge") 
+            inst.AnimState:PushAnimation("idle")       
         end,
         
         events=
@@ -38,6 +39,7 @@ local states=
         tags = {"idle", "canrotate"},
         onenter = function(inst)
             inst.Physics:Stop()
+            inst.AnimState:PushAnimation("idle")
         end,
 
 
@@ -53,6 +55,7 @@ local states=
             if inst.components.combat.target then    
                 inst:ForceFacePoint(inst.components.combat.target.Transform:GetWorldPosition())
             end
+            inst.AnimState:PushAnimation("idle")
         end,
 
         events = 
@@ -67,7 +70,8 @@ local states=
         tags = {"busy", "hit"},
         
         onenter = function(inst)
-            inst.Physics:Stop()         
+            inst.Physics:Stop()  
+            inst.AnimState:PushAnimation("idle")       
         end,
         
         events=
@@ -84,6 +88,7 @@ local states=
         onenter = function(inst)
             if inst.components.combat.target then    
                 inst:ForceFacePoint(inst.components.combat.target.Transform:GetWorldPosition())
+                inst.AnimState:PushAnimation("attack")
             end
         end,
         
@@ -103,7 +108,7 @@ local states=
 
                     inst.sg:GoToState("attack")
                 else
-                    inst.sg:GoToState("alert")
+                    inst.sg:GoToState("idle")
                 end
             end),
         },
@@ -115,9 +120,10 @@ local states=
         tags = {"busy"},
         
         onenter = function(inst)
+            inst.AnimState:PushAnimation("death")
             inst.components.lootdropper:DropLoot(Vector3(inst.Transform:GetWorldPosition())) 
-            inst.SoundEmitter:PlaySound("dontstarve/creatures/eyeplant/eye_retract")      
-
+            inst.SoundEmitter:PlaySound("dontstarve/creatures/eyeplant/eye_retract")  
+            inst.AnimState:PushAnimation("dead")
         end,        
     },
 }
