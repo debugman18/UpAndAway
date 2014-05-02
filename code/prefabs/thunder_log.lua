@@ -32,7 +32,7 @@ local function fn(Sim)
 
     inst:AddComponent("fuel")
     inst.components.fuel.fuelvalue = 50
-    inst.components.fuel:SetOnTakenFn(FuelTaken)
+    --inst.components.fuel:SetOnTakenFn(FuelTaken)
 
     inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = 5
