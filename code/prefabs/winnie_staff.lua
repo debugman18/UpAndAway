@@ -28,6 +28,8 @@ local function herd_enable(inst, owner)
         for k,v in pairs(owner.components.leader.followers) do
             if k:HasTag("beefalo") and k.components.follower then
                 k.components.follower:AddLoyaltyTime(1)
+                k:AddComponent("sanityaura")
+                k.components.sanityaura.aura = TUNING.SANITYAURA_LARGE
             end
         end
     end          
@@ -48,6 +50,7 @@ local function herd_disable(inst, owner)
             if v.components.follower and owner.components.leader:IsFollower(v) then
                 GetPlayer().components.leader:RemoveFollower(v)
                 v.components.follower:SetLeader(nil)
+                v:RemoveComponent("sanityaura")
 				if v.brain and v.brain.bt then
 					v.brain.bt:Reset()
 				end
