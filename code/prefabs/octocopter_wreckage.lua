@@ -91,7 +91,7 @@ local function fn(inst)
 
 	inst.AnimState:SetBank("sky_octopus")
 	inst.AnimState:SetBuild("sky_octopus")
-	inst.AnimState:PlayAnimation("death", true)
+	inst.AnimState:PlayAnimation("death")
 
 	local physics = inst.entity:AddPhysics()  
 	MakeObstaclePhysics(inst, 1)

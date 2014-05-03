@@ -22,7 +22,7 @@ local function fn(Sim)
 
     inst.AnimState:SetBank("golden_rose")
     inst.AnimState:SetBuild("golden_rose")
-    inst.AnimState:PlayAnimation("idle")
+    inst.AnimState:PlayAnimation("idle", true)
 
 	inst:AddComponent("inspectable")
 

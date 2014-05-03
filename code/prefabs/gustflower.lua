@@ -48,13 +48,16 @@ end
 local function onunchargedfn(inst)
     inst.components.childspawner:StopSpawning()
     inst.AnimState:PlayAnimation("idle_2")
+    inst.AnimState:SetBank("gustflower")
+    inst.AnimState:PlayAnimation("sway", true)
 end
 
 local function onchargedfn(inst)
     inst:DoTaskInTime(math.random(1,2), function(inst)
         inst.components.childspawner:ReleaseAllChildren() 
         inst.components.childspawner:StartSpawning() 
-        inst.AnimState:PlayAnimation("idle_1")         
+    inst.AnimState:SetBank("gustflower_charged")
+    inst.AnimState:PlayAnimation("sway", true)       
     end)    
 end
 
@@ -67,7 +70,7 @@ local function fn(Sim)
    
     inst.AnimState:SetBank("gustflower")
     inst.AnimState:SetBuild("gustflower")
-    inst.AnimState:PlayAnimation("idle_2")
+    inst.AnimState:PlayAnimation("sway")
     inst.AnimState:SetRayTestOnBB(true);
     
     inst:AddComponent("inspectable")

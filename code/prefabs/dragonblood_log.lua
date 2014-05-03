@@ -17,15 +17,36 @@ local assets =
 local function FuelTaken(inst, taker)
 	if taker.components.burnable then
 		taker.components.burnable:Extinguish()
-		local blaze = SpawnPrefab("lavalight")
-		local pt = Vector3(taker.Transform:GetWorldPosition()) + Vector3(0,.5,0)
-		if blaze then
-			blaze.AnimState:SetMultColour(100,0,0,1)
-			blaze.Transform:SetScale(.4,.4,.4)
-		    blaze.Transform:SetPosition(pt:Get())
-		    blaze:AddComponent("heater")
-    		blaze.components.heater.heatfn = function() return 300 end
-		    inst:DoTaskInTime(3, function() blaze:Remove() end)
+		if not (taker.prefab == ("campfire" or "coldfire")) then
+			local blaze = SpawnPrefab("lavalight")
+			--local pt = Vector3(taker.Transform:GetWorldPosition()) + Vector3(0,.5,0)
+			local pt = Vector3(taker.Transform:GetWorldPosition()) + Vector3(0,.76,0)
+			if blaze then
+				if taker.prefab == "firepit" then
+					blaze.AnimState:SetMultColour(100,0,0,1)
+				elseif taker.prefab == "coldfirepit" then
+					blaze.AnimState:SetMultColour(0,0,80,1)
+				end	
+				--blaze.Transform:SetScale(.4,.4,.4)
+				blaze.Transform:SetScale(.7,.6,.7)
+				taker.components.inspectable.nameoverride = "dragonblood_firepit"
+			    blaze.Transform:SetPosition(pt:Get())
+			    if not blaze.components.heater then
+			    	blaze:AddComponent("heater")
+			    end	
+			    blaze:AddComponent("propagator")
+			    blaze.components.propagator.propagaterange = 5
+			    blaze.components.propagator:StartSpreading()
+	    		blaze.components.heater.heatfn = function() return 300 end
+			    taker:DoTaskInTime(5.6, function() 
+			    	if blaze then
+			    		blaze:Remove()
+			    	end	 	
+			    	if taker then
+			    		taker.components.inspectable.nameoverride = "firepit"
+			    	end
+			    end)
+			end
 		end
     end
 end

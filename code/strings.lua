@@ -1066,6 +1066,20 @@ Add.QuotesFor "datura_petals" {
     wx78 = "IT OVERLOADS MY SENSORS WITH LIFE.",
 }
 
+Add.QuotesFor "dragonblood_firepit" {
+    ANY = nil,
+    GENERIC = "That's a little too hot.",
+    wathgrithr = nil,
+    waxwell = nil,
+    webber = "We don't like that fire.",
+    wendy = "It's so mesmorizing.",
+    wickerbottom = nil,
+    willow = "What an amazing fire!",
+    wolfgang = "Fire much bigger than Wolfgang.",
+    woodie = nil,
+    wx78 = "MY CASE IS WARMING QUICKLY",
+}
+
 Add.QuotesFor "dragonblood_log" {
     ANY = nil,
     GENERIC = "It emits a slight warmth.",
