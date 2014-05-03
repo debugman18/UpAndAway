@@ -46,12 +46,6 @@ local function onload(inst, data)
 end
 
 local function weather_off(inst)
-	if not inst.components.machine:IsOn() then
-		if not Pred.IsCloudRealm() then
-			TheMod:DebugSay("Weather Machine Reset")
-			GetPlayer().components.sanity:DoDelta(-10)
-		end
-	end
 	inst.AnimState:PlayAnimation("idle_off", true)
 end	
 
@@ -67,23 +61,34 @@ end
 
 local function DoCloudrealmEffect(inst)
 	local sm = GetSeasonManager()
-	if sm then
-		if IsDLCEnabled(REIGN_OF_GIANTS) then
-			sm:StartAutumn()
-		else
-			sm:StartSummer()
-		end	
-	end
-
 	local sgen = GetStaticGenerator()
 	if sgen then
-		sgen:ReleaseState()
-		sgen:Charge()
-		sgen:HoldState(math.huge)
+		if sgen:IsPermanentState() then
+			sgen:ReleaseState()
+			sgen:Uncharge()
+			if sm then
+				sm:StartWinter()
+				sm:AlwaysWinter()
+			end
+		else
+			sgen:ReleaseState()
+			sgen:Charge()
+			sgen:HoldState(math.huge)
+			if sm then
+				if IsDLCEnabled(REIGN_OF_GIANTS) then
+					sm:StartAutumn()
+					sm:AlwaysAutumn()
+				else
+					sm:StartSummer()
+					sm:AlwaysSummer()
+				end	
+			end
+		end
 	end
 end
 
 local function weather_on(inst)
+	inst.AnimState:PlayAnimation("idle_on", true)
 	if inst.components.machine:IsOn() then return end
 
 
@@ -94,7 +99,21 @@ local function weather_on(inst)
 		TheMod:DebugSay("[", inst, "] In another world.")
 		DoWeatherPick(inst)
 	end
-	inst.AnimState:PlayAnimation("idle_on", true)
+	GetPlayer().components.sanity:DoDelta(-10)
+
+
+	inst.persists = false
+	inst:RemoveComponent("machine")
+
+	inst:StartThread(function()
+		-- What should happen here?
+		-- Anims? Special effects?
+
+		TheMod:DebugSay("Removing [", inst, "] in a moment...")
+		Sleep(3)
+
+		inst:Remove()
+	end)
 end	
 
 local function fn(Sim)

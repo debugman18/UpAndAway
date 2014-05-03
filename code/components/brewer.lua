@@ -110,8 +110,11 @@ function Brewer:StartBrewing(dude)
 			self.product = recipe:GetName()
 			local brewtime = recipe:GetBrewingTime()
 
-			self.done = nil
+			self.done = false
 			self.brewing = true
+
+			self.inst.components.container:Close()
+			self.inst.components.container.canbeopened = false
 			
 			if self.onstartbrewing then
 				self.onstartbrewing(self.inst)
@@ -121,9 +124,7 @@ function Brewer:StartBrewing(dude)
 			self.targettime = GetTime() + grow_time
 			self.task = self.inst:DoTaskInTime(grow_time, dobrew, "brew")
 
-			self.inst.components.container:Close()
 			self.inst.components.container:DestroyContents()
-			self.inst.components.container.canbeopened = false
 		end
 		
 	end

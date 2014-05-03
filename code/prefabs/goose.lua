@@ -75,6 +75,8 @@ local function NewEggDropper(period, delay)
 			task = nil
 		end
 
+		if inst:GetTimeAlive() < 5 then return end
+
 		if GetTime() >= lastlay + period then
 			task = inst:DoTaskInTime(getdelay(), task_callback)
 		end

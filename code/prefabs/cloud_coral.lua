@@ -63,7 +63,7 @@ local function onsave(inst, data)
 end
 
 local function onload(inst, data)
-	if data then
+	if data and data.scale then
 		inst.components.scaler:SetScale(data.scale)
 	end	
 end

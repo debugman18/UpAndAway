@@ -11,6 +11,8 @@ local Lambda = wickerrequire 'paradigms.functional'
 local Logic = wickerrequire 'paradigms.logic'
 local Pred = wickerrequire 'lib.predicates'
 
+local table = wickerrequire "utils.table"
+
 local Configurable = wickerrequire 'adjectives.configurable'
 
 
@@ -125,42 +127,29 @@ local custom_prefabs = {
 local assets = _G.ArrayUnion(essential_assets, custom_assets)
 local prefabs = _G.ArrayUnion(essential_prefabs, custom_prefabs)
 
---[[
-function AddNeutralComponent(inst, name)
-	local Lambda = wickerrequire 'paradigms.functional'
-	local Pred = wickerrequire 'lib.predicates'
+local function FilterOverrides(inst)
+	local overrides = inst.topology and inst.topology.overrides
+	if not overrides then return end
 
-	assert(Pred.IsStringable(name), "The component name should be a string!")
-	local cmp = require("components/" .. tostring(name))
+	local filter_out = {
+		misc = {
+			season = true,
+		},
+	}
 
-	local ret = {}
-	for k, v in pairs(cmp) do
-		if type(k) == "string" and type(v) == "function" and not k:match("^_") then
-			ret[k] = Lambda.Nil
+	for k, entries in pairs(filter_out) do
+		local overrides_category = overrides[k]
+		if overrides_category then
+			table.TrimArray(overrides_category, function(v)
+				if entries[v[1]] then
+					return false
+				else
+					return true
+				end
+			end)
 		end
 	end
-
-	ret.inst = inst
-
-	for _, method in ipairs{"OnLoad", "OnSave", "GetDebugString"} do
-			ret[method] = nil
-	end
-
-	if ret.OnUpdate then
-		ret.OnUpdate = function()
-				inst:StopUpdatingComponent(name)
-		end
-	end
-
-	if inst.components[name] then
-			inst:RemoveComponent(name)
-	end
-	inst.components[name] = ret
-
-	return ret
 end
-]]--
-
 
 local function PatchSeasonManager(sm)
 	if not sm then return end
@@ -302,6 +291,8 @@ local function fn(Sim)
 	end
 
 	inst:AddComponent("balloonhounded")
+
+	inst:DoTaskInTime(0, FilterOverrides)
 
 	TheMod:DebugSay("Built cloudrealm entity [", inst, "]")
 	return inst

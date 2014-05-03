@@ -12,7 +12,8 @@ require "prefabutil"
 local basic_assets=
 {
 	Asset("ANIM", "anim/kettle.zip"),
-	Asset("ANIM", "anim/cook_pot_food.zip"),
+	Asset("ANIM", "anim/ui_kettle_1x2.zip"),
+--	Asset("ANIM", "anim/cook_pot_food.zip"),
 
 	Asset("ANIM", "anim/kettle_item.zip"),
 
@@ -34,20 +35,28 @@ local function BuildKettlePrefab()
 	Lambda.CompactlyMapInto(Brewing.Recipe.GetProduct, prefabs, BrewingRecipeBook:Recipes())
 
 
-	local slotpos = {
-		Vector3(0,64+32+8+4,0), 
-		Vector3(0,32+4,0),
-		Vector3(0,-(32+4),0), 
-		Vector3(0,-(64+32+8+4),0)
-	}
+	-- This is not in tuning because changing it requires editing art.
+	local NUM_SLOTS = 2
+
+
+	-- Including the margin.
+	local SLOT_HEIGHT = 64 + 8
+
+	-- Vertical offset for all widget elements.
+	local WIDGET_OFFSET = 6
+
+	local slotpos = {}
+
+	for factor = 0.5 + math.ceil(NUM_SLOTS/2) - 1, -(0.5 + math.floor(NUM_SLOTS/2) - 1), -1 do
+		table.insert( slotpos, Vector3(0, WIDGET_OFFSET + factor*SLOT_HEIGHT, 0) )
+	end
 
 	local widgetbuttoninfo = {
 		text = "Brew",
-		position = Vector3(0, -165, 0),
+		position = slotpos[#slotpos] + Vector3(0, -57, 0),
 		fn = function(inst)
 			inst.components.brewer:StartBrewing( GetPlayer() )	
 		end,
-		
 		validfn = function(inst)
 			return inst.components.brewer:CanBrew()
 		end,
@@ -60,6 +69,7 @@ local function BuildKettlePrefab()
 	--anim and sound callbacks
 
 	local function startbrewfn(inst)
+		TheMod:Say "startbrewfn"
 		inst.AnimState:PlayAnimation("cooking_loop", true)
 		--play a looping sound
 		inst.SoundEmitter:KillSound("snd")
@@ -75,7 +85,7 @@ local function BuildKettlePrefab()
 	end
 
 	local function onclose(inst)
-		if not inst.components.brewer.cooking then
+		if not inst.components.brewer.brewing then
 			inst.AnimState:PlayAnimation("idle_empty")
 			inst.SoundEmitter:KillSound("snd")
 		end
@@ -88,9 +98,9 @@ local function BuildKettlePrefab()
 		inst.AnimState:OverrideSymbol("swap_cooked", "cook_pot_food", inst.components.brewer.product)
 		
 		inst.SoundEmitter:KillSound("snd")
+		--play a one-off sound
 		inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot_finish", "snd")
 		inst.Light:Enable(false)
-		--play a one-off sound
 	end
 
 	local function continuedonefn(inst)
@@ -99,11 +109,7 @@ local function BuildKettlePrefab()
 	end
 
 	local function continuebrewfn(inst)
-		inst.AnimState:PlayAnimation("cooking_loop", true)
-		--play a looping sound
-		inst.Light:Enable(true)
-
-		inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot_rattle", "snd")
+		startbrewfn(inst)
 	end
 
 	local function harvestfn(inst)
@@ -194,10 +200,10 @@ local function BuildKettlePrefab()
 			local container = inst.components.container
 
 			container.itemtestfn = itemtest
-			container:SetNumSlots(4)
+			container:SetNumSlots(NUM_SLOTS)
 			container.widgetslotpos = slotpos
-			container.widgetanimbank = "ui_cookpot_1x4"
-			container.widgetanimbuild = "ui_cookpot_1x4"
+			container.widgetanimbank = "ui_kettle_1x2"
+			container.widgetanimbuild = "ui_kettle_1x2"
 			container.widgetpos = Vector3(200,0,0)
 			container.side_align_tip = 100
 			container.widgetbuttoninfo = widgetbuttoninfo

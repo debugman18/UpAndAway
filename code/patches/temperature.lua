@@ -16,7 +16,7 @@ Temperature.SetTemperature = (function()
 			temp = math.min(temp, self.maxtemp)
 		end
 		if self.mintemp then
-			temp = math.min(temp, self.mintemp)
+			temp = math.max(temp, self.mintemp)
 		end
 		return temp
 	end

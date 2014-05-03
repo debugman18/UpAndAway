@@ -160,11 +160,15 @@ end
 
 function StaticGenerator:IsHoldingState()
 	if self.state_release_time then
-		assert( self.state_release_time + 0.5 >= GetTime() )
+		assert( self.state_release_time + _G.FRAMES/2 >= GetTime() )
 		return true
 	else
 		return false
 	end
+end
+
+function StaticGenerator:IsPermanentState()
+	return self.state_release_time == math.huge
 end
 
 local function cancelReleaseTask(self)
