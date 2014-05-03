@@ -44,7 +44,7 @@ local function penalty_meat(inst, food)
                 inst.components.health:DoDelta(-5)
                 inst.components.hunger:DoDelta(-3)
                 inst.components.components.talker:Say("What have I done?")
-        elseif inst.components.eater and food.components.edible.foodtype == "VEGGIE" 
+        elseif inst.components.eater and food.components.edible.foodtype == "VEGGIE" then
                 inst.components.sanity:DoDelta(10)
                 inst.components.health:DoDelta(5)
                 inst.components.hunger:DoDelta(5)
@@ -54,7 +54,7 @@ end
 --The penalty for attacking innocent creatures.
 local function penalty_combat(inst, target)
         local target = inst.components.combat.target
-        if target and not target.components.combat.target == inst then
+        if target and not (target.components.combat.target == inst) then
                 inst.components.sanity:DoDelta(-3)
                 TheMod:DebugSay("Attacking innocent.")        
         end
