@@ -157,7 +157,7 @@ Add.Names {
 }
 
 Add.QuotesFor "alien" {
-    ANY = nil,
+    
     GENERIC = "Is it real?",
     wathgrithr = "Is this an illusion?",
     waxwell = "They're stable. That's not supposed to happen.",
@@ -171,7 +171,7 @@ Add.QuotesFor "alien" {
 }
 
 Add.QuotesFor "ambrosia" {
-    ANY = nil,
+    
     GENERIC = "Suppedly it can bring immortality.",
     wathgrithr = "The fruit of Valhalla!",
     waxwell = "Surrounded by rumor and gossip, like me.",
@@ -185,7 +185,7 @@ Add.QuotesFor "ambrosia" {
 }
 
 Add.QuotesFor "antlion" {
-    ANY = nil,
+    
     GENERIC = "What sick breeding produced this?",
     wathgrithr = nil,
     waxwell = "Even my Tallbirds were a bigger success than this one.",
@@ -199,7 +199,7 @@ Add.QuotesFor "antlion" {
 }
 
 Add.QuotesFor "ball_lightning" {
-    ANY = nil,
+    
     GENERIC = "A wandering ball of static.",
     wathgrithr = "A follower of Thor?",
     waxwell = "A writhing collection of energy.",
@@ -213,7 +213,7 @@ Add.QuotesFor "ball_lightning" {
 }
 
 Add.QuotesFor "balloon_hound" {
-    ANY = nil,
+    
     GENERIC = "How did you get here?",
     wathgrithr = "Full of air and rage.",
     waxwell = "I didn't make that one.",
@@ -227,7 +227,7 @@ Add.QuotesFor "balloon_hound" {
 }
 
 Add.QuotesFor "bean_giant" {
-    ANY = nil,
+    
     GENERIC = "Someone must bring an end to this reign of giants!",
     wathgrithr = "Vegetables are no match for my might!",
     waxwell = "It's not even worth a hill of beans.",
@@ -241,7 +241,7 @@ Add.QuotesFor "bean_giant" {
 }
 
 Add.QuotesFor "bean_giant_statue" {
-    ANY = nil,
+    
     GENERIC = "I wouldn't want to run into that thing.",
     wathgrithr = "I want to meet a real one.",
     waxwell = "A false idol.",
@@ -255,7 +255,7 @@ Add.QuotesFor "bean_giant_statue" {
 }
 
 Add.QuotesFor "beanlet" {
-    ANY = nil,
+    
     GENERIC = "They exist as one, much unlike their mother.",
     wathgrithr = "A tiny, fearful creature.",
     waxwell = "I'd fancy some beans on toast now.",
@@ -269,7 +269,7 @@ Add.QuotesFor "beanlet" {
 }
 
 Add.QuotesFor "beanlet_shell" {
-    ANY = nil,
+    
     GENERIC = "A husk of a bean monster.",
     wathgrithr = "Rest well, little vegetable.",
     waxwell = "The carved-out exoskeleton of a beanlet.",
@@ -283,7 +283,7 @@ Add.QuotesFor "beanlet_shell" {
 }
 
 Add.QuotesFor "beanlet_zealot" {
-    ANY = nil,
+    
     GENERIC = "They seem pretty aggressive.",
     wathgrithr = "A vegetable with a fighting spirit!",
     waxwell = "I'd fancy some beans on toast now.",
@@ -297,7 +297,7 @@ Add.QuotesFor "beanlet_zealot" {
 }
 
 Add.QuotesFor "beanstalk" {
-    ANY = nil,
+    
     GENERIC = "It reaches the clouds.",
     wathgrithr = "The Rainbow Bridge!",
     waxwell = "If only my brother Jack was here...",
@@ -311,7 +311,7 @@ Add.QuotesFor "beanstalk" {
 }
 
 Add.QuotesFor "beanstalk_chunk" {
-    ANY = nil,
+    
     GENERIC = "Part of a beanstalk.",
     wathgrithr = "A piece of the Bifrost.",
     waxwell = "It's a shred of beanstalk matter.",
@@ -325,7 +325,7 @@ Add.QuotesFor "beanstalk_chunk" {
 }
 
 Add.QuotesFor "beanstalk_exit" {
-    ANY = nil,
+    
     GENERIC = "That's the way back to the ground.",
     wathgrithr = "Once more to the realms of man.",
     waxwell = "A return to the surface.",
@@ -339,7 +339,7 @@ Add.QuotesFor "beanstalk_exit" {
 }
 
 Add.QuotesFor "beanstalk_sapling" {
-    ANY = nil,
+    
     GENERIC = "It's supposed to grow into a beanstalk.",
     wathgrithr = "It will reach the heavens someday.",
     waxwell = "Won't be long before it pierces the heavens.",
@@ -353,7 +353,7 @@ Add.QuotesFor "beanstalk_sapling" {
 }
 
 Add.QuotesFor "beanstalk_wall" {
-    ANY = "It's a... thing.",
+    ANY = "That's not very safe.",
     GENERIC = "That's not very safe.",
     wathgrithr = "A wall of plant.",
     waxwell = "It grows on its own.",
@@ -367,7 +367,7 @@ Add.QuotesFor "beanstalk_wall" {
 }
 
 Add.QuotesFor "beanstalk_wall_item" {
-    ANY = "It's a... thing.",
+    ANY = "That's not very safe.",
     GENERIC = "That's not very safe.",
     wathgrithr = "A wall of plant.",
     waxwell = "It grows on its own.",
@@ -381,7 +381,7 @@ Add.QuotesFor "beanstalk_wall_item" {
 }
 
 Add.QuotesFor "bee_marshmallow" {
-    ANY = nil,
+    
     GENERIC = "A flying marshmallow.",
     wathgrithr = "Do they make honey?",
     waxwell = "Living sugar. Childish.",
@@ -395,7 +395,7 @@ Add.QuotesFor "bee_marshmallow" {
 }
 
 Add.QuotesFor "bird_paradise" {
-    ANY = nil,
+    
     GENERIC = "I'm starting to hate birds.",
     wathgrithr = "Its feathers would look good on my helmet.",
     waxwell = "The colors of heaven. Quaint.",
@@ -409,7 +409,7 @@ Add.QuotesFor "bird_paradise" {
 }
 
 Add.QuotesFor "blackstaff" {
-    ANY = nil,
+    
     GENERIC = "You can charge things with magic.",
     wathgrithr = "Charge!",
     waxwell = "Causes a shift in the weather.",
@@ -423,7 +423,7 @@ Add.QuotesFor "blackstaff" {
 }
 
 Add.QuotesFor "blacktea" {
-    ANY = nil,
+    
     GENERIC = "It's a nice strong tea.",
     wathgrithr = "It's stronger, but still not mead.",
     waxwell = "Finally, a proper brew.",
@@ -437,7 +437,7 @@ Add.QuotesFor "blacktea" {
 }
 
 Add.QuotesFor "blacktea_leaves" {
-    ANY = nil,
+    
     GENERIC = "Oxidized tea leaves.",
     wathgrithr = "I can brew this!",
     waxwell = "I could do with a drink.",
@@ -451,7 +451,7 @@ Add.QuotesFor "blacktea_leaves" {
 }
 
 Add.QuotesFor "candy_fruit" {
-    ANY = nil,
+    
     GENERIC = "Growable candy.",
     wathgrithr = "Eating this would be out of character.",
     waxwell = "Not my preference, but it'll do.",
@@ -465,7 +465,7 @@ Add.QuotesFor "candy_fruit" {
 }
 
 Add.QuotesFor "cauldron" {
-    ANY = nil,
+    
     GENERIC = "A big bucket for magic stuff.",
     wathgrithr = "I'm not a sorceress!",
     waxwell = "I'm a dab hand at potion brewing.",
@@ -479,7 +479,7 @@ Add.QuotesFor "cauldron" {
 }
 
 Add.QuotesFor "cheshire" {
-    ANY = nil,
+    
     GENERIC = "He's way too happy.",
     wathgrithr = "It's up to no good.",
     waxwell = "Don't think you can out-grin me, furball.",
@@ -493,7 +493,7 @@ Add.QuotesFor "cheshire" {
 }
 
 Add.QuotesFor "chimera" {
-    ANY = nil,
+    
     GENERIC = "A wicked creature.",
     wathgrithr = "A worthy opponant.",
     waxwell = "Now that's very interesting.",
@@ -507,7 +507,7 @@ Add.QuotesFor "chimera" {
 }
 
 Add.QuotesFor "cloud_algae" {
-    ANY = nil,
+    
     GENERIC = "Apparently algae grows on clouds.",
     wathgrithr = "You should be in the sea, little plant.",
     waxwell = "With fronds like these, who needs anemones?",
@@ -521,7 +521,7 @@ Add.QuotesFor "cloud_algae" {
 }
 
 Add.QuotesFor "cloud_algae_fragment" {
-    ANY = nil,
+    
     GENERIC = "Apparently algae grows on clouds.",
     wathgrithr = "You should be in the sea, little plant.",
     waxwell = "Ocean foliage in miniature form.",
@@ -535,7 +535,7 @@ Add.QuotesFor "cloud_algae_fragment" {
 }
 
 Add.QuotesFor "cloud_bomb" {
-    ANY = nil,
+    
     GENERIC = "That shouldn't work.",
     wathgrithr = "The sky is exploding!",
     waxwell = "That's more like it.",
@@ -549,7 +549,7 @@ Add.QuotesFor "cloud_bomb" {
 }
 
 Add.QuotesFor "cloud_bush" {
-    ANY = nil,
+    
     GENERIC = "All plants produce simple sugars.",
     wathgrithr = "Is it a plant?",
     waxwell = "It's a bush, made of cloud. How unexpected.",
@@ -563,7 +563,7 @@ Add.QuotesFor "cloud_bush" {
 }
 
 Add.QuotesFor "cloud_bush.picked" {
-    ANY = nil,
+    
     GENERIC = "No more sugar for me.",
     wathgrithr = nil,
     waxwell = "It needs manure, but where do I obtain that here?",
@@ -577,7 +577,7 @@ Add.QuotesFor "cloud_bush.picked" {
 }
 
 Add.QuotesFor "cloud_coral" {
-    ANY = nil,
+    
     GENERIC = "A rock that grows.",
     wathgrithr = "A rock that grows.",
     waxwell = "There was a fight at some okay coral.",
@@ -591,7 +591,7 @@ Add.QuotesFor "cloud_coral" {
 }
 
 Add.QuotesFor "cloud_coral_fragment" {
-    ANY = nil,
+    
     GENERIC = "A rock that grows.",
     wathgrithr = "A growing rock.",
     waxwell = "It's a shard of coral.",
@@ -605,7 +605,7 @@ Add.QuotesFor "cloud_coral_fragment" {
 }
 
 Add.QuotesFor "cloud_cotton" {
-    ANY = nil,
+    
     GENERIC = "Like baby clouds.",
     wathgrithr = "It would make good padding for my armour.",
     waxwell = "I prefer silk.",
@@ -619,7 +619,7 @@ Add.QuotesFor "cloud_cotton" {
 }
 
 Add.QuotesFor "cloud_fruit" {
-    ANY = nil,
+    
     GENERIC = "Cloud fruit. What else would it be?",
     wathgrithr = "The fruit of Valhalla.",
     waxwell = "I'd prefer a real banquet.",
@@ -633,7 +633,7 @@ Add.QuotesFor "cloud_fruit" {
 }
 
 Add.QuotesFor "cloud_fruit_cooked" {
-    ANY = nil,
+    
     GENERIC = "Cloud fruit. What else would it be?",
     wathgrithr = "The fruit of Valhalla.",
     waxwell = "Improved, but not by much.",
@@ -647,7 +647,7 @@ Add.QuotesFor "cloud_fruit_cooked" {
 }
 
 Add.QuotesFor "cloud_fruit_tree" {
-    ANY = nil,
+    
     GENERIC = "It has a strange fruit on it.",
     wathgrithr = "The trees of Valhalla.",
     waxwell = "What is it rooted to?",
@@ -661,7 +661,7 @@ Add.QuotesFor "cloud_fruit_tree" {
 }
 
 Add.QuotesFor "cloud_jelly" {
-    ANY = nil,
+    
     GENERIC = "Goopy planty matter.",
     wathgrithr = "Ugh, too sweet for me.",
     waxwell = "That's not proper jelly.",
@@ -675,7 +675,7 @@ Add.QuotesFor "cloud_jelly" {
 }
 
 Add.QuotesFor "cloud_storage" {
-    ANY = nil,
+    
     GENERIC = "A light and fluffy chest.",
     wathgrithr = "A cloud to hold my belongings!",
     waxwell = "I can hide my plundeer in that.",
@@ -689,7 +689,7 @@ Add.QuotesFor "cloud_storage" {
 }
 
 Add.QuotesFor "cloud_turf" {
-    ANY = nil,
+    
     GENERIC = "The ground... Err, cloud beneath my feet.",
     wathgrithr = "Like walking on air.",
     waxwell = "It came from above.",
@@ -703,7 +703,7 @@ Add.QuotesFor "cloud_turf" {
 }
 
 Add.QuotesFor "cloud_wall" {
-    ANY = nil,
+    
     GENERIC = "I have to ask why.",
     wathgrithr = "The walls of Valhalla.",
     waxwell = "About as useful as a chocolate kettle.",
@@ -717,7 +717,7 @@ Add.QuotesFor "cloud_wall" {
 }
 
 Add.QuotesFor "cloudcrag" {
-    ANY = nil,
+    
     GENERIC = "Super condensed cloud.",
     wathgrithr = "The mountains of Valhalla.",
     waxwell = "It has cloud inside it. And outside it. It's just cloud.",
@@ -731,7 +731,7 @@ Add.QuotesFor "cloudcrag" {
 }
 
 Add.QuotesFor "colored_corn" {
-    ANY = nil,
+    
     GENERIC = "Rainbow colored corn.",
     wathgrithr = "It's pretty, but still a vegetable.",
     waxwell = "What a myriad of hues.",
@@ -745,7 +745,7 @@ Add.QuotesFor "colored_corn" {
 }
 
 Add.QuotesFor "cotton_candy" {
-    ANY = nil,
+    
     GENERIC = "A bunch of fluffy sugar.",
     wathgrithr = "All fluff and no substance.",
     waxwell = "A sugary delicacy for carnivals and common folk.",
@@ -759,7 +759,7 @@ Add.QuotesFor "cotton_candy" {
 }
 
 Add.QuotesFor "cotton_hat" {
-    ANY = nil,
+    
     GENERIC = "A warm, fluffy cotton hat.",
     wathgrithr = "I prefer my helm.",
     waxwell = "A gentleman wears only a top hat.",
@@ -773,7 +773,7 @@ Add.QuotesFor "cotton_hat" {
 }
 
 Add.QuotesFor "cotton_vest" {
-    ANY = nil,
+    
     GENERIC = "It's silly looking, but very warm.",
     wathgrithr = "This looks ridiculous.",
     waxwell = "That's not even slightly dapper.",
@@ -787,7 +787,7 @@ Add.QuotesFor "cotton_vest" {
 }
 
 Add.QuotesFor "crystal_armor" {
-    ANY = nil,
+    
     GENERIC = "It's a bit heavy, but quite useful.",
     wathgrithr = "Armor made from precious mineral.",
     waxwell = "Protects me from plebians.",
@@ -801,7 +801,7 @@ Add.QuotesFor "crystal_armor" {
 }
 
 Add.QuotesFor "crystal_black" {
-    ANY = nil,
+    
     GENERIC = "It looks like there's a dark storm inside.",
     wathgrithr = "A black crystal.",
     waxwell = "Black, like my heart.",
@@ -815,7 +815,7 @@ Add.QuotesFor "crystal_black" {
 }
 
 Add.QuotesFor "crystal_cap" {
-    ANY = nil,
+    
     GENERIC = "I'm not sure I want to wear that.",
     wathgrithr = "It's almost as good as mine!",
     waxwell = "A crystal on my head will put me ahead.",
@@ -829,7 +829,7 @@ Add.QuotesFor "crystal_cap" {
 }
 
 Add.QuotesFor "crystal_fragment_black" {
-    ANY = nil,
+    
     GENERIC = "It looks like there's a dark storm inside.",
     wathgrithr = "Like a piece of the night sky.",
     waxwell = "Dare I say they look crystal clear.",
@@ -843,7 +843,7 @@ Add.QuotesFor "crystal_fragment_black" {
 }
 
 Add.QuotesFor "crystal_fragment_light" {
-    ANY = nil,
+    
     GENERIC = "It glows with a strange light.",
     wathgrithr = "Twinkle, twinkle.",
     waxwell = "Dare I say they look crystal clear.",
@@ -857,7 +857,7 @@ Add.QuotesFor "crystal_fragment_light" {
 }
 
 Add.QuotesFor "crystal_fragment_quartz" {
-    ANY = nil,
+    
     GENERIC = "I bet it conducts electricity.",
     wathgrithr = "A piece of crystal.",
     waxwell = "Dare I say they look crystal clear.",
@@ -871,7 +871,7 @@ Add.QuotesFor "crystal_fragment_quartz" {
 }
 
 Add.QuotesFor "crystal_fragment_relic" {
-    ANY = nil,
+    
     GENERIC = "I get a weird feeling from that crystal.",
     wathgrithr = "An ancient piece of crystal.",
     waxwell = "Dare I say they look crystal clear.",
@@ -885,7 +885,7 @@ Add.QuotesFor "crystal_fragment_relic" {
 }
 
 Add.QuotesFor "crystal_fragment_spire" {
-    ANY = nil,
+    
     GENERIC = "It's a large crystal.",
     wathgrithr = nil,
     waxwell = "Dare I say they look crystal clear.",
@@ -899,7 +899,7 @@ Add.QuotesFor "crystal_fragment_spire" {
 }
 
 Add.QuotesFor "crystal_fragment_water" {
-    ANY = nil,
+    
     GENERIC = "It looks like it has water inside.",
     wathgrithr = "It's damp to the touch.",
     waxwell = "Dare I say they look crystal clear.",
@@ -913,7 +913,7 @@ Add.QuotesFor "crystal_fragment_water" {
 }
 
 Add.QuotesFor "crystal_fragment_white" {
-    ANY = nil,
+    
     GENERIC = "I feel lighter just being near it.",
     wathgrithr = "A shard of winter.",
     waxwell = "Dare I say they look crystal clear.",
@@ -927,7 +927,7 @@ Add.QuotesFor "crystal_fragment_white" {
 }
 
 Add.QuotesFor "crystal_lamp" {
-    ANY = nil,
+    
     GENERIC = "It's magically lit by crystals.",
     wathgrithr = "It has a fire within.",
     waxwell = "Even the light is crystal clear.",
@@ -941,7 +941,7 @@ Add.QuotesFor "crystal_lamp" {
 }
 
 Add.QuotesFor "crystal_light" {
-    ANY = nil,
+    
     GENERIC = "It glows with a strange light.",
     wathgrithr = "Like a star.",
     waxwell = "Dare I say they look crystal clear.",
@@ -955,7 +955,7 @@ Add.QuotesFor "crystal_light" {
 }
 
 Add.QuotesFor "crystal_quartz" {
-    ANY = nil,
+    
     GENERIC = "I bet it conducts electricity.",
     wathgrithr = "A crystal.",
     waxwell = "Dare I say they look crystal clear.",
@@ -969,7 +969,7 @@ Add.QuotesFor "crystal_quartz" {
 }
 
 Add.QuotesFor "crystal_relic" {
-    ANY = nil,
+    
     GENERIC = "I get a weird feeling from that crystal.",
     wathgrithr = "Old and probably powerful.",
     waxwell = "Dare I say they look crystal clear.",
@@ -983,7 +983,7 @@ Add.QuotesFor "crystal_relic" {
 }
 
 Add.QuotesFor "crystal_spire" {
-    ANY = nil,
+    
     GENERIC = "It's a large crystal.",
     wathgrithr = "A spire worthy of the gods!",
     waxwell = "Dare I say they look crystal clear.",
@@ -997,7 +997,7 @@ Add.QuotesFor "crystal_spire" {
 }
 
 Add.QuotesFor "crystal_wall" {
-    ANY = "It's... a thing.",
+    ANY = "A crystalline wall.",
     GENERIC = "A crystalline wall.",
     wathgrithr = "It sparkles.",
     waxwell = "It's a bit of an eyeful, but it's reliable.",
@@ -1011,7 +1011,7 @@ Add.QuotesFor "crystal_wall" {
 }
 
 Add.QuotesFor "crystal_water" {
-    ANY = nil,
+    
     GENERIC = "It looks like it has water inside.",
     wathgrithr = "I can hear the sea inside.",
     waxwell = "Dare I say they look crystal clear.",
@@ -1025,7 +1025,7 @@ Add.QuotesFor "crystal_water" {
 }
 
 Add.QuotesFor "crystal_white" {
-    ANY = nil,
+    
     GENERIC = "I feel lighter just being near it.",
     wathgrithr = "Like winter snow.",
     waxwell = "Dare I say they look crystal clear.",
@@ -1039,7 +1039,7 @@ Add.QuotesFor "crystal_white" {
 }
 
 Add.QuotesFor "cumulostone" {
-    ANY = nil,
+    
     GENERIC = "A rock that seems to pulse with light.",
     wathgrithr = "The building blocks of Valhalla.",
     waxwell = "Stone and cloud enmeshed.",
@@ -1053,7 +1053,7 @@ Add.QuotesFor "cumulostone" {
 }
 
 Add.QuotesFor "datura_petals" {
-    ANY = nil,
+    
     GENERIC = "It smells of nightmares.",
     wathgrithr = nil,
     waxwell = "It smells like innocence. Ripe for the taking. ",
@@ -1067,7 +1067,7 @@ Add.QuotesFor "datura_petals" {
 }
 
 Add.QuotesFor "dragonblood_firepit" {
-    ANY = nil,
+    
     GENERIC = "That's a little too hot.",
     wathgrithr = nil,
     waxwell = nil,
@@ -1081,7 +1081,7 @@ Add.QuotesFor "dragonblood_firepit" {
 }
 
 Add.QuotesFor "dragonblood_log" {
-    ANY = nil,
+    
     GENERIC = "It emits a slight warmth.",
     wathgrithr = "The tree dragon has fallen!",
     waxwell = "It has latent properties.",
@@ -1095,7 +1095,7 @@ Add.QuotesFor "dragonblood_log" {
 }
 
 Add.QuotesFor "dragonblood_sap" {
-    ANY = nil,
+    
     GENERIC = "Warm, gooey tree sap.",
     wathgrithr = "Warm and sticky, but it doesn't smell like blood.",
     waxwell = "How sappy.",
@@ -1109,7 +1109,7 @@ Add.QuotesFor "dragonblood_sap" {
 }
 
 Add.QuotesFor "dragonblood_tree" {
-    ANY = nil,
+    
     GENERIC = "I wonder if it breathes fire?",
     wathgrithr = "It doesn't look like a dragon.",
     waxwell = "No matter what I do, the days just dragon.",
@@ -1123,7 +1123,7 @@ Add.QuotesFor "dragonblood_tree" {
 }
 
 Add.QuotesFor "duckraptor" {
-    ANY = nil,
+    
     GENERIC = "A nightmare duck! What next?",
     wathgrithr = "Fight me, duck creature!",
     waxwell = "You will make a rather exquisite duck pâté.",
@@ -1137,7 +1137,7 @@ Add.QuotesFor "duckraptor" {
 }
 
 Add.QuotesFor "dug_tea_bush" {
-    ANY = nil,
+    
     GENERIC = "Tea leaves grow on this bush.",
     wathgrithr = "It grows tea.",
     waxwell = nil,
@@ -1151,7 +1151,7 @@ Add.QuotesFor "dug_tea_bush" {
 }
 
 Add.QuotesFor "flying_fish" {
-    ANY = nil,
+    
     GENERIC = "But do they have lungs?",
     wathgrithr = "A skyfaring fish.",
     waxwell = "Being able to fly did not aid you at all.",
@@ -1165,7 +1165,7 @@ Add.QuotesFor "flying_fish" {
 }
 
 Add.QuotesFor "flying_fish_pond" {
-    ANY = nil,
+    
     GENERIC = nil,
     wathgrithr = "Can they swim?",
     waxwell = "The home of hopeless, damp creatures.",
@@ -1179,7 +1179,7 @@ Add.QuotesFor "flying_fish_pond" {
 }
 
 Add.QuotesFor "golden_amulet" {
-    ANY = nil,
+    
     GENERIC = "An amulet of luck.",
     wathgrithr = "An amulet of Freyja.",
     waxwell = "It's not magical.",
@@ -1193,7 +1193,7 @@ Add.QuotesFor "golden_amulet" {
 }
 
 Add.QuotesFor "golden_egg" {
-    ANY = nil,
+    
     GENERIC = "It's warm. And gold. Mostly gold.",
     wathgrithr = "Good for winter nights.",
     waxwell = "I am beyond wealth.",
@@ -1207,7 +1207,7 @@ Add.QuotesFor "golden_egg" {
 }
 
 Add.QuotesFor "golden_golem" {
-    ANY = nil,
+    
     GENERIC = "It's worthless as long as it wants to kill me.",
     wathgrithr = "Imagine how many spears I could make from this!",
     waxwell = "How intruiging.",
@@ -1221,7 +1221,7 @@ Add.QuotesFor "golden_golem" {
 }
 
 Add.QuotesFor "golden_lyre" {
-    ANY = nil,
+    
     GENERIC = "A boring golden harp.",
     wathgrithr = "It plays the music of battle!",
     waxwell = "Plays a beautiful tune, yet participates in dull conversations.",
@@ -1235,7 +1235,7 @@ Add.QuotesFor "golden_lyre" {
 }
 
 Add.QuotesFor "golden_petals" {
-    ANY = nil,
+    
     GENERIC = "Golden flower petals.",
     wathgrithr = "Flowers of the gods!",
     waxwell = "Aurelian flakes.",
@@ -1249,7 +1249,7 @@ Add.QuotesFor "golden_petals" {
 }
 
 Add.QuotesFor "golden_rose" {
-    ANY = nil,
+    
     GENERIC = "A rose with golden petals.",
     wathgrithr = "Flowers of the gods!",
     waxwell = "I'll leave one out for Charlie.",
@@ -1263,7 +1263,7 @@ Add.QuotesFor "golden_rose" {
 }
 
 Add.QuotesFor "golden_sunflower" {
-    ANY = nil,
+    
     GENERIC = "A sunflower made of gold.",
     wathgrithr = "It shines like my spear.",
     waxwell = "The golden sun rises in the east.",
@@ -1277,7 +1277,7 @@ Add.QuotesFor "golden_sunflower" {
 }
 
 Add.QuotesFor "golden_sunflower_seeds" {
-    ANY = nil,
+    
     GENERIC = "I can make a gold farm!",
     wathgrithr = "A good snack, for some people.",
     waxwell = "The gift that keeps on giving.",
@@ -1291,7 +1291,7 @@ Add.QuotesFor "golden_sunflower_seeds" {
 }
 
 Add.QuotesFor "goose" {
-    ANY = nil,
+    
     GENERIC = "I wonder if it lays golden eggs?",
     wathgrithr = "Lay me an egg!",
     waxwell = "For others a source of wealth, for me a source of annoyance.",
@@ -1305,7 +1305,7 @@ Add.QuotesFor "goose" {
 }
 
 Add.QuotesFor "grabber" {
-    ANY = nil,
+    
     GENERIC = "This reminds me of someone.",
     wathgrithr = "To reach far-off things.",
     waxwell = "Useful for reaching far away things.",
@@ -1319,7 +1319,7 @@ Add.QuotesFor "grabber" {
 }
 
 Add.QuotesFor "greenbean" {
-    ANY = nil,
+    
     GENERIC = "Green and nutricious.",
     wathgrithr = "Disgusting!",
     waxwell = "The flesh of a beanlet. Lovely.",
@@ -1333,7 +1333,7 @@ Add.QuotesFor "greenbean" {
 }
 
 Add.QuotesFor "greentea" {
-    ANY = nil,
+    
     GENERIC = "A healthy green tea.",
     wathgrithr = "I prefer mead.",
     waxwell = "I prefer it black, but this will do.",
@@ -1347,7 +1347,7 @@ Add.QuotesFor "greentea" {
 }
 
 Add.QuotesFor "gummybear" {
-    ANY = nil,
+    
     GENERIC = "How beary nice to meet you.",
     wathgrithr = nil,
     waxwell = "They can't bear the presence of others.",
@@ -1361,7 +1361,7 @@ Add.QuotesFor "gummybear" {
 }
 
 Add.QuotesFor "gummybear_den" {
-    ANY = nil,
+    
     GENERIC = "I couldn't fit in it if I tried.",
     wathgrithr = nil,
     waxwell = "Who's been sleeping in their den?",
@@ -1375,7 +1375,7 @@ Add.QuotesFor "gummybear_den" {
 }
 
 Add.QuotesFor "gustflower" {
-    ANY = nil,
+    
     GENERIC = "I should steer clear of it.",
     wathgrithr = "It makes its own wind.",
     waxwell = "...Reap the whirldwind.",
@@ -1389,7 +1389,7 @@ Add.QuotesFor "gustflower" {
 }
 
 Add.QuotesFor "gustflower_seeds" {
-    ANY = nil,
+    
     GENERIC = "I can plant this somewhere.",
     wathgrithr = "I can plant the wind itself.",
     waxwell = "Those who sow the air...",
@@ -1403,7 +1403,7 @@ Add.QuotesFor "gustflower_seeds" {
 }
 
 Add.QuotesFor "hive_marshmallow" {
-    ANY = nil,
+    
     GENERIC = "A giant marshmallow.",
     wathgrithr = "Full of candy bees.",
     waxwell = "Wretched, full of scum and villainy.",
@@ -1417,7 +1417,7 @@ Add.QuotesFor "hive_marshmallow" {
 }
 
 Add.QuotesFor "jellyshroom_blue" {
-    ANY = nil,
+    
     GENERIC = "You jelly?",
     wathgrithr = "It's still a vegetable.",
     waxwell = "Reproduces through spores.",
@@ -1431,7 +1431,7 @@ Add.QuotesFor "jellyshroom_blue" {
 }
 
 Add.QuotesFor "jellyshroom_green" {
-    ANY = nil,
+    
     GENERIC = "You jelly?",
     wathgrithr = "It's still a vegetable.",
     waxwell = "I'm green with envy.",
@@ -1445,7 +1445,7 @@ Add.QuotesFor "jellyshroom_green" {
 }
 
 Add.QuotesFor "jellyshroom_red" {
-    ANY = nil,
+    
     GENERIC = "You jelly?",
     wathgrithr = "It's still a vegetable.",
     waxwell = "I'm seeing red.",
@@ -1459,7 +1459,7 @@ Add.QuotesFor "jellyshroom_red" {
 }
 
 Add.QuotesFor "kettle" {
-    ANY = nil,
+    
     GENERIC = "A kettle, for brewing tea.",
     wathgrithr = "Brews hot beverages.",
     waxwell = "For use in brewing a cuppa.",
@@ -1473,7 +1473,7 @@ Add.QuotesFor "kettle" {
 }
 
 Add.QuotesFor "kettle_item" {
-    ANY = nil,
+    
     GENERIC = "A kettle, for brewing tea.",
     wathgrithr = "Brews hot beverages.",
     waxwell = "For use in brewing a cuppa.",
@@ -1487,7 +1487,7 @@ Add.QuotesFor "kettle_item" {
 }
 
 Add.QuotesFor "kite" {
-    ANY = nil,
+    
     GENERIC = "Cloth tied to a string.",
     wathgrithr = "It soars above the clouds!",
     waxwell = "I wonder who owned this.",
@@ -1501,7 +1501,7 @@ Add.QuotesFor "kite" {
 }
 
 Add.QuotesFor "lionant" {
-    ANY = nil,
+    
     GENERIC = "Probably nothing to worry about.",
     wathgrithr = "A beast from Hel!",
     waxwell = "Interesting, but not particularly useful.",
@@ -1515,7 +1515,7 @@ Add.QuotesFor "lionant" {
 }
 
 Add.QuotesFor "lionblob" {
-    ANY = nil,
+    
     GENERIC = "Is that supposed to be a joke?",
     wathgrithr = "What foul thing is this?",
     waxwell = "In all my many twisted dreams, I've never seen such as this.",
@@ -1529,7 +1529,7 @@ Add.QuotesFor "lionblob" {
 }
 
 Add.QuotesFor "live_gnome" {
-    ANY = nil,
+    
     GENERIC = "Is that a gnome?",
     wathgrithr = "The small man lives!",
     waxwell = "I petrified a few once.",
@@ -1543,7 +1543,7 @@ Add.QuotesFor "live_gnome" {
 }
 
 Add.QuotesFor "longbill" {
-    ANY = nil,
+    
     GENERIC = "Are those claws on its wings?",
     wathgrithr = "What a large beak.",
     waxwell = "With it's size it most likely has trouble ducking.",
@@ -1557,7 +1557,7 @@ Add.QuotesFor "longbill" {
 }
 
 Add.QuotesFor "magic_beans" {
-    ANY = nil,
+    
     GENERIC = "Oldest marketing scam in the book!",
     wathgrithr = "I should bury them.",
     waxwell = "I hope the legends aren't full of beans.",
@@ -1571,7 +1571,7 @@ Add.QuotesFor "magic_beans" {
 }
 
 Add.QuotesFor "magic_beans_cooked" {
-    ANY = nil,
+    
     GENERIC = "I don't even know why I did that.",
     wathgrithr = "What a waste.",
     waxwell = "I guess we'll never know if they were real or not.",
@@ -1585,7 +1585,7 @@ Add.QuotesFor "magic_beans_cooked" {
 }
 
 Add.QuotesFor "magnet" {
-    ANY = nil,
+    
     GENERIC = "It's quite magnetic.",
     wathgrithr = "How does it work?",
     waxwell = "A pair of poles produces power.",
@@ -1599,7 +1599,7 @@ Add.QuotesFor "magnet" {
 }
 
 Add.QuotesFor "manta" {
-    ANY = nil,
+    
     GENERIC = "Aren't you supposed to be in the ocean?",
     wathgrithr = "Why are you so far from home?",
     waxwell = "Not something you sea every day.",
@@ -1613,7 +1613,7 @@ Add.QuotesFor "manta" {
 }
 
 Add.QuotesFor "manta_leather" {
-    ANY = nil,
+    
     GENERIC = "Skin from a flying manta.",
     wathgrithr = "This could be useful.",
     waxwell = "It's no skin off my nose.",
@@ -1627,7 +1627,7 @@ Add.QuotesFor "manta_leather" {
 }
 
 Add.QuotesFor "marshmallow" {
-    ANY = nil,
+    
     GENERIC = "Maybe just one. For science!",
     wathgrithr = "I don't have much of a sweet tooth.",
     waxwell = "Contrary to the name, these do not contain marsh.",
@@ -1641,7 +1641,7 @@ Add.QuotesFor "marshmallow" {
 }
 
 Add.QuotesFor "monolith" {
-    ANY = nil,
+    
     GENERIC = "What is this? A giant golden potato?",
     wathgrithr = "A monument to Freyja.",
     waxwell = "It's artistic value is greatly underrated.",
@@ -1655,7 +1655,7 @@ Add.QuotesFor "monolith" {
 }
 
 Add.QuotesFor "mushroom_hat" {
-    ANY = nil,
+    
     GENERIC = "I feel silly, oh so silly.",
     wathgrithr = "A helmet of vegetables.",
     waxwell = "Why would I want to wear that?",
@@ -1669,7 +1669,7 @@ Add.QuotesFor "mushroom_hat" {
 }
 
 Add.QuotesFor "octocopter" {
-    ANY = nil,
+    
     GENERIC = "Half machine, half octopus.",
     wathgrithr = "I can use it to travel between realms.",
     waxwell = "A bionic octopus. Clever.",
@@ -1683,7 +1683,7 @@ Add.QuotesFor "octocopter" {
 }
 
 Add.QuotesFor "octocopter_wreckage" {
-    ANY = nil,
+    
     GENERIC = "Now it's mostly octopus.",
     wathgrithr = "Poor thing.",
     waxwell = "This could work to my advantage.",
@@ -1697,7 +1697,7 @@ Add.QuotesFor "octocopter_wreckage" {
 }
 
 Add.QuotesFor "octocopterpart1" {
-    ANY = nil,
+    
     GENERIC = "A rotor blade.",
     wathgrithr = "This could be a fine sword.",
     waxwell = "Better get my oct together.",
@@ -1711,7 +1711,7 @@ Add.QuotesFor "octocopterpart1" {
 }
 
 Add.QuotesFor "octocopterpart2" {
-    ANY = nil,
+    
     GENERIC = "A rotor plate.",
     wathgrithr = "Aha, a shield!",
     waxwell = "Better get my oct together.",
@@ -1725,7 +1725,7 @@ Add.QuotesFor "octocopterpart2" {
 }
 
 Add.QuotesFor "octocopterpart3" {
-    ANY = nil,
+    
     GENERIC = "A rotor hub.",
     wathgrithr = "Maybe I should fix the poor thing.",
     waxwell = "Better get my oct together.",
@@ -1739,7 +1739,7 @@ Add.QuotesFor "octocopterpart3" {
 }
 
 Add.QuotesFor "owl" {
-    ANY = nil,
+    
     GENERIC = "Their eyes are unsettling...",
     wathgrithr = "A being cloaked in feathers.",
     waxwell = "These have a secret brotherhoot.",
@@ -1753,7 +1753,7 @@ Add.QuotesFor "owl" {
 }
 
 Add.QuotesFor "package" {
-    ANY = nil,
+    
     GENERIC = "There's something in it.",
     wathgrithr = "Oh, a surprise!",
     waxwell = "There's something in there.",
@@ -1767,7 +1767,7 @@ Add.QuotesFor "package" {
 }
 
 Add.QuotesFor "pineapple_bush" {
-    ANY = nil,
+    
     GENERIC = nil,
     wathgrithr = nil,
     waxwell = "Not many fruits grow close to the ground.",
@@ -1781,7 +1781,7 @@ Add.QuotesFor "pineapple_bush" {
 }
 
 Add.QuotesFor "pineapple_fruit" {
-    ANY = nil,
+    
     GENERIC = nil,
     wathgrithr = "I won't eat something this sharp.",
     waxwell = "A fruit after my own heart.",
@@ -1795,7 +1795,7 @@ Add.QuotesFor "pineapple_fruit" {
 }
 
 Add.QuotesFor "quartz_torch" {
-    ANY = nil,
+    
     GENERIC = nil,
     wathgrithr = "A magical torch?",
     waxwell = "Hmm. Not even I am sure of this.",
@@ -1809,7 +1809,7 @@ Add.QuotesFor "quartz_torch" {
 }
 
 Add.QuotesFor "rainbowcoon" {
-    ANY = nil,
+    
     GENERIC = "Colorful, but it's a ploy for my food.",
     wathgrithr = "A colourful mischief-maker.",
     waxwell = "The rainbow is trying to taste my food!",
@@ -1823,7 +1823,7 @@ Add.QuotesFor "rainbowcoon" {
 }
 
 Add.QuotesFor "refined_black_crystal" {
-    ANY = nil,
+    
     GENERIC = "A large chunk of black crystal.",
     wathgrithr = "It's better now!",
     waxwell = nil,
@@ -1837,7 +1837,7 @@ Add.QuotesFor "refined_black_crystal" {
 }
 
 Add.QuotesFor "refined_white_crystal" {
-    ANY = nil,
+    
     GENERIC = "A large chunk of white crystal.",
     wathgrithr = "It's better now!",
     waxwell = nil,
@@ -1851,7 +1851,7 @@ Add.QuotesFor "refined_white_crystal" {
 }
 
 Add.QuotesFor "refiner" {
-    ANY = nil,
+    
     GENERIC = "A refiner. It crushes things into pieces.",
     wathgrithr = "Finally, a machine to break things!",
     waxwell = "There's nothing as refined as me.",
@@ -1865,7 +1865,7 @@ Add.QuotesFor "refiner" {
 }
 
 Add.QuotesFor "research_lectern" {
-    ANY = nil,
+    
     GENERIC = "I'm not even sure what's real anymore.",
     wathgrithr = "A machine of myths and magic!",
     waxwell = "This is a new branch of science.",
@@ -1879,7 +1879,7 @@ Add.QuotesFor "research_lectern" {
 }
 
 Add.QuotesFor "rubber" {
-    ANY = nil,
+    
     GENERIC = "It doesn't conduct electricity very well.",
     wathgrithr = "It's useless as armor.",
     waxwell = "Good for erasing pencil.",
@@ -1893,7 +1893,7 @@ Add.QuotesFor "rubber" {
 }
 
 Add.QuotesFor "scarecrow" {
-    ANY = nil,
+    
     GENERIC = "It doesn't seem like it's working.",
     wathgrithr = "A target for my spear!",
     waxwell = "Crows aren't actually bothered by them.",
@@ -1907,7 +1907,7 @@ Add.QuotesFor "scarecrow" {
 }
 
 Add.QuotesFor "sheep" {
-    ANY = nil,
+    
     GENERIC = "They make me feel sleepy.",
     wathgrithr = "A passive beast.",
     waxwell = "It's cuteness disgusts me greatly.",
@@ -1921,7 +1921,7 @@ Add.QuotesFor "sheep" {
 }
 
 Add.QuotesFor "sheep.ram" {
-    ANY = nil,
+    
     GENERIC = "Electrifying!",
     wathgrithr = "A sheep with a warrior's heart.",
     waxwell = "The weather forecast shows a local storm.",
@@ -1935,7 +1935,7 @@ Add.QuotesFor "sheep.ram" {
 }
 
 Add.QuotesFor "shopkeeper" {
-    ANY = nil,
+    
     GENERIC = "Odd place to set up a store.",
     wathgrithr = "Another traveller from the mortal world.",
     waxwell = "I forgot to thank you for that book you sold me.",
@@ -1949,7 +1949,7 @@ Add.QuotesFor "shopkeeper" {
 }    
 
 Add.QuotesFor "sky_chest" {
-    ANY = nil,
+    
     GENERIC = "I wonder who's it is?",
     wathgrithr = "I don't trust it.",
     waxwell = "Very fancy.",
@@ -1963,7 +1963,7 @@ Add.QuotesFor "sky_chest" {
 }
 
 Add.QuotesFor "sky_lemur" {
-    ANY = nil,
+    
     GENERIC = nil,
     wathgrithr = "Mmm, monkey meat.",
     waxwell = "For you, there's no esc-ape.",
@@ -1977,7 +1977,7 @@ Add.QuotesFor "sky_lemur" {
 }
 
 Add.QuotesFor "skyflies" {
-    ANY = nil,
+    
     GENERIC = "I wonder how they light up like that?",
     wathgrithr = "Bright bugs.",
     waxwell = "An improvement on fireflies.",
@@ -1991,7 +1991,7 @@ Add.QuotesFor "skyflies" {
 }
 
 Add.QuotesFor "skyflower" {
-    ANY = nil,
+    
     GENERIC = "They smell of dreams.",
     wathgrithr = "The smell of victory!",
     waxwell = "The urge of stomping on them is still present.",
@@ -2005,7 +2005,7 @@ Add.QuotesFor "skyflower" {
 }
 
 Add.QuotesFor "skyflower.datura" {
-    ANY = nil,
+    
     GENERIC = "It smells of nightmares.",
     wathgrithr = "Smells like defeat.",
     waxwell = "It smells like innocence. Ripe for the taking.",
@@ -2019,7 +2019,7 @@ Add.QuotesFor "skyflower.datura" {
 }
 
 Add.QuotesFor "skyflower_petals" {
-    ANY = nil,
+    
     GENERIC = "They smell of dreams.",
     wathgrithr = "I should make myself a crown.",
     waxwell = "I'll make a bouquet for Charlie with these.",
@@ -2033,7 +2033,7 @@ Add.QuotesFor "skyflower_petals" {
 }
 
 Add.QuotesFor "skytrap" {
-    ANY = nil,
+    
     GENERIC = "Something about that flower is off.",
     wathgrithr = "Suspicious.",
     waxwell = "Don't think you fool me.",
@@ -2047,7 +2047,7 @@ Add.QuotesFor "skytrap" {
 }
 
 Add.QuotesFor "smores" {
-    ANY = nil,
+    
     GENERIC = "A messy ball of chocolate and cream.",
     wathgrithr = "It makes a real mess.",
     waxwell = "I prefer mine on the stick.",
@@ -2061,7 +2061,7 @@ Add.QuotesFor "smores" {
 }
 
 Add.QuotesFor "tea_bush" {
-    ANY = nil,
+    
     GENERIC = "Tea leaves grow on this bush.",
     wathgrithr = "It grows tea.",
     waxwell = "Perfect!",
@@ -2075,7 +2075,7 @@ Add.QuotesFor "tea_bush" {
 }
 
 Add.QuotesFor "tea_leaves" {
-    ANY = nil,
+    
     GENERIC = "Regular old tea leaves.",
     wathgrithr = "I can brew it!",
     waxwell = "I prefer bagged tea.",
@@ -2089,7 +2089,7 @@ Add.QuotesFor "tea_leaves" {
 }
 
 Add.QuotesFor "thunder_log" {
-    ANY = nil,
+    
     GENERIC = "It ripples with elecricity.",
     wathgrithr = "It sparks.",
     waxwell = "Still retains a measure of static.",
@@ -2103,7 +2103,7 @@ Add.QuotesFor "thunder_log" {
 }    
 
 Add.QuotesFor "thunder_tree" {
-    ANY = nil,
+    
     GENERIC = "Looks fragile, but dangerous.",
     wathgrithr = "Planted by Thor himself.",
     waxwell = "It has evolved to conduct lightning.",
@@ -2117,7 +2117,7 @@ Add.QuotesFor "thunder_tree" {
 }
 
 Add.QuotesFor "thunderboards" {
-    ANY = nil,
+    
     GENERIC = "Flat lightning.",
     wathgrithr = "Blessed by Thor.",
     waxwell = "I'm getting a bit board of this.",
@@ -2131,7 +2131,7 @@ Add.QuotesFor "thunderboards" {
 }
 
 Add.QuotesFor "vine" {
-    ANY = nil,
+    
     GENERIC = "A sentient vine!",
     wathgrithr = "A leafy serpent.",
     waxwell = "I heard about these on the vine.",
@@ -2145,7 +2145,7 @@ Add.QuotesFor "vine" {
 }
 
 Add.QuotesFor "weather_machine" {
-    ANY = nil,
+    
     GENERIC = "It's not a very consistent weather machine.",
     wathgrithr = "Too scientific. Where's my lightning?",
     waxwell = "Ah, now that's quite fascinating.",
@@ -2159,7 +2159,7 @@ Add.QuotesFor "weather_machine" {
 }
 
 Add.QuotesFor "weaver_bird" {
-    ANY = nil,
+    
     GENERIC = "It makes large nests to keep warm.",
     wathgrithr = "It keeps a warm home.",
     waxwell = "It's quite adept at twisting grass.",
@@ -2173,7 +2173,7 @@ Add.QuotesFor "weaver_bird" {
 }
 
 Add.QuotesFor "weavernest" {
-    ANY = nil,
+    
     GENERIC = "A warm nest made by birds.",
     wathgrithr = "A cozy home for little birds.",
     waxwell = "What a tangled nest he weaves.",
@@ -2187,7 +2187,7 @@ Add.QuotesFor "weavernest" {
 }
 
 Add.QuotesFor "whirlwind" {
-    ANY = nil,
+    
     GENERIC = "Who knows where that thing could send me.",
     wathgrithr = "A gift from Yggdrasill itself.",
     waxwell = "That could send me up and away from here.",
@@ -2201,7 +2201,7 @@ Add.QuotesFor "whirlwind" {
 }
 
 Add.QuotesFor "whitestaff" {
-    ANY = nil,
+    
     GENERIC = "Packages objects through magic.",
     wathgrithr = "It moves the immovable.",
     waxwell = "I used to move mountains without any help. Look at me now.",
@@ -2215,7 +2215,7 @@ Add.QuotesFor "whitestaff" {
 }
 
 Add.QuotesFor "wind_axe" {
-    ANY = nil,
+    
     GENERIC = "It feels tingly.",
     wathgrithr = "An artifact of Thor!",
     waxwell = "The power of the wind.",
@@ -2229,7 +2229,7 @@ Add.QuotesFor "wind_axe" {
 }
 
 Add.QuotesFor "winnie_staff" {
-    ANY = nil,
+    
     GENERIC = nil,
     wathgrithr = "For herding mindless beasts.",
     waxwell = "I now command the beasts of the world.",

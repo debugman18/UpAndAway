@@ -352,7 +352,7 @@ local function fn(inst)
 	MakeSmallPropagator(inst)
 	inst.components.burnable.flammability = 1
 
-	--inst.SoundEmitter:PlaySound(buildsound)		
+	inst.SoundEmitter:PlaySound("dontstarve/common/place_structure_stone")		
 
     inst:AddComponent("growable")
     inst.components.growable.stages = growth_stages

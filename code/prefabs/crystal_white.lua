@@ -67,6 +67,11 @@ local function fn(Sim)
 	inst.components.workable:SetOnFinishCallback(onMined)
 	inst.components.workable:SetOnWorkCallback(workcallback)      
 
+    inst:AddComponent("periodicspawner")
+    inst.components.periodicspawner:SetPrefab("live_gnome")
+    inst.components.periodicspawner:SetDensityInRange(5, 3)
+    inst.components.periodicspawner:SetMinimumSpacing(5)
+
 	return inst
 end
 

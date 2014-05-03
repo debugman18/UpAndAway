@@ -21,7 +21,6 @@ local loot =
 }
         
 local function onMined(inst, worker)
-    inst:RemoveComponent("childspawner")
     inst:RemoveComponent("resurrector")
 	inst.components.lootdropper:DropLoot()
 	inst.SoundEmitter:PlaySound("dontstarve/common/destroy_rock")
@@ -32,11 +31,14 @@ end
 local function OnActivate(inst)
 	inst.components.resurrector.active = true
 	inst.SoundEmitter:PlaySound("dontstarve/common/resurrectionstone_activate")
+	inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
 end
 
 local function doresurrect(inst, dude)
 	inst:AddTag("busy")	
-	inst.MiniMapEntity:SetEnabled(false)
+	if inst.MiniMapEntity then
+		inst.MiniMapEntity:SetEnabled(false)
+	end	
     if inst.Physics then
 		MakeInventoryPhysics(inst) -- collides with world, but not character
     end
@@ -58,15 +60,15 @@ local function doresurrect(inst, dude)
         inst:Remove()
         
         if dude.components.hunger then
-            dude.components.hunger:SetPercent(.5)
+            dude.components.hunger:SetPercent(.3)
         end
 
         if dude.components.health then
-            dude.components.health:Respawn(.5)
+            dude.components.health:Respawn(.3)
         end
         
         if dude.components.sanity then
-			dude.components.sanity:SetPercent(.5)
+			dude.components.sanity:SetPercent(.3)
         end
         
         dude.sg:GoToState("wakeup")
@@ -97,52 +99,16 @@ local function makeused(inst)
 end
 
 local function onhit(inst, worker)
-	inst.components.childspawner:ReleaseAllChildren()
-	inst.thief = worker
-	inst.components.childspawner.noregen = true
-	if inst.components.childspawner and worker then
-		for k,v in pairs(inst.components.childspawner.childrenoutside) do
-			if v.components.combat then
-				v.components.combat:SuggestTarget(worker)
-			end
-		end
-	end		
-    if workleft <= 0 then
+    if workleft and workleft <= 0 then
         inst.SoundEmitter:PlaySound("dontstarve/wilson/rock_break")
         --inst.components.lootdropper:DropLoot()
         inst:Remove()
     else            
-        if workleft <= TUNING.SPILAGMITE_ROCK * 0.5 then
+        if workleft and workleft <= TUNING.SPILAGMITE_ROCK * 0.5 then
             inst.AnimState:PlayAnimation("idle_low")
         else
             inst.AnimState:PlayAnimation("idle_med")
         end
-    end
-end
-
-local function StartSpawning(inst)
-	if inst.components.childspawner and GetSeasonManager() and GetSeasonManager():IsWinter() then
-		inst.components.childspawner:StartSpawning()
-	end
-end
-
-local function StopSpawning(inst)
-	if inst.components.childspawner then
-		inst.components.childspawner:StopSpawning()
-	end
-end
-
-local function OnSpawned(inst, child)
-	inst.SoundEmitter:PlaySound("dontstarve/common/pighouse_door")
-	if GetClock():IsDay() and inst.components.childspawner and inst.components.childspawner:CountChildrenOutside() >= 5 and not child.components.combat.target then
-        StopSpawning(inst)
-    end
-end
-
-local function OnGoHome(inst, child) 
-	inst.SoundEmitter:PlaySound("dontstarve/common/pighouse_door")
-	if inst.components.childspawner and inst.components.childspawner:CountChildrenOutside() < 3 then
-        StartSpawning(inst)
     end
 end
 
@@ -170,20 +136,17 @@ local function fn()
     
 	inst:AddComponent("workable")
 	inst.components.workable:SetWorkAction(ACTIONS.MINE)
-	inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE)
-	inst.components.workable:SetOnFinishCallback(onMined)
-	inst.components.workable:SetOnWorkCallback(onhit)	
+	inst.components.workable:SetWorkLeft(TUNING.SPILAGMITE_ROCK*1.5)
+	inst.components.workable:SetOnWorkCallback(onhit)
+	inst.components.workable:SetOnFinishCallback(onMined)	
 	
 	local scale = math.random(3,4)
 	inst.Transform:SetScale(scale, scale, scale)
 
-	inst:AddComponent("childspawner")
-	inst.components.childspawner.childname = "owl"
-	inst.components.childspawner:SetSpawnedFn(OnSpawned)
-	inst.components.childspawner:SetGoHomeFn(OnGoHome)
-	inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*7)
-	inst.components.childspawner:SetSpawnPeriod(10)
-	inst.components.childspawner:SetMaxChildren(5)
+    inst:AddComponent("periodicspawner")
+    inst.components.periodicspawner:SetPrefab("owl")
+    inst.components.periodicspawner:SetDensityInRange(5, 3)
+    inst.components.periodicspawner:SetMinimumSpacing(5)
 
 	inst:AddComponent("resurrector")
 	inst.components.resurrector.makeactivefn = makeactive
@@ -197,8 +160,6 @@ local function fn()
     inst:AddComponent("inspectable")
     inst.components.inspectable.nameoverride = "Sacred Crystal"
 
-    inst.components.childspawner:StartSpawning() 
-	
 	--MakeSnowCovered(inst, .01)
     return inst
 end

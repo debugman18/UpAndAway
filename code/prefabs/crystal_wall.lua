@@ -4,7 +4,6 @@ require "prefabutil"
 
 local assets =
 {
-	Asset("ANIM", "anim/wall.zip"),
 	Asset("ANIM", "anim/crystal_wall.zip"),
 
     Asset( "ATLAS", "images/inventoryimages/crystal_wall_item.xml" ),
@@ -46,7 +45,7 @@ local function ondeploywall(inst, pt, deployer)
 	end 		
 end
 
-local function onmineded(inst, worker)
+local function onmined(inst, worker)
 	if maxloots and loot then
 		local num_loots = math.max(1, math.floor(maxloots*inst.components.health:GetPercent()))
 		for k = 1, num_loots do
@@ -139,7 +138,7 @@ local function onhealthchange(inst, old_percent, new_percent)
 
 	local anim_to_play = resolveanimtoplay(new_percent)
 	if new_percent > 0 then
-		inst.AnimState:PlayAnimation(anim_to_play.."_hit")		
+		--inst.AnimState:PlayAnimation(anim_to_play.."_hit")		
 		inst.AnimState:PushAnimation(anim_to_play, false)		
 	else
 		inst.AnimState:PlayAnimation(anim_to_play)		
@@ -155,9 +154,10 @@ local function itemfn(inst)
 	inst.entity:AddAnimState()
 	MakeInventoryPhysics(inst)
 	    
-	inst.AnimState:SetBank("wall")
+	inst.AnimState:SetBank("crystal_wall")
 	inst.AnimState:SetBuild("crystal_wall")
-	inst.AnimState:PlayAnimation("idle")
+	inst.AnimState:PlayAnimation("1_4")
+	inst.Transform:SetScale(2,2,2)
 
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_MEDITEM
@@ -188,7 +188,7 @@ local function onhit(inst)
 	local healthpercent = inst.components.health:GetPercent()
 	local anim_to_play = resolveanimtoplay(healthpercent)
 	if healthpercent > 0 then
-		inst.AnimState:PlayAnimation(anim_to_play.."_hit")		
+		--inst.AnimState:PlayAnimation(anim_to_play.."_hit")		
 		inst.AnimState:PushAnimation(anim_to_play, false)	
 	else inst.components.lootdropper:DropLoot() end	
 
@@ -221,9 +221,10 @@ local function fn(inst)
 	inst:AddTag("wall")
 	MakeObstaclePhysics(inst, .5)    
 	inst.entity:SetCanSleep(false)
-	anim:SetBank("wall")
+	anim:SetBank("crystal_wall")
 	anim:SetBuild("crystal_wall")
 	anim:PlayAnimation("1_2", false)
+	inst.Transform:SetScale(3,3,3)
 
 	if not GetWorld().components.clock:IsDay() then
 		anim:SetBloomEffectHandle("shaders/anim.ksh")
@@ -254,13 +255,13 @@ local function fn(inst)
 	inst.components.health.fire_damage_scale = 0
 	inst:AddTag("noauradamage")
 
-	--inst.SoundEmitter:PlaySound(buildsound)		
+	inst.SoundEmitter:PlaySound("dontstarve/common/place_structure_stone")		
 		
-	--inst:AddComponent("workable")
-	--inst.components.workable:SetWorkAction(ACTIONS.MINE)
-	--inst.components.workable:SetWorkLeft(3)
-	--inst.components.workable:SetOnFinishCallback(onmined)
-	--inst.components.workable:SetOnWorkCallback(onhit) 
+	inst:AddComponent("workable")
+	inst.components.workable:SetWorkAction(ACTIONS.MINE)
+	inst.components.workable:SetWorkLeft(3)
+	inst.components.workable:SetOnFinishCallback(onmined)
+	inst.components.workable:SetOnWorkCallback(onhit) 
 						
 	inst.OnLoad = onload
 	inst.OnRemoveEntity = onremoveentity
@@ -271,5 +272,5 @@ end
 return {
 	Prefab ("common/inventory/crystal_wall", fn, assets, prefabs),
 	Prefab ("common/inventoryitem/crystal_wall_item", itemfn, assets, prefabs),
-	MakePlacer("common/crystal_wall_placer", "wall", "crystal_wall", "1_2", false, false, true),
+	MakePlacer("common/crystal_wall_placer", "crystal_wall", "crystal_wall", "1_2", false, false, true, 3),
 }
