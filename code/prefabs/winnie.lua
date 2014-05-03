@@ -73,6 +73,13 @@ local fn = function(inst)
 
         inst.components.inventory:GuaranteeItems({"winnie_staff"})
 
+        inst.components.health:SetMaxHealth(160)
+        inst.components.hunger:SetMax(220)
+        inst.components.sanity:SetMax(100)
+        inst.components.combat.damagemultiplier = 0.90
+        inst.components.locomotor.walkspeed = (TUNING.WILSON_WALK_SPEED* 1.085)
+        inst.components.locomotor.runspeed = (TUNING.WILSON_RUN_SPEED* 1.085)
+
         GLOBAL.TUNING.MIN_CROP_GROW_TEMP = 0
 	
 end

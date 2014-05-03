@@ -22,7 +22,7 @@ local function chopped(inst)
 end
 
 local function chop(inst)
-	--
+	inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree") 
 end
 
 local short_loot = 

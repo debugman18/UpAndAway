@@ -3,7 +3,7 @@ BindGlobal()
 local PopupDialogScreen = require "screens/popupdialog"
 
 local assets = {
-	--Asset("ANIM", "anim/sky_octopus_wreckage.zip"), 	
+	Asset("ANIM", "anim/sky_octopus_wreckage.zip"), 	
 	Asset("ANIM", "anim/sky_octopus.zip"), 
 
 	Asset("ANIM", "anim/octocopterpart1.zip"),
@@ -22,7 +22,7 @@ local assets = {
 
 local function RepairOctocopter(inst)
 
-	--inst.AnimState:PushAnimation("wrecked_fixed", false)
+	inst.AnimState:PushAnimation("wrecked_fixed", false)
 
     local function prealphawarning(inst)
         SetPause(false) 
@@ -85,16 +85,16 @@ local function fn(inst)
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
 
-	--inst.AnimState:SetBank("sky_octopus_wreckage")
-	--inst.AnimState:SetBuild("sky_octopus_wreckage")
-	--inst.AnimState:PushAnimation("wrecked_idle", false)
+	inst.AnimState:SetBank("sky_octopus_wreckage")
+	inst.AnimState:SetBuild("sky_octopus_wreckage")
+	inst.AnimState:PlayAnimation("wrecked_idle", true)
 
-	inst.AnimState:SetBank("sky_octopus")
-	inst.AnimState:SetBuild("sky_octopus")
-	inst.AnimState:PlayAnimation("death")
+	--inst.AnimState:SetBank("sky_octopus")
+	--inst.AnimState:SetBuild("sky_octopus")
+	--inst.AnimState:PlayAnimation("death")
 
 	local physics = inst.entity:AddPhysics()  
-	MakeObstaclePhysics(inst, 1)
+	MakeObstaclePhysics(inst, 1.5)
 
 	inst.Transform:SetScale(1.4, 1.4, 1.4)
 

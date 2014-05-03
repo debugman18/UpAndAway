@@ -28,7 +28,9 @@ local function herd_enable(inst, owner)
         for k,v in pairs(owner.components.leader.followers) do
             if k:HasTag("beefalo") and k.components.follower then
                 k.components.follower:AddLoyaltyTime(1)
-                k:AddComponent("sanityaura")
+                if not k.components.sanityaura then
+                    k:AddComponent("sanityaura")
+                end
                 k.components.sanityaura.aura = TUNING.SANITYAURA_LARGE
             end
         end

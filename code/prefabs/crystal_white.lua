@@ -17,6 +17,20 @@ local loot =
    "crystal_fragment_white",
 }
 
+local function workcallback(inst, worker, workleft)
+    if workleft <= 0 then
+        inst.SoundEmitter:PlaySound("dontstarve/wilson/rock_break")
+        --inst.components.lootdropper:DropLoot()
+        inst:Remove()
+    else            
+        if workleft <= TUNING.SPILAGMITE_ROCK * 0.5 then
+            inst.AnimState:PlayAnimation("idle_low")
+        else
+            inst.AnimState:PlayAnimation("idle_med")
+        end
+    end
+end
+
 local function onMined(inst, worker)
 	inst.components.lootdropper:DropLoot()
 	inst.SoundEmitter:PlaySound("dontstarve/common/destroy_rock")
@@ -31,13 +45,16 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("crystal")
+	inst.AnimState:SetBank("crystal_white")
 	inst.AnimState:SetBuild("crystal")
-    inst.AnimState:PlayAnimation("crystal_white")
+    inst.AnimState:PlayAnimation("idle_full")
     MakeObstaclePhysics(inst, 1.)
     inst.AnimState:SetMultColour(1, 1, 1, 0.7)
 	inst:AddTag("crystal")
 	inst:AddTag("gnome_crystal")
+
+	local scale = math.random(3,4)
+	inst.Transform:SetScale(scale, scale, scale)
 
 	inst:AddComponent("inspectable")
 
@@ -48,7 +65,7 @@ local function fn(Sim)
 	inst.components.workable:SetWorkAction(ACTIONS.MINE)
 	inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE)
 	inst.components.workable:SetOnFinishCallback(onMined)
-	--inst.components.workable:SetOnWorkCallback(onhit)	      
+	inst.components.workable:SetOnWorkCallback(workcallback)      
 
 	return inst
 end

@@ -1,96 +1,251 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
     <folder id="0">
-        <file id="0" name="crystal_white.png" width="146" height="210" pivot_x="0" pivot_y="1"/>
-        <file id="1" name="crystal_water.png" width="146" height="210" pivot_x="0" pivot_y="1"/>
-        <file id="2" name="crystal_quartz.png" width="146" height="210" pivot_x="0" pivot_y="1"/>
-        <file id="3" name="crystal_spire.png" width="146" height="210" pivot_x="0" pivot_y="1"/>
-        <file id="4" name="crystal_relic.png" width="146" height="210" pivot_x="0" pivot_y="1"/>
-        <file id="5" name="crystal_black.png" width="146" height="210" pivot_x="0" pivot_y="1"/>
-        <file id="6" name="crystal_light.png" width="146" height="210" pivot_x="0" pivot_y="1"/>
+        <file id="0" name="water1.png" width="197" height="212" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="water2.png" width="229" height="154" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="water3.png" width="196" height="144" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="light1.png" width="161" height="205" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="light2.png" width="177" height="148" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="light3.png" width="160" height="143" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="red1.png" width="191" height="214" pivot_x="0" pivot_y="1"/>
+        <file id="7" name="red2.png" width="186" height="162" pivot_x="0" pivot_y="1"/>
+        <file id="8" name="red3.png" width="176" height="127" pivot_x="0" pivot_y="1"/>
+        <file id="9" name="quarzt1.png" width="161" height="205" pivot_x="0" pivot_y="1"/>
+        <file id="10" name="quartz2.png" width="177" height="147" pivot_x="0" pivot_y="1"/>
+        <file id="11" name="quartz3.png" width="166" height="115" pivot_x="0" pivot_y="1"/>
+        <file id="12" name="white1.png" width="161" height="205" pivot_x="0" pivot_y="1"/>
+        <file id="13" name="white2.png" width="177" height="147" pivot_x="0" pivot_y="1"/>
+        <file id="14" name="white3.png" width="166" height="117" pivot_x="0" pivot_y="1"/>
     </folder>
-    <entity id="0" name="crystal">
-        <animation id="0" name="crystal_light" length="1000">
+    <folder id="1">
+        <file id="0" name="/darkgreen1.png" width="161" height="205" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="/darkgreen2.png" width="177" height="149" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="/darkgreen3.png" width="166" height="147" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="crystal_water">
+        <animation id="0" name="idle_full" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="crystal_light" folder="0" file="6" abs_x="-246.892857" abs_y="557.571429" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="2.928571" abs_scale_y="2.93907" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" name="water1" folder="0" file="0" abs_x="-90.918367" abs_y="191.836735" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
                 </key>
             </mainline>
-            <timeline id="0" name="crystal_light">
+            <timeline id="0" name="water1">
                 <key id="0" spin="0">
-                    <object folder="0" file="6" x="-246.892857" y="557.571429" angle="0" scale_x="2.928571" scale_y="2.93907"/>
+                    <object folder="0" file="0" x="-90.918367" y="191.836735"/>
                 </key>
             </timeline>
         </animation>
-        <animation id="1" name="crystal_spire" length="1000">
+        <animation id="1" name="idle_med" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="crystal_spire" folder="0" file="3" abs_x="-310.614431" abs_y="678.714286" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="3.485423" abs_scale_y="3.499086" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" name="water1" folder="0" file="1" abs_x="-116.326531" abs_y="134.693878" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
                 </key>
             </mainline>
-            <timeline id="0" name="crystal_spire">
+            <timeline id="0" name="water1">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="-310.614431" y="678.714286" angle="0" scale_x="3.485423" scale_y="3.499086"/>
+                    <object folder="0" file="1" x="-116.326531" y="134.693878"/>
                 </key>
             </timeline>
         </animation>
-        <animation id="2" name="crystal_relic" length="1000">
+        <animation id="2" name="idle_low" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="crystal_relic" folder="0" file="4" abs_x="-332.309767" abs_y="741.571429" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="3.809038" abs_scale_y="3.825103" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" name="water3" folder="0" file="2" abs_x="-94.938776" abs_y="111.183673" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
                 </key>
             </mainline>
-            <timeline id="0" name="crystal_relic">
+            <timeline id="0" name="water3">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-332.309767" y="741.571429" angle="0" scale_x="3.809038" scale_y="3.825103"/>
+                    <object folder="0" file="2" x="-94.938776" y="111.183673"/>
                 </key>
             </timeline>
         </animation>
-        <animation id="3" name="crystal_white" length="1000">
+    </entity>
+    <entity id="1" name="crystal_light">
+        <animation id="0" name="idle_full" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="crystal_white" folder="0" file="0" abs_x="-314.468173" abs_y="684.428571" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="3.492225" abs_scale_y="3.506255" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" name="light1" folder="0" file="3" abs_x="-87.555556" abs_y="187.5" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
                 </key>
             </mainline>
-            <timeline id="0" name="crystal_white">
+            <timeline id="0" name="light1">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-314.468173" y="684.428571" angle="0" scale_x="3.492225" scale_y="3.506255"/>
+                    <object folder="0" file="3" x="-87.555556" y="187.5"/>
                 </key>
             </timeline>
         </animation>
-        <animation id="4" name="crystal_black" length="1000">
+        <animation id="1" name="idle_med" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="crystal_black" folder="0" file="5" abs_x="-371.817541" abs_y="879.714286" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="4.507775" abs_scale_y="4.529008" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" name="light2" folder="0" file="4" abs_x="-100.247191" abs_y="130.337079" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
                 </key>
             </mainline>
-            <timeline id="0" name="crystal_black">
+            <timeline id="0" name="light2">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="-371.817541" y="879.714286" angle="0" scale_x="4.507775" scale_y="4.529008"/>
+                    <object folder="0" file="4" x="-100.247191" y="130.337079"/>
                 </key>
             </timeline>
         </animation>
-        <animation id="5" name="crystal_quartz" length="1000">
+        <animation id="2" name="idle_low" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="crystal_quartz" folder="0" file="2" abs_x="-304.958455" abs_y="658.714286" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="3.368805" abs_scale_y="3.382254" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" name="light3" folder="0" file="5" abs_x="-89.88764" abs_y="114.606742" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
                 </key>
             </mainline>
-            <timeline id="0" name="crystal_quartz">
+            <timeline id="0" name="light3">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-304.958455" y="658.714286" angle="0" scale_x="3.368805" scale_y="3.382254"/>
+                    <object folder="0" file="5" x="-89.88764" y="114.606742"/>
                 </key>
             </timeline>
         </animation>
-        <animation id="6" name="crystal_water" length="1000">
+    </entity>
+    <entity id="2" name="crystal_spire">
+        <animation id="0" name="idle_full" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="crystal_water" folder="0" file="1" abs_x="-365.394801" abs_y="818.714286" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="4.210398" abs_scale_y="4.229668" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" name="red1" folder="0" file="6" abs_x="-102.061856" abs_y="188.659794" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
                 </key>
             </mainline>
-            <timeline id="0" name="crystal_water">
+            <timeline id="0" name="red1">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-365.394801" y="818.714286" angle="0" scale_x="4.210398" scale_y="4.229668"/>
+                    <object folder="0" file="6" x="-102.061856" y="188.659794"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="idle_med" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="red2" folder="0" file="7" abs_x="-106.25" abs_y="136.607143" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="red2">
+                <key id="0" spin="0">
+                    <object folder="0" file="7" x="-106.25" y="136.607143"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="idle_low" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="red3" folder="0" file="8" abs_x="-96.428571" abs_y="91.071429" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="red3">
+                <key id="0" spin="0">
+                    <object folder="0" file="8" x="-96.428571" y="91.071429"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="3" name="crystal_quartz">
+        <animation id="0" name="idle_full" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="quarzt1" folder="0" file="9" abs_x="-87.5" abs_y="189.285714" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="quarzt1">
+                <key id="0" spin="0">
+                    <object folder="0" file="9" x="-87.5" y="189.285714"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="idle_med" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="quartz2" folder="0" file="10" abs_x="-98.892857" abs_y="131.25" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="quartz2">
+                <key id="0" spin="0">
+                    <object folder="0" file="10" x="-98.892857" y="131.25"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="idle_low" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="quartz3" folder="0" file="11" abs_x="-91.964286" abs_y="91.964286" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="quartz3">
+                <key id="0" spin="0">
+                    <object folder="0" file="11" x="-91.964286" y="91.964286"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="4" name="crystal_white">
+        <animation id="0" name="idle_full" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="white1" folder="0" file="12" abs_x="-91.964286" abs_y="190.178571" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="white1">
+                <key id="0" spin="0">
+                    <object folder="0" file="12" x="-91.964286" y="190.178571"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="idle_med" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="white2" folder="0" file="13" abs_x="-102.678571" abs_y="128.571429" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="white2">
+                <key id="0" spin="0">
+                    <object folder="0" file="13" x="-102.678571" y="128.571429"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="idle_low" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="white3" folder="0" file="14" abs_x="-92.857143" abs_y="88.392857" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="white3">
+                <key id="0" spin="0">
+                    <object folder="0" file="14" x="-92.857143" y="88.392857"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="5" name="crystal_relic">
+        <animation id="0" name="idle_full" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="darkgreen1" folder="1" file="0" abs_x="-92.857143" abs_y="189.285714" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="darkgreen1">
+                <key id="0" spin="0">
+                    <object folder="1" file="0" x="-92.857143" y="189.285714"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="idle_med" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="darkgreen2" folder="1" file="1" abs_x="-107.928571" abs_y="132.142857" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="darkgreen2">
+                <key id="0" spin="0">
+                    <object folder="1" file="1" x="-107.928571" y="132.142857"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="idle_low" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="darkgreen3" folder="1" file="2" abs_x="-93.642857" abs_y="114.285714" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="darkgreen3">
+                <key id="0" spin="0">
+                    <object folder="1" file="2" x="-93.642857" y="114.285714"/>
                 </key>
             </timeline>
         </animation>

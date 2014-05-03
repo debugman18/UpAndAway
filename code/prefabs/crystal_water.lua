@@ -50,10 +50,10 @@ local function workcallback(inst, worker, workleft)
         inst:Remove()
     else            
         if workleft <= TUNING.SPILAGMITE_ROCK * 0.5 then
-            --inst.AnimState:PlayAnimation("low")
+            inst.AnimState:PlayAnimation("idle_low")
             print "Water at low."
         else
-            --inst.AnimState:PlayAnimation("med")
+            inst.AnimState:PlayAnimation("idle_med")
             print "Water at med."
             MakeFishSpawner(inst)
         end
@@ -65,8 +65,8 @@ local function GoToBrokenState(inst)
     
     inst.SoundEmitter:PlaySound("dontstarve/wilson/rock_break")
     
-    inst.components.workable:SetOnWorkCallback(workcallback)
-    inst.components.workable:SetWorkLeft(TUNING.SPILAGMITE_ROCK)    
+    --inst.components.workable:SetOnWorkCallback(workcallback)
+    --inst.components.workable:SetWorkLeft(TUNING.SPILAGMITE_ROCK)    
 end
 
 local function onsave(inst, data)
@@ -93,10 +93,13 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("crystal")
+    --local minimap = inst.entity:AddMiniMapEntity()
+    --minimap:SetIcon("crystal_water.png")
+
+	inst.AnimState:SetBank("crystal_water")
 	inst.AnimState:SetBuild("crystal")
-    inst.AnimState:PlayAnimation("crystal_water")
-    MakeObstaclePhysics(inst, 1.)
+    inst.AnimState:PlayAnimation("idle_full")
+    MakeObstaclePhysics(inst, 1)
 
     inst:AddTag("crystal")
     inst:AddTag("crystal_water")
@@ -107,19 +110,14 @@ local function fn(Sim)
     inst.components.lootdropper:SetLoot(loot) 	
 
     local basescale = math.random(8,14)
-    local scale = basescale / 10
+    local scale = math.random(3,4)
     inst.Transform:SetScale(scale, scale, scale)
     inst.AnimState:SetMultColour(1, 1, 1, 0.7)
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.MINE)
-    inst.components.workable:SetWorkLeft(TUNING.SPILAGMITE_SPAWNER)
-    inst.components.workable:SetOnWorkCallback(
-        function(inst, worker, workleft)
-            if inst.components.childspawner then
-                inst.components.childspawner:ReleaseAllChildren(worker)
-            end
-        end)
-    inst.components.workable:SetOnFinishCallback(GoToBrokenState)	
+    inst.components.workable:SetWorkLeft(TUNING.SPILAGMITE_ROCK)
+    inst.components.workable:SetOnWorkCallback(workcallback)
+    inst.components.workable:SetOnFinishCallback(onMined)	
 
 	return inst
 end

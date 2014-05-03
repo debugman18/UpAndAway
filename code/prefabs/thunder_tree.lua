@@ -117,7 +117,7 @@ local function sway(inst)
 end
 
 local function chop_tree(inst, chopper, chops)
-    inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree")          
+    inst.SoundEmitter:PlaySound("dontstarve/common/destroy_rock")         
     inst.AnimState:PlayAnimation("chop")
     sway(inst)
 end

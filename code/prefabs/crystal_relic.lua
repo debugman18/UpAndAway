@@ -93,12 +93,10 @@ local function makeactive(inst)
 end
 
 local function makeused(inst)
-	--inst.AnimState:PlayAnimation("idle_broken", true)
+	inst.AnimState:PlayAnimation("idle_low", true)
 end
 
 local function onhit(inst, worker)
-	--inst.AnimState:PlayAnimation("hit_rundown")
-	--inst.AnimState:PushAnimation("rundown")
 	inst.components.childspawner:ReleaseAllChildren()
 	inst.thief = worker
 	inst.components.childspawner.noregen = true
@@ -109,6 +107,17 @@ local function onhit(inst, worker)
 			end
 		end
 	end		
+    if workleft <= 0 then
+        inst.SoundEmitter:PlaySound("dontstarve/wilson/rock_break")
+        --inst.components.lootdropper:DropLoot()
+        inst:Remove()
+    else            
+        if workleft <= TUNING.SPILAGMITE_ROCK * 0.5 then
+            inst.AnimState:PlayAnimation("idle_low")
+        else
+            inst.AnimState:PlayAnimation("idle_med")
+        end
+    end
 end
 
 local function StartSpawning(inst)
@@ -144,15 +153,15 @@ local function fn()
     inst.entity:AddSoundEmitter()
 
 	--local minimap = inst.entity:AddMiniMapEntity()
-	--minimap:SetIcon("mermhouse.png")
+	--minimap:SetIcon("crystal_relic.png")
     
     MakeObstaclePhysics(inst, 1)
 
     inst:AddTag("crystal")
 
-	anim:SetBank("crystal")
+	anim:SetBank("crystal_relic")
 	anim:SetBuild("crystal")
-    anim:PlayAnimation("crystal_relic")
+    anim:PlayAnimation("idle_full")
     MakeObstaclePhysics(inst, 1.)
     inst.AnimState:SetMultColour(1, 1, 1, 0.7)
     inst:AddTag("structure")
@@ -165,6 +174,9 @@ local function fn()
 	inst.components.workable:SetOnFinishCallback(onMined)
 	inst.components.workable:SetOnWorkCallback(onhit)	
 	
+	local scale = math.random(3,4)
+	inst.Transform:SetScale(scale, scale, scale)
+
 	inst:AddComponent("childspawner")
 	inst.components.childspawner.childname = "owl"
 	inst.components.childspawner:SetSpawnedFn(OnSpawned)
