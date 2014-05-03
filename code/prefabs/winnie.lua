@@ -43,7 +43,7 @@ local function penalty_meat(inst, food)
                 inst.components.sanity:DoDelta(-40)
                 inst.components.health:DoDelta(-5)
                 inst.components.hunger:DoDelta(-3)
-                inst.components.components.talker:Say("What have I done?")
+                inst.components.talker:Say("What have I done?")
         elseif inst.components.eater and food.components.edible.foodtype == "VEGGIE" then
                 inst.components.sanity:DoDelta(10)
                 inst.components.health:DoDelta(5)
