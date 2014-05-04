@@ -44,7 +44,7 @@ export MODTOOLS_LOG=$(MODDIR)/log/scml_log.txt
 IMAGE_DEPS_OF=$(addprefix $(1)/, $(shell $(LUA) $(TOOLSDIR)/scml_deps.lua $(1)/$(1).scml))
 
 define ADD_BUILD_RULE
- $(MODDIR)/anim/$(1).zip $(1)/$(1).zip: $(1)/$(1).scml $(call IMAGE_DEPS_OF,$(1)) cleanlog
+ $(MODDIR)/anim/$(1).zip $(1)/$(1).zip: $(1)/$(1).scml $(call IMAGE_DEPS_OF,$(1)) | cleanlog
 	$(TOOLSDIR)/scml_wrapper.sh $(SCML_FLAGS) "$$<" "$(MODDIR)"
 endef
 
