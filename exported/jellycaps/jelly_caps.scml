@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
     <folder id="0">
-        <file id="0" name="red cap.png" width="459" height="644" pivot_x="0" pivot_y="1"/>
-        <file id="1" name="green cap.png" width="459" height="644" pivot_x="0" pivot_y="1"/>
-        <file id="2" name="blue cap.png" width="459" height="644" pivot_x="0" pivot_y="1"/>
+        <file id="0" name="red_cap.png" width="459" height="644" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="green_cap.png" width="459" height="644" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="blue_cap.png" width="459" height="644" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="redcap">
         <animation id="0" name="idle" length="1000">

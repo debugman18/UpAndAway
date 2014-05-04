@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
     <folder id="0">
-        <file id="0" name="dragonblood_tree .png" width="997" height="1293" pivot_x="0" pivot_y="1"/>
+        <file id="0" name="dragonblood_tree.png" width="997" height="1293" pivot_x="0" pivot_y="1"/>
         <file id="1" name="dragonblood_tree_harvested.png" width="997" height="1293" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="dragonblood_tree">
