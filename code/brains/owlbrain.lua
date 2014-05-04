@@ -10,8 +10,8 @@ require "behaviours/doaction"
 local SEE_PLAYER_DIST = 5
 local SEE_FOOD_DIST = 10
 local MAX_WANDER_DIST = 15
-local MAX_CHASE_TIME = 10
-local MAX_CHASE_DIST = 20
+local MAX_CHASE_TIME = 5
+local MAX_CHASE_DIST = 10
 local RUN_AWAY_DIST = 5
 local STOP_RUN_AWAY_DIST = 8
 local START_FACE_DIST = 6

@@ -37,12 +37,25 @@ TheMod:AddSimPostInit(function(inst)
 	end
 end)
 
---Changes "Give" to "Refiner" for the refiner.
+--Changes "Give" to "Refine" for the refiner.
 TheMod:AddSimPostInit(function(inst)
 	local oldactionstringoverride = inst.ActionStringOverride
 	function inst:ActionStringOverride(bufaction)
 		if bufaction.action == GLOBAL.ACTIONS.GIVE and bufaction.target and bufaction.target.prefab == "refiner" then
 			return "Refine"
+		end
+		if oldactionstringoverride then
+			return oldactionstringoverride(inst, bufaction)
+		end
+	end
+end)
+
+--Changes "Give" to "Cook" for the refiner.
+TheMod:AddSimPostInit(function(inst)
+	local oldactionstringoverride = inst.ActionStringOverride
+	function inst:ActionStringOverride(bufaction)
+		if bufaction.action == GLOBAL.ACTIONS.GIVE and bufaction.target and bufaction.target:HasTag("dragonblood") then
+			return "Cook"
 		end
 		if oldactionstringoverride then
 			return oldactionstringoverride(inst, bufaction)

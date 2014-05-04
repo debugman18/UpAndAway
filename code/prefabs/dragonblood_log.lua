@@ -15,37 +15,83 @@ local assets =
 }
 
 local function FuelTaken(inst, taker)
+
+	local function cooktest(inst, item)
+	    if item.components.cookable then
+	        return true
+	    end
+	end
+
+	local function oncook(inst, giver, item)
+		local cooked = SpawnPrefab("ash")
+		if giver and giver.components.inventory then
+			giver.components.inventory:GiveItem(cooked, nil, Vector3(TheSim:GetScreenPos(taker.Transform:GetWorldPosition())))
+		end
+	end
+
+	local function onrefuse(inst, item)
+	    TheMod:DebugSay("Item was not cookable.")
+	end
+
 	if taker.components.burnable then
 		taker.components.burnable:Extinguish()
 		if not (taker.prefab == ("campfire" or "coldfire")) then
+
 			local blaze = SpawnPrefab("lavalight")
-			--local pt = Vector3(taker.Transform:GetWorldPosition()) + Vector3(0,.5,0)
 			local pt = Vector3(taker.Transform:GetWorldPosition()) + Vector3(0,.76,0)
 			if blaze then
+
 				if taker.prefab == "firepit" then
 					blaze.AnimState:SetMultColour(100,0,0,1)
 				elseif taker.prefab == "coldfirepit" then
 					blaze.AnimState:SetMultColour(0,0,80,1)
 				end	
-				--blaze.Transform:SetScale(.4,.4,.4)
+
 				blaze.Transform:SetScale(.7,.6,.7)
 				taker.components.inspectable.nameoverride = "dragonblood_firepit"
+
+				if not taker:HasTag("dragonblood") then
+					taker:AddTag("dragonblood")
+				end	
+
 			    blaze.Transform:SetPosition(pt:Get())
+
+			    taker:DoTaskInTime(0, function(taker)
+				    if not taker.components.inventory then
+				    	print("Inventory component added.")
+				    	taker:AddComponent("inventory")
+				    end	
+
+				    if not taker.components.trader then
+				    	print("Trader component added.")
+				    	taker:AddComponent("trader")
+		    			taker.components.trader:SetAcceptTest(cooktest)
+		    			taker.components.trader.onaccept = oncook
+		    			taker.components.trader.onrefuse = onrefuse
+		    		end
+
+		    		taker.components.trader:Enable()
+	    		end)
+
 			    if not blaze.components.heater then
 			    	blaze:AddComponent("heater")
 			    end	
+
 			    blaze:AddComponent("propagator")
 			    blaze.components.propagator.propagaterange = 5
 			    blaze.components.propagator:StartSpreading()
 	    		blaze.components.heater.heatfn = function() return 300 end
+
 			    taker:DoTaskInTime(5.6, function() 
 			    	if blaze then
 			    		blaze:Remove()
 			    	end	 	
 			    	if taker then
 			    		taker.components.inspectable.nameoverride = "firepit"
+			    		taker.components.trader:Disable()
 			    	end
 			    end)
+
 			end
 		end
     end

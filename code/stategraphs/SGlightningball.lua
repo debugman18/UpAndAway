@@ -18,10 +18,11 @@ local states =
             if playanim then
                 inst.AnimState:PlayAnimation(playanim)
                 inst.AnimState:PushAnimation("idle_loop", true)
+                inst.SoundEmitter:PlaySound("dontstarve/characters/wx78/spark")
             else
                 inst.AnimState:PlayAnimation("idle_loop", true)
+                inst.SoundEmitter:PlaySound("dontstarve/characters/wx78/spark")
             end
-            inst.SoundEmitter:PlaySound("dontstarve/creatures/monkey"..inst.soundtype.."/idle")
         end,
         
         timeline = 
@@ -49,10 +50,8 @@ CommonStates.AddWalkStates(states,
         TimeEvent(4*FRAMES, function(inst) PlayFootstep(inst) end),
         TimeEvent(5*FRAMES, function(inst) PlayFootstep(inst) end),
         TimeEvent(10*FRAMES, function(inst) 
-            PlayFootstep(inst)
-            if math.random() < 0.1 then
-                inst.SoundEmitter:PlaySound("dontstarve/creatures/monkey"..inst.soundtype.."/idle")
-            end
+            inst.SoundEmitter:PlaySound("dontstarve/creatures/bishop/shotexplo")
+            inst.SoundEmitter:PlaySound("dontstarve/characters/wx78/spark")
          end),
         TimeEvent(11*FRAMES, function(inst) PlayFootstep(inst) end),
 

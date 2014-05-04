@@ -240,9 +240,9 @@ TheMod:AddRoom("Thunder_Forest", {
 		distributepercent = randomness(),
 		distributeprefabs = {
 			thunder_tree = 0.0011,
-			crystal_quartz = 0.0009,
+			crystal_quartz = 0.0010,
 			--owl = 0.004,
-			live_gnome = 0.0006,
+			live_gnome = 0.0010,
 			skyflower = 0.1,
 		},
 	    countprefabs= {

@@ -11,14 +11,10 @@ local assets =
 
 local prefabs =
 {
-   --"beak",
-   --"feather",
 }
 
 local loot = 
 {
-    --"beak",
-    --"feather",
 }
 
 local function RemoveBeard(inst)
@@ -82,7 +78,7 @@ local function fn(Sim)
     inst:AddTag("character")
 
     inst:AddComponent("locomotor")
-    inst.components.locomotor.runspeed = 3
+    inst.components.locomotor.runspeed = 1
     inst.components.locomotor.walkspeed = 3
 
     local brain = require "brains/livegnomebrain"
