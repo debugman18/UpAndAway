@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
     <folder id="0">
         <file id="0" name="water1.png" width="197" height="212" pivot_x="0" pivot_y="1"/>
         <file id="1" name="water2.png" width="229" height="154" pivot_x="0" pivot_y="1"/>
@@ -16,46 +16,62 @@
         <file id="12" name="white1.png" width="161" height="205" pivot_x="0" pivot_y="1"/>
         <file id="13" name="white2.png" width="177" height="147" pivot_x="0" pivot_y="1"/>
         <file id="14" name="white3.png" width="166" height="117" pivot_x="0" pivot_y="1"/>
-    </folder>
-    <folder id="1">
-        <file id="0" name="/darkgreen1.png" width="161" height="205" pivot_x="0" pivot_y="1"/>
-        <file id="1" name="/darkgreen2.png" width="177" height="149" pivot_x="0" pivot_y="1"/>
-        <file id="2" name="/darkgreen3.png" width="166" height="147" pivot_x="0" pivot_y="1"/>
+        <file id="15" name="darkgreen1.png" width="161" height="205" pivot_x="0" pivot_y="1"/>
+        <file id="16" name="darkgreen2.png" width="177" height="149" pivot_x="0" pivot_y="1"/>
+        <file id="17" name="darkgreen3.png" width="166" height="147" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="crystal_water">
         <animation id="0" name="idle_full" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="water1" folder="0" file="0" abs_x="-90.918367" abs_y="191.836735" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="water1">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-90.918367" y="191.836735"/>
+                    <object folder="0" file="0" x="-90.918367" y="191.836735" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="0" x="-90.918367" y="191.836735" angle="0"/>
                 </key>
             </timeline>
         </animation>
         <animation id="1" name="idle_med" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="water1" folder="0" file="1" abs_x="-116.326531" abs_y="134.693878" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="water1">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-116.326531" y="134.693878"/>
+                    <object folder="0" file="1" x="-116.326531" y="134.693878" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="1" x="-116.326531" y="134.693878" angle="0"/>
                 </key>
             </timeline>
         </animation>
         <animation id="2" name="idle_low" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="water3" folder="0" file="2" abs_x="-94.938776" abs_y="111.183673" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="water3">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-94.938776" y="111.183673"/>
+                    <object folder="0" file="2" x="-94.938776" y="111.183673" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="2" x="-94.938776" y="111.183673" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -64,36 +80,54 @@
         <animation id="0" name="idle_full" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="light1" folder="0" file="3" abs_x="-87.555556" abs_y="187.5" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="light1">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="-87.555556" y="187.5"/>
+                    <object folder="0" file="3" x="-87.555556" y="187.5" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="3" x="-87.555556" y="187.5" angle="0"/>
                 </key>
             </timeline>
         </animation>
         <animation id="1" name="idle_med" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="light2" folder="0" file="4" abs_x="-100.247191" abs_y="130.337079" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="light2">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-100.247191" y="130.337079"/>
+                    <object folder="0" file="4" x="-100.247191" y="130.337079" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="4" x="-100.247191" y="130.337079" angle="0"/>
                 </key>
             </timeline>
         </animation>
         <animation id="2" name="idle_low" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="light3" folder="0" file="5" abs_x="-89.88764" abs_y="114.606742" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="light3">
                 <key id="0" spin="0">
-                    <object folder="0" file="5" x="-89.88764" y="114.606742"/>
+                    <object folder="0" file="5" x="-89.88764" y="114.606742" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="5" x="-89.88764" y="114.606742" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -102,36 +136,54 @@
         <animation id="0" name="idle_full" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="red1" folder="0" file="6" abs_x="-102.061856" abs_y="188.659794" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="red1">
                 <key id="0" spin="0">
-                    <object folder="0" file="6" x="-102.061856" y="188.659794"/>
+                    <object folder="0" file="6" x="-102.061856" y="188.659794" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="6" x="-102.061856" y="188.659794" angle="0"/>
                 </key>
             </timeline>
         </animation>
         <animation id="1" name="idle_med" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="red2" folder="0" file="7" abs_x="-106.25" abs_y="136.607143" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="red2">
                 <key id="0" spin="0">
-                    <object folder="0" file="7" x="-106.25" y="136.607143"/>
+                    <object folder="0" file="7" x="-106.25" y="136.607143" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="7" x="-106.25" y="136.607143" angle="0"/>
                 </key>
             </timeline>
         </animation>
         <animation id="2" name="idle_low" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="red3" folder="0" file="8" abs_x="-96.428571" abs_y="91.071429" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="red3">
                 <key id="0" spin="0">
-                    <object folder="0" file="8" x="-96.428571" y="91.071429"/>
+                    <object folder="0" file="8" x="-96.428571" y="91.071429" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="8" x="-96.428571" y="91.071429" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -140,36 +192,54 @@
         <animation id="0" name="idle_full" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="quarzt1" folder="0" file="9" abs_x="-87.5" abs_y="189.285714" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="quarzt1">
                 <key id="0" spin="0">
-                    <object folder="0" file="9" x="-87.5" y="189.285714"/>
+                    <object folder="0" file="9" x="-87.5" y="189.285714" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="9" x="-87.5" y="189.285714" angle="0"/>
                 </key>
             </timeline>
         </animation>
         <animation id="1" name="idle_med" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="quartz2" folder="0" file="10" abs_x="-98.892857" abs_y="131.25" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="quartz2">
                 <key id="0" spin="0">
-                    <object folder="0" file="10" x="-98.892857" y="131.25"/>
+                    <object folder="0" file="10" x="-98.892857" y="131.25" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="10" x="-98.892857" y="131.25" angle="0"/>
                 </key>
             </timeline>
         </animation>
         <animation id="2" name="idle_low" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="quartz3" folder="0" file="11" abs_x="-91.964286" abs_y="91.964286" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="quartz3">
                 <key id="0" spin="0">
-                    <object folder="0" file="11" x="-91.964286" y="91.964286"/>
+                    <object folder="0" file="11" x="-91.964286" y="91.964286" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="11" x="-91.964286" y="91.964286" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -178,36 +248,54 @@
         <animation id="0" name="idle_full" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="white1" folder="0" file="12" abs_x="-91.964286" abs_y="190.178571" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="white1">
                 <key id="0" spin="0">
-                    <object folder="0" file="12" x="-91.964286" y="190.178571"/>
+                    <object folder="0" file="12" x="-91.964286" y="190.178571" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="12" x="-91.964286" y="190.178571" angle="0"/>
                 </key>
             </timeline>
         </animation>
         <animation id="1" name="idle_med" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="white2" folder="0" file="13" abs_x="-102.678571" abs_y="128.571429" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="white2">
                 <key id="0" spin="0">
-                    <object folder="0" file="13" x="-102.678571" y="128.571429"/>
+                    <object folder="0" file="13" x="-102.678571" y="128.571429" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="13" x="-102.678571" y="128.571429" angle="0"/>
                 </key>
             </timeline>
         </animation>
         <animation id="2" name="idle_low" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="white3" folder="0" file="14" abs_x="-92.857143" abs_y="88.392857" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="white3">
                 <key id="0" spin="0">
-                    <object folder="0" file="14" x="-92.857143" y="88.392857"/>
+                    <object folder="0" file="14" x="-92.857143" y="88.392857" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="14" x="-92.857143" y="88.392857" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -216,36 +304,54 @@
         <animation id="0" name="idle_full" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="darkgreen1" folder="1" file="0" abs_x="-92.857143" abs_y="189.285714" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="darkgreen1">
                 <key id="0" spin="0">
-                    <object folder="1" file="0" x="-92.857143" y="189.285714"/>
+                    <object folder="0" file="15" x="-92.857143" y="189.285714" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="15" x="-92.857143" y="189.285714" angle="0"/>
                 </key>
             </timeline>
         </animation>
         <animation id="1" name="idle_med" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="darkgreen2" folder="1" file="1" abs_x="-107.928571" abs_y="132.142857" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="darkgreen2">
                 <key id="0" spin="0">
-                    <object folder="1" file="1" x="-107.928571" y="132.142857"/>
+                    <object folder="0" file="16" x="-107.928571" y="132.142857" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="16" x="-107.928571" y="132.142857" angle="0"/>
                 </key>
             </timeline>
         </animation>
         <animation id="2" name="idle_low" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="darkgreen3" folder="1" file="2" abs_x="-93.642857" abs_y="114.285714" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="darkgreen3">
                 <key id="0" spin="0">
-                    <object folder="1" file="2" x="-93.642857" y="114.285714"/>
+                    <object folder="0" file="17" x="-93.642857" y="114.285714" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="17" x="-93.642857" y="114.285714" angle="0"/>
                 </key>
             </timeline>
         </animation>

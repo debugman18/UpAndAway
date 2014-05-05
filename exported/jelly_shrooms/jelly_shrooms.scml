@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
     <folder id="0">
         <file id="0" name="jelly_shroom.png" width="459" height="644" pivot_x="0" pivot_y="1"/>
         <file id="1" name="jelly_shroom2.png" width="459" height="644" pivot_x="0" pivot_y="1"/>
@@ -9,12 +9,18 @@
         <animation id="0" name="idle" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="jelly_shroom" folder="0" file="0" abs_x="-214.2507" abs_y="591.876751" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="jelly_shroom">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-214.2507" y="591.876751"/>
+                    <object folder="0" file="0" x="-214.2507" y="591.876751" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="0" x="-214.2507" y="591.876751" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -23,12 +29,18 @@
         <animation id="0" name="idle" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="jelly_shroom2" folder="0" file="1" abs_x="-235" abs_y="565" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="jelly_shroom2">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-235" y="565"/>
+                    <object folder="0" file="1" x="-235" y="565" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="1" x="-235" y="565" angle="0"/>
                 </key>
             </timeline>
         </animation>
@@ -37,12 +49,18 @@
         <animation id="0" name="idle" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="jelly_shroom3" folder="0" file="2" abs_x="-277.5" abs_y="567.5" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="jelly_shroom3">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-277.5" y="567.5"/>
+                    <object folder="0" file="2" x="-277.5" y="567.5" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="2" x="-277.5" y="567.5" angle="0"/>
                 </key>
             </timeline>
         </animation>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
     <folder id="0">
         <file id="0" name="blackcrystal.png" width="144" height="295" pivot_x="0" pivot_y="1"/>
         <file id="1" name="owlhead.png" width="87" height="86" pivot_x="0" pivot_y="1"/>
@@ -8,30 +8,43 @@
         <animation id="0" name="idle" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="blackcrystal" folder="0" file="0" abs_x="-73.234043" abs_y="278.255319" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="blackcrystal">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-73.234043" y="278.255319"/>
+                    <object folder="0" file="0" x="-73.234043" y="278.255319" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="0" x="-73.234043" y="278.255319" angle="0"/>
                 </key>
             </timeline>
         </animation>
         <animation id="1" name="idle_occupied" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="blackcrystal" folder="0" file="0" abs_x="-73.234043" abs_y="278.255319" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" name="owlhead" folder="0" file="1" abs_x="-42.365957" abs_y="217.821277" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
                 </key>
             </mainline>
             <timeline id="0" name="blackcrystal">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-73.234043" y="278.255319"/>
+                    <object folder="0" file="0" x="-73.234043" y="278.255319" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="0" x="-73.234043" y="278.255319" angle="0"/>
                 </key>
             </timeline>
             <timeline id="1" name="owlhead">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-42.365957" y="217.821277"/>
+                    <object folder="0" file="1" x="-42.365957" y="217.821277" angle="0"/>
                 </key>
             </timeline>
         </animation>

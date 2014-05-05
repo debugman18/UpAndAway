@@ -20,7 +20,7 @@ local rareloot = {
 }
 
 local function retargetfn(inst)
-    return FindEntity(inst, TUNING.EYEPLANT_ATTACK_DIST, function(guy) 
+    return FindEntity(inst, 2, function(guy) 
         if guy.components.combat and guy.components.health and not guy.components.health:IsDead() then
             return (
 				guy:HasTag("character")
@@ -39,7 +39,7 @@ local function shouldKeepTarget(inst, target)
     if target and target:IsValid() and target.components.health and not target.components.health:IsDead() then
         local distsq = target:GetDistanceSqToInst(inst)
         
-        return distsq < TUNING.EYEPLANT_STOPATTACK_DIST*TUNING.EYEPLANT_STOPATTACK_DIST
+        return distsq < 2*2
     else
         return false
     end
@@ -69,7 +69,7 @@ local function fn(Sim)
     inst.components.combat:SetRange(4)
     inst.components.combat:SetRetargetFunction(0.2, retargetfn)
     inst.components.combat:SetKeepTargetFunction(shouldKeepTarget)
-    inst.components.combat:SetDefaultDamage(60) 
+    inst.components.combat:SetDefaultDamage(80) 
 
     inst:AddComponent("lootdropper")
     if math.random(1,8) == 1 then

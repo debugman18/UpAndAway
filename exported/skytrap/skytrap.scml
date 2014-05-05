@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
     <folder id="0">
         <file id="0" name="skytrapheadIdle.png" width="500" height="500" pivot_x="0" pivot_y="1"/>
         <file id="1" name="skytrapbodybase.png" width="500" height="500" pivot_x="0" pivot_y="1"/>
@@ -11,9 +11,9 @@
         <animation id="0" name="dead" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="skytrapbodybase_002" folder="0" file="1" abs_x="22.891717" abs_y="-145.837492" abs_pivot_x="0.52495" abs_pivot_y="0.504158" abs_angle="71.45715" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" name="skytrapbodymiddle_002" folder="0" file="2" abs_x="136.452096" abs_y="-155.218729" abs_pivot_x="0.506238" abs_pivot_y="0.510396" abs_angle="296.04164" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
-                    <object_ref id="2" name="skytrapheadIdle_002" folder="0" file="0" abs_x="-389.583333" abs_y="81.25" abs_pivot_x="0" abs_pivot_y="1" abs_angle="10.969758" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
                 </key>
                 <key id="1" time="1000">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
@@ -49,9 +49,9 @@
         <animation id="1" name="idle" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="skytrapheadIdle" folder="0" file="0" abs_x="-241.5" abs_y="513.487525" abs_pivot_x="0" abs_pivot_y="1" abs_angle="356.898616" abs_scale_x="1" abs_scale_y="1.02495" abs_a="1" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" name="skytrapbodybase" folder="0" file="1" abs_x="-256.5" abs_y="280.5" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
-                    <object_ref id="2" name="skytrapbodymiddle" folder="0" file="2" abs_x="-254.5" abs_y="377.5" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
                 </key>
                 <key id="1" time="489">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
@@ -95,9 +95,9 @@
         <animation id="2" name="death" length="1000" looping="false">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="skytrapbodybase_001" folder="0" file="1" abs_x="-252.333333" abs_y="284.666667" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" name="skytrapbodymiddle_001" folder="0" file="2" abs_x="-263.333333" abs_y="370.666667" abs_pivot_x="0" abs_pivot_y="1" abs_angle="2.644312" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
-                    <object_ref id="2" name="skytrapheadIdle_001" folder="0" file="0" abs_x="-279.333333" abs_y="474.666667" abs_pivot_x="0" abs_pivot_y="1" abs_angle="3.836576" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
                 </key>
                 <key id="1" time="490">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
@@ -110,8 +110,8 @@
                     <object_ref id="2" timeline="2" key="2" z_index="2"/>
                 </key>
                 <key id="3" time="1000">
-                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
-                    <object_ref id="1" timeline="1" key="3" z_index="1"/>
+                    <object_ref id="0" timeline="0" key="4" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="4" z_index="1"/>
                     <object_ref id="2" timeline="2" key="3" z_index="2"/>
                 </key>
             </mainline>
@@ -125,7 +125,10 @@
                 <key id="2" time="664">
                     <object folder="0" file="1" x="-264.258824" y="262.031373" angle="3.122927"/>
                 </key>
-                <key id="3" time="1000" spin="-1">
+                <key id="3" time="1000">
+                    <object folder="0" file="1" x="-326.310324" y="-125.889435" pivot_x="0" pivot_y="1" angle="66.234009"/>
+                </key>
+                <key id="4" time="1000" spin="-1">
                     <object folder="0" file="1" x="7.20861" y="14.93912" pivot_x="0.52659" pivot_y="0.503036" angle="66.234009"/>
                 </key>
             </timeline>
@@ -139,7 +142,10 @@
                 <key id="2" time="664" spin="-1">
                     <object folder="0" file="2" x="-129.447494" y="472.46736" angle="351.295198" scale_x="0.925866" scale_y="1.193472"/>
                 </key>
-                <key id="3" time="1000">
+                <key id="3" time="1000" spin="-1">
+                    <object folder="0" file="2" x="171.437018" y="353.53883" pivot_x="0" pivot_y="1" angle="305.194702"/>
+                </key>
+                <key id="4" time="1000">
                     <object folder="0" file="2" x="113.237824" y="7.934789" pivot_x="0.497767" pivot_y="0.506497" angle="305.194702"/>
                 </key>
             </timeline>
@@ -161,9 +167,9 @@
         <animation id="3" name="attack" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="skytrapbodybase_000" folder="0" file="1" abs_x="-256.215686" abs_y="269.019608" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" name="skytrapbodymiddle_000" folder="0" file="2" abs_x="-253.215686" abs_y="366.019608" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
-                    <object_ref id="2" name="skytrapheadIdle_000" folder="0" file="0" abs_x="-258.215686" abs_y="482.019608" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
                 </key>
                 <key id="1" time="294">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
@@ -175,6 +181,11 @@
                     <object_ref id="1" timeline="1" key="1" z_index="1"/>
                     <object_ref id="2" timeline="2" key="2" z_index="2"/>
                 </key>
+                <key id="3" time="1000">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="3" z_index="2"/>
+                </key>
             </mainline>
             <timeline id="0" name="skytrapbodybase_000">
                 <key id="0">
@@ -183,6 +194,9 @@
                 <key id="1" time="294" spin="-1">
                     <object folder="0" file="1" x="-267.098039" y="267.862745" angle="1.772611"/>
                 </key>
+                <key id="2" time="1000" spin="0">
+                    <object folder="0" file="1" x="-256.215686" y="269.019608" angle="0"/>
+                </key>
             </timeline>
             <timeline id="1" name="skytrapbodymiddle_000">
                 <key id="0" spin="-1">
@@ -190,6 +204,9 @@
                 </key>
                 <key id="1" time="294">
                     <object folder="0" file="2" x="-179.098039" y="417.862745" angle="345.883697"/>
+                </key>
+                <key id="2" time="1000">
+                    <object folder="0" file="2" x="-253.215686" y="366.019608"/>
                 </key>
             </timeline>
             <timeline id="2" name="skytrapheadIdle_000">
@@ -200,7 +217,10 @@
                     <object folder="0" file="0" x="-287.098039" y="420.862745" angle="9.615285"/>
                 </key>
                 <key id="2" time="471">
-                    <object folder="0" file="0" x="-130.766087" y="541.649818" angle="341.100445" scale_x="1" scale_y="1"/>
+                    <object folder="0" file="0" x="-130.766087" y="541.649818" angle="341.100445"/>
+                </key>
+                <key id="3" time="1000">
+                    <object folder="0" file="0" x="-258.215686" y="482.019608"/>
                 </key>
             </timeline>
         </animation>

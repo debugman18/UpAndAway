@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
     <folder id="0" name="art">
         <file id="0" name="art/art-0.png" width="176" height="310" pivot_x="0.502838" pivot_y="0.542655"/>
     </folder>
@@ -7,11 +7,17 @@
         <animation id="0" name="anim" length="14">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="art" folder="0" file="0" abs_x="-0.099" abs_y="0" abs_pivot_x="0.502838" abs_pivot_y="0.542655" abs_angle="0" abs_scale_x="1" abs_scale_y="0.934753" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="14">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="art">
                 <key id="0" spin="0">
+                    <object folder="0" file="0" x="-0.099" angle="0" scale_y="0.934753"/>
+                </key>
+                <key id="1" time="14" spin="0">
                     <object folder="0" file="0" x="-0.099" angle="0" scale_y="0.934753"/>
                 </key>
             </timeline>
@@ -19,7 +25,7 @@
         <animation id="1" name="close" length="267">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="art" folder="0" file="0" abs_x="-0.099" abs_y="0" abs_pivot_x="0.502838" abs_pivot_y="0.542655" abs_angle="0" abs_scale_x="0.733032" abs_scale_y="1.07979" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
                 </key>
                 <key id="1" time="34">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
@@ -69,15 +75,12 @@
                 <key id="7" time="234" spin="0">
                     <object folder="0" file="0" x="-0.099" y="-139" angle="0" scale_x="1.07558" scale_y="0.028503"/>
                 </key>
-                <key id="8" time="267" spin="0">
-                    <object folder="0" file="0" x="-0.099" y="-139" angle="0" scale_x="1.07558" scale_y="0.028503"/>
-                </key>
             </timeline>
         </animation>
         <animation id="2" name="idle" length="134">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="art" folder="0" file="0" abs_x="-0.099" abs_y="0" abs_pivot_x="0.502838" abs_pivot_y="0.542655" abs_angle="0" abs_scale_x="1" abs_scale_y="0.934753" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
                 </key>
                 <key id="1" time="34">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>

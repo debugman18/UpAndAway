@@ -224,7 +224,7 @@ local function fn(inst)
 	anim:SetBank("crystal_wall")
 	anim:SetBuild("crystal_wall")
 	anim:PlayAnimation("1_2", false)
-	inst.Transform:SetScale(3,3,3)
+	--inst.Transform:SetScale(3,3,3)
 
 	if not GetWorld().components.clock:IsDay() then
 		anim:SetBloomEffectHandle("shaders/anim.ksh")
@@ -272,5 +272,5 @@ end
 return {
 	Prefab ("common/inventory/crystal_wall", fn, assets, prefabs),
 	Prefab ("common/inventoryitem/crystal_wall_item", itemfn, assets, prefabs),
-	MakePlacer("common/crystal_wall_placer", "crystal_wall", "crystal_wall", "1_2", false, false, true, 3),
+	MakePlacer("common/crystal_wall_placer", "crystal_wall", "crystal_wall", "1_2", false, false, true),
 }

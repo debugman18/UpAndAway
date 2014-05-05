@@ -11,6 +11,13 @@ local events=
             inst.sg:GoToState("idle") 
         end 
     end),
+    EventHandler("doattack", function(inst)
+        if not inst.components.health:IsDead() then
+            if inst.components.combat.target and inst:IsNear(inst.components.combat.target, 2) then
+                inst.sg:GoToState("attack")
+            end
+        end
+    end),
 }
 
 local states=
@@ -88,7 +95,8 @@ local states=
         onenter = function(inst)
             if inst.components.combat.target then    
                 inst:ForceFacePoint(inst.components.combat.target.Transform:GetWorldPosition())
-                inst.AnimState:PushAnimation("attack")
+                inst.components.combat:StartAttack()
+                inst.AnimState:PushAnimation("attack")  
             end
         end,
         
@@ -101,16 +109,7 @@ local states=
         
         events=
         {
-            EventHandler("animqueueover", function(inst) 
-                if inst.components.combat.target and 
-                    distsq(inst.components.combat.target:GetPosition(),inst:GetPosition()) <= 
-                    inst.components.combat:CalcAttackRangeSq(inst.components.combat.target) then
-
-                    inst.sg:GoToState("attack")
-                else
-                    inst.sg:GoToState("idle")
-                end
-            end),
+            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end)
         },
     },
 

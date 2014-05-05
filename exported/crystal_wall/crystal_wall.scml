@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
     <folder id="0">
         <file id="0" name="1.png" width="86" height="162" pivot_x="0" pivot_y="1"/>
         <file id="1" name="1_2.png" width="86" height="110" pivot_x="0" pivot_y="1"/>
@@ -11,60 +11,90 @@
         <animation id="0" name="1" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="1" folder="0" file="0" abs_x="-43.506493" abs_y="139.61039" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="1">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-43.506493" y="139.61039" angle="0"/>
+                    <object folder="0" file="0" x="-132.732183" y="406.627197" angle="0" scale_x="3" scale_y="3"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="0" x="-132.732183" y="406.627197" angle="0" scale_x="3" scale_y="3"/>
                 </key>
             </timeline>
         </animation>
         <animation id="1" name="1_2" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="1" folder="0" file="1" abs_x="-44.389208" abs_y="84.229437" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="1">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-44.389208" y="84.229437" angle="0"/>
+                    <object folder="0" file="1" x="-130.974574" y="242.766022" angle="0" scale_x="3" scale_y="3"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="1" x="-130.974574" y="242.766022" angle="0" scale_x="3" scale_y="3"/>
                 </key>
             </timeline>
         </animation>
         <animation id="2" name="1_4" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="1" folder="0" file="2" abs_x="-43.682976" abs_y="63.403101" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="1">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-43.682976" y="63.403101" angle="0"/>
+                    <object folder="0" file="2" x="-130.268342" y="184.573833" angle="0" scale_x="3" scale_y="3"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="2" x="-130.268342" y="184.573833" angle="0" scale_x="3" scale_y="3"/>
                 </key>
             </timeline>
         </animation>
         <animation id="3" name="3_4" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="1" folder="0" file="3" abs_x="-40.263382" abs_y="110.426026" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="1">
                 <key id="0" spin="0">
-                    <object folder="0" file="3" x="-40.263382" y="110.426026" angle="0"/>
+                    <object folder="0" file="3" x="-118.21075" y="322.829535" angle="0" scale_x="3" scale_y="3"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="3" x="-118.312162" y="322.621148" angle="0" scale_x="3" scale_y="3"/>
                 </key>
             </timeline>
         </animation>
         <animation id="4" name="0" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="1" folder="0" file="4" abs_x="-41.778968" abs_y="37.460663" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="1">
                 <key id="0" spin="0">
-                    <object folder="0" file="4" x="-41.778968" y="37.460663" angle="0"/>
+                    <object folder="0" file="4" x="-133.884231" y="106.022067" angle="0" scale_x="3" scale_y="3"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="4" x="-133.884231" y="106.022067" angle="0" scale_x="3" scale_y="3"/>
                 </key>
             </timeline>
         </animation>

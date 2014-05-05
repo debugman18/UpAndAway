@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
     <folder id="0" name="lessgustyflower">
         <file id="0" name="lessgustyflower/lessgustyflower_base.png" width="500" height="700" pivot_x="0" pivot_y="1"/>
         <file id="1" name="lessgustyflower/lessgustyflower_middle.png" width="500" height="700" pivot_x="0" pivot_y="1"/>
@@ -17,13 +17,18 @@
         <animation id="0" name="sway" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="lessgustyflower_base" folder="0" file="0" abs_x="-257" abs_y="403" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" name="lessgustyflower_middle" folder="0" file="1" abs_x="-281" abs_y="640" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
-                    <object_ref id="2" name="lessgustyflower_tip" folder="0" file="2" abs_x="-272" abs_y="872" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
                 </key>
                 <key id="1" time="490">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
                     <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="1" z_index="2"/>
+                </key>
+                <key id="2" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
                     <object_ref id="2" timeline="2" key="1" z_index="2"/>
                 </key>
             </mainline>
@@ -42,6 +47,9 @@
                 <key id="1" time="490">
                     <object folder="0" file="1" x="-240.42029" y="663.188406" angle="355.578671"/>
                 </key>
+                <key id="2" time="1000">
+                    <object folder="0" file="1" x="-281" y="640"/>
+                </key>
             </timeline>
             <timeline id="2" name="lessgustyflower_tip">
                 <key id="0" spin="0">
@@ -55,9 +63,9 @@
         <animation id="1" name="whirlwind_spawn" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="lessgustyflower_base_000" folder="0" file="0" abs_x="-256.521739" abs_y="404.347826" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" name="lessgustyflower_middle_000" folder="0" file="1" abs_x="-279.6875" abs_y="640.625" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
-                    <object_ref id="2" name="lessgustyflower_tip_000" folder="0" file="2" abs_x="-271.875" abs_y="871.875" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
                 </key>
                 <key id="1" time="197">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
@@ -184,9 +192,9 @@
         <animation id="0" name="spin" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="gustflowerbase_000" folder="2" file="0" abs_x="-246.875" abs_y="323.4375" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" name="gustflowermiddle_000" folder="2" file="1" abs_x="-98.4375" abs_y="492.1875" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
-                    <object_ref id="2" name="gustflowertip_000" folder="2" file="2" abs_x="54.6875" abs_y="654.6875" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
                 </key>
                 <key id="1" time="147">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
@@ -221,6 +229,11 @@
                 <key id="7" time="832">
                     <object_ref id="0" timeline="0" key="7" z_index="0"/>
                     <object_ref id="1" timeline="1" key="7" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="7" z_index="2"/>
+                </key>
+                <key id="8" time="1000">
+                    <object_ref id="0" timeline="0" key="7" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="8" z_index="1"/>
                     <object_ref id="2" timeline="2" key="7" z_index="2"/>
                 </key>
             </mainline>
@@ -275,6 +288,9 @@
                 <key id="7" time="832" spin="0">
                     <object folder="2" file="1" x="-98.4375" y="492.1875" angle="0"/>
                 </key>
+                <key id="8" time="1000" spin="0">
+                    <object folder="2" file="1" x="-98.4375" y="492.1875" angle="0"/>
+                </key>
             </timeline>
             <timeline id="2" name="gustflowertip_000">
                 <key id="0" spin="-1">
@@ -306,13 +322,18 @@
         <animation id="1" name="sway" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="gustflowerbase" folder="2" file="0" abs_x="-243.75" abs_y="325" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" name="gustflowermiddle" folder="2" file="1" abs_x="-96.875" abs_y="489.0625" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
-                    <object_ref id="2" name="gustflowertip" folder="2" file="2" abs_x="56.25" abs_y="651.5625" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
                 </key>
                 <key id="1" time="490">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
                     <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="1" z_index="2"/>
+                </key>
+                <key id="2" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
                     <object_ref id="2" timeline="2" key="1" z_index="2"/>
                 </key>
             </mainline>
@@ -330,6 +351,9 @@
                 </key>
                 <key id="1" time="490">
                     <object folder="2" file="1" x="-43.75" y="507.8125" angle="352.711048"/>
+                </key>
+                <key id="2" time="1000">
+                    <object folder="2" file="1" x="-96.875" y="489.0625"/>
                 </key>
             </timeline>
             <timeline id="2" name="gustflowertip">

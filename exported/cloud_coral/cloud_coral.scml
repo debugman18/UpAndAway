@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
     <folder id="0">
         <file id="0" name="cloud_coral_full.png" width="228" height="231" pivot_x="0" pivot_y="1"/>
         <file id="1" name="cloud_coral_med.png" width="228" height="231" pivot_x="0" pivot_y="1"/>
@@ -9,36 +9,54 @@
         <animation id="0" name="idle_full" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="cloud_coral_full" folder="0" file="0" abs_x="-105.580153" abs_y="188.480916" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="cloud_coral_full">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-105.580153" y="188.480916"/>
+                    <object folder="0" file="0" x="-105.580153" y="188.480916" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="0" x="-105.580153" y="188.480916" angle="0"/>
                 </key>
             </timeline>
         </animation>
         <animation id="1" name="idle_med" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="cloud_coral_med" folder="0" file="1" abs_x="-105.301075" abs_y="189.247312" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="cloud_coral_med">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-105.301075" y="189.247312"/>
+                    <object folder="0" file="1" x="-105.301075" y="189.247312" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="1" x="-105.301075" y="189.247312" angle="0"/>
                 </key>
             </timeline>
         </animation>
         <animation id="2" name="idle_low" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="cloud_coral_low" folder="0" file="2" abs_x="-101.075269" abs_y="192.473118" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="cloud_coral_low">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-101.075269" y="192.473118"/>
+                    <object folder="0" file="2" x="-101.075269" y="192.473118" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="2" x="-101.075269" y="192.473118" angle="0"/>
                 </key>
             </timeline>
         </animation>

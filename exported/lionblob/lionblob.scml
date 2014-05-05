@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
     <folder id="0">
         <file id="0" name="antlion_body_side.png" width="223" height="166" pivot_x="0" pivot_y="1"/>
         <file id="1" name="antlion_head_side.png" width="95" height="101" pivot_x="0" pivot_y="1"/>
@@ -13,9 +13,9 @@
         <animation id="0" name="nod" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="antlion_body_side" folder="0" file="0" abs_x="-122" abs_y="81" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" name="antlion_head_side" folder="0" file="1" abs_x="30" abs_y="65" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
-                    <object_ref id="2" name="antlion_face_side" folder="0" file="2" abs_x="76.807292" abs_y="19.702381" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="0.614583" abs_scale_y="0.595238" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
                 </key>
                 <key id="1" time="97">
                     <object_ref id="0" timeline="0" key="0" z_index="0"/>
@@ -47,9 +47,17 @@
                     <object_ref id="1" timeline="5" key="0" z_index="1"/>
                     <object_ref id="2" timeline="6" key="0" z_index="2"/>
                 </key>
+                <key id="7" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="5" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="6" key="1" z_index="2"/>
+                </key>
             </mainline>
             <timeline id="0" name="antlion_body_side">
                 <key id="0" spin="0">
+                    <object folder="0" file="0" x="-122" y="81" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
                     <object folder="0" file="0" x="-122" y="81" angle="0"/>
                 </key>
             </timeline>
@@ -69,9 +77,6 @@
                 <key id="4" time="391" spin="0">
                     <object folder="0" file="1" x="34.015911" y="67.61252" angle="0"/>
                 </key>
-                <key id="5" time="492" spin="0">
-                    <object folder="0" file="1" x="34.015911" y="67.61252" angle="0"/>
-                </key>
             </timeline>
             <timeline id="2" name="antlion_face_side">
                 <key id="0" spin="0">
@@ -89,15 +94,9 @@
                 <key id="4" time="391" spin="0">
                     <object folder="0" file="2" x="80.823203" y="22.314901" angle="0" scale_x="0.614583" scale_y="0.595238"/>
                 </key>
-                <key id="5" time="492" spin="0">
-                    <object folder="0" file="2" x="80.823203" y="22.314901" angle="0" scale_x="0.614583" scale_y="0.595238"/>
-                </key>
             </timeline>
             <timeline id="3" name="antlion_head_front">
                 <key id="0" time="492" spin="0">
-                    <object folder="0" file="3" x="29" y="57" angle="0"/>
-                </key>
-                <key id="1" time="586" spin="0">
                     <object folder="0" file="3" x="29" y="57" angle="0"/>
                 </key>
             </timeline>
@@ -105,17 +104,20 @@
                 <key id="0" time="492" spin="0">
                     <object folder="0" file="5" x="69" y="-4" angle="0"/>
                 </key>
-                <key id="1" time="586" spin="0">
-                    <object folder="0" file="5" x="69" y="-4" angle="0"/>
-                </key>
             </timeline>
             <timeline id="5" name="antlion_head_side_000">
                 <key id="0" time="586" spin="0">
                     <object folder="0" file="1" x="40" y="46" angle="0"/>
                 </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="1" x="40" y="46" angle="0"/>
+                </key>
             </timeline>
             <timeline id="6" name="antlion_mouth_side">
                 <key id="0" time="586" spin="0">
+                    <object folder="0" file="6" x="86" y="-4" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
                     <object folder="0" file="6" x="86" y="-4" angle="0"/>
                 </key>
             </timeline>

@@ -328,7 +328,7 @@ local function fn(inst)
 	inst.entity:SetCanSleep(false)
 	anim:SetBank("beanstalk_wall")
 	anim:SetBuild("beanstalk_wall")
-	inst.Transform:SetScale(3,3,3)
+	--inst.Transform:SetScale(3,3,3)
 	    
 	inst:AddComponent("inspectable")
 	inst:AddComponent("lootdropper")
@@ -370,5 +370,5 @@ end
 return {
 	Prefab ("common/inventory/beanstalk_wall", fn, assets, prefabs),
 	Prefab ("common/inventoryitem/beanstalk_wall_item", itemfn, assets, prefabs),
-	MakePlacer("common/beanstalk_wall_placer", "beanstalk_wall", "beanstalk_wall", "0", false, false, true, 3),
+	MakePlacer("common/beanstalk_wall_placer", "beanstalk_wall", "beanstalk_wall", "0", false, false, true),
 }

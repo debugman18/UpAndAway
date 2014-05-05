@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
     <folder id="0">
         <file id="0" name="goldenrosebase.png" width="200" height="200" pivot_x="0" pivot_y="1"/>
         <file id="1" name="goldenrosemiddle.png" width="200" height="200" pivot_x="0" pivot_y="1"/>
@@ -9,9 +9,9 @@
         <animation id="0" name="idle" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="goldenrosebase" folder="0" file="0" abs_x="-107.071429" abs_y="176.571429" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" name="goldenrosemiddle" folder="0" file="1" abs_x="-125.071429" abs_y="310.571429" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
-                    <object_ref id="2" name="goldenrosehead" folder="0" file="2" abs_x="-100.071429" abs_y="402.571429" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
                 </key>
                 <key id="1" time="402">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
@@ -28,6 +28,11 @@
                     <object_ref id="1" timeline="1" key="3" z_index="1"/>
                     <object_ref id="2" timeline="2" key="3" z_index="2"/>
                 </key>
+                <key id="4" time="1000">
+                    <object_ref id="0" timeline="0" key="4" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="4" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="4" z_index="2"/>
+                </key>
             </mainline>
             <timeline id="0" name="goldenrosebase">
                 <key id="0" spin="-1">
@@ -41,6 +46,9 @@
                 </key>
                 <key id="3" time="954">
                     <object folder="0" file="0" x="-105.937584" y="177.559812" angle="359.911781" scale_y="1.002825"/>
+                </key>
+                <key id="4" time="1000">
+                    <object folder="0" file="0" x="-107.071429" y="176.571429"/>
                 </key>
             </timeline>
             <timeline id="1" name="goldenrosemiddle">
@@ -56,6 +64,9 @@
                 <key id="3" time="954">
                     <object folder="0" file="1" x="-122.712383" y="312.118125" angle="359.489486"/>
                 </key>
+                <key id="4" time="1000">
+                    <object folder="0" file="1" x="-125.071429" y="310.571429"/>
+                </key>
             </timeline>
             <timeline id="2" name="goldenrosehead">
                 <key id="0" spin="-1">
@@ -69,6 +80,9 @@
                 </key>
                 <key id="3" time="954">
                     <object folder="0" file="2" x="-96.487202" y="403.895365" angle="359.333617"/>
+                </key>
+                <key id="4" time="1000">
+                    <object folder="0" file="2" x="-100.071429" y="402.571429"/>
                 </key>
             </timeline>
         </animation>
