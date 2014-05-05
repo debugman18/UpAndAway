@@ -18,6 +18,7 @@ return {
 		"TheLeftHelix",
 		"Willette",
 		"Mr. Tiddles",
+		"Vivalavie",
 	}},
 	{"writing", {
 		title = "Writers",
@@ -25,6 +26,7 @@ return {
 		"Luggs",
 		"Buttercup",
 		"Lium",
+		"Mycological",
 
 	}},
 	{"misc", sort = false, {

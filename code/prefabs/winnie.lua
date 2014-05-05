@@ -34,20 +34,38 @@ local assets = {
         Asset( "ANIM", "anim/winnie.zip" ),
 }
 
-local starting_inventory = {"winnie_staff"}
-local prefabs = {"winnie_staff"}
+local prefabs = {
+        "winnie_staff",
+        "durian_seeds",
+        "pomegranate_seeds",
+        "dragonfruit_seeds",
+}
+
+local seeds = {
+        "durian_seeds",
+        "pomegranate_seeds",
+        "dragonfruit_seeds",
+}
+
+local seed = seeds[math.random(#seeds)]
+
+local starting_inventory = {
+        "winnie_staff",
+        seed,
+}
 
 --The penalty for eating meat.
-local function penalty_meat(inst, food)
+local function penalty(inst, food)
         if inst.components.eater and food.components.edible.foodtype == "MEAT" then
-                inst.components.sanity:DoDelta(-40)
-                inst.components.health:DoDelta(-5)
-                inst.components.hunger:DoDelta(-3)
-                inst.components.talker:Say("What have I done?")
+                inst.components.sanity:DoDelta(-50, 20)
+                inst.components.health:DoDelta(-25, 60)
+                inst.components.hunger:DoDelta(-1)
+                inst.components.talker:Say("I don't feel so good.")
+                inst.components.kramped:OnNaughtyAction(5)
         elseif inst.components.eater and food.components.edible.foodtype == "VEGGIE" then
                 inst.components.sanity:DoDelta(10)
                 inst.components.health:DoDelta(5)
-                inst.components.hunger:DoDelta(5)
+                inst.components.hunger:DoDelta(5, 10)
         end
 end
 
@@ -56,6 +74,7 @@ local function penalty_combat(inst, target)
         local target = inst.components.combat.target
         if target and not (target.components.combat.target == inst) then
                 inst.components.sanity:DoDelta(-3)
+                inst.components.kramped:OnNaughtyAction(1)
                 TheMod:DebugSay("Attacking innocent.")        
         end
 end        
@@ -67,20 +86,24 @@ local fn = function(inst)
         inst.entity:AddMiniMapEntity()
         inst.MiniMapEntity:SetIcon("winnie.tex")
 
-        inst.components.eater:SetOnEatFn(penalty_meat)
+        inst.components.eater:SetOnEatFn(penalty)
 
         inst:ListenForEvent("onattackother", penalty_combat)   
 
         inst.components.inventory:GuaranteeItems({"winnie_staff"})
 
         inst.components.health:SetMaxHealth(160)
-        inst.components.hunger:SetMax(220)
-        inst.components.sanity:SetMax(100)
+        inst.components.hunger:SetMax(200)
+        inst.components.sanity:SetMax(160)
         inst.components.combat.damagemultiplier = 0.90
         inst.components.locomotor.walkspeed = (TUNING.WILSON_WALK_SPEED* 1.085)
         inst.components.locomotor.runspeed = (TUNING.WILSON_RUN_SPEED* 1.085)
 
+        inst.components.kramped.timetodecay = 300
+
         GLOBAL.TUNING.MIN_CROP_GROW_TEMP = 0
+
+        inst:RemoveTag("scarytoprey")
 	
 end
 

@@ -2262,10 +2262,10 @@ Add.StringsBy "ANY" {
 
 ------------------------------------------------------------------------
 
-STRINGS.CHARACTER_TITLES.winnie = "The Curious"
+STRINGS.CHARACTER_TITLES.winnie = "The Innocent"
 STRINGS.CHARACTER_NAMES.winnie = "Winnie"
-STRINGS.CHARACTER_DESCRIPTIONS.winnie = "*Is a vegetarian\n*Has a green thumb"
-STRINGS.CHARACTER_QUOTES.winnie = "'Where are you, little sheep?'"
+STRINGS.CHARACTER_DESCRIPTIONS.winnie = "*Is a vegetarian\n*Has a green thumb\n*Is not so innocent"
+STRINGS.CHARACTER_QUOTES.winnie = "\"Where have you gone, little sheep?\""
 STRINGS.CHARACTERS.WINNIE = {}
 STRINGS.CHARACTERS.WINNIE.DESCRIBE = {}
 STRINGS.CHARACTERS.WINNIE.DESCRIBE.GENERIC = "I don't have strings yet."
