@@ -6,16 +6,17 @@
 
 
 ### Atlases (with existing animation banks) in need of attention
-+ Weaver Den (spiderden bank or custom animations) --MilleniumCount is working on this.
++ Bean Giant (All art assets, using deerclops bank or custom animations) --Florian is working on this.
 
 
 ### Custom animation banks/builds in need of attention
-+ Research Lectern / Cumulocator custom animation / atlas. --MilleniumCount is working on this.
++ Research Lectern --MilleniumCount is working on this.
++ Weaver Den  --MilleniumCount is working on this.
++ Refiner (All art assets, still image) + Recipe Image --Vivalavie is working on this.
 
 
 ### Entities with no art assets and undefined status (between using custom animations or not)
-+ Refiner (All art assets, still image) + Recipe Image --Debug is working on this.
-+ Bean Giant (All art assets, using deerclops bank or custom animations) --Florian is working on this.
++ nil
 
 
 ### Miscellanea

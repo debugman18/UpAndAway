@@ -12,13 +12,7 @@
 
 + **Code assets in need of attention**
 
-	+ One time use of weather machine; also make it cheaper.
-
 	+ Nerf the duckraptor spawning to 60%.
-
-	+ Tea acts incorrectly, lowering your temperature with RoG.
-
-	+ Kettle to have two item slots.
 
 ******
 
