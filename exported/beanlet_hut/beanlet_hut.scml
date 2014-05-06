@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
+    <folder id="0">
+        <file id="0" name="shadow.png" width="228" height="11" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="day.png" width="210" height="284" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="burned.png" width="190" height="265" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="bronx.png" width="195" height="296" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="lit.png" width="262" height="301" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="beanlet_hut">
+        <animation id="0" name="idle" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="shadow">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-107.913669" y="0.280576" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="day">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-97.122302" y="272.661871" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="1" x="-97.122302" y="272.661871" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="lit" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="shadow">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-107.913669" y="0.280576" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="day">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-133.097509" y="289.843689" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="4" x="-133.097509" y="289.843689" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="burnt" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="shadow">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-107.913669" y="0.280576" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="day">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-94.722302" y="253.461871" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="2" x="-94.722302" y="253.461871" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="rundown" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="shadow">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-107.913669" y="0.280576" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="day">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-94.722302" y="256.461871" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="3" x="-94.722302" y="256.461871" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

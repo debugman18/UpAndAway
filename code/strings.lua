@@ -14,6 +14,7 @@ Add.Names {
     bean_giant_statue = "Giant Statue",
     beanlet = "Beanlet",
     beanlet_armor = "Beanlet Armor",
+    beanlet_hut = "Flower Hut",
     beanlet_shell = "Beanlet Shell",
     beanlet_zealot = "Zealot Beanlet",
     beanstalk = "Giant Beanstalk",
@@ -268,6 +269,34 @@ Add.QuotesFor "beanlet" {
     wolfgang = "Little plant runs around.",
     woodie = "It's cute.",
     wx78 = "WHAT DO YOU WANT, SMALL BEAN?",
+}
+
+Add.QuotesFor "beanlet_armor" {
+    
+    GENERIC = "I feel a little ashamed.",
+    wathgrithr = nil,
+    waxwell = nil,
+    webber = nil,
+    wendy = nil,
+    wickerbottom = nil,
+    willow = nil,
+    wolfgang = nil,
+    woodie = nil,
+    wx78 = nil,
+}
+
+Add.QuotesFor "beanlet_hut" {
+    
+    GENERIC = "A floral residence.",
+    wathgrithr = nil,
+    waxwell = nil,
+    webber = nil,
+    wendy = nil,
+    wickerbottom = nil,
+    willow = nil,
+    wolfgang = nil,
+    woodie = nil,
+    wx78 = nil,
 }
 
 Add.QuotesFor "beanlet_shell" {

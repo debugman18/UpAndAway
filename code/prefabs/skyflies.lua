@@ -3,11 +3,31 @@ BindGlobal()
 local assets =
 {
 	Asset("ANIM", "anim/skyflies.zip"),
+    Asset( "ATLAS", "images/inventoryimages/skyflies.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/skyflies.tex" ),
+
+    Asset( "ATLAS", "images/inventoryimages/skyflies_pink.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/skyflies_pink.tex" ),
+
+    Asset( "ATLAS", "images/inventoryimages/skyflies_green.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/skyflies_green.tex" ),
+
+    Asset( "ATLAS", "images/inventoryimages/skyflies_blue.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/skyflies_blue.tex" ),
+
+    Asset( "ATLAS", "images/inventoryimages/skyflies_orange.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/skyflies_orange.tex" ),   
+
+    Asset( "ATLAS", "images/inventoryimages/skyflies_purple.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/skyflies_purple.tex" ),
+
+    Asset( "ATLAS", "images/inventoryimages/skyflies_red.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/skyflies_red.tex" ),               
 }
 
 local INTENSITY = .7
 
-local colours=
+local colours =
 {
 	{198/255,43/255,43/255},
 	{79/255,153/255,68/255},
@@ -15,6 +35,15 @@ local colours=
 	{233/255,208/255,69/255},
 	{109/255,50/255,163/255},
 	{222/255,126/255,39/255},
+}
+
+local itemcolours = {
+    "pink",
+    "green",
+    "blue",
+    "orange",
+    "purple",
+    "red",
 }
 
 local function fadein(inst)
@@ -48,7 +77,7 @@ local function ondropped(inst)
     fadein(inst)
     inst.lighton = true
     inst:DoTaskInTime(2+math.random()*1, function() updatelight(inst) end)
-end
+end  
 
 local function getstatus(inst)
     if inst.components.inventoryitem.owner then
@@ -80,6 +109,9 @@ local function onload(inst, data)
             inst.colour_idx = math.min(#colours, data.colour_idx)
             inst.AnimState:SetMultColour(colours[inst.colour_idx][1],colours[inst.colour_idx][2],colours[inst.colour_idx][3],1)
 			inst.Light:SetColour(colours[inst.colour_idx][1],colours[inst.colour_idx][2],colours[inst.colour_idx][3])
+            local itemcolourid = itemcolours[inst.colour_idx]
+            print(itemcolourid)
+            --inst.components.inventoryitem:ChangeImageName("skyflies_"..itemcolours[inst.colour_idx])
         end
     end
 end
@@ -88,8 +120,8 @@ local function fn(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
-    
     inst.entity:AddPhysics()
+    MakeInventoryPhysics(inst)
  
     local light = inst.entity:AddLight()
     light:SetFalloff(1)
@@ -132,13 +164,15 @@ local function fn(Sim)
 
     inst:AddComponent("fader")
     
-    inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
-    inst.components.stackable.forcedropsingle = true
+    --inst:AddComponent("stackable")
+	--inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+    --inst.components.stackable.forcedropsingle = true
 
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem:SetOnDroppedFn(ondropped)
     inst.components.inventoryitem.canbepickedup = false
+    inst.components.inventoryitem.atlasname = "images/inventoryimages/skyflies_"..itemcolours[inst.colour_idx]..".xml"
+    inst.components.inventoryitem:ChangeImageName("skyflies_"..itemcolours[inst.colour_idx])
 
     inst.components.playerprox:SetDist(3,5)
     inst.components.playerprox:SetOnPlayerNear(onnear)

@@ -167,7 +167,8 @@ AddMinimapAtlas("images/cloud_algae.xml")
 
 AddMinimapAtlas("images/weather_machine.xml")
 
---AddMinimapAtlas("images/beanlet_hut.xml")
+AddMinimapAtlas("images/beanlet_hut.xml")
+
 --AddMinimapAtlas("images/refiner.xml")
 --AddMinimapAtlas("images/research_lectern.xml")
 

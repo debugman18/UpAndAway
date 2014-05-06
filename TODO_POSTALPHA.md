@@ -12,17 +12,17 @@
 
 + Bean giant drop pod implementation.
 
-+ Beanlet village implementation.
-
 + Octocopter quest implementation.
 
-+ Skyfly catching implementation.
++ Skyfly catching changes.
 
 + Light source / heat source implementation.
 
 + Paradise bird implementation.
 
 + Manta (All functionality needed).
+
++ Rubber armor, as well as dangerous ball lightnings during static.
 
 + Setpieces, setpieces, setpieces.
 

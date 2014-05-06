@@ -122,6 +122,7 @@ local function fn(Sim)
 	inst.AnimState:SetBank("crystal_lamp")
 	inst.AnimState:SetBuild("crystal_lamp")
 	inst.AnimState:PlayAnimation("idle")
+    inst.Transform:SetScale(2,2,2)
 
 	inst:AddComponent("inspectable")
 

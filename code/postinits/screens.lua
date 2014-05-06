@@ -76,7 +76,6 @@ local function DoInit(self)
 			["idle_inaction"] = 1,  
 			["hungry"] = 1,  
 			["idle_loop"] = 1, 
-			["idle_inaction_sanity"] = 1,
 		}	
 		self.wilson:GetAnimState():PlayAnimation(GLOBAL.weighted_random_choice(choices), true)
 	end
@@ -103,7 +102,7 @@ local function DoInit(self)
 
     --Here we compensate for the odd use of a character build.
     self.wilson:SetPosition(-10,-320,0)
-    self.wilson:SetScale(.8,.8,.8)	
+    self.wilson:SetScale(.75,.75,.75)	
 
     --Here we give Winnie her staff.
     self.wilson:GetAnimState():OverrideSymbol("swap_object", "swap_ua_staves", "purplestaff")

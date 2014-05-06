@@ -55,6 +55,8 @@ end)()
 
 local function onpickedfn(inst)
 	inst.components.pickable.cycles_left = 0
+	inst:RemoveComponent("pickable")
+	inst.AnimState:PlayAnimation("idle_picked")
 end	
 
 local function unpicked_setscale(inst, scale)
@@ -89,8 +91,8 @@ local function unpickedfn_common(bank, name)
 	inst.entity:AddSoundEmitter()
 
 	inst.AnimState:SetBank(bank) 
-	inst.AnimState:SetBuild("jelly_shrooms")  
-    inst.AnimState:PlayAnimation("idle")	
+	inst.AnimState:SetBuild("jelly_shrooms")
+    inst.AnimState:PlayAnimation("idle_sway", true)	
     inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
 
 	unpicked_setcolour(inst, random_colour(name))
@@ -160,6 +162,9 @@ local function pickedfn_common(bank, name)
 	inst:AddTag("jelly")
 
 	inst:AddComponent("inventoryitem")	
+
+    inst:AddComponent("cookable")
+    inst.components.cookable.product = "charcoal"     
 	
 	return inst
 end

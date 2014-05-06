@@ -18,7 +18,7 @@ local potions = {
 }
 
 local foods = {
-	deadlyfeast = Recipe("deadlyfeast", Ingredient("bonestew", 1) + Ingredient("nightmarefuel", 3), 0, 4)
+	deadlyfeast = Recipe("deadlyfeast", Ingredient("bonestew", 1) + Ingredient("nightmarefuel", 3), 0, 1),
 	jammyred = Recipe("jammypreserves", Ingredient("jellycap_red", 3) + Ingredient("cloud_jelly", 1), 0, 1),
 	jammyblue = Recipe("jammypreserves", Ingredient("jellycap_blue", 3) + Ingredient("cloud_jelly", 1), 0, 1),
 	jammygreen = Recipe("jammypreserves", Ingredient("jellycap_green", 3) + Ingredient("cloud_jelly", 1), 0, 1),		

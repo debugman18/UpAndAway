@@ -170,7 +170,7 @@ TheMod:AddRoom("CragLanding", {
 		},
 	    countprefabs = {
 	        goose = 1,
-	        beanlet = 1,
+	        beanlet_hut = 4,
 	    }	
 	},
 })
@@ -200,7 +200,7 @@ TheMod:AddRoom("Beanlet_Den", {
 	contents = {
 		distributepercent = 0.6*randomness(),
 		distributeprefabs = {
-			beanlet = 0.0015,
+			beanlet_hut = 0.0005,
 			skyflower = 0.1,
 			dragonblood_tree = 0.01,
 		},

@@ -21,5 +21,5 @@ return RecipeBook {
 	refined_silk = Recipe("silk", Ingredient("cloud_cotton", 4), 0),
 	refined_petals = Recipe("petals", Ingredient("golden_petals", 1), 0),
 	refined_gold = Recipe("goldnugget", Ingredient("golden_petals", 4), 1),
-	refined_ash = Recipe("ash", Ingredient("cloud_jelly", 1), 1),
+	refined_ash = Recipe("ash", Ingredient("cloud_jelly", 1), 0),
 }

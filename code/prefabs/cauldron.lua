@@ -1,5 +1,7 @@
 BindGlobal()
 
+local AlchemyRecipeBook = modrequire 'resources.alchemy_recipebook'
+
 local assets =
 {
 	Asset("ANIM", "anim/cauldron.zip"),
@@ -26,16 +28,13 @@ local widgetbuttoninfo = {
 
 local function itemtest(inst, item, slot)
 	return (item:HasTag("alchemy"))
-        or item.prefab == "beanstalk_chunk"
-        or item.prefab == "cloud_coral_fragment"
-        or item.prefab == "cloud_algae_fragment"
-        or item.prefab == "cloud_cotton"
         or item.prefab == "bonestew"
         or item.prefab == "cloud_jelly"
         or item.prefab == "jellycap_red"
         or item.prefab == "jellycap_blue"
         or item.prefab == "jellycap_green"
         or item.prefab == "golden_petals"	
+        or item.prefab == "nightmarefuel"
 end
 
 local function fn(Sim)
@@ -50,6 +49,11 @@ local function fn(Sim)
 	inst.AnimState:PlayAnimation("idle")
 
 	inst:AddComponent("brewer")
+	do
+		local brewer = inst.components.brewer
+
+		brewer:SetRecipeBook(AlchemyRecipeBook)
+	end
 
 	inst:AddComponent("inspectable")
 		

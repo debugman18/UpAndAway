@@ -84,6 +84,14 @@ Assets = GLOBAL.JoinArrays(
 		"weather_machine",
 
 		"skyflies",
+
+		"skyflies_pink",
+		"skyflies_green",
+		"skyflies_blue",
+		"skyflies_red",
+		"skyflies_orange",
+		"skyflies_purple",
+
 		"rubber",
 		"weaver_bird",
 		"dug_tea_bush",
@@ -148,7 +156,8 @@ Assets = GLOBAL.JoinArrays(
 		"cloud_algae",
 		
 		"weather_machine",
-		--"beanlet_hut",
+		"beanlet_hut",
+		
 		--"refiner",
 		--"research_lectern",
 
