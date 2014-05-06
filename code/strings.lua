@@ -13,6 +13,7 @@ Add.Names {
     bean_giant = "Bean Giant",
     bean_giant_statue = "Giant Statue",
     beanlet = "Beanlet",
+    beanlet_armor = "Beanlet Armor",
     beanlet_shell = "Beanlet Shell",
     beanlet_zealot = "Zealot Beanlet",
     beanstalk = "Giant Beanstalk",
@@ -88,6 +89,7 @@ Add.Names {
     goose = "Goose",
     grabber = "Grabber",
     greenbean = "Greenbean",
+    greenbean_cooked = "Cooked Greenbean",
     greentea = "Green Tea",
     gummybear = "Gummy Bear",
     gummybear_den = "Log Den",
@@ -2288,6 +2290,8 @@ STRINGS.RECIPE_DESC.THUNDERBOARDS = "Shocking blue planks of wood."
 STRINGS.RECIPE_DESC.BEANSTALK_WALL_ITEM = "Grow your own walls."
 STRINGS.RECIPE_DESC.CRYSTAL_WALL_ITEM = "Elegant yet durable."
 STRINGS.RECIPE_DESC.REFINER = "Smash, crunch, create."
+STRINGS.RECIPE_DESC.WIND_AXE = "Stormy weather in your hands."
+STRINGS.RECIPE_DESC.BEANLET_ARMOR = "Armor that takes the weight off."
 
 STRINGS.GUMMYBEAR_NAMES = { 
     "Moisty", 

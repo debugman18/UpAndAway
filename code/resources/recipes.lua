@@ -55,6 +55,9 @@ cotton_candy.atlas = "images/inventoryimages/cotton_candy.xml"
 local wind_axe = Recipe("wind_axe", { Ingredient("crystal_fragment_water", 2, "images/inventoryimages/crystal_fragment_water.xml"), Ingredient("twigs", 8), Ingredient("rope", 2) }, RECIPETABS.WAR, TECH.FABLE_1)
 wind_axe.atlas = "images/inventoryimages/wind_axe.xml"
 
+local beanlet_armor = Recipe("beanlet_armor", { Ingredient("beanlet_shell", 1, "images/inventoryimages/beanlet_shell.xml"), Ingredient("greenbean", 1, "images/inventoryimages/greenbean.xml"), Ingredient("rope", 2) }, RECIPETABS.WAR, TECH.FABLE_1)
+beanlet_armor.atlas = "images/inventoryimages/beanlet_armor.xml"
+
 local magnet = Recipe("magnet", { Ingredient("gears", 2), Ingredient("crystal_fragment_quartz", 3, "images/inventoryimages/crystal_fragment_quartz.xml"), Ingredient("rope", 4) }, RECIPETABS.TOOLS, TECH.FABLE_1)
 magnet.atlas = "images/inventoryimages/magnet.xml"
 

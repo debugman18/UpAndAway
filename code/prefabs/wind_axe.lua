@@ -16,8 +16,7 @@ local prefabs = {
 }
 
 local function onattackfn(inst, owner, target)
-    --local outcome = math.random(1,4)
-    local outcome = math.random(1,2)
+    local outcome = math.random(1,3)
     local lightning = SpawnPrefab("lightning")
     local whirlwind = SpawnPrefab("whirlwind")
     local target_pt = target:GetPosition()
@@ -31,13 +30,13 @@ local function onattackfn(inst, owner, target)
             local bodyinsulator = GetPlayer().components.inventory:GetEquippedItem(EQUIPSLOTS.BODY)
             local insulator = headinsulator or bodyinsulator
             if insulator and insulator.components.insulator then
-                print("Insulated; no extra damage.")
+                owner.components.health:DoDelta(-10)
             else owner.components.health:DoDelta(-30) end
         else owner.components.health:DoDelta(-30) end
-    --elseif outcome == 3 then
-        --whirlwind.Transform:SetPosition(target_pt.x, target_pt.y, target_pt.z)
-    --elseif outcome == 4 then
-        --whirlwind.Transform:SetPosition(owner_pt.x, owner_pt.y, owner_pt.z)
+    elseif outcome == 3 then
+        if math.random(1,4) == 4 then
+            whirlwind.Transform:SetPosition(target_pt.x, target_pt.y, target_pt.z)
+        end
     end
 end
 

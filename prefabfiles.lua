@@ -197,6 +197,9 @@ PrefabFiles = {
 	"ambrosia",
 
 	"campfirefire_dragon",
+	"beanlet_armor",
+
+	"beanlet_hut",
 }
 
 -- The return statement is just for if this file is used externally, at
