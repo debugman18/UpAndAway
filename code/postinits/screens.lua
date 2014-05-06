@@ -12,7 +12,7 @@ local function DoInit(self)
 	local Image = require "widgets/image"
 	local ImageButton = require "widgets/imagebutton"
 	local Text = require "widgets/text"	
-
+	local UIAnim = require "widgets/uianim"
 
 
 	--[[
@@ -70,35 +70,48 @@ local function DoInit(self)
 	self.up_name:SetColour(0,0,0,1)
 	--]]
 		
-	--[[
-	
-	--We can change the pig to something else.
-	self.daysuntilanim:GetAnimState():SetBuild("main_up")
-	self.daysuntilanim:SetPosition(20,-170,0)
-	
-	self.UpdateDaysUntil = function(self)	
+	--This weighs various animations against each other.	
+	self.UpdateCornerCharacter = function(self)	
 		local choices = {
-			["idle"] = 10,  
-			["scratch"] = 1,  
-			["hungry"] =  1,  
-			["eat"] = 1, 
+			["idle_inaction"] = 1,  
+			["hungry"] = 1,  
+			["idle_loop"] = 1, 
+			["idle_inaction_sanity"] = 1,
 		}	
-		self.daysuntilanim:GetAnimState():PlayAnimation(GLOBAL.weighted_random_choice(choices), true)
+		self.wilson:GetAnimState():PlayAnimation(GLOBAL.weighted_random_choice(choices), true)
+	end
+	
+	self.RandomCharacter = function(self)
+		local choices = {
+			["wolfgang"] = 1,
+			["wilson"] = 1,
+			["willow"] = 1,
+			["wickerbottom"] = 1,
+			["waxwell"] = 1,
+			["wx78"] = 1,
+			["wendy"] = 1,
+		}
+		self.wilson:GetAnimState():SetBuild(GLOBAL.weighted_random_choice(choices))
 	end
 
-	self.daysuntilanim.inst:ListenForEvent("animover", function(inst, data) self:UpdateDaysUntil() end)
+	--We change Wilson to Winnie here.
+   	self.wilson:GetAnimState():SetBank("wilson")
+    self.wilson:GetAnimState():SetBuild("winnie")
 
-	-]]	
-	
-	--self:UpdateDaysUntil()
-	
-	--We can change wilson to somebody else.
-    --self.wilson = self.left_col:AddChild(UIAnim())
-    --self.wilson:GetAnimState():SetBank("corner_dude")
-    --self.wilson:GetAnimState():SetBuild("corner_up")
-    --self.wilson:GetAnimState():PlayAnimation("idle", true)
-    --self.wilson:SetPosition(0,-370,0)	
+    --Here we change Wilson to a random character. This doesn't work, for some reason.
+    --self:RandomCharacter()
 
+    --Here we compensate for the odd use of a character build.
+    self.wilson:SetPosition(-10,-320,0)
+    self.wilson:SetScale(.8,.8,.8)	
+
+    --Here we give Winnie her staff.
+    self.wilson:GetAnimState():OverrideSymbol("swap_object", "swap_ua_staves", "purplestaff")
+
+    --Here we select a random animation.
+    self:UpdateCornerCharacter()
+
+    --Here we wrap everything up.
 	self:MainMenu()
 	self.menu:SetFocus()
 end
