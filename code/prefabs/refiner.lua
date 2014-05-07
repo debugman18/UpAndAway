@@ -39,6 +39,45 @@ local function test_ground(inst, pt)
     return false
 end
 
+local function startbrewfn(inst)
+    inst.AnimState:PlayAnimation("smashing", true)
+    inst.SoundEmitter:KillSound("snd")
+    inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot_rattle", "snd")
+end
+
+local function onopen(inst)
+    inst.AnimState:PlayAnimation("idle_open")
+    inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot_open", "open")
+    inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot", "snd")
+end
+
+local function onclose(inst)
+    if not inst.components.brewer.brewing then
+        inst.AnimState:PlayAnimation("idle_closed")
+        inst.SoundEmitter:KillSound("snd")
+    end
+    inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot_close", "close")
+end
+
+local function donebrewfn(inst)
+    inst.AnimState:PushAnimation("idle_open")
+    --inst.AnimState:OverrideSymbol("swap_cooked", "cook_pot_food", inst.components.brewer.product)
+    inst.SoundEmitter:KillSound("snd")
+    inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot_finish", "snd")
+end
+
+local function continuedonefn(inst)
+    inst.AnimState:PlayAnimation("idle_open")
+end
+
+local function continuebrewfn(inst)
+    startbrewfn(inst)
+end
+
+local function harvestfn(inst)
+    inst.AnimState:PlayAnimation("idle_closed")
+end
+
 local slotpos = {
     Vector3(0,64+32+8+4,0), 
     Vector3(0,32+4,0),
@@ -72,83 +111,18 @@ local function itemtest(inst, item, slot)
         or item.prefab == "golden_petals"
 end
 
---[[
---The following is unused.
-
-local function ShouldAcceptItem(inst, item)
-    if item then
-        if item:HasTag("coral") then
-        	print "Rock from..."
-        	return true
-        end
-        
-        if item:HasTag("algae")  then
-			print "Twigs from..."
-			return true
-		end
-
-        return true
-    end
-end
-
-local function OnGetItemFromPlayer(inst, giver, item)
-    if item then
-        if item:HasTag("coral") then
-            print "Coral taken."
-            local refined1 = SpawnPrefab("rocks")
-            
-            if refined1 then 
-                refined1.Transform:SetPosition(GetPlayer().Transform:GetWorldPosition())             
-            end            
-        end
-
-        if item:HasTag("algae") then
-        	print "Algae taken."
-            local refined2 = SpawnPrefab("cutgrass")
-            
-            if refined2 then
-                refined2.Transform:SetPosition(GetPlayer().Transform:GetWorldPosition())    
-            end         	
-        end
-
-        if item:HasTag("beanstalk_chunk") then
-            print "Beanstalk taken."
-            local refined3 = SpawnPrefab("twigs")
-
-            if refined3 then
-                refined3.Transform:SetPosition(GetPlayer().Transform:GetWorldPosition())
-            end    
-        end                
-
-        if not item:HasTag("coral") and not item:HasTag("algae") and not item:HasTag("beanstalk_chunk") then
-            print "Other item taken."
-            local refined4 = SpawnPrefab("ash")
-
-            if refined4 then
-                refined4.Transform:SetPosition(GetPlayer().Transform:GetWorldPosition())
-            end    
-        end    
-    end
-end
-
-local function OnRefuseItem(inst, item)
-	print "The refiner cannot accept that."
-end
-
---]]
-
 local function fn(Sim)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
-	--MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("accomplishment_shrine")
+	inst.AnimState:SetBank("refiner")
 	inst.AnimState:SetBuild("refiner")
-	inst.AnimState:PlayAnimation("idle", true)
-    inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
-    inst.Transform:SetScale(1.4,1.4,1.4)
+	inst.AnimState:PlayAnimation("idle_closed")
+    --inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
+    inst.Transform:SetScale(3,3,3)
+    MakeObstaclePhysics(inst, 1)
 
     inst:AddTag("structure")
 
@@ -157,6 +131,11 @@ local function fn(Sim)
 		local brewer = inst.components.brewer
 
 		brewer:SetRecipeBook(RefiningRecipeBook)
+        brewer.onstartbrewing = startbrewfn
+        brewer.oncontinuebrewing = continuebrewfn
+        brewer.oncontinuedone = continuedonefn
+        brewer.ondonebrewing = donebrewfn
+        brewer.onharvest = harvestfn
 	end
 
     inst:AddComponent("inspectable")
@@ -171,21 +150,13 @@ local function fn(Sim)
     inst.components.container.side_align_tip = 100
     inst.components.container.widgetbuttoninfo = widgetbuttoninfo
     inst.components.container.acceptsstacks = false
+    inst.components.container.onopenfn = onopen
+    inst.components.container.onclosefn = onclose
 
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("refiner.tex") 
 
-    --[[
-    inst:AddComponent("trader")
-    inst.components.trader:SetAcceptTest(ShouldAcceptItem)
-    inst.components.trader.onaccept = OnGetItemFromPlayer
-    inst.components.trader.onrefuse = OnRefuseItem	
-	inst.components.trader:Enable()
-
     inst:AddComponent("lootdropper")
-    --]]
-
-	--inst:AddComponent("inventory")
 
     inst:AddComponent("deployable")
     inst.components.deployable.test = test_ground
@@ -196,5 +167,5 @@ end
 
 return {
     Prefab ("common/inventory/refiner", fn, assets, prefabs),
-    MakePlacer ("common/refiner_placer", "accomplishment_shrine", "refiner", "idle"),
+    MakePlacer ("common/refiner_placer", "refiner", "refiner", "idle_closed", false, false, 3),
 }    
