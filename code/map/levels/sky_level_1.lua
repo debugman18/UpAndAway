@@ -58,7 +58,9 @@ local sky_level_1 = {
 
 		{"season", 			"onlywinter"},
 		{"weather", 		"never"},
-		{"boons",			"never"},
+
+		{"boons",			"always"},
+
 		{"roads", 			"never"},	
 
 		{"islands", 		"few"},	

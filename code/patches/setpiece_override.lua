@@ -25,4 +25,5 @@ TheMod:AddGenerateNewPreInit(function(parameters)
 		"pointsofinterest"
 		"protected_resources"
 		"boons"
+		
 end)

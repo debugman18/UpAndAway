@@ -35,7 +35,7 @@ TheMod:AddRoom("BeanstalkSpawn", {
 	contents =  {
 		distributepercent = 0.4,
 		distributeprefabs = {
-			skeleton = 0.03,
+			skeleton = 0.01,
 			tea_bush = 0.06,
 			skyflower = 1.1,
 			beanlet = 0.004,
@@ -128,7 +128,7 @@ TheMod:AddRoom("BGAurora", {
 		distributepercent = randomness(),
 		distributeprefabs = {
 			alien = 0.02,		
-			skeleton = 0.004,
+			skeleton = 0.001,
 			gustflower = 0.03,
 			dragonblood_tree = 0.09,
 			skyflower = 1.0,
@@ -151,7 +151,7 @@ TheMod:AddRoom("Vine_Room", {
 			dragonblood_tree = 0.4,
 			beanlet = 0.07,
 			gustflower = 0.2,
-			skeleton = 0.3,
+			skeleton = 0.1,
 		},
 	},
 })
