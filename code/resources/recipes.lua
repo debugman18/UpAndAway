@@ -44,7 +44,7 @@ local weather_machine = Recipe("weather_machine", { Ingredient("gears", 6), Ingr
 weather_machine.atlas = "images/inventoryimages/weather_machine.xml"
 weather_machine.sortkey = GLOBAL.Recipes.rainometer.sortkey
 
-local refiner = Recipe("refiner", { Ingredient("crystal_fragment_spire", 6, "images/inventoryimages/crystal_fragment_spire.xml"), Ingredient("cloud_coral_fragment", 6, "images/inventoryimages/cloud_coral_fragment.xml"), Ingredient("thunderboards", 3, "images/inventoryimages/thunderboards.xml") }, RECIPETABS.REFINE, TECH.FABLE_1, "refiner_placer")
+local refiner = Recipe("refiner", { Ingredient("crystal_fragment_quartz", 6, "images/inventoryimages/crystal_fragment_quartz.xml"), Ingredient("gears", 6), Ingredient("boards", 4, "images/inventoryimages/thunderboards.xml") }, RECIPETABS.REFINE, TECH.FABLE_1, "refiner_placer")
 refiner.atlas = "images/inventoryimages/refiner.xml"
 refiner.sortkey = 1 --GLOBAL.Recipes.prefab.sortkey
 

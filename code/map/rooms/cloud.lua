@@ -135,7 +135,7 @@ TheMod:AddRoom("BGAurora", {
 			cloudcrag = 0.04,
 		},
 		countprefabs = {
-			mantaspawner = math.random(1,4),
+			--mantaspawner = math.random(1,4),
 		}
 	}
 })

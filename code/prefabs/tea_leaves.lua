@@ -7,7 +7,7 @@ local cfg = Configurable("TEA_LEAF")
 
 
 local assets = {
-	Asset("ANIM", "anim/cave_ferns.zip"),
+	Asset("ANIM", "anim/tea_leaves.zip"),
 }
 
 local prefabs = {
@@ -28,7 +28,8 @@ local function make_leaf(name, data)
 		local anim = inst.entity:AddAnimState()
 		anim:SetBank(data.bank)
 		anim:SetBuild(data.build)
-		anim:PlayAnimation(data.anim)
+		anim:PlayAnimation(data.anim, true)
+		inst.Transform:SetScale(3,3,3)
 
 		
 		inst:AddComponent("inspectable")
@@ -66,11 +67,11 @@ end
 
 return {
 	make_leaf("tea_leaves", {
-		bank = "ferns", build = "cave_ferns", anim = "f1",
+		bank = "tea_leaves", build = "tea_leaves", anim = "idle_green",
 		perishtime = 15*TUNING.TOTAL_DAY_TIME,
 	}),
 	make_leaf("blacktea_leaves", {
-		bank = "ferns", build = "cave_ferns", anim = "f3",
+		bank = "tea_leaves", build = "tea_leaves", anim = "idle_black",
 		perishtime = 45*TUNING.TOTAL_DAY_TIME,
 	}),
 }

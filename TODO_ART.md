@@ -12,7 +12,6 @@
 ### Custom animation banks/builds in need of attention
 + Research Lectern --MilleniumCount is working on this.
 + Weaver Den  --MilleniumCount is working on this.
-+ Refiner (All art assets, still image) + Recipe Image --Vivalavie is working on this.
 
 
 ### Entities with no art assets and undefined status (between using custom animations or not)

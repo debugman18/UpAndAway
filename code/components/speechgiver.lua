@@ -453,6 +453,9 @@ function SpeechManager:Silence()
 	self:DebugSay("Silence()")
 	self:ShutUp()
 	self:KillSound()
+	if GetPlayer() and GetPlayer().HUD then
+		GetPlayer().HUD:Show()	
+	end
 end
 
 local function speechmanager_onstartspeech(self)
