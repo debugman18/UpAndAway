@@ -277,11 +277,11 @@ end
 ---
 -- An object of this class is passed as the first parameter to speeches.
 local SpeechManager = Class(Debuggable, function(self, speechgiver, speechname, speech, listener)
-	assert( IsSpeechGiver(speechgiver) )
-	assert( Pred.IsString(speechname) )
-	assert( Pred.IsTable(speech) )
-	assert( IsSpeechFn(speech.fn) )
-	assert( Pred.IsEntityScript(listener) )
+	assert( IsSpeechGiver(speechgiver), "SpeechGiver object expected." )
+	assert( Pred.IsString(speechname), "String expected as speech name." )
+	assert( Pred.IsTable(speech), "Table expected as speech data." )
+	assert( IsSpeechFn(speech.fn), "Function expected as speechfn." )
+	assert( Pred.IsEntityScript(listener), "Entity expected as listener." )
 
 	Debuggable._ctor(self, self, false)
 	self:SetConfigurationKey("SPEECHMANAGER")
@@ -518,6 +518,8 @@ function SpeechManager:Start()
 		if self.speech.onfinish then
 			self.speech.onfinish(self.inst, self)
 		end
+
+		self.thread = nil
 	end)
 end
 
@@ -942,9 +944,11 @@ function SpeechManager.LoadFrom(speechgiver, data, newents)
 	if not speechname then return end
 
 	local listener = newents[data.listener]
+	listener = listener and listener.entity
 	if not listener then return end
 
-	if not speechgiver:HasSpeech(speechname) then return end
+	local speech = speechgiver:GetSpeechData(speechname)
+	if not speech then return end
 
 	return SpeechManager(speechgiver, speechname, speech, listener)
 end

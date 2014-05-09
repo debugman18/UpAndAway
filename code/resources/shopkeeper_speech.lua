@@ -56,7 +56,7 @@ local metalsnd = "dontstarve/common/destroy_metal"
 
 --This is the speech where he asks for beefalo in exchange for magic beans.
 SPEECHES.BEAN_QUEST = function(mgr)
-	mgr:MakeNonInterruptible()
+	--mgr:MakeNonInterruptible()
 	mgr:EnterCutScene()
 
 	mgr:PlaySound(metalsnd)
