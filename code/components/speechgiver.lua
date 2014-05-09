@@ -385,7 +385,7 @@ local function setup_input_handlers(self)
 	disable_listener(self)
 
 
-	self.inst:DoTaskInTime(0, function()
+	self.listener:DoTaskInTime(0, function()
 		if not (self.inst:IsValid() and self.listener:IsValid()) then return end
 
 		if not (self.inst.components.speechgiver and self:IsInterruptible()) or self.inputhandlers then return end
@@ -396,9 +396,9 @@ local function setup_input_handlers(self)
 
 		local function new_key_handler(name)
 			return TheInput:AddKeyUpHandler(_G[name], function()
-				if self.inst:IsValid() then
-					self.inst:DoTaskInTime(0, function()
-						if self.inst:IsValid() then
+				if self.listener:IsValid() then
+					self.listener:DoTaskInTime(0, function()
+						if self.listener:IsValid() then
 							self:DebugSay("Interrupted by ", name, ".")
 							self:Interrupt()
 						end
@@ -409,7 +409,7 @@ local function setup_input_handlers(self)
 
 		local function new_control_handler(name)
 			return TheInput:AddControlHandler(_G[name], function(down)
-				if down and self.inst:IsValid() then
+				if down and self.listener:IsValid() then
 					self:DebugSay("Interrupted by ", name, ".")
 					self:Interrupt()
 				end
@@ -482,8 +482,8 @@ local function speechmanager_onfinishspeech(self, instant)
 
 	if not self.inst:IsValid() then return end
 
-	if not instant and self.inst:IsValid() then
-		self.inst:DoTaskInTime(0.15, function()
+	if not instant and self.listener:IsValid() then
+		self.listener:DoTaskInTime(0.15, function()
 			if not self.speechgiver:IsSpeaking() then
 				self:Silence()
 			end
@@ -783,8 +783,8 @@ function SpeechManager:AbortCutScene()
 
 	self:DebugSay("AbortCutScene()")
 
-	if self.inst:IsValid() then
-		self.inst:DoTaskInTime(_G.FRAMES, function() self.is_cutscene = false end)
+	if self.listener:IsValid() then
+		self.listener:DoTaskInTime(_G.FRAMES, function() self.is_cutscene = false end)
 	end
 
 	enable_listener(self)
@@ -808,7 +808,7 @@ function SpeechManager:AbortCutScene()
 			_G.TheCamera:SetDefault()
 			if self.inst:IsValid() then
 				_G.TheCamera:SetGains( unpack(SLOW_GAINS) )
-				self.inst:DoTaskInTime(5, function()
+				self.listener:DoTaskInTime(5, function()
 					if reset_condition() then
 						_G.TheCamera:SetDefault()
 					end
@@ -817,9 +817,9 @@ function SpeechManager:AbortCutScene()
 		end
 	end
 
-	if self.inst:IsValid() then
+	if self.listener:IsValid() then
 		_G.TheCamera:SetPaused(true)
-		self.inst:DoTaskInTime(2*_G.FRAMES, function(inst)
+		self.listener:DoTaskInTime(2*_G.FRAMES, function(inst)
 			_G.TheCamera:SetPaused(false)
 			do_abort()
 		end)
@@ -879,8 +879,11 @@ end
 
 function SpeechGiver:ClearQueue()
 	self:DebugSay("ClearQueue()")
-	while #self.speechmanagers > 0 do
+	local num_mgrs = #self.speechmanagers
+	while num_mgrs > 0 do
 		self.speechmanagers[1]:Cancel()
+		assert( #self.speechmanagers == num_mgrs - 1 )
+		num_mgrs = num_mgrs - 1
 	end
 	self.speechmanagers = new_speechmanager_queue()
 end
