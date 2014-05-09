@@ -16,7 +16,7 @@ TheMod:AddRoom("BGCloud", {
 			skyflower = 1.3,
 			tea_bush = 0.05,
 			crystal_light = 0.065,
-			cloud_fruit_tree = 0.008,
+			cloud_fruit_tree = 0.0065,
 			owl = 0.007,
 		},
 	    countprefabs = {
@@ -165,7 +165,7 @@ TheMod:AddRoom("CragLanding", {
 		distributeprefabs = {
 			--sky_lemur = 0.005,
 			beanlet = 0.00002,
-			cloud_fruit_tree = 0.00003,
+			cloud_fruit_tree = 0.00002,
 			goose = 0.000007,
 		},
 	    countprefabs = {
@@ -276,7 +276,7 @@ TheMod:AddRoom("Manta_Room", {
 		distributepercent = randomness(),
 		distributeprefabs = {
 			cloud_bush = 0.03,
-			cloud_fruit_tree = 0.04,
+			cloud_fruit_tree = 0.025,
 			--colored_corn = 0.04,
 			jellyshroom_blue = 0.08,
 			owl = 0.007,

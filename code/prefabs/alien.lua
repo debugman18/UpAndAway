@@ -77,15 +77,17 @@ local function fn()
     inst.Physics:SetCollisionGroup(COLLISION.SANITY)
     inst.Physics:CollidesWith(COLLISION.SANITY)
     --inst.Physics:CollidesWith(COLLISION.WORLD)
+
+    inst.Transform:SetScale(.6,.6,.6)
     
     inst:AddComponent("inspectable")
      
     anim:SetBank("shadowcreature1")
     anim:SetBuild("shadow_insanity1_color")
     anim:PlayAnimation("idle_loop")
-    anim:SetMultColour(1, 1, 1, 0.3)
+    anim:SetMultColour(1, 1, 1, 0.2)
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
-    inst.components.locomotor.walkspeed = 3
+    inst.components.locomotor.walkspeed = 3.5
     inst.sounds = sounds
     inst:SetStateGraph("SGshadowcreature")
 
@@ -104,7 +106,7 @@ local function fn()
     inst.components.sanityaura.aurafn = CalcSanityAura
     
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(35)
+    inst.components.health:SetMaxHealth(30)
 	
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(50)

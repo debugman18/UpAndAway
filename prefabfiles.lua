@@ -155,6 +155,7 @@ PrefabFiles = {
 	--"manta_baby",
 	--"manta_leather",
 	--"shopkeep_umbrella",
+	--"cloudblob",
 	
 }
 
