@@ -11,10 +11,14 @@ local assets =
 
 local function onattackfn(inst, owner, target)
 	if target and target.components.locomotor then
-		target.components.locomotor.groundspeedmultiplier = 0.1
-		--target:DoTaskInTime(6, function() 
-			--target.components.locomotor.groundspeedmultiplier = 1.0
-		--end)
+		if target.components.locomotor.walkspeed then
+			target.components.locomotor.bonusspeed = -(target.components.locomotor.walkspeed)
+		else target.components.locomotor.bonusspeed = -4 end
+		target.components.locomotor:UpdateGroundSpeedMultiplier()
+		target:DoTaskInTime(2, function() 
+			target.components.locomotor.bonusspeed = 0
+			target.components.locomotor:UpdateGroundSpeedMultiplier()
+		end)
 	end
 end
 
@@ -47,6 +51,7 @@ local function fn(Sim)
    
     inst:AddComponent("weapon")
     inst.components.weapon:SetDamage(2)
+    inst.components.weapon:SetOnAttack(onattackfn)
 
     inst:AddComponent("perishable")
     inst.components.perishable:SetPerishTime(TUNING.PERISH_MED)
