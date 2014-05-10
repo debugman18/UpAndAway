@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
+    <folder id="0" name="wand">
+        <file id="0" name="wand/wand.png" width="579" height="700" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="swap_cotton_candy">
+        <animation id="0" name="BUILD" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="shopkeep_umbrella">
+                <key id="0" spin="-1">
+                    <object folder="0" file="0" x="-4.505414" y="-5.564759" pivot_x="0.490099" pivot_y="0.113861" angle="15.494583" scale_x="1.373142" scale_y="1.322035"/>
+                </key>
+                <key id="1" spin="-1">
+                    <object folder="0" file="0" x="-11.379304" y="2.102661" pivot_x="0.484344" pivot_y="0.123829" angle="15.494583" scale_x="1.373142" scale_y="1.322035"/>
+                </key>
+                <key id="2" time="1000" spin="-1">
+                    <object folder="0" file="0" x="-6.265357" y="3.879354" pivot_x="0.484344" pivot_y="0.123829" angle="357.698912"/>
+                </key>
+                <key id="3" time="1000">
+                    <object folder="0" file="0" x="-3.215905" y="-3.226764" pivot_x="0.490099" pivot_y="0.113861" angle="357.698912"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

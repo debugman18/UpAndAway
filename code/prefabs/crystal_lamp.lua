@@ -155,5 +155,5 @@ end
 
 return {
 	Prefab ("common/inventory/crystal_lamp", fn, assets),
-	MakePlacer ("common/crystal_lamp_placer", "crystal_lamp", "crystal_lamp", "idle", false, false, true, 1.7), 
+	MakePlacer ("common/crystal_lamp_placer", "crystal_lamp", "crystal_lamp", "idle", false, false, false, 1.7), 
 }

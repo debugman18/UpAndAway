@@ -3,7 +3,7 @@ BindGlobal()
 local assets =
 {
 	Asset("ANIM", "anim/cotton_candy.zip"),
-	--Asset("ANIM", "anim/swap_cotton_candy.zip"),
+	Asset("ANIM", "anim/swap_cotton_candy.zip"),
 	
 	Asset( "ATLAS", "images/inventoryimages/cotton_candy.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/cotton_candy.tex" ),	
@@ -11,13 +11,16 @@ local assets =
 
 local function onattackfn(inst, owner, target)
 	if target and target.components.locomotor then
-		if target.components.locomotor.walkspeed then
-			target.components.locomotor.bonusspeed = -(target.components.locomotor.walkspeed)
-		else target.components.locomotor.bonusspeed = -4 end
-		target.components.locomotor:UpdateGroundSpeedMultiplier()
+		local locomotor = target.components.locomotor
+		if locomotor.walkspeed then
+			locomotor.bonusspeed = -(locomotor.walkspeed / 2)
+		elseif locomotor.runspeed then
+			locomotor.bonusspeed = -(locomotor.runspeed / 2) 
+		end
+		locomotor:UpdateGroundSpeedMultiplier()
 		target:DoTaskInTime(2, function() 
-			target.components.locomotor.bonusspeed = 0
-			target.components.locomotor:UpdateGroundSpeedMultiplier()
+			locomotor.bonusspeed = 0
+			locomotor:UpdateGroundSpeedMultiplier()
 		end)
 	end
 end
@@ -40,9 +43,9 @@ local function fn(Sim)
 
     MakeInventoryPhysics(inst)
     
-	inst.AnimState:SetBank("icebox")
+	inst.AnimState:SetBank("cotton_candy")
 	inst.AnimState:SetBuild("cotton_candy")
-	inst.AnimState:PlayAnimation("closed")
+	inst.AnimState:PlayAnimation("idle")
  
     inst:AddComponent("inspectable")  
     

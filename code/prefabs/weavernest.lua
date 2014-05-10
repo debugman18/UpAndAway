@@ -12,7 +12,7 @@ local prefabs =
 
 local assets =
 {
-    Asset("ANIM", "anim/spider_cocoon.zip"),
+    Asset("ANIM", "anim/weavernest.zip"),
 	Asset("SOUND", "sound/spider.fsb"),
 }
 
@@ -35,11 +35,11 @@ end
 
 local function SetSmall(inst)
     inst.anims = {
-    	hit="cocoon_small_hit", 
-    	idle="cocoon_small", 
-    	init="grow_sac_to_small", 
-    	freeze="frozen_small", 
-    	thaw="frozen_loop_pst_small",
+    	hit="idle_1", 
+    	idle="idle_1", 
+    	init="idle_1", 
+    	freeze="idle_1", 
+    	thaw="idle_1",
     }
     SetStage(inst, 1)
     inst.components.lootdropper:SetLoot({ "twigs","twigs","cutgrass"})
@@ -54,17 +54,17 @@ local function SetSmall(inst)
 	    inst.components.freezable:SetResistance(6)
     end
 
-	inst.GroundCreepEntity:SetRadius( 5 )
+	--inst.GroundCreepEntity:SetRadius( 5 )
 end
 
 
 local function SetMedium(inst)
     inst.anims = {
-    	hit="cocoon_medium_hit", 
-    	idle="cocoon_medium", 
-    	init="grow_small_to_medium", 
-    	freeze="frozen_medium", 
-    	thaw="frozen_loop_pst_medium",
+    	hit="idle_2", 
+    	idle="idle_2", 
+    	init="idle_2", 
+    	freeze="idle_2", 
+    	thaw="idle_2",
     }
     SetStage(inst, 2)
     inst.components.lootdropper:SetLoot({ "twigs","twigs","cutgrass","cutgrass","cutgrass"})
@@ -79,16 +79,16 @@ local function SetMedium(inst)
 	    inst.components.freezable:SetResistance(6)
     end
 
-	inst.GroundCreepEntity:SetRadius( 9 )
+	--inst.GroundCreepEntity:SetRadius( 9 )
 end
 
 local function SetLarge(inst)
     inst.anims = {
-    	hit="cocoon_large_hit", 
-    	idle="cocoon_large", 
-    	init="grow_medium_to_large", 
-    	freeze="frozen_large", 
-    	thaw="frozen_loop_pst_large",
+    	hit="idle_3", 
+    	idle="idle_3", 
+    	init="idle_3", 
+    	freeze="idle_3", 
+    	thaw="idle_3",
     }
     SetStage(inst, 3)
     inst.components.lootdropper:SetLoot({ "twigs","twigs","cutgrass","cutgrass","cutgrass","cutgrass", "bird_egg", "bird_egg"})
@@ -103,7 +103,7 @@ local function SetLarge(inst)
 	    inst.components.freezable:SetResistance(6)
     end
 
-	inst.GroundCreepEntity:SetRadius( 9 )
+	--inst.GroundCreepEntity:SetRadius( 9 )
 end
 
 local function SpawnWeaverGuardian(inst)
@@ -323,7 +323,7 @@ local function MakeWeaverNestFn(den_level)
 		local inst = CreateEntity()
 		local trans = inst.entity:AddTransform()
 		local anim = inst.entity:AddAnimState()
-		inst.entity:AddGroundCreepEntity()
+		--inst.entity:AddGroundCreepEntity()
 
 		inst.entity:AddSoundEmitter()
 
@@ -334,9 +334,9 @@ local function MakeWeaverNestFn(den_level)
 		local minimap = inst.entity:AddMiniMapEntity()
 		minimap:SetIcon( "spiderden.png" )
 
-		anim:SetBank("spider_cocoon")
-		anim:SetBuild("spider_cocoon")
-		anim:PlayAnimation("cocoon_small", true)
+		anim:SetBank("weavernest")
+		anim:SetBuild("weavernest")
+		anim:PlayAnimation("idle_1", true)
 
 		inst:AddTag("structure")
 		inst:AddTag("weavernest")
@@ -355,7 +355,17 @@ local function MakeWeaverNestFn(den_level)
 		inst.components.childspawner:SetSpawnedFn(onspawnbird)
 		--inst.components.childspawner:SetMaxChildren(TUNING.SPIDERDEN_SPIDERS[stage])
 		--inst.components.childspawner:ScheduleNextSpawn(0)
-		inst:ListenForEvent("creepactivate", SpawnInvestigators)
+		inst:ListenForEvent("nestactivate", SpawnInvestigators)
+
+		inst:DoPeriodicTask(5, function() 
+	        local x,y,z = inst.Transform:GetWorldPosition()
+	        local ents = TheSim:FindEntities(x,y,z, 15, "player")
+	        for k,v in pairs(ents) do
+	            if v and v:HasTag("player") then
+	                inst:PushEvent("nestactivate")
+	            end    
+	        end  
+		end)
 
 		---------------------
 		inst:AddComponent("lootdropper")

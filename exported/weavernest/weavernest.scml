@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
+    <folder id="0">
+        <file id="0" name="tier1.png" width="504" height="368" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="tier2.png" width="372" height="340" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="tier3.png" width="244" height="276" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="weavernest">
+        <animation id="0" name="idle_1" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="tier1">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-235" y="334.784946" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="0" x="-235" y="334.784946" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="idle_2" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="tier1">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-254.524257" y="412.692394" angle="0" scale_x="1.08192" scale_y="1.215011"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="0" x="-254.524257" y="412.692394" angle="0" scale_x="1.08192" scale_y="1.215011"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="tier2">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-159.001642" y="551.392101" angle="0" scale_x="0.871627" scale_y="0.831863"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="1" x="-159.001642" y="551.392101" angle="0" scale_x="0.871627" scale_y="0.831863"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="idle_3" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="1" key="0" z_index="3"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="1" key="1" z_index="3"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="tier2">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-146.710088" y="508.271505" angle="0" scale_x="0.80563" scale_y="0.768817"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="1" x="-146.710088" y="508.271505" angle="0" scale_x="0.80563" scale_y="0.768817"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="tier3">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-98.214286" y="780.357143" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="2" x="-98.214286" y="780.357143" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="tier1_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-263.493494" y="451.125434" angle="0" scale_x="1.15587" scale_y="1.32056"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="0" x="-263.493494" y="451.125434" angle="0" scale_x="1.15587" scale_y="1.32056"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="tier2_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-161.441845" y="601.873947" angle="0" scale_x="0.931203" scale_y="0.904127"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="1" x="-161.441845" y="601.873947" angle="0" scale_x="0.931203" scale_y="0.904127"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

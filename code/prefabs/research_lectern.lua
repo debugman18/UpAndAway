@@ -2,15 +2,15 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/researchlab.zip"),
+	Asset("ANIM", "anim/research_lectern.zip"),
 }
 
 local function OnTurnOn(inst)  
-	
+	inst.AnimState:PlayAnimation("idle", true)	
 end
 
 local function OnTurnOff(inst)  
-	
+	inst.AnimState:PlayAnimation("idle", true)
 end
 
 local function onhammered(inst, worker)
@@ -25,12 +25,12 @@ local function fn(Sim)
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
 	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("researchlab")
-	inst.AnimState:SetBuild("researchlab")
-	inst.AnimState:PlayAnimation("idle")
-	inst.AnimState:SetMultColour(100, 100, 100, 1)
+	inst.AnimState:SetBank("research_lectern")
+	inst.AnimState:SetBuild("research_lectern")
+	inst.AnimState:PlayAnimation("idle", true)
+	--inst.AnimState:SetMultColour(100, 100, 100, 1)
+	inst.Transform:SetScale(3,3,3)
 
 	inst:AddComponent("inspectable")
 
@@ -38,7 +38,7 @@ local function fn(Sim)
 
 	inst:AddComponent("prototyper")        
 	inst.components.prototyper.trees = TUNING.PROTOTYPER_TREES.RESEARCH_LECTERN
-	inst.components.prototyper.onactivate = function() end  
+	inst.components.prototyper.onactivate = function() inst.AnimState:PlayAnimation("idle", true) end  
 	inst.components.prototyper.onturnoff = OnTurnOff      
 	inst.components.prototyper.onturnon = OnTurnOn	
 	inst.components.prototyper.on = true   	   	
@@ -55,5 +55,5 @@ end
 
 return {
 	Prefab ("common/inventory/research_lectern", fn, assets),
-	MakePlacer ("common/research_lectern_placer", "researchlab", "researchlab", "idle"),
+	MakePlacer ("common/research_lectern_placer", "research_lectern", "research_lectern", "idle", false, false, false, 3),
 }	 

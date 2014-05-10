@@ -10,8 +10,7 @@
 
 
 ### Custom animation banks/builds in need of attention
-+ Research Lectern --MilleniumCount is working on this.
-+ Weaver Den  --MilleniumCount is working on this.
++ nil
 
 
 ### Entities with no art assets and undefined status (between using custom animations or not)
@@ -19,8 +18,7 @@
 
 
 ### Miscellanea
-+ Refiner minimap
-+ Research Lectern minimap
++ nil
 
 
 <!--
