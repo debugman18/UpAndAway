@@ -32,6 +32,9 @@ my @poison_suffixes = ();
 sub file_filter {
 	my $fname = $_[0];
 
+	# Excludes dotfiles.
+	return 0 if substr($fname, 0, 1) eq '.' || $fname =~ m|/[.][^/]*$|;
+
 	foreach my $suf (@poison_suffixes) {
 		return 0 if $fname =~ /\Q$suf\E$/;
 	}
