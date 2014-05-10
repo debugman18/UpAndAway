@@ -16,29 +16,6 @@ local prefabs =
     "cutgrass",
 }    
 
-local notags = {'NOBLOCK', 'player', 'FX'}
-local function test_ground(inst, pt)
-    local tiletype = GetGroundTypeAtPosition(pt)
-    local ground_OK = tiletype ~= GROUND.ROCKY and tiletype ~= GROUND.ROAD and tiletype ~= GROUND.IMPASSABLE and
-                        tiletype ~= GROUND.UNDERROCK and tiletype ~= GROUND.WOODFLOOR and 
-                        tiletype ~= GROUND.CARPET and tiletype ~= GROUND.CHECKER and tiletype < GROUND.UNDERGROUND
-    
-    if ground_OK then
-        local ents = TheSim:FindEntities(pt.x,pt.y,pt.z, 4, nil, notags) -- or we could include a flag to the search?
-        local min_spacing = inst.components.deployable.min_spacing or 2
-
-        for k, v in pairs(ents) do
-            if v ~= inst and v.entity:IsValid() and v.entity:IsVisible() and not v.components.placer and v.parent == nil then
-                if distsq( Vector3(v.Transform:GetWorldPosition()), pt) < min_spacing*min_spacing then
-                    return false
-                end
-            end
-        end
-        return true
-    end
-    return false
-end
-
 local function startbrewfn(inst)
     inst.AnimState:PlayAnimation("smashing", true)
     inst.SoundEmitter:KillSound("snd")
@@ -46,20 +23,23 @@ local function startbrewfn(inst)
 end
 
 local function onopen(inst)
-    inst.AnimState:PlayAnimation("idle_open")
+    inst.AnimState:PlayAnimation("idle_open_pre")
+    inst.AnimState:PushAnimation("idle_open")
     inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot_open", "open")
     inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot", "snd")
 end
 
 local function onclose(inst)
     if not inst.components.brewer.brewing then
-        inst.AnimState:PlayAnimation("idle_closed")
+        inst.AnimState:PlayAnimation("idle_closed_pre")
+        inst.AnimState:PushAnimation("idle_closed")
         inst.SoundEmitter:KillSound("snd")
     end
     inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot_close", "close")
 end
 
 local function donebrewfn(inst)
+    inst.AnimState:PlayAnimation("idle_open_pre")
     inst.AnimState:PushAnimation("idle_open")
     --inst.AnimState:OverrideSymbol("swap_cooked", "cook_pot_food", inst.components.brewer.product)
     inst.SoundEmitter:KillSound("snd")
@@ -75,7 +55,8 @@ local function continuebrewfn(inst)
 end
 
 local function harvestfn(inst)
-    inst.AnimState:PlayAnimation("idle_closed")
+    inst.AnimState:PlayAnimation("idle_closed_pre")
+    inst.AnimState:PushAnimation("idle_closed")
 end
 
 local slotpos = {
@@ -109,6 +90,13 @@ local function itemtest(inst, item, slot)
         or item.prefab == "jellycap_blue"
         or item.prefab == "jellycap_green"
         or item.prefab == "golden_petals"
+end
+
+local function onhammered(inst, worker)
+    inst.components.lootdropper:DropLoot()
+    SpawnPrefab("collapse_big").Transform:SetPosition(inst.Transform:GetWorldPosition())
+    inst.SoundEmitter:PlaySound("dontstarve/common/destroy_wood")
+    inst:Remove()
 end
 
 local function fn(Sim)
@@ -156,16 +144,16 @@ local function fn(Sim)
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("refiner.tex") 
 
+    inst:AddTag("structure")
     inst:AddComponent("lootdropper")
-
-    inst:AddComponent("deployable")
-    inst.components.deployable.test = test_ground
-    --inst.components.deployable.ondeploy = ondeploy
-
+    inst:AddComponent("workable")
+    inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
+    inst.components.workable:SetWorkLeft(4)
+    inst.components.workable:SetOnFinishCallback(onhammered)
 	return inst
 end
 
 return {
     Prefab ("common/inventory/refiner", fn, assets, prefabs),
-    MakePlacer ("common/refiner_placer", "refiner", "refiner", "idle_closed", false, false, 3),
+    MakePlacer ("common/refiner_placer", "refiner", "refiner", "idle_closed", false, false, true, 3),
 }    

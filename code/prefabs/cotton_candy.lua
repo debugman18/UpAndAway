@@ -3,10 +3,31 @@ BindGlobal()
 local assets =
 {
 	Asset("ANIM", "anim/cotton_candy.zip"),
+	--Asset("ANIM", "anim/swap_cotton_candy.zip"),
 	
 	Asset( "ATLAS", "images/inventoryimages/cotton_candy.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/cotton_candy.tex" ),	
 }
+
+local function onattackfn(inst, owner, target)
+	if target and target.components.locomotor then
+		target.components.locomotor.groundspeedmultiplier = 0.1
+		--target:DoTaskInTime(6, function() 
+			--target.components.locomotor.groundspeedmultiplier = 1.0
+		--end)
+	end
+end
+
+local function onequip(inst, owner) 
+    owner.AnimState:OverrideSymbol("swap_object", "swap_cotton_candy", "wand")
+    owner.AnimState:Show("ARM_carry")
+    owner.AnimState:Hide("ARM_normal")
+end
+
+local function onunequip(inst, owner) 
+    owner.AnimState:Hide("ARM_carry") 
+    owner.AnimState:Show("ARM_normal") 
+end
 
 local function fn(Sim)
 	local inst = CreateEntity()
@@ -18,15 +39,24 @@ local function fn(Sim)
 	inst.AnimState:SetBank("icebox")
 	inst.AnimState:SetBuild("cotton_candy")
 	inst.AnimState:PlayAnimation("closed")
-    
-    inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
  
     inst:AddComponent("inspectable")  
     
     inst:AddComponent("inventoryitem") 
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/cotton_candy.xml"
-    
+   
+    inst:AddComponent("weapon")
+    inst.components.weapon:SetDamage(2)
+
+    inst:AddComponent("perishable")
+    inst.components.perishable:SetPerishTime(TUNING.PERISH_MED)
+    inst.components.perishable:StartPerishing()
+    inst.components.perishable.onperishreplacement = "spoiled_food"
+
+    inst:AddComponent("equippable")
+    inst.components.equippable:SetOnEquip(onequip)
+    inst.components.equippable:SetOnUnequip(onunequip)
+
     inst:AddComponent("edible")
     inst.components.edible.foodtype = "VEGGIE"
     inst.components.edible.healthvalue = -15

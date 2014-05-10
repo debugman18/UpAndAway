@@ -22,6 +22,8 @@ local assets = {
 
 local function RepairOctocopter(inst)
 
+	inst:AddTag("complete")
+	inst:RemoveComponent("trader")
 	inst.AnimState:PushAnimation("wrecked_fixed", false)
 
     local function prealphawarning(inst)
@@ -73,10 +75,18 @@ end
 
 local function OnLoad(inst, data)
 	inst.collectedParts = data.collectedParts
+	if data.complete == true then
+		inst:AddTag("complete")
+		inst.AnimState:PlayAnimation("wrecked_fixed", false)
+		inst:RemoveComponent("trader")
+	end
 end
 
 local function OnSave(inst, data)
 	data.collectedParts = inst.collectedParts
+	if inst:HasTag("complete") then
+		data.complete = true
+	end	
 end
 
 local function fn(inst)

@@ -101,17 +101,17 @@ local function weather_on(inst)
 	end
 	GetPlayer().components.sanity:DoDelta(-10)
 
-
 	inst.persists = false
 	inst:RemoveComponent("machine")
+
+	inst.AnimState:PlayAnimation("idle_shatter")
 
 	inst:StartThread(function()
 		-- What should happen here?
 		-- Anims? Special effects?
-
 		TheMod:DebugSay("Removing [", inst, "] in a moment...")
 		Sleep(3)
-
+    	SpawnPrefab("collapse_big").Transform:SetPosition(inst.Transform:GetWorldPosition())		
 		inst:Remove()
 	end)
 end	

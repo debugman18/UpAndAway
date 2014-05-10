@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
     <folder id="0">
         <file id="0" name="weather_base.png" width="482" height="446" pivot_x="0" pivot_y="1"/>
         <file id="1" name="weather_rod.png" width="440" height="400" pivot_x="0" pivot_y="1"/>
@@ -9,48 +9,299 @@
         <animation id="0" name="idle_off" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="weather_base" folder="0" file="0" abs_x="-198.390286" abs_y="322.017854" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" name="weather_rod" folder="0" file="1" abs_x="-171.25" abs_y="285" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
-                    <object_ref id="2" name="weather_orb" folder="0" file="2" abs_x="-172.5" abs_y="287.5" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
                 </key>
             </mainline>
             <timeline id="0" name="weather_base">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-198.390286" y="322.017854"/>
+                    <object folder="0" file="0" x="-198.390286" y="322.017854" angle="0"/>
                 </key>
             </timeline>
             <timeline id="1" name="weather_rod">
                 <key id="0" spin="0">
-                    <object folder="0" file="1" x="-171.25" y="285"/>
+                    <object folder="0" file="1" x="-171.25" y="285" angle="0"/>
                 </key>
             </timeline>
             <timeline id="2" name="weather_orb">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="-172.5" y="287.5"/>
+                    <object folder="0" file="2" x="-172.5" y="287.5" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="Ref_0010_desk">
+                <key id="0" time="1000" spin="0">
+                    <object x="-73.563218" y="212.643678" pivot_x="0" pivot_y="1" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="Ref_0009_bottom-arm">
+                <key id="0" time="1000" spin="0">
+                    <object x="91.077207" y="125.343757" pivot_x="0" pivot_y="1" angle="326.857878" scale_y="0.867996"/>
+                </key>
+            </timeline>
+            <timeline id="5" name="Ref_0008_Gum">
+                <key id="0" time="1000" spin="0">
+                    <object x="46.421285" y="136.123337" pivot_x="0" pivot_y="1" angle="348.452615" scale_y="1.028976"/>
+                </key>
+            </timeline>
+            <timeline id="6" name="Ref_0007_rwheel">
+                <key id="0" time="1000" spin="0">
+                    <object x="21.823116" y="90.85249" pivot_x="0" pivot_y="1" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="7" name="Ref_0006_Lwheel">
+                <key id="0" time="1000" spin="0">
+                    <object x="-55.649354" y="72.747924" pivot_x="0" pivot_y="1" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="8" name="Ref_0005_Lsproink">
+                <key id="0" time="1000" spin="0">
+                    <object x="-77.076467" y="78.688797" pivot_x="0" pivot_y="1" angle="338.974456"/>
+                </key>
+            </timeline>
+            <timeline id="9" name="Ref_0004_smallhammer">
+                <key id="0" time="1000" spin="0">
+                    <object x="-101.76882" y="112.298755" pivot_x="0" pivot_y="1" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="10" name="Ref_0003_toparm">
+                <key id="0" time="1000" spin="0">
+                    <object x="-22.84655" y="167.25051" pivot_x="0" pivot_y="1" angle="51.347423"/>
+                </key>
+            </timeline>
+            <timeline id="11" name="Ref_0002_Rsproink">
+                <key id="0" time="1000" spin="0">
+                    <object x="63.119596" y="130.399361" pivot_x="0" pivot_y="1" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="12" name="Ref_0001_bighammer">
+                <key id="0" time="1000" spin="0">
+                    <object x="-140.454291" y="163.866221" pivot_x="0" pivot_y="1" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="13" name="Ref_0000_cloud">
+                <key id="0" time="1000" spin="0">
+                    <object x="-71.809773" y="221.261505" pivot_x="0" pivot_y="1" angle="0"/>
                 </key>
             </timeline>
         </animation>
         <animation id="1" name="idle_on" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="weather_base" folder="0" file="0" abs_x="-198.390286" abs_y="322.017854" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
-                    <object_ref id="1" name="weather_rod" folder="0" file="1" abs_x="107.782258" abs_y="402.741935" abs_pivot_x="0" abs_pivot_y="1" abs_angle="310.028445" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
-                    <object_ref id="2" name="weather_orb" folder="0" file="2" abs_x="21.048387" abs_y="364.919355" abs_pivot_x="0" abs_pivot_y="1" abs_angle="324.689785" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="1" z_index="2"/>
                 </key>
             </mainline>
             <timeline id="0" name="weather_base">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-198.390286" y="322.017854"/>
+                    <object folder="0" file="0" x="-198.390286" y="322.017854" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="0" x="-198.390286" y="322.017854" angle="0"/>
                 </key>
             </timeline>
             <timeline id="1" name="weather_rod">
                 <key id="0" spin="0">
                     <object folder="0" file="1" x="107.782258" y="402.741935" angle="310.028445"/>
                 </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="1" x="107.782258" y="402.741935" angle="310.028445"/>
+                </key>
             </timeline>
             <timeline id="2" name="weather_orb">
                 <key id="0" spin="0">
-                    <object folder="0" file="2" x="21.048387" y="364.919355" angle="324.689785" scale_y="1"/>
+                    <object folder="0" file="2" x="21.048387" y="364.919355" angle="324.689785"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="2" x="21.048387" y="364.919355" angle="324.689785"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="idle_shatter" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                </key>
+                <key id="1" time="99">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                </key>
+                <key id="2" time="197">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                </key>
+                <key id="3" time="221">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="1" z_index="2"/>
+                </key>
+                <key id="4" time="247">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="2" z_index="2"/>
+                </key>
+                <key id="5" time="293">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="0" z_index="2"/>
+                </key>
+                <key id="6" time="391">
+                    <object_ref id="0" timeline="0" key="4" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="1" z_index="2"/>
+                </key>
+                <key id="7" time="399">
+                    <object_ref id="0" timeline="0" key="4" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="2" z_index="2"/>
+                </key>
+                <key id="8" time="490">
+                    <object_ref id="0" timeline="0" key="5" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="3" z_index="2"/>
+                </key>
+                <key id="9" time="532">
+                    <object_ref id="0" timeline="0" key="5" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="4" key="0" z_index="2"/>
+                </key>
+                <key id="10" time="587">
+                    <object_ref id="0" timeline="0" key="6" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="4" z_index="2"/>
+                </key>
+                <key id="11" time="686">
+                    <object_ref id="0" timeline="0" key="7" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="5" z_index="2"/>
+                </key>
+                <key id="12" time="784">
+                    <object_ref id="0" timeline="0" key="8" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="6" z_index="2"/>
+                </key>
+                <key id="13" time="879">
+                    <object_ref id="0" timeline="0" key="9" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="7" z_index="2"/>
+                </key>
+                <key id="14" time="960">
+                    <object_ref id="0" timeline="0" key="10" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="8" z_index="2"/>
+                </key>
+                <key id="15" time="1000">
+                    <object_ref id="0" timeline="0" key="11" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="weather_base">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-198.390286" y="322.017854" angle="0"/>
+                </key>
+                <key id="1" time="99" spin="0">
+                    <object folder="0" file="0" x="-202.390286" y="322.017854" angle="0"/>
+                </key>
+                <key id="2" time="197" spin="0">
+                    <object folder="0" file="0" x="-195.955214" y="322.017854" angle="0"/>
+                </key>
+                <key id="3" time="293" spin="0">
+                    <object folder="0" file="0" x="-200.246331" y="322.017854" angle="0"/>
+                </key>
+                <key id="4" time="391" spin="0">
+                    <object folder="0" file="0" x="-194.989057" y="322.017854" angle="0"/>
+                </key>
+                <key id="5" time="490" spin="0">
+                    <object folder="0" file="0" x="-199.541966" y="322.017854" angle="0"/>
+                </key>
+                <key id="6" time="587" spin="0">
+                    <object folder="0" file="0" x="-195.322921" y="322.017854" angle="0"/>
+                </key>
+                <key id="7" time="686" spin="0">
+                    <object folder="0" file="0" x="-200.058198" y="322.017854" angle="0"/>
+                </key>
+                <key id="8" time="784" spin="0">
+                    <object folder="0" file="0" x="-195.537639" y="322.017854" angle="0"/>
+                </key>
+                <key id="9" time="879" spin="0">
+                    <object folder="0" file="0" x="-200.792276" y="322.017854" angle="0"/>
+                </key>
+                <key id="10" time="960" spin="0">
+                    <object folder="0" file="0" x="-195.184332" y="322.017854" angle="0"/>
+                </key>
+                <key id="11" time="1000" spin="0">
+                    <object folder="0" file="0" x="-198.390286" y="322.017854" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="weather_rod">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="107.782258" y="402.741935" angle="310.028445"/>
+                </key>
+                <key id="1" time="399" spin="0">
+                    <object folder="0" file="1" x="106.782258" y="395.741935" angle="310.028445"/>
+                </key>
+                <key id="2" time="1000" spin="0">
+                    <object folder="0" file="1" x="107.782258" y="402.741935" angle="310.028445"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="weather_orb">
+                <key id="0">
+                    <object folder="0" file="2" x="21.048387" y="364.919355" angle="324.689785"/>
+                </key>
+                <key id="1" time="221">
+                    <object folder="0" file="2" x="46.048387" y="382.776498" angle="326.316874" scale_x="1"/>
+                </key>
+                <key id="2" time="247" spin="-1">
+                    <object folder="0" file="2" x="21.048387" y="364.919355" angle="326.508296" scale_x="1"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="weather_orb_000">
+                <key id="0" time="293" spin="0">
+                    <object folder="0" file="2" x="-51.785714" y="162.5"/>
+                </key>
+                <key id="1" time="391" spin="0">
+                    <object folder="0" file="2" x="-51.785714" y="162.5"/>
+                </key>
+                <key id="2" time="399" spin="0">
+                    <object folder="0" file="2" x="-51.785714" y="162.5"/>
+                </key>
+                <key id="3" time="490" spin="0">
+                    <object folder="0" file="2" x="-51.785714" y="162.5"/>
+                </key>
+                <key id="4" time="587" spin="0">
+                    <object folder="0" file="2" x="-51.785714" y="162.5"/>
+                </key>
+                <key id="5" time="686" spin="0">
+                    <object folder="0" file="2" x="-51.785714" y="162.5"/>
+                </key>
+                <key id="6" time="784" spin="0">
+                    <object folder="0" file="2" x="-51.785714" y="162.5"/>
+                </key>
+                <key id="7" time="879" spin="0">
+                    <object folder="0" file="2" x="-51.785714" y="162.5"/>
+                </key>
+                <key id="8" time="960" spin="0">
+                    <object folder="0" file="2" x="-51.785714" y="162.5"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="weather_orb_001">
+                <key id="0" time="532" spin="0">
+                    <object folder="0" file="2" x="-62.5" y="137.5"/>
                 </key>
             </timeline>
         </animation>

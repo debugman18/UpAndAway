@@ -7,29 +7,6 @@ local assets =
 
 local game = wickerrequire "utils.game"
 
-local notags = {'NOBLOCK', 'player', 'FX'}
-local function test_ground(inst, pt)
-    local tiletype = GetGroundTypeAtPosition(pt)
-    local ground_OK = tiletype ~= GROUND.ROCKY and tiletype ~= GROUND.ROAD and tiletype ~= GROUND.IMPASSABLE and
-                        tiletype ~= GROUND.UNDERROCK and tiletype ~= GROUND.WOODFLOOR and 
-                        tiletype ~= GROUND.CARPET and tiletype ~= GROUND.CHECKER and tiletype < GROUND.UNDERGROUND
-    
-    if ground_OK then
-        local ents = TheSim:FindEntities(pt.x,pt.y,pt.z, 4, nil, notags) -- or we could include a flag to the search?
-        local min_spacing = inst.components.deployable.min_spacing or 2
-
-        for k, v in pairs(ents) do
-            if v ~= inst and v.entity:IsValid() and v.entity:IsVisible() and not v.components.placer and v.parent == nil then
-                if distsq( Vector3(v.Transform:GetWorldPosition()), pt) < min_spacing*min_spacing then
-                    return false
-                end
-            end
-        end
-        return true
-    end
-    return false
-end
-
 local function onLight(inst)
     if inst.components.fueled.currentfuel >= 1 then
         local partner = game.FindClosestEntity(inst, 12, function(e)
@@ -107,6 +84,12 @@ local function onFill(inst)
     inst.components.machine.caninteractfn = function(inst) return true end
 end  
 
+local function onhammered(inst, worker)
+    inst.components.lootdropper:DropLoot()
+    SpawnPrefab("collapse_big").Transform:SetPosition(inst.Transform:GetWorldPosition())
+    inst.SoundEmitter:PlaySound("dontstarve/common/destroy_wood")
+    inst:Remove()
+end
 
 local function fn(Sim)
 
@@ -122,7 +105,7 @@ local function fn(Sim)
 	inst.AnimState:SetBank("crystal_lamp")
 	inst.AnimState:SetBuild("crystal_lamp")
 	inst.AnimState:PlayAnimation("idle")
-    inst.Transform:SetScale(2,2,2)
+    inst.Transform:SetScale(1.7,1.7,1.7)
 
 	inst:AddComponent("inspectable")
 
@@ -135,9 +118,12 @@ local function fn(Sim)
 	inst.components.machine.turnonfn = onLight
 	inst.components.machine.turnofffn = onDim	
 
-    inst:AddComponent("deployable")
-    inst.components.deployable.test = test_ground
-    --inst.components.deployable.ondeploy = ondeploy	
+    inst:AddTag("structure")
+    inst:AddComponent("lootdropper")
+    inst:AddComponent("workable")
+    inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
+    inst.components.workable:SetWorkLeft(4)
+    inst.components.workable:SetOnFinishCallback(onhammered)
 
     inst:AddComponent("fueled")
     inst.components.fueled.maxfuel = 100
@@ -169,5 +155,5 @@ end
 
 return {
 	Prefab ("common/inventory/crystal_lamp", fn, assets),
-	MakePlacer ("common/crystal_lamp_placer", "crystal_lamp", "crystal_lamp", "idle"), 
+	MakePlacer ("common/crystal_lamp_placer", "crystal_lamp", "crystal_lamp", "idle", false, false, true, 1.7), 
 }
