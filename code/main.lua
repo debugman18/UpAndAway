@@ -175,7 +175,7 @@ AddMinimapAtlas("images/beanlet_hut.xml")
 
 AddMinimapAtlas("images/refiner.xml")
 
---AddMinimapAtlas("images/research_lectern.xml")
+AddMinimapAtlas("images/research_lectern.xml")
 --AddMinimapAtlas("images/weaverden.xml")
 
 --AddMinimapAtlas("images/bean_giant_statue.xml"

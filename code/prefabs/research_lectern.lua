@@ -41,6 +41,9 @@ local function fn(Sim)
 
 	inst:AddComponent("inspectable")
 
+	inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("research_lectern.tex") 
+
 	inst:AddTag("prototyper")
 
 	inst:AddComponent("prototyper")        
