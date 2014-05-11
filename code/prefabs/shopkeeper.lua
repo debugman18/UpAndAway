@@ -262,6 +262,7 @@ local function fn(Sim)
 	MakeObstaclePhysics(inst, 1)
 
 	inst:AddTag("shopkeeper")
+	inst:AddTag("notarget")
 	inst:AddTag("character")
 	
 	------------------------------------------------------
@@ -269,11 +270,6 @@ local function fn(Sim)
 	anim:SetBank("shop")
 	anim:SetBuild("shop_basic")
 	anim:PlayAnimation("idle", true)
-
-    local minimap = inst.entity:AddMiniMapEntity()
-    --This will be his own minimap icon.
-    --minimap:SetIcon("monkey_barrel.png")	
-
  
 	inst.entity:AddLabel()
 	inst:AddComponent("talker")
