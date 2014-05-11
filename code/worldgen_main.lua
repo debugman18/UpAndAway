@@ -10,6 +10,9 @@ BindModModule 'modenv'
 -- This just enables syntax conveniences.
 BindTheMod()
 
+-- This allows us to store +-infinity in savedata.
+wickerrequire "plugins.savable_infinity"
+
 -- These embed the corresponding methods in TheMod.
 wickerrequire 'plugins.addtile'
 wickerrequire 'plugins.addsaveindexpostinit'
