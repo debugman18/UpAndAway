@@ -155,5 +155,5 @@ end
 
 return {
     Prefab ("common/inventory/refiner", fn, assets, prefabs),
-    MakePlacer ("common/refiner_placer", "refiner", "refiner", "idle_closed", false, false, true, 3),
+    MakePlacer ("common/refiner_placer", "refiner", "refiner", "idle_closed", false, false, false, 3),
 }    

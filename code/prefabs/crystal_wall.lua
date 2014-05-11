@@ -157,7 +157,7 @@ local function itemfn(inst)
 	inst.AnimState:SetBank("crystal_wall")
 	inst.AnimState:SetBuild("crystal_wall")
 	inst.AnimState:PlayAnimation("1_4")
-	inst.Transform:SetScale(2,2,2)
+	inst.Transform:SetScale(.8,.8,.8)
 
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_MEDITEM

@@ -294,7 +294,7 @@ local function itemfn(inst)
 	inst.AnimState:SetBank("beanstalk_wall")
 	inst.AnimState:SetBuild("beanstalk_wall")
 	inst.AnimState:PlayAnimation("0")
-	inst.Transform:SetScale(1.6,1.6,1.6)
+	inst.Transform:SetScale(.8,.8,.8)
 
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_MEDITEM
