@@ -44,12 +44,7 @@ local function common(Sim)
 
 	inst:AddComponent("inspectable")
 
-	if not IsDLCEnabled(REIGN_OF_GIANTS) then
-		inst:AddComponent("tradable")
-	else 
-		inst:AddComponent("buryable")
-		inst.components.buryable:SetOnBury(plantbeanstalk)
-	end	
+	inst:AddComponent("tradable")
 
 	inst:AddComponent("inventoryitem")
 

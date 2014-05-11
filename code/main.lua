@@ -110,7 +110,9 @@ local function addmoundtag(inst)
 
 		local function beanstalktest(inst, item)
 		    if item.prefab == "magic_beans" and not item:HasTag("cooked") then
-		        return true
+		    	if not inst.components.workable then
+		        	return true
+		        end
 		    else return false end
 		end
 
@@ -123,8 +125,10 @@ local function addmoundtag(inst)
 		end
 
 		local function beanstalkrefuse(inst, item)
-		    print("This shouldn't happen.")
+		    print("Dig a hole.")
+		    GetPlayer().components.talker:Say("I need to dig a hole first.")
 		end
+
 		inst:AddComponent("inventory")
 	    inst:AddComponent("trader")
 	    inst.components.trader:SetAcceptTest(beanstalktest)
