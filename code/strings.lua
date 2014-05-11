@@ -1243,7 +1243,7 @@ Add.QuotesFor "golden_golem" {
     wathgrithr = "Imagine how many spears I could make from this!",
     waxwell = "How intruiging.",
     webber = "Don't eat us! We don't want to be three!",
-    wendy = "It's shine hides the stains of victims past.",
+    wendy = "Its shine hides the stains of victims past.",
     wickerbottom = "A monster from myth.",
     willow = "Metal doesn't burn.",
     wolfgang = "Metal Giant!",
@@ -1577,7 +1577,7 @@ Add.QuotesFor "longbill" {
     
     GENERIC = "Are those claws on its wings?",
     wathgrithr = "What a large beak.",
-    waxwell = "With it's size it most likely has trouble ducking.",
+    waxwell = "With its size it most likely has trouble ducking.",
     webber = "Is that a woodpecker?",
     wendy = "It looks for fights.",
     wickerbottom = "A Melanocharitida with a beautiful tweet.",
