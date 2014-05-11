@@ -12,6 +12,8 @@ BindGlobal()
 local Levels = require 'map/levels'
 require 'map/level'
 
+local Game = wickerrequire 'game'
+
 -- A table of predicates (functions returning true or false).
 -- We both use existing ones and insert mod-specific predicates here,
 -- to have them in a centralized location accessible throughout the code.
@@ -273,19 +275,28 @@ function ClimbTo(height, cavenum)
 		}, true)
 	end
 
+	local levelchange_cb
+
 	if height == 0 then
-		TheMod:DebugSay("Returning to survival...")
-		SaveGameIndex:SaveCurrent(function()
+		levelchange_cb = function()
+			TheMod:DebugSay("Returning to survival...")
 			SaveGameIndex:LeaveCave(onsaved)
-		end)
+		end
 	else
 		-- Target level
 		local level = height_to_level(height)
-		SaveGameIndex:SaveCurrent(function()
+		levelchange_cb = function()
 			TheMod:DebugSay("Climbing to height ", height, " (level ", level, ")...")
 			SaveGameIndex:EnterCave(onsaved, nil, cavenum, level)
-		end)
+		end
 	end
+
+	local function cb()
+		Game.Reflection.EnableModInCache()
+		return levelchange_cb()
+	end
+
+	SaveGameIndex:SaveCurrent(cb)
 end
 
 ---
