@@ -218,7 +218,7 @@ local function fn(Sim, stage)
     inst:AddComponent("childspawner")
     inst.components.childspawner.childname = "cloud_lightning"
     inst.components.childspawner:SetSpawnedFn(OnSpawned)
-    inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*10)
+    inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*16)
     inst.components.childspawner:SetSpawnPeriod(10)
     inst.components.childspawner:SetMaxChildren(1)
     inst.components.childspawner.spawnoffscreen = false
@@ -231,7 +231,7 @@ local function fn(Sim, stage)
     inst.components.workable:SetOnFinishCallback(chop_down_tree)
 
     inst:AddComponent("playerprox")
-    inst.components.playerprox:SetDist(6, 17)
+    inst.components.playerprox:SetDist(6, 10)
     inst.components.playerprox:SetOnPlayerFar(StopSpawning)
     inst.components.playerprox:SetOnPlayerNear(StartSpawning)
 

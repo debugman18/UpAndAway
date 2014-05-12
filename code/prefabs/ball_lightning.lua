@@ -54,7 +54,7 @@ local function fn(Sim)
 	--inst:DoPeriodicTask(4, function() 
 		inst.AnimState:PlayAnimation("idle", true) 
 	--end)
-	inst:DoPeriodicTask(0, function()
+	inst:DoPeriodicTask(.5, function()
 		local lighting = SpawnPrefab("lightning_rod_fx")
 		lighting.Transform:SetScale(.8,.3,.3)
 		lighting.AnimState:SetMultColour(150,150,0,.1)
@@ -70,6 +70,7 @@ local function fn(Sim)
 		elseif roll == 3 then
 			inst.AnimState:SetMultColour(60,60,0,0)
 		end	
+		FindMagnet(inst)
 	end)
 	inst.Transform:SetScale(1.5,1.5,1.5)
 
@@ -100,8 +101,6 @@ local function fn(Sim)
 	inst.components.temperature.mintemp = 80
 	inst.components.temperature.current = 80
 	inst.components.temperature.inherentinsulation = TUNING.INSULATION_MED  
-
-	inst:DoPeriodicTask(0.5, FindMagnet)
 
 	inst:AddComponent("heater")	  
 	inst.components.heater.heat = 80
