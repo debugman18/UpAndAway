@@ -275,13 +275,13 @@ Add.QuotesFor "beanlet_armor" {
     
     GENERIC = "I feel a little ashamed.",
     wathgrithr = nil,
-    waxwell = nil,
+    waxwell = "Crude, but offers a measure of help, I suppose.",
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
-    woodie = nil,
+    willow = "Wearing plants? What's next, swimming?",
+    wolfgang = "Plant clothing is tough.",
+    woodie = "Doesn't go well with my plaid shirt.",
     wx78 = nil,
 }
 
@@ -289,13 +289,13 @@ Add.QuotesFor "beanlet_hut" {
     
     GENERIC = "A floral residence.",
     wathgrithr = nil,
-    waxwell = nil,
+    waxwell = "How primitive. Barely above a mud hovel.",
     webber = nil,
     wendy = nil,
     wickerbottom = nil,
-    willow = nil,
-    wolfgang = nil,
-    woodie = nil,
+    willow = "I'll huff and I'll puff and I'll burn your house down.",
+    wolfgang = "Little plant man lives there.",
+    woodie = "That's a right pretty shack, eh?",
     wx78 = nil,
 }
 
@@ -1101,13 +1101,13 @@ Add.QuotesFor "dragonblood_firepit" {
     
     GENERIC = "That's a little too hot.",
     wathgrithr = nil,
-    waxwell = nil,
+    waxwell = "It doesn't last long, but it's hot enough to nearly warm my heart.",
     webber = "We don't like that fire.",
     wendy = "It's so mesmerizing.",
     wickerbottom = nil,
     willow = "What an amazing fire!",
     wolfgang = "Fire much bigger than Wolfgang.",
-    woodie = nil,
+    woodie = "This would have been a treat on cold nights in Canada.",
     wx78 = "MY CASE IS WARMING QUICKLY",
 }
 
@@ -1171,7 +1171,7 @@ Add.QuotesFor "dug_tea_bush" {
     
     GENERIC = "Tea leaves grow on this bush.",
     wathgrithr = "It grows tea.",
-    waxwell = nil,
+    waxwell = "I should put this back in the dirt.",
     webber = nil,
     wendy = "From this grows the drink of diviners.",
     wickerbottom = nil,
@@ -1871,7 +1871,7 @@ Add.QuotesFor "refined_white_crystal" {
     
     GENERIC = "A large chunk of white crystal.",
     wathgrithr = "It's better now!",
-    waxwell = nil,
+    waxwell = "A solid, flawless chunk of gleaming crystal.",
     webber = "I really like this. He doesn't.",
     wendy = "Can you really improve that which is flawless.",
     wickerbottom = "I've made the brightness stronger.",
