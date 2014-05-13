@@ -61,6 +61,7 @@ local function RetargetFn(inst, target)
         and not guy:HasTag("beanmonster")
 		and not guy:HasTag("beanprotector")
 		and not guy:HasTag("cloudneutral")
+        and not guy:HasTag("beanlet")
     end)
     return invader
 end

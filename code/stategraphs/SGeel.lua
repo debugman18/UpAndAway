@@ -56,7 +56,7 @@ local states=
 			inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentacle_rumble_LP", "tentacle")
 			inst.SoundEmitter:SetParameter( "tentacle", "state", 0)
             
-            inst.AnimState:PlayAnimation("breach_pre")
+            inst.AnimState:PushAnimation("breach_pre")
             inst.AnimState:PushAnimation("breach_loop", true)
 			inst.Physics:Stop()
         end,
@@ -65,7 +65,7 @@ local states=
             if inst.sg.timeinstate > .75 and inst.components.combat:TryAttack() then
                 inst.sg:GoToState("attack_pre")
             elseif inst.components.combat.target == nil then
-                inst.AnimState:PlayAnimation("breach_pst")
+                inst.AnimState:PushAnimation("breach_pst")
                 inst.sg:GoToState("idle")
             end
 
@@ -81,7 +81,7 @@ local states=
         onenter = function(inst)
             inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentacle_emerge")
             inst.components.combat:StartAttack()
-            inst.AnimState:PlayAnimation("atk_pre")
+            inst.AnimState:PushAnimation("atk_pre")
 			if not inst.SoundEmitter:PlayingSound("tentacle") then
 				inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentacle_rumble_LP", "tentacle")
 			end      
@@ -104,7 +104,7 @@ local states=
         tags = {"attack", "canrotate"},
         onenter = function(inst)
 		    inst.components.combat:StartAttack()
-            inst.AnimState:PlayAnimation("atk_loop")
+            inst.AnimState:PushAnimation("atk_loop")
             --inst.AnimState:PushAnimation("atk_idle", false)
 			inst.Physics:Stop()
         end,
@@ -113,8 +113,6 @@ local states=
         {
             TimeEvent(2*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentacle_attack") end),
 			TimeEvent(7*FRAMES, function(inst) inst.components.combat:DoAttack() end),
-            TimeEvent(15*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentacle_attack") end),
-            TimeEvent(17*FRAMES, function(inst) inst.components.combat:DoAttack() end),
             TimeEvent(18*FRAMES, function(inst) inst.sg:RemoveStateTag("attack") end),			
         },
         
@@ -128,7 +126,7 @@ local states=
         name ="attack_post",
         onenter = function(inst)
             inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentacle_disappear")
-            inst.AnimState:PlayAnimation("atk_pst")
+            inst.AnimState:PushAnimation("atk_pst")
 			inst.Physics:Stop()
         end,
         events=
@@ -142,7 +140,7 @@ local states=
             
             onenter = function(inst)
                 inst.components.locomotor:RunForward()
-                inst.AnimState:PlayAnimation("atk_pst")
+                inst.AnimState:PushAnimation("atk_pst")
             end,
 
             events =
@@ -156,7 +154,7 @@ local states=
             
             onenter = function(inst) 
                 inst.components.locomotor:RunForward()
-                inst.AnimState:PlayAnimation("idle")
+                inst.AnimState:PushAnimation("idle")
             end,
             
             timeline=
@@ -174,7 +172,7 @@ local states=
             
             onenter = function(inst) 
                 inst.components.locomotor:Stop()
-                inst.AnimState:PlayAnimation("idle")
+                inst.AnimState:PushAnimation("idle")
             end,
             
             events=
@@ -189,7 +187,7 @@ local states=
             
             onenter = function(inst)
                 inst.components.locomotor:WalkForward()
-                inst.AnimState:PlayAnimation("idle")
+                inst.AnimState:PushAnimation("idle")
             end,
 
             events=
@@ -203,7 +201,7 @@ local states=
             
             onenter = function(inst) 
                 inst.components.locomotor:WalkForward()
-                inst.AnimState:PlayAnimation("idle", true)
+                inst.AnimState:PushAnimation("idle", true)
             end,
     
             events=
@@ -217,7 +215,7 @@ local states=
             
             onenter = function(inst) 
                 inst.components.locomotor:Stop()
-                inst.AnimState:PlayAnimation("atk_pst")
+                inst.AnimState:PushAnimation("atk_pst")
                 inst.AnimState:PushAnimation("idle", true)
             end,
 

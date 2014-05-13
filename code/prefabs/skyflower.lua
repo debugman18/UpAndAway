@@ -50,8 +50,10 @@ local function GetStatus(inst)
 end
 
 local function onpickedfn(inst, picker)
-	if picker and picker.components.sanity then
+	if not inst:HasTag("flower_datura") and picker and picker.components.sanity then
 		picker.components.sanity:DoDelta(TUNING.SANITY_TINY)
+	elseif inst:HasTag("flower_datura") and picker and picker.components.sanity then
+		picker.components.sanity:DoDelta(-TUNING.SANITY_TINY)		
 	end
 
 	inst:Remove()

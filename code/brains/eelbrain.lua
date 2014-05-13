@@ -7,15 +7,15 @@ require "behaviours/doaction"
 require "behaviours/faceentity"
 
 local MAX_CHASE_TIME = 10
-local MAX_CHASE_DIST = 20
+local MAX_CHASE_DIST = 15
 
-local MAX_WANDER_DIST = 20
+local MAX_WANDER_DIST = 16
 
-local START_FACE_DIST = 20
-local KEEP_FACE_DIST = 20
+local START_FACE_DIST = 8
+local KEEP_FACE_DIST = 10
 
-local MAX_CHARGE_DIST = 20
-local CHASE_GIVEUP_DIST = 21
+local MAX_CHARGE_DIST = 8
+local CHASE_GIVEUP_DIST = 10
 
 local EelBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
