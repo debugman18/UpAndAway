@@ -50,6 +50,12 @@ function IsCloudLevelNumber(level_number)
 end
 Pred.IsCloudLevelNumber = IsCloudLevelNumber
 
+local cloud_level_object_set = {}
+
+function IsCloudLevelObject(obj)
+	return cloud_level_object_set[obj]
+end
+Pred.IsCloudLevelObject = IsCloudLevelObject
 
 ---
 -- Adds a new cloud level. Also embedded as TheMod:AddCloudLevel().
@@ -64,6 +70,7 @@ function AddCloudLevel(data)
 	if Levels.cave_levels[current_level] ~= nil then
 		return error( ("The cave level #%d is already occupied by %q!"):format(current_level, Levels.cave_levels[current_level].id or "") )
 	end
+	cloud_level_object_set[L] = true
 	Levels.cave_levels[current_level] = L
 	TheMod:DebugSay("Added Cloud Level to cave_levels[", current_level, "]")
 end

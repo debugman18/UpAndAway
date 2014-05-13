@@ -3,7 +3,7 @@ rc.lua
 dev.rc.lua
 asset_compilation.lua
 make/config.mk
-./wicker_local
+wicker_local
 
 # Patterns
 /*.zip
