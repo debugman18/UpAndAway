@@ -117,7 +117,7 @@ local function sway(inst)
 end
 
 local function chop_tree(inst, chopper, chops)
-    inst.SoundEmitter:PlaySound("dontstarve/common/destroy_rock")         
+    inst.SoundEmitter:PlaySound("dontstarve/creatures/rocklobster/clawsnap")         
     inst.AnimState:PlayAnimation("chop")
     sway(inst)
 end
@@ -131,8 +131,9 @@ local function set_stump(inst)
 end
 
 local function dig_up_stump(inst, chopper)
-	inst:Remove()
 	inst.components.lootdropper:SpawnLootPrefab("cloud_lightning")
+    inst.components.lootdropper:SpawnLootPrefab("thunder_log")
+    inst:Remove()
 end
 
 

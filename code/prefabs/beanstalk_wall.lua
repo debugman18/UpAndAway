@@ -215,13 +215,28 @@ local function GrowOld(inst)
     inst.components.health.currenthealth = maxhealth
 end
 
+local seg_time = 30
+local total_day_time = seg_time*16
+
+local day_segs = 10
+
+local day_time = seg_time * day_segs
+
+TUNING.BEANWALL_GROW_TIME =
+{
+    {base=1.5*day_time, random=0.5*day_time}, --short
+    {base=1.5*day_time, random=1*day_time},   --normal
+    {base=1.5*day_time, random=1*day_time},   --tall
+    {base=1.5*day_time, random=0.5*day_time}  --old
+}
+
 local growth_stages =
 {
-	{name="sapling", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[1].base, TUNING.EVERGREEN_GROW_TIME[1].random) end, fn = function(inst) SetSapling(inst) end,  growfn = function(inst) GrowSapling(inst) end},
-    {name="short", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[1].base, TUNING.EVERGREEN_GROW_TIME[1].random) end, fn = function(inst) SetShort(inst) end,  growfn = function(inst) GrowShort(inst) end},
-    {name="normal", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[2].base, TUNING.EVERGREEN_GROW_TIME[2].random) end, fn = function(inst) SetNormal(inst) end, growfn = function(inst) GrowNormal(inst) end},
-    {name="tall", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[3].base, TUNING.EVERGREEN_GROW_TIME[3].random) end, fn = function(inst) SetTall(inst) end, growfn = function(inst) GrowTall(inst) end},
-    {name="old", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[4].base, TUNING.EVERGREEN_GROW_TIME[4].random) end, fn = function(inst) SetOld(inst) end, growfn = function(inst) GrowOld(inst) end},
+	{name="sapling", time = function(inst) return GetRandomWithVariance(TUNING.BEANWALL_GROW_TIME[1].base, TUNING.BEANWALL_GROW_TIME[1].random) end, fn = function(inst) SetSapling(inst) end,  growfn = function(inst) GrowSapling(inst) end},
+    {name="short", time = function(inst) return GetRandomWithVariance(TUNING.BEANWALL_GROW_TIME[1].base, TUNING.BEANWALL_GROW_TIME[1].random) end, fn = function(inst) SetShort(inst) end,  growfn = function(inst) GrowShort(inst) end},
+    {name="normal", time = function(inst) return GetRandomWithVariance(TUNING.BEANWALL_GROW_TIME[2].base, TUNING.BEANWALL_GROW_TIME[2].random) end, fn = function(inst) SetNormal(inst) end, growfn = function(inst) GrowNormal(inst) end},
+    {name="tall", time = function(inst) return GetRandomWithVariance(TUNING.BEANWALL_GROW_TIME[3].base, TUNING.BEANWALL_GROW_TIME[3].random) end, fn = function(inst) SetTall(inst) end, growfn = function(inst) GrowTall(inst) end},
+    {name="old", time = function(inst) return GetRandomWithVariance(TUNING.BEANWALL_GROW_TIME[4].base, TUNING.BEANWALL_GROW_TIME[4].random) end, fn = function(inst) SetOld(inst) end, growfn = function(inst) GrowOld(inst) end},
 }
 
 local function ondeploywall(inst, pt, deployer)
