@@ -690,7 +690,7 @@ return {
 			HELD = "I'll call you Fluffy.", --w
 		},
 		RABBITHOLE = "If only I could jump down it.", --w
-		RAINOMETER = "I could just look up." --w,
+		RAINOMETER = "I could just look up.", --w,
 		RATATOUILLE = "I cooked it myself!",
 		RAZOR = "Grandpa had one that he never used.", --W
 		REDGEM = "Red like apples.", --w
