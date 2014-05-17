@@ -303,6 +303,7 @@ function ClimbTo(height, cavenum)
 		return levelchange_cb()
 	end
 
+	SaveGameIndex:GetSaveFollowers(_G.GetPlayer())
 	SaveGameIndex:SaveCurrent(cb)
 end
 

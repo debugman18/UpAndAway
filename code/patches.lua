@@ -8,6 +8,7 @@ modrequire 'patches.itemtile'
 modrequire 'patches.actions'
 modrequire 'patches.physics'
 modrequire 'patches.nil_inventoryimage'
+modrequire 'patches.resurrector_cache'
 
 modrequire 'patches.world_customisation_compat'
 

@@ -138,16 +138,14 @@ local function onload(inst, data)
 		if data.colour then
 			set_colour(inst, data.colour)
 		end
-	end
-
-	if data.chopped then
-		inst.oldblaze = true
-		chopped(inst)
-		if data.oldblaze then
+		if data.chopped then
 			inst.oldblaze = true
+			chopped(inst)
+			if data.oldblaze then
+				inst.oldblaze = true
+			end
 		end
 	end
-
 end
 
 local function fn()
