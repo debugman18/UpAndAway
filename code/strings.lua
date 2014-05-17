@@ -1,5 +1,17 @@
 local Add = modrequire 'lib.addstrings'
 
+
+-- Winnie stuff.
+--
+-- Added early so it doesn't override strings added below.
+
+STRINGS.CHARACTER_TITLES.winnie = "The Innocent"
+STRINGS.CHARACTER_NAMES.winnie = "Winnie"
+STRINGS.CHARACTER_DESCRIPTIONS.winnie = "*Is a vegetarian\n*Has a green thumb\n*Is not so innocent"
+STRINGS.CHARACTER_QUOTES.winnie = "\"Where have you gone, little sheep?\""
+STRINGS.CHARACTERS.WINNIE = modrequire "speech_winnie"
+
+
 --This gives each prefab its own in-game name.
 
 Add.Names {
@@ -2293,12 +2305,6 @@ Add.StringsBy "ANY" {
 }
 
 ------------------------------------------------------------------------
-
-STRINGS.CHARACTER_TITLES.winnie = "The Innocent"
-STRINGS.CHARACTER_NAMES.winnie = "Winnie"
-STRINGS.CHARACTER_DESCRIPTIONS.winnie = "*Is a vegetarian\n*Has a green thumb\n*Is not so innocent"
-STRINGS.CHARACTER_QUOTES.winnie = "\"Where have you gone, little sheep?\""
-STRINGS.CHARACTERS.WINNIE = modrequire "speech_winnie"
 
 STRINGS.ACTIONS.DEPLOY.PORTABLE_STRUCTURE = "Place"
 
