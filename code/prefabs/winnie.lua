@@ -103,10 +103,6 @@ local fn = function(inst)
         GLOBAL.TUNING.MIN_CROP_GROW_TEMP = 0
 
         inst:RemoveTag("scarytoprey")
-
-        STRINGS.CHARACTERS.WINNIE = require "speech_winnie"
-	
 end
 
 return MakePlayerCharacter("winnie", prefabs, assets, fn, starting_inventory)
-

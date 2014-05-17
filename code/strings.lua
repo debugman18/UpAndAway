@@ -2298,9 +2298,7 @@ STRINGS.CHARACTER_TITLES.winnie = "The Innocent"
 STRINGS.CHARACTER_NAMES.winnie = "Winnie"
 STRINGS.CHARACTER_DESCRIPTIONS.winnie = "*Is a vegetarian\n*Has a green thumb\n*Is not so innocent"
 STRINGS.CHARACTER_QUOTES.winnie = "\"Where have you gone, little sheep?\""
-STRINGS.CHARACTERS.WINNIE = {}
-STRINGS.CHARACTERS.WINNIE.DESCRIBE = {}
-STRINGS.CHARACTERS.WINNIE.DESCRIBE.GENERIC = "I don't have strings yet."
+STRINGS.CHARACTERS.WINNIE = modrequire "speech_winnie"
 
 STRINGS.ACTIONS.DEPLOY.PORTABLE_STRUCTURE = "Place"
 
