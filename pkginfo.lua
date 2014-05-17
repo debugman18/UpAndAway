@@ -3,7 +3,7 @@ return {
 	-- Defines the name of the mod directory to be used inside the zip archive.
 	-- (it doesn't need to match the actual directory name being used)
 	--]]
-	moddir = "UpAndAway_test",
+	moddir = "UpAndAway",
 
 	--[[
 	-- Names of the files returning asset tables.
@@ -82,7 +82,7 @@ return {
 	-- The resulting table is then (turned back into a file) placed in the zip.
 	--]]
 	modinfo_filter = function(modinfo)
-		modinfo.branch = "release"
+		modinfo.branch = "master"
 
 		return modinfo
 	end,

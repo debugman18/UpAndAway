@@ -3,8 +3,8 @@ BindGlobal()
 -- Version of the encoding used for the cached modinfo string.
 local MODINFO_ENCODING_VERSION = "1.0"
 
--- Git branch adopted by the distributed versions of the mod.
-local RELEASE_BRANCH = "master"
+-- Git branch corresponding to this version of the mod.
+local GIT_BRANCH = assert( modinfo.branch )
 
 -- GitHub user who owns the repository.
 local GITHUB_ACCOUNT = "debugman18"
@@ -29,7 +29,7 @@ local Time = wickerrequire "utils.time"
 ---
 -- Returns the fetch URL.
 local function get_modinfo_url()
-	return "https://raw.githubusercontent.com/"..table.concat({GITHUB_ACCOUNT, GITHUB_REPO, RELEASE_BRANCH}, "/").."/modinfo.lua"
+	return "https://raw.githubusercontent.com/"..table.concat({GITHUB_ACCOUNT, GITHUB_REPO, GIT_BRANCH}, "/").."/modinfo.lua"
 end
 
 ---
@@ -283,8 +283,8 @@ local function build_screen(self)
 			"\nThank you for playtesting, and being a part of our mod's development!",
 		}
 
-		if IsDLCEnabled(REIGN_OF_GIANTS) then
-			table.insert(lines, 1, "Warning: Disabling Reign of Giants may currently produce bugs.\n")
+		if IsDLCInstalled(REIGN_OF_GIANTS) then
+			table.insert(lines, 1, "Warning: Disabling Reign of Giants may currently cause bugs.\n")
 		end
 
 		self.text:SetString(table.concat(lines, "\n"))

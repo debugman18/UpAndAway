@@ -41,10 +41,15 @@ if VarExists("IsDLCEnabled") then
 else
 	IsDLCEnabled = Lambda.False
 end
+if VarExists("IsDLCInstalled") then
+	IsDLCInstalled = _G.IsDLCInstalled
+else
+	IsDLCInstalled = Lambda.False
+end
 if VarExists("REIGN_OF_GIANTS") then
 	REIGN_OF_GIANTS = _G.REIGN_OF_GIANTS
 else
-	REIGN_OF_GIANTS = false
+	REIGN_OF_GIANTS = 1
 end
 
 

@@ -80,8 +80,8 @@ distclean:
 	$(MAKE) -C images distclean
 	$(MAKE) -C bigportraits distclean
 	$(MAKE) -C levels distclean
-	$(MAKE) -C exported clean
-	$(RM) $(ZIPNAME)
+	$(MAKE) -C exported distclean
+	$(RM) UpAndAway-*.zip
 
 include make/doc.mk
 include $(WICKER_SCRIPT_DIR)/make/utils.mk
