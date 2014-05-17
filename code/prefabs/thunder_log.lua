@@ -35,7 +35,7 @@ local function fn(Sim)
     --inst.components.fuel:SetOnTakenFn(FuelTaken)
 
     inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = 5
+	inst.components.stackable.maxsize = 20
 
 	inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/thunder_log.xml"

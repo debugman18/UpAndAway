@@ -73,9 +73,10 @@ local function DoInit(self)
 	--This weighs various animations against each other.	
 	self.UpdateCornerCharacter = function(self)	
 		local choices = {
-			["idle_inaction"] = 1,  
-			["hungry"] = 1,  
-			["idle_loop"] = 1, 
+			--["idle_inaction"] = 1,  
+			--["hungry"] = 1,  
+			--["idle_loop"] = 1, 
+			["idle"] = 1, 
 		}	
 		self.wilson:GetAnimState():PlayAnimation(GLOBAL.weighted_random_choice(choices), true)
 	end
@@ -94,15 +95,23 @@ local function DoInit(self)
 	end
 
 	--We change Wilson to Winnie here.
-   	self.wilson:GetAnimState():SetBank("wilson")
-    self.wilson:GetAnimState():SetBuild("winnie")
+   	--self.wilson:GetAnimState():SetBank("wilson")
+    --self.wilson:GetAnimState():SetBuild("winnie")
+
+    --We change Wilson to the Shopkeeper here.
+    self.wilson:GetAnimState():SetBank("shop")
+    self.wilson:GetAnimState():SetBuild("shop_basic")
 
     --Here we change Wilson to a random character. This doesn't work, for some reason.
     --self:RandomCharacter()
 
     --Here we compensate for the odd use of a character build.
-    self.wilson:SetPosition(-10,-320,0)
-    self.wilson:SetScale(.75,.75,.75)	
+    --self.wilson:SetPosition(-10,-320,0)
+    --self.wilson:SetScale(.75,.75,.75)	
+
+    --This is for the Shopkeeper.
+    self.wilson:SetPosition(-10,-330,0)
+    self.wilson:SetScale(.45,.45,.45)
 
     --Here we give Winnie her staff.
     self.wilson:GetAnimState():OverrideSymbol("swap_object", "swap_ua_staves", "purplestaff")

@@ -73,6 +73,7 @@ Add.Names {
     cumulostone = "Cumolostone",
     datura_petals = "Datura Petals",
     dragonblood_log = "Dragonblood Log",
+    dragonblood_firepit = "Fire Pit",
     dragonblood_sap = "Dragonblood Sap",
     dragonblood_tree = "Dragonblood Tree",
     duckraptor = "Duckraptor",

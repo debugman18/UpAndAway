@@ -112,6 +112,8 @@ SPEECHES.BEAN_SUCCESS = function(mgr, args)
 	Sleep(0.5)
 
 	args.givebeans(mgr.speaker, mgr.listener)
+	mgr.speaker.AnimState:PushAnimation("purchase")
+	mgr.speaker.AnimState:PushAnimation("idle", true)
 
 	Sleep(0.5)
 
@@ -198,6 +200,8 @@ SPEECHES.GIVE_GIFTS = function(mgr, args)
 	Sleep(0.75)
 	mgr:KillVoice()
 	args.givekettle(mgr.speaker, mgr.listener)
+	mgr.speaker.AnimState:PushAnimation("purchase")
+	mgr.speaker.AnimState:PushAnimation("idle", true)	
 	Sleep(0.75)
 	
 	mgr "After all,"
@@ -211,6 +215,8 @@ SPEECHES.GIVE_GIFTS = function(mgr, args)
 	Sleep(0.75)
 	mgr:KillVoice()
 	args.givelectern(mgr.speaker, mgr.listener)
+	mgr.speaker.AnimState:PushAnimation("purchase")
+	mgr.speaker.AnimState:PushAnimation("idle", true)
 	Sleep(0.75)
 	mgr "Many strange and wonderful things were discovered up there."
 	Sleep(0.5)

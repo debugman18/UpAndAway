@@ -59,13 +59,12 @@ local function penalty(inst, food)
         if inst.components.eater and food.components.edible.foodtype == "MEAT" then
                 inst.components.sanity:DoDelta(-50, 20)
                 inst.components.health:DoDelta(-25, 60)
-                inst.components.hunger:DoDelta(-1)
-                inst.components.talker:Say("I don't feel so good.")
+                inst.components.talker:Say("Blech.")
                 inst.components.kramped:OnNaughtyAction(5)
         elseif inst.components.eater and food.components.edible.foodtype == "VEGGIE" then
-                inst.components.sanity:DoDelta(10)
-                inst.components.health:DoDelta(5)
-                inst.components.hunger:DoDelta(5, 10)
+                inst.components.sanity:DoDelta(2)
+                inst.components.health:DoDelta(2)
+                inst.components.hunger:DoDelta(5)
         end
 end
 
@@ -73,7 +72,7 @@ end
 local function penalty_combat(inst, target)
         local target = inst.components.combat.target
         if target and not (target.components.combat.target == inst) then
-                inst.components.sanity:DoDelta(-3)
+                inst.components.sanity:DoDelta(-1)
                 inst.components.kramped:OnNaughtyAction(1)
                 TheMod:DebugSay("Attacking innocent.")        
         end
@@ -99,11 +98,13 @@ local fn = function(inst)
         inst.components.locomotor.walkspeed = (TUNING.WILSON_WALK_SPEED* 1.085)
         inst.components.locomotor.runspeed = (TUNING.WILSON_RUN_SPEED* 1.085)
 
-        inst.components.kramped.timetodecay = 300
+        inst.components.kramped.timetodecay = 150
 
         GLOBAL.TUNING.MIN_CROP_GROW_TEMP = 0
 
         inst:RemoveTag("scarytoprey")
+
+        STRINGS.CHARACTERS.WINNIE = require "speech_winnie"
 	
 end
 

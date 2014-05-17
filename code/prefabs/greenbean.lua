@@ -45,6 +45,11 @@ local function fn(Sim)
     inst:AddComponent("cookable")
     inst.components.cookable.product = "greenbean_cooked" 
 
+	inst:AddComponent("perishable")
+	inst.components.perishable:SetPerishTime(TUNING.PERISH_FAST)
+	inst.components.perishable:StartPerishing()
+	inst.components.perishable.onperishreplacement = "seeds"
+
 	return inst
 end
 
@@ -72,6 +77,12 @@ local function cookedfn(inst)
     inst.components.edible.healthvalue = 20
     inst.components.edible.hungervalue = 10
     inst.components.edible.sanityvalue = -40	
+
+	inst:AddComponent("perishable")
+	inst.components.perishable:SetPerishTime(TUNING.PERISH_SLOW)
+	inst.components.perishable:StartPerishing()
+	inst.components.perishable.onperishreplacement = "spoiled_food"
+
 	return inst
 end	
 

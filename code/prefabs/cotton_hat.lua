@@ -71,6 +71,38 @@ local function fn(Sim)
 
         inst.components.equippable:SetOnUnequip( onunequip )
 
+        inst:AddComponent("insulator")
+        inst.components.insulator.insulation = TUNING.INSULATION_LARGE
+
+        inst:AddComponent("fueled")
+        inst.components.fueled.fueltype = "USAGE"
+        inst.components.fueled:InitializeFuelLevel(TUNING.SWEATERVEST_PERISHTIME)
+        inst.components.fueled:SetDepletedFn(onperish)
+
+        local function melt(inst)
+            TheMod:DebugSay("Rain start.")
+            inst.updatetask = inst:DoPeriodicTask(0.5, function()
+                TheMod:DebugSay("Still raining.")
+                inst.components.fueled:DoDelta(-25)
+            end)
+        end    
+
+        inst:ListenForEvent("rainstart", function() 
+            melt(inst)
+        end, GetWorld())
+
+        inst:ListenForEvent("rainstop", function()
+            TheMod:DebugSay("Rain stop.")
+            if inst.updatetask then
+                inst.updatetask:Cancel()
+                inst.updatetask = nil
+            end    
+        end, GetWorld())
+
+        if GetSeasonManager().precip and GetSeasonManager().preciptype == "rain" then
+            melt(inst)
+        end
+
         return inst
 end
 

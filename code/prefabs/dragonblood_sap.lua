@@ -1,5 +1,8 @@
 BindGlobal()
 
+local Configurable = wickerrequire 'adjectives.configurable'
+local cfg = Configurable "HOTBEVERAGE"
+
 local assets =
 {
 	Asset("ANIM", "anim/dragonblood_sap.zip"),
@@ -23,6 +26,32 @@ local function fn(Sim)
 
 	inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/dragonblood_sap.xml"
+
+    inst:AddComponent("stackable")
+	inst.components.stackable.maxsize = 20
+
+    inst:AddComponent("edible")
+    inst.components.edible.healthvalue = 5
+    inst.components.edible.hungervalue = 5
+
+	inst:AddComponent("temperature")
+	do
+		local temperature = inst.components.temperature
+		temperature.mintemp = 100
+		temperature.maxtemp = 100
+		temperature.inherentinsulation = cfg:GetConfig("INHERENT_INSULATION") or 0
+	end
+
+	inst:AddComponent("heatededible")
+	do
+		local heatededible = inst.components.heatededible
+		heatededible:SetHeatCapacity(0.15)
+	end
+
+	inst:AddComponent("perishable")
+	inst.components.perishable:SetPerishTime(TUNING.PERISH_FAST)
+	inst.components.perishable:StartPerishing()
+	inst.components.perishable.onperishreplacement = "spoiled_food"
 
 	return inst
 end

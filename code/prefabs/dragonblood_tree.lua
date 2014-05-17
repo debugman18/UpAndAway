@@ -9,21 +9,7 @@ local prefabs =
 {
 	"dragonblood_sap",
 	"dragonblood_log",
-	"log",
 }
-
-local function chopped(inst)
-	if inst.components.lootdropper then
-		inst.components.lootdropper:DropLoot()
-	end
-	
-	inst:RemoveComponent("workable")
-	inst.components.growable:SetStage(1)	--
-end
-
-local function chop(inst)
-	inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree") 
-end
 
 local short_loot = 
 {
@@ -34,7 +20,6 @@ local normal_loot =
 {
 	"dragonblood_log",
 	"dragonblood_log",	
-	"log",
 }
 
 local tall_loot = 
@@ -42,8 +27,38 @@ local tall_loot =
 	"dragonblood_log",
 	"dragonblood_log",
 	"dragonblood_log",		
-	"log",
+	"dragonblood_log",
 }
+
+local function dig_up_stump(inst, chopper)
+	inst.components.lootdropper:SpawnLootPrefab("dragonblood_sap")
+    inst.components.lootdropper:SpawnLootPrefab("dragonblood_sap")
+    inst:Remove()
+end
+
+local function chopped(inst)
+
+	inst.AnimState:SetMultColour(0, 0, 0, 1)
+	inst:RemoveComponent("workable")
+	inst:RemoveComponent("growable")
+	inst.chopped = true
+	inst.Transform:SetScale(.3,.3,.3)
+
+	if not inst.chopped then
+		inst.components.lootdropper:DropLoot()
+		inst.chopped = true
+	end
+
+	inst:AddComponent("workable")
+    inst.components.workable:SetWorkAction(ACTIONS.DIG)
+    inst.components.workable:SetOnFinishCallback(dig_up_stump)
+    inst.components.workable:SetWorkLeft(1)   
+
+end
+
+local function chop(inst)
+	inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree") 
+end
 
 local function SetShort(inst)
     if inst.components.workable then
@@ -114,6 +129,8 @@ end
 
 local function onsave(inst, data)
 	data.colour = inst.colour
+	data.chopped = inst.chopped
+	data.oldblaze = inst.oldblaze
 end
 
 local function onload(inst, data)
@@ -122,6 +139,15 @@ local function onload(inst, data)
 			set_colour(inst, data.colour)
 		end
 	end
+
+	if data.chopped then
+		inst.oldblaze = true
+		chopped(inst)
+		if data.oldblaze then
+			inst.oldblaze = true
+		end
+	end
+
 end
 
 local function fn()
@@ -136,7 +162,7 @@ local function fn()
 
     inst.AnimState:SetBank("dragonblood_tree")
     inst.AnimState:SetBuild("dragonblood_tree")
-	inst.AnimState:PlayAnimation("idle")
+	inst.AnimState:PlayAnimation("idle", true)
 
 	set_colour(inst, random_colour())
 

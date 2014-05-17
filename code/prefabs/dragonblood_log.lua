@@ -129,7 +129,7 @@ local function fn(Sim)
 	inst:AddComponent("inspectable")
 
     inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = 5
+	inst.components.stackable.maxsize = 10
 
 	inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/dragonblood_log.xml"
