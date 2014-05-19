@@ -2284,6 +2284,7 @@ Add.QuotesFor "winnie_staff" {
     wolfgang = "Is big carved stick.",
     woodie = "I'm quite good at making staves.",
     wx78 = "FOLLOW ME, MEATSACKS",
+    winnie = "For herding my animal friends.",
 }
 
 ------------------------------------------------------------------------

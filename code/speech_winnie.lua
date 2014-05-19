@@ -459,7 +459,7 @@ return {
 			GENERIC = "I still need marshmallows.", --W
 			HIGH = "It rises out of control.", --W
 			LOW = "There's barely any fire left.", --W
-			NORMAL = "Perfect for roasing chestnuts.", --W
+			NORMAL = "Perfect for roasting chestnuts.", --W
 			OUT = "Nothing but ashes and stones.", --W
 		},
 		FIRESTAFF = "I just want to roast some marshmallows.", --w
