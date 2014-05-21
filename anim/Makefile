@@ -48,6 +48,9 @@ clean:
 distclean:
 
 
+%.tex : KTECH_EXTRA_ARGS = --pow2
+
+
 $(foreach dir, $(BUILD_DIRS),\
 	$(if $(wildcard $(dir)/anim.bin),\
 		$(eval $(call ADD_ANIM_DEPENDENCY,$(dir))),\
