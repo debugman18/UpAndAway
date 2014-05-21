@@ -3,6 +3,26 @@ local function UpMenu()
 	_G.TheFrontEnd:PushScreen(UpMenuScreen())
 end	
 
+-- Ensures the main screen has a wilson entry.
+local function configureCornerDude(self, bank, build, anim)
+	bank = bank or "corner_dude"
+	build = build or "corner_dude"
+	anim = anim or "idle"
+
+	local wilson = self.wilson
+	if not wilson then
+		local UIAnim = require "widgets/uianim"
+
+		wilson = self.left_col:AddChild(UIAnim())
+		wilson:SetPosition(0,-370,0)
+		self.wilson = wilson
+	end
+
+	wilson:GetAnimState():SetBank(bank)
+	wilson:GetAnimState():SetBuild(build)
+	wilson:GetAnimState():PlayAnimation(anim, true)
+end
+
 --Changes the main menu.
 local function DoInit(self)
 	--do
@@ -68,8 +88,12 @@ local function DoInit(self)
     self.up_name:SetPosition(0,8,0)	
     self.up_name:SetString( TheMod:IsDevelopment() and (modinfo.name.." (dev)") or modinfo.name )
 	self.up_name:SetColour(0,0,0,1)
-	--]]
-		
+
+    --We change Wilson to the Shopkeeper here.
+	configureCornerDude(self, "shop", "shop_basic", "idle")
+    self.wilson:SetPosition(-10,-330,0)
+    self.wilson:SetScale(.45,.45,.45)
+
 	--This weighs various animations against each other.	
 	self.UpdateCornerCharacter = function(self)	
 		local choices = {
@@ -93,28 +117,6 @@ local function DoInit(self)
 		}
 		self.wilson:GetAnimState():SetBuild(GLOBAL.weighted_random_choice(choices))
 	end
-
-	--We change Wilson to Winnie here.
-   	--self.wilson:GetAnimState():SetBank("wilson")
-    --self.wilson:GetAnimState():SetBuild("winnie")
-
-    --We change Wilson to the Shopkeeper here.
-    self.wilson:GetAnimState():SetBank("shop")
-    self.wilson:GetAnimState():SetBuild("shop_basic")
-
-    --Here we change Wilson to a random character. This doesn't work, for some reason.
-    --self:RandomCharacter()
-
-    --Here we compensate for the odd use of a character build.
-    --self.wilson:SetPosition(-10,-320,0)
-    --self.wilson:SetScale(.75,.75,.75)	
-
-    --This is for the Shopkeeper.
-    self.wilson:SetPosition(-10,-330,0)
-    self.wilson:SetScale(.45,.45,.45)
-
-    --Here we give Winnie her staff.
-    self.wilson:GetAnimState():OverrideSymbol("swap_object", "swap_ua_staves", "purplestaff")
 
     --Here we select a random animation.
     self:UpdateCornerCharacter()
