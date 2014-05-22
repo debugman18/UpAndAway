@@ -29,11 +29,12 @@ for quite some time.
 + Nerfed skytraps.
 + Fixed the issue with black boxes on the Shopkeeper and Winnie.
 + Removed the ability to cook or eat the magic beans. 
-+ Moved the Reign of Giants advertisent.
-+ Fixed the dissapearing Shopkeeper on the main menu.
-+ Fixed Winnie's staff dissapearing on attack.
++ Moved the Reign of Giants advertisement.
++ Fixed the disappearing Shopkeeper on the main menu.
++ Fixed Winnie's staff disappearing on attack.
 + Added a minimap icon for the Weaverbird Nest.
 + Fixed dropped kettles being invisible.
++ Fixed follower inventory not persisting through climbing.
 
 
 

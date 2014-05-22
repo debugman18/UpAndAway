@@ -60,9 +60,10 @@ local function OnActivate(inst)
 		SaveGameIndex:SaveCurrent(function() LeaveSky(onsaved) end)
 		]]--
 
-		SetPause(false)		
+		SetPause(false)	
 		if inst.components.climbable then
 			inst.components.climbable:Climb()
+			SaveIndex:GetSaveFollowers(GetPlayer())
 		end
 	end
 

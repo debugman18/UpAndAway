@@ -160,11 +160,11 @@ end
 -- Climbs in the configured direction. Raises an error if there isn't any.
 function Climbable:Climb()
 	assert( self.direction, "Attempt to climb a climbable without a direction set." )
-	SaveGameIndex:GetSaveFollowers(GetPlayer())
 	local function doclimb()
 		if self:Debug() then
 			self:Say("Climbing ", self:GetDirectionString(), " into cave number ", self:GetEffectiveCaveNumber(), ". Current height: ", Climbing.GetLevelHeight(), ".")
 		end
+		SaveGameIndex:LoadSavedFollowers(GetPlayer())
 		Climbing.Climb(self.direction, self.cavenum)
 	end
 

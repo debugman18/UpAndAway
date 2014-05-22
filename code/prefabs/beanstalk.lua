@@ -142,7 +142,8 @@ local function OnActivate(inst)
 
 	
 	local function startadventure()
-		SetPause(false)	
+		--SaveGameIndex:GetSaveFollowers(GetPlayer())	
+		SetPause(false)
 		inst.components.climbable:Climb()
 	end
 	
