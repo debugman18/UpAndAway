@@ -9,19 +9,27 @@ local function configureCornerDude(self, bank, build, anim)
 	build = build or "corner_dude"
 	anim = anim or "idle"
 
-	local wilson = self.wilson
-	if not wilson then
+	local shopkeeper = self.shopkeeper
+	if not shopkeeper then
 		local UIAnim = require "widgets/uianim"
 
-		wilson = self.left_col:AddChild(UIAnim())
-		wilson:SetPosition(0,-370,0)
-		self.wilson = wilson
+		shopkeeper = self.left_col:AddChild(UIAnim())
+		shopkeeper:SetPosition(0,-370,0)
+		self.shopkeeper = shopkeeper
 	end
 
-	wilson:GetAnimState():SetBank(bank)
-	wilson:GetAnimState():SetBuild(build)
-	wilson:GetAnimState():PlayAnimation(anim, true)
+	shopkeeper:GetAnimState():SetBank(bank)
+	shopkeeper:GetAnimState():SetBuild(build)
+	shopkeeper:GetAnimState():PlayAnimation(anim, true)
 end
+
+local function OnUpdate(self)
+    if self.timetonewanim then
+    	self.timetonewanim = math.huge
+    end
+end	
+
+TheMod:AddClassPostConstruct("screens/mainscreen", OnUpdate)
 
 --Changes the main menu.
 local function DoInit(self)
@@ -90,36 +98,17 @@ local function DoInit(self)
 	self.up_name:SetColour(0,0,0,1)
 
     --We change Wilson to the Shopkeeper here.
+    if self.wilson then
+    	self.wilson:Hide()
+    end
 	configureCornerDude(self, "shop", "shop_basic", "idle")
-    self.wilson:SetPosition(-10,-330,0)
-    self.wilson:SetScale(.45,.45,.45)
+    self.shopkeeper:SetPosition(-10,-330,0)
+    self.shopkeeper:SetScale(.45,.45,.45)
 
-	--This weighs various animations against each other.	
-	self.UpdateCornerCharacter = function(self)	
-		local choices = {
-			--["idle_inaction"] = 1,  
-			--["hungry"] = 1,  
-			--["idle_loop"] = 1, 
-			["idle"] = 1, 
-		}	
-		self.wilson:GetAnimState():PlayAnimation(GLOBAL.weighted_random_choice(choices), true)
-	end
-	
-	self.RandomCharacter = function(self)
-		local choices = {
-			["wolfgang"] = 1,
-			["wilson"] = 1,
-			["willow"] = 1,
-			["wickerbottom"] = 1,
-			["waxwell"] = 1,
-			["wx78"] = 1,
-			["wendy"] = 1,
-		}
-		self.wilson:GetAnimState():SetBuild(GLOBAL.weighted_random_choice(choices))
-	end
-
-    --Here we select a random animation.
-    self:UpdateCornerCharacter()
+    --Here we move that pesky RoG advert.
+    if self.RoGUpgrade then
+    	self.RoGUpgrade:SetPosition(435, 215, 0)
+    end
 
     --Here we wrap everything up.
 	self:MainMenu()
@@ -127,7 +116,6 @@ local function DoInit(self)
 end
 
 TheMod:AddClassPostConstruct("screens/mainscreen", DoInit)
-
 
 --This gives us custom worldgen screens.	
 local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)

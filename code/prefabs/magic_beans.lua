@@ -48,8 +48,8 @@ local function common(Sim)
 
 	inst:AddComponent("inventoryitem")
 
-    inst:AddComponent("cookable")
-    inst.components.cookable.product = "magic_beans_cooked"	
+    --inst:AddComponent("cookable")
+    --inst.components.cookable.product = "magic_beans_cooked"	
 
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/magic_beans.xml"
 	return inst

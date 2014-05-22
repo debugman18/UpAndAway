@@ -96,6 +96,7 @@ local function fn(Sim)
     inst.components.inventoryitem.atlasname = "images/inventoryimages/winnie_staff.xml"
     
     inst:AddComponent("equippable")
+    inst:AddComponent("weapon")
     
     inst.components.equippable:SetOnEquip(onequip)
     inst.components.equippable:SetOnUnequip(onunequip)  

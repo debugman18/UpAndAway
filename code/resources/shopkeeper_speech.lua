@@ -78,7 +78,7 @@ SPEECHES.BEAN_QUEST = function(mgr)
 
 	mgr "I have need of a Beefalo."
 	mgr "Those hairy beasts you've seen roaming the grasslands."
-	mgr "Bring me one..."
+	mgr "Speak to me again after you've brought me one..."
 	Sleep(1)
 	mgr "...And I'll give you the ticket out."
 

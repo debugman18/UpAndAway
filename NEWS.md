@@ -22,7 +22,22 @@ I'm prefixing the list of changes by date, since I suppose we'll remain at preal
 for quite some time.
 -->
 
-### Current Version: Pre-Alpha
+### Current Version: alpha-0.0.3
+
+### Update: 2014-5-??
+
++ Nerfed skytraps.
++ Fixed the issue with black boxes on the Shopkeeper and Winnie.
++ Removed the ability to cook or eat the magic beans. 
++ Moved the Reign of Giants advertisent.
++ Fixed the dissapearing Shopkeeper on the main menu.
++ Fixed Winnie's staff dissapearing on attack.
++ Added a minimap icon for the Weaverbird Nest.
++ Fixed dropped kettles being invisible.
+
+
+
+
 
 #### Update: 2013-09-09
 

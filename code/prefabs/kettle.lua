@@ -264,7 +264,7 @@ local function BuildKettleItemPrefab()
 		MakeInventoryPhysics(inst)
 
 	    inst.AnimState:SetBank("icebox")
-	    inst.AnimState:SetBuild("kettle")
+	    inst.AnimState:SetBuild("kettle_item")
 	    inst.AnimState:PlayAnimation("closed")
 
 

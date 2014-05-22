@@ -159,7 +159,7 @@ Assets = GLOBAL.JoinArrays(
 		"beanlet_hut",
 		"refiner",
 		"research_lectern",
-		--"weaverden",
+		"weavernest",
 
 		--"bean_giant_statue",
 	},

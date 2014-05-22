@@ -332,7 +332,7 @@ local function MakeWeaverNestFn(den_level)
 		MakeObstaclePhysics(inst, .5)
 
 		local minimap = inst.entity:AddMiniMapEntity()
-		minimap:SetIcon( "spiderden.png" )
+		minimap:SetIcon("weavernest.tex")
 
 		anim:SetBank("weavernest")
 		anim:SetBuild("weavernest")

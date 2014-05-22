@@ -69,7 +69,7 @@ local function fn(Sim)
     inst.components.combat:SetRange(4)
     inst.components.combat:SetRetargetFunction(0.2, retargetfn)
     inst.components.combat:SetKeepTargetFunction(shouldKeepTarget)
-    inst.components.combat:SetDefaultDamage(80) 
+    inst.components.combat:SetDefaultDamage(40) 
 
     inst:AddComponent("lootdropper")
     if math.random(1,8) == 1 then
