@@ -27,7 +27,7 @@ for quite some time.
 ### Update: 2014-5-??
 
 + Nerfed skytraps.
-+ Fixed the issue with black boxes on the Shopkeeper and Winnie.
++ Actually fixed the issue with black boxes on the Shopkeeper and Winnie.
 + Removed the ability to cook or eat the magic beans. 
 + Moved the Reign of Giants advertisement.
 + Fixed the disappearing Shopkeeper on the main menu.
@@ -36,6 +36,7 @@ for quite some time.
 + Fixed dropped kettles being invisible.
 + Fixed follower inventory not persisting through climbing.
 + Whirlwinds now dissapear when the world uncharges.
++ Wickerbottom's strings now make more sense.
 
 
 
