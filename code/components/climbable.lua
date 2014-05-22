@@ -164,7 +164,6 @@ function Climbable:Climb()
 		if self:Debug() then
 			self:Say("Climbing ", self:GetDirectionString(), " into cave number ", self:GetEffectiveCaveNumber(), ". Current height: ", Climbing.GetLevelHeight(), ".")
 		end
-		SaveGameIndex:LoadSavedFollowers(GetPlayer())
 		Climbing.Climb(self.direction, self.cavenum)
 	end
 

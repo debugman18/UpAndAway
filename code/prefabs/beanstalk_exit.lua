@@ -63,7 +63,6 @@ local function OnActivate(inst)
 		SetPause(false)	
 		if inst.components.climbable then
 			inst.components.climbable:Climb()
-			SaveIndex:GetSaveFollowers(GetPlayer())
 		end
 	end
 
