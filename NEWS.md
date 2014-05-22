@@ -35,7 +35,7 @@ for quite some time.
 + Added a minimap icon for the Weaverbird Nest.
 + Fixed dropped kettles being invisible.
 + Fixed follower inventory not persisting through climbing.
-
++ Whirlwinds now dissapear when the world uncharges.
 
 
 

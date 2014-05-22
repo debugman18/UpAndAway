@@ -47,6 +47,9 @@ end
 
 local function onunchargedfn(inst)
     inst.components.childspawner:StopSpawning()
+    for k,child in pairs(inst.components.childspawner.childrenoutside) do
+        child:Remove()
+    end
     inst.AnimState:PlayAnimation("idle_2")
     inst.AnimState:SetBank("gustflower")
     inst.AnimState:PlayAnimation("sway", true)
