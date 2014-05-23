@@ -24,6 +24,11 @@ for quite some time.
 
 ### Current Version: alpha-0.0.3
 
+### Update 2014-5-23 (alpha-0.0.3 release)
+
++ Tweaked the shopkeeper behaviour (made it check Beefalo by proximity only, not follower status, and made it remind the player to talk to him when a Beefalo is near).
++ More robust fix to the follower savedata bug.
+
 ### Update: 2014-5-??
 
 + Nerfed skytraps.
