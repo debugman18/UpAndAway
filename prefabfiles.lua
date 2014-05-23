@@ -117,7 +117,7 @@ PrefabFiles = {
 	"beanlet_armor",
 	"beanlet_hut",
 
-	--Stuff in progress.
+	--Stuff in dev branch.
 	--------------------
 
 	"pineapple_bush",
