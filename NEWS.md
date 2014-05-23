@@ -24,8 +24,12 @@ for quite some time.
 
 ### Current Version: alpha-0.0.3
 
+### Unspecified Additions
++ Pineapple Bush and Pineapple
++ Default potion added.
+
 ### Update 2014-5-?? (alpha-0.0.4 release)
-+ Nothing yet!
++ Cloud Fruit Trees are now choppable.
 
 ### Update 2014-5-23 (alpha-0.0.3 release)
 
