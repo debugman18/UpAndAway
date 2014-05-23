@@ -24,6 +24,9 @@ for quite some time.
 
 ### Current Version: alpha-0.0.3
 
+### Update 2014-5-?? (alpha-0.0.4 release)
++ Nothing yet!
+
 ### Update 2014-5-23 (alpha-0.0.3 release)
 
 + Tweaked the shopkeeper behaviour (made it check Beefalo by proximity only, not follower status, and made it remind the player to talk to him when a Beefalo is near).
@@ -42,8 +45,6 @@ for quite some time.
 + Fixed follower inventory not persisting through climbing.
 + Whirlwinds now dissapear when the world uncharges.
 + Wickerbottom's strings now make more sense.
-
-
 
 
 #### Update: 2013-09-09

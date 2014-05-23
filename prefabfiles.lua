@@ -117,7 +117,14 @@ PrefabFiles = {
 	"beanlet_armor",
 	"beanlet_hut",
 
-	--This is potential postalpha stuff; none of it is final.
+	--Stuff in progress.
+	--------------------
+
+	"pineapple_bush",
+	"pineapple",
+
+	--Stuff not started.
+	--------------------
 
 	--"beanlet_lamp",
 	--"rubber_armor",
@@ -128,8 +135,6 @@ PrefabFiles = {
 	--"cloud_wall",
 	--"cloud_bomb",	
 	--"thundertree_sapling",
-	--"pineapple_bush",
-	--"pineapple_fruit",
 	--"golden_amulet",
 	--"kite",
 	--"antlion",	
