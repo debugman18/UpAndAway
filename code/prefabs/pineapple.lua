@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	--Asset("ANIM", "anim/pineapple.zip"),
+	Asset("ANIM", "anim/pineapple.zip"),
 }
 
 local function fn(Sim)
@@ -12,17 +12,14 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeInventoryPhysics(inst)
 
-	--inst.AnimState:SetBank("pineapple")
-	--inst.AnimState:SetBuild("pineapple")
-	--inst.AnimState:PlayAnimation("idle")
-    inst.AnimState:SetBank("cutreeds")
-    inst.AnimState:SetBuild("cutreeds")
-    inst.AnimState:PlayAnimation("idle")
-
+	inst.AnimState:SetBank("pineapple")
+	inst.AnimState:SetBuild("pineapple")
+	inst.AnimState:PlayAnimation("idle")
 
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("inventoryitem")
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/pineapple.xml"
 
     inst:AddComponent("edible")
     inst.components.edible.foodtype = "VEGGIE"

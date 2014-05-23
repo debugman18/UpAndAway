@@ -123,6 +123,7 @@ PrefabFiles = {
 	"pineapple_bush",
 	"pineapple",
 	"alchemy_potions",
+	"potion_tunnel_mound",
 
 	--Stuff not started.
 	--------------------

@@ -139,7 +139,7 @@ Add.Names {
     owl = "Strix",
     package = "Unknown Package",
     pineapple_bush = "Pineapple Bush",
-    pineapple_fruit = "Pineapple",
+    pineapple = "Pineapple",
     quartz_torch = "Quartz Torch",
     rainbowcoon = "Rainbowcoon",
     refined_black_crystal = "Black Crystal",

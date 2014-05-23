@@ -18,7 +18,8 @@
         <file id="14" name="Pina_0002_Dflower.png" width="211" height="297" pivot_x="0.605634" pivot_y="0.033445"/>
         <file id="15" name="Pina_0006_Dbackleafs.png" width="120" height="81" pivot_x="0" pivot_y="1"/>
         <file id="16" name="Pina_0007_Cbackleafs.png" width="120" height="81" pivot_x="0" pivot_y="1"/>
-        <file id="17" name="Pina_0004_rotten.png" width="189" height="195" pivot_x="0" pivot_y="1"/>
+        <file id="17" name="Pina_0004_rotten.png" width="211" height="410" pivot_x="0.58216" pivot_y="0.021845"/>
+        <file id="18" name="rotten_leaf.png" width="307" height="279" pivot_x="0.430421" pivot_y="0.576512"/>
     </folder>
     <entity id="0" name="pineapple_bush">
         <animation id="0" name="idle_growing" length="3000">
@@ -175,36 +176,36 @@
             </timeline>
             <timeline id="1" name="Pina_0015_Bleaf2">
                 <key id="0">
-                    <object folder="0" file="6" x="-3.852479" y="102.087913" angle="29.527458" scale_x="1" scale_y="1"/>
+                    <object folder="0" file="6" x="-3.852479" y="102.087913" angle="29.527458"/>
                 </key>
                 <key id="1" time="575" spin="-1">
                     <object folder="0" file="6" x="-14.197307" y="107.260327" angle="29.559739"/>
                 </key>
                 <key id="2" time="1606" spin="0">
-                    <object folder="0" file="6" x="-29.701757" y="106.996503" angle="25.338121" scale_x="1" scale_y="0.980254"/>
+                    <object folder="0" file="6" x="-29.701757" y="106.996503" angle="25.338121" scale_y="0.980254"/>
                 </key>
                 <key id="3" time="1677">
-                    <object folder="0" file="6" x="-29.701757" y="106.996503" angle="25.338121" scale_x="1" scale_y="0.980254"/>
+                    <object folder="0" file="6" x="-29.701757" y="106.996503" angle="25.338121" scale_y="0.980254"/>
                 </key>
                 <key id="4" time="3000" spin="0">
-                    <object folder="0" file="6" x="-3.852479" y="102.087913" angle="29.527458" scale_x="1" scale_y="1"/>
+                    <object folder="0" file="6" x="-3.852479" y="102.087913" angle="29.527458"/>
                 </key>
             </timeline>
             <timeline id="2" name="Pina_0016_Bleaf">
                 <key id="0" spin="0">
-                    <object folder="0" file="7" x="-2.16648" y="102.237512" angle="338.941442" scale_x="1" scale_y="1"/>
+                    <object folder="0" file="7" x="-2.16648" y="102.237512" angle="338.941442"/>
                 </key>
                 <key id="1" time="575" spin="-1">
-                    <object folder="0" file="7" x="3.005934" y="105.685788" angle="338.941442" scale_y="1"/>
+                    <object folder="0" file="7" x="3.005934" y="105.685788" angle="338.941442"/>
                 </key>
                 <key id="2" time="1606" spin="-1">
-                    <object folder="0" file="7" x="2.981992" y="105.434378" angle="335.135204" scale_x="1" scale_y="0.970033"/>
+                    <object folder="0" file="7" x="2.981992" y="105.434378" angle="335.135204" scale_y="0.970033"/>
                 </key>
                 <key id="3" time="1677">
-                    <object folder="0" file="7" x="2.456322" y="105.447183" angle="334.753252" scale_x="1" scale_y="0.971559"/>
+                    <object folder="0" file="7" x="2.456322" y="105.447183" angle="334.753252" scale_y="0.971559"/>
                 </key>
                 <key id="4" time="3000" spin="0">
-                    <object folder="0" file="7" x="-2.16648" y="102.237512" angle="338.941442" scale_x="1" scale_y="1"/>
+                    <object folder="0" file="7" x="-2.16648" y="102.237512" angle="338.941442"/>
                 </key>
             </timeline>
             <timeline id="3" name="Pina_0018_Bbackleafs">
@@ -454,39 +455,34 @@
         <animation id="4" name="idle_rotten" length="4000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
-                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
-                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
-                    <object_ref id="3" timeline="2" key="0" z_index="3"/>
-                    <object_ref id="4" timeline="3" key="0" z_index="4"/>
+                    <object_ref id="0" timeline="2" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
                 </key>
-                <key id="1" time="529">
-                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
-                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
-                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
-                    <object_ref id="3" timeline="2" key="1" z_index="3"/>
-                    <object_ref id="4" timeline="3" key="1" z_index="4"/>
+                <key id="1" time="879">
+                    <object_ref id="0" timeline="2" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="1" z_index="3"/>
                 </key>
-                <key id="2" time="1240">
-                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
-                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
-                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
-                    <object_ref id="3" timeline="2" key="2" z_index="3"/>
-                    <object_ref id="4" timeline="3" key="2" z_index="4"/>
+                <key id="2" time="2514">
+                    <object_ref id="0" timeline="2" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="2" z_index="3"/>
                 </key>
-                <key id="3" time="1881">
-                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
-                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
-                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
-                    <object_ref id="3" timeline="2" key="3" z_index="3"/>
-                    <object_ref id="4" timeline="3" key="3" z_index="4"/>
+                <key id="3" time="3368">
+                    <object_ref id="0" timeline="2" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="3" z_index="3"/>
                 </key>
                 <key id="4" time="4000">
-                    <object_ref id="0" timeline="4" key="1" z_index="0"/>
-                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
-                    <object_ref id="2" timeline="0" key="1" z_index="2"/>
-                    <object_ref id="3" timeline="2" key="4" z_index="3"/>
-                    <object_ref id="4" timeline="3" key="4" z_index="4"/>
+                    <object_ref id="0" timeline="2" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="2" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="4" z_index="3"/>
                 </key>
             </mainline>
             <timeline id="0" name="Pina_0009_Cbottom">
@@ -497,57 +493,40 @@
                     <object folder="0" file="4" x="-225.581395" y="545.736434" angle="0"/>
                 </key>
             </timeline>
-            <timeline id="1" name="Pina_0005_Cstange">
+            <timeline id="1" name="Pina_0004_Cananas">
                 <key id="0">
-                    <object folder="0" file="11" x="-7.688421" y="123.659271" angle="0"/>
+                    <object folder="0" file="17" x="-10.170777" y="133.472477" angle="0.086002"/>
                 </key>
-                <key id="1" time="1240" spin="-1">
-                    <object folder="0" file="11" x="-7.688421" y="123.659271" angle="4.022342"/>
+                <key id="1" time="2514" spin="-1">
+                    <object folder="0" file="17" x="-10.170777" y="133.472477" angle="6.328412"/>
                 </key>
                 <key id="2" time="4000" spin="0">
-                    <object folder="0" file="11" x="-7.688421" y="123.659271" angle="0"/>
+                    <object folder="0" file="17" x="-10.170777" y="133.472477" angle="0.086002"/>
                 </key>
             </timeline>
-            <timeline id="2" name="Pina_0004_Cananas">
-                <key id="0" spin="-1">
-                    <object folder="0" file="17" x="-122.417738" y="505.778205" angle="1.56492"/>
-                </key>
-                <key id="1" time="529">
-                    <object folder="0" file="17" x="-111.202121" y="503.436268" angle="355.184305"/>
-                </key>
-                <key id="2" time="1240">
-                    <object folder="0" file="17" x="-141.247088" y="490.083472" angle="4.022342"/>
-                </key>
-                <key id="3" time="1881" spin="-1">
-                    <object folder="0" file="17" x="-159.520525" y="477.950887" angle="12.965785"/>
-                </key>
-                <key id="4" time="4000">
-                    <object folder="0" file="17" x="-116.295289" y="503.737389" angle="0"/>
-                </key>
-            </timeline>
-            <timeline id="3" name="Pina_0003_Cananasleafs">
-                <key id="0" spin="-1">
-                    <object folder="0" file="13" x="-25.639951" y="495.773761" angle="0"/>
-                </key>
-                <key id="1" time="529">
-                    <object folder="0" file="13" x="-10.988665" y="495.27781" angle="346.418912"/>
-                </key>
-                <key id="2" time="1240">
-                    <object folder="0" file="13" x="-51.697873" y="493.597941" angle="4.022342"/>
-                </key>
-                <key id="3" time="1881" spin="-1">
-                    <object folder="0" file="13" x="-71.326675" y="486.712552" angle="10.821633"/>
-                </key>
-                <key id="4" time="4000" spin="0">
-                    <object folder="0" file="13" x="-25.639951" y="495.773761" angle="0"/>
-                </key>
-            </timeline>
-            <timeline id="4" name="Pina_0007_Cbackleafs">
+            <timeline id="2" name="Pina_0007_Cbackleafs">
                 <key id="0" spin="0">
                     <object folder="0" file="16" x="-71.317829" y="206.976744" angle="0"/>
                 </key>
                 <key id="1" time="4000" spin="0">
                     <object folder="0" file="16" x="-71.317829" y="206.976744" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="rotten_leaf">
+                <key id="0" spin="-1">
+                    <object folder="0" file="18" x="-24.870099" y="526.706661" angle="0"/>
+                </key>
+                <key id="1" time="879">
+                    <object folder="0" file="18" x="-43.270464" y="521.650633" angle="356.013996"/>
+                </key>
+                <key id="2" time="2514">
+                    <object folder="0" file="18" x="-69.271754" y="519.393409" angle="4.763492"/>
+                </key>
+                <key id="3" time="3368" spin="-1">
+                    <object folder="0" file="18" x="-50.627093" y="524.993432" angle="8.041251"/>
+                </key>
+                <key id="4" time="4000" spin="0">
+                    <object folder="0" file="18" x="-24.870099" y="526.706661" angle="0"/>
                 </key>
             </timeline>
         </animation>

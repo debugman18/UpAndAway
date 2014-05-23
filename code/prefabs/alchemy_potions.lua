@@ -9,7 +9,7 @@ local basic_assets = {
 }
 
 local basic_prefabs = {
-	
+	"potion_tunnel_mound",
 }
 
 local function make_potion(data)
@@ -145,8 +145,48 @@ local function make_bearded()
 	}
 end
 
+local function make_tunnel()
+
+	local function oneatenfn(inst, eater)
+
+		if not inst:HasTag("underground") then
+			eater:AddTag("notarget")
+			eater.AnimState:SetMultColour(0,0,0,0)
+
+			local dirtmound = SpawnPrefab("potion_tunnel_mound")
+			dirtmound.Transform:SetPosition(eater.Transform:GetWorldPosition())
+
+			local follower = dirtmound.entity:AddFollower()
+			follower:FollowSymbol(inst.GUID, "swap_body", -15, -10, 0)
+			eater:AddTag("underground")
+
+			eater:DoTaskInTime(15, function()
+	        	eater:RemoveTag("notarget")
+	        	dirtmound:Remove()
+	        	eater:RemoveTag("underground")
+	        	eater.AnimState:SetMultColour(255,255,255,1)
+			end)
+		end
+	end
+
+	return make_potion {
+
+		name = "tunnel",
+		anim = "tunnel",
+
+		postinit = function(inst)
+
+			print("This is the tunnel potion.")
+
+			inst.components.edible:SetOnEatenFn(oneatenfn)
+
+		end,
+	}
+end
+
 return {
 	make_default(),
 	make_triples(),
-	make_bearded()
+	make_bearded(),
+	make_tunnel()
 }

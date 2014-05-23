@@ -25,8 +25,11 @@ for quite some time.
 ### Current Version: alpha-0.0.3
 
 ### Update 2014-?-?? (future content release)
-+ Pineapple Bush and Pineapple
++ Pineapple Bushes and Pineapples added.
 + Default potion added.
++ Stat Swapper potion added.
++ Bearded potion added.
++ Tunneler potion added.
 
 ### Update 2014-5-23 (alpha-0.0.3 release)
 
