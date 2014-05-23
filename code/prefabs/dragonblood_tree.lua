@@ -41,7 +41,6 @@ local function chopped(inst)
 	inst.AnimState:SetMultColour(0, 0, 0, 1)
 	inst:RemoveComponent("workable")
 	inst:RemoveComponent("growable")
-	inst.chopped = true
 	inst.Transform:SetScale(.3,.3,.3)
 
 	if not inst.chopped then

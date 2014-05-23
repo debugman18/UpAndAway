@@ -49,7 +49,7 @@ refiner.atlas = "images/refiner.xml"
 refiner.sortkey = 1 --GLOBAL.Recipes.prefab.sortkey
 
 local research_lectern = Recipe("research_lectern", { Ingredient("goldnugget", 4), Ingredient("crystal_fragment_relic", 2, "images/inventoryimages/crystal_fragment_relic.xml"), Ingredient("thunder_log", 6, "images/inventoryimages/thunder_log.xml") }, RECIPETABS.SCIENCE, TECH.FABLE_2, "research_lectern_placer")
-research_lectern.atlas = "images/inventoryimages/research_lectern.xml"
+research_lectern.atlas = "images/research_lectern.xml"
 research_lectern.sortkey = GLOBAL.Recipes.researchlab2.sortkey
 
 local cotton_candy = Recipe("cotton_candy", { Ingredient("cloud_cotton", 6, "images/inventoryimages/cloud_cotton.xml"), Ingredient("candy_fruit", 6, "images/inventoryimages/candy_fruit.xml") }, RECIPETABS.WAR, TECH.FABLE_1)

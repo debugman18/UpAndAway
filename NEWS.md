@@ -30,6 +30,8 @@ for quite some time.
 
 ### Update 2014-5-?? (alpha-0.0.4 release)
 + Cloud Fruit Trees are now choppable.
++ Dragonblood Trees drop their loot when chopped.
++ Added Cumulocator Station crafting icon.
 
 ### Update 2014-5-23 (alpha-0.0.3 release)
 

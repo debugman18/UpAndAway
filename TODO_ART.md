@@ -2,7 +2,6 @@
 
 ### Inventory images in need of attention
 + Pineapple and Cooked Pineapple (Grilled Pineapple Slices?)
-+ Cumulocator Station Crafting Icon
 
 ### Atlases (with existing animation banks) in need of attention
 + nil
