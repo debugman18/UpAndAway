@@ -24,10 +24,6 @@ for quite some time.
 
 ### Current Version: alpha-0.0.3
 
-### Content Additions (future content release)
-+ Pineapple Bush and Pineapple
-+ Default potion added.
-
 ### Update 2014-5-?? (alpha-0.0.4 release)
 + Cloud Fruit Trees are now choppable.
 + Dragonblood Trees drop their loot when chopped.

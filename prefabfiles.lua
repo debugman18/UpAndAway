@@ -117,12 +117,12 @@ PrefabFiles = {
 	"beanlet_armor",
 	"beanlet_hut",
 
-	--Stuff in progress.
+	--Stuff from dev branch.
 	--------------------
 
-	"pineapple_bush",
-	"pineapple",
-	"alchemy_potions",
+	--"pineapple_bush",
+	--"pineapple",
+	--"alchemy_potions",
 
 	--Stuff not started.
 	--------------------
