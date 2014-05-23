@@ -32,9 +32,7 @@ local function make_potion(data)
 
 		inst:AddComponent("inspectable")
 		
-		inst:AddComponent("inventoryitem")
-
-	   	inst:AddComponent("stackable")
+		inst:AddComponent("stackable")
 		inst.components.stackable.maxsize = 5
 
 		inst:AddComponent("edible")
@@ -101,7 +99,54 @@ local function make_triples()
 	}
 end
 
+local function make_bearded()
+
+	local function oneatenfn(inst, eater)
+
+		local beard_days = {4, 8, 16}
+		local beard_bits = {1, 3,  9}
+
+		if not eater.components.beard then
+
+			eater:AddComponent("beard")
+		    eater.components.beard.onreset = function()
+		        eater.AnimState:ClearOverrideSymbol("beard")
+		        eater:RemoveComponent("beard")
+		        eater:RemoveComponent("beardedlady")
+		    end
+		    eater.components.beard.prize = "beardhair"
+
+		    eater.components.beard:AddCallback(beard_days[3], function()
+		        eater.AnimState:OverrideSymbol("beard", "beard", "beard_long")
+		        eater.components.beard.bits = beard_bits[3]
+		    end)		    
+
+		end
+
+		eater.components.beard.daysgrowth = 16
+
+		local cb = eater.components.beard.callbacks[beard_days[3]]
+		cb()
+
+	end
+
+	return make_potion {
+
+		name = "bearded",
+		anim = "bearded",
+
+		postinit = function(inst)
+
+			print("This is the bearded potion.")
+
+			inst.components.edible:SetOnEatenFn(oneatenfn)
+
+		end,
+	}
+end
+
 return {
 	make_default(),
-	make_triples()
+	make_triples(),
+	make_bearded()
 }
