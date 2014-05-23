@@ -1,11 +1,6 @@
 local LK = modrequire "map.lockandkey"
 
 
-for _, k in ipairs(_G.LOCKS_KEYS[LOCKS.SUSTAINABLE_HEAT]) do
-	TheMod:Say("heat key: ", _G.KEYS_ARRAY[k])
-end
-
-
 local KEYS, LOCKS = LK.SAFE_KEYS, LK.SAFE_LOCKS
 
 
