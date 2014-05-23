@@ -89,6 +89,11 @@ SPEECHES.BEAN_QUEST = function(mgr)
 	mgr "Get to it, fella."
 end
 
+--This is to alert the player of what to do when a beefalo is around.
+SPEECHES.COW_ALERT = function(mgr, args)
+	mgr "Well done, fella. Speak to me for your reward."
+	Sleep(3)
+end
 
 --This is for when a trade is successful.
 --

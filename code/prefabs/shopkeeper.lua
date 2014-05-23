@@ -105,7 +105,8 @@ local function performTransaction(buyer, seller, cow)
 end
 
 
-local MAX_COW_DIST_SQ = CFG.SHOPKEEPER.MAX_COW_DIST^2
+local MAX_COW_DIST = CFG.SHOPKEEPER.MAX_COW_DIST
+local MAX_COW_DIST_SQ = MAX_COW_DIST*MAX_COW_DIST
 
 -- Under "normal usage", buyer is the shopkeeper and seller is the player.
 --
@@ -113,12 +114,12 @@ local MAX_COW_DIST_SQ = CFG.SHOPKEEPER.MAX_COW_DIST^2
 local function negotiateCows(buyer, seller)
 	if not seller.components.leader or not seller.components.leader.followers then return false end
 
-	for cow in pairs(seller.components.leader.followers) do
+	local cows = Game.FindAllEntities(buyer, MAX_COW_DIST, is_a_cow)
+
+	for _, cow in ipairs(cows) do
 		if not canNegotiate(buyer, seller) then break end
 
-		if cow:IsValid() and is_a_cow(cow) and distsq(cow:GetPosition(), buyer:GetPosition()) <= MAX_COW_DIST_SQ then
-			performTransaction(buyer, seller, cow)
-		end
+		performTransaction(buyer, seller, cow)
 	end
 
 	if buyer.beans_to_give and buyer.beans_to_give > 0 then
@@ -224,6 +225,42 @@ local function try_despawn(inst)
 		return
 	end
 	TheMod:DebugSay("Did not despawn [", inst, "].")
+end
+
+-------------------------------------------------------------------------------------------------
+
+--This runs when the shopkeeper is awakes.
+local function start_proximity_task(inst)
+	if inst.shop_proximity_task then return end
+
+	inst.shop_proximity_task = inst:StartThread(function()
+		while inst:IsValid() do
+			local player = GetPlayer()
+
+			if not inst.components.speechgiver:IsSpeaking() then
+				if player and inst:GetDistanceSqToInst(player) < 9*9 then
+					local quester = player.components.quester
+					if quester and quester:StartedQuest(PRIMARY_QUEST) and not quester:GetFlag(PRIMARY_QUEST, "gotkettle") then
+						if Game.FindSomeEntity(inst, MAX_COW_DIST, is_a_cow) then
+							inst.components.speechgiver:PlaySpeech("COW_ALERT", player)
+						end
+					end
+				end
+			end
+
+			Sleep(1)
+		end
+
+		inst.shop_proximity_task = nil
+	end)
+end
+
+--This runs when the shopkeeper sleeps.
+local function stop_proximity_task(inst)
+	if inst.shop_proximity_task then
+		_G.KillThread(inst.shop_proximity_task)
+		inst.shop_proximity_task = nil
+	end
 end
 
 -------------------------------------------------------------------------------------------------
@@ -383,6 +420,9 @@ local function fn(Sim)
 			inst:ListenForEvent("entitysleep", try_despawn)
 		end
 	end)
+
+	inst:ListenForEvent("entitywake", start_proximity_task)
+	inst:ListenForEvent("entitysleep", stop_proximity_task)
 
 	return inst
 end
