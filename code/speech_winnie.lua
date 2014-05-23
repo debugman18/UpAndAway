@@ -10,7 +10,7 @@ return {
 		STORE =
 		{
 			GENERIC = "It's full.",
-			NOTALLOWED = "That can't go in there.",
+			NOTALLOWED = "Thagt can't go in there.",
 		},
 	},
 	ACTIONFAIL_GENERIC = "Oopsie.", --w
@@ -54,7 +54,7 @@ return {
 	ANNOUNCE_TORCH_OUT = "Almost burned my hand.", --W
 	ANNOUNCE_TRAP_WENT_OFF = "Oops.",
 	ANNOUNCE_UNIMPLEMENTED = "OW! I don't think it's ready yet.",
-	ANNOUNCE_WORMHOLE = "That was not a sane thing to do.",
+	ANNOUNCE_WORMHOLE = "It was yucky in there.", --w
 	ANNOUNCE_CANFIX = "\nI think I can fix this!",
 	ANNOUNCE_ACCOMPLISHMENT = "I feel so accomplished!",
 	ANNOUNCE_ACCOMPLISHMENT_DONE = "If only my friends could see me now...",	
@@ -890,8 +890,8 @@ return {
 		WINTEROMETER = "Warm is up, cold is down.", --w
 		WORMHOLE =
 		{
-			GENERIC = "Soft and undulating.",
-			OPEN = "Science compels me to jump in.",
+			GENERIC = "Is that meat?", --w
+			OPEN = "It’s full of teeth. But where does it go?", --w
 		},
 		WORMHOLE_LIMITED = "It has a cold.", --w
 		ACCOMPLISHMENT_SHRINE = "I want to use it, and I want the world to know what I did.",        

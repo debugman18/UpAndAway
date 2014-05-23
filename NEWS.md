@@ -28,6 +28,7 @@ for quite some time.
 + Cloud Fruit Trees are now choppable.
 + Dragonblood Trees drop their loot when chopped.
 + Added Cumulocator Station crafting icon.
++ Some missing strings for Winnie added.
 
 ### Update 2014-5-23 (alpha-0.0.3 release)
 
