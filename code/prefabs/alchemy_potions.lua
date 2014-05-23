@@ -36,6 +36,8 @@ local function make_potion(data)
 
 	   	inst:AddComponent("stackable")
 		inst.components.stackable.maxsize = 5
+
+		inst:AddComponent("edible")
 	    
 		inst:AddComponent("inventoryitem")
 		--inst.components.inventoryitem.atlasname = "images/inventoryimages/potion_"..data.name..".xml"
@@ -58,12 +60,48 @@ local function make_default()
 		anim = "default",
 
 		postinit = function(inst)
+
 			print("This is a default potion.")
+
 		end,
 
 	}
 end
 
+local function make_triples()
+
+	local function oneatenfn(inst, eater)
+
+		local health_percent = eater.components.health:GetPercent() - .05
+		local sanity_percent = eater.components.sanity:GetPercent() - .05
+		local hunger_percent = eater.components.hunger:GetPercent() - .05
+
+		print(health_percent)
+		print(sanity_percent)
+		print(hunger_percent)
+
+		eater.components.health:SetPercent(hunger_percent)
+		eater.components.sanity:SetPercent(health_percent)
+		eater.components.hunger:SetPercent(sanity_percent)
+
+	end
+
+	return make_potion {
+
+		name = "triples",
+		anim = "triples",
+
+		postinit = function(inst)
+
+			print("This is the triples potion.")
+
+			inst.components.edible:SetOnEatenFn(oneatenfn)
+
+		end,
+	}
+end
+
 return {
-	make_default()
+	make_default(),
+	make_triples()
 }
