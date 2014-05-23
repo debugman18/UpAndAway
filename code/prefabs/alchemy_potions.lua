@@ -1,38 +1,69 @@
 BindGlobal()
 
-local assets =
-{
+local basic_assets = {
+
 	--Asset("ANIM", "anim/alchemy_potion.zip"),
 
 	--Asset( "ATLAS", "images/inventoryimages/potion_default.xml" ),
 	--Asset( "IMAGE", "images/inventoryimages/potion_default.tex" ),
 }
 
-local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
+local basic_prefabs = {
+	
+}
 
-	inst.AnimState:SetBank("alchemy_potion")
-	inst.AnimState:SetBuild("alchemy_potion")
-	inst.AnimState:PlayAnimation("potion_default")
+local function make_potion(data)
+	local assets = _G.JoinArrays(basic_assets, data.assets or {})
+	local prefabs = _G.JoinArrays(basic_prefabs, data.prefabs or {})
 
-	inst:AddComponent("inspectable")
+	local postinit = data.postinit or data.custom_fn
 
-    inst:AddComponent("fuel")
-    inst.components.fuel.fuelvalue = 5
+	local function fn()
+		local inst = CreateEntity()
+		inst.entity:AddTransform()
 
-   	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = 10
-    
-	inst:AddComponent("inventoryitem")
-	--inst.components.inventoryitem.atlasname = "images/inventoryimages/potion_default.xml"
+		local anim = inst.entity:AddAnimState()
+		inst.entity:AddSoundEmitter()
+		MakeInventoryPhysics(inst)
+		
+		anim:SetBank(data.bank or "potion_default")
+		anim:SetBuild(data.build or "potion_default")
+		anim:PlayAnimation(data.anim)
 
-	return inst
+		inst:AddComponent("inspectable")
+		
+		inst:AddComponent("inventoryitem")
+
+	   	inst:AddComponent("stackable")
+		inst.components.stackable.maxsize = 5
+	    
+		inst:AddComponent("inventoryitem")
+		--inst.components.inventoryitem.atlasname = "images/inventoryimages/potion_"..data.name..".xml"
+
+		if postinit then
+			postinit(inst)
+		end
+		
+		return inst
+	end
+
+	return Prefab( "common/inventory/potion_"..data.name, fn, assets, prefabs)
+end
+
+local function make_default()
+
+	return make_potion {
+	
+		name = "default",
+		anim = "default",
+
+		postinit = function(inst)
+			print("This is a default potion.")
+		end,
+
+	}
 end
 
 return {
-	Prefab("common/inventory/potion_default", fn, assets) 
-end
+	make_default()
+}

@@ -24,7 +24,7 @@ for quite some time.
 
 ### Current Version: alpha-0.0.3
 
-### Unspecified Additions
+### Content Additions (future content release)
 + Pineapple Bush and Pineapple
 + Default potion added.
 

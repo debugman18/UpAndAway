@@ -2,12 +2,12 @@
 
 ### Inventory images in need of attention
 + Pineapple and Cooked Pineapple (Grilled Pineapple Slices?)
++ Cumulocator Station Crafting Icon
 
 ### Atlases (with existing animation banks) in need of attention
 + nil
 
 ### Custom animation banks/builds in need of attention
-+ Pineapple Bush and Minimap Icon (Small, Growing, Ripe, Rotten, Picked)
 + Pineapple and Cooked Pineapple (Dropped)
 + Ground Tiles (Turf Variety)
 + Bean Giant -- Needs polishing and animation.

@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
+    <folder id="0">
+        <file id="0" name="Pina_0010_Abottomflower.png" width="159" height="137" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Pina_0011_Aleaf2.png" width="49" height="168" pivot_x="0.843137" pivot_y="0.111765"/>
+        <file id="2" name="Pina_0012_Aleaf-.png" width="33" height="150" pivot_x="0.2" pivot_y="0.092105"/>
+        <file id="3" name="Pina_0013_Aflower.png" width="368" height="513" pivot_x="0.216216" pivot_y="0.35534"/>
+        <file id="4" name="Pina_0009_Cbottom.png" width="496" height="593" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="Pina_0014_Bbottomflower.png" width="465" height="513" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="Pina_0015_Bleaf2.png" width="173" height="208" pivot_x="0.897143" pivot_y="0.061905"/>
+        <file id="7" name="Pina_0016_Bleaf.png" width="156" height="219" pivot_x="0.0696203" pivot_y="0.036199"/>
+        <file id="8" name="Pina_0017_Bflower.png" width="123" height="294" pivot_x="0.68" pivot_y="0.037162"/>
+        <file id="9" name="Pina_0018_Bbackleafs.png" width="114" height="89" pivot_x="0" pivot_y="1"/>
+        <file id="10" name="Pina_0008_Dborrmo.png" width="496" height="593" pivot_x="0" pivot_y="1"/>
+        <file id="11" name="Pina_0005_Cstange.png" width="114" height="231" pivot_x="0.646552" pivot_y="0.038627"/>
+        <file id="12" name="Pina_0004_Cananas.png" width="189" height="195" pivot_x="0.486911" pivot_y="0.162437"/>
+        <file id="13" name="Pina_0003_Cananasleafs.png" width="307" height="279" pivot_x="0.401294" pivot_y="0.601423"/>
+        <file id="14" name="Pina_0002_Dflower.png" width="211" height="297" pivot_x="0.605634" pivot_y="0.033445"/>
+        <file id="15" name="Pina_0006_Dbackleafs.png" width="120" height="81" pivot_x="0" pivot_y="1"/>
+        <file id="16" name="Pina_0007_Cbackleafs.png" width="120" height="81" pivot_x="0" pivot_y="1"/>
+        <file id="17" name="Pina_0004_rotten.png" width="189" height="195" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="pineapple_bush">
+        <animation id="0" name="idle_growing" length="3000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="0" key="0" z_index="4"/>
+                </key>
+                <key id="1" time="54">
+                    <object_ref id="0" timeline="4" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="1" z_index="3"/>
+                    <object_ref id="4" timeline="0" key="1" z_index="4"/>
+                </key>
+                <key id="2" time="1606">
+                    <object_ref id="0" timeline="4" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="2" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="1" z_index="3"/>
+                    <object_ref id="4" timeline="0" key="1" z_index="4"/>
+                </key>
+                <key id="3" time="1680">
+                    <object_ref id="0" timeline="4" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="2" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="2" z_index="3"/>
+                    <object_ref id="4" timeline="0" key="1" z_index="4"/>
+                </key>
+                <key id="4" time="3000">
+                    <object_ref id="0" timeline="4" key="2" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="3" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="3" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="3" z_index="3"/>
+                    <object_ref id="4" timeline="0" key="2" z_index="4"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pina_0014_Bbottomflower">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-193.030754" y="443.501984" angle="0"/>
+                </key>
+                <key id="1" time="54" spin="0">
+                    <object folder="0" file="5" x="-193.030754" y="443.501984" angle="0"/>
+                </key>
+                <key id="2" time="3000" spin="0">
+                    <object folder="0" file="5" x="-193.030754" y="443.501984" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Pina_0015_Bleaf2">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" x="-29.714548" y="107.260327" angle="0"/>
+                </key>
+                <key id="1" time="54">
+                    <object folder="0" file="6" x="-29.714548" y="107.260327" angle="0"/>
+                </key>
+                <key id="2" time="1606" spin="-1">
+                    <object folder="0" file="6" x="-29.701757" y="106.996503" angle="2.77571" scale_y="0.980254"/>
+                </key>
+                <key id="3" time="3000" spin="0">
+                    <object folder="0" file="6" x="-29.714548" y="107.260327" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="Pina_0016_Bleaf">
+                <key id="0" spin="0">
+                    <object folder="0" file="7" x="16.799037" y="102.237512" angle="0"/>
+                </key>
+                <key id="1" time="54" spin="-1">
+                    <object folder="0" file="7" x="16.799037" y="102.237512" angle="0"/>
+                </key>
+                <key id="2" time="1606">
+                    <object folder="0" file="7" x="16.775095" y="101.986102" angle="354.560214" scale_y="0.970033"/>
+                </key>
+                <key id="3" time="3000" spin="0">
+                    <object folder="0" file="7" x="16.799037" y="102.237512" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="Pina_0017_Bflower">
+                <key id="0" spin="0">
+                    <object folder="0" file="8" x="-2.172491" y="99.900617" angle="0"/>
+                </key>
+                <key id="1" time="54" spin="-1">
+                    <object folder="0" file="8" x="-2.172491" y="99.900617" angle="0"/>
+                </key>
+                <key id="2" time="1680">
+                    <object folder="0" file="8" x="-2.162042" y="99.647415" angle="358.149786" scale_y="0.97782"/>
+                </key>
+                <key id="3" time="3000" spin="0">
+                    <object folder="0" file="8" x="-2.172491" y="99.900617" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="Pina_0018_Bbackleafs">
+                <key id="0" spin="0">
+                    <object folder="0" file="9" x="-66.02311" y="184.071961" angle="0"/>
+                </key>
+                <key id="1" time="54" spin="0">
+                    <object folder="0" file="9" x="-66.02311" y="184.071961" angle="0"/>
+                </key>
+                <key id="2" time="3000" spin="0">
+                    <object folder="0" file="9" x="-66.02311" y="184.071961" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="idle_normal" length="3000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="3" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="0" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="0" z_index="4"/>
+                </key>
+                <key id="1" time="575">
+                    <object_ref id="0" timeline="3" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="4" key="1" z_index="3"/>
+                    <object_ref id="4" timeline="0" key="1" z_index="4"/>
+                </key>
+                <key id="2" time="1606">
+                    <object_ref id="0" timeline="3" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="2" z_index="2"/>
+                    <object_ref id="3" timeline="4" key="2" z_index="3"/>
+                    <object_ref id="4" timeline="0" key="1" z_index="4"/>
+                </key>
+                <key id="3" time="1677">
+                    <object_ref id="0" timeline="3" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="3" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="3" z_index="2"/>
+                    <object_ref id="3" timeline="4" key="2" z_index="3"/>
+                    <object_ref id="4" timeline="0" key="1" z_index="4"/>
+                </key>
+                <key id="4" time="3000">
+                    <object_ref id="0" timeline="3" key="2" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="4" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="4" z_index="2"/>
+                    <object_ref id="3" timeline="4" key="3" z_index="3"/>
+                    <object_ref id="4" timeline="0" key="2" z_index="4"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pina_0014_Bbottomflower">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-193.030754" y="443.501984" angle="0"/>
+                </key>
+                <key id="1" time="575" spin="0">
+                    <object folder="0" file="5" x="-193.030754" y="443.501984" angle="0"/>
+                </key>
+                <key id="2" time="3000" spin="0">
+                    <object folder="0" file="5" x="-193.030754" y="443.501984" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Pina_0015_Bleaf2">
+                <key id="0">
+                    <object folder="0" file="6" x="-3.852479" y="102.087913" angle="29.527458" scale_x="1" scale_y="1"/>
+                </key>
+                <key id="1" time="575" spin="-1">
+                    <object folder="0" file="6" x="-14.197307" y="107.260327" angle="29.559739"/>
+                </key>
+                <key id="2" time="1606" spin="0">
+                    <object folder="0" file="6" x="-29.701757" y="106.996503" angle="25.338121" scale_x="1" scale_y="0.980254"/>
+                </key>
+                <key id="3" time="1677">
+                    <object folder="0" file="6" x="-29.701757" y="106.996503" angle="25.338121" scale_x="1" scale_y="0.980254"/>
+                </key>
+                <key id="4" time="3000" spin="0">
+                    <object folder="0" file="6" x="-3.852479" y="102.087913" angle="29.527458" scale_x="1" scale_y="1"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="Pina_0016_Bleaf">
+                <key id="0" spin="0">
+                    <object folder="0" file="7" x="-2.16648" y="102.237512" angle="338.941442" scale_x="1" scale_y="1"/>
+                </key>
+                <key id="1" time="575" spin="-1">
+                    <object folder="0" file="7" x="3.005934" y="105.685788" angle="338.941442" scale_y="1"/>
+                </key>
+                <key id="2" time="1606" spin="-1">
+                    <object folder="0" file="7" x="2.981992" y="105.434378" angle="335.135204" scale_x="1" scale_y="0.970033"/>
+                </key>
+                <key id="3" time="1677">
+                    <object folder="0" file="7" x="2.456322" y="105.447183" angle="334.753252" scale_x="1" scale_y="0.971559"/>
+                </key>
+                <key id="4" time="3000" spin="0">
+                    <object folder="0" file="7" x="-2.16648" y="102.237512" angle="338.941442" scale_x="1" scale_y="1"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="Pina_0018_Bbackleafs">
+                <key id="0" spin="0">
+                    <object folder="0" file="9" x="-66.02311" y="184.071961" angle="0"/>
+                </key>
+                <key id="1" time="575" spin="0">
+                    <object folder="0" file="9" x="-66.02311" y="184.071961" angle="0"/>
+                </key>
+                <key id="2" time="3000" spin="0">
+                    <object folder="0" file="9" x="-66.02311" y="184.071961" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="Pina_0017_Bflower_001">
+                <key id="0" spin="0">
+                    <object folder="0" file="8" x="-5.620767" y="95.544411" angle="0" scale_x="0.74658" scale_y="0.769635"/>
+                </key>
+                <key id="1" time="575" spin="0">
+                    <object folder="0" file="8" x="-5.620767" y="95.544411" angle="0" scale_x="0.74658" scale_y="0.769635"/>
+                </key>
+                <key id="2" time="1606" spin="0">
+                    <object folder="0" file="8" x="-5.620767" y="95.544411" angle="0" scale_x="0.74658" scale_y="0.769635"/>
+                </key>
+                <key id="3" time="3000" spin="0">
+                    <object folder="0" file="8" x="-5.620767" y="95.544411" angle="0" scale_x="0.74658" scale_y="0.769635"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="idle_ripe" length="4000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="2" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="3" key="0" z_index="4"/>
+                </key>
+                <key id="1" time="529">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="2" key="1" z_index="3"/>
+                    <object_ref id="4" timeline="3" key="1" z_index="4"/>
+                </key>
+                <key id="2" time="1240">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="2" key="2" z_index="3"/>
+                    <object_ref id="4" timeline="3" key="2" z_index="4"/>
+                </key>
+                <key id="3" time="1881">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="2" key="3" z_index="3"/>
+                    <object_ref id="4" timeline="3" key="3" z_index="4"/>
+                </key>
+                <key id="4" time="4000">
+                    <object_ref id="0" timeline="4" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="2" key="4" z_index="3"/>
+                    <object_ref id="4" timeline="3" key="4" z_index="4"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pina_0009_Cbottom">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-225.581395" y="545.736434" angle="0"/>
+                </key>
+                <key id="1" time="4000" spin="0">
+                    <object folder="0" file="4" x="-225.581395" y="545.736434" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Pina_0005_Cstange">
+                <key id="0">
+                    <object folder="0" file="11" x="-7.688421" y="123.659271" angle="0"/>
+                </key>
+                <key id="1" time="1240" spin="-1">
+                    <object folder="0" file="11" x="-7.688421" y="123.659271" angle="4.022342"/>
+                </key>
+                <key id="2" time="4000" spin="0">
+                    <object folder="0" file="11" x="-7.688421" y="123.659271" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="Pina_0004_Cananas">
+                <key id="0" spin="-1">
+                    <object folder="0" file="12" x="-20.376922" y="334.349634" angle="0"/>
+                </key>
+                <key id="1" time="529">
+                    <object folder="0" file="12" x="-27.528652" y="334.048513" angle="355.184305"/>
+                </key>
+                <key id="2" time="1240">
+                    <object folder="0" file="12" x="-35.124639" y="332.940615" angle="4.022342"/>
+                </key>
+                <key id="3" time="1881" spin="-1">
+                    <object folder="0" file="12" x="-30.949096" y="333.052928" angle="12.965785"/>
+                </key>
+                <key id="4" time="4000" spin="0">
+                    <object folder="0" file="12" x="-20.376922" y="334.349634" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="Pina_0003_Cananasleafs">
+                <key id="0" spin="-1">
+                    <object folder="0" file="13" x="-25.639951" y="495.773761" angle="0"/>
+                </key>
+                <key id="1" time="529">
+                    <object folder="0" file="13" x="-10.988665" y="495.27781" angle="346.418912"/>
+                </key>
+                <key id="2" time="1240">
+                    <object folder="0" file="13" x="-51.697873" y="493.597941" angle="4.022342"/>
+                </key>
+                <key id="3" time="1881" spin="-1">
+                    <object folder="0" file="13" x="-71.326675" y="486.712552" angle="10.821633"/>
+                </key>
+                <key id="4" time="4000" spin="0">
+                    <object folder="0" file="13" x="-25.639951" y="495.773761" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="Pina_0007_Cbackleafs">
+                <key id="0" spin="0">
+                    <object folder="0" file="16" x="-71.317829" y="206.976744" angle="0"/>
+                </key>
+                <key id="1" time="4000" spin="0">
+                    <object folder="0" file="16" x="-71.317829" y="206.976744" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="picking" length="4000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="2" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="3" key="0" z_index="4"/>
+                </key>
+                <key id="1" time="522">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="2" key="1" z_index="3"/>
+                    <object_ref id="4" timeline="3" key="1" z_index="4"/>
+                </key>
+                <key id="2" time="562">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="2" key="2" z_index="3"/>
+                </key>
+                <key id="3" time="614">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="4" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                </key>
+                <key id="4" time="912">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="5" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                </key>
+                <key id="5" time="1240">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="6" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                </key>
+                <key id="6" time="1411">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="7" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                </key>
+                <key id="7" time="1881">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="7" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                </key>
+                <key id="8" time="4000">
+                    <object_ref id="0" timeline="4" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="8" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="1" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pina_0009_Cbottom">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-225.581395" y="545.736434" angle="0"/>
+                </key>
+                <key id="1" time="4000" spin="0">
+                    <object folder="0" file="4" x="-225.581395" y="545.736434" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Pina_0005_Cstange">
+                <key id="0">
+                    <object folder="0" file="14" x="-12.353073" y="122.462229" angle="0"/>
+                </key>
+                <key id="1">
+                    <object folder="0" file="11" x="-7.688421" y="123.659271" angle="0"/>
+                </key>
+                <key id="2" time="522" spin="-1">
+                    <object folder="0" file="11" x="2.052118" y="104.760571" angle="6.348388"/>
+                </key>
+                <key id="3" time="614" spin="-1">
+                    <object folder="0" file="11" x="11.223886" y="110.164768" angle="6.050343"/>
+                </key>
+                <key id="4" time="614" spin="-1">
+                    <object folder="0" file="14" x="2.8005" y="107.724276" angle="6.050343"/>
+                </key>
+                <key id="5" time="912" spin="-1">
+                    <object folder="0" file="14" x="-3.238704" y="115.025882" angle="5.084937"/>
+                </key>
+                <key id="6" time="1240" spin="-1">
+                    <object folder="0" file="14" x="-7.688421" y="123.659271" angle="4.022342"/>
+                </key>
+                <key id="7" time="1411" spin="-1">
+                    <object folder="0" file="14" x="-7.688421" y="123.659271" angle="3.773132"/>
+                </key>
+                <key id="8" time="4000" spin="0">
+                    <object folder="0" file="14" x="-7.688421" y="123.659271" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="Pina_0004_Cananas">
+                <key id="0" spin="-1">
+                    <object folder="0" file="12" x="-20.376922" y="334.349634" angle="0"/>
+                </key>
+                <key id="1" time="522" spin="-1">
+                    <object folder="0" file="12" x="-34.703367" y="312.857262" angle="359.903141"/>
+                </key>
+                <key id="2" time="562">
+                    <object folder="0" file="12" x="-33.967499" y="315.030723" angle="359.419158"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="Pina_0003_Cananasleafs">
+                <key id="0" spin="0">
+                    <object folder="0" file="13" x="-25.639951" y="495.773761" angle="0"/>
+                </key>
+                <key id="1" time="522" spin="0">
+                    <object folder="0" file="13" x="-39.925665" y="469.243149" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="Pina_0007_Cbackleafs">
+                <key id="0" spin="0">
+                    <object folder="0" file="16" x="-71.317829" y="206.976744" angle="0"/>
+                </key>
+                <key id="1" time="4000" spin="0">
+                    <object folder="0" file="16" x="-71.317829" y="206.976744" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="idle_rotten" length="4000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="2" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="3" key="0" z_index="4"/>
+                </key>
+                <key id="1" time="529">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="2" key="1" z_index="3"/>
+                    <object_ref id="4" timeline="3" key="1" z_index="4"/>
+                </key>
+                <key id="2" time="1240">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="2" key="2" z_index="3"/>
+                    <object_ref id="4" timeline="3" key="2" z_index="4"/>
+                </key>
+                <key id="3" time="1881">
+                    <object_ref id="0" timeline="4" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="2" key="3" z_index="3"/>
+                    <object_ref id="4" timeline="3" key="3" z_index="4"/>
+                </key>
+                <key id="4" time="4000">
+                    <object_ref id="0" timeline="4" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="2" key="4" z_index="3"/>
+                    <object_ref id="4" timeline="3" key="4" z_index="4"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pina_0009_Cbottom">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-225.581395" y="545.736434" angle="0"/>
+                </key>
+                <key id="1" time="4000" spin="0">
+                    <object folder="0" file="4" x="-225.581395" y="545.736434" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Pina_0005_Cstange">
+                <key id="0">
+                    <object folder="0" file="11" x="-7.688421" y="123.659271" angle="0"/>
+                </key>
+                <key id="1" time="1240" spin="-1">
+                    <object folder="0" file="11" x="-7.688421" y="123.659271" angle="4.022342"/>
+                </key>
+                <key id="2" time="4000" spin="0">
+                    <object folder="0" file="11" x="-7.688421" y="123.659271" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="Pina_0004_Cananas">
+                <key id="0" spin="-1">
+                    <object folder="0" file="17" x="-122.417738" y="505.778205" angle="1.56492"/>
+                </key>
+                <key id="1" time="529">
+                    <object folder="0" file="17" x="-111.202121" y="503.436268" angle="355.184305"/>
+                </key>
+                <key id="2" time="1240">
+                    <object folder="0" file="17" x="-141.247088" y="490.083472" angle="4.022342"/>
+                </key>
+                <key id="3" time="1881" spin="-1">
+                    <object folder="0" file="17" x="-159.520525" y="477.950887" angle="12.965785"/>
+                </key>
+                <key id="4" time="4000">
+                    <object folder="0" file="17" x="-116.295289" y="503.737389" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="Pina_0003_Cananasleafs">
+                <key id="0" spin="-1">
+                    <object folder="0" file="13" x="-25.639951" y="495.773761" angle="0"/>
+                </key>
+                <key id="1" time="529">
+                    <object folder="0" file="13" x="-10.988665" y="495.27781" angle="346.418912"/>
+                </key>
+                <key id="2" time="1240">
+                    <object folder="0" file="13" x="-51.697873" y="493.597941" angle="4.022342"/>
+                </key>
+                <key id="3" time="1881" spin="-1">
+                    <object folder="0" file="13" x="-71.326675" y="486.712552" angle="10.821633"/>
+                </key>
+                <key id="4" time="4000" spin="0">
+                    <object folder="0" file="13" x="-25.639951" y="495.773761" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="Pina_0007_Cbackleafs">
+                <key id="0" spin="0">
+                    <object folder="0" file="16" x="-71.317829" y="206.976744" angle="0"/>
+                </key>
+                <key id="1" time="4000" spin="0">
+                    <object folder="0" file="16" x="-71.317829" y="206.976744" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="idle_harvested" length="2000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="2" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="0" z_index="2"/>
+                </key>
+                <key id="1" time="2000">
+                    <object_ref id="0" timeline="2" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="0" key="1" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pina_0009_Cbottom">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-225.581395" y="545.736434" angle="0"/>
+                </key>
+                <key id="1" time="2000" spin="0">
+                    <object folder="0" file="4" x="-225.581395" y="545.736434" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Pina_0005_Cstange">
+                <key id="0" spin="0">
+                    <object folder="0" file="14" x="-4.515032" y="125.823205" angle="0"/>
+                </key>
+                <key id="1" time="2000" spin="0">
+                    <object folder="0" file="14" x="-4.515032" y="125.823205" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="Pina_0007_Cbackleafs">
+                <key id="0" spin="0">
+                    <object folder="0" file="16" x="-71.317829" y="206.976744" angle="0"/>
+                </key>
+                <key id="1" time="2000" spin="0">
+                    <object folder="0" file="16" x="-71.317829" y="206.976744" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="6" name="idle_empty" length="3000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="0" key="0" z_index="3"/>
+                </key>
+                <key id="1" time="88">
+                    <object_ref id="0" timeline="1" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="0" key="0" z_index="3"/>
+                </key>
+                <key id="2" time="1611">
+                    <object_ref id="0" timeline="1" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="0" key="0" z_index="3"/>
+                </key>
+                <key id="3" time="1667">
+                    <object_ref id="0" timeline="1" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="0" key="1" z_index="3"/>
+                </key>
+                <key id="4" time="1705">
+                    <object_ref id="0" timeline="1" key="2" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="0" key="1" z_index="3"/>
+                </key>
+                <key id="5" time="1878">
+                    <object_ref id="0" timeline="1" key="3" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="3" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="2" z_index="2"/>
+                    <object_ref id="3" timeline="0" key="1" z_index="3"/>
+                </key>
+                <key id="6" time="3000">
+                    <object_ref id="0" timeline="1" key="4" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="4" z_index="1"/>
+                    <object_ref id="2" timeline="3" key="3" z_index="2"/>
+                    <object_ref id="3" timeline="0" key="2" z_index="3"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Pina_0010_Abottomflower">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-75.045685" y="104.477157" angle="0"/>
+                </key>
+                <key id="1" time="1667" spin="0">
+                    <object folder="0" file="0" x="-75.045685" y="98.58684" angle="0" scale_y="0.957161"/>
+                </key>
+                <key id="2" time="3000" spin="0">
+                    <object folder="0" file="0" x="-75.045685" y="104.477157" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Pina_0011_Aleaf2">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-1.619686" y="51.975896" angle="3.052918"/>
+                </key>
+                <key id="1" time="88">
+                    <object folder="0" file="1" x="-1.619686" y="51.975896" angle="3.052918"/>
+                </key>
+                <key id="2" time="1705" spin="0">
+                    <object folder="0" file="1" x="-1.619686" y="51.975896" angle="10.719453"/>
+                </key>
+                <key id="3" time="1878" spin="-1">
+                    <object folder="0" file="1" x="-1.619686" y="51.975896" angle="10.719453"/>
+                </key>
+                <key id="4" time="3000" spin="0">
+                    <object folder="0" file="1" x="-1.619686" y="51.975896" angle="3.052918"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="Pina_0012_Aleaf-">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="13.330842" y="55.806882" angle="1.174899"/>
+                </key>
+                <key id="1" time="88" spin="-1">
+                    <object folder="0" file="2" x="13.330842" y="55.806882" angle="1.174899"/>
+                </key>
+                <key id="2" time="1705" spin="0">
+                    <object folder="0" file="2" x="13.330842" y="55.806882" angle="357.671741"/>
+                </key>
+                <key id="3" time="1878">
+                    <object folder="0" file="2" x="13.330842" y="55.806882" angle="357.671741"/>
+                </key>
+                <key id="4" time="3000" spin="0">
+                    <object folder="0" file="2" x="13.330842" y="55.806882" angle="1.174899"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="Pina_0013_Aflower">
+                <key id="0">
+                    <object folder="0" file="3" x="5.567488" y="62.28942" angle="0.972203" scale_y="0.963809"/>
+                </key>
+                <key id="1" time="1611" spin="-1">
+                    <object folder="0" file="3" x="5.567488" y="60.28942" angle="4.76597" scale_y="1.027093"/>
+                </key>
+                <key id="2" time="1878" spin="-1">
+                    <object folder="0" file="3" x="5.567488" y="62.28942" angle="4.509228"/>
+                </key>
+                <key id="3" time="3000" spin="0">
+                    <object folder="0" file="3" x="5.567488" y="62.28942" angle="0.972203" scale_y="0.963809"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

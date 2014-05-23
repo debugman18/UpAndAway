@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	--Asset("ANIM", "anim/pineapple_bush.zip"),
+	Asset("ANIM", "anim/pineapple_bush.zip"),
 }
 
 local prefabs =
@@ -54,7 +54,7 @@ local function dig_up(inst, chopper)
 end
 
 local function growEmpty(inst)
-    --inst.AnimState:PlayAnimation("idle_empty")
+    inst.AnimState:PlayAnimation("idle_empty")
     inst.SoundEmitter:PlaySound("dontstarve/forest/treeGrow")
     if inst.components.pickable then
     	inst:RemoveComponent("pickable")    
@@ -62,7 +62,7 @@ local function growEmpty(inst)
 end
 
 local function growNormal(inst)
-   -- inst.AnimState:PlayAnimation("idle_normal")
+   inst.AnimState:PlayAnimation("idle_normal")
     inst.SoundEmitter:PlaySound("dontstarve/forest/treeGrow")  
     if inst.components.pickable then
     	inst:RemoveComponent("pickable")    
@@ -70,7 +70,7 @@ local function growNormal(inst)
 end
 
 local function growGrowing(inst)
-    --inst.AnimState:PlayAnimation("idle_growing")
+    inst.AnimState:PlayAnimation("idle_growing")
     inst.SoundEmitter:PlaySound("dontstarve/forest/treeGrow") 
     if inst.components.pickable then
     	inst:RemoveComponent("pickable")    
@@ -80,7 +80,7 @@ end
 --This is for when it's picked ripe.
 local function onpickedfn(inst)
 	inst.SoundEmitter:PlaySound("dontstarve/wilson/pickup_reeds") 
-	--inst.AnimState:PlayAnimation("picking")
+	inst.AnimState:PlayAnimation("picking")
 	inst:RemoveComponent("pickable")
 	inst.components.growable:SetStage(5) 
 end
@@ -89,12 +89,11 @@ end
 local function onharvestfn(inst)
 	inst.SoundEmitter:PlaySound("dontstarve/wilson/pickup_reeds")
 	inst:RemoveComponent("pickable")
-	--inst.AnimState:PlayAnimation("idle_harvested")
-	inst.AnimState:SetMultColour(0,0,0,1)
+	inst.AnimState:PlayAnimation("idle_harvested")
 end	
 
 local function growRipe(inst)
-    --inst.AnimState:PlayAnimation("idle_ripe")
+    inst.AnimState:PlayAnimation("idle_ripe")
     inst.SoundEmitter:PlaySound("dontstarve/forest/treeGrow")
     if not inst.components.pickable then
     	inst:AddComponent("pickable")
@@ -102,19 +101,16 @@ local function growRipe(inst)
     	inst.components.pickable.cycles_left = 1
     	inst.components.pickable.product = "pineapple"
     	inst.components.pickable.onpickedfn = onpickedfn 
-	end
-    inst.AnimState:SetMultColour(0,255,0,1)          
+	end         
 end
 
 local function growHarvested(inst)
     if inst.components.pickable then
-    	--inst.AnimState:PlayAnimation("idle_rotten")
-    	inst.AnimState:SetMultColour(255,0,0,1) 
+    	inst.AnimState:PlayAnimation("idle_rotten")
     	inst.components.pickable.product = "wetgoop"
     	inst.components.pickable.onpickedfn = onharvestfn 
    	else 
-   		--inst.AnimState:PlayAnimation("idle_harvested")
-   		inst.AnimState:SetMultColour(0,0,0,1)
+   		inst.AnimState:PlayAnimation("idle_harvested")
    	end              
 end
 
@@ -220,13 +216,9 @@ local function fn(Sim)
 	inst.entity:AddSoundEmitter()
 	MakeObstaclePhysics(inst, .2)
 
-	--inst.AnimState:SetBank("pineapple_bush")
-	--inst.AnimState:SetBuild("pineapple_bush")
-
-	inst.AnimState:SetBank("grass")
-	inst.AnimState:SetBuild("grass1")
-	inst.AnimState:PlayAnimation("idle",true)
-
+	inst.AnimState:SetBank("pineapple_bush")
+	inst.AnimState:SetBuild("pineapple_bush")
+    
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("lootdropper")
