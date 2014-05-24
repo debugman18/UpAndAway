@@ -8,7 +8,6 @@
 
 ### Custom animation banks/builds in need of attention
 + Cooked Pineapple (Dropped)
-+ Ground Tiles (Turf Variety)
 + Bean Giant -- Needs polishing and animation.
 
 ### Entities with no art assets and undefined status (between using custom animations or not)

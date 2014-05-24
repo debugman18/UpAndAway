@@ -8,7 +8,16 @@
 -- For now, avoid removing entries and/or reordering them, otherwise savedata
 -- for new tiles will get messed up (creating a new save will fix it, though).
 --]]
-NEW_TILES = {"poopcloud", "aurora", "snow", "rainbow", "cloudswirl", "cloudland"}
+NEW_TILES = {
+	"poopcloud", 
+	"aurora", 
+	"snow", 
+	"rainbow", 
+	"cloudswirl", 
+	"cloudland", 
+	"snowtwo", 
+	"auroratwo"
+}
 
 --[[
 -- Defines the fire extinguish speed (relative to its total burn time)

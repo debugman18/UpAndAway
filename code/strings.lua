@@ -140,6 +140,7 @@ Add.Names {
     package = "Unknown Package",
     pineapple_bush = "Pineapple Bush",
     pineapple = "Pineapple",
+    potion_default = "Potion",
     quartz_torch = "Quartz Torch",
     rainbowcoon = "Rainbowcoon",
     refined_black_crystal = "Black Crystal",

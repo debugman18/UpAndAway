@@ -2,6 +2,35 @@ local function randomness()
 	return 0.1 + 0.5*math.random()
 end
 
+local function randomcloud()
+	local roll = math.random(1,3)
+	if roll == 1 then
+		return GROUND.CLOUDLAND
+	elseif roll == 2 then 
+		return GROUND.CLOUDSWIRL
+	else
+		return GROUND.POOPCLOUD
+	end
+end	
+
+local function randomsnow()
+	local roll = math.random(1,2)
+	if roll == 1 then
+		return GROUND.AURORA
+	else 
+		return GROUND.AURORATWO
+	end
+end	
+
+local function randomsnow()
+	local roll = math.random(1,2)
+	if roll == 1 then
+		return GROUND.SNOW
+	else 
+		return GROUND.SNOWTWO
+	end
+end	
+
 BindGlobal()
 
 --Generic Biome Rooms

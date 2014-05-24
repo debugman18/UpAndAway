@@ -30,6 +30,7 @@ for quite some time.
 + Stat Swapper potion added.
 + Bearded potion added.
 + Tunneler potion added.
++ Alternate turf textures added.
 
 ### Update 2014-5-23 (alpha-0.0.3 release)
 
