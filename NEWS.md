@@ -29,6 +29,7 @@ for quite some time.
 + Dragonblood Trees drop their loot when chopped.
 + Added Cumulocator Station crafting icon.
 + Some missing strings for Winnie added.
++ Mod API information updated.
 
 ### Update 2014-5-23 (alpha-0.0.3 release)
 
