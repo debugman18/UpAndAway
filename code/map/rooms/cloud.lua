@@ -13,7 +13,7 @@ local function randomcloud()
 	end
 end	
 
-local function randomsnow()
+local function randomaurora()
 	local roll = math.random(1,2)
 	if roll == 1 then
 		return GROUND.AURORA
@@ -38,7 +38,7 @@ BindGlobal()
 --Generic BG
 TheMod:AddRoom("BGCloud", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.POOPCLOUD,
+	value = randomcloud(),
 	contents = {
 		distributepercent = randomness(),
 		distributeprefabs = {
@@ -60,7 +60,7 @@ TheMod:AddRoom("BGCloud", {
 --Generic Spawnzone
 TheMod:AddRoom("BeanstalkSpawn", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.POOPCLOUD,
+	value = randomcloud(),
 	contents =  {
 		distributepercent = 0.4,
 		distributeprefabs = {
@@ -75,7 +75,7 @@ TheMod:AddRoom("BeanstalkSpawn", {
 --Skyflowers
 TheMod:AddRoom("SkyflowerGarden", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.CLOUDSWIRL,
+	value = randomcloud(),
 	contents = {
 		custom_tiles={
 			GeneratorFunction = RUNCA.GeneratorFunction,
@@ -103,7 +103,7 @@ TheMod:AddRoom("SkyflowerGarden", {
 --Sheep
 TheMod:AddRoom("SheepHerd", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.CLOUDLAND,
+	value = randomcloud(),
 	contents = {
 		distributepercent = randomness(),
 		distributeprefabs = {
@@ -117,7 +117,7 @@ TheMod:AddRoom("SheepHerd", {
 --Cloudbushes
 TheMod:AddRoom("BushGarden", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.POOPCLOUD,
+	value = randomcloud(),
 	contents = {
 		distributepercent = randomness(),
 		distributeprefabs = {
@@ -140,16 +140,16 @@ TheMod:AddRoom("BushGarden", {
 --Aurora BG
 TheMod:AddRoom("BGAurora", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.AURORA,
+	value = randomaurora(),
 	contents =  {
 		custom_tiles={
 			GeneratorFunction = RUNCA.GeneratorFunction,
 			data = {iterations=1, seed_mode=CA_SEED_MODE.SEED_CENTROID, num_random_points=1,
-						translate={	{tile=GROUND.AURORA, items={"alien"}, item_count=3},
-									{tile=GROUND.AURORA, items={"skeleton"}, item_count=5},
-									{tile=GROUND.AURORA, items={"cloudcrag"}, item_count=17},
-									{tile=GROUND.AURORA, items={"dragonblood_tree"}, item_count=6},
-									{tile=GROUND.AURORA, items={"skyflower"}, item_count=30},
+						translate={	{tile=randomaurora(), items={"alien"}, item_count=3},
+									{tile=randomaurora(), items={"skeleton"}, item_count=5},
+									{tile=randomaurora(), items={"cloudcrag"}, item_count=17},
+									{tile=randomaurora(), items={"dragonblood_tree"}, item_count=6},
+									{tile=randomaurora(), items={"skyflower"}, item_count=30},
 							},
 					centroid= 	{tile=GROUND.SNOW, items={"scarecrow"}, item_count=1},
 			},
@@ -172,7 +172,7 @@ TheMod:AddRoom("BGAurora", {
 --Vines
 TheMod:AddRoom("Vine_Room", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.AURORA,
+	value = randomaurora(),
 	contents = {
 		distributepercent = randomness(),
 		distributeprefabs = {
@@ -188,7 +188,7 @@ TheMod:AddRoom("Vine_Room", {
 --Cloudcrags
 TheMod:AddRoom("CragLanding", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.AURORA,
+	value = randomaurora(),
 	contents = {
 		distributepercent = randomness(),
 		distributeprefabs = {
@@ -207,7 +207,7 @@ TheMod:AddRoom("CragLanding", {
 --Longbills
 TheMod:AddRoom("Bigbird_Nest", {
 	coulour={r=.2,g=.2,b=.2,a=.2},
-	value = GROUND.AURORA,
+	value = randomaurora(),
 	contents = {
 		distributepercent = randomness(),
 		distributeprefabs = {
@@ -225,7 +225,7 @@ TheMod:AddRoom("Bigbird_Nest", {
 --Beanlets
 TheMod:AddRoom("Beanlet_Den", {
 	coulour={r=.2,g=.2,b=.2,a=.2},
-	value = GROUND.AURORA,
+	value = randomaurora(),
 	contents = {
 		distributepercent = 0.6*randomness(),
 		distributeprefabs = {
@@ -247,7 +247,7 @@ TheMod:AddRoom("Beanlet_Den", {
 --Snow BG
 TheMod:AddRoom("BGSnow", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.SNOW,
+	value = randomsnow(),
 	contents = {
 		distributepercent = randomness(),
 		distributeprefabs = {
@@ -264,7 +264,7 @@ TheMod:AddRoom("BGSnow", {
 --Thunder Trees
 TheMod:AddRoom("Thunder_Forest", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.SNOW,
+	value = randomsnow(),
 	contents = {
 		distributepercent = randomness(),
 		distributeprefabs = {
@@ -283,7 +283,7 @@ TheMod:AddRoom("Thunder_Forest", {
 
 TheMod:AddRoom("Sea_Mimic", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.SNOW,
+	value = randomsnow(),
 	contents = {
 		distributepercent = randomness(),
 		distributeprefabs = {
@@ -300,7 +300,7 @@ TheMod:AddRoom("Sea_Mimic", {
 
 TheMod:AddRoom("Manta_Room", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.SNOW,
+	value = randomsnow(),
 	contents = {
 		distributepercent = randomness(),
 		distributeprefabs = {
