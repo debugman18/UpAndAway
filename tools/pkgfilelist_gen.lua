@@ -246,6 +246,9 @@ local DumpValue = (function()
 		if type(k) == "table" then
 			return error("Cannot serialize a table as a key.")
 		end
+		if type(k) == "string" and k:find("^[_%a][_%w]*$") then
+			return k
+		end
 		return "["..dovalue(k).."]"
 	end
 
