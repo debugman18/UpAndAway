@@ -24,7 +24,6 @@ for quite some time.
 
 ### Current Version: alpha-0.0.3
 
-<<<<<<< HEAD
 ### Update 2014-?-?? (future content release)
 + Pineapple Bushes and Pineapples added.
 + Default potion added.
@@ -32,14 +31,16 @@ for quite some time.
 + Bearded potion added.
 + Tunneler potion added.
 + Alternate turf textures added.
-=======
+
+
 ### Update 2014-5-?? (alpha-0.0.4 release)
 + Cloud Fruit Trees are now choppable.
 + Dragonblood Trees drop their loot when chopped.
 + Added Cumulocator Station crafting icon.
 + Some missing strings for Winnie added.
 + Mod API information updated.
->>>>>>> stable
++ Tweaked the sound in the cloudrealm.
+
 
 ### Update 2014-5-23 (alpha-0.0.3 release)
 
