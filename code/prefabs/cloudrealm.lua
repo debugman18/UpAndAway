@@ -226,7 +226,7 @@ local function fn(Sim)
    
     --Uses our cloudwaves.
     local waves = inst.entity:AddWaveComponent()
-    waves:SetRegionSize(32, 15) --32,16
+    waves:SetRegionSize(40, 18) --32,16
     --waves:SetRegionSize(40, 20) --This definitely works.
     --8
     waves:SetRegionNumWaves(8) --8
