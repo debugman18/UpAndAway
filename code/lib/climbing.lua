@@ -269,8 +269,10 @@ function ClimbTo(height, cavenum)
 		height = GetMinHeight()
 	end
 
-	if height == GetLevelHeight() then
-		TheMod:DebugSay("There's no more levels to climb to in this direction.")
+	local current_height = GetLevelHeight()
+
+	if height == current_height then
+		TheMod:DebugSay("There are no more levels to climb to in this direction.")
 		return
 	end
 
@@ -304,7 +306,7 @@ function ClimbTo(height, cavenum)
 	end
 
 	SaveGameIndex:GetSaveFollowers(_G.GetPlayer())
-	SaveGameIndex:SaveCurrent(cb)
+	SaveGameIndex:SaveCurrent(cb, height < current_height and "descend" or "ascend", cavenum)
 end
 
 ---

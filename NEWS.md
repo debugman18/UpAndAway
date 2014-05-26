@@ -24,7 +24,7 @@ for quite some time.
 
 ### Current Version: alpha-0.0.3
 
-### Update 2014-?-?? (future content release)
+### dev
 + Pineapple Bushes and Pineapples added.
 + Default potion added.
 + Stat Swapper potion added.
@@ -33,7 +33,8 @@ for quite some time.
 + Alternate turf textures added.
 
 
-### Update 2014-5-?? (alpha-0.0.4 release)
+### stable
++ REALLY fixed the follower savedata bug
 + Cloud Fruit Trees are now choppable.
 + Dragonblood Trees drop their loot when chopped.
 + Added Cumulocator Station crafting icon.
