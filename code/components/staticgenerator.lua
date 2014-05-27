@@ -225,27 +225,27 @@ end
 
 ---
 -- Goes to the CHARGED state.
-function StaticGenerator:Charge()
-	if self:IsHoldingState() then return end
+function StaticGenerator:Charge(force)
+	if not force and self:IsHoldingState() then return end
 
 	self.chain:GoTo("CHARGED")
 end
 
 ---
 -- Goes to the UNCHARGED state.
-function StaticGenerator:Uncharge()
-	if self:IsHoldingState() then return end
+function StaticGenerator:Uncharge(force)
+	if not force and self:IsHoldingState() then return end
 
 	self.chain:GoTo("UNCHARGED")
 end
 
 ---
 -- Goes to the other state.
-function StaticGenerator:Toggle()
+function StaticGenerator:Toggle(force)
 	if self:IsCharged() then
-		self:Uncharge()
+		self:Uncharge(force)
 	else
-		self:Charge()
+		self:Charge(force)
 	end
 end
 

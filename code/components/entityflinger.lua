@@ -99,6 +99,8 @@ local function random_pt_at_distance(node, origin, dist)
 	local dir = node_center - origin
 	local d = dir:Length()
 	dir:Normalize()
+	-- Just to be sure.
+	dir.y = 0
 
 
 	if d > r + dist then
@@ -169,7 +171,7 @@ local EntityFlinger = Class(Debuggable, function(self, inst)
 					-- We can clear entries of a table during iteration,
 					-- what we can't is add new ones.
 					--]]
-					_G.KillThread(task)
+					task:SetList(nil)
 					tasks[task] = nil
 				end
 			end
@@ -180,8 +182,8 @@ local EntityFlinger = Class(Debuggable, function(self, inst)
 	--[[
 	-- Tracked entities during the fling pre and post phases.
 	--]]
-	self.pre_fling = NewEntityTable(self.entitycleaner)
-	self.post_fling = NewEntityTable(self.entitycleaner)
+	self.pre_fling = NewEntityTable(self.entity_cleaner)
+	self.post_fling = NewEntityTable(self.entity_cleaner)
 end)
 
 
@@ -412,6 +414,8 @@ local Begin = {}
 
 
 function Begin.post_fling(self, inst)
+	self:DebugSay("Began post fling on [", inst, "]")
+
 	local UPDATE_PERIOD = 0.5
 
 	if not (inst:IsValid() and inst.Physics) then return end
@@ -422,9 +426,12 @@ function Begin.post_fling(self, inst)
 
 		Physics.PushDamping(
 			inst,
-			math.min(
-				Physics.GetDamping(inst),
-				0.75
+			math.max(
+				0.1,
+				math.min(
+					Physics.GetDamping(inst),
+					0.75
+				)
 			)
 		)
 		Physics.PushRestitution(
@@ -438,11 +445,12 @@ function Begin.post_fling(self, inst)
 		if inst:HasTag("player") then
 			inst.AnimState:PlayAnimation("wakeup")
 			inst.AnimState:Pause()
-			_G.TheFrontEnd:DoFadeIn(2.5)
 		end
 
 		inst.Physics:SetMotorVel(0, 1, 0)
 		inst.Physics:Stop()
+
+		local pt0 = inst:GetPosition()
 
 		local function get_height()
 			local _, h = inst.Transform:GetWorldPosition()
@@ -451,25 +459,35 @@ function Begin.post_fling(self, inst)
 
 		local function put_on_ground()
 			local x, y, z = inst.Transform:GetWorldPosition()
-			inst.Physics:Teleport(x, 0, z)
+			inst.Transform:SetPosition(x, 0, z)
 			inst.Physics:Stop()
 		end
 
-		while inst:IsValid() and get_height() > 0.1 do
-			_G.Sleep(UPDATE_PERIOD)
+		local function get_horz_displacement_sq()
+			local x, y, z = inst.Transform:GetWorldPosition()
+			local dx, dz = x - pt0.x, z - pt0.z
+			return dx*dx + dx*dz
 		end
 
-		_G.Sleep(1)
+		local function strayed_from_pt()
+			return get_horz_displacement_sq() > 1
+		end
 
-		if inst:HasTag("player") then
-			inst.AnimState:Resume()
-			inst.sg:GoToState "wakeup"
+		while inst:IsValid() and get_height() > 0.1 and not strayed_from_pt() do
+			_G.Sleep(UPDATE_PERIOD)
+			--print "post fling slept"
 		end
 
 		Physics.PopDamping(inst)
 		Physics.PopRestitution(inst)
 
 		put_on_ground()
+
+		if inst:HasTag("player") then
+			_G.Sleep(1)
+			inst.AnimState:Resume()
+			inst.sg:GoToState "wakeup"
+		end
 
 		EnableEntity(inst)
 
@@ -485,13 +503,17 @@ end
 function EntityFlinger:Fling(inst)
 	self:DebugSay("Fling([", inst, "])")
 
+	if inst:HasTag("player") then
+		_G.TheFrontEnd:DoFadeIn(2.5)
+	end
+
 	local pt = self:GetFlingDestination()
 
 	if not pt or not inst:IsValid() or self:WantsToDie() then
 		if inst:IsValid() then
-			local targ_pos = inst:GetPosition()
-			targ_pos.y = 0
-			Game.Move(inst, targ_pos)
+			self:DebugSay("Fling: Simply putting [", inst, "] on ground.")
+			inst.Physics:Stop()
+			inst.Transform:SetPosition(self.inst.Transform:GetWorldPosition())
 		end
 		self:Touch()
 		return
@@ -501,12 +523,17 @@ function EntityFlinger:Fling(inst)
 		Game.Move(inst, pt + Point(0, self:GetHeight(), 0))
 		Begin.post_fling(self, inst)
 	else
+		self:DebugSay("Fling: Simply moved [", inst, "] (far from player)")
+		inst.Physics:Stop()
 		Game.Move(inst, pt)
+		self:Touch()
 	end
 end
 
 
 function Begin.pre_fling(self, victim)
+	self:DebugSay("Began pre fling on [", victim, "]")
+
 	local UPDATE_PERIOD = 0.1
 
 	if not (victim:IsValid() and victim.Physics and self.inst:IsValid() and self.inst.components.entityflinger) then return end
@@ -545,14 +572,17 @@ function Begin.pre_fling(self, victim)
 
 			victim.Physics:SetMotorVel(( (next_pt - victim:GetPosition())*UPDATE_FREQUENCY ):Get())
 
+			--print "pre fling sleeping"
 			_G.Sleep(UPDATE_PERIOD)
+			--print "pre fling slept"
 		end
+		--print "pre fling loop ended"
 
 		EnableEntity(victim)
 
-		self:Fling(victim)
-
 		UntrackInst.pre_fling(self, victim)
+		self:DebugSay("Pre fling over [", self.inst, "] ended")
+		self:Fling(victim)
 	end)
 
 	self.pre_fling[victim][thread] = true
@@ -577,10 +607,11 @@ function EntityFlinger:ApplyAttraction(victim)
 
 	if not victim.Physics or self.attracted_ents[victim] then return end
 
-	self:DebugSay("Started to attract [", victim, "]")
 	self.attracted_ents[victim] = true
 
 	self.inst:StartThread(function()
+		self:DebugSay("Started attraction thread on [", victim, "]")
+
 		DisableEntity(victim)
 
 		victim.Transform:SetRotation(0)
@@ -590,6 +621,7 @@ function EntityFlinger:ApplyAttraction(victim)
 		end
 
 		_G.Sleep(UPDATE_PERIOD*math.random())
+		--print "apply attraction first slept"
 
 		local cb = nil
 
@@ -630,6 +662,7 @@ function EntityFlinger:ApplyAttraction(victim)
 
 
 			_G.Sleep(UPDATE_PERIOD)
+			--print "apply attraction slept"
 		end
 
 		if victim:IsValid() then
@@ -646,9 +679,11 @@ function EntityFlinger:ApplyAttraction(victim)
 
 		if self:WantsToDie() then
 			self:Touch()
-		elseif cb then
+		elseif self.inst:IsValid() and cb then
 			cb(self, victim)
 		end
+
+		self:DebugSay("Finished attraction thread on [", victim, "]")
 	end)
 end
 
@@ -671,28 +706,38 @@ EntityFlinger.StartAttracting = (function()
 		end
 
 		return function()
+			if self.inst:IsAsleep() or self:WantsToDie() then return end
+
+			--print "looking for victims"
 			local Ents = Game.FindAllEntities(self.inst, self:GetAttractionRadius(), test, nil, {"NOFLING"})
 
 			for _, e in ipairs(Ents) do
 				self:ApplyAttraction(e)
 			end
+			--print "looked for victims"
 		end
 	end
+
+	local UPDATE_PERIOD = 0.6
 
 	return function(self)
 		self:DebugSay("StartAttracting()")
 
 		self.wants_to_attract = true
 
-		local UPDATE_PERIOD = 0.6
-
-		self.attraction_task = self.inst:DoPeriodicTask(UPDATE_PERIOD, MakeStepper(self), UPDATE_PERIOD*math.random())
+		if not self.attraction_task then
+			self.attraction_task = self.inst:DoPeriodicTask(UPDATE_PERIOD, MakeStepper(self), UPDATE_PERIOD*math.random())
+		end
 	end
 end)()
 
 function EntityFlinger:StopAttracting()
 	self.wants_to_attract = false
-	self.attracted_ents = NewEntityTable()
+	--self.attracted_ents = NewEntityTable()
+	if self.attraction_task then
+		self.attraction_task:Cancel()
+		self.attraction_task = nil
+	end
 end
 
 function EntityFlinger:OnSave()
@@ -731,6 +776,29 @@ function EntityFlinger:LoadPostPass(newents, data)
 		end
 	end
 end
+
+--[[
+-- FIXME
+local count = 1
+local function tag_foo(k, v)
+	return function(self, ...)
+		local oldcnt = count
+		count = count + 1
+		self:DebugSay(oldcnt, " CALLED ", k)
+		local rets = {v(self, ...)}
+		self:DebugSay(oldcnt, " RETURNED FROM ", k)
+		return unpack(rets)
+	end
+end
+for k, v in pairs(EntityFlinger) do
+	if not Debuggable[k] and not k:find("Say") and type(v) == "function" then
+		EntityFlinger[k] = tag_foo(k, v)
+	end
+end
+for k, v in pairs(Begin) do
+	Begin[k] = tag_foo("Begin."..k, v)
+end
+]]--
 
 
 return EntityFlinger

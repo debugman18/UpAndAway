@@ -528,7 +528,7 @@ function SpeechManager:Cancel()
 
 	self:DebugSay("Cancel()")
 
-	_G.KillThread(self.thread)
+	self.thread:SetList(nil)
 	self.thread = nil
 
 	speechmanager_onfinishspeech(self, true)

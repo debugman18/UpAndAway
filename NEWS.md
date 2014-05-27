@@ -35,6 +35,7 @@ for quite some time.
 
 
 ### stable
++ Fixed the floating followers when flinged by a whirlwind
 + REALLY fixed the follower savedata bug
 + Cloud Fruit Trees are now choppable.
 + Dragonblood Trees drop their loot when chopped.
