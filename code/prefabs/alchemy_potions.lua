@@ -31,14 +31,16 @@ local function make_potion(data)
 		anim:PlayAnimation(data.anim)
 
 		inst:AddComponent("inspectable")
-		
-		inst:AddComponent("stackable")
-		inst.components.stackable.maxsize = 5
 
 		inst:AddComponent("edible")
 	    
 		inst:AddComponent("inventoryitem")
 		--inst.components.inventoryitem.atlasname = "images/inventoryimages/potion_"..data.name..".xml"
+
+		inst:AddComponent("named")
+	    inst.components.named.possiblenames = STRINGS.POTION_NAMES
+   		inst.components.named:PickNewName()
+		inst.components.named:SetName(inst.components.named.name.." Potion")
 
 		if postinit then
 			postinit(inst)
@@ -149,18 +151,16 @@ local function make_tunnel()
 
 	local function oneatenfn(inst, eater)
 
-		if not inst:HasTag("underground") then
-			eater:AddTag("notarget")
-			eater.AnimState:SetMultColour(0,0,0,0)
+		if not eater:HasTag("underground") then
 
 			local dirtmound = SpawnPrefab("potion_tunnel_mound")
-			dirtmound.Transform:SetPosition(eater.Transform:GetWorldPosition())
-
 			local follower = dirtmound.entity:AddFollower()
-			follower:FollowSymbol(inst.GUID, "swap_body", -15, -10, 0)
+			follower:FollowSymbol(eater.GUID, "swap_body", -60, 50, 0)
+			eater:AddTag("notarget")
+			eater.AnimState:SetMultColour(0,0,0,0)
 			eater:AddTag("underground")
 
-			eater:DoTaskInTime(15, function()
+			eater:DoTaskInTime(math.random(7,15), function()
 	        	eater:RemoveTag("notarget")
 	        	dirtmound:Remove()
 	        	eater:RemoveTag("underground")
@@ -184,9 +184,63 @@ local function make_tunnel()
 	}
 end
 
+local function make_dragon()
+
+	local function oneatenfn(inst, eater)
+
+		if not eater:HasTag("dragon") then
+
+			eater:AddComponent("propagator")
+			eater:AddTag("dragon")
+			eater.components.propagator.propagaterange = 6
+			eater.components.propagator:StartSpreading()
+
+			eater.burntask = eater:DoPeriodicTask(1, function()
+
+		        if eater.components.freezable and eater.components.freezable:IsFrozen() then           
+		            eater.components.freezable:Unfreeze()   
+		            eater.components.health:DoFireDamage(5)   		                  
+		        else            
+		            eater.components.health:DoFireDamage(5)
+		        end   
+
+		        if eater.components.sanity then
+		        	eater.components.sanity:DoDelta(-2)
+		        end
+
+			end)
+
+			eater:DoTaskInTime(math.random(8,12), function()
+				eater:RemoveComponent("propagator")
+				if eater.burntask then
+					eater.burntask:Cancel()
+				end
+				eater:RemoveTag("dragon")
+			end)
+
+		end
+
+	end
+
+	return make_potion {
+
+		name = "dragon",
+		anim = "dragon",
+
+		postinit = function(inst)
+
+			print("This is the dragon potion.")
+
+			inst.components.edible:SetOnEatenFn(oneatenfn)
+
+		end,
+	}
+end
+
 return {
 	make_default(),
 	make_triples(),
 	make_bearded(),
-	make_tunnel()
+	make_tunnel(),
+	make_dragon(),
 }

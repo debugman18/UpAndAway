@@ -2329,6 +2329,12 @@ STRINGS.RECIPE_DESC.REFINER = "Smash, crunch, create."
 STRINGS.RECIPE_DESC.WIND_AXE = "Stormy weather in your hands."
 STRINGS.RECIPE_DESC.BEANLET_ARMOR = "Armor that takes the weight off."
 
+STRINGS.POTION_NAMES = {
+    "Mysterious",
+    "Strange",
+    "Odd",
+}
+
 STRINGS.GUMMYBEAR_NAMES = { 
     "Moisty", 
     "Yummy", 

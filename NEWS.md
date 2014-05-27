@@ -31,6 +31,7 @@ for quite some time.
 + Bearded potion added.
 + Tunneler potion added.
 + Alternate turf textures added.
++ Dragon potion added.
 
 
 ### stable
