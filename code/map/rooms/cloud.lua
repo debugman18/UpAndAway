@@ -18,7 +18,7 @@ local function randomaurora()
 	if roll == 1 then
 		return GROUND.AURORA
 	else 
-		return GROUND.AURORATWO
+		return GROUND.AURORA
 	end
 end	
 
@@ -27,7 +27,7 @@ local function randomsnow()
 	if roll == 1 then
 		return GROUND.SNOW
 	else 
-		return GROUND.SNOWTWO
+		return GROUND.SNOW
 	end
 end	
 
@@ -336,6 +336,7 @@ TheMod:AddRoom("BGRainbow", {
 		},
 	    countprefabs= {
 	        gummybear_den = math.random(2,4),
+	        crystal_relic = 1,
 	    }
 	},
 })
@@ -354,6 +355,7 @@ TheMod:AddRoom("Rainbow_Room", {
 		},
 	    countprefabs= {
 	        crystal_white = 4,
+	        crystal_relic = 1,
 	    }
 	},
 })
@@ -386,6 +388,7 @@ TheMod:AddRoom("Crystal_Fields", {
 		},
 		countprefabs= {
 	        crystal_black = 4,
+	        crystal_relic = 1,
 	    }
 	},
 })
