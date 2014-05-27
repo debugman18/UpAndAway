@@ -47,8 +47,12 @@ end
 
 local function onunchargedfn(inst)
     inst.components.childspawner:StopSpawning()
-    for k,child in pairs(inst.components.childspawner.childrenoutside) do
-        child:Remove()
+    for k, child in pairs(inst.components.childspawner.childrenoutside) do
+		if child.components.entityflinger then
+			child.components.entityflinger:RequestDeath()
+		else
+			child:Remove()
+		end
     end
     inst.AnimState:PlayAnimation("idle_2")
     inst.AnimState:SetBank("gustflower")
@@ -56,11 +60,11 @@ local function onunchargedfn(inst)
 end
 
 local function onchargedfn(inst)
-    inst:DoTaskInTime(math.random(1,2), function(inst)
+    inst:DoTaskInTime(1 + math.random(), function(inst)
         inst.components.childspawner:ReleaseAllChildren() 
-        inst.components.childspawner:StartSpawning() 
-    inst.AnimState:SetBank("gustflower_charged")
-    inst.AnimState:PlayAnimation("sway", true)       
+		StartSpawning(inst)
+		inst.AnimState:SetBank("gustflower_charged")
+		inst.AnimState:PlayAnimation("sway", true)       
     end)    
 end
 

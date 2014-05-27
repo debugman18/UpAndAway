@@ -96,7 +96,7 @@ function RoomWatcher:StopUpdating()
 	self.wants_to_update = false
 	if self.thread then
 		self:DebugSay("StopUpdating()")
-		_G.KillThread(self.thread)
+		self.thread:SetList(nil)
 		self.thread = nil
 	end
 end
