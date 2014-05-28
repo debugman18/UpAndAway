@@ -49,6 +49,9 @@ local CloudAmbientManager = Class(Debuggable, function(self, inst)
 	end)
 
 	self:ApplyColour()
+	self.inst:DoTaskInTime(0, function()
+		self:ApplyColour()
+	end)
 end)
 
 function CloudAmbientManager:ApplyColour()

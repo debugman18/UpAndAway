@@ -38,6 +38,8 @@ for quite some time.
 
 
 ### stable
++ Made static and non-static last longer.
++ Possibly fixed ambient light bug.
 + Fixed the floating followers when flinged by a whirlwind
 + REALLY fixed the follower savedata bug
 + Cloud Fruit Trees are now choppable.
