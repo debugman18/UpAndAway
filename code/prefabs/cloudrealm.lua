@@ -235,9 +235,10 @@ local function fn(Sim)
     --waves:SetWaveSize(1024,512)
 	waves:SetWaveSize(2048, 562) --This definitely works.
    
-    --inst.components.ambientsoundmixer:SetReverbPreset("chess")
-    inst.components.ambientsoundmixer:SetReverbPreset("cloud") 
-    --ambientsoundmixer.wave_sound = GLOBAL.resolvefilepath("dontstarve/ocean/waves"))
+    --inst.components.ambientsoundmixer:SetReverbPreset("clouds")
+    inst.components.ambientsoundmixer:SetReverbPreset("forest") 
+    --inst.componentsambientsoundmixer.wave_sound = "dontstarve/common/clouds"
+    inst.components.ambientsoundmixer:SetOverride("dontstarve/ocean/waves", "dontstarve/common/clouds")
    
 	inst:AddComponent("colourcubemanager")
 	do

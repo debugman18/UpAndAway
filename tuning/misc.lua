@@ -16,7 +16,8 @@ NEW_TILES = {
 	"cloudswirl", 
 	"cloudland", 
 	"snowtwo", 
-	"auroratwo"
+	"auroratwo",
+	"rainbowtwo"
 }
 
 --[[
