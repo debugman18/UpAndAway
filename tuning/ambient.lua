@@ -1,7 +1,7 @@
 -- Note that the static generator only updates itself every 2 seconds, so
 -- using too low of a value will give low precision.
-STATIC.AVERAGE_UNCHARGED_TIME = 120
-STATIC.AVERAGE_CHARGED_TIME = 30
+STATIC.AVERAGE_UNCHARGED_TIME = 3*TUNING.TOTAL_DAY_TIME
+STATIC.AVERAGE_CHARGED_TIME = 2*TUNING.TOTAL_DAY_TIME
 STATIC.COOLDOWN = 20
 
 
