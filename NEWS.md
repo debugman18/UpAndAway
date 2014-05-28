@@ -32,6 +32,9 @@ for quite some time.
 + Tunneler potion added.
 + Alternate turf textures added.
 + Dragon potion added.
++ Colored Corn added.
++ Gnome farm plot added.
++ Wilson garden gnome added.
 
 
 ### stable

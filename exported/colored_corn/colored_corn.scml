@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
+    <folder id="0">
+        <file id="0" name="corn_empty.png" width="156" height="197" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="corn_sapling.png" width="161" height="261" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="corn_growing.png" width="189" height="346" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="corn_ripe.png" width="210" height="396" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="colored_corn">
+        <animation id="0" name="idle_empty" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="corn_empty">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-94.169811" y="187" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="0" x="-94.169811" y="187" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="idle_sapling" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="corn_empty">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-100.052164" y="240.781513" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="1" x="-100.052164" y="240.781513" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="idle_growing" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="corn_empty">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-111.81687" y="322.294118" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="2" x="-111.81687" y="322.294118" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="idle_ripe" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="corn_empty">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-120.052164" y="374.058824" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="3" x="-120.052164" y="374.058824" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="idle_harvested" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="corn_empty_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-154.310214" y="325.9279" angle="0" scale_x="1.657922" scale_y="1.752447"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="0" x="-154.310214" y="325.9279" angle="0" scale_x="1.657922" scale_y="1.752447"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="picking" length="1000" looping="false">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="1" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="192">
+                    <object_ref id="0" timeline="1" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="489">
+                    <object_ref id="0" timeline="1" key="2" z_index="0"/>
+                </key>
+                <key id="3" time="779">
+                    <object_ref id="0" timeline="1" key="3" z_index="0"/>
+                </key>
+                <key id="4" time="931">
+                    <object_ref id="0" timeline="1" key="4" z_index="0"/>
+                </key>
+                <key id="5" time="948"/>
+                <key id="6" time="949">
+                    <object_ref id="0" timeline="1" key="5" z_index="0"/>
+                </key>
+                <key id="7" time="1000">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="corn_empty_000">
+                <key id="0" time="1000" spin="0">
+                    <object folder="0" file="0" x="-136.420669" y="267.796049" angle="0" scale_x="1.481957" scale_y="1.486554"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="corn_empty">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-120.052164" y="374.058824" angle="0"/>
+                </key>
+                <key id="1" time="192" spin="0">
+                    <object folder="0" file="3" x="-120.058817" y="313.060068" angle="0" scale_x="0.986695" scale_y="0.846157"/>
+                </key>
+                <key id="2" time="489" spin="0">
+                    <object folder="0" file="3" x="-93.95069" y="313.060068" angle="0" scale_x="0.862666" scale_y="0.846157"/>
+                </key>
+                <key id="3" time="779" spin="0">
+                    <object folder="0" file="3" x="-93.95069" y="244.607063" angle="0" scale_x="0.862666" scale_y="0.673514"/>
+                </key>
+                <key id="4" time="931" spin="0">
+                    <object folder="0" file="3" x="-86.141435" y="232.261664" angle="0" scale_x="0.750839" scale_y="0.645212"/>
+                </key>
+                <key id="5" time="949" spin="0">
+                    <object folder="0" file="1" x="-89.939804" y="231.792749" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

@@ -124,6 +124,12 @@ PrefabFiles = {
 	"pineapple",
 	"alchemy_potions",
 	"potion_tunnel_mound",
+	--"metal_ball",
+	--"thundertree_sapling",
+	"colored_corn",
+	"gemcorn",
+	--"gnome_plot",
+	--"gnome_wilson",
 
 	--Stuff not started.
 	--------------------
@@ -136,7 +142,6 @@ PrefabFiles = {
 	--"crystal_crown",
 	--"cloud_wall",
 	--"cloud_bomb",	
-	--"thundertree_sapling",
 	--"golden_amulet",
 	--"kite",
 	--"antlion",	
@@ -151,7 +156,6 @@ PrefabFiles = {
 	--"golden_golem",	
 	--"monolith",	
 	--"mantaspawner",
-	--"colored_corn",
 	--"crystal_armor",
 	--"crystal_axe",
 	--"golden_amulet",	
