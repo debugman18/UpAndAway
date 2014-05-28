@@ -71,8 +71,7 @@ local function fndatura(Sim)
     inst.components.edible.hungervalue = 6
     inst.components.edible.sanityvalue = -8
 	
-	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM	
+	--inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM	
 
     inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/datura_petals.xml"

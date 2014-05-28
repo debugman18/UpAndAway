@@ -31,7 +31,7 @@ local tall_loot =
 }
 
 local function StartSpawning(inst)
-    if inst.components.childspawner and GetSeasonManager() and GetSeasonManager():IsWinter() and not GetWorld().components.staticgenerator.charged then
+    if inst.components.childspawner and GetSeasonManager() and GetSeasonManager():IsWinter() and not (GetStaticGenerator() and GetStaticGenerator():IsCharged()) then
         inst.components.childspawner:StartSpawning()
         --print("Tree spawning.")
     end
@@ -122,82 +122,80 @@ local function chop_tree(inst, chopper, chops)
     sway(inst)
 end
 
-local function set_stump(inst)
-    inst:RemoveComponent("workable")
-    inst:RemoveComponent("burnable")
-    inst:RemoveComponent("propagator")
-    RemovePhysicsColliders(inst)
-    inst:AddTag("stump")
-end
-
 local function dig_up_stump(inst, chopper)
 	inst.components.lootdropper:SpawnLootPrefab("cloud_lightning")
     inst.components.lootdropper:SpawnLootPrefab("thunder_log")
     inst:Remove()
 end
 
+local function set_stump(inst, push_anim)
+    inst:RemoveComponent("workable")
+    inst:RemoveComponent("burnable")
+    inst:RemoveComponent("propagator")
+	inst:RemoveComponent("growable")
+    RemovePhysicsColliders(inst)
+    inst:AddTag("stump")
 
-local function chop_down_tree(inst, chopper)
-    inst.SoundEmitter:PlaySound("dontstarve/forest/treeCrumble")          
-    inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree")
-    inst.AnimState:PlayAnimation("fall")
-    inst.AnimState:PushAnimation("stump", false)
-    set_stump(inst)
-    inst.components.lootdropper:DropLoot()
-    
+	if push_anim then
+		inst.AnimState:PushAnimation("stump", false)
+	else
+		inst.AnimState:PlayAnimation("stump", false)
+	end
+
 	inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.DIG)
     inst.components.workable:SetOnFinishCallback(dig_up_stump)
     inst.components.workable:SetWorkLeft(1)
 end
 
+local function chop_down_tree(inst, chopper)
+    inst.SoundEmitter:PlaySound("dontstarve/forest/treeCrumble")          
+    inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree")
+    inst.AnimState:PlayAnimation("fall")
+    inst.components.lootdropper:DropLoot()
+
+    set_stump(inst, true)
+end
+
 local function onsave(inst, data)
     if inst:HasTag("stump") then
         data.stump = true
     end
+	data.color = inst.color
+	data.scale = inst.scale
 end
         
 local function onload(inst, data)
     if data then
         if data.stump then
-            inst:RemoveComponent("workable")
-            inst:RemoveComponent("burnable")
-            inst:RemoveComponent("propagator")
-            inst:RemoveComponent("growable")
-            RemovePhysicsColliders(inst)
-            inst.AnimState:PlayAnimation("stump", false)
-            inst:AddTag("stump")
-            
-            inst:AddComponent("workable")
-            inst.components.workable:SetWorkAction(ACTIONS.DIG)
-            inst.components.workable:SetOnFinishCallback(dig_up_stump)
-            inst.components.workable:SetWorkLeft(1)
+			set_stump(inst)
         end
+		if data.color then
+			inst.color = data.color
+			inst.AnimState:SetMultColour(inst.color, inst.color, inst.color, 1)
+		end
+		if data.scale then
+			inst.scale = data.scale
+		    inst.Transform:SetScale(inst.scale, inst.scale, inst.scale)
+		end
     end
 end   
 
 local function OnSpawned(inst, child)
-    local lightning = SpawnPrefab("lightning")
-    if not GetWorld().components.staticgenerator.charged then
-	   lightning.Transform:SetPosition(child.Transform:GetWorldPosition())
+	if not GetStaticGenerator() or not GetStaticGenerator():IsCharged() then
+		local lightning = SpawnPrefab("lightning")
+		lightning.Transform:SetPosition(child.Transform:GetWorldPosition())
     end   
 end
 
-local function fn(Sim, stage)
+local function fn(Sim)
 	local inst = CreateEntity()
 	local trans = inst.entity:AddTransform()
 	local anim = inst.entity:AddAnimState()
     local shadow = inst.entity:AddDynamicShadow()
     local sound = inst.entity:AddSoundEmitter()
 
-    if stage == nil then
-        stage = math.random(1,3)
-    end
-
-    local l_stage = stage
-    if l_stage == 0 then
-        l_stage = math.random(1,3)
-    end 
+    local l_stage = math.random(#growth_stages)
 
     inst:AddComponent("growable")
     inst.components.growable.stages = growth_stages
@@ -238,14 +236,14 @@ local function fn(Sim, stage)
 
     anim:SetBuild("tree_thunder")
     anim:SetBank("marsh_tree")
-    local color = 0.5 + math.random() * 0.5
-    anim:SetMultColour(color, color, color, 1)
+    inst.color = 0.5 + math.random() * 0.5
+    anim:SetMultColour(inst.color, inst.color, inst.color, 1)
     sway(inst)
     anim:SetTime(math.random()*2)
     inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
  
-    local scale = math.random(0.8,1.4)
-    inst.Transform:SetScale(scale, scale, scale)
+    inst.scale = 0.8 + 0.6*math.random()
+    inst.Transform:SetScale(inst.scale, inst.scale, inst.scale)
 
     inst:AddComponent("inspectable")
 

@@ -84,6 +84,10 @@ local function new_updater_thread(self)
 	end)
 end
 
+function RoomWatcher:IsUpdating()
+	return self.thread ~= nil
+end
+
 function RoomWatcher:StartUpdating()
 	self.wants_to_update = true
 	if not self.thread then
@@ -104,7 +108,7 @@ end
 --------
 
 function RoomWatcher:OnEntitySleep()
-	local wanted_to_update = self.wants_to_update
+	local wanted_to_update = self.wants_to_update or self:IsUpdating()
 	self:StopUpdating()
 	self.wants_to_update = wanted_to_update
 end
