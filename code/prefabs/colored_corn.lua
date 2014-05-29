@@ -103,10 +103,6 @@ local function growRipe(inst)
     end         
 end
 
-local function growHarvested(inst)
-    inst.AnimState:PlayAnimation("idle_harvested")            
-end
-
 local growth_stages =
 {
     {
@@ -179,20 +175,6 @@ local growth_stages =
         growfn = function(inst) 
             growRipe(inst) 
         end 
-    },
-
-    {
-        name="harvested", 
-
-        time = math.random(), 
-
-        fn = function(inst) 
-            growHarvested(inst) 
-        end,  
-
-        growfn = function(inst) 
-            growHarvested(inst) 
-        end
     }
 }
 
