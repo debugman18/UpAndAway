@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
     <folder id="0">
-        <file id="0" name="plot.png" width="600" height="420" pivot_x="0" pivot_y="1"/>
+        <file id="0" name="fence.png" width="437" height="248" pivot_x="0" pivot_y="1"/>
     </folder>
-    <entity id="0" name="gnome_plot">
+    <entity id="0" name="gnome_fence">
         <animation id="0" name="idle" length="1000">
             <mainline>
                 <key id="0">
@@ -13,12 +13,12 @@
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
                 </key>
             </mainline>
-            <timeline id="0" name="plot">
+            <timeline id="0" name="fence">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-295.801724" y="222.710488" angle="0"/>
+                    <object folder="0" file="0" x="-206.024543" y="221" angle="0" scale_x="0.950913" scale_y="0.950858"/>
                 </key>
                 <key id="1" time="1000" spin="0">
-                    <object folder="0" file="0" x="-295.801724" y="222.710488" angle="0"/>
+                    <object folder="0" file="0" x="-206.024543" y="221" angle="0" scale_x="0.950913" scale_y="0.950858"/>
                 </key>
             </timeline>
         </animation>

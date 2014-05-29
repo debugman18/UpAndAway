@@ -128,8 +128,9 @@ PrefabFiles = {
 	--"thundertree_sapling",
 	"colored_corn",
 	"gemcorn",
-	--"gnome_plot",
-	--"gnome_wilson",
+	"gnome_wilson",
+	"gnome_decor",
+	"gnome_plot",
 
 	--Stuff not started.
 	--------------------

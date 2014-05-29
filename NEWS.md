@@ -22,7 +22,7 @@ I'm prefixing the list of changes by date, since I suppose we'll remain at preal
 for quite some time.
 -->
 
-### Current Version: alpha-0.0.3
+### Current Version: alpha-0.0.4
 
 ### dev
 + Pineapple Bushes and Pineapples added.
@@ -38,6 +38,11 @@ for quite some time.
 
 
 ### stable
++ nil
+
+
+### Update 2014-5-28 (alpha-0.0.4 release)
+
 + Made static and non-static last longer.
 + Possibly fixed ambient light bug.
 + Fixed the floating followers when flinged by a whirlwind
@@ -49,7 +54,7 @@ for quite some time.
 + Mod API information updated.
 + Tweaked the sound in the cloudrealm.
 + Made Crystal Relics spawn a little more commonly.
-+ Original cloud waves are back. (Still needs some adjustments.)
++ Original cloud waves are back.
 
 
 ### Update 2014-5-23 (alpha-0.0.3 release)

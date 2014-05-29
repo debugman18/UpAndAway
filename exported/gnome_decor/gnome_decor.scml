@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
+    <folder id="0" name="stick2">
+        <file id="0" name="stick2/stick2-0.png" width="48" height="184" pivot_x="0.497385" pivot_y="0.536008"/>
+    </folder>
+    <folder id="1" name="stick3">
+        <file id="0" name="stick3/stick3-0.png" width="44" height="192" pivot_x="0.499989" pivot_y="0.503388"/>
+    </folder>
+    <folder id="2" name="sign">
+        <file id="0" name="sign/sign-0.png" width="120" height="132" pivot_x="0.171871" pivot_y="0.931443"/>
+    </folder>
+    <folder id="3" name="fencepost">
+        <file id="0" name="fencepost/fencepost-0.png" width="92" height="244" pivot_x="0.166571" pivot_y="0.968137"/>
+    </folder>
+    <folder id="4" name="rock1">
+        <file id="0" name="rock1/rock1-0.png" width="124" height="88" pivot_x="0.246569" pivot_y="0.749153"/>
+    </folder>
+    <folder id="5" name="rock2">
+        <file id="0" name="rock2/rock2-0.png" width="100" height="104" pivot_x="0.148745" pivot_y="0.57813"/>
+    </folder>
+    <folder id="6" name="rock3">
+        <file id="0" name="rock3/rock3-0.png" width="124" height="76" pivot_x="0.447375" pivot_y="0.448033"/>
+    </folder>
+    <folder id="7" name="fencepost2">
+        <file id="0" name="fencepost2/fencepost2-0.png" width="96" height="236" pivot_x="0.464318" pivot_y="0.528604"/>
+    </folder>
+    <folder id="8" name="sign2">
+        <file id="0" name="sign2/sign2-0.png" width="124" height="132" pivot_x="0.385077" pivot_y="0.500004"/>
+    </folder>
+    <folder id="9" name="stick">
+        <file id="0" name="stick/stick-0.png" width="44" height="192" pivot_x="0.181807" pivot_y="0.951435"/>
+    </folder>
+    <entity id="0" name="gnome_decor">
+        <animation id="0" name="1" length="34">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="34">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="rock1">
+                <key id="0" spin="0">
+                    <object folder="4" file="0" x="-35.199" y="47.749" angle="0"/>
+                </key>
+                <key id="1" time="34" spin="0">
+                    <object folder="4" file="0" x="-35.199" y="47.749" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="10" length="34">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="34">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="sign2">
+                <key id="0" spin="0">
+                    <object folder="8" file="0" x="-4.949" y="55.049" angle="0"/>
+                </key>
+                <key id="1" time="34" spin="0">
+                    <object folder="8" file="0" x="-4.949" y="55.049" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="2" length="34">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="34">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="rock2">
+                <key id="0" spin="0">
+                    <object folder="5" file="0" x="-32.399" y="43.349" angle="0"/>
+                </key>
+                <key id="1" time="34" spin="0">
+                    <object folder="5" file="0" x="-32.399" y="43.349" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="3" length="34">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="34">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="stick">
+                <key id="0" spin="0">
+                    <object folder="9" file="0" x="-18.049" y="173.249" angle="1.80059" scale_x="0.999899" scale_y="0.999899"/>
+                </key>
+                <key id="1" time="34" spin="0">
+                    <object folder="9" file="0" x="-18.049" y="173.249" angle="1.80059" scale_x="0.999899" scale_y="0.999899"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="4" length="34">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="34">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="sign">
+                <key id="0" spin="0">
+                    <object folder="2" file="0" x="-44.349" y="111.999" angle="0"/>
+                </key>
+                <key id="1" time="34" spin="0">
+                    <object folder="2" file="0" x="-44.349" y="111.999" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="5" length="34">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="34">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="fencepost">
+                <key id="0" spin="0">
+                    <object folder="3" file="0" x="-33.099" y="223.649" angle="0"/>
+                </key>
+                <key id="1" time="34" spin="0">
+                    <object folder="3" file="0" x="-33.099" y="223.649" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="6" name="6" length="34">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="34">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="stick2">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="1.45" y="89.099" angle="0"/>
+                </key>
+                <key id="1" time="34" spin="0">
+                    <object folder="0" file="0" x="1.45" y="89.099" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="7" name="7" length="34">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="34">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="stick3">
+                <key id="0" spin="0">
+                    <object folder="1" file="0" x="-8.949" y="75.199" angle="2.96754" scale_x="0.999354" scale_y="0.89228"/>
+                </key>
+                <key id="1" time="34" spin="0">
+                    <object folder="1" file="0" x="-8.949" y="75.199" angle="2.96754" scale_x="0.999354" scale_y="0.89228"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="8" name="8" length="34">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="34">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="rock3">
+                <key id="0" spin="0">
+                    <object folder="6" file="0" x="-0.999" y="14.499" angle="0"/>
+                </key>
+                <key id="1" time="34" spin="0">
+                    <object folder="6" file="0" x="-0.999" y="14.499" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="9" name="9" length="34">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="34">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="fencepost2">
+                <key id="0" spin="0">
+                    <object folder="7" file="0" x="-2.449" y="109.399" angle="0"/>
+                </key>
+                <key id="1" time="34" spin="0">
+                    <object folder="7" file="0" x="-2.449" y="109.399" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

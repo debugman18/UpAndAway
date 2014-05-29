@@ -61,7 +61,7 @@ local function growEmpty(inst)
 end
 
 local function growNormal(inst)
-   inst.AnimState:PlayAnimation("idle_normal")
+   inst.AnimState:PlayAnimation("idle_sapling")
     inst.SoundEmitter:PlaySound("dontstarve/forest/treeGrow")  
     if inst.components.pickable then
         inst:RemoveComponent("pickable")    
