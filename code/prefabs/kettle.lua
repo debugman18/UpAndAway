@@ -79,7 +79,7 @@ local function BuildKettlePrefab()
 
 
 	local function onopen(inst)
-		inst.AnimState:PlayAnimation("cooking_pre_loop", true)
+		inst.AnimState:PlayAnimation("idle_full", true)
 		inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot_open", "open")
 		inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot", "snd")
 	end
