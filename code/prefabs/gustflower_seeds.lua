@@ -8,11 +8,22 @@ local assets=
     Asset( "IMAGE", "images/inventoryimages/gustflower_seeds.tex" ), 
 }
 
+local function onpickedfn(inst)
+    inst.components.pickable.cycles_left = 0
+end
+
 local function ondeploy (inst, pt) 
     inst = inst.components.stackable:Get()
     inst.Transform:SetPosition(pt:Get() )
     local gustflower = SpawnPrefab("gustflower")
     gustflower.Transform:SetPosition(inst.Transform:GetWorldPosition())
+    gustflower:RemoveComponent("pickable")
+    gustflower:DoTaskInTime(80, function()
+        gustflower:AddComponent("pickable")
+        gustflower.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
+        gustflower.components.pickable:SetUp("gustflower_seeds", 1, 1)
+        gustflower.components.pickable.onpickedfn = onpickedfn
+    end)
     inst:Remove()
 end
 

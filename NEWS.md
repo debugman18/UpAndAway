@@ -38,7 +38,10 @@ for quite some time.
 
 
 ### stable
-+ nil
++ Hopefully fixed cloud waves being black.
++ Cloud fruit trees now drop fruit if chopped without being picked.
++ Gustflower seeds are not infinite anymore.
++ Kettle no longer flashes.
 
 
 ### Update 2014-5-28 (alpha-0.0.4 release)

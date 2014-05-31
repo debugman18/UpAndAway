@@ -101,6 +101,7 @@ local function DoInit(self)
     if self.wilson then
     	self.wilson:Hide()
     end
+	_G.TheSim:LoadPrefabs {"shopkeeper"} -- needed for its assets to be loaded.
 	configureCornerDude(self, "shop", "shop_basic", "idle")
     self.shopkeeper:SetPosition(-10,-330,0)
     self.shopkeeper:SetScale(.45,.45,.45)

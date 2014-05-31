@@ -12,6 +12,7 @@ local prefabs = {
 local function onpickedfn(inst)
 	inst.components.pickable.cycles_left = 2
 	inst.AnimState:Hide("BANANA") 
+    inst.picked = true
 end	
 
 local function chop_tree(inst, chopper, chops)
@@ -24,13 +25,35 @@ local function chop_down_tree(inst, chopper)
     inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree")
     --inst.AnimState:PlayAnimation("fall")
     --inst.AnimState:PushAnimation("stump", false)
-    inst.components.lootdropper:DropLoot()
+    if inst.picked then
+        inst.components.lootdropper:DropLoot()
+    else 
+        inst.components.lootdropper.loot = {
+            "thunder_log",
+            "thunder_log",
+            "cloud_fruit"
+        }
+        inst.components.lootdropper:DropLoot()
+    end
     inst:Remove()
     
 	--inst:AddComponent("workable")
     --inst.components.workable:SetWorkAction(ACTIONS.DIG)
     --inst.components.workable:SetOnFinishCallback(dig_up_stump)
     --inst.components.workable:SetWorkLeft(1)
+end
+
+local function onsave(inst, data)
+    if inst.picked then
+        data.picked = true
+    end
+end
+
+local function onload(inst, data)
+    if data and data.picked then
+        inst.picked = true
+        onpickedfn(inst)
+    end
 end
 
 local function fn(Sim)
@@ -54,7 +77,8 @@ local function fn(Sim)
 
 	inst:AddComponent("lootdropper")
 	inst.components.lootdropper.loot = {
-		"thunder_log"
+		"thunder_log",
+        "thunder_log"
 	}
 
     inst:AddComponent("workable")
@@ -62,6 +86,9 @@ local function fn(Sim)
     inst.components.workable:SetWorkLeft(6)
     inst.components.workable:SetOnWorkCallback(chop_tree)
     inst.components.workable:SetOnFinishCallback(chop_down_tree)
+
+    inst.OnSave = onsave
+    inst.OnLoad = onload
 
 	return inst
 end
