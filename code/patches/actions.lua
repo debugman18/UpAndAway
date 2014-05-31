@@ -18,3 +18,14 @@ _G.ACTIONS.HARVEST.fn = (function()
 		end
 	end
 end)()
+
+local Weapon = require "components/weapon"
+Weapon.CollectEquippedActions = (function()
+	local CollectEquippedActions = Weapon.CollectUseActions
+	return function(self, doer, target, ...)
+		if target and target:HasTag("shopkeeper") then--and not _G.TheInput:IsControlPressed(_G.CONTROL_FORCE_ATTACK) then
+			return
+		end
+		return CollectEquippedActions(self, doer, target, ...)
+	end
+end)()
