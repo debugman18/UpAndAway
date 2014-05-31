@@ -48,7 +48,7 @@ local refiner = Recipe("refiner", { Ingredient("hammer", 1), Ingredient("gears",
 refiner.atlas = "images/refiner.xml"
 refiner.sortkey = 1 --GLOBAL.Recipes.prefab.sortkey
 
-local research_lectern = Recipe("research_lectern", { Ingredient("goldnugget", 4), Ingredient("crystal_fragment_relic", 2, "images/inventoryimages/crystal_fragment_relic.xml"), Ingredient("thunder_log", 6, "images/inventoryimages/thunder_log.xml") }, RECIPETABS.SCIENCE, TECH.FABLE_2, "research_lectern_placer")
+local research_lectern = Recipe("research_lectern", { Ingredient("goldnugget", 4), Ingredient("crystal_fragment_light", 2, "images/inventoryimages/crystal_fragment_light.xml"), Ingredient("thunder_log", 6, "images/inventoryimages/thunder_log.xml") }, RECIPETABS.SCIENCE, TECH.FABLE_2, "research_lectern_placer")
 research_lectern.atlas = "images/research_lectern.xml"
 research_lectern.sortkey = GLOBAL.Recipes.researchlab2.sortkey
 
