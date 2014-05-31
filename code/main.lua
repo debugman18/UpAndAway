@@ -49,6 +49,7 @@ do
 	function _G.SpawnPrefab(name)
 		if name == "cave" and Pred.IsCloudLevel() then
 			name = "cloudrealm"
+			_G.TheSim:LoadPrefabs {"cloudrealm"}
 		end
 		return oldSpawnPrefab(name)
 	end
