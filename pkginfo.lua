@@ -24,23 +24,20 @@ return {
 	},
 
 	--[[
-	-- File extensions to never include.
-	--
-	-- This should be redundant, since the relevant assets are chosen
-	-- automatically, but they are here just in case.
+	-- File name suffixes to never include.
 	--]]
-	exclude_extensions = {
-		"png",
-		"psd",
-		"xcf",
-		"svg",
-		"sai",
+	exclude_suffixes = {
+		".png",
+		".psd",
+		".xcf",
+		".svg",
+		".sai",
 
-		"bin",
-
-		"scml",
+		".bin",
+		".scml",
 
 		"Makefile",
+		".mk",
 	},
 
 	--[[

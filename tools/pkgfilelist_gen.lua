@@ -335,8 +335,8 @@ local function ProcessPkginfo(pkginfo_name, fh)
 	fh:write("\n")
 
 	fh:write("# Excluded suffixes\n")
-	for _, ext in ipairs(pkginfo.exclude_extensions) do
-		fh:write("!.", ext, "\n")
+	for _, ext in ipairs(pkginfo.exclude_suffixes) do
+		fh:write("!", ext, "\n")
 	end
 
 	fh:write("\n")
