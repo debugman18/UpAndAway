@@ -17,6 +17,13 @@ return {
 	},
 
 	--[[
+	-- Names of the files returning tables of prefab files to include.
+	--]]
+	prefab_files = {
+		"prefabfiles.lua",
+	},
+
+	--[[
 	-- File extensions to never include.
 	--
 	-- This should be redundant, since the relevant assets are chosen
@@ -40,10 +47,17 @@ return {
 	-- Extra files/directories to include.
 	--]]
 	extra = {
+		--[[
+		-- Do NOT include "scripts/prefabs".
+		-- This is handled by what's in the prefab_files entry above.
+		--]]
+
 		"modinfo.lua",
 		"modmain.lua",
 		"modworldgenmain.lua",
 		"start_wicker.lua",
+
+		"NOAUTOCOMPILE",
 
 		"favicon",
 
@@ -63,8 +77,6 @@ return {
 		"code",
 		"wicker",
 		"lib",
-
-		"scripts/prefabs",
 	},
 
 	--[[
