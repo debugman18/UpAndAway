@@ -94,7 +94,7 @@ local function DoInit(self)
 
     self.up_name = self.upandaway_button:AddChild(Text(GLOBAL.BUTTONFONT, 30))
     self.up_name:SetPosition(0,8,0)	
-    self.up_name:SetString( TheMod:IsDevelopment() and (modinfo.name.." (dev)") or modinfo.name )
+    self.up_name:SetString( modinfo.name ) -- Now " (dev)" is already appended at the modinfo level.
 	self.up_name:SetColour(0,0,0,1)
 
     --We change Wilson to the Shopkeeper here.
