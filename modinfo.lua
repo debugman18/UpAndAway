@@ -14,7 +14,7 @@ Original concept by debugman18.
 dont_starve_compatible = true
 reign_of_giants_compatible = true
 
-forumthread = "/topic/26501-up-and-away-mod-collaboration-thread"
+forumthread = "/forum/49-mod-collaboration-up-and-away"
 
 api_version = 6
 
@@ -22,3 +22,7 @@ icon_atlas = "favicon/upandaway.xml"
 icon = "upandaway.tex"
 
 priority = -1
+
+if not _PARSING_ENV and branch ~= "master" then
+	name = name.." ("..branch..")"
+end

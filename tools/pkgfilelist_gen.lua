@@ -118,6 +118,8 @@ end)()
 
 local function NewBasicEnv()
 	return {
+		_PARSING_ENV = true,
+
 		pairs = pairs,
 		ipairs = ipairs,
 		print = print,
@@ -192,6 +194,10 @@ local function NewModinfoEnv()
 			table.insert(self, k)
 		end
 	end
+
+	meta.__index = {
+		_PARSING_ENV = true,
+	}
 
 	return setmetatable({}, meta)
 end
@@ -342,8 +348,26 @@ local function ProcessPkginfo(pkginfo_name, fh)
 			for _, asset in ipairs( parse_modfile(asset_file) ) do
 				local fname = ExpandAsset(asset)
 				if not file_cache[fname] then
-					fh:write( ExpandAsset(asset), "\n" )
 					file_cache[fname] = true
+					fh:write( ExpandAsset(asset), "\n" )
+				end
+			end
+		end
+	end
+
+	fh:write("\n")
+
+	fh:write("# Prefabs\n")
+	do
+		local PREFAB_ROOT = "scripts/prefabs/"
+
+		local file_cache = {}
+		for _, prefab_filelist in ipairs(pkginfo.prefab_files) do
+			for _, prefab_file in ipairs( parse_modfile(prefab_filelist) ) do
+				assert( type(prefab_file) == "string", "String expected as prefab file name." )
+				if not file_cache[prefab_file] then
+					file_cache[prefab_file] = true
+					fh:write( PREFAB_ROOT..prefab_file..".lua", "\n" )
 				end
 			end
 		end

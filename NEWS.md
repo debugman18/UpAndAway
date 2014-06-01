@@ -38,6 +38,10 @@ for quite some time.
 
 
 ### stable
++ nil
+
+
+### Update 2014-5-31 (alpha-0.0.5 release)
 + Hopefully fixed cloud waves being black.
 + Cloud fruit trees now drop fruit if chopped without being picked.
 + Gustflower seeds are not infinite anymore.
