@@ -127,12 +127,12 @@ end
 local function stop_falling(inst)
 	if inst.fallthread then
 		TheMod:DebugSay("Killing fall thread of [", inst, "].")
-		inst.fallthread:SetList(nil)
+		CancelThread(inst.fallthread)
 		inst.fallthread = nil
 	end
 	if inst.floatawaythread then
 		TheMod:DebugSay("Killing float away thread of [", inst, "].")
-		inst.floatawaythread:SetList(nil)
+		CancelThread(inst.floatawaythread)
 		inst.floatawaythread = nil
 	end
 

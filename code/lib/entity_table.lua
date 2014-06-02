@@ -11,11 +11,16 @@ local Pred = wickerrequire 'lib.predicates'
 local function new_entity_table(onclear)
 	local inner_t = {}
 
-	local function ClearEntry(inst)
-		if onclear then
+	local ClearEntry
+	if onclear then
+		ClearEntry = function(inst)
 			onclear(inst)
+			inner_t[inst] = nil
 		end
-		inner_t[inst] = nil
+	else
+		ClearEntry = function(inst)
+			inner_t[inst] = nil
+		end
 	end
 
 	local function SetInstEntry(t, inst, v)
@@ -23,13 +28,14 @@ local function new_entity_table(onclear)
 
 		local oldv = inner_t[inst]
 
+		if oldv ~= nil and v == nil then
+			inst:RemoveEventCallback("onremove", ClearEntry)
+			ClearEntry(inst)
+			return
+		end
+
 		if oldv == nil and v ~= nil then
 			inst:ListenForEvent("onremove", ClearEntry)
-		elseif oldv ~= nil and v == nil then
-			inst:RemoveEventCallback("onremove", ClearEntry)
-			if onclear then
-				onclear(inst)
-			end
 		end
 
 		inner_t[inst] = v
@@ -37,7 +43,7 @@ local function new_entity_table(onclear)
 
 	local next = next
 	local function proxy_next(t, k)
-		return next(inner_t)
+		return next(inner_t, k)
 	end
 
 	local pairs = pairs
@@ -45,9 +51,7 @@ local function new_entity_table(onclear)
 		return pairs(inner_t)
 	end
 
-	local t = {}
-
-	return setmetatable(t, {
+	return setmetatable({}, {
 		__index = inner_t,
 		__newindex = SetInstEntry,
 		__next = proxy_next,

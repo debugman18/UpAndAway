@@ -154,6 +154,9 @@ local EntityFlinger = Class(Debuggable, function(self, inst)
 	self.wants_to_die = false
 	self.wants_to_attract = false
 
+	self.death_targettime = nil
+	self.death_task = nil
+
 
 	--[[
 	-- Entities being attracted.
@@ -171,7 +174,7 @@ local EntityFlinger = Class(Debuggable, function(self, inst)
 					-- We can clear entries of a table during iteration,
 					-- what we can't is add new ones.
 					--]]
-					task:SetList(nil)
+					CancelThread(task)
 					tasks[task] = nil
 				end
 			end
@@ -191,8 +194,32 @@ function EntityFlinger:WantsToDie()
 	return self.wants_to_die
 end
 
+local function EntityFlinger_CancelDeathTask(self)
+	if self.death_task then
+		self.death_task:Cancel()
+		self.death_task = nil
+	end
+	self.death_targettime = nil
+end
+
 function EntityFlinger:RequestDeath()
 	self.wants_to_die = true
+	self:Touch()
+	EntityFlinger_CancelDeathTask(self)
+end
+
+function EntityFlinger:RequestDeathIn(dt)
+	assert(type(dt) == "number")
+	if dt <= 0 or not self.inst:IsValid() then
+		return self:RequestDeath()
+	end
+
+	EntityFlinger_CancelDeathTask(self)
+
+	self.death_targettime = GetTime() + dt
+	self.death_task = self.inst:DoTaskInTime(dt, function()
+		self:RequestDeath()
+	end)
 end
 
 function EntityFlinger:Touch()
@@ -757,18 +784,29 @@ function EntityFlinger:OnSave()
 		end
 	end
 
+	if self:WantsToDie() then
+		data.death_delay = 0
+	elseif self.death_targettime then
+		data.death_delay = math.max(0, self.death_targettime - GetTime())
+	end
+
 	return data, tracked_guids
 end
 
 function EntityFlinger:LoadPostPass(newents, data)
 	if not data then return end
+
+	if data.death_delay then
+		self:RequestDeathIn(data.death_delay)
+	end
+
 	for _, kind in ipairs{"pre_fling", "post_fling"} do
 		local datum = data[kind]
 		if datum then
 			for _, guid  in ipairs(datum) do
 				local inst = newents[guid] and newents[guid].entity
 				if inst then
-					self.inst:DoTaskInTime(0.1, function()
+					self.inst:DoTaskInTime(0.05, function()
 						Begin[kind](self, inst)
 					end)
 				end
