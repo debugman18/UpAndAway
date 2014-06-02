@@ -21,9 +21,9 @@ end)()
 
 local Weapon = require "components/weapon"
 Weapon.CollectEquippedActions = (function()
-	local CollectEquippedActions = Weapon.CollectUseActions
+	local CollectEquippedActions = Weapon.CollectEquippedActions
 	return function(self, doer, target, ...)
-		if target and target:HasTag("shopkeeper") then--and not _G.TheInput:IsControlPressed(_G.CONTROL_FORCE_ATTACK) then
+		if target and target:HasTag("shopkeeper") then
 			return
 		end
 		return CollectEquippedActions(self, doer, target, ...)
