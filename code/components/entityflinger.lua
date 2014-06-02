@@ -210,7 +210,7 @@ end
 
 function EntityFlinger:RequestDeathIn(dt)
 	assert(type(dt) == "number")
-	if dt <= 0 or not self.inst:IsValid() then
+	if dt < 0 or not self.inst:IsValid() then
 		return self:RequestDeath()
 	end
 
@@ -785,9 +785,9 @@ function EntityFlinger:OnSave()
 	end
 
 	if self:WantsToDie() then
-		data.death_delay = 0
+		data.death_delay = -1
 	elseif self.death_targettime then
-		data.death_delay = math.max(0, self.death_targettime - GetTime())
+		data.death_delay = math.max(-1, self.death_targettime - GetTime())
 	end
 
 	return data, tracked_guids
@@ -796,7 +796,7 @@ end
 function EntityFlinger:LoadPostPass(newents, data)
 	if not data then return end
 
-	if data.death_delay then
+	if type(data.death_delay) == "number" then
 		self:RequestDeathIn(data.death_delay)
 	end
 
