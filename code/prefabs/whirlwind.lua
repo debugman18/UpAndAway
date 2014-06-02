@@ -63,6 +63,8 @@ local function fn(Sim)
 	do
 		local entityflinger = inst.components.entityflinger
 
+		entityflinger:RequestDeathIn(30)
+
 		-- Minimum distance to throw entities away.
 		entityflinger:SetMinimumDistance(32)
 		-- Like the above, but maximum.

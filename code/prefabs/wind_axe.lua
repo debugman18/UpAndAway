@@ -1,5 +1,7 @@
 BindGlobal()
 
+local cfg = Configurable "WIND_AXE"
+
 local assets = {
 	Asset("ANIM", "anim/axe.zip"),
 	Asset("ANIM", "anim/wind_axe.zip"),
@@ -15,28 +17,40 @@ local prefabs = {
     "lightning",
 }
 
+local TARG_STRIKE_CHANCE = cfg:GetConfig "TARGET_LIGHTNING_CHANCE"
+local OWNER_STRIKE_CHANCE = cfg:GetConfig "OWNER_LIGHTNING_CHANCE"
+local WHIRL_CHANCE = cfg:GetConfig "WHIRLWIND_CHANCE"
+
 local function onattackfn(inst, owner, target)
-    local outcome = math.random(1,3)
-    local lightning = SpawnPrefab("lightning")
-    local whirlwind = SpawnPrefab("whirlwind")
+	local p = math.random()
+
     local target_pt = target:GetPosition()
     local owner_pt = owner:GetPosition()
-    if outcome == 1 then
+    if p < TARG_STRIKE_CHANCE then
+		local lightning = SpawnPrefab("lightning")
         lightning.Transform:SetPosition(target_pt.x, target_pt.y, target_pt.z)
-    elseif outcome == 2 then
+    elseif p < TARG_STRIKE_CHANCE + OWNER_STRIKE_CHANCE then
+		local lightning = SpawnPrefab("lightning")
         lightning.Transform:SetPosition(owner_pt.x, owner_pt.y, owner_pt.z)
+
+		local damaged = false
         if IsDLCEnabled(REIGN_OF_GIANTS) then
             local headinsulator = GetPlayer().components.inventory:GetEquippedItem(EQUIPSLOTS.HEAD)
             local bodyinsulator = GetPlayer().components.inventory:GetEquippedItem(EQUIPSLOTS.BODY)
             local insulator = headinsulator or bodyinsulator
             if insulator and insulator.components.insulator then
                 owner.components.health:DoDelta(-10)
-            else owner.components.health:DoDelta(-30) end
-        else owner.components.health:DoDelta(-30) end
-    elseif outcome == 3 then
-        if math.random(1,4) == 4 then
-            whirlwind.Transform:SetPosition(target_pt.x, target_pt.y, target_pt.z)
-        end
+				damaged = true
+			end
+		end
+
+		if not damaged then
+			owner.components.health:DoDelta(-30)
+		end
+    elseif p < TARG_STRIKE_CHANCE + OWNER_STRIKE_CHANCE + WHIRL_CHANCE then
+		local whirlwind = SpawnPrefab("whirlwind")
+		whirlwind.components.entityflinger:RequestDeathIn(15)
+        whirlwind.Transform:SetPosition(target_pt.x, target_pt.y, target_pt.z)
     end
 end
 
@@ -54,6 +68,12 @@ local function onunequipfn(inst, owner)
     owner.AnimState:Hide("ARM_carry") 
     owner.AnimState:Show("ARM_normal") 
 end
+
+local WEAPON_USES = cfg:GetConfig "WEAPON_USES"
+local TOOL_USES = cfg:GetConfig "TOOL_USES"
+
+-- Total use consumption per use as a tool.
+local TOOL_CONSUMPTION = WEAPON_USES/TOOL_USES
 
 local function fn(inst)
 	local inst = CreateEntity()
@@ -79,10 +99,10 @@ local function fn(inst)
     inst.components.inventoryitem.atlasname = "images/inventoryimages/wind_axe.xml"
 
     inst:AddComponent("finiteuses")
-    inst.components.finiteuses:SetMaxUses(20)
-    inst.components.finiteuses:SetUses(20)
+    inst.components.finiteuses:SetMaxUses(WEAPON_USES)
+    inst.components.finiteuses:SetUses(WEAPON_USES)
     inst.components.finiteuses:SetOnFinished(onfinishedfn)
-    --inst.components.finiteuses:SetConsumption(ACTIONS.CHOP, 1)
+    inst.components.finiteuses:SetConsumption(ACTIONS.CHOP, TOOL_CONSUMPTION)
     
     inst:AddComponent("equippable")
 

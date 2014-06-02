@@ -116,7 +116,7 @@ function CloudAmbientManager:OnEnterState(state)
 	if state == "CHARGED" then
 		local thread = self.inst:StartThread(function() do_charged_effects(self) end)
 		table.insert(self.onStateChangeCleanup, function()
-			thread:SetList(nil)
+			CancelThread(thread)
 		end)
 	end
 
