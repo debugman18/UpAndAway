@@ -66,7 +66,7 @@ local function fn(Sim)
 
     MakeCharacterPhysics(inst, 50, .5)  
 
-    inst.Transform:SetScale(1.3, 1.3, 1.3)
+    inst.Transform:SetScale(1.3, 1.3, -1.3)
 
     inst.AnimState:SetBank("beanlet") -- name of the animation root
     inst.AnimState:SetBuild("beanlet")  -- name of the file

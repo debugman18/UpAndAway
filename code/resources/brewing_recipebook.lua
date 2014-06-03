@@ -22,11 +22,21 @@ BindModModule 'lib.brewing'
 local teas = {
 	green = Recipe("greentea", Ingredient("tea_leaves"), 0),
 	black = Recipe("blacktea", Ingredient("blacktea_leaves"), 0),
+	white = Recipe("whitetea", Ingredient("tea_leaves", 2), 0),
+	petal = Recipe("petaltea", Ingredient("petals", 2), 0),
+	evilpetal = Recipe("evilpetaltea", Ingredient("petals_evil", 2), 0),
+	mixedpetal = Recipe("mixedpetaltea", Ingredient("petals_evil") + Ingredient("petals"), 0),
+	floral = Recipe("floraltea", Ingredient("tea_leaves") + Ingredient("petals"), 0),
+	berry = Recipe("berrytea", Ingredient("berries") + Ingredient("tea_leaves"), 0),
+	berrypulp = Recipe("berrypulptea", Ingredient("berries", 2), 0),
+	skypetal = Recipe("skypetaltea", Ingredient("skyflower_petals", 2), 0),
+	datura = Recipe("daturatea", Ingredient("datura_petals", 2), 0),
 }
 
 local sweet_teas = {
 	green = Recipe("sweet_greentea", teas.green:GetCondition() + Ingredient("honey"), 1),
 	black = Recipe("sweet_blacktea", teas.black:GetCondition() + Ingredient("honey"), 1),
+	white = Recipe("sweet_whitetea", teas.white:GetCondition() + Ingredient("honey"), 1),
 }
 
 return RecipeBook {

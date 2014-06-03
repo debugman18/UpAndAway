@@ -28,6 +28,7 @@ local widgetbuttoninfo = {
 
 local function itemtest(inst, item, slot)
 	return (item:HasTag("alchemy"))
+		or item.components.edible
         or item.prefab == "bonestew"
         or item.prefab == "cloud_jelly"
         or item.prefab == "jellycap_red"
@@ -35,6 +36,11 @@ local function itemtest(inst, item, slot)
         or item.prefab == "jellycap_green"
         or item.prefab == "golden_petals"	
         or item.prefab == "nightmarefuel"
+        or item.prefab == "rocks"
+        or item.prefab == "marble"
+        or item.prefab == "poop"
+        or item.prefab == "beardhair"
+        or item.prefab == "dragonblood_log"
 end
 
 local function fn(Sim)

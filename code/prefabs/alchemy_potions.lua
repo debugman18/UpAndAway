@@ -80,9 +80,9 @@ local function make_triples()
 		print(sanity_percent)
 		print(hunger_percent)
 
-		eater.components.health:SetPercent(hunger_percent)
-		eater.components.sanity:SetPercent(health_percent)
-		eater.components.hunger:SetPercent(sanity_percent)
+		eater.components.health:SetPercent(sanity_percent)
+		eater.components.sanity:SetPercent(hunger_percent)
+		eater.components.hunger:SetPercent(health_percent)
 
 	end
 
@@ -199,9 +199,9 @@ local function make_dragon()
 
 		        if eater.components.freezable and eater.components.freezable:IsFrozen() then           
 		            eater.components.freezable:Unfreeze()   
-		            eater.components.health:DoFireDamage(5)   		                  
+		            eater.components.health:DoFireDamage(10)   		                  
 		        else            
-		            eater.components.health:DoFireDamage(5)
+		            eater.components.health:DoFireDamage(10)
 		        end   
 
 		        if eater.components.sanity then
@@ -211,10 +211,10 @@ local function make_dragon()
 			end)
 
 			eater:DoTaskInTime(math.random(8,12), function()
-				eater:RemoveComponent("propagator")
 				if eater.burntask then
 					eater.burntask:Cancel()
 				end
+				eater.components.propagator:StopSpreading()
 				eater:RemoveTag("dragon")
 			end)
 
@@ -237,10 +237,41 @@ local function make_dragon()
 	}
 end
 
+local function make_doubles()
+
+	local function oneatenfn(inst, eater)
+
+		local sanity_percent = eater.components.sanity:GetPercent() - .05
+		local hunger_percent = eater.components.hunger:GetPercent() - .05
+
+		print(sanity_percent)
+		print(hunger_percent)
+
+		eater.components.sanity:SetPercent(hunger_percent)
+		eater.components.hunger:SetPercent(sanity_percent)
+
+	end
+
+	return make_potion {
+
+		name = "doubles",
+		anim = "doubles",
+
+		postinit = function(inst)
+
+			print("This is the doubles potion.")
+
+			inst.components.edible:SetOnEatenFn(oneatenfn)
+
+		end,
+	}
+end
+
 return {
 	make_default(),
 	make_triples(),
 	make_bearded(),
-	make_tunnel(),
+	--make_tunnel(),
 	make_dragon(),
+	make_doubles(),
 }

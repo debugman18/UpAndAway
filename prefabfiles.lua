@@ -2,6 +2,24 @@
 
 PrefabFiles = {
 
+	--Stuff in dev branch.
+	--------------------
+
+	"pineapple_bush",
+	"pineapple",
+	"cloudblob",
+	"alchemy_potions",
+	"potion_tunnel_mound",
+	--"metal_ball",
+	--"thundertree_sapling",
+	"colored_corn",
+	"gemcorn",
+	"gnome_wilson",
+	"gnome_decor",
+	"gnome_plot",
+
+	------------------------------
+
 	"winnie",
 	"winnie_staff",
 	"cloudrealm",
@@ -117,21 +135,6 @@ PrefabFiles = {
 	"beanlet_armor",
 	"beanlet_hut",
 
-	--Stuff in dev branch.
-	--------------------
-
-	"pineapple_bush",
-	"pineapple",
-	"alchemy_potions",
-	"potion_tunnel_mound",
-	--"metal_ball",
-	--"thundertree_sapling",
-	"colored_corn",
-	"gemcorn",
-	"gnome_wilson",
-	"gnome_decor",
-	"gnome_plot",
-
 	--Stuff not started.
 	--------------------
 
@@ -167,7 +170,6 @@ PrefabFiles = {
 	--"manta_baby",
 	--"manta_leather",
 	--"shopkeep_umbrella",
-	--"cloudblob",
 	
 }
 

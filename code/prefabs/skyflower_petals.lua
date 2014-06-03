@@ -51,6 +51,11 @@ local function fncommon(Sim)
     inst.components.edible.sanityvalue = 1	
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/skyflower_petals.xml"
 
+	inst:AddComponent("perishable")
+	inst.components.perishable:SetPerishTime(TUNING.PERISH_FAST)
+	inst.components.perishable:StartPerishing()
+	inst.components.perishable.onperishreplacement = "spoiled_food"
+
     return inst
 end
 

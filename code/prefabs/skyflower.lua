@@ -75,8 +75,6 @@ local function onunchargefn(inst)
 	else inst.components.pickable:SetUp("skyflower_petals", 40) end	
 	inst.components.pickable.onpickedfn = onpickedfn
 
-    inst.components.sanityaura.aura = TUNING.SANITYAURA_LARGE		
-	
 	return inst
 end
 

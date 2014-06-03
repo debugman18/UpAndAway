@@ -22,12 +22,12 @@ I'm prefixing the list of changes by date, since I suppose we'll remain at preal
 for quite some time.
 -->
 
-### Current Version: alpha-0.0.4
+### Current Version: alpha-0.0.5
 
 ### dev
 + Pineapple Bushes and Pineapples added.
 + Default potion added.
-+ Stat Swapper potion added.
++ Stat rotator potion added.
 + Bearded potion added.
 + Tunneler potion added.
 + Alternate turf textures added.
@@ -35,6 +35,8 @@ for quite some time.
 + Colored Corn added.
 + Gnome farm plot added.
 + Wilson garden gnome added.
++ Stat flipper potion added.
++ Skyflowers no longer give sanity.
 
 
 ### stable
@@ -46,6 +48,7 @@ for quite some time.
 + Cloud fruit trees now drop fruit if chopped without being picked.
 + Gustflower seeds are not infinite anymore.
 + Kettle no longer flashes.
++ Made cumulocator easier to make.
 
 
 ### Update 2014-5-28 (alpha-0.0.4 release)
