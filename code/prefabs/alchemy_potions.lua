@@ -267,6 +267,36 @@ local function make_doubles()
 	}
 end
 
+local function make_haste()
+
+	local function oneatenfn(inst, eater)
+
+		local player = GetPlayer()
+		local locomotor = player.components.locomotor
+		locomotor.bonusspeed = (locomotor.runspeed / 5) 
+		locomotor:UpdateGroundSpeedMultiplier()
+		target:DoTaskInTime(math.random(4,10), function() 
+			locomotor.bonusspeed = 0
+			locomotor:UpdateGroundSpeedMultiplier()
+		end)
+
+	end
+
+	return make_potion {
+
+		name = "haste",
+		anim = "haste",
+
+		postinit = function(inst)
+
+			print("This is the haste potion.")
+
+			inst.components.edible:SetOnEatenFn(oneatenfn)
+
+		end,
+	}
+end
+
 return {
 	make_default(),
 	make_triples(),
@@ -274,4 +304,5 @@ return {
 	--make_tunnel(),
 	make_dragon(),
 	make_doubles(),
+	make_haste(),
 }
