@@ -28,6 +28,7 @@ wickerrequire('plugins.save_safeguard')("UA")
 
 
 local Pred = wickerrequire 'lib.predicates'
+local Reflection = wickerrequire 'game.reflection'
 
 require 'mainfunctions'
 
@@ -100,15 +101,16 @@ local function OnUnlockMound(inst)
 end
 --]]
  
-for _, moddir in ipairs(_G.KnownModIndex:GetModsToLoad()) do 
-	if _G.KnownModIndex:GetModInfo(moddir).name == "Always On Status" then 
-	AddPrefabPostInit("winnie", function(inst) inst:AddComponent("switch") end) 
-	end 
+if Reflection.HasModWithName("Always On Status") then
+	AddPrefabPostInit("winnie", function(inst)
+		pcall(function()
+			inst:AddComponent("switch")
+		end)
+	end) 
 end
 
 
 local function addmoundtag(inst)
-
 		local function beanstalktest(inst, item)
 		    if item.prefab == "magic_beans" and not item:HasTag("cooked") then
 		    	if not inst.components.workable then
