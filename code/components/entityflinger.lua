@@ -796,10 +796,6 @@ end
 function EntityFlinger:LoadPostPass(newents, data)
 	if not data then return end
 
-	if type(data.death_delay) == "number" then
-		self:RequestDeathIn(data.death_delay)
-	end
-
 	for _, kind in ipairs{"pre_fling", "post_fling"} do
 		local datum = data[kind]
 		if datum then
@@ -812,6 +808,10 @@ function EntityFlinger:LoadPostPass(newents, data)
 				end
 			end
 		end
+	end
+
+	if type(data.death_delay) == "number" then
+		self:RequestDeathIn(data.death_delay + 0.1)
 	end
 end
 
