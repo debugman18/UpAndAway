@@ -36,6 +36,23 @@ end
 GetStaticGen = GetStaticGenerator
 
 
+if VarExists("IsDLCEnabled") then
+	IsDLCEnabled = _G.IsDLCEnabled
+else
+	IsDLCEnabled = Lambda.False
+end
+if VarExists("IsDLCInstalled") then
+	IsDLCInstalled = _G.IsDLCInstalled
+else
+	IsDLCInstalled = Lambda.False
+end
+if VarExists("REIGN_OF_GIANTS") then
+	REIGN_OF_GIANTS = _G.REIGN_OF_GIANTS
+else
+	REIGN_OF_GIANTS = 1
+end
+
+
 --[[
 -- This cancels a thread (as in inst:StartThread()), avoiding the pitfalls/crashes
 -- with using KillThread directly.
@@ -66,23 +83,6 @@ CancelThread = (function()
 		end
 	end
 end)()
-
-
-if VarExists("IsDLCEnabled") then
-	IsDLCEnabled = _G.IsDLCEnabled
-else
-	IsDLCEnabled = Lambda.False
-end
-if VarExists("IsDLCInstalled") then
-	IsDLCInstalled = _G.IsDLCInstalled
-else
-	IsDLCInstalled = Lambda.False
-end
-if VarExists("REIGN_OF_GIANTS") then
-	REIGN_OF_GIANTS = _G.REIGN_OF_GIANTS
-else
-	REIGN_OF_GIANTS = 1
-end
 
 
 RegisterModEnvironment(_M)
