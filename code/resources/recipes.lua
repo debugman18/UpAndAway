@@ -1,12 +1,6 @@
---[[
-GLOBAL.TECH.NONE.FABLE = 0
-GLOBAL.TECH.FABLE_1 = {FABLE = 3}
-
-for k,v in pairs(GLOBAL.TUNING.PROTOTYPER_TREES) do 
-    GLOBAL.TUNING.PROTOTYPER_TREES[k].FABLE = 0
-	GLOBAL.TUNING.PROTOTYPER_TREES.FABLE= {SCIENCE = 0,MAGIC = 0,ANCIENT = 0,FABLE=1}
-end	
-]]--
+if TheMod:Debug() then
+	Recipe = modrequire "debugtools.tracked_recipe"
+end
 
 
 wickerrequire "plugins.addtechbranch"
