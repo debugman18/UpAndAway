@@ -37,6 +37,9 @@ local function MakeLazyLoader(prefab)
 end
 
 
+------------------------------------------------------------------------
+
+
 local memfix_modfilter
 
 local function generic_modfilter(modwrangler_object, moddir)
@@ -54,6 +57,20 @@ function ApplyMemFixGlobally()
 end
 
 
+------------------------------------------------------------------------
+
+local function FixModRecipe(rec)
+	local placer_name = rec.placer or (rec.name.."_placer")
+	local placer_prefab = _G.Prefabs[placer_name]
+	if not placer_prefab then return end
+
+	placer_prefab.deps = placer_prefab.deps or {}
+	table.insert(placer_prefab.deps, rec.name)
+end
+
+------------------------------------------------------------------------
+
+
 local ModWrangler = assert( _G.ModWrangler )
 ModWrangler.RegisterPrefabs = (function()
 	local ModRegisterPrefabs = assert( ModWrangler.RegisterPrefabs )
@@ -63,6 +80,8 @@ ModWrangler.RegisterPrefabs = (function()
 
 		local MainRegisterPrefabs = assert( _G.RegisterPrefabs )
 
+		local Prefabs = assert(_G.Prefabs)
+		local Recipes = assert(_G.Recipes)
 
 		local mod_prefabnames = {}
 
@@ -86,10 +105,18 @@ ModWrangler.RegisterPrefabs = (function()
 
 		_G.RegisterPrefabs = MainRegisterPrefabs
 
+		-- First, do a pass over recipes to extend dependencies if need be.
+		for _, prefabname in ipairs(mod_prefabnames) do
+			local rec = Recipes[prefabname]
+			if rec then
+				FixModRecipe(rec)
+			end
+		end
+
 		for _, prefabname in ipairs(mod_prefabnames) do
 			--print("Registering "..prefabname)
 			
-			local prefab = assert(_G.Prefabs[prefabname])
+			local prefab = assert(Prefabs[prefabname])
 
 			MainRegisterPrefabs( prefab )
 

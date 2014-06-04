@@ -61,6 +61,7 @@ Assets = GLOBAL.JoinArrays(
 		"marshmallow",
 		"gustflower_seeds",
 		"bee_marshmallow",
+		"thunder_log",
 		"thunderboards",
 		"beanlet_shell",
 
