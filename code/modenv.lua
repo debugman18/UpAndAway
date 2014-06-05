@@ -53,36 +53,38 @@ else
 end
 
 
---[[
--- This cancels a thread (as in inst:StartThread()), avoiding the pitfalls/crashes
--- with using KillThread directly.
---]]
-CancelThread = (function()
-	local to_cleanup = nil
+if not IsWorldgen() then
+	--[[
+	-- This cancels a thread (as in inst:StartThread()), avoiding the pitfalls/crashes
+	-- with using KillThread directly.
+	--]]
+	CancelThread = (function()
+		local to_cleanup = nil
 
-	_G.scheduler.Run = (function()
-		local SchedRun = assert(_G.scheduler.Run)
+		_G.scheduler.Run = (function()
+			local SchedRun = assert(_G.scheduler.Run)
 
-		return function(self)
-			SchedRun(self)
-			if to_cleanup then
-				for _, thread in ipairs(to_cleanup) do
-					_G.KillThread(thread)
+			return function(self)
+				SchedRun(self)
+				if to_cleanup then
+					for _, thread in ipairs(to_cleanup) do
+						_G.KillThread(thread)
+					end
+					to_cleanup = nil
 				end
-				to_cleanup = nil
+			end
+		end)()
+
+		return function(thread)
+			if thread then
+				if not to_cleanup then
+					to_cleanup = {}
+				end
+				table.insert(to_cleanup, thread)
 			end
 		end
 	end)()
-
-	return function(thread)
-		if thread then
-			if not to_cleanup then
-				to_cleanup = {}
-			end
-			table.insert(to_cleanup, thread)
-		end
-	end
-end)()
+end
 
 
 RegisterModEnvironment(_M)
