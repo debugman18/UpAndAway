@@ -22,7 +22,7 @@ I'm prefixing the list of changes by date, since I suppose we'll remain at preal
 for quite some time.
 -->
 
-### Current Version: alpha-0.0.4
+### Current Version: alpha-0.0.5
 
 ### dev
 + Pineapple Bushes and Pineapples added.
@@ -38,7 +38,11 @@ for quite some time.
 
 
 ### stable
-+ nil
++ Fixed items going into storage containers when opened.
++ The wind axe spawns whirlwinds very rarely now.
++ The cumulocator station placer will appear for players for whom it previously wouldn't appear.
++ Thunder logs will no longer appear invisible to players.
++ Fixed black waves. (Maybe?)
 
 
 ### Update 2014-5-31 (alpha-0.0.5 release)
