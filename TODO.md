@@ -2,9 +2,7 @@
 
 + **Current bugs:**
 
-	+ World generation time is too short.
-
-	+ A kettle that is withdrawn while full loses its tea.
+	+ I think alpha bugs should be kept seperate to avoid redundancy.
 
 + **Art assets in need of attention**
 
@@ -12,7 +10,29 @@
 
 + **Code assets in need of attention**
 
-	+ Nerf the duckraptor spawning to 60%.
+	+ Add cheshire cat and functionality.
+
+	+ Add rainbowcoon and functionality.
+
+	+ Add manta and funtionality.
+
+	+ Add an alchemy component for potions.
+
+	+ Add the bean giant's drop pod.
+
+	+ Add a skyfly lightsource.
+
+	+ Change to a Day/Night cycle.
+
+	+ Add new light sources.
+
+	+ Add birds of paradise.
+
+	+ Add static damage type, IE burning or freezing.
+
+	+ Add rubber armor and a conductor component.
+
+	+ Setpieces, setpieces, setpieces.
 
 ******
 
