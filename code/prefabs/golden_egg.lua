@@ -117,8 +117,10 @@ local function corruptegg(inst)
 
 		inst.SoundEmitter:PlaySound("dontstarve/creatures/egg/egg_hot_explo")
 
-		local corruption = SpawnPrefab("duckraptor")
-		corruption.Transform:SetPosition(inst.Transform:GetWorldPosition())	
+		if math.random(0,100) <= 60 then
+			local corruption = SpawnPrefab("duckraptor")
+			corruption.Transform:SetPosition(inst.Transform:GetWorldPosition())	
+		end
 
 		local ashes = SpawnPrefab("ash")
 		ashes.Transform:SetPosition(inst.Transform:GetWorldPosition())

@@ -344,6 +344,8 @@ local function fn(inst)
 	anim:SetBank("beanstalk_wall")
 	anim:SetBuild("beanstalk_wall")
 	--inst.Transform:SetScale(3,3,3)
+
+	inst.entity:AddLabel()
 	    
 	inst:AddComponent("inspectable")
 	inst:AddComponent("lootdropper")
