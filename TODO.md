@@ -12,7 +12,7 @@
 
 + **Code assets in need of attention**
 
-	+ Nerf the duckraptor spawning to 60%.
+	+ nil
 
 ******
 
