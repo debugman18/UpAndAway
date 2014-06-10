@@ -42,7 +42,7 @@ for quite some time.
 + The wind axe spawns whirlwinds very rarely now.
 + The cumulocator station placer will appear for players for whom it previously wouldn't appear.
 + Thunder logs will no longer appear invisible to players.
-+ Fixed black waves.
++ Cloud waves are no longer invisible.
 + Fixed an incompatibility with the BetterWalls mod.
 + Lowered duckraptor spawning.
 

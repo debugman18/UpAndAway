@@ -226,13 +226,10 @@ local function fn(Sim)
    
     --Uses our cloudwaves.
     local waves = inst.entity:AddWaveComponent()
-    waves:SetRegionSize(40, 24) --32,16
-    --waves:SetRegionSize(40, 20) --This definitely works.
-    --8
-    waves:SetRegionNumWaves(8) --8
+    waves:SetRegionSize(40, 29) --This definitely works.
+    waves:SetRegionNumWaves(12) --8
     waves:SetWaveTexture(GLOBAL.resolvefilepath("images/cloudwave.tex"))   
     waves:SetWaveEffect("shaders/waves.ksh" ) -- texture.ksh   
-    --waves:SetWaveSize(1024,512)
 	waves:SetWaveSize(2048, 562) --This definitely works.
    
     --inst.components.ambientsoundmixer:SetReverbPreset("chess")
