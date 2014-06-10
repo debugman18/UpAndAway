@@ -3222,36 +3222,36 @@
                 </key>
             </timeline>
             <timeline id="9" name="beanlet_pod_back">
-                <key id="0">
-                    <object folder="0" file="1" x="1.172237" y="1.341209"/>
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="1.172237" y="1.341209" angle="0"/>
                 </key>
-                <key id="1" time="240">
+                <key id="1" time="240" spin="0">
                     <object folder="0" file="1" x="1.172237" y="1.341209" angle="0"/>
                 </key>
                 <key id="2" time="500" spin="0">
-                    <object folder="0" file="1" x="1.172237" y="1.341209"/>
+                    <object folder="0" file="1" x="1.172237" y="1.341209" angle="0"/>
                 </key>
             </timeline>
             <timeline id="10" name="beanlet_pod_front">
-                <key id="0">
-                    <object folder="0" file="0" x="0.352047" y="1.537103"/>
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="0.352047" y="1.537103" angle="0"/>
                 </key>
-                <key id="1" time="240">
+                <key id="1" time="240" spin="0">
                     <object folder="0" file="0" x="0.352047" y="1.537103" angle="0"/>
                 </key>
                 <key id="2" time="500" spin="0">
-                    <object folder="0" file="0" x="0.352047" y="1.537103"/>
+                    <object folder="0" file="0" x="0.352047" y="1.537103" angle="0"/>
                 </key>
             </timeline>
             <timeline id="11" name="beanlet_hair">
                 <key id="0" spin="0">
-                    <object folder="7" file="2" x="1.742371" y="-0.016862" scale_x="2.5"/>
+                    <object folder="7" file="2" x="1.742371" y="-0.016862" angle="0" scale_x="2.5"/>
                 </key>
                 <key id="1" time="240" spin="0">
-                    <object folder="7" file="2" x="1.742371" y="-0.016862" scale_x="2.5"/>
+                    <object folder="7" file="2" x="1.742371" y="-0.016862" angle="0" scale_x="2.5"/>
                 </key>
                 <key id="2" time="500" spin="0">
-                    <object folder="7" file="2" x="1.742371" y="-0.016862" scale_x="2.5"/>
+                    <object folder="7" file="2" x="1.742371" y="-0.016862" angle="0" scale_x="2.5"/>
                 </key>
             </timeline>
             <timeline id="12" obj="0" name="Bone_Root" object_type="bone">
@@ -3321,14 +3321,14 @@
                 </key>
             </timeline>
             <timeline id="18" obj="6" name="bone_Hair" object_type="bone">
-                <key id="0">
-                    <bone x="61.991674" y="332.986801" scale_x="0.4"/>
+                <key id="0" spin="0">
+                    <bone x="61.991674" y="332.986801" angle="0" scale_x="0.4"/>
                 </key>
-                <key id="1" time="240">
+                <key id="1" time="240" spin="0">
                     <bone x="61.991674" y="332.986801" angle="0" scale_x="0.4"/>
                 </key>
                 <key id="2" time="500" spin="0">
-                    <bone x="61.991674" y="332.986801" scale_x="0.4"/>
+                    <bone x="61.991674" y="332.986801" angle="0" scale_x="0.4"/>
                 </key>
             </timeline>
             <timeline id="19" obj="7" name="bone_Leg_Back" object_type="bone">
@@ -3515,27 +3515,27 @@
                 </key>
             </timeline>
             <timeline id="9" name="beanlet_pod_back">
-                <key id="0">
-                    <object folder="0" file="1" x="1.172237" y="1.341209"/>
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="1.172237" y="1.341209" angle="0"/>
                 </key>
-                <key id="1" time="240">
+                <key id="1" time="240" spin="0">
                     <object folder="0" file="1" x="1.172237" y="1.341209" angle="0"/>
                 </key>
             </timeline>
             <timeline id="10" name="beanlet_pod_front">
-                <key id="0">
-                    <object folder="0" file="0" x="0.352047" y="1.537103"/>
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="0.352047" y="1.537103" angle="0"/>
                 </key>
-                <key id="1" time="240">
+                <key id="1" time="240" spin="0">
                     <object folder="0" file="0" x="0.352047" y="1.537103" angle="0"/>
                 </key>
             </timeline>
             <timeline id="11" name="beanlet_hair">
                 <key id="0" spin="0">
-                    <object folder="7" file="2" x="1.742371" y="-0.016862" scale_x="2.5"/>
+                    <object folder="7" file="2" x="1.742371" y="-0.016862" angle="0" scale_x="2.5"/>
                 </key>
                 <key id="1" time="240" spin="0">
-                    <object folder="7" file="2" x="1.742371" y="-0.016862" scale_x="2.5"/>
+                    <object folder="7" file="2" x="1.742371" y="-0.016862" angle="0" scale_x="2.5"/>
                 </key>
             </timeline>
             <timeline id="12" obj="0" name="Bone_Root" object_type="bone">
@@ -3587,10 +3587,10 @@
                 </key>
             </timeline>
             <timeline id="18" obj="6" name="bone_Hair" object_type="bone">
-                <key id="0">
-                    <bone x="61.991674" y="332.986801" scale_x="0.4"/>
+                <key id="0" spin="0">
+                    <bone x="61.991674" y="332.986801" angle="0" scale_x="0.4"/>
                 </key>
-                <key id="1" time="240">
+                <key id="1" time="240" spin="0">
                     <bone x="61.991674" y="332.986801" angle="0" scale_x="0.4"/>
                 </key>
             </timeline>
@@ -3816,36 +3816,36 @@
                 </key>
             </timeline>
             <timeline id="9" name="beanlet_pod_back">
-                <key id="0">
-                    <object folder="0" file="1" x="1.172237" y="1.341209"/>
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="1.172237" y="1.341209" angle="0"/>
                 </key>
                 <key id="1" time="203" spin="0">
                     <object folder="0" file="1" x="1.172237" y="1.341209" angle="0"/>
                 </key>
-                <key id="2" time="400">
+                <key id="2" time="400" spin="0">
                     <object folder="0" file="1" x="1.172237" y="1.341209" angle="0"/>
                 </key>
             </timeline>
             <timeline id="10" name="beanlet_pod_front">
-                <key id="0">
-                    <object folder="0" file="0" x="0.352047" y="1.537103"/>
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="0.352047" y="1.537103" angle="0"/>
                 </key>
                 <key id="1" time="203" spin="0">
                     <object folder="0" file="0" x="0.352047" y="1.537103" angle="0"/>
                 </key>
-                <key id="2" time="400">
+                <key id="2" time="400" spin="0">
                     <object folder="0" file="0" x="0.352047" y="1.537103" angle="0"/>
                 </key>
             </timeline>
             <timeline id="11" name="beanlet_hair">
-                <key id="0">
-                    <object folder="7" file="2" x="1.742371" y="-0.016862" scale_x="2.5"/>
+                <key id="0" spin="0">
+                    <object folder="7" file="2" x="1.742371" y="-0.016862" angle="0" scale_x="2.5"/>
                 </key>
-                <key id="1" time="203">
+                <key id="1" time="203" spin="0">
                     <object folder="7" file="2" x="1.742371" y="-0.016862" angle="0" scale_x="2.5"/>
                 </key>
                 <key id="2" time="400" spin="0">
-                    <object folder="7" file="2" x="1.742371" y="-0.016862" scale_x="2.5"/>
+                    <object folder="7" file="2" x="1.742371" y="-0.016862" angle="0" scale_x="2.5"/>
                 </key>
             </timeline>
             <timeline id="12" obj="0" name="Bone_Root" object_type="bone">
@@ -3916,12 +3916,12 @@
             </timeline>
             <timeline id="18" obj="6" name="bone_Hair" object_type="bone">
                 <key id="0">
-                    <bone x="61.991674" y="332.986801" scale_x="0.4"/>
+                    <bone x="61.991674" y="332.986801" angle="0" scale_x="0.4"/>
                 </key>
                 <key id="1" time="203" spin="-1">
                     <bone x="61.991674" y="332.986801" angle="44.812157" scale_x="0.4"/>
                 </key>
-                <key id="2" time="400">
+                <key id="2" time="400" spin="0">
                     <bone x="61.991674" y="332.986801" angle="0" scale_x="0.4"/>
                 </key>
             </timeline>
