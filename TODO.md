@@ -10,6 +10,7 @@
 
 + **Code assets in need of attention**
 
+<<<<<<< HEAD
 	+ Add steel ball and functionality.
 
 	+ Add cheshire cat and functionality.
@@ -51,6 +52,9 @@
 	+ Steel ball drop.
 
 	+ Paradise feather drop.
+=======
+	+ nil
+>>>>>>> stable
 
 ******
 
