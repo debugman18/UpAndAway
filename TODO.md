@@ -10,6 +10,8 @@
 
 + **Code assets in need of attention**
 
+	+ Add steel ball and functionality.
+
 	+ Add cheshire cat and functionality.
 
 	+ Add rainbowcoon and functionality.
@@ -26,13 +28,29 @@
 
 	+ Add new light sources.
 
-	+ Add birds of paradise.
+	+ Add birds of paradise and functionality.
 
 	+ Add static damage type, IE burning or freezing.
 
 	+ Add rubber armor and a conductor component.
 
 	+ Setpieces, setpieces, setpieces.
+
++ **Drops to be added**
+
+	+ Owl beak drop.
+
+	+ Owl feather drop.
+
+	+ Weaver feather drop.
+
+	+ Aurora fuel?
+
+	+ Bean giant drop.
+
+	+ Steel ball drop.
+
+	+ Paradise feather drop.
 
 ******
 

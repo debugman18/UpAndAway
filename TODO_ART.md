@@ -5,6 +5,8 @@
 + Gem corn.
 + Potions.
 + Tea.
++ Various feathers. (Weaver, paradise, owl)
++ Owl beak.
 
 ### Atlases (with existing animation banks) in need of attention
 + nil
@@ -17,6 +19,7 @@
 + Rainbowcoon
 + Mantas
 + Cheshire Cat
++ Ball of Steel
 
 ### Miscellanea
 + Various structures for setpieces. Statues, altars, etc.
