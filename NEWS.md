@@ -38,6 +38,12 @@ for quite some time.
 
 
 ### stable
++ Updated beanlet animations.
++ Updated rose animations.
++ Updated skytrap animations.
+
+
+### Update 2014-6-9 (alpha-0.0.6 release)
 + Fixed items going into storage containers when opened.
 + The wind axe spawns whirlwinds very rarely now.
 + The cumulocator station placer will appear for players for whom it previously wouldn't appear.
