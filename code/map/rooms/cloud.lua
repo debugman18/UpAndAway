@@ -96,6 +96,7 @@ TheMod:AddRoom("SkyflowerGarden", {
 	    countprefabs= {
 	        weavernest = 4,
 	        sheepherd = 4,
+	        crystal_relic = 1,
 	    }			
 	},
 })
@@ -111,6 +112,10 @@ TheMod:AddRoom("SheepHerd", {
 			sheepherd = 0.07,
 			skyflower = 0.6,
 		},
+	    countprefabs= {
+	        sheepherd = 4,
+	        crystal_relic = 1,
+	    }	
 	},
 })
 
@@ -156,11 +161,11 @@ TheMod:AddRoom("BGAurora", {
 		},
 		distributepercent = randomness(),
 		distributeprefabs = {
-			alien = 0.02,		
-			skeleton = 0.001,
+			alien = 0.017,		
+			skeleton = 0.0007,
 			gustflower = 0.03,
-			dragonblood_tree = 0.09,
-			skyflower = 1.0,
+			dragonblood_tree = 0.07,
+			skyflower = 0.6,
 			cloudcrag = 0.04,
 		},
 		countprefabs = {
@@ -176,11 +181,11 @@ TheMod:AddRoom("Vine_Room", {
 	contents = {
 		distributepercent = randomness(),
 		distributeprefabs = {
-			vine = 0.2,
-			dragonblood_tree = 0.4,
+			vine = 0.17,
+			dragonblood_tree = 0.3,
 			beanlet = 0.07,
 			gustflower = 0.2,
-			skeleton = 0.1,
+			skeleton = 0.07,
 		},
 	},
 })
@@ -193,12 +198,12 @@ TheMod:AddRoom("CragLanding", {
 		distributepercent = randomness(),
 		distributeprefabs = {
 			--sky_lemur = 0.005,
-			beanlet = 0.00002,
-			cloud_fruit_tree = 0.00002,
+			beanlet = 0.000007,
+			cloud_fruit_tree = 0.000007,
 			goose = 0.000007,
 		},
 	    countprefabs = {
-	        goose = 1,
+	        goose = 3,
 	        beanlet_hut = 4,
 	    }	
 	},
@@ -255,8 +260,6 @@ TheMod:AddRoom("BGSnow", {
 			ball_lightning = 0.001,
 			frog = 0.002,
 			skyflower = 0.1,
-			--owl = 0.001,
-			skyflower = 0.1,
 		},
 	}
 })
@@ -270,7 +273,6 @@ TheMod:AddRoom("Thunder_Forest", {
 		distributeprefabs = {
 			thunder_tree = 0.0011,
 			crystal_quartz = 0.0010,
-			--owl = 0.004,
 			live_gnome = 0.0010,
 			skyflower = 0.1,
 		},
@@ -306,7 +308,6 @@ TheMod:AddRoom("Manta_Room", {
 		distributeprefabs = {
 			cloud_bush = 0.03,
 			cloud_fruit_tree = 0.025,
-			--colored_corn = 0.04,
 			jellyshroom_blue = 0.08,
 			owl = 0.007,
 			skyflower = 0.1,

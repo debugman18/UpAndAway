@@ -66,7 +66,8 @@ local function fn(Sim)
 
     MakeCharacterPhysics(inst, 50, .5)  
 
-    inst.Transform:SetScale(1.3, 1.3, 1.3)
+    local scale = 1
+    inst.Transform:SetScale(scale, scale, scale)
 
     inst.AnimState:SetBank("beanlet") -- name of the animation root
     inst.AnimState:SetBuild("beanlet")  -- name of the file
@@ -79,8 +80,8 @@ local function fn(Sim)
     inst:AddComponent("knownlocations")
 
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
-    inst.components.locomotor.walkspeed = 5
-    inst.components.locomotor.runspeed = 7
+    inst.components.locomotor.walkspeed = 4
+    inst.components.locomotor.runspeed = 6
     inst:SetStateGraph("SGbeanlet")
 
     inst.data = {}  
@@ -88,7 +89,7 @@ local function fn(Sim)
     inst:AddComponent("combat")
 
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(90)
+    inst.components.health:SetMaxHealth(80)
 
     MakeMediumBurnable(inst)
     inst.components.burnable:SetOnIgniteFn(OnIgnite)

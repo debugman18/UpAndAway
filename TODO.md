@@ -14,6 +14,11 @@
 
 	+ nil
 
++ **General improvements tobe made:*
+
+	+ Make the cloudbushes either undiggable or give them a dug item.
+	+ Adjust world density.
+
 ******
 
 Anything else that needs to be added will be added, current version is from memory. 

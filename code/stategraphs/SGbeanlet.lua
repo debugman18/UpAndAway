@@ -88,9 +88,9 @@ local states=
         tags = {"idle", "canrotate"},
         
         onenter = function(inst)
-            inst.SoundEmitter:PlaySound("dontstarve/creatures/koalefant/alert")
-            inst.AnimState:PlayAnimation("alert_pre")
-            inst.AnimState:PushAnimation("alert_idle", true)
+            inst.SoundEmitter:PlaySound("")
+            --inst.AnimState:PlayAnimation("alert_pre")
+            --inst.AnimState:PushAnimation("alert_idle", true)
         end,
     },
 
@@ -106,7 +106,7 @@ local states=
                 else
                     inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/land_dirt")
                 end
-                --inst.AnimState:PlayAnimation("slide_bounce")
+                inst.AnimState:PlayAnimation("run_start")
                 inst.sg.mem.foosteps = 0
             end,
 
@@ -133,7 +133,7 @@ local states=
             
             onenter = function(inst)
                 inst.components.locomotor:RunForward()
-                --inst.AnimState:PlayAnimation("slide_loop")
+                inst.AnimState:PlayAnimation("run_loop")
             end,
             
             timeline=
@@ -152,7 +152,7 @@ local states=
             onenter = function(inst)
                 inst.SoundEmitter:KillSound("slide")
                 inst.components.locomotor:Stop()
-                --inst.AnimState:PlayAnimation("slide_post")
+                inst.AnimState:PlayAnimation("run_stop")
             end,
             
             events=
@@ -168,7 +168,7 @@ local states=
                 inst.SoundEmitter:KillSound("slide")
                 inst.components.locomotor:WalkForward()
                 -- inst.AnimState:SetTime(math.random()*2)
-                --inst.AnimState:PlayAnimation("walk")
+                inst.AnimState:PlayAnimation("run_start")
             end,
 
             events=
@@ -182,7 +182,7 @@ local states=
             
             onenter = function(inst)
                 inst.components.locomotor:WalkForward()
-                --inst.AnimState:PlayAnimation("walk", true)
+                inst.AnimState:PlayAnimation("run_loop", true)
                 inst.SoundEmitter:KillSound("slide")
                 inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/idle")
             end,
@@ -216,7 +216,7 @@ local states=
             onenter = function(inst)
                 inst.SoundEmitter:KillSound("slide")
                 inst.components.locomotor:Stop()
-                --inst.AnimState:PlayAnimation("idle_loop", true)
+                inst.AnimState:PlayAnimation("run_stop", true)
             end,
 
             events=
@@ -282,7 +282,7 @@ local states=
                 inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/attack")
                 inst.components.combat:StartAttack()
                 --inst.components.locomotor:StopMoving()
-                inst.AnimState:PlayAnimation("slide_bounce")
+                --inst.AnimState:PlayAnimation("slide_bounce")
             end,
             
             timeline =

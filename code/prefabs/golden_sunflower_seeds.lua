@@ -72,5 +72,5 @@ end
 
 return {
     Prefab( "common/inventory/golden_sunflower_seeds", fn, assets, prefabs),
-    MakePlacer ("common/golden_sunflower_seeds_placer", "golden_sunflower", "golden_sunflower", "idle"),
+    MakePlacer ("common/golden_sunflower_seeds_placer", "golden_sunflower", "golden_sunflower", "idle", false, false, false, 2),
 }

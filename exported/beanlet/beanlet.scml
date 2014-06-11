@@ -3041,7 +3041,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="6" name="runstart" length="500">
+        <animation id="6" name="run_start" length="500">
             <mainline>
                 <key id="0" curve_type="cubic" c1="0" c2="0.995261">
                     <bone_ref id="0" timeline="12" key="0"/>
@@ -3387,7 +3387,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="7" name="runloop" length="500">
+        <animation id="7" name="run_loop" length="500">
             <mainline>
                 <key id="0" curve_type="cubic" c1="0" c2="0.995261">
                     <bone_ref id="0" timeline="12" key="0"/>
@@ -3635,7 +3635,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="8" name="runstop" length="400">
+        <animation id="8" name="run_stop" length="400">
             <mainline>
                 <key id="0" curve_type="cubic" c1="0" c2="0.995261">
                     <bone_ref id="0" timeline="12" key="0"/>

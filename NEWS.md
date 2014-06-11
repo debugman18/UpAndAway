@@ -22,7 +22,7 @@ I'm prefixing the list of changes by date, since I suppose we'll remain at preal
 for quite some time.
 -->
 
-### Current Version: alpha-0.0.5
+### Current Version: alpha-0.0.6
 
 ### dev
 + Pineapple Bushes and Pineapples added.
@@ -41,6 +41,14 @@ for quite some time.
 + Updated beanlet animations.
 + Updated rose animations.
 + Updated skytrap animations.
++ Made golden sunflowers more useful, with a tiny bit of risk to them.
++ Made golden petals more useful.
++ Made beanlets slower.
++ Skyflowers no longer give positive sanity aura.
++ Skyflower petals now spoil.
++ Tweaked the balance of each biome.
++ Tweaked Winnie's balance.
++ Balanced the aurora drops.
 
 
 ### Update 2014-6-9 (alpha-0.0.6 release)
