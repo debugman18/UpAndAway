@@ -123,6 +123,9 @@ local function fn()
     inst.components.combat.canbeattackedfn = canbeattackedfn
 
     inst:AddComponent("lootdropper")
+
+    local lootchance = math.random(0,100)
+
     if lootchance <= 50 then
         inst.components.lootdropper:SetLoot(loot_common)
     else 

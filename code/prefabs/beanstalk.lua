@@ -140,7 +140,6 @@ local function OnActivate(inst)
 	
 	SetPause(true)
 
-	
 	local function startadventure()
 		SetPause(false)
 		inst.components.climbable:Climb()
@@ -151,10 +150,58 @@ local function OnActivate(inst)
 		inst.components.activatable.inactive = true
 		TheFrontEnd:PopScreen()
 	end		
+
+	local function regenadventure()
+
+		TheFrontEnd:PopScreen()
+
+		local function regencloud()
+			SetPause(false)
+			inst.components.climbable:DestroyCave()
+			inst.components.climbable:Climb()
+		end
+
+		local function keepcloud()
+			SetPause(false)
+			TheFrontEnd:PopScreen()
+		end
+
+		local regenoptions = {
+			{
+				text="YES", 
+				cb = regencloud
+			},
+
+			{
+				text="NO", 
+				cb = keepcloud
+			},  
+		}
+
+		TheFrontEnd:PushScreen(PopupDialogScreen(
+	
+		"Warning", 
+		"You are about to erase your cloud world. \nAre you sure you want to continue?",
+	
+		regenoptions))
+
+	end
 	
 	local options = {
-		{text="YES", cb = startadventure},
-		{text="NO", cb = rejectadventure},  
+		{
+			text="YES", 
+			cb = startadventure
+		},
+
+		{
+			text="NO", 
+			cb = rejectadventure
+		},  
+
+		{
+			text="REGEN", 
+			cb = regenadventure
+		},
 	}
 
 	TheFrontEnd:PushScreen(PopupDialogScreen(

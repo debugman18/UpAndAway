@@ -49,6 +49,10 @@ for quite some time.
 + Tweaked the balance of each biome.
 + Tweaked Winnie's balance.
 + Balanced the aurora drops.
++ Added an option to regenerate the cloudrealm.
++ Made the lionblob easter egg very rare.
++ Crystals now have names that aren't colors.
++ Made the bean giant more dangerous.
 
 
 ### Update 2014-6-9 (alpha-0.0.6 release)

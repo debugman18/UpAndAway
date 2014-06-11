@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
     <folder id="0">
         <file id="0" name="goldenrosebase.png" width="200" height="200" pivot_x="0" pivot_y="1"/>
         <file id="1" name="goldenrosemiddle.png" width="200" height="200" pivot_x="0" pivot_y="1"/>
@@ -10,22 +10,34 @@
         <animation id="0" name="idle" length="3000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" timeline="2" key="1" z_index="0"/>
+                    <object_ref id="0" name="goldenrosemiddle" folder="0" file="1" abs_x="-126.3861" abs_y="334.6139" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="0"/>
+                    <object_ref id="1" name="base" folder="0" file="3" abs_x="-47" abs_y="45" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="1"/>
+                    <object_ref id="2" name="goldenrosebase" folder="0" file="0" abs_x="-107" abs_y="218" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="2"/>
+                    <object_ref id="3" name="goldenrosehead" folder="0" file="2" abs_x="-103.088803" abs_y="424.324324" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="1" time="659">
+                    <object_ref id="0" timeline="2" key="0" z_index="0"/>
                     <object_ref id="1" timeline="0" key="0" z_index="1"/>
                     <object_ref id="2" timeline="1" key="1" z_index="2"/>
-                    <object_ref id="3" timeline="3" key="1" z_index="3"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
                 </key>
-                <key id="1" time="1473">
-                    <object_ref id="0" timeline="2" key="3" z_index="0"/>
+                <key id="2" time="1063">
+                    <object_ref id="0" timeline="2" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="0" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="2" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
+                </key>
+                <key id="3" time="1473">
+                    <object_ref id="0" timeline="2" key="1" z_index="0"/>
                     <object_ref id="1" timeline="0" key="1" z_index="1"/>
                     <object_ref id="2" timeline="1" key="3" z_index="2"/>
-                    <object_ref id="3" timeline="3" key="3" z_index="3"/>
+                    <object_ref id="3" timeline="3" key="1" z_index="3"/>
                 </key>
-                <key id="2" time="3000">
-                    <object_ref id="0" timeline="2" key="4" z_index="0"/>
+                <key id="4" time="3000">
+                    <object_ref id="0" timeline="2" key="2" z_index="0"/>
                     <object_ref id="1" timeline="0" key="2" z_index="1"/>
                     <object_ref id="2" timeline="1" key="4" z_index="2"/>
-                    <object_ref id="3" timeline="3" key="4" z_index="3"/>
+                    <object_ref id="3" timeline="3" key="2" z_index="3"/>
                 </key>
             </mainline>
             <timeline id="0" name="base">
@@ -40,14 +52,14 @@
                 </key>
             </timeline>
             <timeline id="1" name="goldenrosebase">
-                <key id="0" spin="-1">
-                    <object folder="0" file="0" x="4.836" y="40.2488" angle="0"/>
-                </key>
-                <key id="1" spin="-1">
+                <key id="0">
                     <object folder="0" file="0" x="-107" y="218" angle="0"/>
                 </key>
-                <key id="2" time="1473" spin="-1">
-                    <object folder="0" file="0" x="-66.777356" y="237.668038" pivot_x="0" pivot_y="1" angle="347.761173"/>
+                <key id="1" time="659" spin="-1">
+                    <object folder="0" file="0" x="-56.966141" y="137.048022" pivot_x="0.250169" pivot_y="0.602383" angle="0.493217" scale_x="1"/>
+                </key>
+                <key id="2" time="1063" spin="-1">
+                    <object folder="0" file="0" x="-22.007165" y="87.576641" pivot_x="0.403536" pivot_y="0.358623" angle="355.920504" scale_x="1"/>
                 </key>
                 <key id="3" time="1473">
                     <object folder="0" file="0" x="4.835925" y="40.248895" pivot_x="0.55918" pivot_y="0.111244" angle="347.761173"/>
@@ -58,35 +70,23 @@
             </timeline>
             <timeline id="2" name="goldenrosemiddle">
                 <key id="0" spin="-1">
-                    <object folder="0" file="1" x="-7.7853" y="198.0847" angle="0"/>
-                </key>
-                <key id="1" spin="-1">
                     <object folder="0" file="1" x="-126.3861" y="334.6139" angle="0"/>
                 </key>
-                <key id="2" time="1473" spin="-1">
-                    <object folder="0" file="1" x="-27.049249" y="369.646612" pivot_x="0" pivot_y="1" angle="336.004829"/>
-                </key>
-                <key id="3" time="1473">
+                <key id="1" time="1473">
                     <object folder="0" file="1" x="25.781122" y="196.686142" pivot_x="0.593004" pivot_y="0.317354" angle="336.004829"/>
                 </key>
-                <key id="4" time="3000" spin="0">
+                <key id="2" time="3000" spin="0">
                     <object folder="0" file="1" x="-7.7853" y="198.0847" pivot_x="0.593004" pivot_y="0.317354" angle="0"/>
                 </key>
             </timeline>
             <timeline id="3" name="goldenrosehead">
                 <key id="0" spin="-1">
-                    <object folder="0" file="2" x="-25.065003" y="266.025724" angle="0"/>
-                </key>
-                <key id="1" spin="-1">
                     <object folder="0" file="2" x="-103.088803" y="424.324324" angle="0"/>
                 </key>
-                <key id="2" time="1473" spin="-1">
-                    <object folder="0" file="2" x="54.046108" y="441.631466" pivot_x="0" pivot_y="1" angle="328.047296"/>
-                </key>
-                <key id="3" time="1473">
+                <key id="1" time="1473">
                     <object folder="0" file="2" x="36.473517" y="266.025759" pivot_x="0.390119" pivot_y="0.208507" angle="328.047296"/>
                 </key>
-                <key id="4" time="3000" spin="0">
+                <key id="2" time="3000" spin="0">
                     <object folder="0" file="2" x="-25.065003" y="266.025724" pivot_x="0.390119" pivot_y="0.208507" angle="0"/>
                 </key>
             </timeline>

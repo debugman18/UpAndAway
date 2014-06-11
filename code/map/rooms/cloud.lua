@@ -49,7 +49,7 @@ TheMod:AddRoom("BGCloud", {
 			owl = 0.007,
 		},
 	    countprefabs = {
-	        lionblob = function() if math.random(1,4) == 4 then return 1 end return 0 end,
+	        lionblob = function() if math.random(1,100) <= 2 then return 1 end return 0 end,
 	        golden_sunflower = 6,
 	        thunder_tree = math.random(2,3),
 	        sheepherd = math.random(1,4),
@@ -115,6 +115,7 @@ TheMod:AddRoom("SheepHerd", {
 	    countprefabs= {
 	        sheepherd = 4,
 	        crystal_relic = 1,
+	        weavernest = 1,
 	    }	
 	},
 })
@@ -192,26 +193,22 @@ TheMod:AddRoom("Vine_Room", {
 
 --Cloudcrags
 TheMod:AddRoom("CragLanding", {
-	colour={r=.2,g=.2,b=.2,a=1},
+	colour={r=.3,g=.3,b=.8,a=1},
 	value = randomaurora(),
 	contents = {
 		distributepercent = randomness(),
-		distributeprefabs = {
-			--sky_lemur = 0.005,
-			beanlet = 0.000007,
-			cloud_fruit_tree = 0.000007,
-			goose = 0.000007,
-		},
 	    countprefabs = {
-	        goose = 3,
-	        beanlet_hut = 4,
+	        goose = math.random(4,8),
+	        beanlet_hut = math.random(4,6),
+			beanlet = math.random(4,8),
+			cloud_fruit_tree = math.random(8,12),
 	    }	
 	},
 })
 
 --Longbills
 TheMod:AddRoom("Bigbird_Nest", {
-	coulour={r=.2,g=.2,b=.2,a=.2},
+	coulour={r=.6,g=.3,b=.2,a=1},
 	value = randomaurora(),
 	contents = {
 		distributepercent = randomness(),
@@ -229,7 +226,7 @@ TheMod:AddRoom("Bigbird_Nest", {
 
 --Beanlets
 TheMod:AddRoom("Beanlet_Den", {
-	coulour={r=.2,g=.2,b=.2,a=.2},
+	coulour={r=.2,g=.2,b=.2,a=1},
 	value = randomaurora(),
 	contents = {
 		distributepercent = 0.6*randomness(),
@@ -273,7 +270,7 @@ TheMod:AddRoom("Thunder_Forest", {
 		distributeprefabs = {
 			thunder_tree = 0.0011,
 			crystal_quartz = 0.0010,
-			live_gnome = 0.0010,
+			live_gnome = 0.0008,
 			skyflower = 0.1,
 		},
 	    countprefabs= {
@@ -382,7 +379,6 @@ TheMod:AddRoom("Crystal_Fields", {
 			crystal_spire = 0.025,
 			crystal_water = 0.025,
 			crystal_light = 0.025,
-			--rainbowcoon = 0.05,
 			jellyshroom_green = 0.05,
 			skyflower = 0.1,
 			owl = 0.007,

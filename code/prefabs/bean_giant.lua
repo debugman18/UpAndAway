@@ -4,15 +4,18 @@ local brain = require "brains/beangiantbrain"
 
 local assets =
 {
+    Asset("ANIM", "anim/bean_giant.zip"),
+
     Asset("ANIM", "anim/deerclops_basic.zip"),
     Asset("ANIM", "anim/deerclops_actions.zip"),
     Asset("ANIM", "anim/deerclops_build.zip"),
+
     Asset("SOUND", "sound/deerclops.fsb"),
 }
 
 local prefabs =
 {
-    "meat",
+    "beanstalk_chunk",
     "vine",
     "beanlet_zealot",
 }
@@ -124,7 +127,31 @@ local function oncollide(inst, other)
 
 end
 
-local loot = {"meat", "meat", "meat", "meat", "meat", "meat", "meat", "meat"}
+local loot = {
+    "beanstalk_chunk", 
+    "beanstalk_chunk", 
+    "beanstalk_chunk", 
+    "beanstalk_chunk", 
+    "beanstalk_chunk", 
+    "beanstalk_chunk", 
+    "beanstalk_chunk", 
+    "beanstalk_chunk", 
+    "beanstalk_chunk", 
+    "beanstalk_chunk", 
+    "beanstalk_chunk", 
+    "beanstalk_chunk", 
+    "beanstalk_chunk", 
+    "beanstalk_chunk", 
+    "greenbean",   
+    "greenbean", 
+    "greenbean",
+    "greenbean",
+    "greenbean",
+    "greenbean",
+    "greenbean",
+    "greenbean"
+    --"bean_brain"
+}
 
 local function fn(Sim)
     
@@ -135,8 +162,8 @@ local function fn(Sim)
     local shadow = inst.entity:AddDynamicShadow()
     shadow:SetSize( 6, 3.5 )
     inst.Transform:SetFourFaced()
-    local size  = 1.65
-    --inst.Transform:SetScale(size,size,size)
+    local size  = 4
+    inst.Transform:SetScale(size,size,size)
     
     inst.structuresDestroyed = 0
     inst.shouldGoAway = false
@@ -156,13 +183,18 @@ local function fn(Sim)
 
     anim:SetBank("deerclops")
     anim:SetBuild("deerclops_build")
-    anim:PlayAnimation("idle_loop", true)
     anim:SetMultColour(0,50,0,1)
+
+    --anim:SetBank("bean_giant")
+    --anim:SetBuild("bean_giant")    
+
+    anim:PlayAnimation("idle_loop", true)
     
     ------------------------------------------
 
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
-    inst.components.locomotor.walkspeed = 4 
+    inst.components.locomotor.walkspeed = 1 
+    inst.components.locomotor.runspeed = 1
     
     ------------------------------------------
     inst:SetStateGraph("SGbeangiant")
@@ -172,32 +204,24 @@ local function fn(Sim)
     inst:AddComponent("sanityaura")
     inst.components.sanityaura.aurafn = CalcSanityAura
 
-
-    MakeLargeBurnableCharacter(inst, "deerclops_body")
-    MakeHugeFreezableCharacter(inst, "deerclops_body")
+    MakeLargeBurnableCharacter(inst)
+    --MakeHugeFreezableCharacter(inst, "deerclops_body")
 
     ------------------
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(600)
+    inst.components.health:SetMaxHealth(1400)
 
     ------------------
     
     inst:AddComponent("combat")
-    inst.components.combat:SetDefaultDamage(100)
-    inst.components.combat.playerdamagepercent = .5
+    inst.components.combat:SetDefaultDamage(160)
+    inst.components.combat.playerdamagepercent = .8
     inst.components.combat:SetRange(4)
-    inst.components.combat:SetAreaDamage(1, 0.8)
+    inst.components.combat:SetAreaDamage(2, 0.8)
     inst.components.combat.hiteffectsymbol = "deerclops_body"
     inst.components.combat:SetAttackPeriod(TUNING.DEERCLOPS_ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(3, RetargetFn)
     inst.components.combat:SetKeepTargetFunction(KeepTargetFn)
-    
-    ------------------------------------------
- 
-    inst:AddComponent("sleeper")
-    inst.components.sleeper:SetResistance(4)
-    inst.components.sleeper:SetSleepTest(ShouldSleep)
-    inst.components.sleeper:SetWakeTest(ShouldWake)
     
     ------------------------------------------
 
