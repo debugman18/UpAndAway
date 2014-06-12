@@ -120,7 +120,6 @@ MODCOMPAT["N Tools"] = function(info, mod)
 
 			thread = player:StartThread(function()
 				handler_thread()
-				print "RAN"
 				is_running = false
 				thread = nil
 			end)
