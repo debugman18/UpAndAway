@@ -7,7 +7,7 @@ local assets =
 
 local prefabs =
 {
-	"cheshire",
+--	"cheshire",
 }
 
 local function OnSpawn(inst)

@@ -18,7 +18,7 @@ local cloudcrag3_assets =
 local prefabs =
 {
     "cloud_cotton",
-    "nite",
+    "nitre",
     "flint",
     "goldnugget",
     "rocks",
