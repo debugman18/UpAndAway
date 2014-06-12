@@ -58,7 +58,7 @@ TheMod:AddRoom("BGCloud", {
 			owl = 0.007,
 		},
 	    countprefabs = {
-	        lionblob = function() if math.random(1,4) == 4 then return 1 end return 0 end,
+	        lionblob = function() if math.random(1,100) <= 2 then return 1 end return 0 end,
 	        golden_sunflower = 6,
 	        thunder_tree = math.random(2,3),
 	        sheepherd = math.random(1,4),
@@ -105,6 +105,7 @@ TheMod:AddRoom("SkyflowerGarden", {
 	    countprefabs= {
 	        weavernest = 4,
 	        sheepherd = 4,
+	        crystal_relic = 1,
 	    }			
 	},
 })
@@ -120,6 +121,11 @@ TheMod:AddRoom("SheepHerd", {
 			sheepherd = 0.07,
 			skyflower = 0.6,
 		},
+	    countprefabs= {
+	        sheepherd = 4,
+	        crystal_relic = 1,
+	        weavernest = 1,
+	    }	
 	},
 })
 
@@ -165,11 +171,11 @@ TheMod:AddRoom("BGAurora", {
 		},
 		distributepercent = randomness(),
 		distributeprefabs = {
-			alien = 0.02,		
-			skeleton = 0.001,
+			alien = 0.017,		
+			skeleton = 0.0007,
 			gustflower = 0.03,
-			dragonblood_tree = 0.09,
-			skyflower = 1.0,
+			dragonblood_tree = 0.07,
+			skyflower = 0.6,
 			cloudcrag = 0.04,
 		},
 		countprefabs = {
@@ -185,37 +191,33 @@ TheMod:AddRoom("Vine_Room", {
 	contents = {
 		distributepercent = randomness(),
 		distributeprefabs = {
-			vine = 0.2,
-			dragonblood_tree = 0.4,
+			vine = 0.17,
+			dragonblood_tree = 0.3,
 			beanlet = 0.07,
 			gustflower = 0.2,
-			skeleton = 0.1,
+			skeleton = 0.07,
 		},
 	},
 })
 
 --Cloudcrags
 TheMod:AddRoom("CragLanding", {
-	colour={r=.2,g=.2,b=.2,a=1},
+	colour={r=.3,g=.3,b=.8,a=1},
 	value = randomaurora(),
 	contents = {
 		distributepercent = randomness(),
-		distributeprefabs = {
-			--sky_lemur = 0.005,
-			beanlet = 0.00002,
-			cloud_fruit_tree = 0.00002,
-			goose = 0.000007,
-		},
 	    countprefabs = {
-	        goose = 1,
-	        beanlet_hut = 4,
+	        goose = math.random(4,8),
+	        beanlet_hut = math.random(4,6),
+			beanlet = math.random(4,8),
+			cloud_fruit_tree = math.random(8,12),
 	    }	
 	},
 })
 
 --Longbills
 TheMod:AddRoom("Bigbird_Nest", {
-	coulour={r=.2,g=.2,b=.2,a=.2},
+	coulour={r=.6,g=.3,b=.2,a=1},
 	value = randomaurora(),
 	contents = {
 		distributepercent = randomness(),
@@ -233,7 +235,7 @@ TheMod:AddRoom("Bigbird_Nest", {
 
 --Beanlets
 TheMod:AddRoom("Beanlet_Den", {
-	coulour={r=.2,g=.2,b=.2,a=.2},
+	coulour={r=.2,g=.2,b=.2,a=1},
 	value = randomaurora(),
 	contents = {
 		distributepercent = 0.6*randomness(),
@@ -264,8 +266,6 @@ TheMod:AddRoom("BGSnow", {
 			ball_lightning = 0.001,
 			frog = 0.002,
 			skyflower = 0.1,
-			--owl = 0.001,
-			skyflower = 0.1,
 		},
 	}
 })
@@ -279,8 +279,7 @@ TheMod:AddRoom("Thunder_Forest", {
 		distributeprefabs = {
 			thunder_tree = 0.0011,
 			crystal_quartz = 0.0010,
-			--owl = 0.004,
-			live_gnome = 0.0010,
+			live_gnome = 0.0008,
 			skyflower = 0.1,
 		},
 	    countprefabs= {
@@ -302,7 +301,7 @@ TheMod:AddRoom("Sea_Mimic", {
 			skyflower = 0.2,
 		},
 		countprefabs = {
-			--mantaspawner = math.random(1,4),
+			crystal_water = math.random(2,4),
 		}
 	},
 })
@@ -315,7 +314,6 @@ TheMod:AddRoom("Manta_Room", {
 		distributeprefabs = {
 			cloud_bush = 0.03,
 			cloud_fruit_tree = 0.025,
-			--colored_corn = 0.04,
 			jellyshroom_blue = 0.08,
 			owl = 0.007,
 			skyflower = 0.1,
@@ -378,8 +376,6 @@ TheMod:AddRoom("Crystal_Fields", {
 			GeneratorFunction = RUNCA.GeneratorFunction,
 			data = {iterations=12, seed_mode=CA_SEED_MODE.SEED_RANDOM, num_random_points=2,
 						translate={	{tile=GROUND.RAINBOW, items={"crystal_spire"}, item_count=4},
-									{tile=GROUND.RAINBOW, items={"crystal_water"},	item_count=4},
-									{tile=GROUND.RAINBOW, items={"crystal_light"}, item_count=4},
 									{tile=GROUND.RAINBOW, items={"crystal_black"},	item_count=1},
 									{tile=GROUND.RAINBOW, items={"crystal_white"}, item_count=1},
 								},
@@ -388,9 +384,7 @@ TheMod:AddRoom("Crystal_Fields", {
 		distributepercent = randomness(),
 		distributeprefabs = {
 			crystal_spire = 0.025,
-			crystal_water = 0.025,
 			crystal_light = 0.025,
-			--rainbowcoon = 0.05,
 			jellyshroom_green = 0.05,
 			skyflower = 0.1,
 			owl = 0.007,

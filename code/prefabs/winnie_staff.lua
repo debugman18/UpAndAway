@@ -31,7 +31,6 @@ local function herd_enable(inst, owner)
                 if not k.components.sanityaura then
                     k:AddComponent("sanityaura")
                 end
-                k.components.sanityaura.aura = TUNING.SANITYAURA_LARGE
             end
         end
     end          

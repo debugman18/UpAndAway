@@ -70,7 +70,7 @@ local states=
         timeline=
         {
             TimeEvent(5*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/taunt_grrr") end),
-            TimeEvent(16*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/taunt_howl") end),
+            TimeEvent(5*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/taunt_howl") end),
         },
         
         events=
@@ -85,16 +85,16 @@ CommonStates.AddWalkStates( states,
 {
 	starttimeline =
 	{
-        TimeEvent(7*FRAMES, DeerclopsFootstep),
+        TimeEvent(1*FRAMES, DeerclopsFootstep),
 	},
     walktimeline = 
     { 
-        TimeEvent(23*FRAMES, DeerclopsFootstep),
-        TimeEvent(42*FRAMES, DeerclopsFootstep),
+        TimeEvent(1*FRAMES, DeerclopsFootstep),
+        TimeEvent(1*FRAMES, DeerclopsFootstep),
     },
     endtimeline=
     {
-        TimeEvent(5*FRAMES, DeerclopsFootstep),
+        TimeEvent(1*FRAMES, DeerclopsFootstep),
     },
 })
 

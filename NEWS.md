@@ -22,7 +22,7 @@ I'm prefixing the list of changes by date, since I suppose we'll remain at preal
 for quite some time.
 -->
 
-### Current Version: alpha-0.0.5
+### Current Version: alpha-0.0.6
 
 ### dev
 + Pineapple Bushes and Pineapples added.
@@ -40,6 +40,27 @@ for quite some time.
 
 
 ### stable
++ Updated beanlet animations.
++ Updated rose animations.
++ Updated skytrap animations.
++ Made golden sunflowers more useful, with a tiny bit of risk to them.
++ Made golden petals more useful.
++ Made beanlets slower.
++ Skyflowers no longer give positive sanity aura.
++ Skyflower petals now spoil.
++ Tweaked the balance of each biome.
++ Tweaked Winnie's balance.
++ Balanced the aurora drops.
++ Added an option to regenerate the cloudrealm.
++ Made the lionblob easter egg very rare.
++ Crystals now have names that aren't colors.
++ Made the bean giant more dangerous.
++ Cloudcrags now have a chance to drop rocks.
++ Added support for Too Many Items.
++ Improved support for the N Tools invincibility button (for example, when being drawn to a whirlwind).
+
+
+### Update 2014-6-9 (alpha-0.0.6 release)
 + Fixed items going into storage containers when opened.
 + The wind axe spawns whirlwinds very rarely now.
 + The cumulocator station placer will appear for players for whom it previously wouldn't appear.
