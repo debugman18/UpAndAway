@@ -292,7 +292,7 @@ TheMod:AddRoom("Sea_Mimic", {
 			skyflower = 0.2,
 		},
 		countprefabs = {
-			--mantaspawner = math.random(1,4),
+			crystal_water = math.random(2,4),
 		}
 	},
 })
@@ -367,8 +367,6 @@ TheMod:AddRoom("Crystal_Fields", {
 			GeneratorFunction = RUNCA.GeneratorFunction,
 			data = {iterations=12, seed_mode=CA_SEED_MODE.SEED_RANDOM, num_random_points=2,
 						translate={	{tile=GROUND.RAINBOW, items={"crystal_spire"}, item_count=4},
-									{tile=GROUND.RAINBOW, items={"crystal_water"},	item_count=4},
-									{tile=GROUND.RAINBOW, items={"crystal_light"}, item_count=4},
 									{tile=GROUND.RAINBOW, items={"crystal_black"},	item_count=1},
 									{tile=GROUND.RAINBOW, items={"crystal_white"}, item_count=1},
 								},
@@ -377,7 +375,6 @@ TheMod:AddRoom("Crystal_Fields", {
 		distributepercent = randomness(),
 		distributeprefabs = {
 			crystal_spire = 0.025,
-			crystal_water = 0.025,
 			crystal_light = 0.025,
 			jellyshroom_green = 0.05,
 			skyflower = 0.1,

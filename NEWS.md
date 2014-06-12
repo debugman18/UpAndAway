@@ -53,6 +53,8 @@ for quite some time.
 + Made the lionblob easter egg very rare.
 + Crystals now have names that aren't colors.
 + Made the bean giant more dangerous.
++ Cloudcrags now have a chance to drop rocks.
++ Added support for Too Many Items.
 
 
 ### Update 2014-6-9 (alpha-0.0.6 release)
