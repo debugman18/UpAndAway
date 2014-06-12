@@ -97,7 +97,7 @@ local custom_prefabs = {
 	"longbill",
 	"skyflies",
 	
-	"antlion",
+--	"antlion",
 	"owl",
 	"crystal_relic",
 	"duckraptor",
