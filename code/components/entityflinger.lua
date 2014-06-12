@@ -404,6 +404,7 @@ local function IsCloseToPlayer(pt)
 end
 
 local function DisableEntity(inst)
+	TheMod:Say("disabling ", inst, " ", inst:HasTag("player") or false)
 	if inst.brain then
 		inst.brain:Stop()
 	end
@@ -422,6 +423,10 @@ local function DisableEntity(inst)
 	if inst.components.locomotor then
 		inst.components.locomotor:Stop()
 	end
+	if inst:HasTag("player") and inst.components.health then
+		TheMod:Say("inv set")
+		inst.components.health:SetInvincible(true)
+	end
 end
 
 local function EnableEntity(inst)
@@ -433,6 +438,9 @@ local function EnableEntity(inst)
 	end
 	if inst.components.playercontroller then
 		inst.components.playercontroller:Enable(true)
+	end
+	if inst:HasTag("player") and inst.components.health then
+		inst.components.health:SetInvincible(false)
 	end
 end
 

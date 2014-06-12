@@ -55,6 +55,7 @@ for quite some time.
 + Made the bean giant more dangerous.
 + Cloudcrags now have a chance to drop rocks.
 + Added support for Too Many Items.
++ Improved support for the N Tools invincibility button (for example, when being drawn to a whirlwind).
 
 
 ### Update 2014-6-9 (alpha-0.0.6 release)
