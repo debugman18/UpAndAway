@@ -13,7 +13,7 @@ local HeatedEdible = Class(Debuggable, function(self, inst)
 	assert( inst.components.temperature, "The Temperature component should be added before the HeatedEdible one!" )
 
 	self.inst = inst
-	Debuggable._ctor(self)
+	Debuggable._ctor(self, "HeatedEdible")
 
 	self.heat_capacity = 0
 

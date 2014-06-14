@@ -13,7 +13,7 @@ modrequire 'lib.brewing'
 
 local Brewer = Class(Debuggable, function(self, inst)
     self.inst = inst
-	Debuggable._ctor(self)
+	Debuggable._ctor(self, "Brewer")
 	self:SetConfigurationKey("BREWER")
 
     self.brewing = false

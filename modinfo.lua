@@ -26,3 +26,34 @@ priority = -1
 if not _PARSING_ENV and branch ~= "master" then
 	name = name.." ("..branch..")"
 end
+
+------------------------------------------------------------------------
+-- CFG
+------------------------------------------------------------------------
+
+local function NamedSwitch(on_desc, off_desc)
+	return function(name, label, default_value)
+		return {
+			name = name,
+			label = label,
+			options = {
+				{description = on_desc, data = true},
+				{description = off_desc, data = false},
+			},
+			default = default_value and true or false,
+		}
+	end
+end
+
+local EnableSwitch = NamedSwitch("Enabled", "Disabled")
+local OnSwitch = NamedSwitch("On", "Off")
+local YesSwitch = NamedSwitch("Yes", "No")
+
+------------------------------------
+
+configuration_options = {
+	EnableSwitch("CLOUD_LIGHTNING.ENABLED", "Ground Lightning", true),
+	EnableSwitch("CLOUD_MIST.ENABLED", "Mist", true),
+	EnableSwitch("RAM.SPARKS", "Storm Ram Sparks", true),
+	EnableSwitch("DEBUG", "Debugging Mode", false),
+}

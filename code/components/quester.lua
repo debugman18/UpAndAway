@@ -4,7 +4,7 @@ local Tree = wickerrequire "utils.table.tree"
 local Quester = Class(Debuggable, function(self, inst)
 	self.inst = inst
 
-	Debuggable._ctor(self)
+	Debuggable._ctor(self, "Quester")
 	self:SetConfigurationKey("QUESTER")
 
 	-- Maps quest names to quest data.
