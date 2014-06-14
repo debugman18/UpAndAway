@@ -22,7 +22,7 @@ local Debuggable = wickerrequire 'gadgets.debuggable'
 --
 local Climbable = Class(Debuggable, function(self, inst)
 	self.inst = inst
-	Debuggable._ctor(self)
+	Debuggable._ctor(self, "Climbable")
 
 	self.direction = nil
 

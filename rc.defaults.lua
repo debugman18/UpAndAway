@@ -5,7 +5,6 @@
 --]]
 
 
-CLOUD_LIGHTNING.ENABLED = true
-CLOUD_MIST.ENABLED = true
-
-DISABLE_CUSTOM_TILES = false
+-- These are now handled my the modinfo based configuration.
+--CLOUD_LIGHTNING.ENABLED = true
+--CLOUD_MIST.ENABLED = true

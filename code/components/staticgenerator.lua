@@ -52,7 +52,7 @@ end
 -- @name StaticGenerator
 local StaticGenerator = Class(Debuggable, function(self, inst)
 	self.inst = inst
-	Debuggable._ctor(self)
+	Debuggable._ctor(self, "StaticGenerator")
 
 	self:SetConfigurationKey("STATIC")
 

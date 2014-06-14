@@ -16,7 +16,7 @@ local Debuggable = wickerrequire 'adjectives.debuggable'
 -- @name StaticChargeable
 local StaticChargeable = Class(Debuggable, function(self, inst)
 	self.inst = inst
-	Debuggable._ctor(self)
+	Debuggable._ctor(self, "StaticChargeable")
 
 	self:SetConfigurationKey("STATICCHARGEABLE")
 
@@ -172,7 +172,7 @@ end
 -- @param force Forces the charging, even if already charged.
 function StaticChargeable:Charge(force)
 	if not self.charged and not self:IsInHeldState() or force then
-		self:DebugSay("Charge()")
+		--self:DebugSay("Charge()")
 		self.toggle_states_on_release = nil
 		self.charged = true
 		if self.onchargedfn then
@@ -189,7 +189,7 @@ end
 -- @param force Forces the uncharging, even if already uncharged.
 function StaticChargeable:Uncharge(force)
 	if self.charged and not self:IsInHeldState() or force then
-		self:DebugSay("Uncharge()")
+		--self:DebugSay("Uncharge()")
 		self.toggle_states_on_release = nil
 		self.charged = false
 		if self.onunchargedfn then

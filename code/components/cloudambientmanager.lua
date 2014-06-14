@@ -16,7 +16,7 @@ local FunctionQueue = wickerrequire 'gadgets.functionqueue'
 -- @name CloudAmbientManager
 local CloudAmbientManager = Class(Debuggable, function(self, inst)
 	self.inst = inst
-	Debuggable._ctor(self)
+	Debuggable._ctor(self, "CloudAmbientManager")
 
 	assert( inst.components.clock, "The clock should be added before cloudambientmanager!" )
 

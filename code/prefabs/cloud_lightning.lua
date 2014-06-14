@@ -12,7 +12,7 @@ local assets = {
 }
 
 local prefabs = {
-	"sparks_fx",
+--	"sparks_fx",
 }
 
 
