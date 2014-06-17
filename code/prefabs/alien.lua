@@ -4,6 +4,16 @@ local prefabs =
 {
     "nightmarefuel",
     "crystal_fragment_relic",
+    "crystal_fragment_light",
+    "crystal_fragment_spire",
+    "crystal_fragment_water",
+}
+
+local fragments = {
+    "crystal_fragment_relic",
+    "crystal_fragment_light",
+    "crystal_fragment_spire",
+    "crystal_fragment_water",
 }
 
 local function retargetfn(inst)
@@ -21,10 +31,6 @@ end
 
 local loot_common = {
     "nightmarefuel"
-}
-
-local loot_rare = {
-    "crystal_fragment_relic"
 }
 
 local function CalcSanityAura(inst, observer)
@@ -125,6 +131,12 @@ local function fn()
     inst:AddComponent("lootdropper")
 
     local lootchance = math.random(0,100)
+
+    local fragment = fragments[math.random(#fragments)]
+
+    local loot_rare = {
+        fragment
+    }
 
     if lootchance <= 50 then
         inst.components.lootdropper:SetLoot(loot_common)

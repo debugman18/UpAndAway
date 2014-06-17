@@ -14,9 +14,12 @@
 
 	+ nil
 
-+ **General improvements tobe made:*
++ **General improvements to be made:*
 
 	+ Make the cloudbushes either undiggable or give them a dug item.
+	+ Make beanstalk chunks a little less rare.
+	+ Allow for more cloud stuff in the overworld.
+	+ Possibly decrease the time for tea to grow.
 	+ Adjust world density.
 
 ******

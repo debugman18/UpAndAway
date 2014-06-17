@@ -117,6 +117,7 @@ PrefabFiles = {
 	"beanlet_armor",
 	"beanlet_hut",
 	"campfirefire_dragon",
+	"thunder_pinecone",
 
 	--Stuff in dev branch.
 	--------------------
@@ -137,7 +138,6 @@ PrefabFiles = {
 	--"crystal_crown",
 	--"cloud_wall",
 	--"cloud_bomb",	
-	--"thundertree_sapling",
 	--"golden_amulet",
 	--"kite",
 	--"antlion",	

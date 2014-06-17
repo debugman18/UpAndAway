@@ -135,11 +135,11 @@ local function fn(Sim)
     inst.components.fueled.rate = 0.7
 
     local light = inst.entity:AddLight()
-    inst:DoPeriodicTask(0, function(inst)
+    inst:DoPeriodicTask(0.7, function(inst)
         if inst.components.fueled.currentfuel and inst.components.fueled.currentfuel >= 0 then
             inst.Light:SetRadius(inst.components.fueled.currentfuel / 20)
         else
-            if inst.components.fueled.currentfuel == 0 then
+            if inst.components.fueled.currentfuel <= 2 then
                 onEmpty(inst)
                 inst.Light:SetRadius(0) 
             end
