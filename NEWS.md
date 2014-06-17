@@ -58,6 +58,9 @@ for quite some time.
 + Cloudcrags now have a chance to drop rocks.
 + Added support for Too Many Items.
 + Improved support for the N Tools invincibility button (for example, when being drawn to a whirlwind).
++ Thunder trees can now be replanted.
++ Skyflies are no longer catchable. A proper method for catching them will be implemented in the future.
++ Winnie can now eat leafy meat.
 
 
 ### Update 2014-6-9 (alpha-0.0.6 release)

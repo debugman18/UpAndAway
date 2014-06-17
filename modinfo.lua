@@ -55,5 +55,5 @@ configuration_options = {
 	EnableSwitch("CLOUD_LIGHTNING.ENABLED", "Ground Lightning", true),
 	EnableSwitch("CLOUD_MIST.ENABLED", "Mist", true),
 	EnableSwitch("RAM.SPARKS", "Storm Ram Sparks", true),
-	EnableSwitch("DEBUG", "Debugging Mode", false),
+	EnableSwitch("DEBUG", "Debugging Mode", true),
 }

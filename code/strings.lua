@@ -163,6 +163,8 @@ Add.Names {
     tea_bush = "Tea Bush",
     tea_leaves = "Tea Leaves",
     thunder_log = "Thunder Log",
+    thunder_pinecone = "Thunder Pinecone",
+    thunder_sapling = "Thunder Tree Sapling",
     thunder_tree = "Thunder Tree",
     thunderboards = "Thundertree Boards",
     vine = "Vine",

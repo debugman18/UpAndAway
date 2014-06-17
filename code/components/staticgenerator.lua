@@ -194,6 +194,8 @@ function StaticGenerator:HoldState(dt)
 		end
 	end
 
+	self:DebugSay("HoldState(", dt, ")")
+
 	self.state_release_time = release_time
 
 	self:StopGenerating()
@@ -211,6 +213,8 @@ end
 ---
 -- Releases the held state.
 function StaticGenerator:ReleaseState()
+	self:DebugSay("ReleaseState()")
+
 	self.state_release_time = nil
 
 	assert( not self:IsHoldingState() )

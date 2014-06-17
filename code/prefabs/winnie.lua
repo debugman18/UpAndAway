@@ -60,12 +60,16 @@ local function penalty(inst, food)
         local foodhealth = food.components.edible.healthvalue
         local foodhunger = food.components.edible.hungervalue
 
-        if inst.components.eater and food.components.edible.foodtype == "MEAT" then
+        local eater = inst.components.eater
+        local food = food.components.edible.foodtype
+        local prefab = food.prefab
+
+        if eater and food == "MEAT" and not (prefab == "plantmeat" or "plantmeat_cooked") then
                 inst.components.sanity:DoDelta(-45)
                 inst.components.health:DoDelta(-35)
                 inst.components.talker:Say("Blech.")
                 inst.components.kramped:OnNaughtyAction(5)
-        elseif inst.components.eater and food.components.edible.foodtype == "VEGGIE" then
+        elseif eater and food == "VEGGIE" then
                 inst.components.sanity:DoDelta(2)
                 inst.components.health:DoDelta(1)
                 inst.components.hunger:DoDelta(5)

@@ -135,6 +135,7 @@ PrefabFiles = {
 	"beanlet_armor",
 	"beanlet_hut",
 	"campfirefire_dragon",
+	"thunder_pinecone",
 
 	--Stuff not started.
 	--------------------
