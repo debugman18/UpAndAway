@@ -59,6 +59,9 @@ for quite some time.
 + Thunder trees can now be replanted.
 + Skyflies are no longer catchable. A proper method for catching them will be implemented in the future.
 + Winnie can now eat leafy meat.
++ Added turf variants.
++ Tea leaves can be dried for black tea.
++ Added lots of tea recipes.
 
 
 ### Update 2014-6-9 (alpha-0.0.6 release)

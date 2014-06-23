@@ -58,6 +58,12 @@ local function make_leaf(name, data)
 			perishable:StartPerishing()
 		end
 
+    	inst:AddComponent("dryable")
+    	do
+    		local dryable = inst.components.dryable
+    		dryable:SetProduct("blacktea_leaves")
+    		dryable:SetDryTime(TUNING.DRY_FAST)
+    	end
 
 		return inst
 	end

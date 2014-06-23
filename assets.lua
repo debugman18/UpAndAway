@@ -107,6 +107,22 @@ Assets = GLOBAL.JoinArrays(
 		"pineapple_seeds",
 
 		"thunder_pinecone",
+
+		--Tea images.
+	    "whitetea",
+	    "petaltea",
+	    "mixedpetaltea",
+	    "evilpetaltea",
+	    "floraltea",
+	    "skypetaltea",
+	    "daturatea",
+	    "cloudfruittea",
+	    "greenertea",
+	    "berrytea",
+	    "berrypulptea",
+	    "cottontea",
+	    "goldtea",
+	    "candytea",
 	},
 
 	-- These are .tex's without a matching atlas.
