@@ -9,17 +9,17 @@ local prefabs =
 {
     "beanlet",
     "boards",
-    "flowerpetals",
+    "petals",
 }
 
 SetSharedLootTable( 'beanlet_hut',
 {
     {'boards',       1.0},
     {'boards',       1.0},    
-    {'flowerpetals', 1.0},
-    {'flowerpetals', 1.0},
-    {'flowerpetals', 0.8},
-    {'flowerpetals', 0.8},        
+    {'petals', 1.0},
+    {'petals', 1.0},
+    {'petals', 0.8},
+    {'petals', 0.8},        
 })
 
 local function LightsOn(inst)

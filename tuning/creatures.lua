@@ -37,6 +37,10 @@ SHEEP.CHARGE_DELAY = function() return 0.5 + 10*math.random() end
 -- Opposite
 SHEEP.UNCHARGE_DELAY = SHEEP.CHARGE_DELAY
 
+-- Enable/disable sparks.
+-- Set by the modinfo configuration.
+--RAM.SPARKS = true
+
 -- Owl tuning.
 OWL.HEALTH = 250
 OWL.DEFEND_DIST = 8

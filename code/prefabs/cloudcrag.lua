@@ -18,9 +18,10 @@ local cloudcrag3_assets =
 local prefabs =
 {
     "cloud_cotton",
-    "nite",
+    "nitre",
     "flint",
     "goldnugget",
+    "rocks",
 }    
 
 local loot = 
@@ -40,6 +41,10 @@ local function common(Sim)
 	minimap:SetIcon("rock.png")
 
 	inst:AddComponent("lootdropper") 
+	inst.components.lootdropper:AddChanceLoot("rocks", 0.5)
+	inst.components.lootdropper:AddChanceLoot("rocks", 0.5)
+	inst.components.lootdropper:AddChanceLoot("rocks", 0.3)
+	inst.components.lootdropper:AddChanceLoot("rocks", 0.1)
 	
 	inst:AddComponent("workable")
 	inst.components.workable:SetWorkAction(ACTIONS.MINE)

@@ -22,13 +22,16 @@ modrequire 'api_abstractions'
 
 
 LoadConfiguration "tuning.lua"
-LoadConfiguration "rc.defaults.lua"
-if _G.kleifileexists(MODROOT .. "rc.lua") then LoadConfiguration "rc.lua" end
+if _G.kleifileexists(MODROOT .. "rc.defaults.lua") then LoadConfiguration "rc.defaults.lua" end
+LoadModConfigurationData() -- modinfo.lua stuff
 if _G.kleifileexists(MODROOT .. "dev.rc.defaults.lua") then LoadConfiguration "dev.rc.defaults.lua" end
+if _G.kleifileexists(MODROOT .. "rc.lua") then LoadConfiguration "rc.lua" end
 if _G.kleifileexists(MODROOT .. "dev.rc.lua") then LoadConfiguration "dev.rc.lua" end
 
 
 modrequire 'worldgen_patches'
+
+modrequire 'modcompat'
 
 
 ----------------------------------
@@ -67,12 +70,6 @@ modrequire 'worldgen_patches'
 -----------------------------------
 
 modrequire 'map.tiledefs'
-
-if GetConfig "DISABLE_CUSTOM_TILES" then
-	for _, tilename in ipairs(GetConfig "NEW_TILES") do
-		GROUND[tilename:upper()] = GROUND.ROCKY
-	end
-end
 
 modrequire 'map.layouts'
 modrequire 'map.rooms'

@@ -97,7 +97,8 @@ end
 local function dostaticsparks_at(pt)
 	local spark = SpawnPrefab("sparks_fx")
 	spark.Transform:SetPosition(pt:Get())
-	spark.Transform:SetScale(0.9, 0.5, 0.5)
+	spark.Transform:SetScale(1.3*0.9, 1.3*0.7, 1.3*0.7)
+	spark.AnimState:SetAddColour(0.8, 0.8, 0.4, 0)
 	return spark
 end
 
@@ -207,32 +208,34 @@ local function set_stormram(inst)
 	inst:SetBrain(brain)
 
 
-	;(function(delay)
-		local task_creator
-		local task
+	if CFG.RAM.SPARKS then
+		(function(delay)
+			local task_creator
+			local task
 
-		local function fx_chain(inst)
-			if not inst:IsAsleep() then
-				dostaticsparks(inst)
-				task = inst:DoTaskInTime(delay, fx_chain)
-			else
-				task = inst:DoTaskInTime(5, fx_chain)
+			local function fx_chain(inst)
+				if not inst:IsAsleep() then
+					dostaticsparks(inst)
+					task = inst:DoTaskInTime(delay, fx_chain)
+				else
+					task = inst:DoTaskInTime(5, fx_chain)
+				end
 			end
-		end
 
-		task_creator = inst:DoTaskInTime(4*delay*math.random(), function(inst)
-			task = inst:DoTaskInTime(0, fx_chain)
-			task_creator = nil
-		end)
-		table.insert(inst.undolist, function()
-			if task_creator then
-				task_creator:Cancel()
-			end
-			if task then
-				task:Cancel()
-			end
-		end)
-	end)(1/2)
+			task_creator = inst:DoTaskInTime(4*delay*math.random(), function(inst)
+				task = inst:DoTaskInTime(0, fx_chain)
+				task_creator = nil
+			end)
+			table.insert(inst.undolist, function()
+				if task_creator then
+					task_creator:Cancel()
+				end
+				if task then
+					task:Cancel()
+				end
+			end)
+		end)(1/2)
+	end
 end
 
 

@@ -152,15 +152,17 @@ local function fn(Sim)
 
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = getstatus
-    
-    inst:AddComponent("workable")
-    inst.components.workable:SetWorkAction(ACTIONS.NET)
-    inst.components.workable:SetWorkLeft(1)
-    inst.components.workable:SetOnFinishCallback(function(inst, worker)
-        if worker.components.inventory then
-            worker.components.inventory:GiveItem(inst, nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
-        end
-    end)
+   
+    --We'll take care of this for beta.
+
+    --inst:AddComponent("workable")
+    --inst.components.workable:SetWorkAction(ACTIONS.NET)
+    --inst.components.workable:SetWorkLeft(1)
+    --inst.components.workable:SetOnFinishCallback(function(inst, worker)
+        --if worker.components.inventory then
+            --worker.components.inventory:GiveItem(inst, nil, Vector3(TheSim:GetScreenPos(inst.Transform:GetWorldPosition())))
+        --end
+    --end)
 
     inst:AddComponent("fader")
     

@@ -56,14 +56,22 @@ local starting_inventory = {
 
 --The penalty for eating meat.
 local function penalty(inst, food)
-        if inst.components.eater and food.components.edible.foodtype == "MEAT" then
-                inst.components.sanity:DoDelta(-50, 20)
-                inst.components.health:DoDelta(-25, 60)
+        local foodsanity = food.components.edible.sanityvalue
+        local foodhealth = food.components.edible.healthvalue
+        local foodhunger = food.components.edible.hungervalue
+
+        local eater = inst.components.eater
+        local food = food.components.edible.foodtype
+        local prefab = food.prefab
+
+        if eater and food == "MEAT" and not (prefab == "plantmeat" or "plantmeat_cooked") then
+                inst.components.sanity:DoDelta(-45)
+                inst.components.health:DoDelta(-35)
                 inst.components.talker:Say("Blech.")
                 inst.components.kramped:OnNaughtyAction(5)
-        elseif inst.components.eater and food.components.edible.foodtype == "VEGGIE" then
+        elseif eater and food == "VEGGIE" then
                 inst.components.sanity:DoDelta(2)
-                inst.components.health:DoDelta(2)
+                inst.components.health:DoDelta(1)
                 inst.components.hunger:DoDelta(5)
         end
 end
@@ -91,10 +99,12 @@ local fn = function(inst)
 
         inst.components.inventory:GuaranteeItems({"winnie_staff"})
 
-        inst.components.health:SetMaxHealth(160)
+        inst.components.health:SetMaxHealth(140)
         inst.components.hunger:SetMax(200)
         inst.components.sanity:SetMax(160)
-        inst.components.combat.damagemultiplier = 0.90
+
+        inst.components.combat.damagemultiplier = 0.80
+
         inst.components.locomotor.walkspeed = (TUNING.WILSON_WALK_SPEED* 1.085)
         inst.components.locomotor.runspeed = (TUNING.WILSON_RUN_SPEED* 1.085)
 
@@ -102,7 +112,7 @@ local fn = function(inst)
 
         GLOBAL.TUNING.MIN_CROP_GROW_TEMP = 0
 
-        inst:RemoveTag("scarytoprey")
+        --inst:RemoveTag("scarytoprey")
 end
 
 return MakePlayerCharacter("winnie", prefabs, assets, fn, starting_inventory)

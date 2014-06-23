@@ -134,6 +134,8 @@ PrefabFiles = {
 	"ambrosia",
 	"beanlet_armor",
 	"beanlet_hut",
+	"campfirefire_dragon",
+	"thunder_pinecone",
 
 	--Stuff not started.
 	--------------------
@@ -149,7 +151,6 @@ PrefabFiles = {
 	--"golden_amulet",
 	--"kite",
 	--"antlion",	
-	--"campfirefire_dragon",
 	--"cheshire",
 	--"chimera",
 	--"bean_giant_statue",

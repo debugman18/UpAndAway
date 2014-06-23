@@ -73,8 +73,8 @@ local function onunchargefn(inst)
 	if math.random(1,4) == 1 then
 		inst.components.pickable:SetUp("cloud_cotton", 30)
 	else inst.components.pickable:SetUp("skyflower_petals", 40) end	
-	inst.components.pickable.onpickedfn = onpickedfn
-
+	inst.components.pickable.onpickedfn = onpickedfn	
+	
 	return inst
 end
 

@@ -22,7 +22,7 @@ I'm prefixing the list of changes by date, since I suppose we'll remain at preal
 for quite some time.
 -->
 
-### Current Version: alpha-0.0.5
+### Current Version: alpha-0.0.6
 
 ### dev
 + Pineapple Bushes and Pineapples added.

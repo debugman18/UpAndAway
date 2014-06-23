@@ -10,6 +10,7 @@ local prefabs =
     "cloud_lightning",
     "cumulostone",
     "ball_lightning",
+    "thunder_pinecone",
 }
 
 local short_loot = 
@@ -21,13 +22,15 @@ local normal_loot =
 {
     "thunder_log",
     "thunder_log",  
+    "thunder_pinecone",
 }
 
 local tall_loot = 
 {
     "thunder_log",
     "thunder_log",
-    "thunder_log",      
+    "thunder_log", 
+    "thunder_pinecone",    
 }
 
 local function StartSpawning(inst)
@@ -90,6 +93,7 @@ local function SetTall(inst)
     inst.components.lootdropper:SetLoot(tall_loot)
     inst.Transform:SetScale(1, 1, 1)   
     inst.components.lootdropper:AddChanceLoot("cumulostone", 1)
+    inst.components.lootdropper:AddChanceLoot("thunder_pinecone", 0.5)
     if not inst.components.staticchargeable then
         inst:AddComponent("staticchargeable")
         inst.components.staticchargeable:SetChargedFn(function(inst)

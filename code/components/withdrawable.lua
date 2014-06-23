@@ -15,7 +15,7 @@ local ACTIONS = _G.ACTIONS
 
 local Withdrawable = Class(Debuggable, function(self, inst)
     self.inst = inst
-	Debuggable._ctor(self)
+	Debuggable._ctor(self, "Withdrawable")
 	self:SetConfigurationKey("WITHDRAWABLE")
 
 	self.onwithdrawfn = nil

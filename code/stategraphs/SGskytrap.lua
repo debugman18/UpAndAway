@@ -119,10 +119,10 @@ local states=
         tags = {"busy"},
         
         onenter = function(inst)
-            inst.AnimState:PushAnimation("death")
+            inst.AnimState:PushAnimation("die")
             inst.components.lootdropper:DropLoot(Vector3(inst.Transform:GetWorldPosition())) 
             inst.SoundEmitter:PlaySound("dontstarve/creatures/eyeplant/eye_retract")  
-            inst.AnimState:PushAnimation("dead")
+            inst.AnimState:PushAnimation("death")
         end,        
     },
 }

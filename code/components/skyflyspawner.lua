@@ -14,7 +14,7 @@ local Debuggable = wickerrequire 'adjectives.debuggable'
 -- @name SkyflySpawner
 local SkyflySpawner = Class(Debuggable, function(self, inst)
 	self.inst = inst
-	Debuggable._ctor(self)
+	Debuggable._ctor(self, "SkyflySpawner")
 
 	self:SetConfigurationKey("SKYFLYSPAWNER")
 

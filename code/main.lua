@@ -101,14 +101,6 @@ local function OnUnlockMound(inst)
 end
 --]]
  
-if Reflection.HasModWithName("Always On Status") then
-	AddPrefabPostInit("winnie", function(inst)
-		pcall(function()
-			inst:AddComponent("switch")
-		end)
-	end) 
-end
-
 
 local function addmoundtag(inst)
 		local function beanstalktest(inst, item)

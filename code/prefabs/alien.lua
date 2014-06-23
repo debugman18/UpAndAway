@@ -3,6 +3,17 @@ BindGlobal()
 local prefabs =
 {
     "nightmarefuel",
+    "crystal_fragment_relic",
+    "crystal_fragment_light",
+    "crystal_fragment_spire",
+    "crystal_fragment_water",
+}
+
+local fragments = {
+    "crystal_fragment_relic",
+    "crystal_fragment_light",
+    "crystal_fragment_spire",
+    "crystal_fragment_water",
 }
 
 local function retargetfn(inst)
@@ -18,7 +29,9 @@ local function onkilledbyother(inst, attacker)
 	end
 end
 
-local loot = {"nightmarefuel"}
+local loot_common = {
+    "nightmarefuel"
+}
 
 local function CalcSanityAura(inst, observer)
 	if inst.components.combat.target then
@@ -116,8 +129,21 @@ local function fn()
     inst.components.combat.canbeattackedfn = canbeattackedfn
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot(loot)
-    inst.components.lootdropper:AddChanceLoot("nightmarefuel", 0.5)
+
+    local lootchance = math.random(0,100)
+
+    local fragment = fragments[math.random(#fragments)]
+
+    local loot_rare = {
+        fragment
+    }
+
+    if lootchance <= 50 then
+        inst.components.lootdropper:SetLoot(loot_common)
+    else 
+        inst.components.lootdropper:SetLoot(loot_rare) 
+    end
+    inst.components.lootdropper:AddChanceLoot("nightmarefuel", 0.2)
     
     inst:ListenForEvent("attacked", OnAttacked)
 

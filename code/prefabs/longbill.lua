@@ -9,13 +9,13 @@ local assets=
 
 local prefabs =
 {
-	"feathers",
+	"feather_crow",
 }
 
 local loot = 
 {
-	"feathers",
-	"feathers",
+	"feather_crow",
+	"feather_crow",
 }
 
 local SLEEP_DIST_FROMHOME = 1
