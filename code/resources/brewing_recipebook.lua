@@ -23,14 +23,21 @@ local teas = {
 	green = Recipe("greentea", Ingredient("tea_leaves"), 0),
 	black = Recipe("blacktea", Ingredient("blacktea_leaves"), 0),
 	white = Recipe("whitetea", Ingredient("tea_leaves", 2), 0),
+}
+
+local veggie_teas = {
+	berry = Recipe("berrytea", Ingredient("berries") + Ingredient("tea_leaves"), 0),
+	berrypulp = Recipe("berrypulptea", Ingredient("berries", 2), 0),	
+	greengreen = Recipe("greengreentea", Ingredient("tea_leaves") + Ingredient("greenbean", 1), 0),	
+}
+
+local flower_teas = {
 	petal = Recipe("petaltea", Ingredient("petals", 2), 0),
 	evilpetal = Recipe("evilpetaltea", Ingredient("petals_evil", 2), 0),
 	mixedpetal = Recipe("mixedpetaltea", Ingredient("petals_evil") + Ingredient("petals"), 0),
 	floral = Recipe("floraltea", Ingredient("tea_leaves") + Ingredient("petals"), 0),
-	berry = Recipe("berrytea", Ingredient("berries") + Ingredient("tea_leaves"), 0),
-	berrypulp = Recipe("berrypulptea", Ingredient("berries", 2), 0),
 	skypetal = Recipe("skypetaltea", Ingredient("skyflower_petals", 2), 0),
-	datura = Recipe("daturatea", Ingredient("datura_petals", 2), 0),
+	datura = Recipe("daturatea", Ingredient("datura_petals", 2), 0),	
 }
 
 local sweet_teas = {
@@ -42,6 +49,8 @@ local sweet_teas = {
 return RecipeBook {
 	teas,
 	sweet_teas,
+	flower_teas,
+	veggie_teas,
 
 	Recipe(basic_cfg:GetConfig("SPOILED_PREFAB"), Lambda.True, -math.huge),
 }

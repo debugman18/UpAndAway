@@ -188,6 +188,21 @@ local tea_data = {
 
 		temperature = 60,
 	}),
+
+	greengreentea = MergeMaps(basic_tea_data, {
+		assets = {
+			Asset("ANIM", "anim/cook_pot_food.zip"),
+		},
+
+		build = "cook_pot_food",
+		anim = "fruitmedley",
+		--inventory_atlas = "images/inventoryimages/daturatea.xml",
+
+		health = 0,
+		sanity = 0,
+
+		temperature = 60,
+	}),
 }
 
 

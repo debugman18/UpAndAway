@@ -37,9 +37,33 @@ for quite some time.
 + Wilson garden gnome added.
 + Stat flipper potion added.
 + Skyflowers no longer give sanity.
-
++ Lots of tea types added.
 
 ### stable
++ Updated beanlet animations.
++ Updated rose animations.
++ Updated skytrap animations.
++ Made golden sunflowers more useful, with a tiny bit of risk to them.
++ Made golden petals more useful.
++ Made beanlets slower.
++ Skyflowers no longer give positive sanity aura.
++ Skyflower petals now spoil.
++ Tweaked the balance of each biome.
++ Tweaked Winnie's balance.
++ Balanced the aurora drops.
++ Added an option to regenerate the cloudrealm.
++ Made the lionblob easter egg very rare.
++ Crystals now have names that aren't colors.
++ Made the bean giant more dangerous.
++ Cloudcrags now have a chance to drop rocks.
++ Added support for Too Many Items.
++ Improved support for the N Tools invincibility button (for example, when being drawn to a whirlwind).
++ Thunder trees can now be replanted.
++ Skyflies are no longer catchable. A proper method for catching them will be implemented in the future.
++ Winnie can now eat leafy meat.
+
+
+### Update 2014-6-9 (alpha-0.0.6 release)
 + Fixed items going into storage containers when opened.
 + The wind axe spawns whirlwinds very rarely now.
 + The cumulocator station placer will appear for players for whom it previously wouldn't appear.
@@ -54,7 +78,6 @@ for quite some time.
 + Cloud fruit trees now drop fruit if chopped without being picked.
 + Gustflower seeds are not infinite anymore.
 + Kettle no longer flashes.
-+ Made cumulocator easier to make.
 
 
 ### Update 2014-5-28 (alpha-0.0.4 release)
