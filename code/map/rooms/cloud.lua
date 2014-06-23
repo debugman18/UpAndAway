@@ -18,7 +18,7 @@ local function randomaurora()
 	if roll == 1 then
 		return GROUND.AURORA
 	else 
-		return GROUND.AURORA
+		return GROUND.AURORATWO
 	end
 end	
 
@@ -27,9 +27,18 @@ local function randomsnow()
 	if roll == 1 then
 		return GROUND.SNOW
 	else 
-		return GROUND.SNOW
+		return GROUND.SNOWTWO
 	end
 end	
+
+local function randomrainbow()
+	local roll = math.random(1,2)
+	if roll == 1 then
+		return GROUND.RAINBOW
+	else 
+		return GROUND.RAINBOWTWO
+	end
+end
 
 BindGlobal()
 
@@ -323,7 +332,7 @@ TheMod:AddRoom("Manta_Room", {
 --Rainbow BG
 TheMod:AddRoom("BGRainbow", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.RAINBOW,
+	value = randomrainbow(),
 	contents = {
 		distributepercent = randomness(),
 		distributeprefabs = {
@@ -342,7 +351,7 @@ TheMod:AddRoom("BGRainbow", {
 --Marshmallows
 TheMod:AddRoom("Rainbow_Room", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.RAINBOW,
+	value = randomrainbow(),
 	contents = {
 		distributepercent = randomness(),
 		distributeprefabs = {
@@ -361,7 +370,7 @@ TheMod:AddRoom("Rainbow_Room", {
 --Crystals
 TheMod:AddRoom("Crystal_Fields", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.RAINBOW,
+	value = randomrainbow(),
 	contents = {
 		custom_tiles={
 			GeneratorFunction = RUNCA.GeneratorFunction,
@@ -390,7 +399,7 @@ TheMod:AddRoom("Crystal_Fields", {
 --Flying Fish
 TheMod:AddRoom("Fish_Fields", {
 	colour={r=.2,g=.2,b=.2,a=1},
-	value = GROUND.RAINBOW,
+	value = randomrainbow(),
 	contents = {
 		distributepercent = randomness(),
 		distributeprefabs = {

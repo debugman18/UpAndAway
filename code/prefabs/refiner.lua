@@ -14,6 +14,7 @@ local prefabs =
     "rocks",
     "twigs",
     "cutgrass",
+    "logs",
 }    
 
 local function startbrewfn(inst)
@@ -90,6 +91,7 @@ local function itemtest(inst, item, slot)
         or item.prefab == "jellycap_blue"
         or item.prefab == "jellycap_green"
         or item.prefab == "golden_petals"
+        or item.prefab == "thunder_log"
 end
 
 local function onhammered(inst, worker)
