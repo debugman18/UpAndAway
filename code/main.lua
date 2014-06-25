@@ -124,13 +124,16 @@ local function addmoundtag(inst)
 		    GetPlayer().components.talker:Say("I need to dig a hole first.")
 		end
 
-		inst:AddComponent("inventory")
-	    inst:AddComponent("trader")
-	    inst.components.trader:SetAcceptTest(beanstalktest)
-	    inst.components.trader.onaccept = beanstalkaccept
-	    inst.components.trader.onrefuse = beanstalkrefuse
-	    inst.components.trader:Enable()
-	    inst:AddTag("mound")
+		if not inst.components.hole then
+			inst:AddComponent("inventory")
+		    inst:AddComponent("trader")
+		    inst.components.trader:SetAcceptTest(beanstalktest)
+		    inst.components.trader.onaccept = beanstalkaccept
+		    inst.components.trader.onrefuse = beanstalkrefuse
+		    inst.components.trader:Enable()
+		end
+
+		inst:AddTag("mound")
 end	
 
 AddPrefabPostInit("mound", addmoundtag)

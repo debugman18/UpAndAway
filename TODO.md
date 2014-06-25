@@ -2,9 +2,7 @@
 
 + **Current bugs:**
 
-	+ World generation time is too short.
-
-	+ A kettle that is withdrawn while full loses its tea.
+	+ World generation time is too short. (Vanilla bug?)
 
 + **Art assets in need of attention**
 

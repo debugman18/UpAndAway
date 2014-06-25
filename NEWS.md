@@ -38,6 +38,11 @@ for quite some time.
 
 
 ### stable
++ Fixed an issue where our mound mechanics conflicted with webber's skull.
++ Fixed cloudfruit trees regenerating but not showing their fruit.
+
+
+### Update 2014-6-23 (alpha-0.0.7 release)
 + Updated beanlet animations.
 + Updated rose animations.
 + Updated skytrap animations.
