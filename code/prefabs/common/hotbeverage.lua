@@ -102,9 +102,21 @@ local function MakeBeverage(name, data)
 			heatededible:SetHeatCapacity(data.heat_capacity or 0.15)
 		end
 
-		inst:ListenForEvent("startfreezing", function(inst) 
-			print("Iced Tea made.")
-		end, inst)
+		--This turns tea into iced tea when kept in an icebox.
+		inst.icedthreshold = 5
+		inst.warmthreshold = 15
+
+		inst:AddComponent("named")
+
+		inst:ListenForEvent("temperaturedelta", function(inst) 
+			local teaname = STRINGS.NAMES[string.upper(inst.prefab)]
+			local temperature = inst.components.temperature.current
+			if temperature <= inst.icedthreshold then
+				inst.components.named:SetName("Iced "..teaname)
+			elseif temperature >= inst.warmthreshold then
+				inst.components.named:SetName(teaname)
+			end
+		end)
 
 		return inst
 	end

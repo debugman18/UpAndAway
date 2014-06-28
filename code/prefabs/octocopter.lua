@@ -118,7 +118,6 @@ local function fn(Sim)
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(CFG_OCTOCOPTER_HEALTH)	
-    print(inst.components.health.current)
 
     inst:AddComponent("knownlocations")
     
