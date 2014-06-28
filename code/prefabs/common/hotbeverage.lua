@@ -92,6 +92,7 @@ local function MakeBeverage(name, data)
 				local temp = math.max(temperature.mintemp, math.min(temperature.maxtemp, data.temperature))
 				temperature.current = temp
 			end
+
 		end
 
 		inst:AddComponent("heatededible")
@@ -100,6 +101,10 @@ local function MakeBeverage(name, data)
 
 			heatededible:SetHeatCapacity(data.heat_capacity or 0.15)
 		end
+
+		inst:ListenForEvent("startfreezing", function(inst) 
+			print("Iced Tea made.")
+		end, inst)
 
 		return inst
 	end

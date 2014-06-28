@@ -22,7 +22,7 @@ I'm prefixing the list of changes by date, since I suppose we'll remain at preal
 for quite some time.
 -->
 
-### Current Version: alpha-0.0.6
+### Current Version: alpha-0.0.7
 
 ### dev
 + Pineapple Bushes and Pineapples added.
@@ -38,8 +38,12 @@ for quite some time.
 
 
 ### stable
-+ Fixed an issue where our mound mechanics conflicted with webber's skull.
++ Fixed an issue where mound mechanics conflicted with webber's skull.
 + Fixed cloudfruit trees regenerating but not showing their fruit.
++ Fixed the giant bean giant.
++ Added more teas.
++ Teas can now be cooled to make iced tea.
++ Fixed octocopter parts appearing more than once.
 
 
 ### Update 2014-6-23 (alpha-0.0.7 release)

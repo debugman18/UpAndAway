@@ -263,6 +263,38 @@ local tea_data = {
 
 		temperature = 70,
 	}),
+
+	chaitea = MergeMaps(basic_tea_data, {
+		assets = {
+			Asset("ANIM", "anim/tea.zip"),
+		},
+
+		build = "tea",
+		anim = "tea",
+		--inventory_atlas = "images/inventoryimages/blacktea.xml",
+
+		health = TUNING.HEALING_TINY,
+		sanity = TUNING.SANITY_SMALL,
+
+		temperature = 100,
+	}),
+
+	oolongtea = MergeMaps(basic_tea_data, {
+		assets = {
+			Asset("ANIM", "anim/tea.zip"),
+		},
+
+		build = "tea",
+		anim = "tea",
+		--inventory_atlas = "images/inventoryimages/blacktea.xml",
+
+		health = TUNING.HEALING_TINY,
+		sanity = TUNING.SANITY_SMALL,
+
+		temperature = 100,
+	}),
+
+
 }
 
 

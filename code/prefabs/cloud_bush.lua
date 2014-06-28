@@ -91,10 +91,10 @@ local function fn(Sim)
 
 	inst:AddComponent("lootdropper")
 	
-	inst:AddComponent("workable")
-    inst.components.workable:SetWorkAction(ACTIONS.DIG)
-    inst.components.workable:SetOnFinishCallback(dig_up)
-    inst.components.workable:SetWorkLeft(1)
+	--inst:AddComponent("workable")
+    --inst.components.workable:SetWorkAction(ACTIONS.DIG)
+    --inst.components.workable:SetOnFinishCallback(dig_up)
+    --inst.components.workable:SetWorkLeft(1)
     
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus

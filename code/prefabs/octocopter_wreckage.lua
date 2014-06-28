@@ -75,17 +75,25 @@ end
 
 local function OnLoad(inst, data)
 	inst.collectedParts = data.collectedParts
-	if data.complete == true then
+	if data and data.complete == true then
 		inst:AddTag("complete")
 		inst.AnimState:PlayAnimation("wrecked_fixed", false)
 		inst:RemoveComponent("trader")
+	end
+	if data and data.items then
+		inst.items = true
 	end
 end
 
 local function OnSave(inst, data)
 	data.collectedParts = inst.collectedParts
+	
 	if inst:HasTag("complete") then
 		data.complete = true
+	end
+
+	if inst.items == true then
+		data.items = true
 	end	
 end
 
@@ -119,7 +127,10 @@ local function fn(inst)
 
 	inst.collectedParts = {octocopterpart1 = false, octocopterpart2 = false, octocopterpart3 = false}
 
-	GetWorld():PushEvent("octocoptercrash")
+	if not inst.items then
+		GetWorld():PushEvent("octocoptercrash")
+		inst.items = true
+	end
 
 	inst.OnSave = OnSave
 	inst.OnLoad = OnLoad
@@ -148,6 +159,9 @@ local function part1fn(inst)
 	inst:AddComponent("tradable")    
 	inst:AddTag("irreplaceable")	
 
+	inst.task = inst:DoPeriodicTask(0.5, function() _G.DeleteCloseEntsWithTag(inst, "partspawner", 1) end, 0)
+	inst:DoTaskInTime(2, function() inst.task:Cancel() end)
+
 	return inst
 end	
 
@@ -171,6 +185,9 @@ local function part2fn(inst)
 	inst:AddTag("octocopter_part")
 	inst:AddComponent("tradable")    
 	inst:AddTag("irreplaceable")
+
+	inst.task = inst:DoPeriodicTask(0.5, function() _G.DeleteCloseEntsWithTag(inst, "partspawner", 1) end, 0)
+	inst:DoTaskInTime(2, function() inst.task:Cancel() end)
 
 	return inst
 end	
@@ -196,12 +213,16 @@ local function part3fn(inst)
 	inst:AddComponent("tradable")    
 	inst:AddTag("irreplaceable")
 
+	inst.task = inst:DoPeriodicTask(0.5, function() _G.DeleteCloseEntsWithTag(inst, "partspawner", 1) end, 0)
+	inst:DoTaskInTime(2, function() inst.task:Cancel() end)	
+
 	return inst
 end	
 
 local function part1spawner(inst)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()	
+	inst:AddTag("partspawner")
 	GetWorld().octocopterpart1 = inst
 	inst:ListenForEvent("octocoptercrash", 
 		function(inst) 
@@ -216,6 +237,7 @@ end
 local function part2spawner(inst)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()	
+	inst:AddTag("partspawner")
 	GetWorld().octocopterpart2 = inst
 	inst:ListenForEvent("octocoptercrash", 
 		function(inst) 
@@ -230,6 +252,7 @@ end
 local function part3spawner(inst)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()	
+	inst:AddTag("partspawner")
 	GetWorld().octocopterpart3 = inst
 	inst:ListenForEvent("octocoptercrash", 
 		function(inst) 

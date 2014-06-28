@@ -25,14 +25,19 @@ local teas = {
 	white = Recipe("whitetea", Ingredient("tea_leaves", 2), 0),
 }
 
+local black_teas = {
+	sweetblack = Recipe("sweet_blacktea", teas.black:GetCondition() + Ingredient("honey"), 1),	
+	chai = Recipe("chaitea", Ingredient("datura_petals") + Ingredient("blacktea_leaves"), 0),
+	oolong = Recipe("oolongtea", Ingredient("skyflower_petals") + Ingredient("blacktea_leaves"), 0),
+}
+
 local veggie_teas = {
 	berry = Recipe("berrytea", Ingredient("berries") + Ingredient("tea_leaves"), 0),
 	berrypulp = Recipe("berrypulptea", Ingredient("berries", 2), 0),	
 	greener = Recipe("greenertea", Ingredient("tea_leaves") + Ingredient("greenbean", 1), 0),
 	cloudfruit = Recipe("cloudfruittea", Ingredient("tea_leaves") + Ingredient("cloud_fruit", 1), 0),
 	cotton = Recipe("cottontea", Ingredient("tea_leaves") + Ingredient("cloud_cotton", 1), 0),
-	candy = Recipe("candytea", Ingredient("candy_fruit") + Ingredient("tea_leaves"), 0),	
-
+	candy = Recipe("candytea", Ingredient("candy_fruit") + Ingredient("tea_leaves"), 0),
 }
 
 local flower_teas = {
@@ -47,12 +52,12 @@ local flower_teas = {
 
 local sweet_teas = {
 	green = Recipe("sweet_greentea", teas.green:GetCondition() + Ingredient("honey"), 1),
-	black = Recipe("sweet_blacktea", teas.black:GetCondition() + Ingredient("honey"), 1),
 	white = Recipe("sweet_whitetea", teas.white:GetCondition() + Ingredient("honey"), 1),
 }
 
 return RecipeBook {
 	teas,
+	black_teas,
 	sweet_teas,
 	flower_teas,
 	veggie_teas,

@@ -54,7 +54,7 @@ local function fn(Sim)
 	inst.components.named:SetName("Beanstalk Sapling")
 
     --inst.Transform:SetScale(4, 4, 4)
-    inst:DoPeriodicTask(0, function() _G.DeleteCloseEntsWithTag(inst, "mound", 5) _G.DeleteCloseEntsWithTag(inst, "grave", 5) end, 0)
+    inst:DoPeriodicTask(0.5, function() _G.DeleteCloseEntsWithTag(inst, "mound", 5) _G.DeleteCloseEntsWithTag(inst, "grave", 5) end, 0)
 	inst:ListenForEvent("nighttime", function() GrowBeanstalk(inst) end, GetWorld())
 
     return inst
