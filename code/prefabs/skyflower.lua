@@ -74,6 +74,8 @@ local function onunchargefn(inst)
 		inst.components.pickable:SetUp("cloud_cotton", 30)
 	else inst.components.pickable:SetUp("skyflower_petals", 40) end	
 	inst.components.pickable.onpickedfn = onpickedfn	
+
+	inst.components.sanityaura.aura = 0	
 	
 	return inst
 end

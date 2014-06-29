@@ -45,6 +45,7 @@ for quite some time.
 + Teas can now be cooled to make iced tea.
 + Fixed octocopter parts appearing more than once.
 + Tea can now be chilled in an icebox to make iced tea.
++ Fixed skyflowers having a negative sanity aura permanently after static.
 
 
 ### Update 2014-6-23 (alpha-0.0.7 release)
