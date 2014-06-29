@@ -19,6 +19,8 @@
 	+ Allow for more cloud stuff in the overworld.
 	+ Possibly decrease the time for tea to grow.
 	+ Adjust world density.
+	+ Tea art.
+	+ Make more foods perishable.
 
 ******
 
