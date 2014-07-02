@@ -36,8 +36,6 @@ for quite some time.
 + Gnome farm plot added.
 + Wilson garden gnome added.
 + Stat flipper potion added.
-+ Skyflowers no longer give sanity.
-+ Lots of tea types added.
 
 ### stable
 + Fixed an issue where mound mechanics conflicted with webber's skull.
@@ -53,6 +51,7 @@ for quite some time.
 + Made marshmallow bees edible.
 + Made cloud jelly edible and perishable.
 + Made jelly caps edible and perishable.
++ Made algae edible and perishable.
 + Adjusted skytrap loot.
 + Adjusted skyflower loot.
 + Adjusted tea growth times.
@@ -60,6 +59,7 @@ for quite some time.
 + Adjusted cloudcrag loot.
 + Adjusted cotton candy damage.
 + Fixed gustflowers spawning from inventory.
++ Made duckraptors scarier. 
 
 + Added Oolong Tea.
 + Added Spoiled Tea.
@@ -75,6 +75,7 @@ for quite some time.
 + Added Herbal Tea.
 + Added Marshmallow Tea.
 + Added Ambrosia Tea.
++ Added Algae Tea.
 
 + Added beta foreshadowing.
 

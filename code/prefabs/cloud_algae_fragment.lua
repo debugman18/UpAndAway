@@ -30,6 +30,16 @@ local function fn(Sim)
 	inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/cloud_algae_fragment.xml"
 
+    inst:AddComponent("edible")
+    inst.components.edible.hungervalue = TUNING.CALORIES_SMALL
+    inst.components.edible.sanityvalue = -TUNING.SANITY_TINY
+    inst.components.edible.foodtype = "VEGGIE"
+
+	inst:AddComponent("perishable")
+	inst.components.perishable:SetPerishTime(TUNING.PERISH_TWO_DAY)
+	inst.components.perishable:StartPerishing()
+	inst.components.perishable.onperishreplacement = "spoiled_food"
+
 	inst:AddTag("algae")
 
 	inst:AddComponent("tradable")

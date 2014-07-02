@@ -206,6 +206,7 @@ Add.Names {
     herbaltea = "Herbal Tea",
     marshmallowtea = "Marshmallow Tea",
     ambrosiatea = "Ambrosia Tea",
+    algaetea = "Algae Tea",
 }
 
 Add.QuotesFor "alien" {
