@@ -15,7 +15,6 @@ local prefabs =
 {
     "skyflower_petals",
 	"datura_petals",
-	"cloud_cotton",
 }    
 
 local anim_names = {"f1","f2","f3","f4","f5","f6","f7","f8","f9","f10"}
@@ -70,9 +69,7 @@ local function onunchargefn(inst)
     --inst:AddTag("flower")	
 	
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
-	if math.random(1,4) == 1 then
-		inst.components.pickable:SetUp("cloud_cotton", 30)
-	else inst.components.pickable:SetUp("skyflower_petals", 40) end	
+	inst.components.pickable:SetUp("skyflower_petals", 40)
 	inst.components.pickable.onpickedfn = onpickedfn	
 
 	inst.components.sanityaura.aura = 0	
@@ -92,9 +89,7 @@ local function onchargefn(inst)
     inst:AddTag("flower_datura")
     
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
-	if math.random(1,4) == 1 then
-		inst.components.pickable:SetUp("cloud_cotton", 30)
-	else inst.components.pickable:SetUp("datura_petals", 40) end	
+	inst.components.pickable:SetUp("datura_petals", 40)
 	inst.components.pickable.onpickedfn = onpickedfn
 	
     inst.components.sanityaura.aura = -TUNING.SANITYAURA_LARGE		

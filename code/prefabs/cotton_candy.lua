@@ -53,7 +53,7 @@ local function fn(Sim)
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/cotton_candy.xml"
    
     inst:AddComponent("weapon")
-    inst.components.weapon:SetDamage(2)
+    inst.components.weapon:SetDamage(6)
     inst.components.weapon:SetOnAttack(onattackfn)
 
     inst:AddComponent("perishable")

@@ -205,7 +205,11 @@ local function commonfn()
     
     inst:AddComponent("knownlocations")
 
-    ------------------
+    inst:AddComponent("edible")
+    inst.components.edible.foodtype = "MEAT"
+    inst.components.edible.healthvalue = 0
+    inst.components.edible.hungervalue = 10
+    inst.components.edible.sanityvalue = -10
     
     inst:AddComponent("inspectable")
     

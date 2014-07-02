@@ -294,6 +294,20 @@ local tea_data = {
 		temperature = 100,
 	}),
 
+	spoiledtea = MergeMaps(basic_tea_data, {
+		assets = {
+			Asset("ANIM", "anim/tea.zip"),
+		},
+
+		build = "tea",
+		anim = "tea",
+		--inventory_atlas = "images/inventoryimages/blacktea.xml",
+
+		health = -20,
+		sanity = -10,
+
+		temperature = 90,
+	}),
 
 }
 

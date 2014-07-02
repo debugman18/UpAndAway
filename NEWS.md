@@ -46,7 +46,19 @@ for quite some time.
 + Fixed octocopter parts appearing more than once.
 + Tea can now be chilled in an icebox to make iced tea.
 + Fixed skyflowers having a negative sanity aura permanently after static.
++ Made cloudfruit perish.
++ Made candy fruit perish.
++ Made marshmallow bees edible.
++ Made cloud jelly edible and perishable.
++ Made jelly caps edible and perishable.
++ Adjusted skytrap loot.
++ Adjusted skyflower loot.
++ Adjusted tea growth times.
++ Changed the kettle failed recipe to spoiled tea.
++ Adjusted cloudcrag loot.
++ Adjusted cotton candy damage.
 
++ Added beta foreshadowing.
 
 ### Update 2014-6-23 (alpha-0.0.7 release)
 + Updated beanlet animations.
