@@ -20,7 +20,7 @@ BindModModule 'lib.brewing'
 --]]
 
 local teas = {
-	green = Recipe("greentea", Ingredient("tea_leaves"), 0),
+	green = Recipe("greentea", Ingredient("tea_leaves", 1), 0),
 	black = Recipe("blacktea", Ingredient("blacktea_leaves"), 0),
 	white = Recipe("whitetea", Ingredient("tea_leaves", 2), 0),
 }
@@ -35,11 +35,12 @@ local black_teas = {
 local veggie_teas = {
 	berry = Recipe("berrytea", Ingredient("berries") + Ingredient("tea_leaves"), 0),
 	berrypulp = Recipe("berrypulptea", Ingredient("berries", 2), 0),	
-	greener = Recipe("greenertea", Ingredient("tea_leaves") + Ingredient("greenbean", 1), 0),
+	greener = Recipe("greenertea", Ingredient("tea_leaves", 1) + Ingredient("greenbean", 1), 1),
 	cloudfruit = Recipe("cloudfruittea", Ingredient("tea_leaves") + Ingredient("cloud_fruit", 1), 0),
 	cotton = Recipe("cottontea", Ingredient("tea_leaves") + Ingredient("cloud_cotton", 1), 0),
 	candy = Recipe("candytea", Ingredient("candy_fruit") + Ingredient("tea_leaves"), 0),
 	herbal = Recipe("herbaltea", Ingredient("cutlichen") + Ingredient("tea_leaves"), 0),
+	algae = Recipe("algaetea", Ingredient("cloud_algae_fragment") + Ingredient("tea_leaves"), 0),
 	marshmallow = Recipe("marshmallowtea", Ingredient("marshmallow") + Ingredient("tea_leaves"), 0),
 	ambrosia = Recipe("ambrosiatea", Ingredient("ambrosia") + Ingredient("tea_leaves"), 0),
 }

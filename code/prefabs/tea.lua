@@ -431,7 +431,23 @@ local tea_data = {
 		--inventory_atlas = "images/inventoryimages/herbaltea.xml",
 
 		health = 20,
-		sanity = 10,
+		sanity = 15,
+
+		temperature = 90,
+	}),	
+
+	algaetea = MergeMaps(basic_tea_data, {
+		assets = {
+			Asset("ANIM", "anim/tea.zip"),
+		},
+
+		build = "tea",
+		anim = "tea",
+		--inventory_atlas = "images/inventoryimages/herbaltea.xml",
+
+		health = 0,
+		sanity = -6,
+		hunger = 10,
 
 		temperature = 90,
 	}),	
