@@ -1,5 +1,5 @@
 HOTBEVERAGE.INHERENT_INSULATION = 60
-HOTBEVERAGE.SPOILED_PREFAB = "wetgoop"
+HOTBEVERAGE.SPOILED_PREFAB = "spoiledtea"
 
 --[[
 -- The following refers to *brewed* tea.
@@ -17,8 +17,8 @@ TEA_LEAF.SPOILED_PREFAB = "wetgoop"
 --[[
 -- The following refers to tea *bushes".
 --]]
-TEA_BUSH.CYCLES = 5
-TEA_BUSH.REGROW_TIME = 5*TUNING.TOTAL_DAY_TIME
+TEA_BUSH.CYCLES = 4
+TEA_BUSH.REGROW_TIME = 3*TUNING.TOTAL_DAY_TIME
 
 --[[
 -- Staves.

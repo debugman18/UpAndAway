@@ -30,6 +30,12 @@ local function fn(Sim)
 	inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/golden_petals.xml"
 
+    inst:AddComponent("edible")
+    inst.components.edible.foodtype = "VEGGIE"
+    inst.components.edible.healthvalue = 0
+    inst.components.edible.hungervalue = 0
+    inst.components.edible.sanityvalue = 5
+
 	return inst
 end
 

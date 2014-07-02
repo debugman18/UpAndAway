@@ -32,8 +32,13 @@ local function fn(Sim)
     inst:AddComponent("edible")
     inst.components.edible.foodtype = "VEGGIE"
     inst.components.edible.healthvalue = 0
-    inst.components.edible.hungervalue = 0
-    inst.components.edible.sanityvalue = 1
+    inst.components.edible.hungervalue = 5
+    inst.components.edible.sanityvalue = 10
+
+    inst:AddComponent("perishable")
+    inst.components.perishable:SetPerishTime(600)
+    inst.components.perishable:StartPerishing()
+    inst.components.perishable.onperishreplacement = "spoiled_food" 
 
     inst:AddComponent("fuel")
     inst.components.fuel.fuelvalue = 5

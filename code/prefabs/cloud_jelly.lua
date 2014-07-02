@@ -30,6 +30,17 @@ local function fn(Sim)
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
+    inst:AddComponent("edible")
+    inst.components.edible.foodtype = "VEGGIE"
+    inst.components.edible.healthvalue = -5
+    inst.components.edible.hungervalue = 15
+    inst.components.edible.sanityvalue = -5
+
+	inst:AddComponent("perishable")
+	inst.components.perishable:SetPerishTime(TUNING.PERISH_SLOW)
+	inst.components.perishable:StartPerishing()
+	inst.components.perishable.onperishreplacement = "ash"    
+
 	inst:AddComponent("inspectable")
 
     inst:AddComponent("fuel")

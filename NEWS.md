@@ -22,7 +22,7 @@ I'm prefixing the list of changes by date, since I suppose we'll remain at preal
 for quite some time.
 -->
 
-### Current Version: alpha-0.0.6
+### Current Version: alpha-0.0.7
 
 ### dev
 + Pineapple Bushes and Pineapples added.
@@ -40,6 +40,45 @@ for quite some time.
 + Lots of tea types added.
 
 ### stable
++ Fixed an issue where mound mechanics conflicted with webber's skull.
++ Fixed cloudfruit trees regenerating but not showing their fruit.
++ Fixed the giant bean giant.
++ Added more teas.
++ Teas can now be cooled to make iced tea.
++ Fixed octocopter parts appearing more than once.
++ Tea can now be chilled in an icebox to make iced tea.
++ Fixed skyflowers having a negative sanity aura permanently.
++ Made cloudfruit perish.
++ Made candy fruit perish.
++ Made marshmallow bees edible.
++ Made cloud jelly edible and perishable.
++ Made jelly caps edible and perishable.
++ Adjusted skytrap loot.
++ Adjusted skyflower loot.
++ Adjusted tea growth times.
++ Changed the kettle failed recipe to spoiled tea.
++ Adjusted cloudcrag loot.
++ Adjusted cotton candy damage.
++ Fixed gustflowers spawning from inventory.
+
++ Added Oolong Tea.
++ Added Spoiled Tea.
++ Added Chai Tea.
++ Added Jellied Tea.
++ Added Green Mushroom Tea.
++ Added Red Mushroom Tea.
++ Added Blue Mushroom Tea.
++ Added Green Jellycap Tea.
++ Added Red Jellycap Tea.
++ Added Blue Jellycap Tea.
++ Added Dragon Tea.
++ Added Herbal Tea.
++ Added Marshmallow Tea.
++ Added Ambrosia Tea.
+
++ Added beta foreshadowing.
+
+### Update 2014-6-23 (alpha-0.0.7 release)
 + Updated beanlet animations.
 + Updated rose animations.
 + Updated skytrap animations.
@@ -61,6 +100,9 @@ for quite some time.
 + Thunder trees can now be replanted.
 + Skyflies are no longer catchable. A proper method for catching them will be implemented in the future.
 + Winnie can now eat leafy meat.
++ Added turf variants.
++ Tea leaves can be dried for black tea.
++ Added lots of tea recipes.
 
 
 ### Update 2014-6-9 (alpha-0.0.6 release)

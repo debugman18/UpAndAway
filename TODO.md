@@ -2,7 +2,11 @@
 
 + **Current bugs:**
 
+<<<<<<< HEAD
 	+ I think alpha bugs should be kept seperate to avoid redundancy.
+=======
+	+ World generation time is too short. (Vanilla bug?)
+>>>>>>> stable
 
 + **Art assets in need of attention**
 
@@ -54,11 +58,10 @@
 
 + **General improvements to be made:*
 
-	+ Make the cloudbushes either undiggable or give them a dug item.
-	+ Make beanstalk chunks a little less rare.
 	+ Allow for more cloud stuff in the overworld.
-	+ Possibly decrease the time for tea to grow.
 	+ Adjust world density.
+	+ Tea art.
+	+ More teas.
 
 ******
 

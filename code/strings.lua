@@ -175,6 +175,37 @@ Add.Names {
     whitestaff = "White Staff",
     wind_axe = "Axe of Storms",
     winnie_staff = "Shepherd's Staff",
+
+    --Tea names.
+    whitetea = "White Tea",
+    petaltea = "Petal Tea",
+    mixedpetaltea = "Combo Petal Tea",
+    evilpetaltea = "Dark Petal Tea",
+    floraltea = "Floral Tea",
+    skypetaltea = "Skypetal Tea",
+    daturatea = "Datura Tea",
+    cloudfruittea = "Cloudfruit Tea",
+    greenertea = "Greener Tea",
+    berrytea = "Berry Tea",
+    berrypulptea = "Pulpy Berry Tea",
+    cottontea = "Cottony Tea",
+    goldtea = "Gold Tea",
+    candytea = "Candy Tea",
+
+    oolongtea = "Oolong Tea",
+    chaitea = "Chair Tea",
+    spoiledtea = "Spoiled Tea",
+    jellytea = "Jellied Tea",
+    redjellytea = "Red Jellied Tea",
+    bluejellytea = "Blue Jellied Tea",
+    greenjellytea = "Green Jellied Tea",
+    redmushroomtea = "Red Mushroom Tea",
+    bluemushroomtea = "Blue Mushroom Tea",
+    greenmushroomtea = "Green Mushroom Tea",
+    dragontea = "Dragon Tea",
+    herbaltea = "Herbal Tea",
+    marshmallowtea = "Marshmallow Tea",
+    ambrosiatea = "Ambrosia Tea",
 }
 
 Add.QuotesFor "alien" {

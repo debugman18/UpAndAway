@@ -25,6 +25,15 @@ local function add_beverage_animstate(inst, data)
 	return anim
 end
 
+local function ambrosiafn(inst)
+	if (inst.prefab == "ambrosiatea") and (math.random(1,10) == 1) then
+		if not GetPlayer().components.ambrosiarespawn then
+			TheMod:Say("Free respawn. Lucky you.")
+			GetPlayer():AddComponent("ambrosiarespawn")
+		end	
+	end	
+end	
+
 local function MakeBeverage(name, data)
 	local assets = data.assets
 	local prefabs = JoinArrays(data.prefabs or {}, {cfg:GetConfig("SPOILED_PREFAB")})
@@ -75,6 +84,8 @@ local function MakeBeverage(name, data)
 			if data.foodtype then
 				edible.foodtype = data.foodtype
 			end
+
+			inst.components.edible:SetOnEatenFn(ambrosiafn)
 		end
 
 		inst:AddComponent("temperature")
@@ -92,6 +103,7 @@ local function MakeBeverage(name, data)
 				local temp = math.max(temperature.mintemp, math.min(temperature.maxtemp, data.temperature))
 				temperature.current = temp
 			end
+
 		end
 
 		inst:AddComponent("heatededible")
@@ -100,6 +112,24 @@ local function MakeBeverage(name, data)
 
 			heatededible:SetHeatCapacity(data.heat_capacity or 0.15)
 		end
+
+		--This turns tea into iced tea when kept in an icebox.
+		inst.icedthreshold = 5
+		inst.warmthreshold = 15
+
+		inst:AddComponent("named")
+
+		inst:ListenForEvent("temperaturedelta", function(inst) 
+			local teaname = STRINGS.NAMES[string.upper(inst.prefab)]
+			local temperature = inst.components.temperature.current
+			if teaname then
+				if temperature <= inst.icedthreshold then
+					inst.components.named:SetName("Iced "..teaname)
+				elseif temperature >= inst.warmthreshold then
+					inst.components.named:SetName(teaname)
+				end
+			end
+		end)
 
 		return inst
 	end

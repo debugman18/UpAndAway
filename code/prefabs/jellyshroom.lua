@@ -163,8 +163,16 @@ local function pickedfn_common(bank, name)
 
 	inst:AddComponent("inventoryitem")	
 
+    inst:AddComponent("edible")
+    inst.components.edible.foodtype = "VEGGIE"
+
+	inst:AddComponent("perishable")
+	inst.components.perishable:SetPerishTime(TUNING.PERISH_SLOW)
+	inst.components.perishable:StartPerishing()
+	inst.components.perishable.onperishreplacement = "spoiled_food"
+
     inst:AddComponent("cookable")
-    inst.components.cookable.product = "charcoal"     
+    inst.components.cookable.product = "cloud_jelly"     
 	
 	return inst
 end
@@ -172,18 +180,27 @@ end
 local function pickedfn_red(Sim)
 	local inst = pickedfn_common("Redcap", "red")
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/jellycap_red.xml"
+    inst.components.edible.healthvalue = 20
+    inst.components.edible.hungervalue = -15
+    inst.components.edible.sanityvalue = -15	
 	return inst
 end	
 
 local function pickedfn_green(Sim)
 	local inst = pickedfn_common("Greencap", "green")
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/jellycap_green.xml"
+    inst.components.edible.healthvalue = -12
+    inst.components.edible.hungervalue = 20
+    inst.components.edible.sanityvalue = -12		
 	return inst
 end	
 
 local function pickedfn_blue(Sim)
 	local inst = pickedfn_common("Bluecap", "blue")
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/jellycap_blue.xml"
+    inst.components.edible.healthvalue = -10
+    inst.components.edible.hungervalue = -10
+    inst.components.edible.sanityvalue = 20	
 	return inst
 end	
 

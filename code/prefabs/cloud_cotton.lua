@@ -34,9 +34,14 @@ local function fn(Sim)
 	--Is not filling.
     inst:AddComponent("edible")
     inst.components.edible.foodtype = "VEGGIE"
-    inst.components.edible.healthvalue = -5
+    inst.components.edible.healthvalue = -2
     inst.components.edible.hungervalue = 2
-    inst.components.edible.sanityvalue = 5
+    inst.components.edible.sanityvalue = 2
+
+	inst:AddComponent("perishable")
+	inst.components.perishable:SetPerishTime(TUNING.PERISH_FAST)
+	inst.components.perishable:StartPerishing()
+	inst.components.perishable.onperishreplacement = "spoiled_food"
 
 	--Is like snow on its structures.
 	inst:AddComponent("repairer")

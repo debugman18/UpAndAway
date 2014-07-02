@@ -8,15 +8,23 @@ local assets =
 local prefabs =
 {
     "ambrosia",
+    "cloud_jelly",
+    "cloud_cotton",
+    "beanstalk_chunk",    
 }
 
 local loot = {
-    "cloud_jelly",
-    "cloud_cotton",
+    "beanstalk_chunk",
+    "beanstalk_chunk",
 }
 
 local rareloot = {
     "ambrosia",
+    "cloud_jelly",
+    "cloud_cotton",  
+    "cloud_cotton",  
+    "beanstalk_chunk",
+    "beanstalk_chunk", 
 }
 
 local function retargetfn(inst)

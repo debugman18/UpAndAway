@@ -27,6 +27,9 @@ local prefabs =
 local loot = 
 {
 	"cloud_cotton",
+	"cloud_cotton",
+	"cloud_cotton",
+	"cloud_cotton",
 }
 
 local function common(Sim)
@@ -41,10 +44,6 @@ local function common(Sim)
 	minimap:SetIcon("rock.png")
 
 	inst:AddComponent("lootdropper") 
-	inst.components.lootdropper:AddChanceLoot("rocks", 0.5)
-	inst.components.lootdropper:AddChanceLoot("rocks", 0.5)
-	inst.components.lootdropper:AddChanceLoot("rocks", 0.3)
-	inst.components.lootdropper:AddChanceLoot("rocks", 0.1)
 	
 	inst:AddComponent("workable")
 	inst.components.workable:SetWorkAction(ACTIONS.MINE)
@@ -81,6 +80,10 @@ local function cloudcrag(Sim)
 	inst.AnimState:PlayAnimation("full")
 
 	inst.components.lootdropper:SetLoot(loot)
+	inst.components.lootdropper:AddChanceLoot("rocks", 0.5)
+	inst.components.lootdropper:AddChanceLoot("rocks", 0.5)
+	inst.components.lootdropper:AddChanceLoot("rocks", 0.3)
+	inst.components.lootdropper:AddChanceLoot("rocks", 0.1)	
 	--inst.components.lootdropper:SetChanceLoot("flint")
 
     inst.entity:AddMiniMapEntity()

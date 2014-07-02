@@ -9,6 +9,11 @@ local prefabs = {
 	"cloud_fruit",
 }
 
+local function onregenfn(inst)
+    inst.AnimState:Show("BANANA") 
+    inst.picked = false
+end
+
 local function onpickedfn(inst)
 	inst.components.pickable.cycles_left = 2
 	inst.AnimState:Hide("BANANA") 
@@ -73,7 +78,8 @@ local function fn(Sim)
 
     inst:AddComponent("pickable")
 	inst.components.pickable:SetUp("cloud_fruit", 40)	
-	inst.components.pickable.onpickedfn = onpickedfn    
+	inst.components.pickable:SetOnPickedFn(onpickedfn) 
+    inst.components.pickable:SetOnRegenFn(onregenfn)
 
 	inst:AddComponent("lootdropper")
 	inst.components.lootdropper.loot = {

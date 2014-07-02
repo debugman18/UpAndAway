@@ -163,7 +163,7 @@ local function fn(Sim)
     shadow:SetSize( 6, 3.5 )
     inst.Transform:SetFourFaced()
     local size  = 4
-    inst.Transform:SetScale(size,size,size)
+    --inst.Transform:SetScale(size,size,size)
     
     inst.structuresDestroyed = 0
     inst.shouldGoAway = false

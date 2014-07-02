@@ -28,6 +28,18 @@ local function randomsnow()
 		return GROUND.SNOW
 	else 
 		return GROUND.SNOWTWO
+<<<<<<< HEAD
+	end
+end	
+
+local function randomrainbow()
+	local roll = math.random(1,2)
+	if roll == 1 then
+		return GROUND.RAINBOW
+	else 
+		return GROUND.RAINBOWTWO
+=======
+>>>>>>> stable
 	end
 end	
 
@@ -38,7 +50,7 @@ local function randomrainbow()
 	else 
 		return GROUND.RAINBOWTWO
 	end
-end	
+end
 
 BindGlobal()
 

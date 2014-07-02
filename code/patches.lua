@@ -15,7 +15,8 @@ modrequire 'patches.world_customisation_compat'
 
 if not Reflection.HasModWithId("memspikefix") then
 	TheMod:Say("MemSpikeFix not enabled, loading 'patches.memspikefix'.")
-	modrequire 'patches.memspikefix'
+	--Disabled because of invisible things.
+	--modrequire 'patches.memspikefix'
 else
 	TheMod:Say("MemSpikeFix mod detected.")
 end

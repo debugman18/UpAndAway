@@ -44,9 +44,14 @@ local function common(Sim)
 
 	inst:AddComponent("inspectable")
 
-	inst:AddComponent("tradable")
-
 	inst:AddComponent("inventoryitem")
+
+	if IsDLCInstalled(REIGN_OF_GIANTS) then
+		inst:AddComponent("buryable")
+		inst.components.buryable:SetOnBury(plantbeanstalk)
+	else
+		inst:AddComponent("tradable")
+	end
 
     --inst:AddComponent("cookable")
     --inst.components.cookable.product = "magic_beans_cooked"	
