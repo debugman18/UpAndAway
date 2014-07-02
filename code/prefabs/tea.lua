@@ -30,7 +30,7 @@ local tea_data = {
 		},
 
 		build = "tea",
-		anim = "tea",
+		anim = "greentea",
 		inventory_atlas = "images/inventoryimages/greentea.xml",
 
 		health = TUNING.HEALING_SMALL,
@@ -120,7 +120,7 @@ local tea_data = {
 		},
 
 		build = "tea",
-		anim = "tea",
+		anim = "floraltea",
 		inventory_atlas = "images/inventoryimages/floraltea.xml",
 
 		health = 0,
@@ -293,6 +293,126 @@ local tea_data = {
 
 		temperature = 100,
 	}),
+
+	redmushroomtea = MergeMaps(basic_tea_data, {
+		assets = {
+			Asset("ANIM", "anim/tea.zip"),
+		},
+
+		build = "tea",
+		anim = "tea",
+		--inventory_atlas = "images/inventoryimages/blacktea.xml",
+
+		health = TUNING.HEALING_TINY,
+		sanity = TUNING.SANITY_SMALL,
+
+		temperature = 100,
+	}),
+
+	bluemushroomtea = MergeMaps(basic_tea_data, {
+		assets = {
+			Asset("ANIM", "anim/tea.zip"),
+		},
+
+		build = "tea",
+		anim = "tea",
+		--inventory_atlas = "images/inventoryimages/blacktea.xml",
+
+		health = TUNING.HEALING_TINY,
+		sanity = TUNING.SANITY_SMALL,
+
+		temperature = 100,
+	}),
+
+	greenmushroomtea = MergeMaps(basic_tea_data, {
+		assets = {
+			Asset("ANIM", "anim/tea.zip"),
+		},
+
+		build = "tea",
+		anim = "tea",
+		--inventory_atlas = "images/inventoryimages/blacktea.xml",
+
+		health = TUNING.HEALING_TINY,
+		sanity = TUNING.SANITY_SMALL,
+
+		temperature = 100,
+	}),		
+
+	redjellytea = MergeMaps(basic_tea_data, {
+		assets = {
+			Asset("ANIM", "anim/tea.zip"),
+		},
+
+		build = "tea",
+		anim = "tea",
+		--inventory_atlas = "images/inventoryimages/blacktea.xml",
+
+		health = TUNING.HEALING_TINY,
+		sanity = TUNING.SANITY_SMALL,
+
+		temperature = 100,
+	}),
+
+	bluejellytea = MergeMaps(basic_tea_data, {
+		assets = {
+			Asset("ANIM", "anim/tea.zip"),
+		},
+
+		build = "tea",
+		anim = "tea",
+		--inventory_atlas = "images/inventoryimages/blacktea.xml",
+
+		health = TUNING.HEALING_TINY,
+		sanity = TUNING.SANITY_SMALL,
+
+		temperature = 100,
+	}),
+
+	greenjellytea = MergeMaps(basic_tea_data, {
+		assets = {
+			Asset("ANIM", "anim/tea.zip"),
+		},
+
+		build = "tea",
+		anim = "tea",
+		--inventory_atlas = "images/inventoryimages/blacktea.xml",
+
+		health = TUNING.HEALING_TINY,
+		sanity = TUNING.SANITY_SMALL,
+
+		temperature = 100,
+	}),	
+
+	jellytea = MergeMaps(basic_tea_data, {
+		assets = {
+			Asset("ANIM", "anim/tea.zip"),
+		},
+
+		build = "tea",
+		anim = "tea",
+		--inventory_atlas = "images/inventoryimages/blacktea.xml",
+
+		health = TUNING.HEALING_TINY,
+		sanity = TUNING.SANITY_SMALL,
+
+		temperature = 100,
+	}),	
+
+	redtea = MergeMaps(basic_tea_data, {
+		assets = {
+			Asset("ANIM", "anim/tea.zip"),
+		},
+
+		build = "tea",
+		anim = "tea",
+		--inventory_atlas = "images/inventoryimages/blacktea.xml",
+
+		--health = TUNING.HEALING_TINY,
+		--sanity = TUNING.SANITY_SMALL,
+
+		temperature = 100,
+	}),	
 
 	spoiledtea = MergeMaps(basic_tea_data, {
 		assets = {

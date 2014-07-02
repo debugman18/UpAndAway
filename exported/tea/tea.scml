@@ -2,6 +2,8 @@
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
     <folder id="0">
         <file id="0" name="tea.png" width="64" height="64" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="floraltea.png" width="64" height="64" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="greentea.png" width="64" height="64" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="tea">
         <animation id="0" name="tea" length="1000">
@@ -12,7 +14,43 @@
             </mainline>
             <timeline id="0" name="tea">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-44.680769" y="84" scale_x="1.638462" scale_y="1.64463"/>
+                    <object folder="0" file="0" x="-44.680769" y="84" angle="0" scale_x="1.638462" scale_y="1.64463"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="greentea" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="tea">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-44.680769" y="84" angle="0" scale_x="1.638462" scale_y="1.64463"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="2" x="-44.680769" y="84" angle="0" scale_x="1.638462" scale_y="1.64463"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="floraltea" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="tea">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-44.680769" y="84" angle="0" scale_x="1.638462" scale_y="1.64463"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="1" x="-44.680769" y="84" angle="0" scale_x="1.638462" scale_y="1.64463"/>
                 </key>
             </timeline>
         </animation>

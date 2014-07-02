@@ -50,6 +50,19 @@ local flower_teas = {
 	gold = Recipe("goldtea", Ingredient("golden_petals") + Ingredient("tea_leaves"), 0),	
 }
 
+local mushroom_teas = {
+	redmushroom = Recipe("redmushroomtea", Ingredient("red_cap") + Ingredient("tea_leaves"), 0),
+	bluemushroom = Recipe("bluemushroomtea", Ingredient("blue_cap") + Ingredient("tea_leaves"), 0),
+	greenmushroom = Recipe("greenmushroomtea", Ingredient("green_cap") + Ingredient("tea_leaves"), 0),	
+}
+
+local jelly_teas = {
+	jelly = Recipe("jellytea", Ingredient("cloud_jelly") + Ingredient("tea_leaves"), 0),
+	redjelly = Recipe("redjellytea", Ingredient("jellycap_red") + Ingredient("tea_leaves"), 0),
+	bluejelly = Recipe("bluejellytea", Ingredient("jellycap_blue") + Ingredient("tea_leaves"), 0),
+	greenjelly = Recipe("greenjellytea", Ingredient("jellycap_green") + Ingredient("tea_leaves"), 0),
+}
+
 local sweet_teas = {
 	green = Recipe("sweet_greentea", teas.green:GetCondition() + Ingredient("honey"), 1),
 	white = Recipe("sweet_whitetea", teas.white:GetCondition() + Ingredient("honey"), 1),
@@ -61,6 +74,8 @@ return RecipeBook {
 	sweet_teas,
 	flower_teas,
 	veggie_teas,
+	mushroom_teas,
+	jelly_teas,
 
 	Recipe(basic_cfg:GetConfig("SPOILED_PREFAB"), Lambda.True, -math.huge),
 }

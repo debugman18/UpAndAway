@@ -111,10 +111,12 @@ local function MakeBeverage(name, data)
 		inst:ListenForEvent("temperaturedelta", function(inst) 
 			local teaname = STRINGS.NAMES[string.upper(inst.prefab)]
 			local temperature = inst.components.temperature.current
-			if temperature <= inst.icedthreshold then
-				inst.components.named:SetName("Iced "..teaname)
-			elseif temperature >= inst.warmthreshold then
-				inst.components.named:SetName(teaname)
+			if teaname then
+				if temperature <= inst.icedthreshold then
+					inst.components.named:SetName("Iced "..teaname)
+				elseif temperature >= inst.warmthreshold then
+					inst.components.named:SetName(teaname)
+				end
 			end
 		end)
 

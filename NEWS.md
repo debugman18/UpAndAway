@@ -45,7 +45,7 @@ for quite some time.
 + Teas can now be cooled to make iced tea.
 + Fixed octocopter parts appearing more than once.
 + Tea can now be chilled in an icebox to make iced tea.
-+ Fixed skyflowers having a negative sanity aura permanently after static.
++ Fixed skyflowers having a negative sanity aura permanently.
 + Made cloudfruit perish.
 + Made candy fruit perish.
 + Made marshmallow bees edible.
@@ -57,6 +57,14 @@ for quite some time.
 + Changed the kettle failed recipe to spoiled tea.
 + Adjusted cloudcrag loot.
 + Adjusted cotton candy damage.
+
++ Added Jellied Tea.
++ Added Green Mushroom Tea.
++ Added Red Mushroom Tea.
++ Added Blue Mushroom Tea.
++ Added Green Jellycap Tea.
++ Added Red Jellycap Tea.
++ Added Blue Jellycap Tea.
 
 + Added beta foreshadowing.
 
