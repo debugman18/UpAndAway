@@ -1,10 +1,6 @@
 name = "Up and Away"
 author = "The Fellowship of the Bean"
-<<<<<<< HEAD
 version = "alpha-0.1.0"
-=======
-version = "alpha-0.0.8"
->>>>>>> stable
 
 id = "upandaway"
 branch = "dev"

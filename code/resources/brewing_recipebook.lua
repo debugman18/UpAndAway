@@ -25,12 +25,6 @@ local teas = {
 	white = Recipe("whitetea", Ingredient("tea_leaves", 2), 0),
 }
 
-<<<<<<< HEAD
-local veggie_teas = {
-	berry = Recipe("berrytea", Ingredient("berries") + Ingredient("tea_leaves"), 0),
-	berrypulp = Recipe("berrypulptea", Ingredient("berries", 2), 0),	
-	greengreen = Recipe("greengreentea", Ingredient("tea_leaves") + Ingredient("greenbean", 1), 0),	
-=======
 local black_teas = {
 	sweetblack = Recipe("sweet_blacktea", teas.black:GetCondition() + Ingredient("honey"), 1),	
 	chai = Recipe("chaitea", Ingredient("datura_petals") + Ingredient("blacktea_leaves"), 0),
@@ -48,7 +42,6 @@ local veggie_teas = {
 	herbal = Recipe("herbaltea", Ingredient("cutlichen") + Ingredient("tea_leaves"), 0),
 	marshmallow = Recipe("marshmallowtea", Ingredient("marshmallow") + Ingredient("tea_leaves"), 0),
 	ambrosia = Recipe("ambrosiatea", Ingredient("ambrosia") + Ingredient("tea_leaves"), 0),
->>>>>>> stable
 }
 
 local flower_teas = {
@@ -57,9 +50,6 @@ local flower_teas = {
 	mixedpetal = Recipe("mixedpetaltea", Ingredient("petals_evil") + Ingredient("petals"), 0),
 	floral = Recipe("floraltea", Ingredient("tea_leaves") + Ingredient("petals"), 0),
 	skypetal = Recipe("skypetaltea", Ingredient("skyflower_petals", 2), 0),
-<<<<<<< HEAD
-	datura = Recipe("daturatea", Ingredient("datura_petals", 2), 0),	
-=======
 	datura = Recipe("daturatea", Ingredient("datura_petals", 2), 0),
 	gold = Recipe("goldtea", Ingredient("golden_petals") + Ingredient("tea_leaves"), 0),	
 }
@@ -75,15 +65,10 @@ local jelly_teas = {
 	redjelly = Recipe("redjellytea", Ingredient("jellycap_red") + Ingredient("tea_leaves"), 0),
 	bluejelly = Recipe("bluejellytea", Ingredient("jellycap_blue") + Ingredient("tea_leaves"), 0),
 	greenjelly = Recipe("greenjellytea", Ingredient("jellycap_green") + Ingredient("tea_leaves"), 0),
->>>>>>> stable
 }
 
 local sweet_teas = {
 	green = Recipe("sweet_greentea", teas.green:GetCondition() + Ingredient("honey"), 1),
-<<<<<<< HEAD
-	black = Recipe("sweet_blacktea", teas.black:GetCondition() + Ingredient("honey"), 1),
-=======
->>>>>>> stable
 	white = Recipe("sweet_whitetea", teas.white:GetCondition() + Ingredient("honey"), 1),
 }
 
@@ -93,11 +78,8 @@ return RecipeBook {
 	sweet_teas,
 	flower_teas,
 	veggie_teas,
-<<<<<<< HEAD
-=======
 	mushroom_teas,
 	jelly_teas,
->>>>>>> stable
 
 	Recipe(basic_cfg:GetConfig("SPOILED_PREFAB"), Lambda.True, -math.huge),
 }

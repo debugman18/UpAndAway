@@ -56,21 +56,12 @@ local tea_data = {
 
 	whitetea = MergeMaps(basic_tea_data, {
 		assets = {
-<<<<<<< HEAD
-			Asset("ANIM", "anim/cook_pot_food.zip"),
-		},
-
-		build = "cook_pot_food",
-		anim = "fruitmedley",
-		--inventory_atlas = "images/inventoryimages/whitetea.xml",
-=======
 			Asset("ANIM", "anim/tea.zip"),
 		},
 
 		build = "tea",
 		anim = "tea",
 		inventory_atlas = "images/inventoryimages/whitetea.xml",
->>>>>>> stable
 
 		health = TUNING.HEALING_SMALL,
 		sanity = TUNING.SANITY_SMALL,
@@ -80,17 +71,6 @@ local tea_data = {
 
 	petaltea = MergeMaps(basic_tea_data, {
 		assets = {
-<<<<<<< HEAD
-			Asset("ANIM", "anim/cook_pot_food.zip"),
-		},
-
-		build = "cook_pot_food",
-		anim = "fruitmedley",
-		--inventory_atlas = "images/inventoryimages/petaltea.xml",
-
-		health = 0,
-		sanity = 0,
-=======
 			Asset("ANIM", "anim/tea.zip"),
 		},
 
@@ -100,24 +80,12 @@ local tea_data = {
 
 		health = 5,
 		sanity = 5,
->>>>>>> stable
 
 		temperature = 60,
 	}),
 
 	evilpetaltea = MergeMaps(basic_tea_data, {
 		assets = {
-<<<<<<< HEAD
-			Asset("ANIM", "anim/cook_pot_food.zip"),
-		},
-
-		build = "cook_pot_food",
-		anim = "fruitmedley",
-		--inventory_atlas = "images/inventoryimages/evilpetaltea.xml",
-
-		health = 0,
-		sanity = 0,
-=======
 			Asset("ANIM", "anim/tea.zip"),
 		},
 
@@ -127,24 +95,12 @@ local tea_data = {
 
 		health = 8,
 		sanity = -10,
->>>>>>> stable
 
 		temperature = 60,
 	}),
 
 	mixedpetaltea = MergeMaps(basic_tea_data, {
 		assets = {
-<<<<<<< HEAD
-			Asset("ANIM", "anim/cook_pot_food.zip"),
-		},
-
-		build = "cook_pot_food",
-		anim = "fruitmedley",
-		--inventory_atlas = "images/inventoryimages/mixedpetaltea.xml",
-
-		health = 0,
-		sanity = 0,
-=======
 			Asset("ANIM", "anim/tea.zip"),
 		},
 
@@ -154,24 +110,12 @@ local tea_data = {
 
 		health = 5,
 		sanity = -2,
->>>>>>> stable
 
 		temperature = 60,
 	}),
 
 	floraltea = MergeMaps(basic_tea_data, {
 		assets = {
-<<<<<<< HEAD
-			Asset("ANIM", "anim/cook_pot_food.zip"),
-		},
-
-		build = "cook_pot_food",
-		anim = "fruitmedley",
-		--inventory_atlas = "images/inventoryimages/floraltea.xml",
-
-		health = 0,
-		sanity = 0,
-=======
 			Asset("ANIM", "anim/tea.zip"),
 		},
 
@@ -181,24 +125,12 @@ local tea_data = {
 
 		health = 0,
 		sanity = 10,
->>>>>>> stable
 
 		temperature = 70,
 	}),
 
 	berrytea = MergeMaps(basic_tea_data, {
 		assets = {
-<<<<<<< HEAD
-			Asset("ANIM", "anim/cook_pot_food.zip"),
-		},
-
-		build = "cook_pot_food",
-		anim = "fruitmedley",
-		--inventory_atlas = "images/inventoryimages/berrytea.xml",
-
-		health = 0,
-		sanity = 0,
-=======
 			Asset("ANIM", "anim/tea.zip"),
 		},
 
@@ -208,24 +140,12 @@ local tea_data = {
 
 		health = 5,
 		sanity = 10,
->>>>>>> stable
 
 		temperature = 60,
 	}),
 
 	berrypulptea = MergeMaps(basic_tea_data, {
 		assets = {
-<<<<<<< HEAD
-			Asset("ANIM", "anim/cook_pot_food.zip"),
-		},
-
-		build = "cook_pot_food",
-		anim = "fruitmedley",
-		--inventory_atlas = "images/inventoryimages/berrypulptea.xml",
-
-		health = 0,
-		sanity = 0,
-=======
 			Asset("ANIM", "anim/tea.zip"),
 		},
 
@@ -235,24 +155,12 @@ local tea_data = {
 
 		health = 2,
 		hunger = 10,
->>>>>>> stable
 
 		temperature = 40,
 	}),
 
 	skypetaltea = MergeMaps(basic_tea_data, {
 		assets = {
-<<<<<<< HEAD
-			Asset("ANIM", "anim/cook_pot_food.zip"),
-		},
-
-		build = "cook_pot_food",
-		anim = "fruitmedley",
-		--inventory_atlas = "images/inventoryimages/skypetaltea.xml",
-
-		health = 0,
-		sanity = 0,
-=======
 			Asset("ANIM", "anim/tea.zip"),
 		},
 
@@ -262,24 +170,12 @@ local tea_data = {
 
 		health = -12,
 		sanity = 18,
->>>>>>> stable
 
 		temperature = 60,
 	}),
 
 	daturatea = MergeMaps(basic_tea_data, {
 		assets = {
-<<<<<<< HEAD
-			Asset("ANIM", "anim/cook_pot_food.zip"),
-		},
-
-		build = "cook_pot_food",
-		anim = "fruitmedley",
-		--inventory_atlas = "images/inventoryimages/daturatea.xml",
-
-		health = 0,
-		sanity = 0,
-=======
 			Asset("ANIM", "anim/tea.zip"),
 		},
 
@@ -289,27 +185,10 @@ local tea_data = {
 
 		health = 20,
 		sanity = -10,
->>>>>>> stable
 
 		temperature = 60,
 	}),
 
-<<<<<<< HEAD
-	greengreentea = MergeMaps(basic_tea_data, {
-		assets = {
-			Asset("ANIM", "anim/cook_pot_food.zip"),
-		},
-
-		build = "cook_pot_food",
-		anim = "fruitmedley",
-		--inventory_atlas = "images/inventoryimages/daturatea.xml",
-
-		health = 0,
-		sanity = 0,
-
-		temperature = 60,
-	}),
-=======
 	greenertea = MergeMaps(basic_tea_data, {
 		assets = {
 			Asset("ANIM", "anim/tea.zip"),
@@ -618,7 +497,6 @@ local tea_data = {
 		temperature = 90,
 	}),
 
->>>>>>> stable
 }
 
 
