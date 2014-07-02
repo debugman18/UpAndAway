@@ -25,6 +25,15 @@ local function add_beverage_animstate(inst, data)
 	return anim
 end
 
+local function ambrosiafn(inst)
+	if (inst.prefab == "ambrosiatea") and (math.random(1,10) == 1) then
+		if not GetPlayer().components.ambrosiarespawn then
+			TheMod:Say("Free respawn. Lucky you.")
+			GetPlayer():AddComponent("ambrosiarespawn")
+		end	
+	end	
+end	
+
 local function MakeBeverage(name, data)
 	local assets = data.assets
 	local prefabs = JoinArrays(data.prefabs or {}, {cfg:GetConfig("SPOILED_PREFAB")})
@@ -75,6 +84,8 @@ local function MakeBeverage(name, data)
 			if data.foodtype then
 				edible.foodtype = data.foodtype
 			end
+
+			inst.components.edible:SetOnEatenFn(ambrosiafn)
 		end
 
 		inst:AddComponent("temperature")

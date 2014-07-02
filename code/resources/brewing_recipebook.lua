@@ -29,6 +29,7 @@ local black_teas = {
 	sweetblack = Recipe("sweet_blacktea", teas.black:GetCondition() + Ingredient("honey"), 1),	
 	chai = Recipe("chaitea", Ingredient("datura_petals") + Ingredient("blacktea_leaves"), 0),
 	oolong = Recipe("oolongtea", Ingredient("skyflower_petals") + Ingredient("blacktea_leaves"), 0),
+	dragon = Recipe("dragontea", Ingredient("dragonblood_sap") + Ingredient("blacktea_leaves"), 0),
 }
 
 local veggie_teas = {
@@ -38,6 +39,9 @@ local veggie_teas = {
 	cloudfruit = Recipe("cloudfruittea", Ingredient("tea_leaves") + Ingredient("cloud_fruit", 1), 0),
 	cotton = Recipe("cottontea", Ingredient("tea_leaves") + Ingredient("cloud_cotton", 1), 0),
 	candy = Recipe("candytea", Ingredient("candy_fruit") + Ingredient("tea_leaves"), 0),
+	herbal = Recipe("herbaltea", Ingredient("cutlichen") + Ingredient("tea_leaves"), 0),
+	marshmallow = Recipe("marshmallowtea", Ingredient("marshmallow") + Ingredient("tea_leaves"), 0),
+	ambrosia = Recipe("ambrosiatea", Ingredient("ambrosia") + Ingredient("tea_leaves"), 0),
 }
 
 local flower_teas = {

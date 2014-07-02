@@ -75,6 +75,14 @@ local function fn(Sim)
     
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.atlasname = "images/inventoryimages/gustflower_seeds.xml"
+    
+    inst.components.inventoryitem:SetOnPickupFn(function(inst) 
+        inst.components.periodicspawner:Stop()
+    end)
+    
+    inst.components.inventoryitem:SetOnDroppedFn(function(inst) 
+        inst.components.periodicspawner:Start()
+    end)
 
     inst:AddComponent("deployable")
     inst.components.deployable.test = test_ground
@@ -83,7 +91,6 @@ local function fn(Sim)
     inst:AddComponent("periodicspawner")
     inst.components.periodicspawner:SetPrefab("gustflower")
     inst.components.periodicspawner:SetOnSpawnFn(spawngustflower)
-    inst.components.periodicspawner:Start()
     
     return inst
 end

@@ -189,6 +189,21 @@ Add.Names {
     cottontea = "Cottony Tea",
     goldtea = "Gold Tea",
     candytea = "Candy Tea",
+
+    oolongtea = "Oolong Tea",
+    chaitea = "Chair Tea",
+    spoiledtea = "Spoiled Tea",
+    jellytea = "Jellied Tea",
+    redjellytea = "Red Jellied Tea",
+    bluejellytea = "Blue Jellied Tea",
+    greenjellytea = "Green Jellied Tea",
+    redmushroomtea = "Red Mushroom Tea",
+    bluemushroomtea = "Blue Mushroom Tea",
+    greenmushroomtea = "Green Mushroom Tea",
+    dragontea = "Dragon Tea",
+    herbaltea = "Herbal Tea",
+    marshmallowtea = "Marshmallow Tea",
+    ambrosiatea = "Ambrosia Tea",
 }
 
 Add.QuotesFor "alien" {

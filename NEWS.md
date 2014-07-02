@@ -57,7 +57,11 @@ for quite some time.
 + Changed the kettle failed recipe to spoiled tea.
 + Adjusted cloudcrag loot.
 + Adjusted cotton candy damage.
++ Fixed gustflowers spawning from inventory.
 
++ Added Oolong Tea.
++ Added Spoiled Tea.
++ Added Chai Tea.
 + Added Jellied Tea.
 + Added Green Mushroom Tea.
 + Added Red Mushroom Tea.
@@ -65,6 +69,10 @@ for quite some time.
 + Added Green Jellycap Tea.
 + Added Red Jellycap Tea.
 + Added Blue Jellycap Tea.
++ Added Dragon Tea.
++ Added Herbal Tea.
++ Added Marshmallow Tea.
++ Added Ambrosia Tea.
 
 + Added beta foreshadowing.
 
