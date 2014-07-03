@@ -242,6 +242,8 @@ AddCookerRecipe("cookpot", crystalcandy)
 
 --This lets Winnie grow crops during the winter.
 
+local oldMakeNoGrowInWinter = _G.MakeNoGrowInWinter
+
 local function winnie_aware_MakeNoGrowInWinter(inst)
 	if GetPlayer().prefab ~= "winnie" or not (inst.components.pickable and inst.components.pickable.transplanted) then
 		return oldMakeNoGrowInWinter(inst)

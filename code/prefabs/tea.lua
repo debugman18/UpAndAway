@@ -271,7 +271,7 @@ local tea_data = {
 
 		build = "tea",
 		anim = "tea",
-		--inventory_atlas = "images/inventoryimages/chaitea.xml",
+		inventory_atlas = "images/inventoryimages/chaitea.xml",
 
 		health = TUNING.HEALING_TINY,
 		sanity = TUNING.SANITY_SMALL,
@@ -286,7 +286,7 @@ local tea_data = {
 
 		build = "tea",
 		anim = "tea",
-		--inventory_atlas = "images/inventoryimages/oolongtea.xml",
+		inventory_atlas = "images/inventoryimages/oolongtea.xml",
 
 		health = TUNING.HEALING_TINY,
 		sanity = TUNING.SANITY_SMALL,
@@ -301,7 +301,7 @@ local tea_data = {
 
 		build = "tea",
 		anim = "tea",
-		--inventory_atlas = "images/inventoryimages/redmushroomtea.xml",
+		inventory_atlas = "images/inventoryimages/redmushroomtea.xml",
 
 		health = TUNING.HEALING_TINY,
 		sanity = -TUNING.SANITY_SMALL,
@@ -317,7 +317,7 @@ local tea_data = {
 
 		build = "tea",
 		anim = "tea",
-		--inventory_atlas = "images/inventoryimages/bluemushroomtea.xml",
+		inventory_atlas = "images/inventoryimages/bluemushroomtea.xml",
 
 		health = -TUNING.HEALING_SMALL,
 		sanity = TUNING.SANITY_SMALL,
@@ -333,7 +333,7 @@ local tea_data = {
 
 		build = "tea",
 		anim = "tea",
-		--inventory_atlas = "images/inventoryimages/greenmushroomtea.xml",
+		inventory_atlas = "images/inventoryimages/greenmushroomtea.xml",
 
 		health = -TUNING.HEALING_TINY,
 		sanity = TUNING.SANITY_MED,
@@ -349,7 +349,7 @@ local tea_data = {
 
 		build = "tea",
 		anim = "tea",
-		--inventory_atlas = "images/inventoryimages/redjellytea.xml",
+		inventory_atlas = "images/inventoryimages/redjellytea.xml",
 
 		health = -3,
 		sanity = 30,
@@ -365,7 +365,7 @@ local tea_data = {
 
 		build = "tea",
 		anim = "tea",
-		--inventory_atlas = "images/inventoryimages/bluejellytea.xml",
+		inventory_atlas = "images/inventoryimages/bluejellytea.xml",
 
 		health = 30,
 		sanity = -30,
@@ -381,7 +381,7 @@ local tea_data = {
 
 		build = "tea",
 		anim = "tea",
-		--inventory_atlas = "images/inventoryimages/greenjellytea.xml",
+		inventory_atlas = "images/inventoryimages/greenjellytea.xml",
 
 		health = -30,
 		sanity = -3,
@@ -397,7 +397,7 @@ local tea_data = {
 
 		build = "tea",
 		anim = "tea",
-		--inventory_atlas = "images/inventoryimages/jellytea.xml",
+		inventory_atlas = "images/inventoryimages/jellytea.xml",
 
 		health = 3,
 		sanity = 3,
@@ -413,7 +413,7 @@ local tea_data = {
 
 		build = "tea",
 		anim = "tea",
-		--inventory_atlas = "images/inventoryimages/redtea.xml",
+		inventory_atlas = "images/inventoryimages/redtea.xml",
 
 		--health = TUNING.HEALING_TINY,
 		--sanity = TUNING.SANITY_SMALL,
@@ -428,7 +428,7 @@ local tea_data = {
 
 		build = "tea",
 		anim = "tea",
-		--inventory_atlas = "images/inventoryimages/herbaltea.xml",
+		inventory_atlas = "images/inventoryimages/herbaltea.xml",
 
 		health = 20,
 		sanity = 15,
@@ -443,7 +443,7 @@ local tea_data = {
 
 		build = "tea",
 		anim = "tea",
-		--inventory_atlas = "images/inventoryimages/herbaltea.xml",
+		inventory_atlas = "images/inventoryimages/herbaltea.xml",
 
 		health = 0,
 		sanity = -6,
@@ -459,7 +459,7 @@ local tea_data = {
 
 		build = "tea",
 		anim = "tea",
-		--inventory_atlas = "images/inventoryimages/marshmallowtea.xml",
+		inventory_atlas = "images/inventoryimages/marshmallowtea.xml",
 
 		health = -6,
 		sanity = 10,
@@ -474,7 +474,7 @@ local tea_data = {
 
 		build = "tea",
 		anim = "tea",
-		--inventory_atlas = "images/inventoryimages/dragontea.xml",
+		inventory_atlas = "images/inventoryimages/dragontea.xml",
 
 		health = -40,
 		sanity = -5,
@@ -489,7 +489,7 @@ local tea_data = {
 
 		build = "tea",
 		anim = "tea",
-		--inventory_atlas = "images/inventoryimages/ambrosiatea.xml",
+		inventory_atlas = "images/inventoryimages/ambrosiatea.xml",
 
 		health = math.random(-40,20),
 		sanity = math.random(-40,20),
@@ -505,7 +505,7 @@ local tea_data = {
 
 		build = "tea",
 		anim = "tea",
-		--inventory_atlas = "images/inventoryimages/spoiledtea.xml",
+		inventory_atlas = "images/inventoryimages/spoiledtea.xml",
 
 		health = -20,
 		sanity = -10,
