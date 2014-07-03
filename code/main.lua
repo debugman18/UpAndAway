@@ -141,6 +141,7 @@ AddPrefabPostInit("mound", addmoundtag)
 table.insert(GLOBAL.CHARACTER_GENDERS.FEMALE, "winnie")
 
 --This adds our minimap atlases.
+
 AddMinimapAtlas("images/winnie.xml")
 AddMinimapAtlas("images/beanstalk.xml")
 AddMinimapAtlas("images/beanstalk_exit.xml")
@@ -180,8 +181,66 @@ AddMinimapAtlas("images/weavernest.xml")
 
 AddModCharacter("winnie")
 
+--This adds the new crockpot recipes.
 
-local oldMakeNoGrowInWinter = _G.MakeNoGrowInWinter
+local jellycooktime = 0.75
+
+local redjellyhealth = 0
+
+local redjellyhunger = 0
+
+local redjellysanity = 0
+
+local greenjellyhealth = 0
+
+local greenjellyhunger = 0
+
+local greenjellysanity = 0
+
+local greenjelly = {
+	name = "greenjelly",
+	test = function(cooker, names, tags) return (tags.greenbean = 2 and tags.jelly = 2) end,
+	priority = 1,
+	weight = 1,
+	foodtype = "VEGGIE",
+	health = greenjellyhealth,
+	hunger = greenjellyhunger,
+	sanity = greenjellysanity,
+	perishtime = TUNING.PERISH_MED,
+	cooktime = jellycooktime,
+}
+
+local redjelly = {
+	name = "redjelly",
+	test = function(cooker, names, tags) return (tags.rubber = 2 and tags.jelly = 2) end,
+	priority = 1,
+	weight = 1, 
+	foodtype = "VEGGIE",
+	health = redjellyhealth,
+	hunger = redjellyhunger,
+	sanity = redjellysanity,
+	perishtime = TUNING.PERISH_MED,
+	cooktime = jellycooktime,
+}
+
+local crystalcandy = {
+	name = "crystalcandy",
+	test = function(cooker, names, tags) return (tags.crystal = 3 and tags.inedible = 1) end,
+	priority = 1,
+	weight = 1, 
+	foodtype = "VEGGIE",
+	health = redjellyhealth,
+	hunger = redjellyhunger,
+	sanity = redjellysanity,
+	perishtime = TUNING.PERISH_MED,
+	cooktime = jellycooktime,	
+}
+
+AddCookerRecipe("cookpot", greenjelly)
+AddCookerRecipe("cookpot", redjelly)
+AddCookerRecipe("cookpot", crystalcandy)
+
+--This lets Winnie grow crops during the winter.
 
 local function winnie_aware_MakeNoGrowInWinter(inst)
 	if GetPlayer().prefab ~= "winnie" or not (inst.components.pickable and inst.components.pickable.transplanted) then
