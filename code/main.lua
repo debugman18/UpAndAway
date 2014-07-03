@@ -199,7 +199,7 @@ local greenjellysanity = 0
 
 local greenjelly = {
 	name = "greenjelly",
-	test = function(cooker, names, tags) return (tags.greenbean = 2 and tags.jelly = 2) end,
+	test = function(cooker, names, tags) return tags.greenbean == 2 and tags.jelly == 2 end,
 	priority = 1,
 	weight = 1,
 	foodtype = "VEGGIE",
@@ -212,7 +212,7 @@ local greenjelly = {
 
 local redjelly = {
 	name = "redjelly",
-	test = function(cooker, names, tags) return (tags.rubber = 2 and tags.jelly = 2) end,
+	test = function(cooker, names, tags) return tags.rubber == 2 and tags.jelly == 2 end,
 	priority = 1,
 	weight = 1, 
 	foodtype = "VEGGIE",
@@ -225,7 +225,7 @@ local redjelly = {
 
 local crystalcandy = {
 	name = "crystalcandy",
-	test = function(cooker, names, tags) return (tags.crystal = 3 and tags.inedible = 1) end,
+	test = function(cooker, names, tags) return tags.crystal == 3 and tags.inedible == 1 end,
 	priority = 1,
 	weight = 1, 
 	foodtype = "VEGGIE",
