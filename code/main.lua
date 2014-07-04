@@ -183,6 +183,36 @@ AddModCharacter("winnie")
 
 --This adds the new crockpot recipes.
 
+AddIngredientValues({
+
+    "crystal_fragment_black", --
+    "crystal_fragment_light", --
+    "crystal_fragment_quartz", --
+    "crystal_fragment_relic", --
+    "crystal_fragment_spire", --
+    "crystal_fragment_water", --
+    "crystal_fragment_white"
+
+}, {crystal=1}, true)
+
+AddIngredientValues(
+{
+
+    "jellycap_red", --
+    "jellycap_blue", --
+    "jellycap_green", --
+    "cloud_jelly"
+
+}, {jelly=1}, true)
+
+AddIngredientValues(
+{
+
+    "greenbean",
+    "greenbean_cooked"
+
+}, {greenbean=1}, true)
+
 local jellycooktime = 0.75
 
 local redjellyhealth = 0
