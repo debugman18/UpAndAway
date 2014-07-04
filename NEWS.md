@@ -78,6 +78,8 @@ for quite some time.
 + Added Green Jelly crockpot recipe.
 + Added Red Jelly crockpot recipe.
 + Added Crystal Candy crockpot recipe.
++ Adjusted recipes.
++ The scarecrow is now hammerable.
 + Added beta foreshadowing.
 
 ### Update 2014-6-23 (alpha-0.0.7 release)

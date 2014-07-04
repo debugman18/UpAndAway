@@ -118,6 +118,7 @@ PrefabFiles = {
 	"beanlet_hut",
 	"campfirefire_dragon",
 	"thunder_pinecone",
+	"ua_cookedfoods",
 
 	--Stuff in dev branch.
 	--------------------

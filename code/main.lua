@@ -217,15 +217,15 @@ local jellycooktime = 0.75
 
 local redjellyhealth = 0
 
-local redjellyhunger = 0
+local redjellyhunger = 40
 
-local redjellysanity = 0
+local redjellysanity = -20
 
-local greenjellyhealth = 0
+local greenjellyhealth = 20
 
-local greenjellyhunger = 0
+local greenjellyhunger = 20
 
-local greenjellysanity = 0
+local greenjellysanity = -40
 
 local greenjelly = {
 	name = "greenjelly",
