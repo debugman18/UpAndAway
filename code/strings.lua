@@ -205,6 +205,10 @@ Add.Names {
     marshmallowtea = "Marshmallow Tea",
     ambrosiatea = "Ambrosia Tea",
     algaetea = "Algae Tea",
+
+    redjelly = "Red Jelly",
+    greenjelly = "Green Jelly",
+    crystalcandy = "Crystal Candy",
 }
 
 Add.QuotesFor "alien" {
