@@ -6,11 +6,21 @@ local assets =
 	
 	Asset( "ATLAS", "images/inventoryimages/redjelly.xml" ),
 	Asset( "IMAGE", "images/inventoryimages/redjelly.tex" ),	
+
+    Asset("ANIM", "anim/greenjelly.zip"),
+    
+    Asset( "ATLAS", "images/inventoryimages/greenjelly.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/greenjelly.tex" ),   
+
+    Asset("ANIM", "anim/crystalcandy.zip"),
+    
+    Asset( "ATLAS", "images/inventoryimages/crystalcandy.xml" ),
+    Asset( "IMAGE", "images/inventoryimages/crystalcandy.tex" ),    
 }
 
 local prefabs =
 {
-    "cloud_jelly",
+    "cloud_jelly"
 }
 
 -----
@@ -37,7 +47,7 @@ local crystalcandyhunger = 10
 
 local crystalcandysanity = 30
 
-local function common(inst)
+local function commonfn(inst)
 
     local inst = CreateEntity()
     inst.entity:AddTransform()
@@ -57,10 +67,12 @@ local function common(inst)
 
     inst:AddComponent("perishable")
 
+    return inst
+
 end
 
-local function jellycommon(inst)
-    local inst = common()
+local function jellycommonfn(inst)
+    local inst = commonfn()
 
     inst.components.stackable.maxsize = 10
     
@@ -74,7 +86,7 @@ local function jellycommon(inst)
 end
 
 local function redjellyfn(inst)
-    local inst = jellycommon()
+    local inst = jellycommonfn()
 
     inst.AnimState:SetBuild("redjelly")
     inst.AnimState:PlayAnimation("closed")
@@ -89,7 +101,7 @@ local function redjellyfn(inst)
 end 
 
 local function greenjellyfn(inst)
-    local inst = jellycommon()
+    local inst = jellycommonfn()
 
     inst.AnimState:SetBuild("greenjelly")
     inst.AnimState:PlayAnimation("closed")
@@ -103,8 +115,8 @@ local function greenjellyfn(inst)
     return inst
 end 
 
-local function crystalcandy(inst)
-    local inst = common()
+local function crystalcandyfn(inst)
+    local inst = commonfn()
 
     inst.AnimState:SetBuild("crystalcandy")
     inst.AnimState:PlayAnimation("closed")
@@ -127,7 +139,7 @@ local function crystalcandy(inst)
 end
 
 return {
-    Prefab("common/inventory/redjelly", redjellyfn, assets, prefabs),
-    Prefab("common/inventory/greenjelly", greenjellyfn, assets, prefabs),
-    Prefab("common/inventory/crystalcandy", crystalcandyfn, assets, prefabs)
+    Prefab ("common/inventory/redjelly", redjellyfn, assets),
+    Prefab ("common/inventory/greenjelly", greenjellyfn, assets),
+    Prefab ("common/inventory/crystalcandy", crystalcandyfn, assets),
 }
