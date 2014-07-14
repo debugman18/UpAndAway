@@ -29,6 +29,7 @@ MODCOMPAT["Too Many Items"] = function()
 	local forbidden_prefabs = {
 		cloudrealm = true,
 		winnie = true,
+		duckraptor = true,
 	}
 
 	TheMod:AddSimPostInit(function()

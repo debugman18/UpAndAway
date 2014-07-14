@@ -22,7 +22,7 @@ I'm prefixing the list of changes by date, since I suppose we'll remain at preal
 for quite some time.
 -->
 
-### Current Version: alpha-0.0.7
+### Current Version: alpha-0.0.9
 
 ### dev
 + Pineapple Bushes and Pineapples added.
@@ -38,6 +38,14 @@ for quite some time.
 + Stat flipper potion added.
 
 ### stable
++ nil
+
+### Update 2014-7-14 (alpha-0.0.9 release)
++ Fixed a TMI crash.
++ Fixed a magic beans crash.
++ Updated the cloud cotton inventory image.
+
+### Update 2014-7-8 (alpha-0.0.8 release)
 + Fixed an issue where mound mechanics conflicted with webber's skull.
 + Fixed cloudfruit trees regenerating but not showing their fruit.
 + Fixed the giant bean giant.

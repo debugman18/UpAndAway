@@ -37,7 +37,6 @@ PrefabFiles = {
 	"refiner",
 	"scarecrow",	
 	"beanstalk_chunk",	
-	"magic_beans",
 	"beanstalk_sapling",	
 	"cloud_cotton",		
 	"cloud_turf",	
@@ -119,6 +118,7 @@ PrefabFiles = {
 	"campfirefire_dragon",
 	"thunder_pinecone",
 	"ua_cookedfoods",
+	"magic_beans",
 
 	--Stuff in dev branch.
 	--------------------

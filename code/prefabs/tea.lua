@@ -406,20 +406,22 @@ local tea_data = {
 		temperature = 99,
 	}),	
 
-	redtea = MergeMaps(basic_tea_data, {
-		assets = {
-			Asset("ANIM", "anim/tea.zip"),
-		},
+	--For later...
+	
+	--redtea = MergeMaps(basic_tea_data, {
+		--assets = {
+			--Asset("ANIM", "anim/tea.zip"),
+		--},
 
-		build = "tea",
-		anim = "tea",
-		inventory_atlas = "images/inventoryimages/redtea.xml",
+		--build = "tea",
+		--anim = "tea",
+		--inventory_atlas = "images/inventoryimages/redtea.xml",
 
 		--health = TUNING.HEALING_TINY,
 		--sanity = TUNING.SANITY_SMALL,
 
-		temperature = 100,
-	}),	
+		--temperature = 100,
+	--}),	
 
 	herbaltea = MergeMaps(basic_tea_data, {
 		assets = {
@@ -443,7 +445,7 @@ local tea_data = {
 
 		build = "tea",
 		anim = "tea",
-		inventory_atlas = "images/inventoryimages/herbaltea.xml",
+		inventory_atlas = "images/inventoryimages/algaetea.xml",
 
 		health = 0,
 		sanity = -6,

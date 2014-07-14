@@ -46,10 +46,12 @@ local function common(Sim)
 
 	inst:AddComponent("inventoryitem")
 
-	if IsDLCInstalled(REIGN_OF_GIANTS) then
+	if IsDLCInstalled(REIGN_OF_GIANTS) and IsDLCEnabled(REIGN_OF_GIANTS) then
+		TheMod:DebugSay("DLC installed.")
 		inst:AddComponent("buryable")
 		inst.components.buryable:SetOnBury(plantbeanstalk)
 	else
+		TheMod:DebugSay("No DLC installed.")
 		inst:AddComponent("tradable")
 	end
 
