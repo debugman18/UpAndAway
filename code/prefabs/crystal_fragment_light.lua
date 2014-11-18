@@ -27,7 +27,9 @@ local function fn(Sim)
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("inventoryitem")
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/crystal_fragment_light.xml"		
+	inst.components.inventoryitem.atlasname = "images/inventoryimages/crystal_fragment_light.xml"	
+
+	inst:AddTag("crystal")	
 
 	inst:AddComponent("fuel")
 	inst.components.fuel.fueltype = "CRYSTAL"

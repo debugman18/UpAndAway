@@ -4,8 +4,8 @@ local assets=
 {
     -- always have to declare what assets you’re loading and using
     --Asset("ANIM", "anim/testcritter.zip"),  -- same name as the .scml
-	--Asset("ANIM", "anim/antlion.zip"),  -- same name as the .scml
-	Asset("ANIM", "anim/duckraptor.zip"),  -- same name as the .scml
+    --Asset("ANIM", "anim/antlion.zip"),  -- same name as the .scml
+    Asset("ANIM", "anim/duckraptor.zip"),  -- same name as the .scml
 
     Asset("ANIM", "anim/perd_basic.zip"),    
     Asset("SOUND", "sound/perd.fsb"),    
@@ -117,7 +117,7 @@ local function fn(Sim)
 
     --inst:AddComponent("staticchargeable")
     --inst.components.staticchargeable:SetOnChargeFn(set_eggdrop)
-	
+    
     return inst
 end
 

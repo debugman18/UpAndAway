@@ -34,11 +34,11 @@ local mushroom_hat = Recipe("mushroom_hat", { Ingredient("red_cap", 3), Ingredie
 mushroom_hat.atlas = "images/inventoryimages/mushroom_hat.xml"
 mushroom_hat.sortkey = GLOBAL.Recipes.flowerhat.sortkey
 
-local weather_machine = Recipe("weather_machine", { Ingredient("gears", 6), Ingredient("crystal_fragment_black", 6, "images/inventoryimages/crystal_fragment_black.xml") , Ingredient("bluegem", 4)}, RECIPETABS.SCIENCE, TECH.FABLE_1, "weather_machine_placer")
+local weather_machine = Recipe("weather_machine", { Ingredient("cumulostone", 3, "images/inventoryimages/cumulostone.xml"), Ingredient("crystal_fragment_black", 3, "images/inventoryimages/crystal_fragment_black.xml") , Ingredient("bluegem", 4)}, RECIPETABS.SCIENCE, TECH.FABLE_1, "weather_machine_placer")
 weather_machine.atlas = "images/inventoryimages/weather_machine.xml"
 weather_machine.sortkey = GLOBAL.Recipes.rainometer.sortkey
 
-local refiner = Recipe("refiner", { Ingredient("hammer", 1), Ingredient("gears", 6), Ingredient("thunderboards", 4, "images/inventoryimages/thunderboards.xml") }, RECIPETABS.REFINE, TECH.FABLE_1, "refiner_placer")
+local refiner = Recipe("refiner", { Ingredient("hammer", 1), Ingredient("gears", 3), Ingredient("thunderboards", 3, "images/inventoryimages/thunderboards.xml") }, RECIPETABS.REFINE, TECH.FABLE_1, "refiner_placer")
 refiner.atlas = "images/refiner.xml"
 refiner.sortkey = 1 --GLOBAL.Recipes.prefab.sortkey
 
@@ -54,7 +54,7 @@ cotton_candy.sortkey = GLOBAL.Recipes.hambat.sortkey
 --grabber.atlas = "images/inventoryimages/grabber.xml"
 --grabber.sortkey = GLOBAL.Recipes.prefab.sortkey
 
-local wind_axe = Recipe("wind_axe", { Ingredient("crystal_fragment_water", 2, "images/inventoryimages/crystal_fragment_water.xml"), Ingredient("twigs", 8), Ingredient("rope", 2) }, RECIPETABS.MAGIC, TECH.FABLE_1)
+local wind_axe = Recipe("wind_axe", { Ingredient("crystal_fragment_water", 2, "images/inventoryimages/crystal_fragment_water.xml"), Ingredient("cumulostone", 3, "images/inventoryimages/cumulostone.xml"), Ingredient("rope", 2) }, RECIPETABS.MAGIC, TECH.FABLE_1)
 wind_axe.atlas = "images/inventoryimages/wind_axe.xml"
 wind_axe.sortkey = GLOBAL.Recipes.batbat.sortkey
 

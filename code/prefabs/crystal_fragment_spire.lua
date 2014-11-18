@@ -29,6 +29,8 @@ local function fn(Sim)
 	inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/crystal_fragment_spire.xml"		
 
+	inst:AddTag("crystal")
+
 	inst:AddComponent("repairer")
 	inst.components.repairer.repairmaterial = "crystal"
 	inst.components.repairer.value = 1	

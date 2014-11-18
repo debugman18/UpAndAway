@@ -141,6 +141,7 @@ AddPrefabPostInit("mound", addmoundtag)
 table.insert(GLOBAL.CHARACTER_GENDERS.FEMALE, "winnie")
 
 --This adds our minimap atlases.
+
 AddMinimapAtlas("images/winnie.xml")
 AddMinimapAtlas("images/beanstalk.xml")
 AddMinimapAtlas("images/beanstalk_exit.xml")
@@ -180,6 +181,96 @@ AddMinimapAtlas("images/weavernest.xml")
 
 AddModCharacter("winnie")
 
+--This adds the new crockpot recipes.
+
+AddIngredientValues({
+
+    "crystal_fragment_black", --
+    "crystal_fragment_light", --
+    "crystal_fragment_quartz", --
+    "crystal_fragment_relic", --
+    "crystal_fragment_spire", --
+    "crystal_fragment_water", --
+    "crystal_fragment_white"
+
+}, {crystal=1}, true)
+
+AddIngredientValues(
+{
+
+    "jellycap_red", --
+    "jellycap_blue", --
+    "jellycap_green", --
+    "cloud_jelly"
+
+}, {jelly=1}, true)
+
+AddIngredientValues(
+{
+
+    "greenbean",
+    "greenbean_cooked"
+
+}, {greenbean=1}, true)
+
+local jellycooktime = 0.75
+
+local redjellyhealth = 0
+
+local redjellyhunger = 40
+
+local redjellysanity = -20
+
+local greenjellyhealth = 20
+
+local greenjellyhunger = 20
+
+local greenjellysanity = -40
+
+local greenjelly = {
+	name = "greenjelly",
+	test = function(cooker, names, tags) return tags.greenbean == 2 and tags.jelly == 2 end,
+	priority = 1,
+	weight = 1,
+	foodtype = "VEGGIE",
+	health = greenjellyhealth,
+	hunger = greenjellyhunger,
+	sanity = greenjellysanity,
+	perishtime = TUNING.PERISH_MED,
+	cooktime = jellycooktime,
+}
+
+local redjelly = {
+	name = "redjelly",
+	test = function(cooker, names, tags) return tags.rubber == 2 and tags.jelly == 2 end,
+	priority = 1,
+	weight = 1, 
+	foodtype = "VEGGIE",
+	health = redjellyhealth,
+	hunger = redjellyhunger,
+	sanity = redjellysanity,
+	perishtime = TUNING.PERISH_MED,
+	cooktime = jellycooktime,
+}
+
+local crystalcandy = {
+	name = "crystalcandy",
+	test = function(cooker, names, tags) return tags.crystal == 3 and tags.inedible == 1 end,
+	priority = 1,
+	weight = 1, 
+	foodtype = "VEGGIE",
+	health = redjellyhealth,
+	hunger = redjellyhunger,
+	sanity = redjellysanity,
+	perishtime = TUNING.PERISH_MED,
+	cooktime = jellycooktime,	
+}
+
+AddCookerRecipe("cookpot", greenjelly)
+AddCookerRecipe("cookpot", redjelly)
+AddCookerRecipe("cookpot", crystalcandy)
+
+--This lets Winnie grow crops during the winter.
 
 local oldMakeNoGrowInWinter = _G.MakeNoGrowInWinter
 

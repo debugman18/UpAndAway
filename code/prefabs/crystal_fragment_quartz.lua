@@ -26,6 +26,8 @@ local function fn(Sim)
 
 	inst:AddComponent("inspectable")
 
+	inst:AddTag("crystal")
+	
     inst:AddComponent("inventoryitem") 
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/crystal_fragment_quartz.xml"	
 

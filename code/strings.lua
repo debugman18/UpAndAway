@@ -193,20 +193,23 @@ Add.Names {
     candytea = "Candy Tea",
 
     oolongtea = "Oolong Tea",
-    chaitea = "Chair Tea",
+    chaitea = "Chai Tea",
     spoiledtea = "Spoiled Tea",
     jellytea = "Jellied Tea",
     redjellytea = "Red Jellied Tea",
     bluejellytea = "Blue Jellied Tea",
     greenjellytea = "Green Jellied Tea",
-    redmushroomtea = "Red Mushroom Tea",
-    bluemushroomtea = "Blue Mushroom Tea",
-    greenmushroomtea = "Green Mushroom Tea",
+    redmushroomtea = "Red Mushy Tea",
+    bluemushroomtea = "Blue Mushy Tea",
+    greenmushroomtea = "Green Mushy Tea",
     dragontea = "Dragon Tea",
     herbaltea = "Herbal Tea",
     marshmallowtea = "Marshmallow Tea",
     ambrosiatea = "Ambrosia Tea",
     algaetea = "Algae Tea",
+    redjelly = "Red Jelly",
+    greenjelly = "Green Jelly",
+    crystalcandy = "Crystal Candy",
 }
 
 Add.QuotesFor "alien" {

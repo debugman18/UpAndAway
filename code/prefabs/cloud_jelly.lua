@@ -49,6 +49,8 @@ local function fn(Sim)
 
 	inst:AddTag("alchemy")
 
+	inst:AddTag("jelly")
+
 	inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/cloud_jelly.xml"
 

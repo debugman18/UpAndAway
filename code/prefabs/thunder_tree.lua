@@ -30,6 +30,8 @@ local tall_loot =
     "thunder_log",
     "thunder_log",
     "thunder_log", 
+    "thunder_log", 
+    "thunder_log", 
     "thunder_pinecone",    
 }
 
@@ -73,6 +75,7 @@ local function SetNormal(inst)
         inst:AddComponent("lootdropper")
     end     
     inst.components.lootdropper:SetLoot(normal_loot)
+    inst.components.lootdropper:AddChanceLoot("thunder_pinecone", 0.3)
     inst.Transform:SetScale(0.8, 0.8, 0.8)
     if inst.components.staticchargeable then
         inst:RemoveComponent("staticchargeable")
@@ -91,7 +94,7 @@ local function SetTall(inst)
         inst:AddComponent("lootdropper")
     end     
     inst.components.lootdropper:SetLoot(tall_loot)
-    inst.Transform:SetScale(1, 1, 1)   
+    inst.Transform:SetScale(0.9, 0.9, 0.9)   
     inst.components.lootdropper:AddChanceLoot("cumulostone", 1)
     inst.components.lootdropper:AddChanceLoot("thunder_pinecone", 0.5)
     if not inst.components.staticchargeable then
@@ -246,7 +249,7 @@ local function fn(Sim)
     anim:SetTime(math.random()*2)
     inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
  
-    inst.scale = 0.8 + 0.6*math.random()
+    inst.scale = 0.8 + 0.4*math.random()
     inst.Transform:SetScale(inst.scale, inst.scale, inst.scale)
 
     inst:AddComponent("inspectable")

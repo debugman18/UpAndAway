@@ -124,8 +124,25 @@ Assets = GLOBAL.JoinArrays(
 	    "goldtea",
 	    "candytea",
 
-	    --"chaitea",
-	    --"oolongtea",
+	    "oolongtea",
+	    "chaitea",
+	    "spoiledtea",
+	    "jellytea",
+	    "redjellytea",
+	    "bluejellytea",
+	    "greenjellytea",
+	    "redmushroomtea",
+	    "bluemushroomtea",
+	    "greenmushroomtea",
+	    "dragontea",
+	    "herbaltea",
+	    "marshmallowtea",
+	    "ambrosiatea",
+	    "algaetea",
+
+	    "redjelly",
+	    "greenjelly",
+	    "crystalcandy",
 	},
 
 	-- These are .tex's without a matching atlas.
