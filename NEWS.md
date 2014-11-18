@@ -68,9 +68,6 @@ for quite some time.
 + Adjusted cotton candy damage.
 + Fixed gustflowers spawning from inventory.
 + Made duckraptors scarier. 
-
-=======
-
 + Added Oolong Tea.
 + Added Spoiled Tea.
 + Added Chai Tea.
@@ -91,8 +88,6 @@ for quite some time.
 + Added Crystal Candy crockpot recipe.
 + Adjusted recipes.
 + The scarecrow is now hammerable.
-=======
-
 + Added beta foreshadowing.
 
 ### Update 2014-6-23 (alpha-0.0.7 release)
