@@ -2,19 +2,27 @@
 
 ### Inventory images in need of attention
 + Cooked Pineapple (Grilled Pineapple Slices?)
++ Gem corn.
++ Potions.
++ Tea.
++ Various feathers. (Weaver, paradise, owl)
++ Owl beak.
 
 ### Atlases (with existing animation banks) in need of attention
 + nil
 
 ### Custom animation banks/builds in need of attention
-+ Cooked Pineapple (Dropped)
 + Bean Giant -- Needs polishing and animation.
++ Gnomes
 
 ### Entities with no art assets and undefined status (between using custom animations or not)
-+ nil
++ Rainbowcoon
++ Mantas
++ Cheshire Cat
++ Ball of Steel
 
 ### Miscellanea
-+ nil
++ Various structures for setpieces. Statues, altars, etc.
 
 
 <!--

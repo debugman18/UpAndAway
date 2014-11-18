@@ -15,6 +15,11 @@ BindModModule 'lib.brewing'
 --]]
 
 local potions = {
+	--tunnel = Recipe("potion_tunnel", Ingredient("rocks") + Ingredient("marble") + Ingredient("flint") + Ingredient("nightmarefuel"), 0, 1),
+	dragon = Recipe("potion_dragon", Ingredient("dragonblood_log") + Ingredient("charcoal") + Ingredient("ash") + Ingredient("nightmarefuel"), 0, 1),
+	doubles = Recipe("potion_doubles", Ingredient("redcap") + Ingredient("bluecap") + Ingredient("greencap") + Ingredient("nightmarefuel"), 0, 1),
+	triples = Recipe("potion_triples", Ingredient("jellycap_red") + Ingredient("jellycap_blue") + Ingredient("jellycap_green") + Ingredient("nightmarefuel"), 0, 1),
+	bearded = Recipe("potion_bearded", Ingredient("beardhair", 2) + Ingredient("berries") + Ingredient("nightmarefuel"), 0, 1),
 }
 
 local foods = {
@@ -30,4 +35,6 @@ local foods = {
 return RecipeBook {
 	potions,
 	foods,
+
+	Recipe("wetgoop", Lambda.True, -math.huge)
 }

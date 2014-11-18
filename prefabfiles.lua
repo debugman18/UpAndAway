@@ -2,6 +2,24 @@
 
 PrefabFiles = {
 
+	--Stuff in dev branch.
+	--------------------
+
+	"pineapple_bush",
+	"pineapple",
+	"cloudblob",
+	"alchemy_potions",
+	"potion_tunnel_mound",
+	--"metal_ball",
+	--"thundertree_sapling",
+	"colored_corn",
+	"gemcorn",
+	"gnome_wilson",
+	"gnome_decor",
+	"gnome_plot",
+
+	------------------------------
+
 	"winnie",
 	"winnie_staff",
 	"cloudrealm",
@@ -120,14 +138,6 @@ PrefabFiles = {
 	"ua_cookedfoods",
 	"magic_beans",
 
-	--Stuff in dev branch.
-	--------------------
-
-	--"pineapple_bush",
-	--"pineapple",
-	--"alchemy_potions",
-	--"potion_tunnel_mound",
-
 	--Stuff not started.
 	--------------------
 
@@ -152,7 +162,6 @@ PrefabFiles = {
 	--"golden_golem",	
 	--"monolith",	
 	--"mantaspawner",
-	--"colored_corn",
 	--"crystal_armor",
 	--"crystal_axe",
 	--"golden_amulet",	
@@ -163,7 +172,6 @@ PrefabFiles = {
 	--"manta_baby",
 	--"manta_leather",
 	--"shopkeep_umbrella",
-	--"cloudblob",
 	
 }
 

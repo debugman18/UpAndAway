@@ -31,14 +31,16 @@ local function make_potion(data)
 		anim:PlayAnimation(data.anim)
 
 		inst:AddComponent("inspectable")
-		
-		inst:AddComponent("stackable")
-		inst.components.stackable.maxsize = 5
 
 		inst:AddComponent("edible")
 	    
 		inst:AddComponent("inventoryitem")
 		--inst.components.inventoryitem.atlasname = "images/inventoryimages/potion_"..data.name..".xml"
+
+		inst:AddComponent("named")
+	    inst.components.named.possiblenames = STRINGS.POTION_NAMES
+   		inst.components.named:PickNewName()
+		inst.components.named:SetName(inst.components.named.name.." Potion")
 
 		if postinit then
 			postinit(inst)
@@ -78,9 +80,9 @@ local function make_triples()
 		print(sanity_percent)
 		print(hunger_percent)
 
-		eater.components.health:SetPercent(hunger_percent)
-		eater.components.sanity:SetPercent(health_percent)
-		eater.components.hunger:SetPercent(sanity_percent)
+		eater.components.health:SetPercent(sanity_percent)
+		eater.components.sanity:SetPercent(hunger_percent)
+		eater.components.hunger:SetPercent(health_percent)
 
 	end
 
@@ -149,18 +151,16 @@ local function make_tunnel()
 
 	local function oneatenfn(inst, eater)
 
-		if not inst:HasTag("underground") then
-			eater:AddTag("notarget")
-			eater.AnimState:SetMultColour(0,0,0,0)
+		if not eater:HasTag("underground") then
 
 			local dirtmound = SpawnPrefab("potion_tunnel_mound")
-			dirtmound.Transform:SetPosition(eater.Transform:GetWorldPosition())
-
 			local follower = dirtmound.entity:AddFollower()
-			follower:FollowSymbol(inst.GUID, "swap_body", -15, -10, 0)
+			follower:FollowSymbol(eater.GUID, "swap_body", -60, 50, 0)
+			eater:AddTag("notarget")
+			eater.AnimState:SetMultColour(0,0,0,0)
 			eater:AddTag("underground")
 
-			eater:DoTaskInTime(15, function()
+			eater:DoTaskInTime(math.random(7,15), function()
 	        	eater:RemoveTag("notarget")
 	        	dirtmound:Remove()
 	        	eater:RemoveTag("underground")
@@ -184,9 +184,125 @@ local function make_tunnel()
 	}
 end
 
+local function make_dragon()
+
+	local function oneatenfn(inst, eater)
+
+		if not eater:HasTag("dragon") then
+
+			eater:AddComponent("propagator")
+			eater:AddTag("dragon")
+			eater.components.propagator.propagaterange = 6
+			eater.components.propagator:StartSpreading()
+
+			eater.burntask = eater:DoPeriodicTask(1, function()
+
+		        if eater.components.freezable and eater.components.freezable:IsFrozen() then           
+		            eater.components.freezable:Unfreeze()   
+		            eater.components.health:DoFireDamage(10)   		                  
+		        else            
+		            eater.components.health:DoFireDamage(10)
+		        end   
+
+		        if eater.components.sanity then
+		        	eater.components.sanity:DoDelta(-2)
+		        end
+
+			end)
+
+			eater:DoTaskInTime(math.random(8,12), function()
+				if eater.burntask then
+					eater.burntask:Cancel()
+				end
+				eater.components.propagator:StopSpreading()
+				eater:RemoveTag("dragon")
+			end)
+
+		end
+
+	end
+
+	return make_potion {
+
+		name = "dragon",
+		anim = "dragon",
+
+		postinit = function(inst)
+
+			print("This is the dragon potion.")
+
+			inst.components.edible:SetOnEatenFn(oneatenfn)
+
+		end,
+	}
+end
+
+local function make_doubles()
+
+	local function oneatenfn(inst, eater)
+
+		local sanity_percent = eater.components.sanity:GetPercent() - .05
+		local hunger_percent = eater.components.hunger:GetPercent() - .05
+
+		print(sanity_percent)
+		print(hunger_percent)
+
+		eater.components.sanity:SetPercent(hunger_percent)
+		eater.components.hunger:SetPercent(sanity_percent)
+
+	end
+
+	return make_potion {
+
+		name = "doubles",
+		anim = "doubles",
+
+		postinit = function(inst)
+
+			print("This is the doubles potion.")
+
+			inst.components.edible:SetOnEatenFn(oneatenfn)
+
+		end,
+	}
+end
+
+local function make_haste()
+
+	local function oneatenfn(inst, eater)
+
+		local player = GetPlayer()
+		local locomotor = player.components.locomotor
+		locomotor.bonusspeed = (locomotor.runspeed / 5) 
+		locomotor:UpdateGroundSpeedMultiplier()
+		target:DoTaskInTime(math.random(4,10), function() 
+			locomotor.bonusspeed = 0
+			locomotor:UpdateGroundSpeedMultiplier()
+		end)
+
+	end
+
+	return make_potion {
+
+		name = "haste",
+		anim = "haste",
+
+		postinit = function(inst)
+
+			print("This is the haste potion.")
+
+			inst.components.edible:SetOnEatenFn(oneatenfn)
+
+		end,
+	}
+end
+
 return {
 	make_default(),
 	make_triples(),
 	make_bearded(),
-	make_tunnel()
+	--make_tunnel(),
+	make_dragon(),
+	make_doubles(),
+	make_haste(),
 }

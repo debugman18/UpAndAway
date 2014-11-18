@@ -59,7 +59,7 @@ Add.Names {
     cloud_turf = "Cloud Turf",
     cloud_wall = "Cloud Wall",
     cloudcrag = "Cloudcrag",
-    colored_corn = "Rainbow Gem Corn",
+    colored_corn = "Gem Corn",
     cotton_candy = "Cotton Candy",
     cotton_hat = "Cotton Hat",
     cotton_vest = "Cotton Vest",
@@ -92,6 +92,8 @@ Add.Names {
     dug_tea_bush = "Tea Bush",
     flying_fish = "Flying Fish",
     flying_fish_pond = "Flying Fish Pond",
+    gemcorn = "Gem Corn",
+    gnome_wilson = "Garden Gnome",
     golden_amulet = "Golden Amulet",
     golden_egg = "Golden Egg",
     golden_golem = "Golden Golem",
@@ -205,7 +207,6 @@ Add.Names {
     marshmallowtea = "Marshmallow Tea",
     ambrosiatea = "Ambrosia Tea",
     algaetea = "Algae Tea",
-
     redjelly = "Red Jelly",
     greenjelly = "Green Jelly",
     crystalcandy = "Crystal Candy",
@@ -2366,6 +2367,12 @@ STRINGS.RECIPE_DESC.CRYSTAL_WALL_ITEM = "Elegant yet durable."
 STRINGS.RECIPE_DESC.REFINER = "Smash, crunch, create."
 STRINGS.RECIPE_DESC.WIND_AXE = "Stormy weather in your hands."
 STRINGS.RECIPE_DESC.BEANLET_ARMOR = "Armor that takes the weight off."
+
+STRINGS.POTION_NAMES = {
+    "Mysterious",
+    "Strange",
+    "Odd",
+}
 
 STRINGS.GUMMYBEAR_NAMES = { 
     "Moisty", 
