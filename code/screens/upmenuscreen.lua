@@ -12,7 +12,6 @@ local GITHUB_ACCOUNT = "debugman18"
 -- Name of the repository.
 local GITHUB_REPO = "UpAndAway"
 
-
 local Screen = require "widgets/screen"
 local Button = require "widgets/button"
 local AnimButton = require "widgets/animbutton"

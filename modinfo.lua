@@ -56,4 +56,5 @@ configuration_options = {
 	EnableSwitch("CLOUD_MIST.ENABLED", "Mist", true),
 	EnableSwitch("RAM.SPARKS", "Storm Ram Sparks", true),
 	EnableSwitch("DEBUG", "Debugging Mode", true),
+	EnableSwitch("UP_SPLASH.ENABLED", "Custom Menu", true),
 }

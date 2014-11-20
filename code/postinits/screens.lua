@@ -37,6 +37,20 @@ local function DoInit(self)
 		--return
 	--end
 
+	local Lambda = wickerrequire 'paradigms.functional'
+
+	local Configurable = wickerrequire 'adjectives.configurable'
+
+	local cfg = Configurable("UP_SPLASH")
+
+	local ENABLED = cfg:GetConfig "ENABLED"
+
+	---------------------------------------------
+
+	if ENABLED then
+		
+	print("Custom menu enabled.")
+
 	local Image = require "widgets/image"
 	local ImageButton = require "widgets/imagebutton"
 	local Text = require "widgets/text"	
@@ -114,6 +128,11 @@ local function DoInit(self)
     --Here we wrap everything up.
 	self:MainMenu()
 	self.menu:SetFocus()
+
+	else
+		print("Custom menu disabled.")
+	end
+
 end
 
 TheMod:AddClassPostConstruct("screens/mainscreen", DoInit)
