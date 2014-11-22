@@ -17,6 +17,7 @@ PrefabFiles = {
 	"gnome_wilson",
 	"gnome_decor",
 	"gnome_plot",
+	--"cloud_wall",
 
 	------------------------------
 
