@@ -3,10 +3,6 @@
 -- counterparts, in case RoG is not enabled.
 --]]
 
-require("tuning_override").OVERRIDES.season_start.doit = function()
-	error "HELLU"
-end
-
 
 if IsDLCEnabled(REIGN_OF_GIANTS) then return end
 
@@ -41,17 +37,19 @@ local tovanilla = {
 	},
 }
 
---[[
--- Season start works differently, since it's baked right into the
--- seasonmanager savedata.
---]]
-local function fix_season_start(savedata)
-	local sm = savedata.map.persistdata and savedata.map.persistdata.seasonmanager
-	if sm and tovanilla.season_start[sm.current_season] then
-		sm.current_season = tovanilla.season_start[sm.current_season]
+if not IsDST() then
+	--[[
+	-- Season start works differently outside of DST, since it's baked right into the
+	-- seasonmanager savedata.
+	--]]
+	local function fix_season_start(savedata)
+		local sm = savedata.map.persistdata and savedata.map.persistdata.seasonmanager
+		if sm and tovanilla.season_start[sm.current_season] then
+			sm.current_season = tovanilla.season_start[sm.current_season]
+		end
 	end
+	table.insert(extra_patches, fix_season_start)
 end
-table.insert(extra_patches, fix_season_start)
 
 TheMod:AddPopulateWorldPreInit(function(savedata)
 	local all_overrides = savedata.map.topology.overrides
