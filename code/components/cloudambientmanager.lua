@@ -18,7 +18,7 @@ local CloudAmbientManager = Class(Debuggable, function(self, inst)
 	self.inst = inst
 	Debuggable._ctor(self, "CloudAmbientManager")
 
-	assert( inst.components.clock, "The clock should be added before cloudambientmanager!" )
+	assert( GetPseudoClock(), "The clock should be added before cloudambientmanager!" )
 
 	self:SetConfigurationKey("CLOUD_AMBIENT")
 

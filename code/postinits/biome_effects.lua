@@ -19,8 +19,11 @@ local function stop_snow()
 	end
 end
 
+---
+-- This cannot be done in DST because the weather change would affect the whole level.
+--
 -- oldroom may be nil.
-local function on_change_room(player, newroom, oldroom)
+local function roomchange_snowcheck(player, newroom, oldroom)
 	local newground = newroom.value
 	local oldground = oldroom and oldroom.value
 	if newground == GROUND.SNOW and oldground ~= GROUND.SNOW then
@@ -39,10 +42,10 @@ TheMod:AddSimPostInit(function(player)
 		end
 
 		player:AddComponent("roomwatcher")
-		do
+		if not IsDST() then
 			local roomwatcher = player.components.roomwatcher
 
-			roomwatcher:AddRoomChangeCallback(on_change_room)
+			roomwatcher:AddRoomChangeCallback(roomchange)
 
 			roomwatcher:StartUpdating()
 		end

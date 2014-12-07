@@ -24,7 +24,7 @@ end
 
 -- This enables the save load-time check for U&A being enabled. The argument is how to call U&A
 -- in the button for automatically enabling the mod. It should be short to fit in the button.
-wickerrequire('plugins.save_safeguard')("UA")
+--wickerrequire('plugins.save_safeguard')("UA")
 
 
 local Pred = wickerrequire 'lib.predicates'
