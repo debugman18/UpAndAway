@@ -79,8 +79,8 @@ local function fn(Sim)
     inst:AddComponent("inspectable")
 
     inst:AddComponent("staticchargeable")
-    inst.components.staticchargeable:SetOnChargeFn(function() setcharged end)
-    inst.components.staticchargeable:SetOnUnchargeFn(function() discharge end)
+    inst.components.staticchargeable:SetOnChargeFn(setcharged)
+    inst.components.staticchargeable:SetOnUnchargeFn(discharge)
 
     return inst
 end
