@@ -26,18 +26,22 @@ local FlowerWeight = (function()
 	local farness = cfg:GetConfig("PLAYER_FARNESS")
 	local closeness = 1/farness
 
-	return function(flower)
-		local player = GetPlayer()
+	local exp = math.exp
 
-		if player then
-			local d2 = player:GetDistanceSqToInst(flower)
-			return math.exp(-closeness*d2)
+	return function(flower)
+		local getDistSq = flower.GetDistanceSqToInst
+
+		local basic_exponent = 0
+		for _, player in ipairs(Game.FindAllPlayers()) do
+			basic_exponent = basic_exponent + getDistSq(flower, player)
 		end
+
+		return exp(-closeness*basic_exponent)
 	end
 end)()
 
 function SkyflyBrain:OnStart()
-    local clock = GetClock()
+    local clock = GetPseudoClock()
 
 	local function far_enough(flower)
 		return self.inst:GetDistanceSqToInst(flower) > 0.25

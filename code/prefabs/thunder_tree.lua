@@ -36,7 +36,7 @@ local tall_loot =
 }
 
 local function StartSpawning(inst)
-    if inst.components.childspawner and GetSeasonManager() and GetSeasonManager():IsWinter() and not (GetStaticGenerator() and GetStaticGenerator():IsCharged()) then
+    if inst.components.childspawner and GetPseudoSeasonManager() and GetPseudoSeasonManager():IsWinter() and not (GetStaticGenerator() and GetStaticGenerator():IsCharged()) then
         inst.components.childspawner:StartSpawning()
         --print("Tree spawning.")
     end

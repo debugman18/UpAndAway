@@ -6,6 +6,7 @@ local PopupDialogScreen = require "screens/popupdialog"
 
 local Logic = wickerrequire 'paradigms.logic'
 local game = wickerrequire 'game'
+local Game = game
 local Effects = game.effects
 
 
@@ -138,15 +139,15 @@ end
 --Makes the beanstalk climbable.
 local function OnActivate(inst)
 	
-	SetPause(true)
+	TryPause(true)
 
 	local function startadventure()
-		SetPause(false)
+		TryPause(false)
 		inst.components.climbable:Climb()
 	end
 	
 	local function rejectadventure()
-		SetPause(false) 
+		TryPause(false) 
 		inst.components.activatable.inactive = true
 		TheFrontEnd:PopScreen()
 	end		
@@ -156,13 +157,13 @@ local function OnActivate(inst)
 		TheFrontEnd:PopScreen()
 
 		local function regencloud()
-			SetPause(false)
+			TryPause(false)
 			inst.components.climbable:DestroyCave()
 			inst.components.climbable:Climb()
 		end
 
 		local function keepcloud()
-			SetPause(false)
+			TryPause(false)
 			TheFrontEnd:PopScreen()
 		end
 
@@ -259,12 +260,14 @@ local function chopdownbeanstalk(inst, chopper)
 
 	Effects.DropLootFromTheSky(inst, 4)
 
-	inst:DoTaskInTime(.4, function() 
+	inst:DoTaskInTime(.4, function(inst) 
 		local sz = 10
-		GetPlayer().components.playercontroller:ShakeCamera(inst, "FULL", 0.25, 0.03, sz, 6)
+		for _, player in ipairs(Game.FindAllPlayerInRange(inst, 64)) do
+			Effects.ShakeCamera(player, inst, "FULL", 0.25, 0.03, sz, 6)
+		end
 	end)
 
-	inst.AnimState:PlayAnimation("retract",false)
+	inst.AnimState:PlayAnimation("retract", false)
 
 	game.ListenForEventOnce(inst, "animover", chopped)
 end

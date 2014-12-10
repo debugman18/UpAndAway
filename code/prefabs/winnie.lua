@@ -1,3 +1,4 @@
+--FIXME: not MP compatible
 BindGlobal()
 
 local MakePlayerCharacter = require "prefabs/player_common"

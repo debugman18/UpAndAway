@@ -11,7 +11,7 @@ local Debuggable = wickerrequire 'adjectives.debuggable'
 modrequire 'lib.brewing'
 
 
-local Brewer = Class(Debuggable, function(self, inst)
+local Brewer = HostClass(Debuggable, function(self, inst)
     self.inst = inst
 	Debuggable._ctor(self, "Brewer")
 	self:SetConfigurationKey("BREWER")

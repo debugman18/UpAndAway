@@ -1,3 +1,5 @@
+--TODO: implement egg corruption in MP once Klei sets a standard for how (i.e., when they add beardlings)
+
 BindGlobal()
 
 local assets =
@@ -142,10 +144,12 @@ local function on_charged(inst)
 		local chargeable = inst.components.staticchargeable
 
 		while true do
-			local player = GetPlayer()
-			if player and player.components.sanity and player.components.sanity:IsCrazy() then
-				corruptegg(inst)
-				break
+			if not IsDST() then
+				local player = GetLocalPlayer()
+				if player and player.components.sanity and player.components.sanity:IsCrazy() then
+					corruptegg(inst)
+					break
+				end
 			end
 
 			local dt = 1 + math.random()

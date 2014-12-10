@@ -31,13 +31,3 @@ function alias_pkg(target, sources)
 	table.insert(sources, 1, target)
 	package.loaded[target] = try_require(sources)
 end
-
-
----------------------------------------
-
-
-local SetPause = function(...)
-	return _G.SetPause(...)
-end
-ModEnv.SetPause = SetPause
-ModEnv.SetHUDPause = SetPause

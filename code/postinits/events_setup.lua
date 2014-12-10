@@ -38,4 +38,6 @@ local function shopkeeper_spawner_setup()
 	end
 end
 
-TheMod:AddSimPostInit(shopkeeper_spawner_setup)
+if IsHost() then
+	TheMod:AddSimPostInit(shopkeeper_spawner_setup)
+end

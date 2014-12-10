@@ -1,3 +1,5 @@
+--FIXME: not MP compatible
+
 local Lambda = wickerrequire "paradigms.functional"
 local Pred = wickerrequire "lib.predicates"
 local Math = wickerrequire "math"
@@ -5,7 +7,7 @@ local Math = wickerrequire "math"
 local GenericHounded = require "components/generichounded"
 
 
-local BalloonHounded = Class(GenericHounded, function(self, inst)
+local BalloonHounded = HostClass(GenericHounded, function(self, inst)
 	GenericHounded._ctor(self, inst, "BalloonHounded")
 	self:SetConfigurationKey("BALLOON_HOUND")
 

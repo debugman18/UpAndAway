@@ -1,7 +1,8 @@
+--TODO: check precisely how resurrection should work in MP.
+
 BindGlobal()
 
 local function doresurrect(inst, dude)
-
     dude:ClearBufferedAction()
 
     if dude.HUD then
@@ -17,8 +18,7 @@ local function doresurrect(inst, dude)
 	dude.components.health:SetPercent(.5)
 	dude.components.health:SetInvincible(true)
 	
-    scheduler:ExecuteInTime(2, function()            
-		
+    dude:DoTaskInTime(2, function()            
         dude.sg:GoToState("wakeup")
         
         dude:DoTaskInTime(2, function() 
@@ -46,22 +46,60 @@ local function doresurrect(inst, dude)
         dude:DoTaskInTime(3, function() 
             dude.components.health:SetInvincible(false)
         end)  
-
-        GetPlayer():RemoveComponent("ambrosiarespawn")
     end)
+
+	if inst.components.ambrosiarespawn then
+		inst.components.ambrosiarespawn:Disable()
+	end
 end
 
-local AmbrosiaRespawn = Class(function(self, inst)
+local AmbrosiaRespawn = HostClass(Debuggable, function(self, inst)
 	self.inst = inst
+	self.enabled = false
 
-	if not self.inst.components.resurrector then
-		self.inst:AddComponent("resurrector")
-	end	
+	if not inst.components.resurrector then
+		inst:AddComponent("resurrector")
+		inst.components.resurrector.doresurrect = doresurrect
+	end
+end)
 
-	if self.inst.components.resurrectable then
-		self.inst.components.resurrector.doresurrect = doresurrect
+function AmbrosiaRespawn:Enable()
+	if self.enabled then return end
+	self.enabled = true
+
+	if self.inst.components.resurrector and self.inst.components.resurrectable then
 		self.inst.components.resurrector.active = true
 	end	
-end)
+end
+
+function AmbrosiaRespawn:Disable()
+	if not self.enabled then return end
+	self.enabled = false
+
+	if self.inst.components.resurrector then
+		self.inst.components.resurrector.active = false
+	end
+end
+
+function AmbrosiaRespawn:OnSave()
+	local enabled = self.enabled and true or nil
+	if enabled then
+		self:Disable()
+		self.inst:DoTaskInTime(0, function(inst)
+			if inst.components.ambrosiarespawn then
+				inst.components.ambrosiarespawn:Enable()
+			end
+		end)
+	end
+	return {
+		enabled = enabled,
+	}
+end
+
+function AmbrosiaRespawn:OnLoad(data)
+	if data and data.enabled then
+		self:Enable()
+	end
+end
 
 return AmbrosiaRespawn	

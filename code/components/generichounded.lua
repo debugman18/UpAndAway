@@ -1,3 +1,5 @@
+--FIXME: not MP compatible
+
 BindGlobal()
 
 local Lambda = wickerrequire "paradigms.functional"
@@ -20,7 +22,7 @@ local default_attack_delays = {
 	frequent = function() return TUNING.TOTAL_DAY_TIME * 3 + math.random() * TUNING.TOTAL_DAY_TIME * 5 end,
 }
 
-local GenericHounded = Class(Debuggable, function(self, inst, name)
+local GenericHounded = HostClass(Debuggable, function(self, inst, name)
     self.inst = inst
 
 	Debuggable._ctor(self, name or "GenericHounded", true)
@@ -68,13 +70,13 @@ function GenericHounded:GetPrefabToSpawn()
 	local prefab = "hound"
 	local special_chance = self:GetSpecialHoundChance()
 
-	if GetSeasonManager() then
-		if GetSeasonManager():IsSummer() then
+	if GetPseudoSeasonManager() then
+		if GetPseudoSeasonManager():IsSummer() then
 			special_chance = special_chance * 1.5
 		end
 
 		if math.random() < special_chance then
-			if GetSeasonManager():IsWinter() then
+			if GetPseudoSeasonManager():IsWinter() then
 				prefab = "icehound"
 			else
 				prefab = "firehound"
@@ -171,7 +173,7 @@ function GenericHounded:OnUpdate(dt)
 			self.warning = false
 			self:ReleaseHound()
 			
-			local day = GetClock().numcycles
+			local day = GetPseudoClock():GetNumCycles()
 			if day < 20 then
 				self.timetonexthound = 3 + math.random()*5
 			elseif day < 60 then
@@ -238,7 +240,7 @@ end
 
 
 function GenericHounded:CalcEscalationLevel()
-	local day = GetClock().numcycles
+	local day = GetPseudoClock():GetNumCycles()
 	
 	if day < 10 then
 		self.attackdelayfn = self.attack_delays.rare
@@ -286,7 +288,7 @@ function GenericHounded:GetSpawnPoint(pt)
 end
 
 function GenericHounded:GetSpecialHoundChance()
-	local day = GetClock():GetNumCycles()
+	local day = GetPseudoClock():GetNumCycles()
 	local chance = 0
 	for k,v in ipairs(TUNING.HOUND_SPECIAL_CHANCE) do
 	    if day > v.minday then

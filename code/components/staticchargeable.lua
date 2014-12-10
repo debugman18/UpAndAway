@@ -14,7 +14,7 @@ local Debuggable = wickerrequire 'adjectives.debuggable'
 --
 -- @class table
 -- @name StaticChargeable
-local StaticChargeable = Class(Debuggable, function(self, inst)
+local StaticChargeable = HostClass(Debuggable, function(self, inst)
 	self.inst = inst
 	Debuggable._ctor(self, "StaticChargeable")
 

@@ -27,6 +27,24 @@ local function Gobble(inst)
     --end
 end
 
+local function Blink(inst, offset_min, offset_max)
+	local target = inst.components.combat and inst.components.combat.target
+	if GetWorld().Map and target then
+		local max_tries = 4
+		for k = 1, max_tries do
+			local pos = target:GetPosition()
+			local offset = math.random(offset_min, offset_max)
+			pos.x = pos.x + (math.random(2*offset)-offset)          
+			pos.z = pos.z + (math.random(2*offset)-offset)
+			if Pred.IsUnblockedPoint(pos) then
+				inst.Transform:SetPosition(pos:Get())
+				return true
+			end
+		end
+	end
+	return false
+end
+
 local states=
 {
       
@@ -81,24 +99,8 @@ local states=
         events =
         {
             EventHandler("animover", function(inst) 
-
-                if GetWorld().Map then
-                
-                    local max_tries = 4
-                    for k = 1,max_tries do
-                        local pos = Vector3(GetPlayer().Transform:GetWorldPosition())
-                        local offset = math.random(1,4)
-                        pos.x = pos.x + (math.random(2*offset)-offset)          
-                        pos.z = pos.z + (math.random(2*offset)-offset)
-                        if GetWorld().Map:GetTileAtPoint(pos:Get()) ~= GROUND.IMPASSABLE then
-                            inst.Transform:SetPosition(pos:Get() )
-                            break
-                        end
-                    end
-                end
-
+				Blink(inst, 1, 4)
                 inst.sg:GoToState("appear")
-
             end),
         },
     },
@@ -140,48 +142,28 @@ local states=
         events=
         {
             EventHandler("animover", function(inst)
+				if math.random() > 0.5 then
+					local ally = SpawnPrefab("duckraptor")
+					if ally then
+						local newsize = 0.8*ally.duckraptorsize
+						ally.duckraptorsize = newsize
+						ally.Transform:SetScale(newsize, newsize, newsize)
 
-                if GetWorld().Map then
-                
-                    local max_tries = 4
-                    for k = 1,max_tries do
-                        local pos = Vector3(GetPlayer().Transform:GetWorldPosition())
-                        local offset = math.random(6,10)
-                        pos.x = pos.x + (math.random(2*offset)-offset)          
-                        pos.z = pos.z + (math.random(2*offset)-offset)
-                        if GetWorld().Map:GetTileAtPoint(pos:Get()) ~= GROUND.IMPASSABLE then
-                            inst.Transform:SetPosition(pos:Get())
+						Game.Move(ally, inst)
+						inst:Remove()
+						Blink(ally, 10, 20)
 
-                            local allypos = Vector3(GetPlayer().Transform:GetWorldPosition())
-                            if GetWorld().Map:GetTileAtPoint(pos:Get()) ~= GROUND.IMPASSABLE then
-                                if math.random(0,100) >= 50 then
-                                    local ally = SpawnPrefab("duckraptor")
-                                    local duckraptorsize = inst.duckraptorsize
-                                    local newsize = (.8 * duckraptorsize)
+						if ally.duckraptorsize <= 0.5 then
+							ally.sg:GoToState("death")
+						end
+					end
+				else
+					Blink(inst, 6, 10)
+				end
 
-                                    ally.Transform:SetScale(newsize, newsize, newsize)
-                                    ally.duckraptorsize = newsize
-
-                                    local allyoffset = math.random(10,20)
-                                    allypos.x = allypos.x + (math.random(2*offset)-offset)          
-                                    allypos.z = allypos.z + (math.random(2*offset)-offset)
-                                    ally.Transform:SetPosition(allypos:Get())
-                                    if ally.duckraptorsize <= .5 then
-                                        ally.sg:GoToState("death")
-                                    end
-                                    inst:Remove()
-                                end
-                            end
-
-                            break
-                        end
-                    end
-                end
-
-                if inst then
+                if inst:IsValid() then
                     inst.sg:GoToState("idle")
                 end
-                
             end),
             
         },      

@@ -61,7 +61,9 @@ MODCOMPAT["Too Many Items"] = function()
 end
 
 MODCOMPAT["N Tools"] = function(info, mod)
-	TheMod:AddSimPostInit(function(player)
+	if not IsHost() then return end
+
+	TheMod:AddPlayerPostInit(function(player)
 		local thread = nil
 		local is_running = false
 

@@ -42,8 +42,6 @@ modrequire 'postinits'
 modrequire 'actions'
 modrequire 'resources.recipes'
 
-wickerrequire 'plugins.addplayerprefabpostinit'
-
 
 do
 	local oldSpawnPrefab = _G.SpawnPrefab
@@ -69,12 +67,6 @@ AddGamePostInit(function()
 		end
 	end
 end)
-
-local function winter_perk(inst)
-	if GetPlayer().prefab == "winnie" then
-		TUNING.MIN_CROP_GROW_TEMP = -100
-	end	
-end	
 
 --[[
 -- This is just to prevent changes in our implementation breaking old saves.
@@ -112,16 +104,18 @@ local function addmoundtag(inst)
 		end
 
 		local function beanstalkaccept(inst, giver, item)
-			print("Beans accepted.")
+			TheMod:DebugSay("Beans accepted.")
 			local tree = SpawnPrefab("beanstalk_sapling") 
 			if tree then 
 				tree.Transform:SetPosition(inst.Transform:GetWorldPosition())
 			end 
 		end
 
-		local function beanstalkrefuse(inst, item)
-		    print("Dig a hole.")
-		    GetPlayer().components.talker:Say("I need to dig a hole first.")
+		local function beanstalkrefuse(inst, giver, item)
+		    TheMod:DebugSay("Dig a hole.")
+			if giver.components.talker then
+				giver.components.talker:Say("I need to dig a hole first.")
+			end
 		end
 
 		if not inst.components.hole then
@@ -138,7 +132,11 @@ end
 
 AddPrefabPostInit("mound", addmoundtag)
 
-table.insert(GLOBAL.CHARACTER_GENDERS.FEMALE, "winnie")
+--FIXME: not MP compatible
+if not IsDST() then
+	table.insert(GLOBAL.CHARACTER_GENDERS.FEMALE, "winnie")
+	AddModCharacter("winnie")
+end
 
 --This adds our minimap atlases.
 
@@ -178,8 +176,6 @@ AddMinimapAtlas("images/research_lectern.xml")
 AddMinimapAtlas("images/weavernest.xml")
 
 --AddMinimapAtlas("images/bean_giant_statue.xml"
-
-AddModCharacter("winnie")
 
 --This adds the new crockpot recipes.
 
@@ -270,21 +266,24 @@ AddCookerRecipe("cookpot", greenjelly)
 AddCookerRecipe("cookpot", redjelly)
 AddCookerRecipe("cookpot", crystalcandy)
 
---This lets Winnie grow crops during the winter.
+if not IsDST() then
+	--This lets Winnie grow crops during the winter.
 
-local oldMakeNoGrowInWinter = _G.MakeNoGrowInWinter
+	local oldMakeNoGrowInWinter = _G.MakeNoGrowInWinter
 
-local function winnie_aware_MakeNoGrowInWinter(inst)
-	if GetPlayer().prefab ~= "winnie" or not (inst.components.pickable and inst.components.pickable.transplanted) then
-		return oldMakeNoGrowInWinter(inst)
+	--FIXME: not MP compatible
+	local function winnie_aware_MakeNoGrowInWinter(inst)
+		if GetLocalPlayer().prefab ~= "winnie" or not (inst.components.pickable and inst.components.pickable.transplanted) then
+			return oldMakeNoGrowInWinter(inst)
+		end
 	end
-end
- 
-function _G.MakeNoGrowInWinter(inst)
-	if GetPlayer() then
-		return winnie_aware_MakeNoGrowInWinter(inst)
-	else
-		-- We need to delay the actual work because spawning the player happens late.
-		inst:DoTaskInTime(0, winnie_aware_MakeNoGrowInWinter)
+	 
+	function _G.MakeNoGrowInWinter(inst)
+		if GetLocalPlayer() then
+			return winnie_aware_MakeNoGrowInWinter(inst)
+		else
+			-- We need to delay the actual work because spawning the player happens late.
+			inst:DoTaskInTime(0, winnie_aware_MakeNoGrowInWinter)
+		end
 	end
 end

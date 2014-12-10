@@ -25,11 +25,11 @@ local function add_beverage_animstate(inst, data)
 	return anim
 end
 
-local function ambrosiafn(inst)
+local function ambrosiafn(inst, eater)
 	if (inst.prefab == "ambrosiatea") and (math.random(1,10) == 1) then
-		if not GetPlayer().components.ambrosiarespawn then
-			TheMod:Say("Free respawn. Lucky you.")
-			GetPlayer():AddComponent("ambrosiarespawn")
+		if eater.components.ambrosiarespawn then
+			TheMod:DebugSay("Free respawn. Lucky you.")
+			eater.components.ambrosiarespawn:Enable()
 		end	
 	end	
 end	

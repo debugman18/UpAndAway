@@ -1,3 +1,4 @@
+--FIXME: not MP compatible
 BindGlobal()
 
 local AlchemyRecipeBook = modrequire 'resources.alchemy_recipebook'

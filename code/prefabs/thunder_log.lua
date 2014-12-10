@@ -14,7 +14,7 @@ local function FuelTaken(inst, taker)
         --strike.Transform:SetPosition(taker.Transform:GetWorldPosition() )
     --end
     pt = Vector3(taker.Transform:GetWorldPosition())
-    GetSeasonManager():DoLightningStrike(pt)
+    GetPseudoSeasonManager():DoLightningStrike(pt)
 end
 
 local function fn(Sim)

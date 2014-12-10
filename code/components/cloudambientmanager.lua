@@ -1,9 +1,11 @@
-
 local Pred = wickerrequire 'lib.predicates'
 
 local Debuggable = wickerrequire 'adjectives.debuggable'
 
 local FunctionQueue = wickerrequire 'gadgets.functionqueue'
+
+local Game = wickerrequire "game"
+local AL = Game.AmbientLighting
 
 
 ---
@@ -14,7 +16,7 @@ local FunctionQueue = wickerrequire 'gadgets.functionqueue'
 --
 -- @class table
 -- @name CloudAmbientManager
-local CloudAmbientManager = Class(Debuggable, function(self, inst)
+local CloudAmbientManager = HostClass(Debuggable, function(self, inst)
 	self.inst = inst
 	Debuggable._ctor(self, "CloudAmbientManager")
 
@@ -55,17 +57,19 @@ local CloudAmbientManager = Class(Debuggable, function(self, inst)
 end)
 
 function CloudAmbientManager:ApplyColour()
-	local clock = assert( self.inst.components.clock )
-
 	for _, phase in ipairs{"day", "dusk", "night", "cave"} do
-		clock[phase .. "Colour"] = self.current_colour
+		AL.SetPhaseColour(phase, self.current_colour)
 	end
 
-	clock:LerpAmbientColour(self.current_colour, self.current_colour, 0)
+	AL.SetAmbientColour(self.current_colour)
 end
 
-
+--[[
+-- The effects are local to each player, not networked.
+--]]
 local function do_charged_effects(self)
+	if IsDedicated() then return end
+
 	local Sleep = _G.Sleep
 
 	Sleep(self:GetConfig "FX_TRANSITION_DELAY")
@@ -79,12 +83,14 @@ local function do_charged_effects(self)
 	end)()
 
 	local strike = (function()
-		local player = GetPlayer()
 		local prefab = "cloud_lightning"
 
 		local min_radius, max_radius = unpack(self:GetConfig "LIGHTNING_DISTANCE")
 
 		return function()
+			local player = GetLocalPlayer()
+			if not player then return end
+
 			local r = min_radius + (max_radius - min_radius)*math.random()
 			local theta = 2*math.pi*math.random()
 

@@ -9,65 +9,19 @@ local assets=
 	Asset("ANIM", "anim/rock_stalagmite_tall.zip"),
 	Asset("ANIM", "anim/beanstalk_exit.zip"),
 }
---[[
-local function onnear(inst)
-	inst.AnimState:PlayAnimation("down")
-    inst.AnimState:PushAnimation("idle_loop", true)
-    inst.SoundEmitter:PlaySound("dontstarve/cave/rope_down")
-end
 
-local function onfar(inst)
-    inst.AnimState:PlayAnimation("up")
-    inst.SoundEmitter:PlaySound("dontstarve/cave/rope_up")
-end
---]]
-
---[[
-local function LeaveSky(onsavedcb)
-	local playerdata = {}
-	local player = GetPlayer()
-	local self = SaveGameIndex
-	if player then
-		playerdata = player:GetSaveRecord().data
-		playerdata.leader = nil
-		playerdata.sanitymonsterspawner = nil
-        
-	end 
-	self.data.slots[self.current_slot].current_mode = "survival"
-	
-	if self.data.slots[self.current_slot].modes.survival then
-		self.data.slots[self.current_slot].modes.survival.playerdata = playerdata
-	end
-	self:Save(onsavedcb)
-end
-]]--
 local function OnActivate(inst)
-	SetPause(true)
+	TryPause(true)
 	
-	--local character = GetPlayer().prefab
-	
-	--local level = GetWorld().topology.level_number or 8
 	local function startadventure()
-		--[[
-		local function onsaved()
-		    StartNextInstance({reset_action=RESET_ACTION.LOAD_SLOT, save_slot = SaveGameIndex:GetCurrentSaveSlot()}, true)
-		end
-		
-		local saveslot = SaveGameIndex:GetCurrentSaveSlot()
-		local character = GetPlayer().prefab		
-		
-		
-		SaveGameIndex:SaveCurrent(function() LeaveSky(onsaved) end)
-		]]--
-
-		SetPause(false)	
+		TryPause(false)	
 		if inst.components.climbable then
 			inst.components.climbable:Climb()
 		end
 	end
 
 	local function rejectadventure()
-		SetPause(false) 
+		TryPause(false) 
 		inst.components.activatable.inactive = true
 		TheFrontEnd:PopScreen()
 	end		

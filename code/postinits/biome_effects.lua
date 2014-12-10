@@ -3,7 +3,7 @@ modrequire "lib.climbing"
 
 local function start_snow()
 	TheMod:DebugSay("start_snow()")
-	local sm = GetSeasonManager()
+	local sm = GetPseudoSeasonManager()
 	if sm then
 		sm:AlwaysWet()
 		sm:StartPrecip()
@@ -12,7 +12,7 @@ end
 
 local function stop_snow()
 	TheMod:DebugSay("stop_snow()")
-	local sm = GetSeasonManager()
+	local sm = GetPseudoSeasonManager()
 	if sm then
 		sm:AlwaysDry()
 		sm:StopPrecip()
@@ -33,21 +33,27 @@ local function roomchange_snowcheck(player, newroom, oldroom)
 	end
 end
 
--- It's ok to use a Sim post init because the coponent has no savedata.
-TheMod:AddSimPostInit(function(player)
+-- It's ok to use a Sim post init because the component has no savedata.
+TheMod:AddSimPostInit(function()
 	if Pred.IsCloudLevel() then
-		local sm = GetSeasonManager()
+		local sm = GetPseudoSeasonManager()
 		if sm then
 			sm:AlwaysDry()
 		end
-
-		player:AddComponent("roomwatcher")
-		if not IsDST() then
-			local roomwatcher = player.components.roomwatcher
-
-			roomwatcher:AddRoomChangeCallback(roomchange)
-
-			roomwatcher:StartUpdating()
-		end
 	end
 end)
+
+if IsHost() then
+	TheMod:AddPlayerPostInit(function(player)
+		if Pred.IsCloudLevel() then
+			player:AddComponent("roomwatcher")
+			if not IsDST() then
+				local roomwatcher = player.components.roomwatcher
+
+				roomwatcher:AddRoomChangeCallback(roomchange_snowcheck)
+
+				roomwatcher:StartUpdating()
+			end
+		end
+	end)
+end

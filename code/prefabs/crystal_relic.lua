@@ -43,7 +43,7 @@ local function doresurrect(inst, dude)
 		MakeInventoryPhysics(inst) -- collides with world, but not character
     end
 
-	GetClock():MakeNextDay()
+	GetPseudoClock():MakeNextDay()
     dude.Transform:SetPosition(inst.Transform:GetWorldPosition())
     dude:Hide()
     TheCamera:SetDistance(12)
@@ -52,7 +52,7 @@ local function doresurrect(inst, dude)
         dude:Show()
         --inst:Hide()
 
-        GetSeasonManager():DoLightningStrike(Vector3(inst.Transform:GetWorldPosition()))
+        GetPseudoSeasonManager():DoLightningStrike(Vector3(inst.Transform:GetWorldPosition()))
 
 
 		inst.SoundEmitter:PlaySound("dontstarve/common/resurrectionstone_break")

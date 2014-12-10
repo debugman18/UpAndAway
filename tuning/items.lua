@@ -111,3 +111,11 @@ MUSHROOM_HAT.STATES = {
 }
 -- Period between widget announcements of stat change.
 MUSHROOM_HAT.NAGGING_PERIOD = 3
+
+-- Max dist for a beefalo to become a follower.
+WINNIE_STAFF.MAX_FOLLOWER_DIST = 20
+-- Max beefalo followers.
+WINNIE_STAFF.MAX_FOLLOWERS = 5
+
+-- Attraction radius for ball_lightning from magnets.
+MAGNET.ATTRACTION_RADIUS = 16

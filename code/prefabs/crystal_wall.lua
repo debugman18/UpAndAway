@@ -226,7 +226,7 @@ local function fn(inst)
 	anim:PlayAnimation("1_2", false)
 	--inst.Transform:SetScale(3,3,3)
 
-	if not GetWorld().components.clock:IsDay() then
+	if not GetPseudoClock():IsDay() then
 		anim:SetBloomEffectHandle("shaders/anim.ksh")
 	end
 	inst:ListenForEvent("dusktime", function(inst) anim:SetBloomEffectHandle("shaders/anim.ksh") end, GetWorld())

@@ -35,7 +35,7 @@ end
 
 local function KeepTarget(inst, target)
     if target and target:IsValid() and target.components.health and not target.components.health:IsDead() then
-		return distsq(Vector3(GetPlayer().Transform:GetWorldPosition() ), Vector3(inst.Transform:GetWorldPosition() ) ) < 30*30
+		return distsq(Vector3(target.Transform:GetWorldPosition() ), Vector3(inst.Transform:GetWorldPosition() ) ) < 30*30
     end
 end
 

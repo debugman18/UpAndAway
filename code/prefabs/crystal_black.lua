@@ -39,7 +39,7 @@ local function onhit(inst, worker)
 end
 
 local function StartSpawning(inst)
-	if inst.components.childspawner and GetSeasonManager() and GetSeasonManager():IsWinter() then
+	if inst.components.childspawner and GetPseudoSeasonManager() and GetPseudoSeasonManager():IsWinter() then
 		inst.components.childspawner:StartSpawning()
 	end
 end
@@ -52,7 +52,7 @@ end
 
 local function OnSpawned(inst, child)
 	inst.SoundEmitter:PlaySound("dontstarve/common/pighouse_door")
-	if GetClock():IsDay() and inst.components.childspawner and inst.components.childspawner:CountChildrenOutside() >= 5 and not child.components.combat.target then
+	if GetPseudoClock():IsDay() and inst.components.childspawner and inst.components.childspawner:CountChildrenOutside() >= 5 and not child.components.combat.target then
         StopSpawning(inst)
     end
 end

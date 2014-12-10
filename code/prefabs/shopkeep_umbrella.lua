@@ -7,7 +7,7 @@ local assets=
 }
   
 local function UpdateSound(inst)
-    local soundShouldPlay = GetSeasonManager():IsRaining() and inst.components.equippable:IsEquipped()
+    local soundShouldPlay = GetPseudoSeasonManager():IsRaining() and inst.components.equippable:IsEquipped()
     if soundShouldPlay ~= inst.SoundEmitter:PlayingSound("umbrellarainsound") then
         if soundShouldPlay then
 		    inst.SoundEmitter:PlaySound("dontstarve/rain/rain_on_umbrella", "umbrellarainsound") 

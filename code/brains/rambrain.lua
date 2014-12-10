@@ -79,7 +79,7 @@ local function EatFoodAction(inst)
 end
 
 function RamBrain:OnStart()
-    local clock = GetClock()
+    local clock = GetPseudoClock()
     
     local root = PriorityNode(
     {

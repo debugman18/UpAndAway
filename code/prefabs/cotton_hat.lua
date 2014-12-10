@@ -99,7 +99,7 @@ local function fn(Sim)
             end    
         end, GetWorld())
 
-        if GetSeasonManager().precip and GetSeasonManager().preciptype == "rain" then
+        if GetPseudoSeasonManager():IsRaining() then
             melt(inst)
         end
 

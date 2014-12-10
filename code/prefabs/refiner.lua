@@ -1,3 +1,4 @@
+--FIXME: not MP compatible
 BindGlobal()
 
 

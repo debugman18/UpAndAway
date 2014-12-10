@@ -1,64 +1,51 @@
---Changes "activate" to "climb down" for "beanstalk_exit".
-TheMod:AddSimPostInit(function(inst)
-	local oldactionstringoverride = inst.ActionStringOverride
-	function inst:ActionStringOverride(bufaction)
-		if bufaction.action == GLOBAL.ACTIONS.ACTIVATE and bufaction.target and bufaction.target.prefab == "beanstalk_exit" then
-			return "Climb Down"
+local ACTIONS = _G.ACTIONS
+
+local AddStringPatch = (function()
+	local patches = {}
+
+	TheMod:AddPlayerPostInit(function(inst)
+		local oldactionstringoverride = inst.ActionStringOverride
+		function inst:ActionStringOverride(bufaction)
+			local tests = bufaction.action and patches[bufaction.action]
+			if tests then
+				for _, t in ipairs(tests) do
+					if t.target_cond == nil or (bufaction.target and t.target_cond(bufaction.target)) then
+						return t.override
+					end
+				end
+			end
+			if oldactionstringoverride then
+				return oldactionstringoverride(inst, bufaction)
+			end
 		end
-		if oldactionstringoverride then
-			return oldactionstringoverride(inst, bufaction)
+	end)
+
+	return function(action, target_condition, override)
+		if not action then
+			return error("Non-existent action passed as patch parameter.", 2)
 		end
+		local tests = patches[action]
+		if tests == nil then
+			tests = {}
+			patches[action] = tests
+		end
+		table.insert(tests, {target_cond = target_condition, override = override})
 	end
-end)
+end)()
+
+--Changes "activate" to "climb down" for "beanstalk_exit".
+AddStringPatch(ACTIONS.ACTIVATE, Pred.IsPrefab("beanstalk_exit"), "Climb Down")
 
 --Changes "Give" to "Plant" for beans and mounds.
-TheMod:AddSimPostInit(function(inst)
-	local oldactionstringoverride = inst.ActionStringOverride
-	function inst:ActionStringOverride(bufaction)
-		if bufaction.action == GLOBAL.ACTIONS.GIVE and bufaction.target and bufaction.target.prefab == "mound" then
-			return "Plant"
-		end
-		if oldactionstringoverride then
-			return oldactionstringoverride(inst, bufaction)
-		end
-	end
-end)
+AddStringPatch(ACTIONS.GIVE, Pred.IsPrefab("mound"), "Plant")
 
 --Changes "Bury" to "Plant" for beans and mounds.
-TheMod:AddSimPostInit(function(inst)
-	local oldactionstringoverride = inst.ActionStringOverride
-	function inst:ActionStringOverride(bufaction)
-		if bufaction.action == GLOBAL.ACTIONS.BURY and bufaction.target and bufaction.target.prefab == "mound" then
-			return "Plant"
-		end
-		if oldactionstringoverride then
-			return oldactionstringoverride(inst, bufaction)
-		end
-	end
-end)
+if ACTIONS.BURY then
+	AddStringPatch(ACTIONS.BURY, Pred.IsPrefab("mound"), "Plant")
+end
 
 --Changes "Give" to "Refine" for the refiner.
-TheMod:AddSimPostInit(function(inst)
-	local oldactionstringoverride = inst.ActionStringOverride
-	function inst:ActionStringOverride(bufaction)
-		if bufaction.action == GLOBAL.ACTIONS.GIVE and bufaction.target and bufaction.target.prefab == "refiner" then
-			return "Refine"
-		end
-		if oldactionstringoverride then
-			return oldactionstringoverride(inst, bufaction)
-		end
-	end
-end)
+AddStringPatch(ACTIONS.GIVE, Pred.IsPrefab("refiner"), "Refine")
 
---Changes "Give" to "Cook" for the refiner.
-TheMod:AddSimPostInit(function(inst)
-	local oldactionstringoverride = inst.ActionStringOverride
-	function inst:ActionStringOverride(bufaction)
-		if bufaction.action == GLOBAL.ACTIONS.GIVE and bufaction.target and bufaction.target:HasTag("dragonblood") then
-			return "Cook"
-		end
-		if oldactionstringoverride then
-			return oldactionstringoverride(inst, bufaction)
-		end
-	end
-end)
+--Changes "Give" to "Cook" for the dragonblood tree.
+AddStringPatch(ACTIONS.GIVE, Pred.HasTag("dragonblood"), "Cook")

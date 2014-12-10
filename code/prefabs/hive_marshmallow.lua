@@ -85,7 +85,7 @@ local function fn(Sim)
 	inst.components.childspawner:SetRegenPeriod(TUNING.BEEHIVE_REGEN_TIME)
 	inst.components.childspawner:SetSpawnPeriod(TUNING.BEEHIVE_RELEASE_TIME)
 	inst.components.childspawner:SetMaxChildren(TUNING.BEEHIVE_BEES)
-	if GetSeasonManager() and GetSeasonManager():IsSummer() then
+	if GetPseudoSeasonManager() and GetPseudoSeasonManager():IsSummer() then
 		inst.components.childspawner:StartSpawning()
 	end
 	

@@ -24,13 +24,13 @@ local function StopSpawning(inst)
 end
 
 local function StartSpawning(inst)
-    if inst.components.childspawner and GetSeasonManager() and GetSeasonManager():IsWinter() then
+    if inst.components.childspawner and GetPseudoSeasonManager() and GetPseudoSeasonManager():IsWinter() then
         inst.components.childspawner:StartSpawning()  
     end
 end
 
 local function OnSpawned(inst, child)
-    if GetClock():IsDay() and inst.components.childspawner and inst.components.childspawner:CountChildrenOutside() >= 1 then
+    if GetPseudoClock():IsDay() and inst.components.childspawner and inst.components.childspawner:CountChildrenOutside() >= 1 then
         StopSpawning(inst)
     end
 

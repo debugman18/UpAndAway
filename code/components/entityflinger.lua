@@ -126,7 +126,7 @@ local function random_pt_at_distance(node, origin, dist)
 end
 
 
-local EntityFlinger = Class(Debuggable, function(self, inst)
+local EntityFlinger = HostClass(Debuggable, function(self, inst)
 	self.inst = inst
 	self.inst:AddTag("NOFLING")
 
@@ -397,10 +397,7 @@ end
 
 
 local function IsCloseToPlayer(pt)
-	pt = Game.ToPoint(pt)
-	local p_pos = GetPlayer():GetPosition()
-	local dx, dz = pt.x - p_pos.x, pt.z - p_pos.z
-	return (dx*dx + dz*dz) < 25^2
+	return Game.FindSomePlayerInRange(pt, 25) ~= nil
 end
 
 local function DisableEntity(inst)

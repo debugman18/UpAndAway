@@ -29,7 +29,7 @@ local function is_word(str)
 end
 
 
-local SpeechGiver = Class(Debuggable, function(self, inst)
+local SpeechGiver = HostClass(Debuggable, function(self, inst)
 	self.inst = inst
 	Debuggable._ctor(self, "SpeechGiver")
 	self:SetConfigurationKey("SPEECHGIVER")
@@ -276,7 +276,7 @@ end
 
 ---
 -- An object of this class is passed as the first parameter to speeches.
-local SpeechManager = Class(Debuggable, function(self, speechgiver, speechname, speech, listener)
+local SpeechManager = HostClass(Debuggable, function(self, speechgiver, speechname, speech, listener)
 	assert( IsSpeechGiver(speechgiver), "SpeechGiver object expected." )
 	assert( Pred.IsString(speechname), "String expected as speech name." )
 	assert( Pred.IsTable(speech), "Table expected as speech data." )
@@ -332,9 +332,6 @@ end
 
 local function disable_listener(self)
 	disable_entity(self, self.listener)
-	if not self.listener:HasTag("player") then
-		disable_entity(self, GetPlayer())
-	end
 end
 
 local function clear_input_handlers(self)
@@ -374,9 +371,6 @@ end
 
 local function enable_listener(self)
 	enable_entity(self, self.listener)
-	if not self.listener:HasTag("player") then
-		enable_entity(self, GetPlayer())
-	end
 end
 
 local function setup_input_handlers(self)
@@ -453,8 +447,8 @@ function SpeechManager:Silence()
 	self:DebugSay("Silence()")
 	self:ShutUp()
 	self:KillSound()
-	if GetPlayer() and GetPlayer().HUD then
-		GetPlayer().HUD:Show()	
+	if self.listener and self.listener == GetLocalPlayer() and self.listener.HUD then
+		self.listener.HUD:Show()	
 	end
 end
 
@@ -769,7 +763,7 @@ function SpeechManager:EnterCutScene()
 	_G.TheCamera:SetDistance(distance)
 	_G.TheCamera:SetGains( unpack(SLOW_GAINS) )
 
-	if self.listener:HasTag("player") and self.listener.HUD then
+	if self.listener and self.listener == GetLocalPlayer() and self.listener.HUD then
 		self.listener.HUD:Hide() 
 	end
 

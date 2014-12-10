@@ -102,7 +102,7 @@ local function OnLoad(inst, data)
 end
 
 local function OnSeasonChange(inst, data)
-    inst.shouldGoAway = GetSeasonManager():GetSeason() ~= SEASONS.WINTER
+    inst.shouldGoAway = GetPseudoSeasonManager():GetSeason() ~= SEASONS.WINTER
     if inst:IsAsleep() then
         OnEntitySleep(inst)
     end

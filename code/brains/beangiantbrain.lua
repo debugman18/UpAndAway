@@ -50,7 +50,7 @@ end)
 
 function BeanGiantBrain:OnStart()
 
-    local clock = GetClock()
+    local clock = GetPseudoClock()
 
     local root =
         PriorityNode(

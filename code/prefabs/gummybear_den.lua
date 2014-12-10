@@ -50,7 +50,7 @@ local function onhit(inst, worker)
 end
 
 local function IsSpawnTime()
-	local c = GetClock()
+	local c = GetPseudoClock()
 	return c and (c:IsDay() or c:CurrentPhaseIsAlways())
 end
 
@@ -196,7 +196,7 @@ local function fn(Sim)
 
 	-- Ensures clock savedata has been loaded.
 	inst:DoTaskInTime(0, function(inst)
-		if not GetClock():CurrentPhaseIsAlways() then
+		if not GetPseudoClock():CurrentPhaseIsAlways() then
 			inst:ListenForEvent("daytime", function() 
 				inst.components.childspawner:ReleaseAllChildren()
 				StartSpawning(inst)

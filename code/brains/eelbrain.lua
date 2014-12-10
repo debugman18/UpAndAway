@@ -63,7 +63,7 @@ end
 
 function EelBrain:OnStart()
 
-    local clock = GetClock()
+    local clock = GetPseudoClock()
     
     local root = PriorityNode(
     {

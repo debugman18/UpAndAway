@@ -112,8 +112,7 @@ local function SpawnWeaverGuardian(inst)
 		SetLarge(inst)
 	end
 
-	local player = GetPlayer()
-	if not player or player:GetDistanceSqToInst(inst) > 30*30 then
+	if Game.FindSomePlayerInRange(inst, 30) then
 		inst.components.growable:StartGrowing(60 + math.random(60) )
 		return
 	end
@@ -234,7 +233,7 @@ end
 local function StartSpawning(inst)
     if inst.components.childspawner then
     	local frozen = (inst.components.freezable and inst.components.freezable:IsFrozen())
-    	if not frozen and not GetClock():IsDay() then
+    	if not frozen and not GetPseudoClock():IsDay() then
 	        inst.components.childspawner:StartSpawning()
     	end
     end

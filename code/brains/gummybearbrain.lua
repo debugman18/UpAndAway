@@ -77,7 +77,7 @@ function GummyBearBrain:OnStart()
             IfNode(function() return self.inst.components.follower.leader ~= nil end, "HasLeader",
 			FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn )),            
             DoAction(self.inst, function() return InvestigateAction(self.inst) end ),
-            -- WhileNode(function() return not GetClock():IsDay() end, "IsDay",
+            -- WhileNode(function() return not GetPseudoClock():IsDay() end, "IsDay",
             --DoAction(self.inst, function() return GoHomeAction(self.inst) end ) ),
             Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST)            
         },1)

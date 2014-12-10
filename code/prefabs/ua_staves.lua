@@ -108,8 +108,8 @@ local function make_black_staff()
 			target.components.staticchargeable:HoldState(effect_duration)
 			staff.components.finiteuses:Use(1)
 
-			local doer = staff.components.inventoryitem and staff.components.inventoryitem.owner or GetPlayer()
-			if doer.SoundEmitter then
+			local doer = staff.components.inventoryitem and staff.components.inventoryitem.owner
+			if doer and doer.SoundEmitter then
 				--doer.SoundEmitter:PlaySound("dontstarve/wilson/fireball_explo")  
 				doer.SoundEmitter:PlaySound("dontstarve/rain/thunder_close")
 			end
@@ -180,8 +180,8 @@ local function make_white_staff()
 				if package.components.packer:Pack(target) then
 					package.Transform:SetPosition( targetpos:Get() )
 					staff.components.finiteuses:Use(1)
-					local doer = staff.components.inventoryitem and staff.components.inventoryitem.owner or GetPlayer()
-					if doer.SoundEmitter then
+					local doer = staff.components.inventoryitem and staff.components.inventoryitem.owner
+					if doer and doer.SoundEmitter then
 						doer.SoundEmitter:PlaySound("dontstarve/rain/thunder_close")
 					end
 				else

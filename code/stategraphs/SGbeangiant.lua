@@ -125,7 +125,7 @@ CommonStates.AddCombatStates(states,
     {
         TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/death") end),
         TimeEvent(50*FRAMES, function(inst)
-            if GetSeasonManager():GetSnowPercent() > 0.02 then
+            if GetPseudoSeasonManager():GetSnowPercent() > 0.02 then
                 inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/bodyfall_snow")
             else
                 inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/bodyfall_dirt")

@@ -73,7 +73,7 @@ local LiveGnomeBrain = Class(Brain, function(self, inst)
 end)
 
 function LiveGnomeBrain:OnStart()
-    local clock = GetClock()
+    local clock = GetPseudoClock()
     
     local root = PriorityNode(
     {

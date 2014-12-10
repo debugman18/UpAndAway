@@ -1,4 +1,4 @@
-
+--TODO: allow local and non-local existence
 
 local Lambda = wickerrequire 'paradigms.functional'
 

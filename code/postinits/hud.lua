@@ -1,4 +1,5 @@
-TheMod:AddSimPostInit(function(inst)
+TheMod:AddSimPostInit(function()
+	local inst = GetLocalPlayer()
 	if Pred.IsCloudLevel() then
 		local Text = require "widgets/text"
 

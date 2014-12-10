@@ -5,7 +5,7 @@ local table = wickerrequire "utils.table"
 local Debuggable = wickerrequire "adjectives.debuggable"
 
 
-local Packer = Class(Debuggable, function(self, inst)
+local Packer = HostClass(Debuggable, function(self, inst)
 	self.inst = inst
 	Debuggable._ctor(self, "Packer", true)
 

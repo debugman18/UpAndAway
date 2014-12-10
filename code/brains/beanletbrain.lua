@@ -25,7 +25,7 @@ local function GoHomeAction(inst)
 end
 
 function BeanletBrain:OnStart()
-    local clock = GetClock()
+    local clock = GetPseudoClock()
     
     local root = PriorityNode(
     {

@@ -1,10 +1,10 @@
 BindGlobal()
 
-local cfg = wickerrequire('adjectives.configurable')("BALL_LIGHTNING")
+local cfg = Configurable("BALL_LIGHTNING")
 
 local prefabs =
 {
-	"cloud_lightning",
+	"ball_lightning_fx",
 }
 
 local assets =
@@ -12,11 +12,13 @@ local assets =
 	Asset("ANIM", "anim/ball_lightning.zip"),
 }
 
-local SLEEP_DIST_FROMHOME = 10
-local SLEEP_DIST_FROMTHREAT = 0
-local MAX_CHASEAWAY_DIST = 0
-local MAX_TARGET_SHARES = 5
-local SHARE_TARGET_DIST = 40
+local fx_prefabs =
+{
+	"lightning_rod_fx",
+}
+
+local fx_assets = {
+}
 
 local loot = {}
 
@@ -26,18 +28,62 @@ end
 
 local function uncharge(inst)
 	inst:RemoveTag("ball_lightning_charged")
-end	
+end
+
+local function IsAttractingPlayer(player)
+	local inv = player.components.inventory
+	local held_item = inv and inv:GetEquippedItem(EQUIPSLOTS.HANDS)
+	return held_item and held_item:HasTag("active_magnet")
+end
+
+local ATTRACTION_RADIUS = TheMod:GetConfig("MAGNET", "ATTRACTION_RADIUS")
 
 local function FindMagnet(inst)
-	local magnetholder = GetPlayer().components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-	if magnetholder and magnetholder:HasTag("ball_lightning") then	
-		inst.components.follower:SetLeader(GetPlayer())
+	local player = Game.FindClosestPlayerInRange(inst, ATTRACTION_RADIUS, IsAttractingPlayer)
+	if player then
+		inst.components.follower:SetLeader(player)
 	else 
 		inst.components.follower:SetLeader() 
 	end	
 end	
 
-local function fn(Sim)
+local function GraphicalUpdateTick(inst)
+	local roll = math.random(1,3)
+	if roll == 1 then
+		inst.AnimState:SetMultColour(250,250,0,0)
+	elseif roll == 2 then	
+		inst.AnimState:SetMultColour(150,150,0,0)
+	else
+		inst.AnimState:SetMultColour(60,60,0,0)
+	end	
+end
+
+local function UpdateTick(inst)
+	local lightning = SpawnPrefab("ball_lightning_fx")
+	lightning.Transform:SetPosition(inst.Transform:GetWorldPosition())
+	
+	if not IsDedicated() then
+		GraphicalUpdateTick(inst)
+	end
+
+	if IsHost() then
+		FindMagnet(inst)
+	end
+end
+
+local function StopUpdating(inst)
+	if inst.updatetask then
+		inst.updatetask:Cancel()
+		inst.updatetask = nil
+	end
+end
+
+local function StartUpdating(inst)
+	StopUpdating(inst)
+	inst.updatetask = inst:DoPeriodicTask(0.5, IsHost() and UpdateTick or GraphicalUpdateTick)
+end
+
+local function fn()
 	local inst = CreateEntity()
 	inst.entity:AddTransform()
 	inst.entity:AddAnimState()
@@ -51,28 +97,14 @@ local function fn(Sim)
 	inst.AnimState:SetBank("ball_lightning")
 	inst.AnimState:SetBuild("ball_lightning")
 	inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
-	--inst:DoPeriodicTask(4, function() 
-		inst.AnimState:PlayAnimation("idle", true) 
-	--end)
-	inst:DoPeriodicTask(.5, function()
-		local lighting = SpawnPrefab("lightning_rod_fx")
-		lighting.Transform:SetScale(.8,.3,.3)
-		lighting.AnimState:SetMultColour(150,150,0,.1)
-		lighting.Transform:SetPosition(inst.Transform:GetWorldPosition())
-		inst:DoTaskInTime(0.2, function(inst)
-			lighting:Remove()
-		end)
-		local roll = math.random(1,3)
-		if roll == 1 then
-			inst.AnimState:SetMultColour(250,250,0,0)
-		elseif roll == 2 then	
-			inst.AnimState:SetMultColour(150,150,0,0)
-		elseif roll == 3 then
-			inst.AnimState:SetMultColour(60,60,0,0)
-		end	
-		FindMagnet(inst)
-	end)
+	inst.AnimState:PlayAnimation("idle", true) 
+
 	inst.Transform:SetScale(1.5,1.5,1.5)
+
+	StartUpdating(inst)
+
+	inst:ListenForEvent("entitysleep", StopUpdating)
+	inst:ListenForEvent("entitywake", StartUpdating)
 
 	inst:AddComponent("inspectable")
 
@@ -105,7 +137,24 @@ local function fn(Sim)
 	inst:AddComponent("heater")	  
 	inst.components.heater.heat = 80
 
+	StartUpdating(inst)
+
 	return inst
 end
 
-return Prefab ("common/inventory/ball_lightning", fn, assets) 
+local function fx_fn()
+	local inst = SpawnPrefab("lightning_rod_fx")
+
+	inst.Transform:SetScale(.8,.3,.3)
+	inst.AnimState:SetMultColour(150,150,0,.1)
+	inst:DoTaskInTime(0.2, function(inst)
+		inst:Remove()
+	end)
+
+	return inst
+end
+
+return {
+	Prefab("common/inventory/ball_lightning", fn, assets, prefabs),
+	Prefab("common/ball_lightning_fx", fx_fn, fx_assets, fx_prefabs),
+}

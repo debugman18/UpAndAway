@@ -50,7 +50,7 @@ end
 --
 -- @class table
 -- @name StaticGenerator
-local StaticGenerator = Class(Debuggable, function(self, inst)
+local StaticGenerator = HostClass(Debuggable, function(self, inst)
 	self.inst = inst
 	Debuggable._ctor(self, "StaticGenerator")
 

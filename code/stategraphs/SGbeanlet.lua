@@ -101,7 +101,7 @@ local states=
                 inst.components.locomotor:RunForward()
                 --inst.AnimState:SetTime(math.random()*2)
                 inst.SoundEmitter:KillSound("slide")
-                if GetSeasonManager():GetSnowPercent() < 0.1 then
+                if GetPseudoSeasonManager():GetSnowPercent() < 0.1 then
                     inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/land")
                 else
                     inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/land_dirt")
@@ -116,7 +116,7 @@ local states=
             },
             
             onexit = function(inst)
-                if GetSeasonManager():IsWinter() then
+                if GetPseudoSeasonManager():IsWinter() then
                     inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/slide","slide")
                 else
                     inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/slide_dirt","slide")
@@ -194,14 +194,14 @@ local states=
 
             timeline = {
                 TimeEvent(5*FRAMES, function(inst)
-                                        if GetSeasonManager():IsWinter() then
+                                        if GetPseudoSeasonManager():IsWinter() then
                                             inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/footstep")
                                         else
                                             inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/footstep_dirt")
                                         end
                                     end),
                 TimeEvent(21*FRAMES, function(inst)
-                                        if GetSeasonManager():IsWinter() then
+                                        if GetPseudoSeasonManager():IsWinter() then
                                             inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/footstep")
                                         else
                                             inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/footstep_dirt")

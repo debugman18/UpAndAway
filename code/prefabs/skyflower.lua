@@ -35,9 +35,8 @@ end
 
 local function update_anim(inst)
 	local sc = inst.components.staticchargeable
-	if not sc then return end
 
-	if sc:IsCharged() then
+	if sc and sc:IsCharged() then
 		inst.AnimState:PlayAnimation( get_datura_anim_name(inst) )
 	else
 		inst.AnimState:PlayAnimation( get_anim_name(inst) )
@@ -118,6 +117,7 @@ local function fn()
     inst.AnimState:SetRayTestOnBB(true);
 
 	inst.animnumber = generate_random_anim_number()
+	update_anim(inst)
 
 	inst:AddTag("flower")
     

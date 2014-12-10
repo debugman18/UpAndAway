@@ -1,4 +1,4 @@
-
+--FIXME: not MP compatible
 
 local Climbing = modrequire 'lib.climbing'
 
@@ -20,7 +20,7 @@ local Debuggable = wickerrequire 'gadgets.debuggable'
 -- @class table
 -- @name Climbable
 --
-local Climbable = Class(Debuggable, function(self, inst)
+local Climbable = HostClass(Debuggable, function(self, inst)
 	self.inst = inst
 	Debuggable._ctor(self, "Climbable")
 

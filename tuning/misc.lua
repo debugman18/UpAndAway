@@ -31,3 +31,8 @@ FIRE.EXTINGUISH.SPEED = {
 
 	default = math.huge
 }
+
+-- The level of bean hate to spawn a bean giant.
+BEANHATED.THRESHOLD = 10
+-- How long it takes (seconds) to reduce the bean hate level in 1 unit.
+BEANHATED.DECAY_DELAY = 120

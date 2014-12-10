@@ -1,7 +1,7 @@
 local Tree = wickerrequire "utils.table.tree"
 
 
-local Quester = Class(Debuggable, function(self, inst)
+local Quester = HostClass(Debuggable, function(self, inst)
 	self.inst = inst
 
 	Debuggable._ctor(self, "Quester")

@@ -1,3 +1,5 @@
+--FIXME: not MP compatible (the full moon only thing)
+
 --[[
 -- RoG only parameters (like "onlyautumn") get translated into their vanilla
 -- counterparts automatically by patches.world_customisation_compat.

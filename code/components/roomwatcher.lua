@@ -5,7 +5,7 @@ local Topo = wickerrequire "game.topology"
 local FunctionQueue = wickerrequire "gadgets.functionqueue"
 
 
-local RoomWatcher = Class(Debuggable, function(self, inst)
+local RoomWatcher = HostClass(Debuggable, function(self, inst)
 	self.inst = inst
 	Debuggable._ctor(self, "RoomWatcher")
 	self:SetConfigurationKey("ROOM_WATCHER")

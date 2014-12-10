@@ -1,6 +1,9 @@
+-- This components acts locally on each client.
+
 local Pred = wickerrequire 'lib.predicates'
 
 local game = wickerrequire 'utils.game'
+local Game = game
 
 
 local Debuggable = wickerrequire 'adjectives.debuggable'
@@ -12,7 +15,7 @@ local Debuggable = wickerrequire 'adjectives.debuggable'
 --
 -- @class table
 -- @name SkyflySpawner
-local SkyflySpawner = Class(Debuggable, function(self, inst)
+local SkyflySpawner = HostClass(Debuggable, function(self, inst)
 	self.inst = inst
 	Debuggable._ctor(self, "SkyflySpawner")
 
@@ -248,14 +251,17 @@ end
 ---
 -- Gets a flower to spawn a fly on.
 function SkyflySpawner:GetSpawnFlower()
-	local player = GetPlayer()
+	local player = GetLocalPlayer()
+
+	if not player then return end
+
 	local minsq = self.min_distance*self.min_distance
 
-	return game.FindRandomEntity(
+	return Game.FindRandomEntity(
 		player,
 		self.max_distance,
 		function(flower)
-			return player:GetDistanceSqToInst(flower) >= minsq and not game.FindSomeEntity(
+			return player:GetDistanceSqToInst(flower) >= minsq and not Game.FindSomeEntity(
 				flower,
 				self.min_spread,
 				function(fly)

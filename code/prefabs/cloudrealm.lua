@@ -219,8 +219,10 @@ local function fn(Sim)
 		inst:AddComponent("clock")
 	end
 
-	inst:AddComponent("seasonmanager")
-	PatchSeasonManager(inst.components.seasonmanager)
+	if not IsDST() then
+		inst:AddComponent("seasonmanager")
+		PatchSeasonManager(inst.components.seasonmanager)
+	end
 
 	--AddNeutralComponent(inst, "quaker")
    
@@ -247,49 +249,56 @@ local function fn(Sim)
 
 	--inst.Map:SetOverlayTexture( "levels/textures/snow.tex" )
 	
-	inst:AddComponent("staticgenerator")
-	do
-		local staticgen = inst.components.staticgenerator
-		local cfg = Configurable("STATIC")
+	if IsHost() then
+		inst:AddComponent("staticgenerator")
+		do
+			local staticgen = inst.components.staticgenerator
+			local cfg = Configurable("STATIC")
 
-		staticgen:SetAverageUnchargedTime( cfg:GetConfig "AVERAGE_UNCHARGED_TIME" )
-		staticgen:SetAverageChargedTime( cfg:GetConfig "AVERAGE_CHARGED_TIME" )
-		staticgen:SetCooldown( cfg:GetConfig "COOLDOWN" )
+			staticgen:SetAverageUnchargedTime( cfg:GetConfig "AVERAGE_UNCHARGED_TIME" )
+			staticgen:SetAverageChargedTime( cfg:GetConfig "AVERAGE_CHARGED_TIME" )
+			staticgen:SetCooldown( cfg:GetConfig "COOLDOWN" )
 
-		staticgen:StartGenerating()
+			staticgen:StartGenerating()
+		end
 	end
 
-	inst:AddComponent("cloudambientmanager")
+	if not IsDedicated() then
+		inst:AddComponent("cloudambientmanager")
 
-	inst:AddComponent("skyflyspawner")
-	do
-		local flyspawner = inst.components.skyflyspawner
-		local cfg = Configurable("SKYFLYSPAWNER")
-
-		flyspawner:SetFlyPrefab("skyflies")
-		flyspawner:SetMaxFlies( cfg:GetConfig "MAX_FLIES" )
+		inst:AddComponent("skyflyspawner")
 		do
-			local min, max = unpack(cfg:GetConfig "SPAWN_DELAY")
-			local dt = max - min
-			flyspawner:SetDelay( function() return min + dt*math.random() end )
-		end
-		do
-			local min, max = unpack(cfg:GetConfig "PLAYER_DISTANCE")
-			flyspawner:SetMinDistance(min)
-			flyspawner:SetMaxDistance(max)
-		end
-		flyspawner:SetMinFlySpread(cfg:GetConfig "MIN_FLY2FLY_DISTANCE")
-		flyspawner:SetPersistence( cfg:GetConfig "PERSISTENT" )
+			local flyspawner = inst.components.skyflyspawner
+			local cfg = Configurable("SKYFLYSPAWNER")
 
-		flyspawner:SetShouldSpawnFn(function()
-			local sgen = inst.components.staticgenerator
-			return sgen and sgen:IsCharged()
-		end)
+			flyspawner:SetFlyPrefab("skyflies")
+			flyspawner:SetMaxFlies( cfg:GetConfig "MAX_FLIES" )
+			do
+				local min, max = unpack(cfg:GetConfig "SPAWN_DELAY")
+				local dt = max - min
+				flyspawner:SetDelay( function() return min + dt*math.random() end )
+			end
+			do
+				local min, max = unpack(cfg:GetConfig "PLAYER_DISTANCE")
+				flyspawner:SetMinDistance(min)
+				flyspawner:SetMaxDistance(max)
+			end
+			flyspawner:SetMinFlySpread(cfg:GetConfig "MIN_FLY2FLY_DISTANCE")
+			flyspawner:SetPersistence( cfg:GetConfig "PERSISTENT" )
 
-		flyspawner:Touch()
+			flyspawner:SetShouldSpawnFn(function()
+				local sgen = inst.components.staticgenerator
+				return sgen and sgen:IsCharged()
+			end)
+
+			flyspawner:Touch()
+		end
 	end
 
-	inst:AddComponent("balloonhounded")
+	if not IsDST() then
+		--FIXME: not MP compatible
+		inst:AddComponent("balloonhounded")
+	end
 
 	inst:DoTaskInTime(0, FilterOverrides)
 

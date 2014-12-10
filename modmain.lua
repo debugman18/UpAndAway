@@ -11,6 +11,18 @@ TheMod = use 'start_wicker'
 modimport "assets.lua"
 modimport "prefabfiles.lua"
 
+local extra_prefabs
+if GLOBAL.kleifileexists("scripts/networking.lua") then
+	extra_prefabs = MultiplayerExclusive_PrefabFiles
+else
+	extra_prefabs = SingleplayerExclusive_PrefabFiles
+end
+if extra_prefabs then
+	for _, p in GLOBAL.ipairs(extra_prefabs) do
+		GLOBAL.table.insert(PrefabFiles, p)
+	end
+end
+
 
 --RemapSoundEvent("dontstarve/music/music_FE", "upandaway/music/music_FE")
 
@@ -35,6 +47,7 @@ if TheMod:Debug() then
 end
 --]]
 
+TheMod:Say("Running main...")
 TheMod:Run("main")
 
 

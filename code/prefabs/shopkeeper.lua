@@ -1,3 +1,5 @@
+--FIXME: not MP compatible
+
 BindGlobal()
 
 -- Configuration table.
@@ -35,7 +37,7 @@ local function onhit_speechcallback(inst, speech_mgr)
 	local doer = speech_mgr.listener
 
 	local pos = Vector3( doer.Transform:GetWorldPosition() )
-	GetSeasonManager():DoLightningStrike(pos)
+	GetPseudoSeasonManager():DoLightningStrike(pos)
 	
 	if doer.components.combat then
 		doer.components.combat:GetAttacked(nil, 0)
@@ -215,7 +217,7 @@ local function try_despawn(inst)
 
 	TheMod:DebugSay("Attempting to despawn [", inst, "]...")
 	
-	local sm = GetSeasonManager()
+	local sm = GetPseudoSeasonManager()
 	if not has_given_quest(inst)
 		and inst:IsAsleep()
 		and not (sm and sm:IsRaining())

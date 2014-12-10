@@ -34,9 +34,9 @@ local function onattackfn(inst, owner, target)
         lightning.Transform:SetPosition(owner_pt.x, owner_pt.y, owner_pt.z)
 
 		local damaged = false
-        if IsDLCEnabled(REIGN_OF_GIANTS) then
-            local headinsulator = GetPlayer().components.inventory:GetEquippedItem(EQUIPSLOTS.HEAD)
-            local bodyinsulator = GetPlayer().components.inventory:GetEquippedItem(EQUIPSLOTS.BODY)
+        if IsDLCEnabled(REIGN_OF_GIANTS) and owner.components.inventory then
+            local headinsulator = owner.components.inventory:GetEquippedItem(EQUIPSLOTS.HEAD)
+            local bodyinsulator = owner.components.inventory:GetEquippedItem(EQUIPSLOTS.BODY)
             local insulator = headinsulator or bodyinsulator
             if insulator and insulator.components.insulator then
                 owner.components.health:DoDelta(-10)

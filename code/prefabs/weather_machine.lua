@@ -1,6 +1,7 @@
 BindGlobal()
 
 local Pred = wickerrequire "lib.predicates"
+local Game = wickerrequire "game"
 
 local assets =
 {
@@ -25,9 +26,6 @@ local surface_weather_effects = {
 			sm:StartPrecip()
 		end
 	end,
-	function(sm)
-		sm:Cycle()
-	end,
 }
 if IsDLCEnabled(REIGN_OF_GIANTS) then
 	table.insert(surface_weather_effects, function(sm)
@@ -50,7 +48,7 @@ local function weather_off(inst)
 end	
 
 local function DoWeatherPick(inst)
-	local sm = GetSeasonManager()
+	local sm = GetPseudoSeasonManager()
 	if not sm then return end
 
 	local weather_id = math.random(#surface_weather_effects)
@@ -60,7 +58,7 @@ local function DoWeatherPick(inst)
 end	
 
 local function DoCloudrealmEffect(inst)
-	local sm = GetSeasonManager()
+	local sm = GetPseudoSeasonManager()
 	local sgen = GetStaticGenerator()
 	if sgen then
 		if sgen:IsPermanentState() then
@@ -99,7 +97,10 @@ local function weather_on(inst)
 		TheMod:DebugSay("[", inst, "] In another world.")
 		DoWeatherPick(inst)
 	end
-	GetPlayer().components.sanity:DoDelta(-10)
+
+	for _, p in ipairs(Game.FindAllPlayersInRange(inst, 12)) do
+		p.components.sanity:DoDelta(-10)
+	end
 
 	inst.persists = false
 	inst:RemoveComponent("machine")

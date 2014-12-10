@@ -13,6 +13,7 @@ Math = wickerrequire "math"
 Configurable = wickerrequire "adjectives.configurable"
 Debuggable = wickerrequire "adjectives.debuggable"
 
+FunctionQueue = wickerrequire "gadgets.functionqueue"
 
 LOGROOT = MODROOT .. "log/"
 
@@ -29,10 +30,10 @@ end)
 -- Since this environment is shared by every mod file, it should remain that way.
 --]]
 
-function GetStaticGenerator()
+GetStaticGenerator = memoize_0ary(function()
 	local w = GetWorld()
 	return w and w.components.staticgenerator
-end
+end)
 GetStaticGen = GetStaticGenerator
 
 

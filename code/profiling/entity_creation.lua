@@ -102,21 +102,24 @@ function EntityCreationProfiler:Report()
 end
 
 
+if IsHost() then
+	TheMod:AddSimPostInit(function()
+		local P = EntityCreationProfiler()
 
-TheMod:AddSimPostInit(function(inst)
-	local P = EntityCreationProfiler()
+		local inst = GetLocalPlayer()
 
-	inst:DoTaskInTime(math.max(0, P:GetConfig("START_DELAY") or 0), function()
-		P:Bind()
+		inst:DoTaskInTime(math.max(0, P:GetConfig("START_DELAY") or 0), function()
+			P:Bind()
+		end)
+
+		inst.OnSave = (function()
+			local oldOnSave = inst.OnSave
+
+			return function(...)
+				P:Report()
+
+				return (oldOnSave or Lambda.Nil)(...)
+			end
+		end)()
 	end)
-
-	inst.OnSave = (function()
-		local oldOnSave = inst.OnSave
-
-		return function(...)
-			P:Report()
-
-			return (oldOnSave or Lambda.Nil)(...)
-		end
-	end)()
-end)
+end

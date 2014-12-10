@@ -9,7 +9,7 @@ local oneaten
 --[[
 -- The temperature and edible components should be added as well.
 --]]
-local HeatedEdible = Class(Debuggable, function(self, inst)
+local HeatedEdible = HostClass(Debuggable, function(self, inst)
 	assert( inst.components.temperature, "The Temperature component should be added before the HeatedEdible one!" )
 
 	self.inst = inst

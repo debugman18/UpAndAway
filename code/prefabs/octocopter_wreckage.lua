@@ -27,11 +27,11 @@ local function RepairOctocopter(inst)
 	inst.AnimState:PushAnimation("wrecked_fixed", false)
 
     local function prealphawarning(inst)
-        SetPause(false) 
+        TryPause(false) 
         TheFrontEnd:PopScreen()
     end
 
-    SetPause(true)
+    TryPause(true)
     local options = {
         {text="Well, okay.", cb = prealphawarning},
     }

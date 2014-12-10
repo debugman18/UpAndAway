@@ -1,5 +1,10 @@
 BindGlobal()
 
+local Game = wickerrequire "game"
+
+local Configurable = wickerrequire "adjectives.configurable"
+local cfg = Configurable("WINNIE_STAFF")
+
 local assets=
 {
     Asset("ANIM", "anim/ua_staves.zip"),
@@ -12,54 +17,56 @@ local assets=
 local prefabs = {}
 
 local function herd_enable(inst, owner)
-    local owner = inst.components.inventoryitem and inst.components.inventoryitem.owner
-    if owner and owner.components.leader then
-        local x,y,z = owner.Transform:GetWorldPosition()
+	local leadercmp = owner and owner.components.leader
+    if leadercmp then
+		local max_new_followers = cfg("MAX_FOLLOWERS") - leadercmp:CountFollowers("beefalo")
 
-        local ents = TheSim:FindEntities(x,y,z, 20, {"beefalo"})
+		if max_new_followers > 0 then
+			local function filter_fn(beefalo)
+				local followercmp = beefalo.components.follower
+				return followercmp and not leadercmp:IsFollower(beefalo)
+			end
 
-        for k,v in pairs(ents) do
-            if v.components.follower and not v.components.follower.leader  and not owner.components.leader:IsFollower(v) and owner.components.leader.numfollowers < 5 then
-                owner.components.leader:AddFollower(v)
-                TheMod:DebugSay("Follower is ", v.prefab)
-            end
-        end
+			local ents = Game.FindClosestEntities(owner, cfg("MAX_FOLLOWER_DIST"), filter_fn, max_new_followers, {"beefalo"})
 
-        for k,v in pairs(owner.components.leader.followers) do
+			for _, v in ipairs(ents) do
+				owner.components.leader:AddFollower(v)
+				TheMod:DebugSay("Added follower [", v, "]")
+			end
+		end
+
+        for k, v in pairs(owner.components.leader.followers) do
             if k:HasTag("beefalo") and k.components.follower then
-                k.components.follower:AddLoyaltyTime(1)
+                k.components.follower:AddLoyaltyTime(1.1)
+				--[[
                 if not k.components.sanityaura then
                     k:AddComponent("sanityaura")
                 end
+				]]--
             end
         end
     end          
-end 
+end
 
 local function herd_disable(inst, owner)
     if inst.updatetask then
         inst.updatetask:Cancel()
         inst.updatetask = nil
     end    
-    local owner = inst.components.inventoryitem and inst.components.inventoryitem.owner
-    if owner and owner.components.leader then
-        local x,y,z = owner.Transform:GetWorldPosition()
-
-        local ents = TheSim:FindEntities(x,y,z, 20, {"beefalo"})
-
-        for k,v in pairs(ents) do
-            if v.components.follower and owner.components.leader:IsFollower(v) then
-                GetPlayer().components.leader:RemoveFollower(v)
-                v.components.follower:SetLeader(nil)
-                v:RemoveComponent("sanityaura")
-				if v.brain and v.brain.bt then
-					v.brain.bt:Reset()
+	local leadercmp = owner and owner.components.leader
+    if leadercmp then
+        for follower in pairs(leadercmp.followers) do
+            if follower:HasTag("beefalo") and follower.components.follower then
+                leadercmp:RemoveFollower(follower)
+                follower.components.follower:SetLeader(nil)
+                --follower:RemoveComponent("sanityaura")
+				if follower.brain and follower.brain.bt then
+					follower.brain.bt:Reset()
 				end
-                TheMod:DebugSay("Removing follower ",v.prefab)
+                TheMod:DebugSay("Removing follower [",follower, "]")
             end
         end
     end 
-    GetPlayer().components.leader:RemoveFollowersByTag("beefalo")    
 end    
 
 local function onequip(inst, owner) 
@@ -68,17 +75,28 @@ local function onequip(inst, owner)
     owner.AnimState:Hide("ARM_normal")
 	if inst.updatetask then
 		inst.updatetask:Cancel()
+		inst.updatetask = nil
 	end
-    inst.updatetask = inst:DoPeriodicTask(1, herd_enable, 1)
+	if owner.prefab == "winnie" then
+		inst.updatetask = inst:DoPeriodicTask(1, function(inst)
+			herd_enable(inst, owner)
+		end, 1)
+	end
 end
 
 local function onunequip(inst, owner) 
     owner.AnimState:Hide("ARM_carry") 
     owner.AnimState:Show("ARM_normal")
-    herd_disable(inst, owner) 
+	if inst.updatetask then
+		inst.updatetask:Cancel()
+		inst.updatetask = nil
+	end
+	if owner.prefab == "winnie" then
+		herd_disable(inst, owner) 
+	end
 end
 
-local function fn(Sim)
+local function fn()
     local inst = CreateEntity()
     local trans = inst.entity:AddTransform()
     local anim = inst.entity:AddAnimState()
@@ -103,5 +121,4 @@ local function fn(Sim)
     return inst
 end
 
-return Prefab( "common/inventory/winnie_staff", fn, assets) 
-
+return Prefab( "common/inventory/winnie_staff", fn, assets, prefabs) 
