@@ -1,7 +1,7 @@
 BindGlobal()
 
 local Configurable = wickerrequire 'adjectives.configurable'
-local cfg = Configurable "HOTBEVERAGE"
+local cfg = Configurable "BEVERAGE"
 
 local assets =
 {

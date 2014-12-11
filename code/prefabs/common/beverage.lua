@@ -4,7 +4,7 @@ local Lambda = wickerrequire 'paradigms.functional'
 local Configurable = wickerrequire 'adjectives.configurable'
 
 
-local cfg = Configurable "HOTBEVERAGE"
+local cfg = Configurable "BEVERAGE"
 
 
 local function add_beverage_animstate(inst, data)
@@ -25,18 +25,11 @@ local function add_beverage_animstate(inst, data)
 	return anim
 end
 
-local function ambrosiafn(inst, eater)
-	if (inst.prefab == "ambrosiatea") and (math.random(1,10) == 1) then
-		if eater.components.ambrosiarespawn then
-			TheMod:DebugSay("Free respawn. Lucky you.")
-			eater.components.ambrosiarespawn:Enable()
-		end	
-	end	
-end	
-
 local function MakeBeverage(name, data)
 	local assets = data.assets
 	local prefabs = JoinArrays(data.prefabs or {}, {cfg:GetConfig("SPOILED_PREFAB")})
+
+	local beverage_pretty_name = STRINGS.NAMES[name:upper()]
 
 	local function basic_fn()
 		local inst = CreateEntity()
@@ -85,51 +78,51 @@ local function MakeBeverage(name, data)
 				edible.foodtype = data.foodtype
 			end
 
-			inst.components.edible:SetOnEatenFn(ambrosiafn)
+			if data.oneatenfn then
+				inst.components.edible:SetOnEatenFn(data.oneatenfn)
+			end
 		end
 
-		inst:AddComponent("temperature")
-		do
-			local temperature = inst.components.temperature
+		if data.temperature then
+			inst:AddComponent("temperature")
+			do
+				local temperature = inst.components.temperature
 
-			-- Freezing point.
-			temperature.mintemp = 0
-			-- Boiling point.
-			temperature.maxtemp = 100
+				-- Freezing point.
+				temperature.mintemp = 0
+				-- Boiling point.
+				temperature.maxtemp = 100
 
-			temperature.inherentinsulation = cfg:GetConfig("INHERENT_INSULATION") or 0
+				temperature.inherentinsulation = cfg:GetConfig("INHERENT_INSULATION") or 0
 
-			if data.temperature then
 				local temp = math.max(temperature.mintemp, math.min(temperature.maxtemp, data.temperature))
 				temperature.current = temp
 			end
 
+			inst:AddComponent("heatededible")
+			do
+				local heatededible = inst.components.heatededible
+
+				heatededible:SetHeatCapacity(data.heat_capacity or 0.15)
+			end
+
+			--This turns tea into iced tea when kept in an icebox.
+			inst.icedthreshold = 5
+			inst.warmthreshold = 15
+
+			inst:ListenForEvent("temperaturedelta", function(inst) 
+				local temperature = inst.components.temperature.current
+				if beverage_pretty_name then
+					if temperature <= inst.icedthreshold then
+						inst.components.named:SetName("Iced "..beverage_pretty_name)
+					elseif temperature >= inst.warmthreshold then
+						inst.components.named:SetName(beverage_pretty_name)
+					end
+				end
+			end)
 		end
-
-		inst:AddComponent("heatededible")
-		do
-			local heatededible = inst.components.heatededible
-
-			heatededible:SetHeatCapacity(data.heat_capacity or 0.15)
-		end
-
-		--This turns tea into iced tea when kept in an icebox.
-		inst.icedthreshold = 5
-		inst.warmthreshold = 15
 
 		inst:AddComponent("named")
-
-		inst:ListenForEvent("temperaturedelta", function(inst) 
-			local teaname = STRINGS.NAMES[string.upper(inst.prefab)]
-			local temperature = inst.components.temperature.current
-			if teaname then
-				if temperature <= inst.icedthreshold then
-					inst.components.named:SetName("Iced "..teaname)
-				elseif temperature >= inst.warmthreshold then
-					inst.components.named:SetName(teaname)
-				end
-			end
-		end)
 
 		return inst
 	end

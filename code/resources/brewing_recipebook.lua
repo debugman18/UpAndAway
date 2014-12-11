@@ -7,8 +7,8 @@
 local Lambda = wickerrequire 'paradigms.functional'
 
 local Configurable = wickerrequire 'adjectives.configurable'
-local basic_cfg = Configurable("HOTBEVERAGE")
-local tea_cfg = Configurable("HOTBEVERAGE", "TEA")
+local basic_cfg = Configurable("BEVERAGE")
+local tea_cfg = Configurable("BEVERAGE", "TEA")
 
 
 -- Syntax conveniences.

@@ -39,9 +39,7 @@ local function AddToNode(inst, node)
 
 	inst.components.emitter.density_factor = node.area*DENSITY
 
-	if inst.AddToNode == AddToNode then
-			inst.AddToNode = AddToNodeError
-	end
+	inst.AddToNode = AddToNodeError
 end
 
 local function fn()

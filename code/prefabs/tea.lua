@@ -3,10 +3,20 @@ BindGlobal()
 
 local Configurable = wickerrequire 'adjectives.configurable'
 
-local MakeBeverage = pkgrequire 'common.hotbeverage'
+local MakeBeverage = pkgrequire 'common.beverage'
 
-local cfg = Configurable("HOTBEVERAGE", "TEA")
+local cfg = Configurable("BEVERAGE", "TEA")
 
+
+-- oneatenfn for ambrosia tea.
+local function ambrosiafn(inst, eater)
+	if math.random() < 0.1 then
+		if eater.components.ambrosiarespawn then
+			TheMod:DebugSay("Free respawn. Lucky you.")
+			eater.components.ambrosiarespawn:Enable()
+		end	
+	end	
+end	
 
 --[[
 -- Basic tea data, as used by MakeBeverage.
@@ -498,6 +508,8 @@ local tea_data = {
 		hunger = math.random(-40,20),
 
 		temperature = 100,
+
+		oneatenfn = ambrosiafn,
 	}),	
 
 	spoiledtea = MergeMaps(basic_tea_data, {
