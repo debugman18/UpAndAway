@@ -19,6 +19,12 @@ local function fn(Sim)
 	inst.AnimState:SetBuild("cloud_fruit")
 	inst.AnimState:PlayAnimation("idle")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("inventoryitem")
@@ -54,6 +60,12 @@ local function cookedfn(inst)
 	inst.AnimState:SetBank("dragonfruit")
 	inst.AnimState:SetBuild("cloud_fruit")
 	inst.AnimState:PlayAnimation("cooked")
+
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
 
 	inst:AddComponent("inspectable")
 

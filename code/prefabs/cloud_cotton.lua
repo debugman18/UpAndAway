@@ -19,6 +19,12 @@ local function fn(Sim)
     anim:SetBuild("cloudcotton")
     anim:PlayAnimation("idle")
 	trans:SetScale(0.7, 0.7, 0.7)
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
     
     inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM

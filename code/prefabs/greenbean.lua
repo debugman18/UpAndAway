@@ -28,6 +28,12 @@ local function fn(Sim)
     inst.AnimState:SetBuild("greenbean")
     inst.AnimState:PlayAnimation("closed")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = 10
 
@@ -63,6 +69,12 @@ local function cookedfn(inst)
     inst.AnimState:SetBank("icebox")
     inst.AnimState:SetBuild("greenbean_cooked")
     inst.AnimState:PlayAnimation("closed")
+
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
 
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = 10

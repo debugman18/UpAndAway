@@ -32,6 +32,12 @@ local function fn(Sim)
     anim:SetBank("crow")
     anim:SetBuild("crow_build")
     anim:PlayAnimation("idle")
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
         
     inst:AddComponent("locomotor")
     inst.components.locomotor:EnableGroundSpeedMultiplier(false)

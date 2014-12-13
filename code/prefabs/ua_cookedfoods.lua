@@ -57,6 +57,12 @@ local function commonfn(inst)
 
     inst.AnimState:SetBank("icebox")
 
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
     inst:AddComponent("inspectable")
 
     inst:AddComponent("inventoryitem")

@@ -69,6 +69,12 @@ local function fn(Sim)
     anim:SetBuild("beanlet_lamp")
     anim:PlayAnimation("idle_1")
 
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
     inst:AddComponent("lootdropper")
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)

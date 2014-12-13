@@ -47,6 +47,12 @@ local function fn(Sim)
     inst.AnimState:SetBuild("beanstalk_sapling")
     inst.AnimState:PlayAnimation("idle_planted")
 
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
     inst:AddComponent("inspectable")
     
 	MakeSmallBurnable(inst, TUNING.SMALL_BURNTIME)

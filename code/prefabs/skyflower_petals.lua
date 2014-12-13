@@ -25,12 +25,16 @@ local function fncommon(Sim)
 	local trans = inst .entity:AddTransform()
 	local anim = inst.entity:AddAnimState()
     MakeInventoryPhysics(inst)
-    RemovePhysicsColliders(inst)
+    --RemovePhysicsColliders(inst)
     
     anim:SetBank("petals")
     anim:SetBuild("skyflower_petals")
     anim:PlayAnimation("anim")
     anim:SetRayTestOnBB(true);
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
 
     -------
 

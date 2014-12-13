@@ -26,6 +26,12 @@ local function fn(Sim)
 	inst.AnimState:SetBuild("rock_stalagmite")
     inst.AnimState:PlayAnimation("full")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
     inst:AddComponent("lootdropper")

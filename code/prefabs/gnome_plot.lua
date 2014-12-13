@@ -183,13 +183,14 @@ local function plot(level)
 		inst.AnimState:SetBuild("gnome_plot")
 		inst.AnimState:PlayAnimation("idle")
 
-		inst.OnSave = onsave
-		inst.OnLoad = onload
-
 		inst.AnimState:SetOrientation(ANIM_ORIENTATION.OnGround)
 		inst.AnimState:SetLayer(LAYER_BACKGROUND)
 		inst.AnimState:SetSortOrder(3)
 		inst.Transform:SetRotation(45)
+
+		------------------------------------------------------------------------
+		SetupNetwork(inst)
+		------------------------------------------------------------------------
 
 		inst:DoTaskInTime(.1, function() pickcrop(inst) end)
 	
@@ -207,6 +208,9 @@ local function plot(level)
 				end
 			end
 		end
+
+		inst.OnSave = onsave
+		inst.OnLoad = onload
 
 		return inst
 	end

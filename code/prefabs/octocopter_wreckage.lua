@@ -1,3 +1,4 @@
+--FIXME: whatever's going on here (see GetWorld().part sets).
 BindGlobal()
 
 local PopupDialogScreen = require "screens/popupdialog"
@@ -119,6 +120,10 @@ local function fn(inst)
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("octocopter.tex")
 
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
     inst:AddComponent("inspectable")
 
 	inst:AddComponent("trader")
@@ -151,6 +156,10 @@ local function part1fn(inst)
     inst.AnimState:SetBuild("octocopterpart1")
     inst.AnimState:PlayAnimation("closed")
 
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
 	inst:AddComponent("inspectable")
 	inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/octocopterpart1.xml"
@@ -177,6 +186,10 @@ local function part2fn(inst)
     inst.AnimState:SetBank("icebox")
     inst.AnimState:SetBuild("octocopterpart2")
     inst.AnimState:PlayAnimation("closed")
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
 
 	inst:AddComponent("inspectable")
 	inst:AddComponent("inventoryitem")
@@ -205,6 +218,10 @@ local function part3fn(inst)
     inst.AnimState:SetBuild("octocopterpart3")
     inst.AnimState:PlayAnimation("closed")
 
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
 	inst:AddComponent("inspectable")
 	inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/octocopterpart3.xml"
@@ -223,6 +240,11 @@ local function part1spawner(inst)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()	
 	inst:AddTag("partspawner")
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
 	GetWorld().octocopterpart1 = inst
 	inst:ListenForEvent("octocoptercrash", 
 		function(inst) 
@@ -238,6 +260,11 @@ local function part2spawner(inst)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()	
 	inst:AddTag("partspawner")
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
 	GetWorld().octocopterpart2 = inst
 	inst:ListenForEvent("octocoptercrash", 
 		function(inst) 
@@ -253,6 +280,11 @@ local function part3spawner(inst)
 	local inst = CreateEntity()
 	inst.entity:AddTransform()	
 	inst:AddTag("partspawner")
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
 	GetWorld().octocopterpart3 = inst
 	inst:ListenForEvent("octocoptercrash", 
 		function(inst) 

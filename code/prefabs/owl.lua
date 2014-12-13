@@ -110,6 +110,12 @@ local function fn()
 
     anim:SetBank("pigman")
     anim:SetBuild("owl")
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
     
     inst:AddComponent("locomotor")
     inst.components.locomotor.runspeed = 10

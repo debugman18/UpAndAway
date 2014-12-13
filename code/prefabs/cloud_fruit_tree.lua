@@ -71,6 +71,12 @@ local function fn(Sim)
     inst.AnimState:SetBuild("cloud_fruit_tree")
 	inst.AnimState:PlayAnimation("idle_loop", true)
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
     inst.entity:AddMiniMapEntity()

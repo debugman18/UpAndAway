@@ -16,6 +16,12 @@ local function fn(Sim)
 	inst.AnimState:SetBuild("void_placeholder")
 	inst.AnimState:PlayAnimation("anim")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 

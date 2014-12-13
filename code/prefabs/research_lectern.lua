@@ -39,6 +39,12 @@ local function fn(Sim)
 	local scale = 2
 	inst.Transform:SetScale(scale,scale,scale)
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
 	inst.entity:AddMiniMapEntity()

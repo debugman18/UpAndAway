@@ -29,6 +29,12 @@ local function fn(Sim)
     inst.AnimState:SetBank("armor_sanity")
     inst.AnimState:SetBuild("cotton_vest")
     inst.AnimState:PlayAnimation("anim")
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
     
     inst:AddComponent("inspectable")
     

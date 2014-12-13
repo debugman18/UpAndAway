@@ -169,6 +169,12 @@ local function dugfn(inst)
 	inst.AnimState:SetBuild("tea_bush")
 	inst.AnimState:PlayAnimation("dropped")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("inventoryitem")
@@ -205,7 +211,13 @@ local function fn(Sim)
 	anim:PlayAnimation("berriesmost", false)
 
     inst.entity:AddMiniMapEntity()
-    inst.MiniMapEntity:SetIcon("tea_bush.tex")	
+    inst.MiniMapEntity:SetIcon("tea_bush.tex")
+
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+	
 	
 	inst:AddComponent("pickable")
 	inst.components.pickable.picksound = "dontstarve/wilson/harvest_berries"

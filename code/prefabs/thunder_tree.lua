@@ -130,7 +130,7 @@ local function chop_tree(inst, chopper, chops)
 end
 
 local function dig_up_stump(inst, chopper)
-	inst.components.lootdropper:SpawnLootPrefab("cloud_lightning")
+	--inst.components.lootdropper:SpawnLootPrefab("cloud_lightning")
     inst.components.lootdropper:SpawnLootPrefab("thunder_log")
     inst:Remove()
 end
@@ -204,6 +204,12 @@ local function fn(Sim)
 
     local l_stage = math.random(#growth_stages)
 
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
     inst:AddComponent("growable")
     inst.components.growable.stages = growth_stages
     inst.components.growable:SetStage(l_stage)
@@ -222,13 +228,15 @@ local function fn(Sim)
     end 
 
     inst:AddComponent("childspawner")
-    inst.components.childspawner.childname = "cloud_lightning"
+    --inst.components.childspawner.childname = "cloud_lightning"
+    inst.components.childspawner.childname = "ball_lightning"
     inst.components.childspawner:SetSpawnedFn(OnSpawned)
     inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*16)
-    inst.components.childspawner:SetSpawnPeriod(10)
+    --inst.components.childspawner:SetSpawnPeriod(10)
+	inst.components.childspawner:SetSpawnPeriod(50)
     inst.components.childspawner:SetMaxChildren(1)
     inst.components.childspawner.spawnoffscreen = false
-    inst.components.childspawner:SetRareChild("ball_lightning", 0.2)
+    --inst.components.childspawner:SetRareChild("ball_lightning", 0.2)
     
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.CHOP)

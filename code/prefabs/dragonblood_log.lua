@@ -112,6 +112,12 @@ local function fn(Sim)
 	inst.AnimState:SetBuild("dragonblood_log")
 	inst.AnimState:PlayAnimation("idle")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("temperature")
 	inst.components.temperature.maxtemp = 2
 	inst.components.temperature.mintemp = 2

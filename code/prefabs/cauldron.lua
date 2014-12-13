@@ -55,6 +55,12 @@ local function fn(Sim)
 	inst.AnimState:SetBuild("cauldron")
 	inst.AnimState:PlayAnimation("idle")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("brewer")
 	do
 		local brewer = inst.components.brewer

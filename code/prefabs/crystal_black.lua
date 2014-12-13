@@ -80,6 +80,12 @@ local function fn(Sim)
 	inst:AddTag("crystal")
 	inst:AddTag("owl_crystal")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
     inst:AddComponent("lootdropper")

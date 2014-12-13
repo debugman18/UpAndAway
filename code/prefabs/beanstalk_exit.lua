@@ -56,6 +56,12 @@ local function fn(Sim)
 	inst.type = math.random(2)
     inst.AnimState:PlayAnimation("full_"..inst.type)
 
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
     inst:AddComponent("climbable")
     inst.components.climbable:SetDirection("DOWN")
 

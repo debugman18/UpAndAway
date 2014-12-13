@@ -48,6 +48,12 @@ local function fn()
 
 	MakeObstaclePhysics(inst, 1)
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("lootdropper")
 	inst.components.lootdropper:SetLoot(loot)
 	inst.components.lootdropper:AddChanceLoot("crystal_fragment_spire", 0.33)

@@ -311,6 +311,12 @@ local function itemfn(inst)
 	inst.AnimState:PlayAnimation("0")
 	inst.Transform:SetScale(.8,.8,.8)
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_MEDITEM
 
@@ -346,6 +352,12 @@ local function fn(inst)
 	--inst.Transform:SetScale(3,3,3)
 
 	inst.entity:AddLabel()
+
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
 	    
 	inst:AddComponent("inspectable")
 	inst:AddComponent("lootdropper")

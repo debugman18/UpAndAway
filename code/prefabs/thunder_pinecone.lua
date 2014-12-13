@@ -168,6 +168,12 @@ local function fn(Sim)
     inst.AnimState:SetBank("thunder_sapling")
     inst.AnimState:SetBuild("thunder_sapling")
 
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.atlasname = "images/inventoryimages/thunder_pinecone.xml"
 

@@ -19,6 +19,12 @@ local function fn(Sim)
 	inst.AnimState:SetBuild("cumulostone")
 	inst.AnimState:PlayAnimation("idle")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("inventoryitem")

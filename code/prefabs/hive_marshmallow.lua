@@ -74,6 +74,12 @@ local function fn(Sim)
 	anim:PlayAnimation("cocoon_small", true)
 
     inst:AddTag("structure")
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
     
     -------------------
 	inst:AddComponent("health")

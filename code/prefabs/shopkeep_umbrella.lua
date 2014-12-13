@@ -48,6 +48,12 @@ local function fn(Sim)
     
     inst:AddTag("sharp")
 
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
     inst:AddComponent("dapperness")
     inst.components.dapperness.mitigates_rain = true
     -------

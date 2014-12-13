@@ -62,7 +62,13 @@ local function fn(Sim)
     
     MakeCharacterPhysics(inst, 50, .5)    
     anim:SetBank("perd") -- name of the animation root
-    anim:SetBuild("duckraptor")  -- name of the file 
+    anim:SetBuild("duckraptor")
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+  -- name of the file 
 
     inst:AddComponent("locomotor")
     inst.components.locomotor.runspeed = 7

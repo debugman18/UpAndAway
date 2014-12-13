@@ -206,6 +206,12 @@ local function fn()
 
     inst.Transform:SetScale(1.2, 1.2, 1.2)
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	--[[
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM

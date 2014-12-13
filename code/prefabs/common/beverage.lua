@@ -42,6 +42,9 @@ local function MakeBeverage(name, data)
 		add_beverage_animstate(inst, data)
 		MakeInventoryPhysics(inst)
 
+		-----------------------------------------------------------------------
+		SetupNetwork(inst)
+		-----------------------------------------------------------------------
 		
 		--[[
 		-- Components.

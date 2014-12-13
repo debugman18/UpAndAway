@@ -43,6 +43,12 @@ local function fn(Sim)
     inst.AnimState:PlayAnimation("idle", true)
     inst.AnimState:SetRayTestOnBB(true);
     inst.Transform:SetScale(2,2,2)
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
     
     inst:AddComponent("inspectable")
    

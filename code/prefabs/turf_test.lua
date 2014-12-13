@@ -76,6 +76,12 @@ local function make_test_turf(name, data)
 		inst.AnimState:SetBuild(data.build)
 		data.anim = assert( data.anim )
 		inst.AnimState:PlayAnimation(data.anim)
+
+
+		------------------------------------------------------------------------
+		SetupNetwork(inst)
+		------------------------------------------------------------------------
+
 	
 		inst:AddComponent("stackable")
 		inst.components.stackable.maxsize = TUNING.STACK_SIZE_LARGEITEM

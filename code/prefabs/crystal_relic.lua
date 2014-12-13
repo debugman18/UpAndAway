@@ -131,6 +131,12 @@ local function fn()
     MakeObstaclePhysics(inst, 1.)
     inst.AnimState:SetMultColour(1, 1, 1, 0.7)
     inst:AddTag("structure")
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot(loot)
     

@@ -34,6 +34,12 @@ local function fn(Sim)
     local anim = inst.entity:AddAnimState()
 
     inst:AddTag("herd")
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
     inst:AddComponent("herd")
     inst.components.herd:SetMemberTag("sheep")
     inst.components.herd:SetGatherRange(40)

@@ -104,6 +104,12 @@ local function fn(Sim)
     inst:AddTag("crystal")
     inst:AddTag("crystal_water")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
     inst:AddComponent("lootdropper")

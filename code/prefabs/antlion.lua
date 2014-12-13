@@ -21,6 +21,10 @@ local function fn(Sim)
     anim:SetBank("antlion") -- name of the animation root
     anim:SetBuild("antlion")  -- name of the file
     anim:PlayAnimation("nod", true) -- name of the animation
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
 	
     return inst
 end

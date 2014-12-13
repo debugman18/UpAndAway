@@ -22,6 +22,12 @@ local function fn(Sim)
 	inst.AnimState:SetBuild("dragonblood_sap")
 	inst.AnimState:PlayAnimation("closed")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("inventoryitem")

@@ -94,6 +94,12 @@ local function fn()
     inst.trappedbuild = "robin_build"
 
     inst.Transform:SetScale(1.5, 1.5, 1.5)
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
     
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
     inst.components.locomotor:EnableGroundSpeedMultiplier(false)

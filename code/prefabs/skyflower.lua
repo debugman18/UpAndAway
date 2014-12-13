@@ -120,6 +120,10 @@ local function fn()
 	update_anim(inst)
 
 	inst:AddTag("flower")
+
+	-----------------------------------------------------------------------
+	SetupNetwork(inst)
+	-----------------------------------------------------------------------
     
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus

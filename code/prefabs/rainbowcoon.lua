@@ -24,12 +24,17 @@ local function fn()
 	inst.Transform:SetFourFaced()
 
 	MakeCharacterPhysics(inst, 10, 0.25)
-    MakeMediumBurnableCharacter(inst)
 
     anim:SetBank("kiki")
 	anim:SetBuild("kiki_basic")
 	
 	anim:PlayAnimation("idle_loop", true)
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+    MakeMediumBurnableCharacter(inst)
 
 	inst:AddComponent("inventory")
 

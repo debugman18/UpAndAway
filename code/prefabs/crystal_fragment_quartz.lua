@@ -19,6 +19,12 @@ local function fn(Sim)
 	inst.AnimState:SetBuild("crystal_fragment_quartz")
 	inst.AnimState:PlayAnimation("closed")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	--inst.Transform:SetScale(.6,.6,.6)
 
 	inst:AddComponent("stackable")

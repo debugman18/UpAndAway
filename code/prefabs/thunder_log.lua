@@ -28,6 +28,12 @@ local function fn(Sim)
 	inst.AnimState:SetBuild("thunder_log")
 	inst.AnimState:PlayAnimation("idle")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
     inst:AddComponent("fuel")

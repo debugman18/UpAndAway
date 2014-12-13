@@ -174,6 +174,10 @@ local function fn(Sim)
     inst.Light:SetIntensity(.5)
     inst.Light:SetColour(235/255,121/255,12/255)
 
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
     inst:AddTag("lightningrod")
 	inst:ListenForEvent("lightningstrike", onlightning)
 

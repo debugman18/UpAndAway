@@ -175,6 +175,12 @@ local function BuildKettlePrefab()
 		light:SetColour(235/255,62/255,12/255)
 
 
+		------------------------------------------------------------------------
+		SetupNetwork(inst)
+		------------------------------------------------------------------------
+
+
+
 		inst:AddComponent("brewer")
 		do
 			local brewer = inst.components.brewer
@@ -267,6 +273,12 @@ local function BuildKettleItemPrefab()
 	    inst.AnimState:SetBank("icebox")
 	    inst.AnimState:SetBuild("kettle_item")
 	    inst.AnimState:PlayAnimation("closed")
+
+
+		------------------------------------------------------------------------
+		SetupNetwork(inst)
+		------------------------------------------------------------------------
+
 
 
 		inst:AddComponent("inspectable")

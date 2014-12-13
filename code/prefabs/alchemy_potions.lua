@@ -30,6 +30,12 @@ local function make_potion(data)
 		anim:SetBuild(data.build or "potion_default")
 		anim:PlayAnimation(data.anim)
 
+
+		------------------------------------------------------------------------
+		SetupNetwork(inst)
+		------------------------------------------------------------------------
+
+
 		inst:AddComponent("inspectable")
 
 		inst:AddComponent("edible")
@@ -154,6 +160,7 @@ local function make_tunnel()
 		if not eater:HasTag("underground") then
 
 			local dirtmound = SpawnPrefab("potion_tunnel_mound")
+			dirtmound.persists = false
 			local follower = dirtmound.entity:AddFollower()
 			follower:FollowSymbol(eater.GUID, "swap_body", -60, 50, 0)
 			eater:AddTag("notarget")

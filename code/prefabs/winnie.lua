@@ -1,4 +1,6 @@
 --FIXME: not MP compatible
+if IsDST() then return end
+
 BindGlobal()
 
 local MakePlayerCharacter = require "prefabs/player_common"

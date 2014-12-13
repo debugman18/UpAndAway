@@ -132,6 +132,12 @@ local function fn(Sim)
 
 	MakeObstaclePhysics(inst, .8)
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("machine")

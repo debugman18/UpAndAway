@@ -31,6 +31,12 @@ local function make_leaf(name, data)
 		anim:PlayAnimation(data.anim, true)
 		inst.Transform:SetScale(3,3,3)
 
+
+		------------------------------------------------------------------------
+		SetupNetwork(inst)
+		------------------------------------------------------------------------
+
+
 		
 		inst:AddComponent("inspectable")
 

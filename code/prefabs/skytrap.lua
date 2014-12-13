@@ -70,6 +70,12 @@ local function fn(Sim)
 	-- This means they're neutral to the cloud realm, not the player.
 	inst:AddTag("cloudneutral")
 
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
     inst:AddComponent("inspectable")    
 
     inst:AddComponent("combat")

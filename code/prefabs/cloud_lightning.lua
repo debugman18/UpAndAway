@@ -1,4 +1,4 @@
---TODO: allow local and non-local existence
+-- IMPORTANT: This is a non-networked entity.
 
 local Lambda = wickerrequire 'paradigms.functional'
 

@@ -54,6 +54,12 @@ local function fn(Sim)
     inst.AnimState:SetBank("flint")
     inst.AnimState:SetBuild("golden_sunflower_seeds")
     inst.AnimState:PlayAnimation("idle")
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
     
     inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM

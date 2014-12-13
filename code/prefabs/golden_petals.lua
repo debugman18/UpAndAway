@@ -19,6 +19,12 @@ local function fn(Sim)
 	inst.AnimState:SetBuild("golden_petals")
 	inst.AnimState:PlayAnimation("closed")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
     inst:AddComponent("fuel")

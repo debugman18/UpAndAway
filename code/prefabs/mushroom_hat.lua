@@ -193,6 +193,12 @@ local function fn()
 
 	inst:AddTag("hat")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 	inst:AddComponent("tradable")
 

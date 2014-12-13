@@ -53,6 +53,12 @@ local function fn(Sim)
 	inst:AddTag("crystal")
 	inst:AddTag("gnome_crystal")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
     inst:AddComponent("lootdropper")

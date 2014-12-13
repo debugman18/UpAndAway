@@ -1,3 +1,4 @@
+--FIXME: not MP compatible (shadows); network setup not added.
 BindGlobal()
 
 local assets =

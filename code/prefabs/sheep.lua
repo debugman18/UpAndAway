@@ -253,6 +253,9 @@ local function fn()
 
 	local anim = inst.entity:AddAnimState()
 	anim:SetBank("beefalo")
+	inst.AnimState:SetBuild("sheep_baby_build")
+	inst.AnimState:PlayAnimation("idle_loop", true)
+
 	--;(function(color) anim:SetMultColour(color, color, color, 1) end)(0.3 + 0.3*math.random())
 	
 	--[[
@@ -269,6 +272,12 @@ local function fn()
 
 	inst:AddTag("animal")
 	inst:AddTag("beefalo")
+
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
 	
 	inst:AddComponent("eater")	
 	inst.components.eater:SetVegetarian()	

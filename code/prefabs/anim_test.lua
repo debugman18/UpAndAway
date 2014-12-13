@@ -1,3 +1,4 @@
+-- Not networked.
 BindGlobal()
 
 local assets=
@@ -10,6 +11,8 @@ local assets=
 
 local function fn(Sim)
     local inst = CreateEntity()
+	inst.persists = false
+
     local trans = inst.entity:AddTransform()
     local anim = inst.entity:AddAnimState()
     

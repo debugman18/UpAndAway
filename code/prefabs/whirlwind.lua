@@ -59,6 +59,12 @@ local function fn(Sim)
 	physics:CollidesWith(_G.COLLISION.WORLD)
 
 
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
+
 	inst:AddComponent("entityflinger")
 	do
 		local entityflinger = inst.components.entityflinger

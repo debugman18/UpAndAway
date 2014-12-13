@@ -158,6 +158,12 @@ local function itemfn(inst)
 	inst.AnimState:PlayAnimation("1_4")
 	inst.Transform:SetScale(.8,.8,.8)
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_MEDITEM
 
@@ -214,6 +220,12 @@ local function fn(inst)
 	anim:SetBank("cloud_wall")
 	anim:SetBuild("cloud_wall")
 	anim:PlayAnimation("1_2", false)
+
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
 	    
 	inst:AddComponent("inspectable")
 	inst:AddComponent("lootdropper")

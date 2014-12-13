@@ -101,6 +101,10 @@ local function fn()
 
 	inst.Transform:SetScale(1.5,1.5,1.5)
 
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
 	StartUpdating(inst)
 
 	inst:ListenForEvent("entitysleep", StopUpdating)

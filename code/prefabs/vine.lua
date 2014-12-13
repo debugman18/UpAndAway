@@ -60,6 +60,12 @@ local function fn(Sim)
 	inst:AddTag("beanprotector")
     inst:AddTag("beanmonster")
 
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(20)
     

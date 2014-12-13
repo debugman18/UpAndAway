@@ -101,6 +101,12 @@ local function fn()
     inst.kind = ""
     anim:SetBuild("longbill")
 
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
     inst:AddComponent("locomotor")
     inst.components.locomotor.walkspeed = TUNING.KNIGHT_WALK_SPEED
     

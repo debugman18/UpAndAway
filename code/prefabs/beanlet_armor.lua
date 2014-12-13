@@ -34,6 +34,12 @@ local function fn()
     inst.AnimState:SetBuild("beanlet_armor")
     inst.AnimState:PlayAnimation("anim")
 
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
     inst:AddComponent("inspectable")
     
     inst:AddComponent("inventoryitem")

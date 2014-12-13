@@ -55,7 +55,13 @@ local function fn(Sim)
     inst:AddTag("owl_crystal")
   
     inst:AddTag("structure")
-    MakeObstaclePhysics(inst, 1)    
+    MakeObstaclePhysics(inst, 1)
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+    
 
     inst:AddComponent("inspectable")
 

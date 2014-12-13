@@ -92,6 +92,18 @@ local function fn()
     --inst.Physics:CollidesWith(COLLISION.WORLD)
 
     inst.Transform:SetScale(.6,.6,.6)
+
+	inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
+    inst.colour_idx = math.random(#colours)
+    anim:SetMultColour(colours[inst.colour_idx][1],colours[inst.colour_idx][2],colours[inst.colour_idx][3],0.7)
+
+    inst:AddTag("monster")
+    inst:AddTag("hostile")
+    inst:AddTag("shadow")
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
     
     inst:AddComponent("inspectable")
      
@@ -104,17 +116,6 @@ local function fn()
     inst.sounds = sounds
     inst:SetStateGraph("SGshadowcreature")
 
-    inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
-    inst.colour_idx = math.random(#colours)
-    anim:SetMultColour(colours[inst.colour_idx][1],colours[inst.colour_idx][2],colours[inst.colour_idx][3],0.7)
-
-    inst:AddTag("monster")
-    inst:AddTag("hostile")
-    inst:AddTag("shadow")
-
-    local brain = require "brains/shadowcreaturebrain"
-    inst:SetBrain(brain)
-    
     inst:AddComponent("sanityaura")
     inst.components.sanityaura.aurafn = CalcSanityAura
     
@@ -144,6 +145,9 @@ local function fn()
         inst.components.lootdropper:SetLoot(loot_rare) 
     end
     inst.components.lootdropper:AddChanceLoot("nightmarefuel", 0.2)
+
+    local brain = require "brains/shadowcreaturebrain"
+    inst:SetBrain(brain)
     
     inst:ListenForEvent("attacked", OnAttacked)
 

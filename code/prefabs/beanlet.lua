@@ -52,6 +52,12 @@ local function fn()
     inst:AddTag("smallcreature")
     inst:AddTag("beanlet")
 
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
     inst:AddComponent("inspectable")
 
     inst:AddComponent("knownlocations")

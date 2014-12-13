@@ -57,6 +57,12 @@ local function fn(Sim)
 
         inst:AddTag("hat")
 
+
+        ------------------------------------------------------------------------
+        SetupNetwork(inst)
+        ------------------------------------------------------------------------
+
+
         inst:AddComponent("inspectable")
 
         inst:AddComponent("inventoryitem")

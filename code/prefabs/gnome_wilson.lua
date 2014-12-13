@@ -18,6 +18,12 @@ local function fn(Sim)
 
 	inst.Transform:SetScale(.7,.7,.7)
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("inventoryitem")

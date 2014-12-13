@@ -155,13 +155,15 @@ local function fn()
 
 	MakeObstaclePhysics(inst, 0.25)
 
-	local stage = math.random(1, 3)
-
     inst.AnimState:SetBank("dragonblood_tree")
     inst.AnimState:SetBuild("dragonblood_tree")
 	inst.AnimState:PlayAnimation("idle", true)
 
 	set_colour(inst, random_colour())
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
 
 	inst:AddComponent("inspectable")
 
@@ -175,7 +177,7 @@ local function fn()
 
 	inst:AddComponent("growable")
     inst.components.growable.stages = growth_stages
-    inst.components.growable:SetStage(stage)
+    inst.components.growable:SetStage(math.random(1, 3))
     inst.components.growable.loopstages = true
     inst.components.growable:StartGrowing()
 

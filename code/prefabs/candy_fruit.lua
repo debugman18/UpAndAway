@@ -19,6 +19,12 @@ local function fn(Sim)
     anim:SetBuild("candy_fruit")
     anim:PlayAnimation("idle")
 	trans:SetScale(0.4, 0.6, 0.6)
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
     
     inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM

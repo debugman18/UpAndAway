@@ -67,6 +67,12 @@ local function fn(Sim)
     inst.AnimState:SetBank("icebox")
     inst.AnimState:SetBuild("gustflower_seeds")
     inst.AnimState:PlayAnimation("closed")
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
     
     inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM

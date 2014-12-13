@@ -117,6 +117,12 @@ local function fn(Sim)
 
     inst:AddTag("structure")
 
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
     inst:AddComponent("brewer")
 	do
 		local brewer = inst.components.brewer

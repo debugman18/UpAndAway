@@ -63,18 +63,8 @@ local function OnAttacked(inst, data)
     inst.components.combat:ShareTarget(data.attacker, 30, function(dude) return dude:HasTag("gumbear") and not dude.components.health:IsDead() end, 6)
 end
 
-    
-local function commonfn()
-	local inst = CreateEntity()
-
-    inst:AddComponent("health")
-
-    return inst
-end
-
-
 local function bear()
-	local inst = commonfn()
+	local inst = CreateEntity()
 	local trans = inst.entity:AddTransform()
 	local anim = inst.entity:AddAnimState()
 	local physics = inst.entity:AddPhysics()
@@ -95,6 +85,11 @@ local function bear()
     local color2 = 0.1 + math.random() * 0.9
     local color3 = 0.1 + math.random() * 0.9
     inst.AnimState:SetMultColour(color1, color2, color3, 0.75)    
+
+	-----------------------------------------------------------------------
+	SetupNetwork(inst)
+	-----------------------------------------------------------------------
+
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
     inst.components.locomotor.runspeed = 5 
     inst.components.locomotor.walkspeed = 2  
@@ -135,6 +130,7 @@ local function bear()
 	inst:AddComponent("sanityaura")
 	inst.components.sanityaura.aurafn = CalcSanityAura
 	
+	inst:AddComponent("health")
 	inst.components.health:SetMaxHealth(300) --Old was 360
 
     inst:AddComponent("eater")
@@ -208,6 +204,11 @@ local function rainbow()
     inst.AnimState:PlayAnimation("collapse_large")
 
 	inst:AddTag("FX")
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
 	inst:ListenForEvent("animover", function() inst:Remove() end)
 
 	inst:StartThread(function()

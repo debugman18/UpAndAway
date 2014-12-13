@@ -19,6 +19,12 @@ local function fn(Sim)
     local trans = inst.entity:AddTransform()
     local anim = inst.entity:AddAnimState()
 
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
     inst:AddComponent("periodicspawner")
     inst.components.periodicspawner:SetRandomTimes(20, math.random(1,16))
     inst.components.periodicspawner:SetPrefab("manta")

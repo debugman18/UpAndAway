@@ -28,7 +28,13 @@ local function fn(Sim)
     inst.AnimState:SetBank("kiki")
 	inst.AnimState:SetBuild("kiki_basic")
 	
-	inst.AnimState:PlayAnimation("idle_loop", true)    
+	inst.AnimState:PlayAnimation("idle_loop", true)
+
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+    
 
 	inst:AddComponent("inspectable")
 

@@ -19,6 +19,12 @@ local function fn(Sim)
 	inst.AnimState:PlayAnimation("idle")
 	inst.Transform:SetScale(scale,scale,scale)
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
 	return inst

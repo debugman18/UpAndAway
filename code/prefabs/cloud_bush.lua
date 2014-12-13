@@ -86,6 +86,12 @@ local function fn(Sim)
 
     local color = 0.5 + math.random() * 0.5
     anim:SetMultColour(color, color, color, 1)
+
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
 	
 	--inst.components.pickable.ontransplantfn = ontransplantfn
 

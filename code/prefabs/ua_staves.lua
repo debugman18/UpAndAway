@@ -64,6 +64,12 @@ local function make_staff(data)
 		inst:AddTag("nopunch")
 
 
+		------------------------------------------------------------------------
+		SetupNetwork(inst)
+		------------------------------------------------------------------------
+
+
+
 		inst:AddComponent("inspectable")
 		
 		inst:AddComponent("inventoryitem")

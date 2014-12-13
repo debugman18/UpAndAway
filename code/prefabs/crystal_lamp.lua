@@ -107,6 +107,12 @@ local function fn(Sim)
 	inst.AnimState:PlayAnimation("idle")
     inst.Transform:SetScale(1.7,1.7,1.7)
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
 	inst:AddTag("crystal_lamp")

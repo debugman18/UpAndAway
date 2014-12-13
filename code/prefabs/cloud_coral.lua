@@ -83,7 +83,13 @@ local function fn(Sim)
 	inst.Transform:SetScale(1,1,1)
 
     inst.entity:AddMiniMapEntity()
-    inst.MiniMapEntity:SetIcon("cloud_coral.tex") 	
+    inst.MiniMapEntity:SetIcon("cloud_coral.tex")
+
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+ 	
 
 	inst:AddComponent("inspectable")
 	

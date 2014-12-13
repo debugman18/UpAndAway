@@ -87,6 +87,12 @@ local function fn()
 	inst:AddTag("NOBLOCK")
 	inst:AddTag("NOCLICK")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("playerprox")
 	do
 		local playerprox = inst.components.playerprox

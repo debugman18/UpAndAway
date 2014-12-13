@@ -31,6 +31,12 @@ local function fn(Sim)
 	inst.AnimState:PlayAnimation("idle")
 	inst.Transform:SetScale(3,3,3)
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("inventoryitem")

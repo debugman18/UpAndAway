@@ -311,6 +311,12 @@ local function fn(Sim)
 	anim:PlayAnimation("idle", true)
  
 	inst.entity:AddLabel()
+
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
 	inst:AddComponent("talker")
 	inst.Label:SetFontSize(35)
 	inst.Label:SetFont(TALKINGFONT)

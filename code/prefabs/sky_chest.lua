@@ -70,6 +70,12 @@ local function chest(style)
 		inst.AnimState:SetBank(chests[style].bank)
 		inst.AnimState:SetBuild(chests[style].build)
 		inst.AnimState:PlayAnimation("closed")
+
+
+		------------------------------------------------------------------------
+		SetupNetwork(inst)
+		------------------------------------------------------------------------
+
 		
 		inst:AddComponent("inspectable")
 		inst:AddComponent("container")

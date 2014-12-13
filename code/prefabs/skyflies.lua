@@ -146,7 +146,13 @@ local function fn(Sim)
     inst.Physics:ClearCollisionMask()
     inst.Physics:CollidesWith(COLLISION.WORLD)
 	
-    inst.AnimState:SetRayTestOnBB(true);
+    inst.AnimState:SetRayTestOnBB(true)
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+;
     
     inst:AddComponent("playerprox")
 

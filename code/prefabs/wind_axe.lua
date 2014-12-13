@@ -86,6 +86,12 @@ local function fn(inst)
     anim:SetBuild("wind_axe")
     anim:PlayAnimation("idle")
 
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
     inst:AddComponent("weapon")
     inst.components.weapon:SetDamage(60)
     inst.components.weapon:SetOnAttack(onattackfn)

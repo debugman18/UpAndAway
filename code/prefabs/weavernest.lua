@@ -341,6 +341,12 @@ local function MakeWeaverNestFn(den_level)
 		inst:AddTag("weavernest")
 		inst:AddTag("hive")
 
+
+		------------------------------------------------------------------------
+		SetupNetwork(inst)
+		------------------------------------------------------------------------
+
+
 		-------------------
 		inst:AddComponent("health")
 		inst.components.health:SetMaxHealth(200)

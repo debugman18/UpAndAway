@@ -43,6 +43,12 @@ local function commonfn()
 	inst:AddTag("meat")
 	inst:AddTag("flying_fish")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("edible")
 	inst.components.edible.ismeat = true
 	inst.components.edible.foodtype = "MEAT"

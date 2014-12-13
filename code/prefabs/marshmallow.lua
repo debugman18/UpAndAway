@@ -23,6 +23,12 @@ local function fn(Sim)
     anim:SetBank("icebox")
     anim:SetBuild("marshmallow")
     anim:PlayAnimation("closed")
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
     
     inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM

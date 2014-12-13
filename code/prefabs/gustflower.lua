@@ -78,7 +78,13 @@ local function fn(Sim)
     inst.AnimState:SetBank("gustflower")
     inst.AnimState:SetBuild("gustflower")
     inst.AnimState:PlayAnimation("sway")
-    inst.AnimState:SetRayTestOnBB(true);
+    inst.AnimState:SetRayTestOnBB(true)
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+;
     
     inst:AddComponent("inspectable")
     

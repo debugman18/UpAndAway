@@ -45,6 +45,12 @@ local function fn(Sim)
 	inst.AnimState:SetBuild("scarecrow")
 	inst.AnimState:PlayAnimation("anim", true)
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
 	inst:AddComponent("childspawner")

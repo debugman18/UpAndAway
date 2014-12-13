@@ -153,6 +153,10 @@ local function pickedfn_common(bank, name)
 	inst.AnimState:SetBuild("jelly_caps")
 	inst.AnimState:PlayAnimation("idle")
 
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 

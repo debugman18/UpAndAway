@@ -15,6 +15,10 @@ local function makefn(bankname, buildname, animname)
         anim:SetBank(bankname)
         anim:SetBuild(buildname)
         anim:PlayAnimation(animname)
+
+		------------------------------------------------------------------------
+		SetupNetwork(inst)
+		------------------------------------------------------------------------
         
         return inst
     end

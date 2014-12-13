@@ -77,6 +77,12 @@ local function fn(Sim)
     MakeCharacterPhysics(inst, 50, 1)
     inst:AddTag("character")
 
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
     inst:AddComponent("locomotor")
     inst.components.locomotor.runspeed = 1
     inst.components.locomotor.walkspeed = 3

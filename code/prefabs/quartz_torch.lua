@@ -37,6 +37,12 @@ local function fn(Sim)
     anim:SetBuild("torch")
     anim:PlayAnimation("idle")
     MakeInventoryPhysics(inst)
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
     
     
     inst:AddComponent("weapon")

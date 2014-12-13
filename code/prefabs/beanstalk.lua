@@ -322,6 +322,12 @@ local function fn(Sim)
 
 	sound:PlaySound("dontstarve/tentacle/tentapiller_idle_LP","loop")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	
 	--[[
 	-- Lua-level components.

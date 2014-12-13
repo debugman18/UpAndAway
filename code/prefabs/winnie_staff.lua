@@ -106,6 +106,12 @@ local function fn()
     anim:SetBank("staffs")
     anim:SetBuild("ua_staves")
     anim:PlayAnimation("orangestaff")
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
     
     inst:AddComponent("inspectable")
     

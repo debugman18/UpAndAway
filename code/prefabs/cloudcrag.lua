@@ -43,6 +43,12 @@ local function common(Sim)
 	local minimap = inst.entity:AddMiniMapEntity()
 	minimap:SetIcon("rock.png")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("lootdropper") 
 	
 	inst:AddComponent("workable")

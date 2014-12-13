@@ -56,6 +56,12 @@ local function fn(Sim)
 	local scale = math.random(3,4)
 	inst.Transform:SetScale(scale, scale, scale)
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
     inst:AddComponent("lootdropper")

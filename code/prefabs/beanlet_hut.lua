@@ -142,6 +142,12 @@ local function fn()
     anim:PlayAnimation("idle", true)
     inst.Transform:SetScale(3,3,3)
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("childspawner")
 	inst.components.childspawner:SetRegenPeriod(100)
 	inst.components.childspawner:SetSpawnPeriod(20)

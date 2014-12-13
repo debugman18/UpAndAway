@@ -87,6 +87,12 @@ local function fn(Sim)
 	inst.AnimState:PlayAnimation("idle", true)
 	inst.Transform:SetFourFaced()
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
     local brain = require "brains/octocopterbrain"

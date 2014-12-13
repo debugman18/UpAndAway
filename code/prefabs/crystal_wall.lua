@@ -159,6 +159,10 @@ local function itemfn(inst)
 	inst.AnimState:PlayAnimation("1_4")
 	inst.Transform:SetScale(.8,.8,.8)
 
+	-----------------------------------------------------------------------
+	SetupNetwork(inst)
+	-----------------------------------------------------------------------
+
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_MEDITEM
 
@@ -229,6 +233,11 @@ local function fn(inst)
 	if not GetPseudoClock():IsDay() then
 		anim:SetBloomEffectHandle("shaders/anim.ksh")
 	end
+
+	-----------------------------------------------------------------------
+	SetupNetwork(inst)
+	-----------------------------------------------------------------------
+
 	inst:ListenForEvent("dusktime", function(inst) anim:SetBloomEffectHandle("shaders/anim.ksh") end, GetWorld())
 
 	inst:ListenForEvent("daytime", function(inst) anim:SetBloomEffectHandle("") end, GetWorld())

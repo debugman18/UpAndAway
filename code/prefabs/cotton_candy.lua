@@ -46,6 +46,12 @@ local function fn(Sim)
 	inst.AnimState:SetBank("cotton_candy")
 	inst.AnimState:SetBuild("cotton_candy")
 	inst.AnimState:PlayAnimation("idle")
+
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
  
     inst:AddComponent("inspectable")  
     

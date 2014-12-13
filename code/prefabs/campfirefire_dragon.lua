@@ -28,6 +28,12 @@ local function fn(Sim)
     
     inst:AddTag("fx")
 
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
     inst:AddComponent("heater")
     inst.components.heater.heatfn = GetHeatFn
 

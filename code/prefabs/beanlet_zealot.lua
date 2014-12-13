@@ -56,6 +56,12 @@ local function fn(Sim)
     inst:AddTag("beanlet")
     inst:AddTag("zealot")
 
+
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
     inst:AddComponent("knownlocations")
 
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph

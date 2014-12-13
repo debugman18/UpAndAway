@@ -19,6 +19,12 @@ local function fn(Sim)
 	inst.AnimState:SetBuild("cloud_algae_fragment")
 	inst.AnimState:PlayAnimation("closed")
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("stackable")
 	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 

@@ -24,6 +24,12 @@ local function fn(Sim)
     inst.AnimState:SetBuild("golden_rose")
     inst.AnimState:PlayAnimation("idle", true)
 
+
+	------------------------------------------------------------------------
+	SetupNetwork(inst)
+	------------------------------------------------------------------------
+
+
 	inst:AddComponent("inspectable")
 
     inst:AddComponent("pickable")
