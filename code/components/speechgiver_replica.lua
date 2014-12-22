@@ -52,6 +52,7 @@ function SpeechGiver:CanInteractWith(someone)
 		and someone and someone:IsValid()
 		and replica(someone).speechlistener
 		and not self:IsInCutScene()
+		and self:IsInterruptible()
 end
 
 ---

@@ -58,7 +58,7 @@ local UATemperatureReplica = Class(function(self, inst)
 	self.inst = inst
 
 	local temp = inst.components.temperature
-	assert((IsHost() and temp) and (IsClient() and not temp), "Logic error.")
+	assert(Logic.Implies(IsHost(), temp) and Logic.Implies(IsClient(), not temp), "Logic error.")
 
 	self.net_current = NetShortInt(inst, "ua_temperature.current")
 	self.net_maxtemp = NetShortInt(inst, "ua_temperature.maxtemp")

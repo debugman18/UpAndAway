@@ -881,16 +881,22 @@ function SpeechGiver:LoadPostPass(newents, data)
 		end
 	end
 
-	for _, mgrdata in ipairs(data) do
-		local mgr = SpeechManager.LoadFrom(self, mgrdata, newents)
-		if mgr then
-			speechgiver_pushspeechmanager(self, mgr)
+	self.inst:DoTaskInTime(0, function()
+		if not (self.inst:IsValid() and self.inst.components.speechgiver) then
+			return
 		end
-	end
 
-	if not self.speechmanagers[1] then
-		self:ClearQueue()
-	end
+		for _, mgrdata in ipairs(data) do
+			local mgr = SpeechManager.LoadFrom(self, mgrdata, newents)
+			if mgr then
+				speechgiver_pushspeechmanager(self, mgr)
+			end
+		end
+
+		if not self.speechmanagers[1] then
+			self:ClearQueue()
+		end
+	end)
 end
 
 function SpeechGiver:OnRemoveEntity()

@@ -102,6 +102,8 @@ local function MakeBeverage(name, data)
 				temperature.current = temp
 			end
 
+			inst:AddComponent("ua_temperature")
+
 			inst:AddComponent("heatededible")
 			do
 				local heatededible = inst.components.heatededible

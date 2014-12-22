@@ -20,9 +20,9 @@ BindModModule 'lib.brewing'
 --]]
 
 local teas = {
-	green = Recipe("greentea", Ingredient("tea_leaves", 1), 0),
-	black = Recipe("blacktea", Ingredient("blacktea_leaves"), 0),
-	white = Recipe("whitetea", Ingredient("tea_leaves", 2), 0),
+	green = Recipe("greentea", Ingredient("tea_leaves", 1), -3),
+	white = Recipe("whitetea", Ingredient("tea_leaves", 2), -2),
+	black = Recipe("blacktea", Ingredient("blacktea_leaves"), -1),
 }
 
 local black_teas = {

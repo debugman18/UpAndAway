@@ -331,10 +331,6 @@ local function fn(Sim)
 	inst:AddComponent("talker")
 	inst.Label:SetFontSize(35)
 	inst.Label:SetFont(TALKINGFONT)
-	--[[
-	-- Label:SetPos doesn't exist in DST anymore.
-	-- Label:SetPosition also exists in DS.
-	--]]
 	inst.Label:SetPosition(0,5,0)
 
 	------------------------------------------------------

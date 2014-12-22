@@ -54,7 +54,7 @@ local function make_temperature_meter(self)
 
 	local function SetTempPercent()
 		if HasTemperature(self) then
-			local temperature = replica(item).ua_temperature
+			local temperature = replica(self.item).ua_temperature
 			temp:GetAnimState():SetPercent("anim", 1 - temperature:GetPercent())
 		end
 	end

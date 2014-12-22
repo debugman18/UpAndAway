@@ -204,7 +204,7 @@ doEnterCutScene = function(inst)
 	_G.TheCamera:SetDistance(distance)
 	_G.TheCamera:SetGains( unpack(CAMERA_SLOW_GAINS) )
 
-	Game.ShowPlayerHUD(self.listener, false)
+	Game.ShowPlayerHUD(listener, false)
 end
 
 doAbortCutScene = function(inst)

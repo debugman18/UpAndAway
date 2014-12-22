@@ -19,7 +19,7 @@ local function NewVerticalLineWidgetSpec(prefab_name, numslots, has_button, acce
 		direction = "y",
 
 		-- Vertical offset for all widget elements.
-		offset = Vector3(0, -2, 0),
+		offset = Vector3(0, 14, 0),
 
 		margin = 8,
 
@@ -65,6 +65,8 @@ end
 kettle = NewVerticalLineWidgetSpec("kettle", 2, true)
 kettle:SetAnim {bank = "ui_kettle_1x2", build = "ui_kettle_1x2"}
 kettle:SetButtonInfo( GetBrewingButtonInfo("Brew") )
+
+print("ket but pos: "..tostring(kettle.spec.widget.buttoninfo.position))
 
 ---
 
