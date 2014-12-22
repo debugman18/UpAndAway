@@ -1,49 +1,34 @@
+local _G = GLOBAL
+local assert, error = _G.assert, _G.error
+
+---
+
 modimport 'lib/use.lua'
+use 'lib.timing'
 
+---
 
-local rawget = GLOBAL.rawget
+local ElapsedTime = GetSingletonTimeMeasurer()
 
+---
 
-local IS_WGEN = (rawget(GLOBAL, "SEED") ~= nil)
+TheMod = use 'start_wicker'
+TheMod:Say( ("wicker finished loading in %.3f seconds."):format(ElapsedTime()) )
 
+---
 
-local run_handler = (function()
-		if IS_WGEN then
-				return GLOBAL.xpcall
-		else
-				return function(f) return true, f() end
-		end
-end)()
+-- This enables us to access configurations through TUNING.UPANDAWAY (for backwards compatibility)
+TheMod:AddMasterConfigurationKey("UPANDAWAY")
+assert( TUNING.UPANDAWAY )
 
+---
 
-local status, err = run_handler(function()
-	TheMod = use 'start_wicker'
+TheMod:Say("Running worldgen_main...")
+TheMod:Run("worldgen_main")
 
-	-- This enables us to access configurations through TUNING.UPANDAWAY (for backwards compatibility)
-	TheMod:AddMasterConfigurationKey("UPANDAWAY")
-	GLOBAL.assert( TUNING.UPANDAWAY )
+---
 
-	TheMod:Run("worldgen_main")
-end, GLOBAL.require("debug").traceback)
-
-
-if IS_WGEN and not status then GLOBAL.pcall(function()
-	local io = GLOBAL.require("io")
-	local os = GLOBAL.require("os")
-	
-	local now = os.date("%x %X")
-	
-	local f = io.open(MODROOT .. "log/worldgen_log.txt", "w")
-
-	if status then
-		f:write("[", now, "] The mod ran successfully.\n")
-	else
-		f:write("[", now, "] The mod failed to run. The error follows:\n")
-		f:write(err, "\n")
-	end
-
-	f:close()
-end) end
-
-
-if not status then return GLOBAL.error(err, 0) end
+local dt = ElapsedTime()
+if TheMod:GetEnvironment().IsWorldgen() then
+	TheMod:Say( ("Finished loading in %.3f seconds."):format(dt) )
+end

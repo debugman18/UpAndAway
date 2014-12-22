@@ -150,7 +150,7 @@ Recipe = Class(Debuggable, function(self, name, condition, priority, brewing_tim
 	Debuggable._ctor(self, "Brewing recipe "..name)
 	self:SetConfigurationKey("BREWING_RECIPE")
 
-	if not Pred.IsString(name) or (Pred.PrefabExists and not Pred.PrefabExists(name)) then
+	if not Pred.IsString(name) then --or (Pred.PrefabExists and not Pred.PrefabExists(name)) then
 		return error("'"..tostring(name).."' is not a valid prefab.", 2)
 	end
 

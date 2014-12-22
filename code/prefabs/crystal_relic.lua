@@ -132,6 +132,7 @@ local function fn()
     inst.AnimState:SetMultColour(1, 1, 1, 0.7)
     inst:AddTag("structure")
 
+	--MakeSnowCovered(inst)
 
     ------------------------------------------------------------------------
     SetupNetwork(inst)
@@ -166,7 +167,6 @@ local function fn()
     inst:AddComponent("inspectable")
     inst.components.inspectable.nameoverride = "Sacred Crystal"
 
-	--MakeSnowCovered(inst, .01)
     return inst
 end
 

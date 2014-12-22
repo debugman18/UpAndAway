@@ -1,6 +1,8 @@
 local Lambda = wickerrequire "paradigms.functional"
 local Tree = wickerrequire "utils.table.tree"
 
+local DataValidator = wickerrequire "gadgets.datavalidator"
+
 ---
 
 local total_day_time = TUNING.TOTAL_DAY_TIME
@@ -173,41 +175,7 @@ end
 
 ---
 
-local ValidateData = (function()
-	local function getFieldName(...)
-		local pieces = {"data"}
-		local reverse_pieces = {...}
-		for i = #reverse_pieces, 1, -1 do
-			table.insert(pieces, tostring(reverse_pieces[i]))
-		end
-		return table.concat(pieces, ".")
-	end
-
-	local function doValidate(sub_mandatory_data, sub_data, ...)
-		assert(type(sub_mandatory_data) == "table", "Program logic error.")
-		if type(sub_data) ~= "table" then
-			return error("Table expected as field "..getFieldName(...)..", got "..type(sub_data)..".", 0)
-		end
-		for i, k in ipairs(sub_mandatory_data) do
-			if sub_data[k] == nil then
-				return error("Mandatory field "..getFieldName(k, ...).." expected.", 0)
-			end
-		end
-		for k, v in pairs(sub_mandatory_data) do
-			if type(k) ~= "number" then
-				doValidate(v, sub_data[k], k, ...)
-			end
-		end
-	end
-
-	-- error_level is relative to the parent function.
-	return function(data, error_level)
-		local status, err = xpcall(Lambda.BindAll(doValidate, mandatory_data, data), Lambda.Identity)
-		if not status then
-			return error(err, error_level + 1)
-		end
-	end
-end)()
+local ValidateData = DataValidator(mandatory_data, "data")
 
 local function IncludeDefaultData(sub_default_data, sub_data)
 	for k, v in pairs(sub_default_data) do

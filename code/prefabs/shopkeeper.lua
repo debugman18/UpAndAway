@@ -1,12 +1,10 @@
---FIXME: not MP compatible
-
 BindGlobal()
 
 -- Configuration table.
 -- See rc.lua and configloader.lua.
-local CFG = TUNING.UPANDAWAY
+local cfg = Configurable("SHOPKEEPER")
 
-local is_a_cow = CFG.SHOPKEEPER.IS_A_COW
+local is_a_cow = cfg("IS_A_COW")
 
 
 local assets =
@@ -67,7 +65,9 @@ local function OnHit(inst, data)
 		quester:AddQuest(PRIMARY_QUEST)
 		quester:SetFlag(PRIMARY_QUEST, "hitshopkeeper", true)
 	end
-	inst.components.speechgiver:PlaySpeech("HIT", attacker or GetPlayer())
+	if attacker then
+		inst.components.speechgiver:PlaySpeech("HIT", attacker)
+	end
 end
 
 -------------------------------------------------------------------------------------------------
@@ -107,7 +107,7 @@ local function performTransaction(buyer, seller, cow)
 end
 
 
-local MAX_COW_DIST = CFG.SHOPKEEPER.MAX_COW_DIST
+local MAX_COW_DIST = cfg("MAX_COW_DIST")
 local MAX_COW_DIST_SQ = MAX_COW_DIST*MAX_COW_DIST
 
 -- Under "normal usage", buyer is the shopkeeper and seller is the player.
@@ -141,8 +141,12 @@ end
 
 -------------------------------------------------------------------------------------------------
 
-local function flagplayer(inst)
-	local player = GetPlayer()
+local function flagplayer(inst, player)
+	-- For singleplayer compatibility.
+	if player == nil then
+		player = GetLocalPlayer()
+	end
+
 	local quester = player and player.components.quester
 
 	if not quester or inst.components.speechgiver:IsSpeaking() then return end
@@ -172,7 +176,7 @@ local function oninteract(inst, doer)
 
 	quester:AddQuest(PRIMARY_QUEST)
 	if not quester:HasAttribute(PRIMARY_QUEST, "numbeans") then
-		quester:SetAttribute(PRIMARY_QUEST, "numbeans", CFG.SHOPKEEPER.NUMBEANS)
+		quester:SetAttribute(PRIMARY_QUEST, "numbeans", cfg("NUMBEANS"))
 	end
 
 	local numbeans = quester:GetAttribute(PRIMARY_QUEST, "numbeans")
@@ -207,9 +211,13 @@ local function oninteract(inst, doer)
 	end
 end
 
+local function has_received_quest(player)
+	local q = player.components.quester
+	return q and q:StartedQuest(PRIMARY_QUEST)
+end
+
 local function has_given_quest(inst)
-	local p = GetPlayer()
-	return p and p.components.quester and p.components.quester:StartedQuest(PRIMARY_QUEST)
+	return Game.FindSomePlayer(has_received_quest) ~= nil
 end
 
 local function try_despawn(inst)
@@ -231,22 +239,25 @@ end
 
 -------------------------------------------------------------------------------------------------
 
---This runs when the shopkeeper is awakes.
+--This runs when the shopkeeper is awake.
 local function start_proximity_task(inst)
 	if inst.shop_proximity_task then return end
 
+	local function should_alert(player)
+		local quester = player.components.quester
+		if quester and quester:StartedQuest(PRIMARY_QUEST) and not quester:GetFlag(PRIMARY_QUEST, "gotkettle") then
+			if Game.FindSomeEntity(inst, MAX_COW_DIST, is_a_cow) then
+				return true
+			end
+		end
+	end
+
 	inst.shop_proximity_task = inst:StartThread(function()
 		while inst:IsValid() do
-			local player = GetPlayer()
-
 			if not inst.components.speechgiver:IsSpeaking() then
-				if player and inst:GetDistanceSqToInst(player) < 9*9 then
-					local quester = player.components.quester
-					if quester and quester:StartedQuest(PRIMARY_QUEST) and not quester:GetFlag(PRIMARY_QUEST, "gotkettle") then
-						if Game.FindSomeEntity(inst, MAX_COW_DIST, is_a_cow) then
-							inst.components.speechgiver:PlaySpeech("COW_ALERT", player)
-						end
-					end
+				local player = Game.FindSomePlayerInRange(inst, 9, should_alert)
+				if player then
+					inst.components.speechgiver:PlaySpeech("COW_ALERT", player)
 				end
 			end
 
@@ -320,7 +331,11 @@ local function fn(Sim)
 	inst:AddComponent("talker")
 	inst.Label:SetFontSize(35)
 	inst.Label:SetFont(TALKINGFONT)
-	inst.Label:SetPos(0,5,0)
+	--[[
+	-- Label:SetPos doesn't exist in DST anymore.
+	-- Label:SetPosition also exists in DS.
+	--]]
+	inst.Label:SetPosition(0,5,0)
 
 	------------------------------------------------------
 

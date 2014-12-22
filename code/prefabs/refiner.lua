@@ -2,7 +2,9 @@
 BindGlobal()
 
 
-local RefiningRecipeBook = modrequire 'resources.refining_recipebook'
+local RefiningRecipeBook = modrequire "resources.refining_recipebook"
+
+local widget_spec = pkgrequire "common.containerwidgetspecs" .refiner
 
 
 local assets =
@@ -61,39 +63,25 @@ local function harvestfn(inst)
     inst.AnimState:PushAnimation("idle_closed")
 end
 
-local slotpos = {
-    Vector3(0,64+32+8+4,0), 
-    Vector3(0,32+4,0),
-    Vector3(0,-(32+4),0), 
-    Vector3(0,-(64+32+8+4),0)
-}
 
-local widgetbuttoninfo = {
-    text = "Refine",
-    position = Vector3(0, -165, 0),
-    fn = function(inst)
-        inst.components.brewer:StartBrewing( GetPlayer() )  
-    end,
-        
-    validfn = function(inst)
-        return inst.components.brewer:CanBrew()
-    end,
+local valid_extra_ingredients = {
+	beanstalk_chunk = true,
+	cloud_coral_fragment = true,
+	cloud_algae_fragment = true,
+	cloud_cotton = true,
+	bonestew = true,
+	cloud_jelly = true,
+	jellycap_red = true,
+	jellycap_blue = true,
+	jellycap_green = true,
+	golden_petals = true,
+	thunder_log = true,
 }
-
 local function itemtest(inst, item, slot)
     return (item:HasTag("refinable")) 
-        or item.prefab == "beanstalk_chunk"
-        or item.prefab == "cloud_coral_fragment"
-        or item.prefab == "cloud_algae_fragment"
-        or item.prefab == "cloud_cotton"
-        or item.prefab == "bonestew"
-        or item.prefab == "cloud_jelly"
-        or item.prefab == "jellycap_red"
-        or item.prefab == "jellycap_blue"
-        or item.prefab == "jellycap_green"
-        or item.prefab == "golden_petals"
-        or item.prefab == "thunder_log"
+        or (item.prefab ~= nil and valid_extra_ingredients[item.prefab])
 end
+widget_spec:SetItemTestFn(itemtest)
 
 local function onhammered(inst, worker)
     inst.components.lootdropper:DropLoot()
@@ -117,6 +105,9 @@ local function fn(Sim)
 
     inst:AddTag("structure")
 
+    inst.entity:AddMiniMapEntity()
+    inst.MiniMapEntity:SetIcon("refiner.tex") 
+
 
     ------------------------------------------------------------------------
     SetupNetwork(inst)
@@ -138,20 +129,14 @@ local function fn(Sim)
     inst:AddComponent("inspectable")
         
     inst:AddComponent("container")
-    inst.components.container.itemtestfn = itemtest
-    inst.components.container:SetNumSlots(4)
-    inst.components.container.widgetslotpos = slotpos
-    inst.components.container.widgetanimbank = "ui_cookpot_1x4"
-    inst.components.container.widgetanimbuild = "ui_cookpot_1x4"
-    inst.components.container.widgetpos = Vector3(200,0,0)
-    inst.components.container.side_align_tip = 100
-    inst.components.container.widgetbuttoninfo = widgetbuttoninfo
-    inst.components.container.acceptsstacks = false
-    inst.components.container.onopenfn = onopen
-    inst.components.container.onclosefn = onclose
+	do
+		local container = inst.components.container
 
-    inst.entity:AddMiniMapEntity()
-    inst.MiniMapEntity:SetIcon("refiner.tex") 
+		widget_spec:ConfigureEntity(inst)
+
+		inst.components.container.onopenfn = onopen
+		inst.components.container.onclosefn = onclose
+	end
 
     inst:AddTag("structure")
     inst:AddComponent("lootdropper")
@@ -159,6 +144,7 @@ local function fn(Sim)
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
     inst.components.workable:SetWorkLeft(4)
     inst.components.workable:SetOnFinishCallback(onhammered)
+
 	return inst
 end
 

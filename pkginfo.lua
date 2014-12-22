@@ -53,6 +53,7 @@ return {
 		"modmain.lua",
 		"modworldgenmain.lua",
 		"start_wicker.lua",
+		"timing.lua",
 
 		"NOAUTOCOMPILE",
 

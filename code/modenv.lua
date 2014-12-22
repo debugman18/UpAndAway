@@ -18,6 +18,9 @@ FunctionQueue = wickerrequire "gadgets.functionqueue"
 LOGROOT = MODROOT .. "log/"
 
 
+netcfg = Configurable("NETWORK")
+
+
 AddSelfPostInit(function()
 	Climbing = modrequire "lib.climbing"
 end)

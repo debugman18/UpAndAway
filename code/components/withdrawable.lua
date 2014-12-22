@@ -66,10 +66,4 @@ function Withdrawable:Withdraw(withdrawer)
 	return true
 end
 
-function Withdrawable:CollectSceneActions(doer, actions, right)
-	if right then
-		table.insert(actions, ACTIONS.WITHDRAW)
-	end
-end
-
 return Withdrawable

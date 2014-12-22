@@ -19,7 +19,7 @@ local meter_key = {}
 -- The parameter is the item tile.
 local function HasTemperature(self)
 	local item = self.item
-	return item.components.temperature and (item.components.heatededible or item:HasTag("show_temperature"))
+	return item:HasTag("show_temperature") and replica(item).ua_temperature
 end
 
 
@@ -54,13 +54,12 @@ local function make_temperature_meter(self)
 
 	local function SetTempPercent()
 		if HasTemperature(self) then
-			local temperature = self.item.components.temperature
-			local p = (temperature:GetCurrent() - temperature.mintemp)/(temperature.maxtemp - temperature.mintemp)
-			temp:GetAnimState():SetPercent("anim", 1 - p)
+			local temperature = replica(item).ua_temperature
+			temp:GetAnimState():SetPercent("anim", 1 - temperature:GetPercent())
 		end
 	end
 
-	self.inst:ListenForEvent("temperaturedelta", function(inst)
+	self.inst:ListenForEvent("ua_temperaturedelta", function(item)
 		SetTempPercent()
 	end, self.item)
 
@@ -89,6 +88,19 @@ local function tweak_itemtile_meters(self)
 			for _, v in ipairs(meters) do
 				if v ~= spoilage then
 					v:Hide()
+				end
+			end
+		end
+	end)()
+
+	self.spoilage.Show = (function()
+		local oldShow = self.spoilage.Show
+
+		return function(spoilage)
+			oldShow(spoilage)
+			for _, v in ipairs(meters) do
+				if v ~= spoilage then
+					v:Show()
 				end
 			end
 		end
@@ -128,3 +140,22 @@ ItemTile._ctor = (function()
 		stack_meters(self, meters)
 	end
 end)()
+
+
+---
+
+
+if IsHost() then
+	wickerrequire "plugins.addprefabpostconstruct"
+
+	local function setup_ua_temperature(inst)
+		if not inst.components.inventoryitem then return end
+
+		inst:AddComponent("ua_temperature")
+		assert(replica(inst).ua_temperature)
+	end
+
+	TheMod:AddComponentPostInit("temperature", function(cmp, inst)
+		TheMod:AddPrefabPostConstruct(inst, setup_ua_temperature)
+	end)
+end

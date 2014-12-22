@@ -10,6 +10,8 @@ BindModModule 'modenv'
 -- This just enables syntax conveniences.
 BindTheMod()
 
+wickerrequire "plugins.ensureuniqueid"
+
 -- This allows us to store +-infinity in savedata.
 wickerrequire "plugins.savable_infinity"
 

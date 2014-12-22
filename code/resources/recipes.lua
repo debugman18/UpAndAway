@@ -1,99 +1,177 @@
-if TheMod:Debug() then
-	Recipe = modrequire "debugtools.tracked_recipe"
-end
-
-
 wickerrequire "plugins.addtechbranch"
-
 
 TheMod:AddTechBranch("FABLE", 3)
 TheMod:AddPrototyperTree("RESEARCH_LECTERN", {FABLE = 2}, STRINGS.UPUI.CRAFTING.NEEDRESEARCHLECTERN)
 
+---
 
-local RECIPETABS = _G.RECIPETABS
+local NewRecipeAdder = wickerrequire "plugins.recipeadder"
+
+local TABS = _G.RECIPETABS
 local TECH = _G.TECH
 
+-- This handles the recipe adding.
+local RecipeAdder = NewRecipeAdder()
 
---These are the inventory icons for recipe ingredients.
-local cloud_cotton = Ingredient("cloud_cotton", 1)
-cloud_cotton.atlas = "images/inventoryimages/cloud_cotton.xml"
+-- This is for debugging.
+RecipeAdder:TrackRecipes(TheMod:Debug())
 
-local crystal_fragment_relic = Ingredient("crystal_fragment_relic", 1)
-crystal_fragment_relic.atlas = "images/inventoryimages/crystal_fragment_relic.xml"
+--[[
+-- This defines the default prefab for recipes.
+-- 'prefab' is the prefab of the recipe's result (or of the igredient,
+-- see ModIngredient below).
+--]]
+RecipeAdder:SetDefaultAtlasFn(function(prefab)
+	return "images/inventoryimages/"..prefab..".xml"
+end)
 
---These are the recipes and the icons for the recipe output.
-local cotton_vest = Recipe("cotton_vest", { Ingredient("silk", 4), Ingredient("cloud_cotton", 4, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.DRESS, TECH.FABLE_1)
-cotton_vest.atlas = "images/inventoryimages/cotton_vest.xml"
---cotton_vest.sortkey = GLOBAL.Recipes.trunkvest_winter.sortkey
+--[[
+-- This works and is used exactly the same as Ingredient.
+-- The only difference is that ingredients declared as ModIngredients
+-- will have their atlas set by the default atlas fn defined above
+-- (provided they don't explicitly set an atlas).
+--]]
+local ModIngredient = RecipeAdder.ModIngredient
 
-local cotton_hat = Recipe("cotton_hat", { Ingredient("silk", 2), Ingredient("cloud_cotton", 6, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.DRESS, TECH.FABLE_1)
-cotton_hat.atlas = "images/inventoryimages/cotton_hat.xml"
---cotton_hat.sortkey = GLOBAL.Recipes.bushhat.sortkey
+--[[
+-- This is to reduce typing.
+--]]
+local Ing = Ingredient
+local ModIng = ModIngredient
 
-local mushroom_hat = Recipe("mushroom_hat", { Ingredient("red_cap", 3), Ingredient("blue_cap", 3), Ingredient("green_cap", 3) }, RECIPETABS.DRESS, TECH.FABLE_1)
-mushroom_hat.atlas = "images/inventoryimages/mushroom_hat.xml"
---mushroom_hat.sortkey = GLOBAL.Recipes.flowerhat.sortkey
+---
 
-local weather_machine = Recipe("weather_machine", { Ingredient("cumulostone", 3, "images/inventoryimages/cumulostone.xml"), Ingredient("crystal_fragment_black", 3, "images/inventoryimages/crystal_fragment_black.xml") , Ingredient("bluegem", 4)}, RECIPETABS.SCIENCE, TECH.FABLE_1, "weather_machine_placer")
-weather_machine.atlas = "images/inventoryimages/weather_machine.xml"
---weather_machine.sortkey = GLOBAL.Recipes.rainometer.sortkey
+--[[
+-- These handle recipe addition under a specific crafting tab.
+--]]
+local Dress = RecipeAdder[TABS.DRESS]
+local Light = RecipeAdder[TABS.LIGHT]
+local Magic = RecipeAdder[TABS.MAGIC]
+local Refine = RecipeAdder[TABS.REFINE]
+local Science = RecipeAdder[TABS.SCIENCE]
+local Tools = RecipeAdder[TABS.TOOLS]
+local Town = RecipeAdder[TABS.TOWN]
+local War = RecipeAdder[TABS.WAR]
 
-local refiner = Recipe("refiner", { Ingredient("hammer", 1), Ingredient("gears", 3), Ingredient("thunderboards", 3, "images/inventoryimages/thunderboards.xml") }, RECIPETABS.REFINE, TECH.FABLE_1, "refiner_placer")
-refiner.atlas = "images/refiner.xml"
---refiner.sortkey = 1 --GLOBAL.Recipes.prefab.sortkey
+---
 
-local research_lectern = Recipe("research_lectern", { Ingredient("goldnugget", 4), Ingredient("crystal_fragment_light", 2, "images/inventoryimages/crystal_fragment_light.xml"), Ingredient("thunder_log", 6, "images/inventoryimages/thunder_log.xml") }, RECIPETABS.SCIENCE, TECH.FABLE_2, "research_lectern_placer")
-research_lectern.atlas = "images/research_lectern.xml"
---research_lectern.sortkey = GLOBAL.Recipes.researchlab2.sortkey
+--[[
+-- These are tech selectors nested under a crafting tab.
+--
+-- The table passed specifies the tech possibilities for each.
+-- Calling them as a function, passing the position of the intended
+-- selection, returns a recipe adder for a specific crafting tab and
+-- a specific tech level.
+--
+-- See usage below for further explanation.
+--]]
+local DressFable = Dress {TECH.FABLE_1, TECH.FABLE_2, TECH.FABLE_3}
+local LightFable = Light {TECH.FABLE_1, TECH.FABLE_2, TECH.FABLE_3}
+local MagicFable = Magic {TECH.FABLE_1, TECH.FABLE_2, TECH.FABLE_3}
+local RefineFable = Refine {TECH.FABLE_1, TECH.FABLE_2, TECH.FABLE_3}
+local ScienceFable = Science {TECH.FABLE_1, TECH.FABLE_2, TECH.FABLE_3}
+local ToolsFable = Tools {TECH.FABLE_1, TECH.FABLE_2, TECH.FABLE_3}
+local TownFable = Town {TECH.FABLE_1, TECH.FABLE_2, TECH.FABLE_3}
+local WarFable = War {TECH.FABLE_1, TECH.FABLE_2, TECH.FABLE_3}
 
-local cotton_candy = Recipe("cotton_candy", { Ingredient("cloud_cotton", 6, "images/inventoryimages/cloud_cotton.xml"), Ingredient("candy_fruit", 6, "images/inventoryimages/candy_fruit.xml") }, RECIPETABS.WAR, TECH.FABLE_1)
-cotton_candy.atlas = "images/inventoryimages/cotton_candy.xml"
---cotton_candy.sortkey = GLOBAL.Recipes.hambat.sortkey
+---
 
---local grabber = Recipe("grabber", { Ingredient("magnet", 2, "images/inventoryimages/cloud_cotton.xml"), Ingredient("twigs", 8), Ingredient("rubber", 4, "images/inventoryimages/cloud_cotton.xml") }, RECIPETABS.TOOLS, TECH.FABLE_1)
---grabber.atlas = "images/inventoryimages/grabber.xml"
-----grabber.sortkey = GLOBAL.Recipes.prefab.sortkey
+--[[
+-- This adds a recipe for cotton_hat under the DRESS tab, tech level
+-- TECH.FABLE_1 (since that's the tech level at position 1 in the
+-- definition of DressFable).
+--
+-- The table passed after the result's name (note the lack of '=', this
+-- is in fact a function call) lists the ingredients.
+--
+-- The lines after the first customize arbitrary fields from the resulting
+-- Recipe object. Note the leading '.' and also the lack of '='
+-- (these are also function calls).
+--]]
+DressFable(1).cotton_hat { Ing("silk", 2), ModIng("cloud_cotton", 6) }
+    .sortkey (Recipes.bushhat.sortkey)
 
-local wind_axe = Recipe("wind_axe", { Ingredient("crystal_fragment_water", 2, "images/inventoryimages/crystal_fragment_water.xml"), Ingredient("cumulostone", 3, "images/inventoryimages/cumulostone.xml"), Ingredient("rope", 2) }, RECIPETABS.MAGIC, TECH.FABLE_1)
-wind_axe.atlas = "images/inventoryimages/wind_axe.xml"
---wind_axe.sortkey = GLOBAL.Recipes.batbat.sortkey
+DressFable(1).cotton_vest { Ing("silk", 4), ModIng("cloud_cotton", 4) }
+    .sortkey (Recipes.trunkvest_winter.sortkey)
 
-local beanlet_armor = Recipe("beanlet_armor", { Ingredient("beanlet_shell", 1, "images/inventoryimages/beanlet_shell.xml"), Ingredient("greenbean", 1, "images/inventoryimages/greenbean.xml"), Ingredient("rope", 2) }, RECIPETABS.WAR, TECH.FABLE_1)
-beanlet_armor.atlas = "images/inventoryimages/beanlet_armor.xml"
---beanlet_armor.sortkey =  GLOBAL.Recipes.armormarble.sortkey
+DressFable(1).mushroom_hat { Ing("red_cap", 3), Ing("blue_cap", 3), Ing("green_cap", 3) }
+    .sortkey (Recipes.flowerhat.sortkey)
 
-local magnet = Recipe("magnet", { Ingredient("gears", 2), Ingredient("crystal_fragment_quartz", 3, "images/inventoryimages/crystal_fragment_quartz.xml"), Ingredient("rope", 4) }, RECIPETABS.TOOLS, TECH.FABLE_1)
-magnet.atlas = "images/inventoryimages/magnet.xml"
---magnet.sortkey = GLOBAL.Recipes.razor.sortkey
+---
 
-local crystal_lamp = Recipe("crystal_lamp", { Ingredient("beanlet_shell", 1, "images/inventoryimages/beanlet_shell.xml"), Ingredient("crystal_fragment_light", 4, "images/inventoryimages/crystal_fragment_light.xml"), Ingredient("rope", 3) }, RECIPETABS.LIGHT, TECH.FABLE_1, "crystal_lamp_placer")
-crystal_lamp.atlas = "images/inventoryimages/crystal_lamp.xml"
---crystal_lamp.sortkey = GLOBAL.Recipes.lantern.sortkey
+LightFable(1).crystal_lamp { ModIng("beanlet_shell", 1), ModIng("crystal_fragment_light", 4), Ing("rope", 3) }
+    .placer "crystal_lamp_placer"
+    .sortkey (Recipes.lantern.sortkey)
 
-local beanstalk_wall_item = Recipe("beanstalk_wall_item", { Ingredient("beanstalk_chunk", 4, "images/inventoryimages/beanstalk_chunk.xml"), Ingredient("twigs", 1) }, RECIPETABS.TOWN, TECH.FABLE_1,nil,nil,nil,6)
-beanstalk_wall_item.atlas = "images/inventoryimages/beanstalk_wall_item.xml"
---beanstalk_wall_item.sortkey = GLOBAL.Recipes.wall_stone_item.sortkey
+---
 
-local crystal_wall_item = Recipe("crystal_wall_item", { Ingredient("crystal_fragment_light", 4, "images/inventoryimages/crystal_fragment_light.xml"), Ingredient("crystal_fragment_water", 4, "images/inventoryimages/crystal_fragment_water.xml"), Ingredient("crystal_fragment_spire", 4, "images/inventoryimages/crystal_fragment_spire.xml") }, RECIPETABS.TOWN, TECH.FABLE_1,nil,nil,nil,6)
-crystal_wall_item.atlas = "images/inventoryimages/crystal_wall_item.xml"
---crystal_wall_item.sortkey = GLOBAL.Recipes.beanstalk_wall_item.sortkey
+MagicFable(1).blackstaff { Ing("spear", 1), ModIng("refined_black_crystal", 1), Ing("nightmarefuel", 6) }
+    .sortkey (Recipes.icestaff.sortkey)
 
-local refined_white_crystal = Recipe("refined_white_crystal", { Ingredient("crystal_fragment_white", 6, "images/inventoryimages/crystal_fragment_white.xml") }, RECIPETABS.REFINE, TECH.FABLE_1)
-refined_white_crystal.atlas = "images/inventoryimages/refined_white_crystal.xml"
---refined_white_crystal.sortkey = GLOBAL.Recipes.purplegem.sortkey
+MagicFable(1).whitestaff { Ing("spear", 1), ModIng("refined_white_crystal", 1), Ing("nightmarefuel", 6) }
+    .sortkey (Recipes.icestaff.sortkey)
 
-local refined_black_crystal = Recipe("refined_black_crystal", { Ingredient("crystal_fragment_black", 6, "images/inventoryimages/crystal_fragment_black.xml") }, RECIPETABS.REFINE, TECH.FABLE_1)
-refined_black_crystal.atlas = "images/inventoryimages/refined_black_crystal.xml"
---refined_black_crystal.sortkey = GLOBAL.Recipes.refined_white_crystal.sortkey
+MagicFable(1).wind_axe { ModIng("crystal_fragment_water", 2), ModIng("cumulostone", 3), Ing("rope", 2) }
+    .sortkey (Recipes.batbat.sortkey)
 
-local thunderboards = Recipe("thunderboards", { Ingredient("thunder_log", 4, "images/inventoryimages/thunder_log.xml") }, RECIPETABS.REFINE, TECH.FABLE_1)
-thunderboards.atlas = "images/inventoryimages/thunderboards.xml"
---thunderboards.sortkey = GLOBAL.Recipes.boards.sortkey
+---
 
-local whitestaff = Recipe("whitestaff", { Ingredient("spear", 1), Ingredient("refined_white_crystal", 1, "images/inventoryimages/refined_white_crystal.xml"), Ingredient("nightmarefuel", 6) }, RECIPETABS.MAGIC, TECH.FABLE_1)
-whitestaff.atlas = "images/inventoryimages/whitestaff.xml"
---whitestaff.sortkey = GLOBAL.Recipes.icestaff.sortkey
+RefineFable(1).refined_black_crystal { ModIng("crystal_fragment_black", 6) }
+    .sortkey (Recipes.purplegem.sortkey)
 
-local blackstaff = Recipe("blackstaff", { Ingredient("spear", 1), Ingredient("refined_black_crystal", 1, "images/inventoryimages/refined_black_crystal.xml"), Ingredient("nightmarefuel", 6) }, RECIPETABS.MAGIC, TECH.FABLE_1)
-blackstaff.atlas = "images/inventoryimages/blackstaff.xml"
---blackstaff.sortkey = GLOBAL.Recipes.whitestaff.sortkey
+RefineFable(1).refined_white_crystal { ModIng("crystal_fragment_white", 6) }
+    .sortkey (Recipes.purplegem.sortkey)
+
+RefineFable(1).refiner { Ing("hammer", 1), Ing("gears", 3), ModIng("thunderboards", 3) }
+    .placer "refiner_placer"
+    .atlas "images/refiner.xml"
+    .sortkey (1)
+
+RefineFable(1).thunderboards { ModIng("thunder_log", 4) }
+    .sortkey (Recipes.boards.sortkey)
+
+---
+
+ScienceFable(1).weather_machine { ModIng("cumulostone", 3), ModIng("crystal_fragment_black", 3) , Ing("bluegem", 4)}
+    .placer "weather_machine_placer"
+    .sortkey (Recipes.rainometer.sortkey)
+
+ScienceFable(2).research_lectern { Ing("goldnugget", 4), ModIng("crystal_fragment_light", 2), ModIng("thunder_log", 6) }
+    .placer "research_lectern_placer"
+    .atlas "images/research_lectern.xml"
+    .sortkey (Recipes.researchlab2.sortkey)
+
+---
+
+--[[
+ToolsFable(1).grabber { ModIng("magnet", 2), Ing("twigs", 8), ModIng("rubber", 4) }
+    .sortkey (Recipes.prefab.sortkey)
+]]--
+
+ToolsFable(1).magnet { Ing("gears", 2), ModIng("crystal_fragment_quartz", 3), Ing("rope", 4) }
+    .sortkey (Recipes.razor.sortkey)
+
+---
+
+TownFable(1).beanstalk_wall_item { ModIng("beanstalk_chunk", 4), Ing("twigs", 1) }
+	.numtogive (6)
+	.sortkey (Recipes.wall_stone_item.sortkey)
+
+TownFable(1).crystal_wall_item { ModIng("crystal_fragment_light", 4), ModIng("crystal_fragment_water", 4), ModIng("crystal_fragment_spire", 4) }
+	.numtogive (6)
+	.sortkey (Recipes.wall_stone_item.sortkey)
+
+---
+
+WarFable(1).beanlet_armor { ModIng("beanlet_shell", 1), ModIng("greenbean", 1), Ing("rope", 2) }
+    .sortkey (Recipes.armormarble.sortkey)
+
+WarFable(1).cotton_candy { ModIng("cloud_cotton", 6), ModIng("candy_fruit", 6) }
+    .sortkey (Recipes.hambat.sortkey)
+
+---
+
+if RecipeAdder:IsTrackingRecipes() then
+	local ValidateRecipes = modrequire "debugtools.validate_recipes"
+	ValidateRecipes( RecipeAdder:GetTrackedRecipes() )
+end

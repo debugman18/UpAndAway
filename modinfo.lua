@@ -1,6 +1,6 @@
 name = "Up and Away"
 author = "The Fellowship of the Bean"
-version = "alpha-0.1.0"
+version = "alpha-0.2.0"
 
 id = "upandaway"
 branch = "dev"
@@ -13,6 +13,9 @@ Original concept by debugman18.
 
 dont_starve_compatible = true
 reign_of_giants_compatible = true
+dst_compatible = true
+
+all_clients_require_mod = true
 
 forumthread = "/forum/49-mod-collaboration-up-and-away"
 
@@ -52,9 +55,9 @@ local YesSwitch = NamedSwitch("Yes", "No")
 ------------------------------------
 
 configuration_options = {
+	EnableSwitch("DEBUG", "Debugging Mode", true),
+	EnableSwitch("UP_SPLASH.ENABLED", "Custom Menu", true),
 	EnableSwitch("CLOUD_LIGHTNING.ENABLED", "Ground Lightning", true),
 	EnableSwitch("CLOUD_MIST.ENABLED", "Mist", true),
 	EnableSwitch("RAM.SPARKS", "Storm Ram Sparks", true),
-	EnableSwitch("DEBUG", "Debugging Mode", true),
-	EnableSwitch("UP_SPLASH.ENABLED", "Custom Menu", true),
 }

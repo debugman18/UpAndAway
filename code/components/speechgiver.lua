@@ -4,9 +4,6 @@ local Pred = wickerrequire "lib.predicates"
 local Game = wickerrequire "game"
 local string = wickerrequire "utils.string"
 
-local Configurable = wickerrequire "adjectives.configurable"
-local Debuggable = wickerrequire "adjectives.debuggable"
-
 
 local function new_speechmanager_queue()
 	return {
@@ -48,6 +45,15 @@ local SpeechGiver = HostClass(Debuggable, function(self, inst)
 
 	self.speechmanagers = new_speechmanager_queue()
 	self.allows_cutscenes = true
+
+	---
+
+	inst:ListenForEvent("speechgiver_interrupt", function(inst)
+		local self = inst.components.speechgiver
+		if self then
+			self:Interrupt()
+		end
+	end)
 end)
 local IsSpeechGiver = Pred.IsInstanceOf(SpeechGiver)
 local IsSpeechFn = Pred.IsCallable
@@ -64,7 +70,7 @@ end
 SpeechGiver.GetDefaultSound = SpeechGiver.GetDefaultVoice
 
 function SpeechGiver:SetDefaultVoice(sound)
-	assert( Pred.IsString(sound), "Strings expected as sound parameter." )
+	assert( Pred.IsString(sound), "String expected as sound parameter." )
 	self.defaultvoice = sound
 end
 SpeechGiver.SetDefaultSound = SpeechGiver.SetDefaultVoice
@@ -180,6 +186,27 @@ function SpeechGiver:ForbidCutScenesInQueue()
 end
 SpeechGiver.ForbidCutscenesInQueue = SpeechGiver.ForbidCutScenesInQueue
 
+---
+
+local function speechgiver_setiscutscene(self, b)
+	replica(self.inst).speechgiver:SetIsCutScene(b)
+end
+
+function SpeechGiver:MakeInterruptible()
+	replica(self.inst).speechgiver:MakeInterruptible()
+end
+
+function SpeechGiver:MakeNonInterruptible()
+	replica(self.inst).speechgiver:MakeNonInterruptible()
+end
+
+-- Resets any state change which may have been caused by the last running
+-- speech.
+function SpeechGiver:ResetSpeechState()
+	self:MakeInterruptible()
+	speechgiver_setiscutscene(self, false)
+end
+
 ------------------------------------------------------------------------
 
 --[[
@@ -282,6 +309,7 @@ local SpeechManager = HostClass(Debuggable, function(self, speechgiver, speechna
 	assert( Pred.IsTable(speech), "Table expected as speech data." )
 	assert( IsSpeechFn(speech.fn), "Function expected as speechfn." )
 	assert( Pred.IsEntityScript(listener), "Entity expected as listener." )
+	assert( listener.components.speechlistener, "SpeechListener component expected in listener." )
 
 	Debuggable._ctor(self, self, false)
 	self:SetConfigurationKey("SPEECHMANAGER")
@@ -312,116 +340,6 @@ function SpeechManager:__tostring()
 	return ("SpeechManager([%s] saying %s to [%s])"):format(tostring(self.speaker), self.speechname, tostring(self.listener))
 end
 
-local function disable_entity(self, inst)
-	if not inst:IsValid() then return end
-
-	self:DebugSay("Disabling [", inst, "].")
-
-	if inst.components.playercontroller then
-		inst.components.playercontroller:Enable(false)
-	end
-
-	if inst.brain and not inst.brain.stopped then
-		inst.brain:Stop()
-	end
-
-	if inst.components.health then
-		inst.components.health:SetInvincible(true)
-	end
-end
-
-local function disable_listener(self)
-	disable_entity(self, self.listener)
-end
-
-local function clear_input_handlers(self)
-	if not self.inputhandlers then return end
-
-	self:DebugSay("Clearing input handlers.")
-
-	for _, h in ipairs(self.inputhandlers) do
-		h:Remove()
-	end
-
-	self.inputhandlers = nil
-end
-
-local function enable_entity(self, inst)
-	if inst:HasTag("player") then
-		clear_input_handlers(self)
-	end
-
-	local li = self.listener
-	if not li:IsValid() then return end
-
-	self:DebugSay("Enabling [", inst, "] listener.")
-
-	if li.components.playercontroller then
-		li.components.playercontroller:Enable(true)
-	end
-
-	if li.brain and li.brain.stopped then
-		li.brain:Start()
-	end
-
-	if li.components.health then
-		li.components.health:SetInvincible(false)
-	end
-end
-
-local function enable_listener(self)
-	enable_entity(self, self.listener)
-end
-
-local function setup_input_handlers(self)
-	if not (self.inst:IsValid() and self.listener:IsValid()) then return end
-
-	disable_listener(self)
-
-
-	self.listener:DoTaskInTime(0, function()
-		if not (self.inst:IsValid() and self.listener:IsValid()) then return end
-
-		if not (self.inst.components.speechgiver and self:IsInterruptible()) or self.inputhandlers then return end
-
-		self:DebugSay("Setting up input handlers.")
-
-		local TheInput = _G.TheInput
-
-		local function new_key_handler(name)
-			return TheInput:AddKeyUpHandler(_G[name], function()
-				if self.listener:IsValid() then
-					self.listener:DoTaskInTime(0, function()
-						if self.listener:IsValid() then
-							self:DebugSay("Interrupted by ", name, ".")
-							self:Interrupt()
-						end
-					end)
-				end
-			end)
-		end
-
-		local function new_control_handler(name)
-			return TheInput:AddControlHandler(_G[name], function(down)
-				if down and self.listener:IsValid() then
-					self:DebugSay("Interrupted by ", name, ".")
-					self:Interrupt()
-				end
-			end)
-		end
-
-		self.inputhandlers = {
-			new_key_handler "KEY_ESCAPE",
-			new_control_handler "CONTROL_PRIMARY",
-			new_control_handler "CONTROL_SECONDARY",
-			new_control_handler "CONTROL_ATTACK",
-			new_control_handler "CONTROL_INSPECT",
-			new_control_handler "CONTROL_ACTION",
-			new_control_handler "CONTROL_CONTROLLER_ACTION",
-		}
-	end)
-end
-
 function SpeechManager:GetSpeechName()
 	return self.speechname
 end
@@ -439,6 +357,40 @@ function SpeechManager:IsCutScene()
 end
 SpeechManager.IsCutscene = SpeechManager.IsCutScene
 
+function SpeechManager:SetIsCutScene(b)
+	self.is_cutscene = b
+	speechgiver_setiscutscene(self.speechgiver, b)
+end
+SpeechManager.SetIsCutscene = SpeechManager.SetIsCutScene
+
+local function disable_listener(self)
+	local sl = self.listener.components.speechlistener
+	if sl then
+		sl:DisableEntity()
+	end
+end
+
+local function clear_input_handlers(self)
+	local sl = self.listener.components.speechlistener
+	if sl then
+		sl:ClearInputHandlers()
+	end
+end
+
+local function enable_listener(self)
+	local sl = self.listener.components.speechlistener
+	if sl then
+		sl:EnableEntity()
+	end
+end
+
+local function setup_input_handlers(self)
+	local sl = self.listener.components.speechlistener
+	if sl then
+		sl:SetupInputHandlers()
+	end
+end
+
 function SpeechManager:IsRunning()
 	return self.thread ~= nil
 end
@@ -447,8 +399,8 @@ function SpeechManager:Silence()
 	self:DebugSay("Silence()")
 	self:ShutUp()
 	self:KillSound()
-	if self.listener and self.listener == GetLocalPlayer() and self.listener.HUD then
-		self.listener.HUD:Show()	
+	if self.listener then
+		Game.ShowPlayerHUD(self.listener, true)
 	end
 end
 
@@ -500,7 +452,22 @@ local function speechmanager_onfinishspeech(self, instant)
 end
 
 function SpeechManager:Start()
-	if self:IsRunning() or not self.listener:IsValid() then return end
+	if self:IsRunning() then return end
+
+	if not self.listener:IsValid() or not self.listener.components.speechlistener then
+		self:Cancel()
+		return
+	end
+
+	self.listener.components.speechlistener:SetSpeaker(self.speaker)
+
+	self.speaker.components.speechgiver:ResetSpeechState()
+
+	if self:IsInterruptible() then
+		self.speaker.components.speechgiver:MakeInterruptible()
+	else
+		self.speaker.components.speechgiver:MakeNonInterruptible()
+	end
 
 	self.thread = self.inst:StartThread(function()
 		if not self.listener:IsValid() then return end
@@ -594,12 +561,14 @@ end
 function SpeechManager:MakeInterruptible()
 	self:DebugSay("MakeInterruptible()")
 	self.interruptible = true
+	self.speaker.components.speechgiver:MakeInterruptible()
 	setup_input_handlers(self)
 end
 
 function SpeechManager:MakeNonInterruptible()
 	self:DebugSay("MakeNonInterruptible()")
 	self.interruptible = false
+	self.speaker.components.speechgiver:MakeNonInterruptible()
 	clear_input_handlers(self)
 end
 SpeechManager.MakeUninterruptible = SpeechManager.MakeNonInterruptible
@@ -707,20 +676,13 @@ function SpeechManager:WaitForAnimationQueue(src)
 	end
 end
 
-local SLOW_GAINS = {
-	-- pan
-	3,
-	-- heading
-	7,
-	-- distance
-	1,
-}
-
 -- May be called outside of a speech.
 function SpeechManager:EnterCutScene()
+	if not self.listener.components.speechlistener then return end
+
 	self.wants_cutscene = true
 
-	if self.is_cutscene then return true end
+	if self:IsCutScene() then return true end
 
 	self:DebugSay("EnterCutScene()")
 
@@ -729,43 +691,11 @@ function SpeechManager:EnterCutScene()
 		return
 	end
 
-	self.is_cutscene = true
+	self:SetIsCutScene(true)
 
 	setup_input_handlers(self)
 
-	if self.inst.components.highlight then
-		self.inst.components.highlight:UnHighlight()
-	end
-
-
-	local cameracfg = self:GetConfig("CUTSCENE_CAMERA")
-
-	local participants_distance = math.sqrt( self.inst:GetDistanceSqToInst(self.listener) )
-
-	local height = cameracfg.HEIGHT
-	local distance = math.max(8, cameracfg.RELATIVE_DISTANCE*participants_distance)
-
-	local angle = -self.listener:GetAngleToPoint(self.inst.Transform:GetWorldPosition()) - 90
-	if _G.TheCamera.heading and math.abs(angle - _G.TheCamera.heading) > 90 then
-		angle = angle + 180
-	end
-
-	local camerapos = (self.inst:GetPosition() + self.listener:GetPosition())/2 + Vector3(0, height, 0)
-	if _G.TheCamera.target then
-		camerapos = camerapos - _G.TheCamera.target:GetPosition()
-	end
-
-	self.last_camera_heading = _G.TheCamera:GetHeadingTarget()
-
-	_G.TheCamera:SetControllable(false)
-	_G.TheCamera:SetHeadingTarget(angle)
-	_G.TheCamera:SetOffset(camerapos)
-	_G.TheCamera:SetDistance(distance)
-	_G.TheCamera:SetGains( unpack(SLOW_GAINS) )
-
-	if self.listener and self.listener == GetLocalPlayer() and self.listener.HUD then
-		self.listener.HUD:Hide() 
-	end
+	self.listener.components.speechlistener:EnterCutScene()
 
 	return true
 end
@@ -773,52 +703,23 @@ SpeechManager.EnterCutscene = SpeechManager.EnterCutScene
 
 -- May be called outside of a speech.
 function SpeechManager:AbortCutScene()
-	if not self.is_cutscene or not self.listener:HasTag("player") then return true end
+	if not self:IsCutScene() or not self.listener:HasTag("player") then return true end
 
 	self:DebugSay("AbortCutScene()")
 
 	if self.listener:IsValid() then
-		self.listener:DoTaskInTime(_G.FRAMES, function() self.is_cutscene = false end)
+		self.listener:DoTaskInTime(_G.FRAMES, function() self:SetIsCutScene(false) end)
 	end
 
 	enable_listener(self)
 
-	if self.last_camera_heading then
-		_G.TheCamera:SetHeadingTarget(self.last_camera_heading)
-		self.last_camera_heading = nil
-	end
-
-	_G.TheCamera:SetControllable(true)
-
-	local function reset_condition()
-		return not (self.inst:IsValid() and self.inst.components.speechgiver and self.inst.components.speechgiver:IsInCutScene())
-	end
-
-	local function do_abort()
-		if reset_condition() then
-			if self.listener.HUD then
-				self.listener.HUD:Show()
+	if self.listener.components.speechlistener then
+		self.listener:DoTaskInTime(2*_G.FRAMES, function(listener)
+			local sl = listener.components.speechlistener
+			if sl then
+				sl:AbortCutScene()
 			end
-			_G.TheCamera:SetDefault()
-			if self.inst:IsValid() then
-				_G.TheCamera:SetGains( unpack(SLOW_GAINS) )
-				self.listener:DoTaskInTime(5, function()
-					if reset_condition() then
-						_G.TheCamera:SetDefault()
-					end
-				end)
-			end
-		end
-	end
-
-	if self.listener:IsValid() then
-		_G.TheCamera:SetPaused(true)
-		self.listener:DoTaskInTime(2*_G.FRAMES, function(inst)
-			_G.TheCamera:SetPaused(false)
-			do_abort()
 		end)
-	else
-		do_abort()
 	end
 
 	return true
@@ -880,6 +781,7 @@ function SpeechGiver:ClearQueue()
 		num_mgrs = num_mgrs - 1
 	end
 	self.speechmanagers = new_speechmanager_queue()
+	self:ResetSpeechState()
 end
 SpeechGiver.CancelAll = SpeechGiver.ClearQueue
 
@@ -890,17 +792,12 @@ function SpeechGiver:Interrupt()
 end
 
 function SpeechGiver:IsInCutScene()
-	local sm = self.speechmanagers[1]
-	if sm then
-		return sm:IsRunning() and sm:IsCutScene()
-	end
+	return replica(self.inst).speechgiver:IsInCutScene()
 end
 SpeechGiver.IsInCutscene = SpeechGiver.IsInCutScene
 
 function SpeechGiver:CanInteractWith(someone)
-	return self.inst:IsValid()
-		and someone and someone:IsValid()
-		and not self:IsInCutScene()
+	return replica(self.inst).speechgiver:CanInteractWith(someone)
 end
 
 function SpeechGiver:InteractWith(someone)

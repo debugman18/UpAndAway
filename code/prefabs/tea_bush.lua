@@ -213,6 +213,8 @@ local function fn(Sim)
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("tea_bush.tex")
 
+	--MakeSnowCovered(inst)
+
 
 	------------------------------------------------------------------------
 	SetupNetwork(inst)
@@ -246,7 +248,6 @@ local function fn(Sim)
 	
 	inst:AddComponent("inspectable")
 	
-	--MakeSnowCovered(inst, .01)
 	return inst
 end
 

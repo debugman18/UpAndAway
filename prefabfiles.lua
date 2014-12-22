@@ -1,22 +1,11 @@
 --This loads all of the new prefabs.
 
---[[
--- The prefab files appearing in one of the exclusive tables below should not appear again in PrefabFiles (they are conditionally merged in modmain.lua).
---]]
-
---FIXME: this should eventually be empty
-SingleplayerExclusive_PrefabFiles = {
+PrefabFiles = {
 	"winnie",
 	"winnie_staff",
 	"kettle",
 	"cauldron",
 	"refiner",
-}
-
-MultiplayerExclusive_PrefabFiles = {
-}
-
-PrefabFiles = {
 
 	--Stuff in dev branch.
 	--------------------

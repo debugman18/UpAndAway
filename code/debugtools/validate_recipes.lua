@@ -2,12 +2,6 @@ if IsWorldgen() then return Recipe end
 
 local mod_recipes = {}
 
-local function TrackedRecipe(name, ...)
-	local rec = _M.Recipe(name, ...)
-	mod_recipes[name] = rec
-	return rec
-end
-
 local function get_mod_assetmap()
 	local map = {}
 
@@ -72,4 +66,8 @@ TheMod:AddPostRun(function(mainname)
 	mod_recipes = {}
 end)
 
-return TrackedRecipe
+return function(recipes)
+	for k, v in pairs(recipes) do
+		mod_recipes[k] = v
+	end
+end

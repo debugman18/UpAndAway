@@ -43,6 +43,8 @@ local function common(Sim)
 	local minimap = inst.entity:AddMiniMapEntity()
 	minimap:SetIcon("rock.png")
 
+	--MakeSnowCovered(inst)        
+
 
 	------------------------------------------------------------------------
 	SetupNetwork(inst)
@@ -75,7 +77,6 @@ local function common(Sim)
 		end)         
 
 	inst:AddComponent("inspectable")
-	--MakeSnowCovered(inst, .01)        
 	return inst
 end
 

@@ -19,13 +19,12 @@ _G.ACTIONS.HARVEST.fn = (function()
 	end
 end)()
 
-local Weapon = require "components/weapon"
-Weapon.CollectEquippedActions = (function()
-	local CollectEquippedActions = Weapon.CollectEquippedActions
-	return function(self, doer, target, ...)
+TheMod:PatchComponentAction("EQUIPPED", "weapon", function(fn)
+	assert(fn)
+	return function(inst, doer, target, ...)
 		if target and target:HasTag("shopkeeper") then
 			return
 		end
-		return CollectEquippedActions(self, doer, target, ...)
+		return fn(inst, doer, target, ...)
 	end
-end)()
+end)

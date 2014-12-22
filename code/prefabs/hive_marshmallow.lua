@@ -75,6 +75,8 @@ local function fn(Sim)
 
     inst:AddTag("structure")
 
+    MakeSnowCovered(inst)
+
 
     ------------------------------------------------------------------------
     SetupNetwork(inst)
@@ -121,7 +123,6 @@ local function fn(Sim)
     
     ---------------------       
     MakeLargePropagator(inst)
-    MakeSnowCovered(inst)
     
     ---------------------
 

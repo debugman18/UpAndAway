@@ -14,6 +14,7 @@ local HeatedEdible = HostClass(Debuggable, function(self, inst)
 
 	self.inst = inst
 	Debuggable._ctor(self, "HeatedEdible")
+	inst:AddTag("show_temperature")
 
 	self.heat_capacity = 0
 
@@ -22,6 +23,7 @@ end)
 
 function HeatedEdible:OnRemoveFromEntity()
 	self.inst:RemoveEventCallback("oneaten", oneaten)
+	self.inst:RemoveTag("show_temperature")
 end
 
 function HeatedEdible:GetHeatCapacity()

@@ -341,6 +341,8 @@ local function MakeWeaverNestFn(den_level)
 		inst:AddTag("weavernest")
 		inst:AddTag("hive")
 
+		MakeSnowCovered(inst)
+
 
 		------------------------------------------------------------------------
 		SetupNetwork(inst)
@@ -410,8 +412,6 @@ local function MakeWeaverNestFn(den_level)
 
 		inst:AddComponent("inspectable")
 		
-		MakeSnowCovered(inst)
-
 		inst:SetPrefabName("weavernest")
 		inst.OnEntitySleep = OnEntitySleep
 		inst.OnEntityWake = OnEntityWake

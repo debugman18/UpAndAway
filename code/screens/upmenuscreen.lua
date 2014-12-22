@@ -207,8 +207,6 @@ local function build_screen(self)
 		bg_w - 2*text_margins.x, bg_h - 2*text_margins.y
 	)
 
-	--local character = GetPlayer().profile:GetValue("characterinthrone") or "wilson"
-
 	self.button = self.proot:AddChild(ImageButton())
 	self.button:SetPosition(0, -0.32*bg_h, 0)
 	self.button:SetText("Return")

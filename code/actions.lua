@@ -19,6 +19,7 @@ ACTIONS.DEPLOY.strfn = (function()
 	end
 end)()
 
+---
 
 local Withdraw = Action(1)
 Withdraw.str = "Withdraw"
@@ -40,6 +41,7 @@ AddStategraphActionHandler("wilson", ActionHandler(Withdraw, function(inst, acti
 	end
 end))
 
+---
 
 -- Ugly name, but avoids confusion with vanilla's TALKTO action.
 local BeginSpeech = Action(-1, false, false, TheMod:GetConfig("SPEECHGIVER", "MAX_DIST"))
@@ -61,3 +63,18 @@ AddStategraphActionHandler("wilson", ActionHandler(BeginSpeech, function(inst, a
 		return "idle"
 	end
 end))
+
+---
+
+local Brew = Action()
+Brew.str = "Brew"
+Brew.id = "BREW"
+Brew.fn = function(act)
+	local brewer = act.target.components.brewer
+	if brewer then
+		brewer:StartBrewing( act.doer )
+		return true
+	end
+end
+
+AddAction(Brew)

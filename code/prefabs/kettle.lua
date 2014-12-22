@@ -27,8 +27,10 @@ local basic_prefabs = {}
 
 
 local function BuildKettlePrefab()
-	local Brewing = modrequire 'lib.brewing'
-	local BrewingRecipeBook = modrequire 'resources.brewing_recipebook'
+	local Brewing = modrequire "lib.brewing"
+	local BrewingRecipeBook = modrequire "resources.brewing_recipebook"
+
+	local widget_spec = pkgrequire "common.containerwidgetspecs" .kettle
 
 
 	local assets = basic_assets
@@ -36,36 +38,11 @@ local function BuildKettlePrefab()
 	Lambda.CompactlyMapInto(Brewing.Recipe.GetProduct, prefabs, BrewingRecipeBook:Recipes())
 
 
-	-- This is not in tuning because changing it requires editing art.
-	local NUM_SLOTS = 2
-
-
-	-- Including the margin.
-	local SLOT_HEIGHT = 64 + 8
-
-	-- Vertical offset for all widget elements.
-	local WIDGET_OFFSET = 6
-
-	local slotpos = {}
-
-	for factor = 0.5 + math.ceil(NUM_SLOTS/2) - 1, -(0.5 + math.floor(NUM_SLOTS/2) - 1), -1 do
-		table.insert( slotpos, Vector3(0, WIDGET_OFFSET + factor*SLOT_HEIGHT, 0) )
-	end
-
-	local widgetbuttoninfo = {
-		text = "Brew",
-		position = slotpos[#slotpos] + Vector3(0, -57, 0),
-		fn = function(inst)
-			inst.components.brewer:StartBrewing( GetPlayer() )	
-		end,
-		validfn = function(inst)
-			return inst.components.brewer:CanBrew()
-		end,
-	}
-
 	local function itemtest(inst, item, slot)
-		return (item.components.edible and item.components.edible.foodtype ~= "MEAT") or item:HasTag("tea_leaf")
+		return item:HasTag("tea_leaf") or Game.IsEdibleNotOfType("MEAT")
 	end
+	widget_spec:SetItemTestFn(itemtest)
+
 
 	--anim and sound callbacks
 
@@ -174,11 +151,12 @@ local function BuildKettlePrefab()
 		light:SetIntensity(.5)
 		light:SetColour(235/255,62/255,12/255)
 
+		--MakeSnowCovered(inst)    
+
 
 		------------------------------------------------------------------------
 		SetupNetwork(inst)
 		------------------------------------------------------------------------
-
 
 
 		inst:AddComponent("brewer")
@@ -206,15 +184,7 @@ local function BuildKettlePrefab()
 		do
 			local container = inst.components.container
 
-			container.itemtestfn = itemtest
-			container:SetNumSlots(NUM_SLOTS)
-			container.widgetslotpos = slotpos
-			container.widgetanimbank = "ui_kettle_1x2"
-			container.widgetanimbuild = "ui_kettle_1x2"
-			container.widgetpos = Vector3(200,0,0)
-			container.side_align_tip = 100
-			container.widgetbuttoninfo = widgetbuttoninfo
-			container.acceptsstacks = false
+			widget_spec:ConfigureEntity(inst)
 
 			container.onopenfn = onopen
 			container.onclosefn = onclose
@@ -238,7 +208,6 @@ local function BuildKettlePrefab()
    		inst.entity:AddMiniMapEntity()
     	inst.MiniMapEntity:SetIcon("kettle.tex") 
 
-		--MakeSnowCovered(inst, .01)    
 		inst:ListenForEvent("onbuilt", onbuilt)
 		return inst
 	end

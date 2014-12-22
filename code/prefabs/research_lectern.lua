@@ -39,6 +39,8 @@ local function fn(Sim)
 	local scale = 2
 	inst.Transform:SetScale(scale,scale,scale)
 
+	MakeSnowCovered(inst)
+
 
 	------------------------------------------------------------------------
 	SetupNetwork(inst)
@@ -69,7 +71,6 @@ local function fn(Sim)
     inst.components.workable:SetWorkLeft(4)
 	inst.components.workable:SetOnFinishCallback(onhammered)
 	inst.components.workable:SetOnWorkCallback(onhit)		
-	MakeSnowCovered(inst, .01)
 
 	inst:ListenForEvent( "onbuilt", function()
 		inst.components.prototyper.on = true

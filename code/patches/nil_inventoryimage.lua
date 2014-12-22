@@ -5,8 +5,6 @@
 -- It is meant to prevent annoying log errors.
 --]]
 
-wickerrequire "plugins.addprefabpostinitany"
-
 -- Returns a table mapping our prefabs to true.
 local get_ua_prefab_map = (function()
 	local prefab_map

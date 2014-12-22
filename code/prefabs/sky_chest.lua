@@ -71,6 +71,7 @@ local function chest(style)
 		inst.AnimState:SetBuild(chests[style].build)
 		inst.AnimState:PlayAnimation("closed")
 
+		MakeSnowCovered(inst)	
 
 		------------------------------------------------------------------------
 		SetupNetwork(inst)
@@ -97,7 +98,6 @@ local function chest(style)
 		inst.components.workable:SetOnWorkCallback(onhit) 
 		
 		inst:ListenForEvent("onbuilt", onbuilt)
-		MakeSnowCovered(inst, .01)	
 		return inst
 	end
 	return fn

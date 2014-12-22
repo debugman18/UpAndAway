@@ -106,20 +106,21 @@ if IsHost() then
 	TheMod:AddSimPostInit(function()
 		local P = EntityCreationProfiler()
 
-		local inst = GetLocalPlayer()
+		GetWorld():DoTaskInTime(math.max(0, P:GetConfig("START_DELAY") or 0), function()
+			local inst = GetLocalPlayer()
+			assert(inst)
 
-		inst:DoTaskInTime(math.max(0, P:GetConfig("START_DELAY") or 0), function()
 			P:Bind()
+
+			inst.OnSave = (function()
+				local oldOnSave = inst.OnSave
+
+				return function(...)
+					P:Report()
+
+					return (oldOnSave or Lambda.Nil)(...)
+				end
+			end)()
 		end)
-
-		inst.OnSave = (function()
-			local oldOnSave = inst.OnSave
-
-			return function(...)
-				P:Report()
-
-				return (oldOnSave or Lambda.Nil)(...)
-			end
-		end)()
 	end)
 end

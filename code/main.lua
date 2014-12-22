@@ -9,6 +9,17 @@ BindModModule 'modenv'
 -- This just enables syntax conveniences.
 BindTheMod()
 
+assert(modenv.PrefabFiles)
+if IsDST() then
+	local excluded_prefab_files = {
+		winnie = true,
+	}
+
+	local utils_table = wickerrequire "utils.table"
+	utils_table.FilterArrayInPlace(modenv.PrefabFiles, function(file)
+		return not excluded_prefab_files[file]
+	end)
+end
 
 --[[
 -- The following test checks if we are running the development branch (according to what modinfo.lua informs us).
@@ -40,6 +51,8 @@ modrequire 'strings'
 modrequire 'patches'
 modrequire 'postinits'
 modrequire 'actions'
+modrequire 'componentactions'
+modrequire 'replicas'
 modrequire 'resources.recipes'
 
 

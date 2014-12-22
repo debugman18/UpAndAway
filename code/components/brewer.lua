@@ -1,5 +1,3 @@
-
-
 local Pred = wickerrequire 'lib.predicates'
 
 local Debuggable = wickerrequire 'adjectives.debuggable'
@@ -17,7 +15,6 @@ local Brewer = HostClass(Debuggable, function(self, inst)
 	self:SetConfigurationKey("BREWER")
 
     self.brewing = false
-    self.done = false
     
 	--[[
 	-- There should NEVER be edited when configuring the component.
@@ -34,7 +31,15 @@ function Brewer:IsBrewing()
 end
 
 function Brewer:IsDone()
-	return self.done
+	return self.inst:HasTag("donebrewing")
+end
+
+function Brewer:SetDone(b)
+	if b then
+		self.inst:AddTag("donebrewing")
+	else
+		self.inst:RemoveTag("donebrewing")
+	end
 end
 
 function Brewer:SetRecipeBook(book)
@@ -49,7 +54,7 @@ local function dobrew(inst)
 		inst.components.brewer.ondonebrewing(inst)
 	end
 	
-	inst.components.brewer.done = true
+	inst.components.brewer:SetDone(true)
 	inst.components.brewer.brewing = nil
 end
 
@@ -60,12 +65,6 @@ function Brewer:GetTimeToBrew()
 	return 0
 end
 
-
-function Brewer:CanBrew()
-	return self.recipe_book and self.inst.components.container and next( self.inst.components.container.slots ) ~= nil
-end
-
-
 function Brewer:StopBrewing()
 	if self:IsBrewing() then
 		if self.task then
@@ -73,7 +72,7 @@ function Brewer:StopBrewing()
 			self.task = nil
 		end
 		self.brewing = nil
-		self.done = nil
+		self:SetDone(false)
 		if self.inst.components.inventory then
 			self.inst.components.inventory.canbeopened = true
 		end
@@ -85,7 +84,7 @@ function Brewer:StartBrewing(dude)
 		error(2, "Attempt to brew without setting a recipe book first.")
 	end
 
-	if not self.done and not self.brewing then
+	if not self:IsDone() and not self.brewing then
 		if self.inst.components.container then
 			local spoilage_total = 0
 			local spoilage_n = 0
@@ -110,7 +109,7 @@ function Brewer:StartBrewing(dude)
 			self.product = recipe:GetName()
 			local brewtime = recipe:GetBrewingTime()
 
-			self.done = false
+			self:SetDone(false)
 			self.brewing = true
 
 			self.inst.components.container:Close()
@@ -141,7 +140,7 @@ function Brewer:OnSave()
 			data.time = self.targettime - time
 		end
 		return data
-    elseif self.done then
+    elseif self:IsDone() then
 		local data = {}
 		data.product = self.product
 		data.product_spoilage = self.product_spoilage
@@ -168,7 +167,7 @@ function Brewer:OnLoad(data)
 		end
     elseif data.done then
 		self.product_spoilage = data.product_spoilage or 1
-		self.done = true
+		self:SetDone(true)
 		self.product = data.product
 		if self.oncontinuedone then
 			self.oncontinuedone(self.inst)
@@ -181,19 +180,12 @@ function Brewer:OnLoad(data)
 end
 
 
-function Brewer:CollectSceneActions(doer, actions, right)
-    if self.done then
-        table.insert(actions, _G.ACTIONS.HARVEST)
-    end
-end
-
-
 function Brewer:Harvest( harvester )
-	if self.done then
+	if self:IsDone() then
 		if self.onharvest then
 			self.onharvest(self.inst)
 		end
-		self.done = nil
+		self:SetDone(false)
 		if self.product then
 			if harvester and harvester.components.inventory then
 				local loot = SpawnPrefab(self.product)
@@ -216,5 +208,12 @@ function Brewer:Harvest( harvester )
 	end
 end
 
+---
+
+function Brewer:OnRemoveFromEntity()
+	self:SetDone(false)
+end
+
+---
 
 return Brewer
