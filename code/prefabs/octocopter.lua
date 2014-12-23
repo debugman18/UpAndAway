@@ -136,7 +136,8 @@ local function fn(Sim)
     inst.components.lootdropper:SetLoot(loot) 	
 
     inst:ListenForEvent("death", function(inst)
-        SpawnPrefab("octocopter_wreckage").Transform:SetPosition(inst.Transform:GetWorldPosition())
+        Game.Move(SpawnPrefab("octocopter_wreckage"), inst)
+		GetWorld():PushEvent("octocoptercrash")
     end)
 
 	return inst

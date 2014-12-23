@@ -1,307 +1,240 @@
---FIXME: whatever's going on here (see GetWorld().part sets).
 BindGlobal()
 
+--[[
+-- This is without the "octocopter" prefix.
+--]]
+local PART_NAMES = {
+	"part1", --Rotor Blade
+	"part2", --Rotor Plate
+	"part3", --Rotor Hub
+}
 
 local assets = {
 	Asset("ANIM", "anim/sky_octopus_wreckage.zip"), 	
-	Asset("ANIM", "anim/sky_octopus.zip"), 
-
-	Asset("ANIM", "anim/octocopterpart1.zip"),
-	Asset("ANIM", "anim/octocopterpart2.zip"),
-	Asset("ANIM", "anim/octocopterpart3.zip"),
-
-	Asset( "ATLAS", "images/inventoryimages/octocopterpart1.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/octocopterpart1.tex" ),	
-
-	Asset( "ATLAS", "images/inventoryimages/octocopterpart2.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/octocopterpart2.tex" ),	
-
-	Asset( "ATLAS", "images/inventoryimages/octocopterpart3.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/octocopterpart3.tex" ),			
+	Asset("ANIM", "anim/sky_octopus.zip"),
 }
 
-local function RepairOctocopter(inst)
-	local PopupDialogScreen = require "screens/popupdialog"
+for i, partname in ipairs(PART_NAMES) do
+	table.insert(assets, Asset("ANIM", "anim/octocopter"..partname..".zip"))
+	table.insert(assets, Asset("ATLAS", inventoryimage_atlas("octocopter"..partname)))
+	table.insert(assets, Asset("ATLAS", inventoryimage_texture("octocopter"..partname)))
+end
 
-	inst:AddTag("complete")
-	inst:RemoveComponent("trader")
-	inst.AnimState:PushAnimation("wrecked_fixed", false)
+------------------------------------------------------------------------
 
-    local function prealphawarning(inst)
-        TryPause(false) 
-        TheFrontEnd:PopScreen()
-    end
-
-    TryPause(true)
-    local options = {
-        {text="Well, okay.", cb = prealphawarning},
-    }
-
-    TheFrontEnd:PushScreen(PopupDialogScreen(
-		"Sorry, this segment isn't finished!", 
-		"Normally, this would take you to the next level. That isn't ready yet, though. So have this popup message instead!",
-		options))	
-end	
-
-local function TestForRepair(inst)
-	local partsCount = 0
-	for part,found in pairs(inst.collectedParts) do
-		if found == true then
-			partsCount = partsCount + 1
-			print(partsCount)
-		end
+--[[
+-- This returns the octocopter_wreckage prefab.
+--
+-- Note that now the "octocoptercrash" event is pushed within octocopter.lua.
+--]]
+local function MakeOctocopterWreckage()
+	local FULL_PART_NAMES = {}
+	for i, partname in ipairs(PART_NAMES) do
+		FULL_PART_NAMES[i] = "octocopter"..partname
 	end
-	if partsCount == 3 then
-		print("Completed repair.")
+
+	local FULL_PART_NAME_SET = {}
+	for i, v in ipairs(FULL_PART_NAMES) do
+		FULL_PART_NAME_SET[v] = true
+	end
+
+	---
+
+	local function OnComplete(inst)
+		inst:AddTag("complete")
+		inst:RemoveComponent("trader")
+		inst.AnimState:PushAnimation("wrecked_fixed", false)
+	end
+
+	local function RepairOctocopter(inst)
+		local PopupDialogScreen = require "screens/popupdialog"
+
+		OnComplete(inst)
+
+		local function prealphawarning()
+			TryPause(false) 
+			TheFrontEnd:PopScreen()
+		end
+
+		TryPause(true)
+		local options = {
+			{text="Well, okay.", cb = prealphawarning},
+		}
+
+		TheFrontEnd:PushScreen(PopupDialogScreen(
+			"Sorry, this segment isn't finished!", 
+			"Normally, this would take you to the next level. That isn't ready yet, though. So have this popup message instead!",
+			options))	
+	end	
+
+	local function AttemptRepair(inst)
+		local collected = assert( inst.collectedParts )
+		for _, prefab in ipairs(FULL_PART_NAMES) do
+			if not collected[prefab] then
+				return
+			end
+		end
 		RepairOctocopter(inst)
 	end
-end
 
-local function ItemGet(inst, giver, item)
-	if inst.collectedParts[item.prefab] ~= nil then
-		inst.collectedParts[item.prefab] = true
-		inst.SoundEmitter:PlaySound("dontstarve/common/teleportato/teleportato_addpart", "teleportato_addpart")
-		TestForRepair(inst)
-	end
-end
-
-local function ItemTradeTest(inst, item)
-	if item:HasTag("octocopter_part") then
-		return true
-	end
-	return false
-end
-
-local function OnLoad(inst, data)
-	inst.collectedParts = data.collectedParts
-	if data and data.complete == true then
-		inst:AddTag("complete")
-		inst.AnimState:PlayAnimation("wrecked_fixed", false)
-		inst:RemoveComponent("trader")
-	end
-	if data and data.items then
-		inst.items = true
-	end
-end
-
-local function OnSave(inst, data)
-	data.collectedParts = inst.collectedParts
-	
-	if inst:HasTag("complete") then
-		data.complete = true
+	local function ItemGet(inst, giver, item)
+		if FULL_PART_NAME_SET[item.prefab] then
+			inst.collectedParts[item.prefab] = true
+			inst.SoundEmitter:PlaySound("dontstarve/common/teleportato/teleportato_addpart", "teleportato_addpart")
+			AttemptRepair(inst)
+		end
 	end
 
-	if inst.items == true then
-		data.items = true
+	local function ItemTradeTest(inst, item)
+		return FULL_PART_NAME_SET[item.prefab]
+	end
+
+	local function OnLoad(inst, data)
+		if not data then return end
+
+		if data.collectedParts then
+			inst.collectedParts = data.collectedParts
+		end
+
+		if data.complete then
+			OnComplete(inst)
+		end
+	end
+
+	local function OnSave(inst, data)
+		data.collectedParts = inst.collectedParts
+		
+		if inst:HasTag("complete") then
+			data.complete = true
+		end
+	end
+
+	local function fn()
+		local inst = CreateEntity()
+		inst.entity:AddTransform()
+		inst.entity:AddAnimState()
+		inst.entity:AddSoundEmitter()
+
+		inst.AnimState:SetBank("sky_octopus_wreckage")
+		inst.AnimState:SetBuild("sky_octopus_wreckage")
+		inst.AnimState:PlayAnimation("wrecked_idle", true)
+
+		--inst.AnimState:SetBank("sky_octopus")
+		--inst.AnimState:SetBuild("sky_octopus")
+		--inst.AnimState:PlayAnimation("death")
+
+		local physics = inst.entity:AddPhysics()  
+		MakeObstaclePhysics(inst, 1.5)
+
+		inst.Transform:SetScale(1.4, 1.4, 1.4)
+
+		inst.entity:AddMiniMapEntity()
+		inst.MiniMapEntity:SetIcon("octocopter.tex")
+
+		------------------------------------------------------------------------
+		SetupNetwork(inst)
+		------------------------------------------------------------------------
+
+		inst:AddComponent("inspectable")
+
+		inst:AddComponent("trader")
+		inst.components.trader:SetAcceptTest(ItemTradeTest)
+		inst.components.trader.onaccept = ItemGet
+
+		---
+
+		inst.collectedParts = {}
+
+		---
+
+		inst.OnSave = OnSave
+		inst.OnLoad = OnLoad
+
+		---
+		
+		return inst
 	end	
+
+	return Prefab("cloudrealm/octocopter_wreckage", fn, assets)
 end
 
-local function fn(inst)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
+------------------------------------------------------------------------
 
-	inst.AnimState:SetBank("sky_octopus_wreckage")
-	inst.AnimState:SetBuild("sky_octopus_wreckage")
-	inst.AnimState:PlayAnimation("wrecked_idle", true)
+-- This returns an octocopter part prefab.
+-- 'partname' is the prefab's name *without* the "octocopter" prefix.
+local function MakeOctocopterPart(partname)
+	local full_partname = "octocopter"..partname
 
-	--inst.AnimState:SetBank("sky_octopus")
-	--inst.AnimState:SetBuild("sky_octopus")
-	--inst.AnimState:PlayAnimation("death")
+	local function partfn()
+		local inst = CreateEntity()
+		inst.entity:AddTransform()
+		inst.entity:AddAnimState()
+		inst.entity:AddSoundEmitter()
+		MakeInventoryPhysics(inst)
 
-	local physics = inst.entity:AddPhysics()  
-	MakeObstaclePhysics(inst, 1.5)
+		inst.AnimState:SetBank("icebox")
+		inst.AnimState:SetBuild(full_partname)
+		inst.AnimState:PlayAnimation("closed")
 
-	inst.Transform:SetScale(1.4, 1.4, 1.4)
+		inst:AddTag("octocopter_part")
+		inst:AddTag("irreplaceable")
+		inst:AddTag("nonpotatable")
 
-    inst.entity:AddMiniMapEntity()
-    inst.MiniMapEntity:SetIcon("octocopter.tex")
+		------------------------------------------------------------------------
+		SetupNetwork(inst)
+		------------------------------------------------------------------------
 
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
+		inst:AddComponent("inspectable")
+		inst:AddComponent("inventoryitem")
+		inst.components.inventoryitem.atlasname = inventoryimage_atlas(full_partname)
 
-    inst:AddComponent("inspectable")
+		inst:AddComponent("tradable")    
 
-	inst:AddComponent("trader")
-	inst.components.trader:SetAcceptTest(ItemTradeTest)
-	inst.components.trader.onaccept = ItemGet
-
-	inst.collectedParts = {octocopterpart1 = false, octocopterpart2 = false, octocopterpart3 = false}
-
-	if not inst.items then
-		GetWorld():PushEvent("octocoptercrash")
-		inst.items = true
+		return inst
 	end
 
-	inst.OnSave = OnSave
-	inst.OnLoad = OnLoad
-	
-	return inst
-end	
-
-local function part1fn(inst)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
-
-	--Rotor Blade
-
-    inst.AnimState:SetBank("icebox")
-    inst.AnimState:SetBuild("octocopterpart1")
-    inst.AnimState:PlayAnimation("closed")
-
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
-
-	inst:AddComponent("inspectable")
-	inst:AddComponent("inventoryitem")
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/octocopterpart1.xml"
-
-	inst:AddTag("octocopter_part")
-	inst:AddComponent("tradable")    
-	inst:AddTag("irreplaceable")	
-
-	inst.task = inst:DoPeriodicTask(0.5, function() _G.DeleteCloseEntsWithTag(inst, "partspawner", 1) end, 0)
-	inst:DoTaskInTime(2, function() inst.task:Cancel() end)
-
-	return inst
-end	
-
-local function part2fn(inst)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
-
-	--Rotor Plate
-
-    inst.AnimState:SetBank("icebox")
-    inst.AnimState:SetBuild("octocopterpart2")
-    inst.AnimState:PlayAnimation("closed")
-
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
-
-	inst:AddComponent("inspectable")
-	inst:AddComponent("inventoryitem")
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/octocopterpart2.xml"
-
-	inst:AddTag("octocopter_part")
-	inst:AddComponent("tradable")    
-	inst:AddTag("irreplaceable")
-
-	inst.task = inst:DoPeriodicTask(0.5, function() _G.DeleteCloseEntsWithTag(inst, "partspawner", 1) end, 0)
-	inst:DoTaskInTime(2, function() inst.task:Cancel() end)
-
-	return inst
-end	
-
-local function part3fn(inst)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
-
-	--Rotor Hub
-
-    inst.AnimState:SetBank("icebox")
-    inst.AnimState:SetBuild("octocopterpart3")
-    inst.AnimState:PlayAnimation("closed")
-
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
-
-	inst:AddComponent("inspectable")
-	inst:AddComponent("inventoryitem")
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/octocopterpart3.xml"
-
-	inst:AddTag("octocopter_part")
-	inst:AddComponent("tradable")    
-	inst:AddTag("irreplaceable")
-
-	inst.task = inst:DoPeriodicTask(0.5, function() _G.DeleteCloseEntsWithTag(inst, "partspawner", 1) end, 0)
-	inst:DoTaskInTime(2, function() inst.task:Cancel() end)	
-
-	return inst
-end	
-
-local function part1spawner(inst)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()	
-	inst:AddTag("partspawner")
-
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
-
-	GetWorld().octocopterpart1 = inst
-	inst:ListenForEvent("octocoptercrash", 
-		function(inst) 
-			local part1 = SpawnPrefab("octocopterpart1")
-			part1.Transform:SetPosition(GetWorld().octocopterpart1.Transform:GetWorldPosition())
-			print(GetWorld().octocopterpart1.Transform:GetWorldPosition())
-		end, GetWorld()
-		)
-	return inst
+	return Prefab("cloudrealm/"..full_partname, partfn, assets)
 end
 
-local function part2spawner(inst)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()	
-	inst:AddTag("partspawner")
+------------------------------------------------------------------------
 
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
+-- This returns an octocopter part spawner prefab.
+-- 'partname' is the prefab's name *without* the "octocopter" prefix.
+local function MakeOctocopterPartSpawner(partname)
+	local full_spawnername = partname.."spawner"
+	local full_partname = "octocopter"..partname
 
-	GetWorld().octocopterpart2 = inst
-	inst:ListenForEvent("octocoptercrash", 
-		function(inst) 
-			local part2 = SpawnPrefab("octocopterpart2")
-			part2.Transform:SetPosition(GetWorld().octocopterpart2.Transform:GetWorldPosition())
-			print(GetWorld().octocopterpart2.Transform:GetWorldPosition())
-		end, GetWorld()
-		)
-	return inst
+	local function partspawnerfn()
+		local inst = CreateEntity()
+		inst.entity:AddTransform()	
+
+		inst:AddTag("NOCLICK")
+
+		------------------------------------------------------------------------
+		SetupNetwork(inst)
+		------------------------------------------------------------------------
+
+		inst:ListenForEvent("octocoptercrash", 
+			function(wrld) 
+				local part = assert( SpawnPrefab(full_partname) )
+				Game.Move(part, inst)
+				inst:Remove()
+			end,
+			GetWorld())
+
+		return inst
+	end
+
+	return Prefab("cloudrealm/"..full_spawnername, partspawnerfn, assets)
 end
 
-local function part3spawner(inst)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()	
-	inst:AddTag("partspawner")
+------------------------------------------------------------------------
 
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
+local ret = {MakeOctocopterWreckage()}
 
-	GetWorld().octocopterpart3 = inst
-	inst:ListenForEvent("octocoptercrash", 
-		function(inst) 
-			local part3 = SpawnPrefab("octocopterpart3")
-			part3.Transform:SetPosition(GetWorld().octocopterpart3.Transform:GetWorldPosition())
-			print(GetWorld().octocopterpart3.Transform:GetWorldPosition())
-		end, GetWorld()
-		)
-	return inst
+for i, partname in ipairs(PART_NAMES) do
+	table.insert(ret, MakeOctocopterPart(partname))
+	table.insert(ret, MakeOctocopterPartSpawner(partname))
 end
 
-return {
-	Prefab ("cloudrealm/octocopter_wreckage", fn, assets),
-
-	Prefab ("cloudrealm/octocopterpart1", part1fn, assets),
-	Prefab ("cloudrealm/octocopterpart2", part2fn, assets),	
-	Prefab ("cloudrealm/octocopterpart3", part3fn, assets),	
-
-	Prefab ("cloudrealm/part1spawner", part1spawner, assets),
-	Prefab ("cloudrealm/part2spawner", part2spawner, assets),	
-	Prefab ("cloudrealm/part3spawner", part3spawner, assets),			
-}	
+return ret

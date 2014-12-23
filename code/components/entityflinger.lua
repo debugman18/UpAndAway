@@ -820,28 +820,4 @@ function EntityFlinger:LoadPostPass(newents, data)
 	end
 end
 
---[[
--- FIXME
-local count = 1
-local function tag_foo(k, v)
-	return function(self, ...)
-		local oldcnt = count
-		count = count + 1
-		self:DebugSay(oldcnt, " CALLED ", k)
-		local rets = {v(self, ...)}
-		self:DebugSay(oldcnt, " RETURNED FROM ", k)
-		return unpack(rets)
-	end
-end
-for k, v in pairs(EntityFlinger) do
-	if not Debuggable[k] and not k:find("Say") and type(v) == "function" then
-		EntityFlinger[k] = tag_foo(k, v)
-	end
-end
-for k, v in pairs(Begin) do
-	Begin[k] = tag_foo("Begin."..k, v)
-end
-]]--
-
-
 return EntityFlinger
