@@ -40,6 +40,17 @@ end)
 GetStaticGen = GetStaticGenerator
 
 
+--[[
+-- This is to simplify atlasing several textures into one later on.
+--]]
+function inventoryimage_atlas(prefab)
+	return "images/inventoryimages/"..prefab..".xml"
+end
+function inventoryimage_texture(prefab)
+	return "images/inventoryimages/"..prefab..".tex"
+end
+
+
 if VarExists("IsDLCEnabled") then
 	IsDLCEnabled = _G.IsDLCEnabled
 else

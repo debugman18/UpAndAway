@@ -1,7 +1,6 @@
 --FIXME: whatever's going on here (see GetWorld().part sets).
 BindGlobal()
 
-local PopupDialogScreen = require "screens/popupdialog"
 
 local assets = {
 	Asset("ANIM", "anim/sky_octopus_wreckage.zip"), 	
@@ -22,6 +21,7 @@ local assets = {
 }
 
 local function RepairOctocopter(inst)
+	local PopupDialogScreen = require "screens/popupdialog"
 
 	inst:AddTag("complete")
 	inst:RemoveComponent("trader")
@@ -38,11 +38,9 @@ local function RepairOctocopter(inst)
     }
 
     TheFrontEnd:PushScreen(PopupDialogScreen(
-
-    "Sorry, this segment isn't finished!", 
-    "Normally, this would take you to the next level. That isn't ready yet, though. So have this popup message instead!",
-
-    options))	
+		"Sorry, this segment isn't finished!", 
+		"Normally, this would take you to the next level. That isn't ready yet, though. So have this popup message instead!",
+		options))	
 end	
 
 local function TestForRepair(inst)
