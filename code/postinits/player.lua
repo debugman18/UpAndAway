@@ -12,11 +12,6 @@ TheMod:AddPlayerPostInit(function(player)
 		player:AddComponent("speechlistener")
 		player:AddComponent("ambrosiarespawn")
 		player:AddComponent("beanhated")
+		player:AddComponent("ua_beardable")
 	end
-	--[[
-	--FIXME: see components/beardlady.lua
-	if not player.components.beard then
-		player:AddComponent("beardedlady")
-	end
-	]]--
 end)
