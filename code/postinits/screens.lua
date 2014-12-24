@@ -29,7 +29,9 @@ local function OnUpdate(self)
     end
 end	
 
-TheMod:AddClassPostConstruct("screens/mainscreen", OnUpdate)
+if not IsDST() then
+	TheMod:AddClassPostConstruct("screens/mainscreen", OnUpdate)
+end
 
 --Changes the main menu.
 local function DoInit(self)
@@ -135,7 +137,9 @@ local function DoInit(self)
 
 end
 
-TheMod:AddClassPostConstruct("screens/mainscreen", DoInit)
+if not IsDST() then
+	TheMod:AddClassPostConstruct("screens/mainscreen", DoInit)
+end
 
 --This gives us custom worldgen screens.	
 local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
