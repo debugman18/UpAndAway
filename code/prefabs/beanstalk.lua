@@ -317,7 +317,6 @@ local function fn(Sim)
 	anim:SetBuild("beanstalk")
 	anim:PushAnimation("idle", true)	
 
-    inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon( "beanstalk.tex" )
 
 	sound:PlaySound("dontstarve/tentacle/tentapiller_idle_LP","loop")
