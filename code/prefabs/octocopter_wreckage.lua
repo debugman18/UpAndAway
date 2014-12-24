@@ -17,7 +17,7 @@ local assets = {
 for i, partname in ipairs(PART_NAMES) do
 	table.insert(assets, Asset("ANIM", "anim/octocopter"..partname..".zip"))
 	table.insert(assets, Asset("ATLAS", inventoryimage_atlas("octocopter"..partname)))
-	table.insert(assets, Asset("ATLAS", inventoryimage_texture("octocopter"..partname)))
+	table.insert(assets, Asset("IMAGE", inventoryimage_texture("octocopter"..partname)))
 end
 
 ------------------------------------------------------------------------

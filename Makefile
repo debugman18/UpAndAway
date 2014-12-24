@@ -43,7 +43,7 @@ export PERL
 export KTECH
 
 
-.PHONY: all anim images bigportraits levels exported fiximages dist clean distclean wicker wickertools
+.PHONY: all anim images bigportraits levels exported fiximages dist clean distclean wicker wickertools check checkxml checklua
 
 all: anim images bigportraits levels exported
 
@@ -82,6 +82,14 @@ distclean:
 	$(MAKE) -C levels distclean
 	$(MAKE) -C exported distclean
 	$(RM) UpAndAway-*.zip
+
+check: checkxml checklua
+
+checkxml:
+	find . -name '*.xml' | xargs xmllint --noout
+
+checklua:
+	find . -name '*.lua' | xargs luac -p --
 
 include make/doc.mk
 include $(WICKER_SCRIPT_DIR)/make/utils.mk
