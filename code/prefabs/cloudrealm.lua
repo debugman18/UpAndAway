@@ -198,9 +198,11 @@ local function SetupLevelTypeFix(inst, new_level_type)
 			oldLoadPostPass(self, ...)
 		end
 
-		local sm = inst.components.seasonmanager
-		if sm then
-			sm.incaves = false
+		if not IsDST() then
+			local sm = inst.components.seasonmanager
+			if sm then
+				sm.incaves = false
+			end
 		end
 	end
 end
@@ -215,7 +217,7 @@ local function fn(Sim)
 
 	SetupLevelTypeFix(inst)
 
-	if not inst.components.clock then
+	if not IsDST() and not inst.components.clock then
 		inst:AddComponent("clock")
 	end
 
@@ -235,16 +237,57 @@ local function fn(Sim)
 	waves:SetWaveSize(2048, 562) --This definitely works.
    
     --inst.components.ambientsoundmixer:SetReverbPreset("clouds")
-    inst.components.ambientsoundmixer:SetReverbPreset("forest") 
-    --inst.componentsambientsoundmixer.wave_sound = "dontstarve/common/clouds"
-    inst.components.ambientsoundmixer:SetOverride("dontstarve/ocean/waves", "dontstarve/common/clouds")
-   
-	inst:AddComponent("colourcubemanager")
-	do
-		local ccman = inst.components.colourcubemanager
-		local COLOURCUBE = "images/colour_cubes/snowdusk_cc.tex"
 
-		ccman:SetOverrideColourCube(COLOURCUBE)
+	local TUNING_OVERRIDES = require "tuning_override"
+	if not IsDST() then
+		TUNING_OVERRIDES = TUNING_OVERRIDES.OVERRIDES
+	end
+
+	TUNING_OVERRIDES.areaambientdefault = (function()
+		local oldfn = TUNING_OVERRIDES.areaambientdefault
+		local function newfn(...)
+			TheSim:SetReverbPreset("default")
+			return oldfn(...)
+		end
+		if IsDST() then
+			return newfn
+		else
+			oldfn = assert( oldfn.doit )
+			return { doit = newfn }
+		end
+	end)()
+	if not IsDST() then
+		--[[
+		-- This is wrong. The AmbientSoundMixer:SetOverride is for sounds
+		-- associated with tile types. And it's not DST compatible.
+		--]]
+		--inst.components.ambientsoundmixer:SetOverride("dontstarve/ocean/waves", "dontstarve/common/clouds")
+	end
+    --inst.componentsambientsoundmixer.wave_sound = "dontstarve/common/clouds"
+   
+	local COLOURCUBE = "images/colour_cubes/snowdusk_cc.tex"
+	if not IsDST() then
+		inst:AddComponent("colourcubemanager")
+		do
+			local ccman = inst.components.colourcubemanager
+
+			ccman:SetOverrideColourCube(COLOURCUBE)
+		end
+	else
+		assert(inst.components.colourcube)
+
+		local function dooverride()
+			inst:PushEvent("overridecolourcube", COLOURCUBE)
+		end
+
+		dooverride()
+
+		-- This is for the mess caused by inst:SetGhostMode(), where inst is a player.
+		inst:ListenForEvent("overridecolourcube", function(inst, data)
+			if not data then
+				dooverride()
+			end
+		end)
 	end
 
 	--inst.Map:SetOverlayTexture( "levels/textures/snow.tex" )
@@ -261,6 +304,16 @@ local function fn(Sim)
 
 			staticgen:StartGenerating()
 		end
+	end
+
+	---------------------------------------------
+	--
+	-- Spawners
+	--
+
+	if IsDST() and IsMasterSimulation() then
+		inst:AddComponent("playerspawner")
+		inst:AddComponent("worldsanitymonsterspawner")
 	end
 
 	if not IsDedicated() then
@@ -291,7 +344,9 @@ local function fn(Sim)
 				return sgen and sgen:IsCharged()
 			end)
 
-			flyspawner:Touch()
+			TheMod:AddLocalPlayerPostActivation(function()
+				flyspawner:Touch()
+			end)
 		end
 	end
 
@@ -299,6 +354,8 @@ local function fn(Sim)
 		--FIXME: not MP compatible
 		inst:AddComponent("balloonhounded")
 	end
+
+	---------------------------------------------
 
 	inst:DoTaskInTime(0, FilterOverrides)
 

@@ -217,7 +217,10 @@ local function has_received_quest(player)
 end
 
 local function has_given_quest(inst)
+	--[[
 	return Game.FindSomePlayer(has_received_quest) ~= nil
+	]]--
+	return inst.gave_quest or false
 end
 
 local function try_despawn(inst)
@@ -281,6 +284,7 @@ end
 --This handles the remembering.
 local function onsave(inst, data)
 	data.beans_to_give = inst.beans_to_give ~= 0 and inst.beans_to_give or nil
+	data.gave_quest = inst.gave_quest or nil
 	data.permanent = inst:HasTag("permanent") or nil
 end
 
@@ -291,6 +295,8 @@ local function onload(inst, data)
 	if inst.beans_to_give == 0 then
 		inst.beans_to_give = nil
 	end
+
+	inst.gave_quest = data.gave_quest or false
 
 	if data.permanent then
 		inst:AddTag("permanent")
@@ -365,6 +371,7 @@ local function fn(Sim)
 			local quester = mgr.listener.components.quester
 			if quester then
 				quester:StartQuest(PRIMARY_QUEST)
+				inst.gave_quest = true
 			end
 		end)
 

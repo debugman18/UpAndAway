@@ -20,7 +20,7 @@ local function GrowBeanstalk(inst)
 		tree.AnimState:PlayAnimation("emerge")		
 		tree.AnimState:PushAnimation("idle", true)		
 
-		for _, player in Game.FindAllPlayers() do
+		for _, player in ipairs(Game.FindAllPlayers()) do
 			Game.Effects.ShakeCamera(player, inst, "VERTICAL", 0.5, 0.03, 4, 40)
 			if player:GetDistanceSqToInst(inst) < 64^2 then
 				player.AnimState:PlayAnimation("wakeup")

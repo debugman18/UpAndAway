@@ -37,10 +37,6 @@ local UACamera = Class(Debuggable, function(self, inst)
 
 	assert(inst:HasTag("player"), "Logic error.")
 
-	-- This denotes whether we should actually change TheCamera.
-	local is_authority = (inst == GetLocalPlayer())
-	self.is_authority = is_authority
-
 	self.net_target = NetEntity(inst, "ua_camera.target")
 	self.net_heading_target = NetAngle(inst, "ua_camera.heading_target")
 	self.net_pangain = NetSpeed(inst, "ua_camera.pangain")
@@ -58,42 +54,52 @@ local UACamera = Class(Debuggable, function(self, inst)
 	self.net_push_state = NetSignal(inst, "ua_camera.push_state")
 	self.net_pop_state = NetSignal(inst, "ua_camera.pop_state")
 
-	if is_authority then
-		local cam = assert(_G.TheCamera)
+	-- This denotes whether we should actually change TheCamera.
+	self.is_authority = false
 
-		self.state_stack = {}
+	if inst:HasTag("player") then
+		TheMod:AddLocalPlayerPostActivation(function()
+			local is_authority = (inst == GetLocalPlayer())
+			self.is_authority = is_authority
 
-		self.net_target.local_value = cam.target
-		self.net_heading_target.local_value = cam:GetHeadingTarget()
-		self.net_pangain.local_value = cam.pangain
-		self.net_headinggain.local_value = cam.headinggain
-		self.net_distancegain.local_value = cam.distancegain
-		self.net_controllable.local_value = cam:IsControllable()
-		self.net_offset_x.local_value, self.net_offset_y.local_value, self.net_offset_z.local_value = (function()
-			if cam.target_offset then
-				return cam.target_offset:Get()
-			else
-				return 0, 0, 0
+			if is_authority then
+				local cam = assert(_G.TheCamera)
+
+				self.state_stack = {}
+
+				self.net_target.local_value = cam.target
+				self.net_heading_target.local_value = cam:GetHeadingTarget()
+				self.net_pangain.local_value = cam.pangain
+				self.net_headinggain.local_value = cam.headinggain
+				self.net_distancegain.local_value = cam.distancegain
+				self.net_controllable.local_value = cam:IsControllable()
+				self.net_offset_x.local_value, self.net_offset_y.local_value, self.net_offset_z.local_value = (function()
+					if cam.target_offset then
+						return cam.target_offset:Get()
+					else
+						return 0, 0, 0
+					end
+				end)()
+				self.net_distance.local_value = cam:GetDistance()
+
+				self.net_can_flip_heading.local_value = false
+				self.net_is_offset_absolute.local_value = false
+
+				self.net_target:AddOnDirtyFn(cam_handlers.target)
+				self.net_heading_target:AddOnDirtyFn(cam_handlers.heading_target)
+				self.net_pangain:AddOnDirtyFn(cam_handlers.pangain)
+				self.net_headinggain:AddOnDirtyFn(cam_handlers.headinggain)
+				self.net_distancegain:AddOnDirtyFn(cam_handlers.distancegain)
+				self.net_controllable:AddOnDirtyFn(cam_handlers.controllable)
+				--self.net_offset_x:AddOnDirtyFn(cam_handlers.offset)
+				--self.net_offset_y:AddOnDirtyFn(cam_handlers.offset)
+				self.net_offset_z:AddOnDirtyFn(cam_handlers.offset)
+				self.net_distance:AddOnDirtyFn(cam_handlers.distance)
+
+				self.net_push_state:AddOnDirtyFn(cam_handlers.push_state)
+				self.net_pop_state:AddOnDirtyFn(cam_handlers.pop_state)
 			end
-		end)()
-		self.net_distance.local_value = cam:GetDistance()
-
-		self.net_can_flip_heading.local_value = false
-		self.net_is_offset_absolute.local_value = false
-
-		self.net_target:AddOnDirtyFn(cam_handlers.target)
-		self.net_heading_target:AddOnDirtyFn(cam_handlers.heading_target)
-		self.net_pangain:AddOnDirtyFn(cam_handlers.pangain)
-		self.net_headinggain:AddOnDirtyFn(cam_handlers.headinggain)
-		self.net_distancegain:AddOnDirtyFn(cam_handlers.distancegain)
-		self.net_controllable:AddOnDirtyFn(cam_handlers.controllable)
-		--self.net_offset_x:AddOnDirtyFn(cam_handlers.offset)
-		--self.net_offset_y:AddOnDirtyFn(cam_handlers.offset)
-		self.net_offset_z:AddOnDirtyFn(cam_handlers.offset)
-		self.net_distance:AddOnDirtyFn(cam_handlers.distance)
-
-		self.net_push_state:AddOnDirtyFn(cam_handlers.push_state)
-		self.net_pop_state:AddOnDirtyFn(cam_handlers.pop_state)
+		end)
 	end
 end)
 local UAC = UACamera

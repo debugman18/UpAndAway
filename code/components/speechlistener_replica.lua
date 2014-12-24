@@ -31,14 +31,20 @@ local SpeechListener = Class(Debuggable, function(self, inst)
 
 	self.last_camera_heading = nil
 
-	local is_authority = (inst == GetLocalPlayer())
-	self.is_authority = is_authority
+	self.is_authority = false
 
-	if is_authority then
-		self.net_input_handlers_enabled:AddOnDirtyFn(manageInputHandlers)
+	if inst:HasTag("player") then
+		TheMod:AddLocalPlayerPostActivation(function()
+			local is_authority = (inst == GetLocalPlayer())
+			self.is_authority = is_authority
 
-		self.net_enter_cutscene:AddOnDirtyFn(doEnterCutScene)
-		self.net_abort_cutscene:AddOnDirtyFn(doAbortCutScene)
+			if is_authority then
+				self.net_input_handlers_enabled:AddOnDirtyFn(manageInputHandlers)
+
+				self.net_enter_cutscene:Connect(doEnterCutScene)
+				self.net_abort_cutscene:Connect(doAbortCutScene)
+			end
+		end)
 	end
 end)
 
@@ -168,7 +174,9 @@ doEnterCutScene = function(inst)
 	local self = replica(inst).speechlistener
 	if not self then return end
 
-	if not self:IsAuthority() then return end
+	if not self:IsAuthority() then
+		return
+	end
 
 	self:DebugSay("EnterCutScene()")
 
@@ -224,26 +232,28 @@ doAbortCutScene = function(inst)
 		return not speaker:IsValid() or not speechgiver or not speechgiver:IsInCutScene()
 	end
 
-	if reset_condition() then
-		Game.ShowPlayerHUD(listener, true)
+	listener:DoTaskInTime(2*FRAMES, function()
+		if reset_condition() then
+			Game.ShowPlayerHUD(listener, true)
 
-		_G.TheCamera:SetControllable(true)
-		_G.TheCamera:SetPaused(false)
+			_G.TheCamera:SetControllable(true)
+			_G.TheCamera:SetPaused(false)
 
-		if self.last_camera_heading then
-			_G.TheCamera:SetHeadingTarget(self.last_camera_heading)
-			self.last_camera_heading = nil
-		end
-
-		_G.TheCamera:SetDefault()
-		_G.TheCamera:SetGains( unpack(CAMERA_SLOW_GAINS) )
-
-		listener:DoTaskInTime(5, function()
-			if reset_condition() then
-				_G.TheCamera:SetDefault()
+			if self.last_camera_heading then
+				_G.TheCamera:SetHeadingTarget(self.last_camera_heading)
+				self.last_camera_heading = nil
 			end
-		end)
-	end
+
+			_G.TheCamera:SetDefault()
+			_G.TheCamera:SetGains( unpack(CAMERA_SLOW_GAINS) )
+
+			listener:DoTaskInTime(5, function()
+				if reset_condition() then
+					_G.TheCamera:SetDefault()
+				end
+			end)
+		end
+	end)
 end
 
 ---
