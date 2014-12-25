@@ -22,11 +22,13 @@ WICKER_TOOLS_DIR:=wickertools
 MOD_VERSION=$(shell $(TOOLS_DIR)/get_modversion.lua modinfo.lua)
 
 
-# Paths to the Lua and Perl interpreters, and to ktech.
+# Paths to binary programs used for packaging and other purposes.
 # If you need to change this, see the remark about config.mk below.
 LUA:=lua
+LUAC:=luac
 PERL:=perl
 KTECH:=ktech
+XMLLINT:=xmllint
 
 
 #
@@ -86,9 +88,9 @@ distclean:
 check: checkxml checklua
 
 checkxml:
-	find . -name '*.xml' | xargs xmllint --noout
+	find . -name '*.xml' | xargs $(XMLLINT) --noout
 
 checklua:
-	find . -name '*.lua' | xargs luac -p --
+	find . -name '*.lua' | xargs $(LUAC) -p --
 
 include $(WICKER_SCRIPT_DIR)/make/utils.mk
