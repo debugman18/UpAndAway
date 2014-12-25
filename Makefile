@@ -65,8 +65,8 @@ exported:
 fiximages:
 	$(MAKE) -C exported fiximages
 
-dist: all
-	$(LUA) $(TOOLS_DIR)/pkgfilelist_gen.lua "$(PKGINFO)" | $(PERL) $(TOOLS_DIR)/pkg_archiver.pl $(ZIPNAME)
+dist: all check
+	$(LUA) "$(TOOLS_DIR)/pkgfilelist_gen.lua" "$(PKGINFO)" | $(PERL) "$(TOOLS_DIR)/pkg_archiver.pl" "$(ZIPNAME)"
 
 clean: distclean
 	$(MAKE) -C anim clean
@@ -91,5 +91,4 @@ checkxml:
 checklua:
 	find . -name '*.lua' | xargs luac -p --
 
-include make/doc.mk
 include $(WICKER_SCRIPT_DIR)/make/utils.mk
