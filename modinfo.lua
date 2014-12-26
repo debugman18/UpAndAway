@@ -21,6 +21,9 @@ forumthread = "/forum/49-mod-collaboration-up-and-away"
 
 api_version = 6
 
+-- This is used by the packaging system.
+dst_api_version = 10
+
 icon_atlas = "favicon/upandaway.xml"
 icon = "upandaway.tex"
 

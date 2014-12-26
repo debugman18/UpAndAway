@@ -3,6 +3,8 @@
 # cluttering.
 ZIPNAME=UpAndAway-$(MOD_VERSION).zip
 
+DST_ZIPNAME=UpAndAway-DST-$(MOD_VERSION).zip
+
 # Name of the package info file.
 PKGINFO:=pkginfo.lua
 
@@ -45,7 +47,7 @@ export PERL
 export KTECH
 
 
-.PHONY: all anim images bigportraits levels exported fiximages dist clean distclean wicker wickertools check checkxml checklua
+.PHONY: all anim images bigportraits levels exported fiximages dist ds_dist dst_dist clean distclean wicker wickertools check checkxml checklua
 
 all: anim images bigportraits levels exported
 
@@ -67,8 +69,15 @@ exported:
 fiximages:
 	$(MAKE) -C exported fiximages
 
-dist: all check
-	$(LUA) "$(TOOLS_DIR)/pkgfilelist_gen.lua" "$(PKGINFO)" | $(PERL) "$(TOOLS_DIR)/pkg_archiver.pl" "$(ZIPNAME)"
+dist: ds_dist dst_dist
+
+DO_DIST=$(LUA) "$(WICKER_TOOLS_DIR)/pkgfilelist_gen.lua" "$(PKGINFO)" $(2) | $(PERL) "$(WICKER_TOOLS_DIR)/pkg_archiver.pl" "$(1)"
+
+ds_dist: all check
+	$(call DO_DIST,$(ZIPNAME))
+
+dst_dist: all check
+	$(call DO_DIST,$(DST_ZIPNAME),--dst)
 
 clean: distclean
 	$(MAKE) -C anim clean

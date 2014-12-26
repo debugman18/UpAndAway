@@ -94,6 +94,11 @@ return {
 	modinfo_filter = function(modinfo)
 		modinfo.branch = "master"
 
+		if opts.dst and modinfo.dst_api_version then
+			modinfo.api_version = modinfo.dst_api_version
+		end
+		modinfo.dst_api_version = nil
+
 		return modinfo
 	end,
 }
