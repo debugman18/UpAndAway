@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 require "behaviours/chaseandattack"
 require "behaviours/chaseandram"
 require "behaviours/wander"
@@ -17,7 +19,7 @@ local KEEP_FACE_DIST = 10
 local MAX_CHARGE_DIST = 8
 local CHASE_GIVEUP_DIST = 10
 
-local EelBrain = Class(Brain, function(self, inst)
+local VineBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
 end)
 
@@ -57,11 +59,11 @@ end
 
 local function GetNearbyThreatFn(inst)
     return FindEntity(inst, START_FACE_DIST, function(guy)
-        return (guy:HasTag("character") or guy:HasTag("animal") ) and not guy:HasTag("eel") and not guy:HasTag("notarget")
+        return (guy:HasTag("character") or guy:HasTag("animal") ) and not guy:HasTag("vine") and not guy:HasTag("notarget")
     end)
 end
 
-function EelBrain:OnStart()
+function VineBrain:OnStart()
 
     local clock = GetPseudoClock()
     
@@ -79,4 +81,4 @@ function EelBrain:OnStart()
          
 end
 
-return EelBrain
+return VineBrain

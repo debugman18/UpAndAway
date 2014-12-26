@@ -1,6 +1,8 @@
 BindGlobal()
 
-local brain = require "brains/eelbrain"
+local CFG = TheMod:GetConfig()
+
+local brain = require "brains/vinebrain"
 
 local assets=
 {
@@ -24,7 +26,7 @@ local function Retarget(inst)
     local newtarget = FindEntity(inst, 20, function(guy)
             return (guy:HasTag("character") or guy:HasTag("monster"))
                    and not (inst.components.follower and inst.components.follower.leader == guy)
-                   and not guy:HasTag("eel")
+                   and not guy:HasTag("vine")
                    and not guy:HasTag("beanmonster")
 				   and not guy:HasTag("beanprotector")
                    and not guy:HasTag("cloudneutral")
@@ -55,7 +57,7 @@ local function fn(Sim)
 
     inst:AddTag("monster")    
     inst:AddTag("hostile")
-    inst:AddTag("eel")
+    inst:AddTag("vine")
 	inst:AddTag("cloudmonster")
 	inst:AddTag("beanprotector")
     inst:AddTag("beanmonster")
@@ -94,7 +96,7 @@ local function fn(Sim)
 	inst.components.locomotor.runspeed = 6.3
 	inst.components.locomotor.directdrive = true
     
-    inst:SetStateGraph("SGeel")
+    inst:SetStateGraph("SGvine")
 	inst:SetBrain(brain)
 
 	inst:ListenForEvent("death", function(inst) inst:StopBrain() end)

@@ -7,11 +7,6 @@ require "behaviours/runaway"
 require "behaviours/doaction"
 require "behaviours/panic"
 
-local STOP_RUN_DIST = 10
-local SEE_PLAYER_DIST = 5
-local SEE_FOOD_DIST = 20
-local MAX_WANDER_DIST = 80
-
 local GooseBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
 end)
@@ -22,10 +17,10 @@ local function EatFoodAction(inst)
         target = inst.components.inventory:FindItem(function(item) return inst.components.eater:CanEat(item) end)
     end
     if not target then
-        target = FindEntity(inst, SEE_FOOD_DIST, function(item) return inst.components.eater:CanEat(item) end)
+        target = FindEntity(inst, CFG.GOOSE.SEE_FOOD_DIST, function(item) return inst.components.eater:CanEat(item) end)
         if target then
             --check for scary things near the food
-            local predator = GetClosestInstWithTag("scarytoprey", target, SEE_PLAYER_DIST)
+            local predator = GetClosestInstWithTag("scarytoprey", target, CFG.GOOSE.SEE_PLAYER_DIST)
             if predator then target = nil end
         end
     end
@@ -43,8 +38,8 @@ function GooseBrain:OnStart()
     {
         WhileNode( function() return self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst)),
         DoAction(self.inst, EatFoodAction, "Eat Food"),
-        RunAway(self.inst, "scarytoprey", SEE_PLAYER_DIST, STOP_RUN_DIST),
-        Wander(self.inst, HomePos, MAX_WANDER_DIST),
+        RunAway(self.inst, "scarytoprey", CFG.GOOSE.SEE_PLAYER_DIST, CFG.GOOSE.STOP_RUN_DIST),
+        Wander(self.inst, HomePos, CFG.GOOSE.MAX_WANDER_DIST),
     }, .25)
     
     self.bt = BT(self.inst, root)

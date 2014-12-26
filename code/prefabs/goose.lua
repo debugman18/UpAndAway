@@ -1,12 +1,8 @@
 BindGlobal()
 
-
 local Pred = wickerrequire 'lib.predicates'
 
-local Configurable = wickerrequire 'adjectives.configurable'
-
-
-local cfg = Configurable "GOOSE"
+local CFG = TheMod:GetConfig()
 
 
 local assets=
@@ -17,18 +13,9 @@ local assets=
 	Asset("SOUND", "sound/perd.fsb"),
 }
 
-local prefabs =
-{
-    "drumstick",
-}
+local prefabs = CFG.GOOSE.PREFABS
 
-local loot = 
-{
-    "drumstick",
-    "smallmeat",
-	"smallmeat",
-}
- 
+SetSharedLootTable('goose', CFG.GOOSE.LOOT)
 
 --[[
 -- Actually, the "ConditionalTasker" protocomponent I wrote (within wicker)
@@ -56,7 +43,7 @@ local function NewEggDropper(period, delay)
 		if GetStaticGenerator():IsCharged() then
 			if inst:IsAsleep() then
 				if math.random(1,4) == 4 then
-					local egg = SpawnPrefab("golden_egg")
+					local egg = SpawnPrefab(CFG.GOOSE.EGG)
 					egg.Transform:SetPosition(inst.Transform:GetWorldPosition())
 					TheMod:DebugSay("[", inst, "] laid [", egg, "]!")
 					lastlay = GetTime()
@@ -92,13 +79,12 @@ local function fn()
 	local shadow = inst.entity:AddDynamicShadow()
 	shadow:SetSize( 1.5, .75 )
     inst.Transform:SetFourFaced()
-	inst.Transform:SetScale(1.3, 1.4, 1.1)
+	inst.Transform:SetScale(CFG.GOOSE.SCALEX, CFG.GOOSE.SCALEY, CFG.GOOSE.SCALEZ)
 	
     MakeCharacterPhysics(inst, 50, .5)    
      
     anim:SetBank("perd")
     anim:SetBuild("goose")
-
 
     ------------------------------------------------------------------------
     SetupNetwork(inst)
@@ -106,37 +92,34 @@ local function fn()
 
     
     inst:AddComponent("locomotor")
-    inst.components.locomotor.runspeed = 10
-    inst.components.locomotor.walkspeed = 8
+    inst.components.locomotor.runspeed = CFG.GOOSE.RUNSPEED
+    inst.components.locomotor.walkspeed = CFG.GOOSE.WALKSPEED
     
 	inst:SetStateGraph("SGgoose")
-    --inst:SetStateGraph("SGperd")
-    --anim:Hide("hat")
 
     inst:AddTag("character")
 	inst:AddTag("cloudneutral")
 
-    --inst:AddComponent("homeseeker")
     local brain = require "brains/goosebrain"
-	--local brain = require "brains/perdbrain"
     inst:SetBrain(brain)
     
     inst:AddComponent("eater")
     inst.components.eater:SetVegetarian()
-    
+   
+   	-- Goose don't need no sleep.
     inst:AddComponent("sleeper")
-    inst.components.sleeper:SetWakeTest( function() return true end)    --always wake up if we're asleep
+    inst.components.sleeper:SetWakeTest( function() return true end)
 
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "pig_torso"
+    inst.components.combat:SetDefaultDamage(CFG.GOOSE.DAMAGE)
+    inst.components.combat:SetAttackPeriod(CFG.GOOSE.ATTACK_PERIOD)
 	
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(40)
-    inst.components.combat:SetDefaultDamage(TUNING.PERD_DAMAGE)
-    inst.components.combat:SetAttackPeriod(TUNING.PERD_ATTACK_PERIOD)
+    inst.components.health:SetMaxHealth(CFG.GOOSE.HEALTH)
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot(loot)
+    inst.components.lootdropper:SetChanceLootTable("goose")
     
     inst:AddComponent("inventory")
     
@@ -146,7 +129,7 @@ local function fn()
     MakeMediumFreezableCharacter(inst, "pig_torso")
 	
  	inst:AddComponent("staticchargeable")
- 	inst.components.staticchargeable:SetOnChargeFn( NewEggDropper( cfg:GetConfig("LAY_PERIOD"), cfg:GetConfig("LAY_DELAY")) )
+ 	inst.components.staticchargeable:SetOnChargeFn(NewEggDropper(CFG.GOOSE.LAY_PERIOD), CFG.GOOSE.LAY_DELAY)
 
     return inst
 end

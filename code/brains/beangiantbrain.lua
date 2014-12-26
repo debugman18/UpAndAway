@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 require "behaviours/chaseandattack"
 require "behaviours/runaway"
 require "behaviours/wander"
@@ -8,14 +10,9 @@ require "behaviours/attackwall"
 require "behaviours/panic"
 require "behaviours/minperiod"
 
-local SEE_DIST = 40
-
-local CHASE_DIST = 32
-local CHASE_TIME = 20
-
 local function BaseDestroy(inst)
     if inst.components.knownlocations:GetLocation("targetbase") then
-        local target = FindEntity(inst, SEE_DIST, function(item) 
+        local target = FindEntity(inst, CFG.BEAN_GIANT.SEE_DIST, function(item) 
             if item.components.workable
                and item.components.workable.action == ACTIONS.HAMMER
                and not item:HasTag("wall") then
@@ -56,7 +53,7 @@ function BeanGiantBrain:OnStart()
         PriorityNode(
         {
             AttackWall(self.inst),
-            ChaseAndAttack(self.inst, CHASE_TIME, CHASE_DIST),
+            ChaseAndAttack(self.inst, CFG.BEAN_GIANT.CHASE_TIME, CFG.BEAN_GIANT.CHASE_DIST),
             DoAction(self.inst, function() return BaseDestroy(self.inst) end, "DestroyBase", true),
             WhileNode(function() return self.inst.components.knownlocations:GetLocation("home") end, "HasHome",
                 DoAction(self.inst, function() return GoHome(self.inst) end, "GoHome", true) ),

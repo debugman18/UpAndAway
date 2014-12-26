@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
     Asset("ANIM", "anim/livegnome.zip"),   
@@ -43,17 +45,17 @@ local function onpickup(inst)
 end    
 
 local function DropToy(inst)
+
+-- This function turns the creature into an inventory item.
+
     local health = inst.components.health:GetPercent()
     print(health)
     if health <= 0.5 then
         inst.components.health:SetInvincible(true)
-        print(1)
         MakeInventoryPhysics(inst)
-        print(2)
         inst:AddComponent("inventoryitem")
         inst.components.inventoryitem.atlasname = "images/inventoryimages/live_gnome.xml"
         inst.components.inventoryitem:SetOnPickupFn(onpickup)
-        print(3)
         inst.AnimState:SetBank("trinkets")
         inst.AnimState:SetBuild("trinkets")
         inst.Transform:SetScale(1.2, 1.2, 1.2)

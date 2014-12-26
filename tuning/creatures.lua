@@ -83,7 +83,7 @@ RAM.CHASE_GIVEUP_DIST = 10
 RAM.RUN_AWAY_DIST = 4
 RAM.STOP_RUN_AWAY_DIST = 5
 
--- Prefabs and Loot
+-- Loot and Prefabs
 
 SHEEP.PREFABS = {
 	"meat",
@@ -121,6 +121,8 @@ OWL.DEFEND_DIST = 8
 OWL.MAX_TARGET_SHARES = 5
 OWL.SHARE_TARGET_DIST = 10
 
+-- Owl Brain
+
 OWL.SEE_PLAYER_DIST = 5
 OWL.SEE_FOOD_DIST = 10
 OWL.MAX_WANDER_DIST = 15
@@ -129,6 +131,8 @@ OWL.MAX_CHASE_DIST = 10
 OWL.RUN_AWAY_DIST = 5
 OWL.STOP_RUN_AWAY_DIST = 8
 OWL.START_FACE_DIST = 6
+
+-- Loot and Prefabs
 
 OWL.PREFABS = {
    --"owl_beak",
@@ -162,13 +166,44 @@ BALL_LIGHTNING.UNCHARGE_DELAY = BALL_LIGHTNING.CHARGE_DELAY
 
 -- Goose
 
--- WIP
-
 -- Minimum span between lays.
 GOOSE.LAY_PERIOD = 120
 
 -- Delay after static starts until an egg is laid. May be a function.
 GOOSE.LAY_DELAY = function() return 5 + 5*math.random() end
+
+GOOSE.WALKSPEED = 8
+GOOSE.RUNSPEED = 10
+
+GOOSE.HEALTH = 40
+
+GOOSE.DAMAGE = 20
+GOOSE.ATTACK_PERIOD = 3
+
+GOOSE.SCALEX = 1.3
+GOOSE.SCALEY = 1.4
+GOOSE.SCALEZ = 1.1
+
+-- Goose Brain
+
+GOOSE.STOP_RUN_DIST = 10
+GOOSE.SEE_PLAYER_DIST = 5
+GOOSE.SEE_FOOD_DIST = 20
+GOOSE.MAX_WANDER_DIST = 80
+
+-- Loot and Prefabs
+
+GOOSE.PREFABS = {
+	"drumstick",
+	"golden_egg",
+}
+
+GOOSE.LOOT = {
+	{'drumstick', 1.00},	
+}
+
+-- This really shouldn't ever be changed.
+GOOSE.EGG = "golden_egg"
 
 ---------------------------------------
 
@@ -219,13 +254,16 @@ OCTOCOPTER.RANGE = 5
 OCTOCOPTER.HEALTH = 3000
 OCTOCOPTER.ATTACK_PERIOD = 2
 OCTOCOPTER.DAMAGE = 100
-OCTOCOPTER.AREADAMAGE = 0.4
+OCTOCOPTER.AREA_RANGE = 5
+OCTOCOPTER.AREA_DAMAGE = 0.4
 
 OCTOCOPTER.SLEEP_DIST_FROMHOME = 1
 OCTOCOPTER.SLEEP_DIST_FROMTHREAT = 20
 OCTOCOPTER.MAX_CHASEAWAY_DIST = 40
 OCTOCOPTER.MAX_TARGET_SHARES = 5
 OCTOCOPTER.SHARE_TARGET_DIST = 40
+
+-- Octocopter Brain
 
 OCTOCOPTER.START_FACE_DIST = 15
 OCTOCOPTER.KEEP_FACE_DIST = 15
@@ -235,6 +273,8 @@ OCTOCOPTER.MAX_CHASE_DIST = 20
 OCTOCOPTER.RUN_AWAY_DIST = 5
 OCTOCOPTER.STOP_RUN_AWAY_DIST = 8
 OCTOCOPTER.FOLLOW_RADIUS = 1.5
+
+-- Loot and Prefabs
 
 OCTOCOPTER.PREFABS = {
 	"trinket_12",
@@ -343,5 +383,76 @@ SKYTRAP.LOOT = {
     {'cloud_cotton',    0.30},
     {'ambrosia',        0.30},
 }
+
+---------------------------------------
+
+-- Live Gnome
+
+---------------------------------------
+
+-- Longbill
+
+---------------------------------------
+
+-- Gummybear
+
+---------------------------------------
+
+-- Flying Fish
+
+---------------------------------------
+
+-- Bean Giant
+
+BEAN_GIANT.HEALTH = 1400
+
+BEAN_GIANT.WALKSPEED = 1
+BEAN_GIANT.RUNSPEED = 2
+
+BEAN_GIANT.DAMAGE = 160
+BEAN_GIANT.RANGE = 4
+BEAN_GIANT.ATTACK_PERIOD = 3
+
+BEAN_GIANT.PLAYER_DAMAGE_PERCENT = 0.8
+
+BEAN_GIANT.AREA_RANGE = 2
+BEAN_GIANT.AREA_DAMAGE = 0.8
+
+BEAN_GIANT.CHILD = "vine"
+BEAN_GIANT.RARECHILD = "beanlet_zealot"
+BEAN_GIANT.RARECHILD_CHANCE = 0.2
+BEAN_GIANT.SPAWN_PERIOD = 0.5
+BEAN_GIANT.REGEN_MODIFER = 0.1
+BEAN_GIANT.MAX_CHILDREN = 30
+
+BEAN_GIANT.TARGET_DIST = 30
+
+BEAN_GIANT.HOSTILE_SANITY_AURA = 100/15
+BEAN_GIANT.CALM_SANITY_AURA = 100/60
+
+-- Bean Giant Brain
+
+BEAN_GIANT.SEE_DIST = 40
+
+BEAN_GIANT.CHASE_DIST = 32
+BEAN_GIANT.CHASE_TIME = 20
+
+-- Loot and Prefabs
+
+BEAN_GIANT.PREFABS = {
+    "beanstalk_chunk",
+    "vine",
+    "beanlet_zealot",
+    "greenbean",   
+    --"bean_brain"
+}
+
+BEAN_GIANT.LOOT = {
+	
+}
+
+---------------------------------------
+
+-- Vine
 
 ---------------------------------------

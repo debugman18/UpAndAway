@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets=
 {
 	Asset("ANIM", "anim/flying_fish.zip"),

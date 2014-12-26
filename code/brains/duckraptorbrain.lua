@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 require "behaviours/wander"
 require "behaviours/chaseandattack"
 require "behaviours/runaway"

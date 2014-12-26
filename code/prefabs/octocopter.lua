@@ -82,7 +82,7 @@ local function fn(Sim)
     inst.components.combat:SetRetargetFunction(3, Retarget)
     inst.components.combat:SetKeepTargetFunction(KeepTarget)
     inst.components.combat:SetRange(CFG.OCTOCOPTER.RANGE)
-    inst.components.combat:SetAreaDamage(CFG.OCTOCOPTER.RANGE, CFG.OCTOCOPTER.AREADAMAGE)
+    inst.components.combat:SetAreaDamage(CFG.OCTOCOPTER.AREA_RANGE, CFG.OCTOCOPTER.AREA_DAMAGE)
 
     inst:AddComponent("locomotor")
     inst.components.locomotor.walkspeed = 3

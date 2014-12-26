@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local brain = require "brains/beangiantbrain"
 
 local assets =
@@ -13,14 +15,9 @@ local assets =
     Asset("SOUND", "sound/deerclops.fsb"),
 }
 
-local prefabs =
-{
-    "beanstalk_chunk",
-    "vine",
-    "beanlet_zealot",
-}
+local prefabs = CFG.BEAN_GIANT.PREFABS
 
-local TARGET_DIST = 30
+SetSharedLootTable('bean_giant', CFG.BEAN_GIANT.LOOT)
 
 local function onunchargedfn(inst)
 	inst:RemoveComponent("childspawner")
@@ -28,27 +25,27 @@ end
 
 local function onchargedfn(inst)
 	inst:AddComponent("childspawner")
-	inst.components.childspawner.childname = "vine"
-	inst.components.childspawner:SetRareChild("beanlet_zealot", .2)
-	inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*.1)
-	inst.components.childspawner:SetSpawnPeriod(.5)
-	inst.components.childspawner:SetMaxChildren(30)
+	inst.components.childspawner.childname = CFG.BEAN_GIANT.CHILD
+	inst.components.childspawner:SetRareChild(CFG.BEAN_GIANT.RARECHILD, CFG.BEAN_GIANT.RARECHILD_CHANCE)
+	inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*CFG.BEAN_GIANT.REGEN_MODIFIER)
+	inst.components.childspawner:SetSpawnPeriod(CFG.BEAN_GIANT.SPAWN_PERIOD)
+	inst.components.childspawner:SetMaxChildren(CFG.BEAN_GIANT.MAX_CHILDREN)
 	inst.components.childspawner:StartSpawning()
 end
 
 local function CalcSanityAura(inst, observer)
     
     if inst.components.combat.target then
-        return -TUNING.SANITYAURA_HUGE
+        return CFG.BEAN_GIANT.HOSTILE_SANITY_AURA
     else
-        return -TUNING.SANITYAURA_LARGE
+        return CFG.BEAN_GIANT.CALM_SANITY_AURA
     end
     
     return 0
 end
 
 local function RetargetFn(inst)
-    return FindEntity(inst, TARGET_DIST, function(guy)
+    return FindEntity(inst, CFG.BEAN_GIANT.TARGET_DIST, function(guy)
         return inst.components.combat:CanTarget(guy)
                and not guy:HasTag("prey")
                and not guy:HasTag("smallcreature")
@@ -127,32 +124,6 @@ local function oncollide(inst, other)
 
 end
 
-local loot = {
-    "beanstalk_chunk", 
-    "beanstalk_chunk", 
-    "beanstalk_chunk", 
-    "beanstalk_chunk", 
-    "beanstalk_chunk", 
-    "beanstalk_chunk", 
-    "beanstalk_chunk", 
-    "beanstalk_chunk", 
-    "beanstalk_chunk", 
-    "beanstalk_chunk", 
-    "beanstalk_chunk", 
-    "beanstalk_chunk", 
-    "beanstalk_chunk", 
-    "beanstalk_chunk", 
-    "greenbean",   
-    "greenbean", 
-    "greenbean",
-    "greenbean",
-    "greenbean",
-    "greenbean",
-    "greenbean",
-    "greenbean"
-    --"bean_brain"
-}
-
 local function fn(Sim)
     
     local inst = CreateEntity()
@@ -162,8 +133,8 @@ local function fn(Sim)
     local shadow = inst.entity:AddDynamicShadow()
     shadow:SetSize( 6, 3.5 )
     inst.Transform:SetFourFaced()
-    local size  = 4
-    --inst.Transform:SetScale(size,size,size)
+
+    inst.Transform:SetScale(CFG.BEAN_GIANT.SCALE, CFG.BEAN_GIANT.SCALE, CFG.BEAN_GIANT.SCALE)
     
     inst.structuresDestroyed = 0
     inst.shouldGoAway = false
@@ -198,9 +169,9 @@ local function fn(Sim)
     
     ------------------------------------------
 
-    inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
-    inst.components.locomotor.walkspeed = 1 
-    inst.components.locomotor.runspeed = 1
+    inst:AddComponent("locomotor")
+    inst.components.locomotor.walkspeed = CFG.BEAN_GIANT.WALKSPEED 
+    inst.components.locomotor.runspeed = CFG.BEAN_GIANT.RUNSPEED
     
     ------------------------------------------
     inst:SetStateGraph("SGbeangiant")
@@ -211,28 +182,27 @@ local function fn(Sim)
     inst.components.sanityaura.aurafn = CalcSanityAura
 
     MakeLargeBurnableCharacter(inst)
-    --MakeHugeFreezableCharacter(inst, "deerclops_body")
 
     ------------------
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(1400)
+    inst.components.health:SetMaxHealth(CFG.BEAN_GIANT.HEALTH)
 
     ------------------
     
     inst:AddComponent("combat")
-    inst.components.combat:SetDefaultDamage(160)
-    inst.components.combat.playerdamagepercent = .8
-    inst.components.combat:SetRange(4)
-    inst.components.combat:SetAreaDamage(2, 0.8)
+    inst.components.combat:SetDefaultDamage(CFG.BEAN_GIANT.DAMAGE)
+    inst.components.combat.playerdamagepercent = CFG.BEAN_GIANT.PLAYER_DAMAGE_PERCENT
+    inst.components.combat:SetRange(CFG.BEAN_GIANT.RANGE)
+    inst.components.combat:SetAreaDamage(CFG.BEAN_GIANT.AREA_RANGE, CFG.BEAN_GIANT.AREA_DAMAGE)
     inst.components.combat.hiteffectsymbol = "deerclops_body"
-    inst.components.combat:SetAttackPeriod(TUNING.DEERCLOPS_ATTACK_PERIOD)
+    inst.components.combat:SetAttackPeriod(CFG.BEAN_GIANT.ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(3, RetargetFn)
     inst.components.combat:SetKeepTargetFunction(KeepTargetFn)
     
     ------------------------------------------
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot(loot)
+    inst.components.lootdropper:SetChanceLootTable("bean_giant")
     
     ------------------------------------------
 
