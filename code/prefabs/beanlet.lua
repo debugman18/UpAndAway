@@ -4,6 +4,8 @@
 
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local BeanletCombat = pkgrequire "common.beanlet_combat"
 
 local assets =
@@ -12,20 +14,9 @@ local assets =
     Asset("SOUND", "sound/pengull.fsb"),
 }
 
-local prefabs =
-{
-   "greenbean",
-   "beanlet_shell",
-}
+local prefabs = CFG.BEANLET.PREFABS
 
-SetSharedLootTable( 'beanlet',
-{
-    {'greenbean',       1.00},
-    {'greenbean',       0.90},
-    {'greenbean',       0.80},
-    {'greenbean',       0.70},
-    {'beanlet_shell',   0.33},
-})
+SetSharedLootTable( 'beanlet', CFG.BEANLET.LOOT)
 
 local function OnIgnite(inst)
     DefaultBurnFn(inst)
@@ -39,8 +30,7 @@ local function fn()
     local sound = inst.entity:AddSoundEmitter()
     inst.Transform:SetTwoFaced()
 
-    local scale = 1
-    inst.Transform:SetScale(scale, scale, scale)
+    inst.Transform:SetScale(CFG.BEANLET.SCALE, CFG.BEANLET.SCALE, CFG.BEANLET.SCALE)
 
     MakeCharacterPhysics(inst, 50, .5)  
 
@@ -63,15 +53,15 @@ local function fn()
     inst:AddComponent("knownlocations")
 
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
-    inst.components.locomotor.walkspeed = 4
-    inst.components.locomotor.runspeed = 6
+    inst.components.locomotor.walkspeed = CFG.BEANLET.WALKSPEED
+    inst.components.locomotor.runspeed = CFG.BEANLET.RUNSPEED
 
 	inst.data = {}
 
     inst:AddComponent("combat")
 
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(80)
+    inst.components.health:SetMaxHealth(CFG.BEANLET.HEALTH)
 
     MakeMediumBurnable(inst)
     inst.components.burnable:SetOnIgniteFn(OnIgnite)

@@ -6,26 +6,17 @@ BindGlobal()
 
 local BeanletCombat = pkgrequire "common.beanlet_combat"
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
     Asset("ANIM", "anim/beanlet_zealot.zip"),  -- same name as the .scml
     Asset("SOUND", "sound/pengull.fsb"),
 }
 
-local prefabs =
-{
-   "greenbean",
-   "beanlet_shell",
-}
+local prefabs = CFG.BEANLET.PREFABS
 
-SetSharedLootTable( 'beanlet',
-{
-    {'greenbean',       1.00},
-    {'greenbean',       0.90},
-    {'greenbean',       0.80},
-    {'greenbean',       0.70},
-    {'beanlet_shell',   0.33},
-})
+SetSharedLootTable( 'beanletzealot', CFG.BEANLET_ZEALOT.LOOT)
 
 local function RetargetFn(inst)
     return FindEntity(inst, 8, function(guy)
@@ -43,7 +34,7 @@ local function fn(Sim)
     local sound = inst.entity:AddSoundEmitter()
     --inst.Transform:SetTwoFaced()
 
-    inst.Transform:SetScale(1.4, 1.4, 1.4)
+    inst.Transform:SetScale(CFG.BEANLET_ZEALOT.SCALE, CFG.BEANLET_ZEALOT.SCALE, CFG.BEANLET_ZEALOT.SCALE)
 
     MakeCharacterPhysics(inst, 50, .5)  
 
@@ -65,18 +56,18 @@ local function fn(Sim)
     inst:AddComponent("knownlocations")
 
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
-    inst.components.locomotor.walkspeed = 4
-    inst.components.locomotor.runspeed = 5
+    inst.components.locomotor.walkspeed = CFG.BEANLET_ZEALOT.WALKSPEED
+    inst.components.locomotor.runspeed = CFG.BEANLET_ZEALOT.RUNSPEED
 
     inst.data = {}  
 
     inst:AddComponent("combat")
-    inst.components.combat:SetDefaultDamage(35)
-    inst.components.combat:SetAttackPeriod(TUNING.PIG_GUARD_ATTACK_PERIOD)
+    inst.components.combat:SetDefaultDamage(CFG.BEANLET_ZEALOT.DAMAGE)
+    inst.components.combat:SetAttackPeriod(CFG.BEANLET_ZEALOT.ATTACK_PERIOD)
     inst.components.combat:SetOnHit(OnHit)
 
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(150)
+    inst.components.health:SetMaxHealth(CFG.BEANLET_ZEALOT.HEALTH)
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable('beanlet')

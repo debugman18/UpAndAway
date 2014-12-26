@@ -39,7 +39,7 @@ RAM.TARGET_DIST= 6
 SHEEP.CHASE_DIST = 10
 RAM.CHASE_DIST = 30
 
-SHEEP.FOLLOW_TIME = 4
+SHEEP.FOLLOW_TIME = 25
 
 -- Delay for sheep -> ram transformation.
 -- Can be a function.
@@ -248,17 +248,81 @@ OCTOCOPTER.LOOT = {
 
 -- Beanlet / Beanlet Zealot
 
--- WIP
+BEANLET.SCALE = 1
+BEANLET_ZEALOT.SCALE = 1.4
+
+BEANLET.WALKSPEED = 4
+BEANLET.RUNSPEED = 6
+
+BEANLET_ZEALOT.WALKSPEED = 4
+BEANLET_ZEALOT.RUNSPEED = 5
+
+BEANLET.HEALTH = 80
+BEANLET_ZEALOT.HEALTH = 150
+
+BEANLET_ZEALOT.DAMAGE = 35
+BEANLET_ZEALOT.ATTACK_PERIOD = 1.5
 
 BEANLET.SCARE_RADIUS = 12
 
 BEANLET_ZEALOT.GANG_UP_RADIUS = 15
 
+-- Beanlet Brain
+
+BEANLET.STOP_RUN_DIST = 10
+BEANLET.SEE_PLAYER_DIST = 10
+
+BEANLET.AVOID_PLAYER_DIST = 6
+BEANLET.AVOID_PLAYER_STOP = 10
+
+BEANLET.MAX_WANDER_DIST = 200
+
+-- Beanlet Zealot Brain
+
+BEANLET_ZEALOT.STOP_RUN_DIST = 10
+BEANLET_ZEALOT.SEE_PLAYER_DIST = 10
+
+BEANLET_ZEALOT.AVOID_PLAYER_DIST = 6
+BEANLET_ZEALOT.AVOID_PLAYER_STOP = 10
+
+BEANLET_ZEALOT.RUN_AWAY_DIST = 4
+BEANLET_ZEALOT.STOP_RUN_AWAY_DIST = 6
+
+BEANLET_ZEALOT.MAX_CHASE_DIST = 25
+BEANLET_ZEALOT.MAX_CHASE_TIME = 10
+
+BEANLET_ZEALOT.MAX_WANDER_DIST = 200
+
+BEANLET_ZEALOT.START_FACE_DIST = 4
+
+-- Loot and Prefabs
+
+BEANLET.PREFABS = {
+   "greenbean",
+   "beanlet_shell",
+}
+
+BEANLET.LOOT = {
+    {'greenbean',       1.00},
+    {'greenbean',       0.90},
+    {'greenbean',       0.80},
+    {'greenbean',       0.70},
+    {'beanlet_shell',   0.33},
+}
+
+BEANLET_ZEALOT.LOOT = {
+    {'greenbean',       1.00},
+    {'greenbean',       0.90},
+    {'greenbean',       0.80},
+    {'greenbean',       0.70},
+    {'beanlet_shell',   0.33},
+}
+
 ---------------------------------------
 
 -- Skytrap
 
-SKYTRAP.ATTACK_PERIOD = 0
+SKYTRAP.ATTACK_PERIOD = 0.75
 SKYTRAP.RANGE = 4
 SKYTRAP.DAMAGE = 40
 SKYTRAP.HEALTH = 50
