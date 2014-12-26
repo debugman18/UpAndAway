@@ -1,3 +1,5 @@
+-- Shopkeeper
+
 -- Maximum distance from the player for it to spawn a shopkeeper.
 SHOPKEEPER_SPAWNER.MAX_DIST = 8
 
@@ -17,6 +19,9 @@ end
 -- Maximum distance for a cow to be negotiated.
 SHOPKEEPER.MAX_COW_DIST = 17
 
+---------------------------------------
+
+--Sheep / Storm Ram
 
 SHEEP.HEALTH = 100
 RAM.HEALTH = 600
@@ -41,11 +46,22 @@ SHEEP.UNCHARGE_DELAY = SHEEP.CHARGE_DELAY
 -- Set by the modinfo configuration.
 --RAM.SPARKS = true
 
--- Owl tuning.
+---------------------------------------
+
+-- Owl
+
+-- WIP
+
 OWL.HEALTH = 250
 OWL.DEFEND_DIST = 8
 OWL.DAMAGE = 15
 OWL.ATTACK_PERIOD = .7
+
+---------------------------------------
+
+-- Ball Lightning
+
+-- WIP
 
 BALL_LIGHTNING.HEALTH = 100
 BALL_LIGHTNING.UNCHARGED_DAMAGE = 10
@@ -53,18 +69,24 @@ BALL_LIGHTNING.CHARGED_DAMAGE = 20
 BALL_LIGHTNING.WALKSPEED = 7
 BALL_LIGHTNING.RUNSPEED = 7
 BALL_LIGHTNING.ATTACK_PERIOD = 2
-BALL_LIGHTNING.CHARGE_DELAY = SHEEP.CHARGE_DELAY
-BALL_LIGHTNING.UNCHARGE_DELAY = SHEEP.UNCHARGE_DELAY
+BALL_LIGHTNING.CHARGE_DELAY = function() return 0.5 + 10*math.random() end
+BALL_LIGHTNING.UNCHARGE_DELAY = BALL_LIGHTNING.CHARGE_DELAY
 
---[[
+---------------------------------------
+
+-- Goose
+
+-- WIP
+
 -- Minimum span between lays.
---]]
 GOOSE.LAY_PERIOD = 120
 
---[[
 -- Delay after static starts until an egg is laid. May be a function.
---]]
 GOOSE.LAY_DELAY = function() return 5 + 5*math.random() end
+
+---------------------------------------
+
+-- Skyfly
 
 -- Maximum range for flower hopping.
 SKYFLY.HOP_RANGE = 16
@@ -72,6 +94,10 @@ SKYFLY.HOP_RANGE = 16
 SKYFLY.HOP_COOLDOWN = {2, 4}
 -- The smaller this is, the closer skyflies will concentrate around the player. Must be positive.
 SKYFLY.PLAYER_FARNESS = 2
+
+---------------------------------------
+
+-- Balloon Hound
 
 -- Height with respect to ground. Can't be more than 2, otherwise the hound can't be attacked.
 BALLOON_HOUND.HEIGHT = 2
@@ -98,14 +124,74 @@ BALLOON_HOUND.STILL_SPAWN_DIST = {3, 8}
 -- Distance to spawn a hound if the player is moving. {min, max}
 BALLOON_HOUND.MOVING_SPAWN_DIST = {8, 12}
 
---Maximum distance for octocopter to target a target.
+---------------------------------------
+
+-- Octocopter
+
 OCTOCOPTER.TARGET_DIST = 15
---Maximum distance for octocopter to attack a target.
 OCTOCOPTER.RANGE = 5
---The health of the octocopter.
-OCTOCOPTER.HEALTH = 1000
---Minimum time between octocopter attacks.
-OCTOCOPTER.ATTACK_PERIOD = 4
+OCTOCOPTER.HEALTH = 3000
+OCTOCOPTER.ATTACK_PERIOD = 2
+OCTOCOPTER.DAMAGE = 100
+OCTOCOPTER.AREADAMAGE = 0.4
+
+OCTOCOPTER.SLEEP_DIST_FROMHOME = 1
+OCTOCOPTER.SLEEP_DIST_FROMTHREAT = 20
+OCTOCOPTER.MAX_CHASEAWAY_DIST = 40
+OCTOCOPTER.MAX_TARGET_SHARES = 5
+OCTOCOPTER.SHARE_TARGET_DIST = 40
+
+OCTOCOPTER.START_FACE_DIST = 15
+OCTOCOPTER.KEEP_FACE_DIST = 15
+OCTOCOPTER.GO_HOME_DIST = 1
+OCTOCOPTER.MAX_CHASE_TIME = 10
+OCTOCOPTER.MAX_CHASE_DIST = 20
+OCTOCOPTER.RUN_AWAY_DIST = 5
+OCTOCOPTER.STOP_RUN_AWAY_DIST = 8
+OCTOCOPTER.FOLLOW_RADIUS = 1.5
+
+OCTOCOPTER.PREFABS = {
+	"trinket_12",
+}
+
+OCTOCOPTER.LOOT = {
+	{'trinket_12', 1.00},
+}
+
+---------------------------------------
+
+-- Beanlet / Beanlet Zealot
+
+-- WIP
 
 BEANLET.SCARE_RADIUS = 12
+
 BEANLET_ZEALOT.GANG_UP_RADIUS = 15
+
+---------------------------------------
+
+-- Skytrap
+
+SKYTRAP.ATTACK_PERIOD = 0
+SKYTRAP.RANGE = 4
+SKYTRAP.DAMAGE = 40
+SKYTRAP.HEALTH = 50
+
+SKYTRAP.PREFABS = {
+    "ambrosia",
+    "cloud_jelly",
+    "cloud_cotton",
+    "beanstalk_chunk",    
+}
+
+SKYTRAP.LOOT = {
+    {'beanstalk_chunk', 1.00},
+    {'beanstalk_chunk', 1.00},
+    {'beanstalk_chunk', 0.50},
+    {'cloud_cotton',    0.50},
+    {'cloud_cotton',    0.50},
+    {'cloud_cotton',    0.30},
+    {'ambrosia',        0.30},
+}
+
+---------------------------------------

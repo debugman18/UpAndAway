@@ -1,31 +1,15 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
     Asset("ANIM", "anim/skytrap.zip"),
 }
 
-local prefabs =
-{
-    "ambrosia",
-    "cloud_jelly",
-    "cloud_cotton",
-    "beanstalk_chunk",    
-}
+local prefabs = CFG.SKYTRAP.PREFABS
 
-local loot = {
-    "beanstalk_chunk",
-    "beanstalk_chunk",
-}
-
-local rareloot = {
-    "ambrosia",
-    "cloud_jelly",
-    "cloud_cotton",  
-    "cloud_cotton",  
-    "beanstalk_chunk",
-    "beanstalk_chunk", 
-}
+SetSharedLootTable( 'skytrap', CFG.SKYTRAP.LOOT)
 
 local function retargetfn(inst)
     return FindEntity(inst, 2, function(guy) 
@@ -79,16 +63,14 @@ local function fn(Sim)
     inst:AddComponent("inspectable")    
 
     inst:AddComponent("combat")
-    inst.components.combat:SetAttackPeriod(TUNING.EYEPLANT_ATTACK_PERIOD)
-    inst.components.combat:SetRange(4)
+    inst.components.combat:SetAttackPeriod(CFG.SKYTRAP.ATTACK_PERIOD)
+    inst.components.combat:SetRange(CFG.SKYTRAP.RANGE)
     inst.components.combat:SetRetargetFunction(0.2, retargetfn)
     inst.components.combat:SetKeepTargetFunction(shouldKeepTarget)
-    inst.components.combat:SetDefaultDamage(40) 
+    inst.components.combat:SetDefaultDamage(CFG.SKYTRAP.DAMAGE) 
 
     inst:AddComponent("lootdropper")
-    if math.random(1,8) == 1 then
-        inst.components.lootdropper:SetLoot(rareloot)
-    else inst.components.lootdropper:SetLoot(loot) end    
+    inst.components.lootdropper:SetChanceLootTable('skytrap')     
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(50)    
