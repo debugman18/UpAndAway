@@ -367,7 +367,8 @@ local function ProcessPkginfo(pkginfo_name, fh)
 	assert( type(pkginfo) == "table", ("File %s didn't return a table."):format(pkginfo_name) )
 
 	
-	local modinfo, modinfo_annotations
+	local modinfo
+	local modinfo_annotations = {}
 	if pkginfo.modinfo_filter then
 		modinfo = parse_modinfo()
 
@@ -447,7 +448,7 @@ local function ProcessPkginfo(pkginfo_name, fh)
 	end
 
 	if modinfo then
-		local modinfo_str = DumpModinfo(modinfo, modinfo_annotations or {})
+		local modinfo_str = DumpModinfo(modinfo, modinfo_annotations)
 
 		fh:write("\n")
 
