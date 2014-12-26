@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
 	Asset("ANIM", "anim/gummybear_naughty.zip"),
@@ -16,10 +18,9 @@ local assets =
 	Asset("SOUND", "sound/pig.fsb"),
 }
 
-local prefabs =
-{
-    "nightmarefuel",
-}
+local prefabs = CFG.GUMMYBEAR.PREFABS
+
+SetSharedLootTable( 'gummybear', CFG.GUMMYBEAR.LOOT)
 
 local function become_nice(inst)
 	if inst:HasTag("cuddly") then return end
@@ -73,7 +74,7 @@ local function bear()
  
 	local shadow = inst.entity:AddDynamicShadow()
 	shadow:SetSize( 1.5, .75 )    	
-	inst.Transform:SetScale(0.9, 0.9, 0.9)
+	inst.Transform:SetScale(CFG.GUMMYBEAR.SCALE, CFG.GUMMYBEAR.SCALE, CFG.GUMMYBEAR.SCALE)
 
     MakeCharacterPhysics(inst, 50, .5)
 
@@ -81,28 +82,24 @@ local function bear()
     inst.AnimState:SetBuild("gummybear_nice")
     inst.AnimState:PlayAnimation("idle", true)
 
-    local color1 = 0.1 + math.random() * 0.9
-    local color2 = 0.1 + math.random() * 0.9
-    local color3 = 0.1 + math.random() * 0.9
-    inst.AnimState:SetMultColour(color1, color2, color3, 0.75)    
+    inst.AnimState:SetMultColour(CFG.GUMMYBEAR.COLOR1, CFG.GUMMYBEAR.COLOR2, CFG.GUMMYBEAR.COLOR3, CFG.GUMMYBEAR.ALPHA)    
 
 	-----------------------------------------------------------------------
 	SetupNetwork(inst)
 	-----------------------------------------------------------------------
 
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
-    inst.components.locomotor.runspeed = 5 
-    inst.components.locomotor.walkspeed = 2  
-
+    inst.components.locomotor.runspeed = CFG.GUMMYBEAR.RUNSPEED 
+    inst.components.locomotor.walkspeed = CFG.GUMMYBEAR.WALKSPEED
 
     inst:AddComponent("follower")
-
 
     inst:AddComponent("inventory")
     
     ------------------------------------------
 
     inst:AddComponent("lootdropper")
+    inst.components.lootdropper:SetChanceLootTable('gummybear') 
 
     ------------------------------------------
 
@@ -131,7 +128,7 @@ local function bear()
 	inst.components.sanityaura.aurafn = CalcSanityAura
 	
 	inst:AddComponent("health")
-	inst.components.health:SetMaxHealth(300) --Old was 360
+	inst.components.health:SetMaxHealth(CFG.GUMMYBEAR.HEALTH) --Old was 360
 
     inst:AddComponent("eater")
     inst.components.eater:SetCarnivore()
@@ -139,9 +136,9 @@ local function bear()
     inst.components.eater.strongstomach = true -- can eat monster meat!
 
     inst:AddComponent("combat")
-    inst.components.combat:SetDefaultDamage(34)
-    inst.components.combat:SetAttackPeriod(2)
-    inst.components.combat:SetRange(2)
+    inst.components.combat:SetDefaultDamage(CFG.GUMMYBEAR.DAMAGE)
+    inst.components.combat:SetAttackPeriod(CFG.GUMMYBEAR.ATTACK_PERIOD)
+    inst.components.combat:SetRange(CFG.GUMMYBEAR.RANGE)
     inst.components.combat:SetRetargetFunction(3, retargetfn)
 
     inst:ListenForEvent("attacked", OnAttacked)	
@@ -155,6 +152,7 @@ local function bear()
        inst:AddTag("cuddly")
     end)
 	]]--
+
     inst:ListenForEvent("newcombattarget", function(inst, data) 
         if data.target ~= nil then
 			OnNewTarget(inst)

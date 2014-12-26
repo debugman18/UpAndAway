@@ -10,10 +10,9 @@ local assets=
     Asset("SOUND", "sound/tentacle.fsb"),
 }
 
-local prefabs =
-{
-    "beanstalk_chunk",
-}
+local prefabs = CFG.VINE.PREFABS
+
+SetSharedLootTable( 'vine', CFG.VINE.LOOT)
 
 local function OnHit(inst, attacker, damage)
     if attacker and attacker.prefab == bean_giant then
@@ -69,13 +68,12 @@ local function fn(Sim)
 
 
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(20)
-    
+    inst.components.health:SetMaxHealth(CFG.VINE.HEALTH)
     
     inst:AddComponent("combat")
-    inst.components.combat:SetRange(2.5)
-    inst.components.combat:SetDefaultDamage(8)
-    inst.components.combat:SetAttackPeriod(6)
+    inst.components.combat:SetRange(CFG.VINE.RANGE)
+    inst.components.combat:SetDefaultDamage(CFG.VINE.DAMAGE)
+    inst.components.combat:SetAttackPeriod(CFG.VINE.ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(1, Retarget)
     inst.components.combat:SetKeepTargetFunction(KeepTarget)	
     inst.components.combat:SetOnHit(OnHit)
@@ -83,17 +81,17 @@ local function fn(Sim)
     MakeLargeFreezableCharacter(inst)
     
 	inst:AddComponent("sanityaura")
-    inst.components.sanityaura.aura = -TUNING.SANITYAURA_LARGE
+    inst.components.sanityaura.aura = CFG.VINE.SANITYAURA
        
     inst:AddComponent("inspectable")
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot({"beanstalk_chunk", "beanstalk_chunk"})
+    inst.components.lootdropper:SetChanceLootTable("vine")
 
     inst:ListenForEvent("attacked", OnAttacked)
 	
     inst:AddComponent("locomotor")
-    inst.components.locomotor.walkspeed = 6.3
-	inst.components.locomotor.runspeed = 6.3
+    inst.components.locomotor.walkspeed = CFG.VINE.WALKSPEED
+	inst.components.locomotor.runspeed = CFG.VINE.RUNSPEED
 	inst.components.locomotor.directdrive = true
     
     inst:SetStateGraph("SGvine")

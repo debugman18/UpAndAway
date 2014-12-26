@@ -1,5 +1,7 @@
 BindGlobal()
 
+-- This is going to need a rewrite. It's currently based off of Walrus, which is silly.
+
 local CFG = TheMod:GetConfig()
 
 local assets =
@@ -11,13 +13,9 @@ local assets =
     Asset( "IMAGE", "images/inventoryimages/live_gnome.tex" ),  
 }
 
-local prefabs =
-{
-}
+local prefabs = CFG.LIVE_GNOME.PREFABS
 
-local loot = 
-{
-}
+local loot = CFG.LIVE_GNOME.LOOT
 
 local function RemoveBeard(inst)
     inst:Remove()
@@ -29,9 +27,9 @@ local function SetBeard(inst)
         beard.entity:AddTransform()
         beard:AddComponent("weapon")
         beard:AddTag("sharp")
-        beard.components.weapon:SetDamage(inst.components.combat.defaultdamage)
-        beard.components.weapon:SetRange(inst.components.combat.attackrange)
-        beard.components.weapon:SetProjectile("blowdart_walrus")
+        beard.components.weapon:SetDamage(CFG.LIVE_GNOME.DAMAGE)
+        beard.components.weapon:SetRange(CFG.LIVE_GNOME.RANGE)
+        beard.components.weapon:SetProjectile(CFG.LIVE_GNOME.PROJECTILE)
         beard:AddComponent("inventoryitem")
         beard.persists = false
         beard.components.inventoryitem:SetOnDroppedFn(RemoveBeard)
@@ -58,7 +56,7 @@ local function DropToy(inst)
         inst.components.inventoryitem:SetOnPickupFn(onpickup)
         inst.AnimState:SetBank("trinkets")
         inst.AnimState:SetBuild("trinkets")
-        inst.Transform:SetScale(1.2, 1.2, 1.2)
+        inst.Transform:SetScale(CFG.LIVE_GNOME.ITEM_SCALE, CFG.LIVE_GNOME.ITEM_SCALE, CFG.LIVE_GNOME.ITEM_SCALE)
         inst:DoPeriodicTask(0, function() inst.AnimState:PlayAnimation("4") end)
         inst:ClearStateGraph()
         inst:StopBrain()
@@ -86,8 +84,8 @@ local function fn(Sim)
 
 
     inst:AddComponent("locomotor")
-    inst.components.locomotor.runspeed = 1
-    inst.components.locomotor.walkspeed = 3
+    inst.components.locomotor.runspeed = CFG.LIVE_GNOME.RUNSPEED
+    inst.components.locomotor.walkspeed = CFG.LIVE_GNOME.WALKSPEED
 
     local brain = require "brains/livegnomebrain"
     inst:SetBrain(brain)
@@ -96,7 +94,7 @@ local function fn(Sim)
     inst:AddTag("gnome")
 
     inst:AddComponent("cookable")
-    inst.components.cookable.product = "rubber"
+    inst.components.cookable.product = CFG.LIVE_GNOME.COOKED_PRODUCT
 
     inst.Transform:SetScale(3.8, 3.8, 3.8)
 
@@ -104,14 +102,14 @@ local function fn(Sim)
 
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "pig_torso"
-    inst.components.combat:SetDefaultDamage(10)
-    inst.components.combat:SetAttackPeriod(3)   
-    inst.components.combat:SetRange(TUNING.WALRUS_ATTACK_DIST) 
+    inst.components.combat:SetDefaultDamage(CFG.LIVE_GNOME.DAMAGE)
+    inst.components.combat:SetAttackPeriod(CFG.ATTACK_PERIOD)   
+    inst.components.combat:SetRange(CFG.LIVE_GNOME.RANGE) 
 
     inst:AddComponent("inventory")
 
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(200)
+    inst.components.health:SetMaxHealth(CFG.LIVE_GNOME.HEALTH)
 
     inst:ListenForEvent("attacked", DropToy)
 

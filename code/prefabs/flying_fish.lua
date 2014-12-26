@@ -9,11 +9,7 @@ local assets=
     Asset( "IMAGE", "images/inventoryimages/flying_fish.tex" ),
 }
 
-local prefabs =
-{
-    "flying_fish_cooked",
-    "spoiled_food",
-}
+local prefabs = CFG.FLYING_FISH.PREFABS
 
 local function OnWorked(inst, worker)
     if worker.components.inventory then
@@ -45,7 +41,6 @@ local function commonfn()
 	inst:AddTag("meat")
 	inst:AddTag("flying_fish")
 
-
 	------------------------------------------------------------------------
 	SetupNetwork(inst)
 	------------------------------------------------------------------------
@@ -56,17 +51,17 @@ local function commonfn()
 	inst.components.edible.foodtype = "MEAT"
 	
 	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+	inst.components.stackable.maxsize = CFG.FLYING_FISH.STACK_SIZE
 
 	inst:AddComponent("bait")
 	
 	inst:AddComponent("perishable")
-	inst.components.perishable:SetPerishTime(TUNING.PERISH_FAST)
+	inst.components.perishable:SetPerishTime(CFG.FLYING_FISH.RAW_PERISH_TIME)
 	inst.components.perishable:StartPerishing()
-	inst.components.perishable.onperishreplacement = "spoiled_food"
+	inst.components.perishable.onperishreplacement = CFG.FLYING_FISH.ONPERISH_ITEM
 
     inst:AddComponent("projectile")
-    inst.components.projectile:SetSpeed(2)
+    inst.components.projectile:SetSpeed(CFG.FLYING_FISH.PROJECTILE_SPEED)
     inst.components.projectile:SetOnHitFn(onhit)
 
     inst:DoTaskInTime(0, function(inst, target)
@@ -93,11 +88,11 @@ local function commonfn()
 
 	inst:AddComponent("workable")
 	inst.components.workable:SetWorkAction(ACTIONS.NET)
-	inst.components.workable:SetWorkLeft(1)
+	inst.components.workable:SetWorkLeft(CFG.FLYING_FISH.WORK_TIME)
 	inst.components.workable:SetOnFinishCallback(OnWorked)
 	
 	inst:AddComponent("tradable")
-	inst.components.tradable.goldvalue = TUNING.GOLD_VALUES.MEAT
+	inst.components.tradable.goldvalue = CFG.FLYING_FISH.GOLD_VALUE
 	inst.data = {}
 
 	return inst
@@ -107,16 +102,19 @@ local function rawfn()
 	local inst = commonfn()
 	inst.AnimState:PlayAnimation("idle", true)
 
+	inst.components.edible.healthvalue = CFG.FLYING_FISH.RAW_HEALTH_VALUE
+	inst.components.edible.hungervalue = CFG.FLYING_FISH.RAW_HUNGER_VALUE
+	inst.components.edible.sanityvalue = CFG.FLYING_FISH.RAW_SANITY_VALUE
 
-	inst.components.edible.healthvalue = TUNING.HEALING_TINY
-	inst.components.edible.hungervalue = TUNING.CALORIES_SMALL
-	inst.components.perishable:SetPerishTime(TUNING.PERISH_SUPERFAST)
+	inst.components.perishable:SetPerishTime(CFG.FLYING_FISH.RAW_PERISH_TIME)
 	
 	inst:AddComponent("cookable")
-	inst.components.cookable.product = "flying_fish_cooked"
+	inst.components.cookable.product = CFG.FLYING_FISH.COOKED_PRODUCT
+
 	inst:AddComponent("dryable")
-	inst.components.dryable:SetProduct("smallmeat_dried")
-	inst.components.dryable:SetDryTime(TUNING.DRY_FAST)
+	inst.components.dryable:SetProduct(CFG.FLYING_FISH.DRIED_PRODUCT)
+	inst.components.dryable:SetDryTime(CFG.FLYING_FISH.DRY_TIME)
+
 	inst:DoTaskInTime(5, stopkicking)
 	inst.components.inventoryitem:SetOnPickupFn(function(pickupguy) 
 		inst:RemoveComponent("projectile") 
@@ -132,9 +130,11 @@ local function deadfn()
 	--inst.AnimState:PlayAnimation("dead")
 	inst.Physics:SetVel(0, 0, 0)
 	
-	inst.components.edible.healthvalue = TUNING.HEALING_TINY
-	inst.components.edible.hungervalue = TUNING.CALORIES_SMALL
-	inst.components.perishable:SetPerishTime(TUNING.PERISH_FAST)
+	inst.components.edible.healthvalue = CFG.FLYING_FISH.DEAD_HEALTH_VALUE
+	inst.components.edible.hungervalue = CFG.FLYING_FISH.DEAD_HUNGER_VALUE
+	inst.components.edible.sanityvalue = CFG.FLYING_FISH.DEAD_SANITY_VALUE
+
+	inst.components.perishable:SetPerishTime(CFG.FLYING_FISH.DEAD_PERISH_TIME)
 
 	return inst
 end
@@ -143,9 +143,11 @@ local function cookedfn()
 	local inst = commonfn()
 	inst.AnimState:PlayAnimation("cooked")
 	
-	inst.components.edible.healthvalue = TUNING.HEALING_TINY
-	inst.components.edible.hungervalue = TUNING.CALORIES_SMALL
-	inst.components.perishable:SetPerishTime(TUNING.PERISH_FAST)
+	inst.components.edible.healthvalue = CFG.FLYING_FISH.COOKED_HEALTH_VALUE
+	inst.components.edible.hungervalue = CFG.FLYING_FISH.COOKED_HUNGER_VALUE
+	inst.components.edible.sanityvalue = CFG.FLYING_FISH.COOKED_SANITY_VALUE
+
+	inst.components.perishable:SetPerishTime(CFG.FLYING_FISH.COOKED_PERISH_TIME)
 
 	return inst
 end

@@ -1,26 +1,21 @@
 BindGlobal()
 
-local cfg = Configurable("BALL_LIGHTNING")
+local CFG = TheMod:GetConfig()
 
-local prefabs =
-{
-	"ball_lightning_fx",
-}
+local prefabs = CFG.BALL_LIGHTNING.PREFABS
 
 local assets =
 {
 	Asset("ANIM", "anim/ball_lightning.zip"),
 }
 
-local fx_prefabs =
-{
-	"lightning_rod_fx",
-}
+local fx_prefabs = CFG.BALL_LIGHTNING.FX_PREFABS
 
 local fx_assets = {
+
 }
 
-local loot = {}
+SetSharedLootTable('ball_lightning', CFG.BALL_LIGHTNING.LOOT)
 
 local function charge(inst)
 	inst:AddTag("ball_lightning_charged")
@@ -36,7 +31,7 @@ local function IsAttractingPlayer(player)
 	return held_item and held_item:HasTag("active_magnet")
 end
 
-local ATTRACTION_RADIUS = TheMod:GetConfig("MAGNET", "ATTRACTION_RADIUS")
+local ATTRACTION_RADIUS = CFG.MAGNET.ATTRACTION_RADIUS
 
 local function FindMagnet(inst)
 	local player = Game.FindClosestPlayerInRange(inst, ATTRACTION_RADIUS, IsAttractingPlayer)
@@ -59,7 +54,7 @@ local function GraphicalUpdateTick(inst)
 end
 
 local function UpdateTick(inst)
-	local lightning = SpawnPrefab("ball_lightning_fx")
+	local lightning = SpawnPrefab(CFG.BALL_LIGHTNING.CHILD)
 	lightning.Transform:SetPosition(inst.Transform:GetWorldPosition())
 	
 	if not IsDedicated() then
@@ -99,7 +94,7 @@ local function fn()
 	inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
 	inst.AnimState:PlayAnimation("idle", true) 
 
-	inst.Transform:SetScale(1.5,1.5,1.5)
+	inst.Transform:SetScale(CFG.BALL_LIGHTNING.SCALE, CFG.BALL_LIGHTNING.SCALE, CFG.BALL_LIGHTNING.SCALE)
 
 	------------------------------------------------------------------------
 	SetupNetwork(inst)
@@ -113,11 +108,11 @@ local function fn()
 	inst:AddComponent("inspectable")
 
     inst:AddComponent("locomotor")
-    inst.components.locomotor:SetSlowMultiplier( 1 )
+    inst.components.locomotor:SetSlowMultiplier(CFG.BALL_LIGHTNING.SLOW_MODIFIER)
     inst.components.locomotor:SetTriggersCreep(false)
     inst.components.locomotor.pathcaps = { ignorecreep = false }
-    inst.components.locomotor.walkspeed = cfg:GetConfig("WALKSPEED")
-	inst.components.locomotor.directdrive = cfg:GetConfig("RUNSPEED")
+    inst.components.locomotor.walkspeed = CFG.BALL_LIGHTNING.WALKSPEED
+	inst.components.locomotor.directdrive = CFG.BALL_LIGHTNING.RUNSPEED
 
 	local brain = require "brains/lightningballbrain"
 	inst:SetBrain(brain)
@@ -126,20 +121,23 @@ local function fn()
 	inst:AddComponent("staticchargeable")
 	inst.components.staticchargeable:SetOnChargeFn(charge)
 	inst.components.staticchargeable:SetOnUnchargeFn(uncharge)
-	inst.components.staticchargeable:SetOnChargeDelay(cfg:GetConfig("CHARGE_DELAY"))
-	inst.components.staticchargeable:SetOnUnchargeDelay(cfg:GetConfig("UNCHARGE_DELAY"))
+	inst.components.staticchargeable:SetOnChargeDelay(CFG.BALL_LIGHTNING.CHARGE_DELAY)
+	inst.components.staticchargeable:SetOnUnchargeDelay(CFG.BALL_LIGHTNING.UNCHARGE_DELAY)
 
 	inst:AddComponent("follower")
 	inst:AddComponent("knownlocations")
 
 	inst:AddComponent("temperature")
-	inst.components.temperature.maxtemp = 80
-	inst.components.temperature.mintemp = 80
-	inst.components.temperature.current = 80
-	inst.components.temperature.inherentinsulation = TUNING.INSULATION_MED  
+	inst.components.temperature.maxtemp = CFG.BALL_LIGHTNING.MAXTEMP
+	inst.components.temperature.mintemp = CFG.BALL_LIGHTNING.MINTEMP
+	inst.components.temperature.current = CFG.BALL_LIGHTNING.CURRENT_TEMP
+	inst.components.temperature.inherentinsulation = CFG.BALL_LIGHTNING.INSULATION
 
 	inst:AddComponent("heater")	  
-	inst.components.heater.heat = 80
+	inst.components.heater.heat = CFG.BALL_LIGHTNING.HEAT
+
+    inst:AddComponent("lootdropper")
+    inst.components.lootdropper:SetChanceLootTable('ball_lightning') 
 
 	StartUpdating(inst)
 
@@ -147,7 +145,7 @@ local function fn()
 end
 
 local function fx_fn()
-	local inst = SpawnPrefab("lightning_rod_fx")
+	local inst = SpawnPrefab(CFG.BALL_LIGHTNING.FX)
 
 	inst.Transform:SetScale(.8,.3,.3)
 	inst.AnimState:SetMultColour(150,150,0,.1)

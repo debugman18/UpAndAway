@@ -223,7 +223,7 @@ TheMod:AddRoom("Bigbird_Nest", {
 		distributepercent = randomness(),
 		distributeprefabs = {
 			goose = 0.00006,
-			longbill = 0.00002,
+			--longbill = 0.00002,
 			dragonblood_tree = 0.0001,
 			skyflower = 0.1,
 		},

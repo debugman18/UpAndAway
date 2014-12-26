@@ -9,7 +9,7 @@ local assets =
 
 local prefabs = CFG.SKYTRAP.PREFABS
 
-SetSharedLootTable( 'skytrap', CFG.SKYTRAP.LOOT)
+SetSharedLootTable('skytrap', CFG.SKYTRAP.LOOT)
 
 local function retargetfn(inst)
     return FindEntity(inst, 2, function(guy) 
