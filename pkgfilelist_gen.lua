@@ -317,14 +317,19 @@ end)()
 --[[
 -- Returns a modinfo parsed in the environment as a string corresponding to a file.
 --]]
-local function DumpModinfo(modinfo)
+local function DumpModinfo(modinfo, annotations)
 	local chunks = {}
 	for _, varname in ipairs(modinfo) do
 		if modinfo[varname] ~= nil then
 			if type(varname) ~= "string" then
 				return error("Modinfo key "..tostring(varname).." is not a string!")
 			end
-			table.insert(chunks, varname.." = "..DumpValue(modinfo[varname]))
+			local valstr = DumpValue(modinfo[varname])
+			local cmnt = annotations[varname]
+			if cmnt then
+				valstr = valstr.." -- "..tostring(cmnt)
+			end
+			table.insert(chunks, varname.." = "..valstr)
 		end
 	end
 	table.insert(chunks, "")
@@ -362,10 +367,17 @@ local function ProcessPkginfo(pkginfo_name, fh)
 	assert( type(pkginfo) == "table", ("File %s didn't return a table."):format(pkginfo_name) )
 
 	
-	local modinfo
+	local modinfo, modinfo_annotations
 	if pkginfo.modinfo_filter then
 		modinfo = parse_modinfo()
+
+		pkginfo_env.annotate = function(name, cmnt)
+			modinfo_annotations[name] = cmnt
+		end
+
 		modinfo = pkginfo.modinfo_filter(modinfo)
+
+		pkginfo_env.annotate = nil
 	end
 
 
@@ -435,7 +447,7 @@ local function ProcessPkginfo(pkginfo_name, fh)
 	end
 
 	if modinfo then
-		local modinfo_str = DumpModinfo(modinfo)
+		local modinfo_str = DumpModinfo(modinfo, modinfo_annotations or {})
 
 		fh:write("\n")
 
