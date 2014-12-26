@@ -7,16 +7,6 @@ require "behaviours/runaway"
 require "behaviours/chattynode"
 require "behaviours/doaction"
 
-local SEE_PLAYER_DIST = 5
-local SEE_FOOD_DIST = 10
-local MAX_WANDER_DIST = 15
-local MAX_CHASE_TIME = 5
-local MAX_CHASE_DIST = 10
-local RUN_AWAY_DIST = 5
-local STOP_RUN_AWAY_DIST = 8
-local START_FACE_DIST = 6
-
-
 local OwlBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
 end)
@@ -27,10 +17,10 @@ local function EatFoodAction(inst)
         target = inst.components.inventory:FindItem(function(item) return inst.components.eater:CanEat(item) end)
     end
     if not target then
-        target = FindEntity(inst, SEE_FOOD_DIST, function(item) return inst.components.eater:CanEat(item) end)
+        target = FindEntity(inst, CFG.OWL.SEE_FOOD_DIST, function(item) return inst.components.eater:CanEat(item) end)
         if target then
             --check for scary things near the food
-            local predator = GetClosestInstWithTag("epic", target, SEE_PLAYER_DIST)
+            local predator = GetClosestInstWithTag("epic", target, CFG.OWL.SEE_PLAYER_DIST)
             if predator then target = nil end
         end
     end
@@ -63,9 +53,9 @@ local function DefendHomeAction(inst)
 end
 
 local function GetFaceTargetFn(inst)
-    target = GetClosestInstWithTag("player", inst, SEE_PLAYER_DIST)
+    target = GetClosestInstWithTag("player", inst, CFG.OWL.SEE_PLAYER_DIST)
     if not target then
-        target = GetClosestInstWithTag("gnome", inst, 20)
+        target = GetClosestInstWithTag("gnome", inst, CFG.OWL.SEE_PLAYER_DIST)
     end    
     --print(target)
     return target
@@ -87,17 +77,17 @@ function OwlBrain:OnStart()
     {
         ChattyNode(self.inst, "Whoo?",
         WhileNode( function() return self.inst.components.combat.target == nil or not self.inst.components.combat:InCooldown() end, "AttackMomentarily",
-            ChaseAndAttack(self.inst, MAX_CHASE_TIME, MAX_CHASE_DIST) ),
+            ChaseAndAttack(self.inst, CFG.OWL.MAX_CHASE_TIME, CFG.OWL.MAX_CHASE_DIST) ),
         WhileNode(function() return self.inst.components.homeseeker and self.inst.components.homeseeker:HasHome() and GetNearbyThreatFn(self.inst.components.homeseeker.home) end),
             DoAction(self.inst, function() return DefendHomeAction(self.inst) end, "GoHome", true)
         ),        
         WhileNode( function() return self.inst.components.combat.target == nil or not self.inst.components.combat:InCooldown() end, "AttackMomentarily",
-            ChaseAndAttack(self.inst, MAX_CHASE_TIME, MAX_CHASE_DIST) ),
+            ChaseAndAttack(self.inst, CFG.OWL.MAX_CHASE_TIME, CFG.OWL.MAX_CHASE_DIST) ),
         WhileNode( function() return self.inst.components.combat.target and self.inst.components.combat:InCooldown() end, "Dodge",
-            RunAway(self.inst, function() return self.inst.components.combat.target end, RUN_AWAY_DIST, STOP_RUN_AWAY_DIST) ),
+            RunAway(self.inst, function() return self.inst.components.combat.target end, CFG.OWL.RUN_AWAY_DIST, CFG.OWL.STOP_RUN_AWAY_DIST) ),
         DoAction(self.inst, EatFoodAction, "Eat Food"),
         FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn),
-        Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, MAX_WANDER_DIST),
+        Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, CFG.OWL.MAX_WANDER_DIST),
     }, .25)
     
     self.bt = BT(self.inst, root)

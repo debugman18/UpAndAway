@@ -25,14 +25,10 @@ local assets=
 	Asset("SOUND", "sound/sheep_bank01.fsb"),		
 }
 
-local prefabs =
-{
-	"meat",
-	"skyflower",
-	"cloud_cotton",
-}
+local prefabs = CFG.SHEEP.PREFABS
 
-local loot = {"meat","meat","cloud_cotton","cloud_cotton"}
+SetSharedLootTable( 'sheep', CFG.SHEEP.LOOT)
+SetSharedLootTable( 'ram', CFG.RAM.LOOT)
 
 local sounds = 
 {
@@ -132,8 +128,7 @@ local function set_electricsheep(inst)
 	inst.AnimState:SetBuild("sheep_baby_build")
 	inst.AnimState:PlayAnimation("idle_loop", true)
 
-	
-	--inst.components.beard.bits = 3
+	--inst.components.beard.bits = CFG.SHEEP.SHAVE_BITS
 	--inst.components.beard.daysgrowth = hair_growth_days + 1 
 	--inst.components.beard.onreset = function() inst.sg:GoToState("shaved") end
 	
@@ -141,8 +136,7 @@ local function set_electricsheep(inst)
 	 
 	inst.components.health:SetMaxHealth(CFG.SHEEP.HEALTH)
 
-	inst.components.lootdropper:SetLoot(loot)
-	--inst.components.lootdropper:AddChanceLoot("cotton", 0.70)
+	inst.components.lootdropper:SetChanceLootTable("sheep")
 
 	inst.components.periodicspawner:Stop()
 	inst.components.periodicspawner:SetRandomTimes(20, 100)
@@ -184,16 +178,14 @@ local function set_stormram(inst)
 
 	inst.AnimState:SetBuild("sheep_electric")
 	inst.AnimState:PlayAnimation("idle_loop", true)
-	
 
 	inst.components.combat:SetDefaultDamage(CFG.RAM.DAMAGE)
 	
 	inst.components.health:SetMaxHealth(CFG.RAM.HEALTH)
 
-	inst.components.lootdropper:SetLoot(loot)
-	--inst.components.lootdropper:AddChanceLoot("cotton", 0.33)
+	inst.components.lootdropper:SetChanceLootTable("ram")
 	
-	inst.components.follower.maxfollowtime = TUNING.BEEFALO_FOLLOW_TIME
+	inst.components.follower.maxfollowtime = CFG.SHEEP.FOLLOW_TIME
 	inst.components.follower.canaccepttarget = false
 
 	inst.components.periodicspawner:Stop()
@@ -283,7 +275,7 @@ local function fn()
 	inst.components.eater:SetVegetarian()	
 
 	--inst:AddComponent("beard")
-	--local hair_growth_days = 3	
+	--local hair_growth_days = CFG.SHEEP.HAIR_GROWTH_DAYS	
 	
 	inst:AddComponent("combat")	
 	inst.components.combat.hiteffectsymbol = "beefalo_body"
@@ -303,12 +295,11 @@ local function fn()
 	inst:AddComponent("leader")
 
 	inst:AddComponent("follower")
-    inst.components.follower.maxfollowtime = TUNING.BEEFALO_FOLLOW_TIME
+    inst.components.follower.maxfollowtime = CFG.SHEEP.FOLLOW_TIME
     inst.components.follower.canaccepttarget = false
     
 	inst:AddComponent("periodicspawner")
-	inst.components.periodicspawner:SetPrefab("poop")	
-    inst.components.periodicspawner:SetPrefab("poop")
+	inst.components.periodicspawner:SetPrefab(CFG.SHEEP.PERIODICSPAWN_PREFAB)	
     inst.components.periodicspawner:SetRandomTimes(30, 80)
     inst.components.periodicspawner:SetDensityInRange(40, 3)
     inst.components.periodicspawner:SetMinimumSpacing(10)
@@ -318,8 +309,8 @@ local function fn()
 	MakeLargeFreezableCharacter(inst, "beefalo_body")
 	
 	inst:AddComponent("locomotor")	
-	inst.components.locomotor.walkspeed = 2
-	inst.components.locomotor.runspeed = 7
+	inst.components.locomotor.walkspeed = CFG.SHEEP.WALKSPEED
+	inst.components.locomotor.runspeed = CFG.SHEEP.RUNSPEED
 	
 	inst:AddComponent("lootdropper")
 	

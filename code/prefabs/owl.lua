@@ -11,24 +11,9 @@ local assets=
 	Asset("SOUND", "sound/merm.fsb"),
 }
 
-local prefabs =
-{
-   --"beak",
-   --"owl_feather",
-   --"owl_amulet",
-   "crystal_fragment_black",
-}
+local prefabs = CFG.OWL.PREFABS
 
-local loot = 
-{
-    --"beak",
-    --"owl_feather",
-    --"owl_amulet",
-    "crystal_fragment_black",
-}
-
-local MAX_TARGET_SHARES = 5
-local SHARE_TARGET_DIST = 40   
+SetSharedLootTable( 'owl', CFG.OWL.LOOT) 
 
 local function ontalk(inst, script)
     inst.SoundEmitter:PlaySound("dontstarve/pig/grunt")
@@ -80,14 +65,14 @@ local function OnAttacked(inst, data)
     local attacker = data and data.attacker
     if attacker and inst.components.combat:CanTarget(attacker) then
         inst.components.combat:SetTarget(attacker)
-        local targetshares = MAX_TARGET_SHARES
+        local targetshares = CFG.OWL.MAX_TARGET_SHARES
         if inst.components.homeseeker and inst.components.homeseeker.home then
             local home = inst.components.homeseeker.home
-            if home and home.components.childspawner and inst:GetDistanceSqToInst(home) <= SHARE_TARGET_DIST*SHARE_TARGET_DIST then
+            if home and home.components.childspawner and inst:GetDistanceSqToInst(home) <= CFG.OWL.SHARE_TARGET_DIST*CFG.OWL.SHARE_TARGET_DIST then
                 targetshares = targetshares - home.components.childspawner.childreninside
                 home.components.childspawner:ReleaseAllChildren(attacker)
             end
-            inst.components.combat:ShareTarget(attacker, SHARE_TARGET_DIST, function(dude)
+            inst.components.combat:ShareTarget(attacker, CFG.OWL.SHARE_TARGET_DIST, function(dude)
                 return dude.components.homeseeker
                        and dude.components.homeseeker.home
                        and dude.components.homeseeker.home == home
@@ -104,7 +89,7 @@ local function fn()
 	local shadow = inst.entity:AddDynamicShadow()
 	shadow:SetSize(1.5, .75)
     inst.Transform:SetFourFaced()
-    inst.Transform:SetScale(1.2, 1.2, 1.2)
+    inst.Transform:SetScale(CFG.OWL.SCALE, CFG.OWL.SCALE, CFG.OWL.SCALE)
 
     MakeCharacterPhysics(inst, 50, .5)
 
@@ -118,8 +103,8 @@ local function fn()
 
     
     inst:AddComponent("locomotor")
-    inst.components.locomotor.runspeed = 10
-    inst.components.locomotor.walkspeed = 8
+    inst.components.locomotor.runspeed = CFG.OWL.RUNSPEED
+    inst.components.locomotor.walkspeed = CFG.OWL.WALKSPEED
     
     inst:SetStateGraph("SGowl")
     anim:Hide("hat")
@@ -147,7 +132,7 @@ local function fn()
     inst.components.health:SetMaxHealth(CFG.OWL.HEALTH)
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot(loot)
+    inst.components.lootdropper:SetChanceLootTable("owl")
     
     inst:AddComponent("inventory")
     
@@ -170,8 +155,8 @@ local function fn()
     inst.components.talker.offset = Vector3(0,-400,0)  
     inst.components.talker:StopIgnoringAll()  
 
-    inst:DoPeriodicTask(math.random(1,4), function() inst.components.talker:Say("Whoo?", math.random(1,4), noanim) end, 12)
-    inst:DoPeriodicTask(math.random(1,4), function() inst.components.talker:ShutUp() end, 12)
+    inst:DoPeriodicTask(CFG.OWL.WHO_INTERVAL, function() inst.components.talker:Say("Whoo?", CFG.OWL.WHO_INTERVAL, noanim) end, 12)
+    inst:DoPeriodicTask(CFG.OWL.WHO_INTERVAL, function() inst.components.talker:ShutUp() end, 12)
 
     return inst
 end

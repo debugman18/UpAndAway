@@ -29,6 +29,9 @@ RAM.HEALTH = 600
 SHEEP.DAMAGE = 5
 RAM.DAMAGE = 35
 
+SHEEP.WALKSPEED = 2
+SHEEP.RUNSPEED = 7
+
 -- Radius to find a new target.
 RAM.TARGET_DIST= 6
 
@@ -36,11 +39,66 @@ RAM.TARGET_DIST= 6
 SHEEP.CHASE_DIST = 10
 RAM.CHASE_DIST = 30
 
+SHEEP.FOLLOW_TIME = 4
+
 -- Delay for sheep -> ram transformation.
 -- Can be a function.
 SHEEP.CHARGE_DELAY = function() return 0.5 + 10*math.random() end
 -- Opposite
 SHEEP.UNCHARGE_DELAY = SHEEP.CHARGE_DELAY
+
+-- Sheep Brain
+
+SHEEP.STOP_RUN_DIST = 2
+SHEEP.SEE_PLAYER_DIST = 10
+
+SHEEP.AVOID_PLAYER_DIST = 2
+SHEEP.AVOID_PLAYER_STOP = 2
+
+SHEEP.SEE_BAIT_DIST = 20
+SHEEP.MAX_WANDER_DIST = 50
+
+-- Ram Brain
+
+RAM.STOP_RUN_DIST = 0
+RAM.SEE_PLAYER_DIST = 20
+
+RAM.AVOID_PLAYER_DIST = 0
+RAM.AVOID_PLAYER_STOP = 0
+
+RAM.SEE_BAIT_DIST = 20
+RAM.MAX_WANDER_DIST = 50
+
+RAM.START_FACE_DIST = 6
+RAM.KEEP_FACE_DIST = 16
+
+RAM.GO_HOME_DIST = 40
+
+RAM.MAX_CHASE_TIME = 8
+RAM.MAX_CHASE_DIST = 40
+
+RAM.MAX_CHARGE_DIST = 15
+RAM.CHASE_GIVEUP_DIST = 10
+
+RAM.RUN_AWAY_DIST = 4
+RAM.STOP_RUN_AWAY_DIST = 5
+
+-- Prefabs and Loot
+
+SHEEP.PREFABS = {
+	"meat",
+	"skyflower",
+	"cloud_cotton",
+	"wool",
+}
+
+SHEEP.PERIODICSPAWN_PREFAB = "skyflower"
+
+SHEEP.LOOT = {}
+RAM.LOOT = {}
+
+SHEEP.SHAVE_BITS = 3
+SHEEP.HAIR_GROWTH_DAYS = 3
 
 -- Enable/disable sparks.
 -- Set by the modinfo configuration.
@@ -50,12 +108,40 @@ SHEEP.UNCHARGE_DELAY = SHEEP.CHARGE_DELAY
 
 -- Owl
 
--- WIP
+OWL.SCALE = 1.2
+OWL.WHO_INTERVAL = function() return math.random(1,4) end
 
 OWL.HEALTH = 250
-OWL.DEFEND_DIST = 8
 OWL.DAMAGE = 15
 OWL.ATTACK_PERIOD = .7
+OWL.WALKSPEED = 8
+OWL.RUNSPEED = 10
+
+OWL.DEFEND_DIST = 8
+OWL.MAX_TARGET_SHARES = 5
+OWL.SHARE_TARGET_DIST = 10
+
+OWL.SEE_PLAYER_DIST = 5
+OWL.SEE_FOOD_DIST = 10
+OWL.MAX_WANDER_DIST = 15
+OWL.MAX_CHASE_TIME = 5
+OWL.MAX_CHASE_DIST = 10
+OWL.RUN_AWAY_DIST = 5
+OWL.STOP_RUN_AWAY_DIST = 8
+OWL.START_FACE_DIST = 6
+
+OWL.PREFABS = {
+   --"owl_beak",
+   --"owl_gizzard",
+   --"owl_feather",
+   --"owl_amulet",
+   "rope",
+   "crystal_fragment_black",
+}
+
+OCTOCOPTER.LOOT = {
+	{'crystal_fragment_black', 0.33},
+}
 
 ---------------------------------------
 
