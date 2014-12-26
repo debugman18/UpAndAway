@@ -34,12 +34,12 @@ end
 
 AddAction(Withdraw)
 
-AddStategraphActionHandler("wilson", ActionHandler(Withdraw, function(inst, action)
-	local un = action.target and action.target.components.withdrawable
-	if un then
-		return un.quickwithdraw and "doshortaction" or "dolongaction"
-	end
-end))
+local withdraw_sg_handler = "dolongaction"
+
+AddStategraphActionHandler("wilson", ActionHandler(Withdraw, withdraw_sg_handler))
+if IsClient() then
+	AddStategraphActionHandler("wilson_client", ActionHandler(Withdraw, withdraw_sg_handler))
+end
 
 ---
 
@@ -51,8 +51,10 @@ BeginSpeech.fn = function(act)
 	local doer = act.doer
 	local targ = act.target
 	if doer and targ and targ.components.speechgiver then
+		TheMod:Say "BeginSpeech.fn going forward!"
 		return targ.components.speechgiver:InteractWith(doer)
 	end
+	TheMod:Say "BeginSpeech.fn failed..."
 end
 
 AddAction(BeginSpeech)
@@ -63,6 +65,15 @@ AddStategraphActionHandler("wilson", ActionHandler(BeginSpeech, function(inst, a
 		return "idle"
 	end
 end))
+
+if IsClient() then
+	AddStategraphActionHandler("wilson_client", ActionHandler(BeginSpeech, function(inst, action)
+		if action.target and replica(action.target).speechgiver then
+			inst:PerformPreviewBufferedAction()
+			return "idle"
+		end
+	end))
+end
 
 ---
 

@@ -16,6 +16,7 @@ reign_of_giants_compatible = true
 dst_compatible = true
 
 all_clients_require_mod = true
+clients_only_mod = false
 
 forumthread = "/forum/49-mod-collaboration-up-and-away"
 

@@ -132,7 +132,6 @@ local function addmoundtag(inst)
 		end
 
 		if not inst.components.hole then
-			inst:AddComponent("inventory")
 		    inst:AddComponent("trader")
 		    inst.components.trader:SetAcceptTest(beanstalktest)
 		    inst.components.trader.onaccept = beanstalkaccept
@@ -143,7 +142,9 @@ local function addmoundtag(inst)
 		inst:AddTag("mound")
 end	
 
-AddPrefabPostInit("mound", addmoundtag)
+if IsHost() then
+	AddPrefabPostInit("mound", addmoundtag)
+end
 
 --FIXME: not MP compatible
 if not IsDST() then

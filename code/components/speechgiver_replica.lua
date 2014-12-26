@@ -9,6 +9,9 @@ local SpeechGiver = Class(Debuggable, function(self, inst)
 	self.net_cutscene = NetBool(inst, "speechgiver.cutscene")
 	self.net_cutscene.value = false
 
+	self.net_wants_cutscene = NetBool(inst, "speechgiver.wants_cutscene")
+	self.net_wants_cutscene.value = false
+
 	RegisterServerEvent(inst, "speechgiver_interrupt")
 end)
 
@@ -41,8 +44,17 @@ SpeechGiver.IsInCutscene = SpeechGiver.IsInCutScene
 SpeechGiver.IsCutScene = SpeechGiver.IsInCutScene
 SpeechGiver.IsCutscene = SpeechGiver.IsInCutScene
 
+function SpeechGiver:WantsCutScene()
+	return self.net_wants_cutscene.value
+end
+SpeechGiver.WantsCutscene = SpeechGiver.WantsCutScene
+
 function SpeechGiver:SetIsCutScene(b)
 	self.net_cutscene.value = (b and true or false)
+end
+
+function SpeechGiver:SetWantsCutScene(b)
+	self.net_wants_cutscene.value = b and true or false
 end
 
 ---

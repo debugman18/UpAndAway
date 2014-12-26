@@ -192,6 +192,10 @@ local function speechgiver_setiscutscene(self, b)
 	replica(self.inst).speechgiver:SetIsCutScene(b)
 end
 
+local function speechgiver_setwantscutscene(self, b)
+	replica(self.inst).speechgiver:SetWantsCutScene(b)
+end
+
 function SpeechGiver:MakeInterruptible()
 	replica(self.inst).speechgiver:MakeInterruptible()
 end
@@ -205,6 +209,7 @@ end
 function SpeechGiver:ResetSpeechState()
 	self:MakeInterruptible()
 	speechgiver_setiscutscene(self, false)
+	speechgiver_setwantscutscene(self, false)
 end
 
 ------------------------------------------------------------------------
@@ -356,6 +361,12 @@ function SpeechManager:IsCutScene()
 	return self.is_cutscene
 end
 SpeechManager.IsCutscene = SpeechManager.IsCutScene
+
+function SpeechManager:SetWantsCutScene(b)
+	self.wants_cutscene = b
+	speechgiver_setwantscutscene(self.speechgiver, b)
+end
+SpeechManager.SetWantsCutscene = SpeechManager.SetWantsCutScene
 
 function SpeechManager:SetIsCutScene(b)
 	self.is_cutscene = b
@@ -680,7 +691,7 @@ end
 function SpeechManager:EnterCutScene()
 	if not self.listener.components.speechlistener then return end
 
-	self.wants_cutscene = true
+	self:SetWantsCutScene(true)
 
 	if self:IsCutScene() then return true end
 
@@ -728,7 +739,7 @@ SpeechManager.AbortCutscene = SpeechManager.AbortCutScene
 
 -- May be called outside of a speech.
 function SpeechManager:ExitCutScene()
-	self.wants_cutscene = false
+	self:SetWantsCutScene(false)
 	return self:AbortCutScene()
 end
 SpeechManager.ExitCutscene = SpeechManager.ExitCutScene
@@ -816,6 +827,7 @@ function SpeechGiver:InteractWith(someone)
 	elseif self:IsInCutScene() then
 		return true
 	end
+	TheMod:Say "SpeechGiver:InteractWith failed..."
 end
 
 ------------------------------------------------------------------------

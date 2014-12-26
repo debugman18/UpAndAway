@@ -326,20 +326,26 @@ local function fn(Sim)
 	anim:SetBank("shop")
 	anim:SetBuild("shop_basic")
 	anim:PlayAnimation("idle", true)
- 
-	inst.entity:AddLabel()
 
+	------------------------------------------------------
+ 
+	inst:AddComponent("talker")
+	do
+		local talker = inst.components.talker
+
+		talker.fontsize = 35
+		talker.font = TALKINGFONT
+		--talker.offset = Vector3(0, 5, 0)
+	end
+
+	-- optimization stuff.
+	inst:AddTag("_named")
 
 	------------------------------------------------------------------------
 	SetupNetwork(inst)
 	------------------------------------------------------------------------
 
-	inst:AddComponent("talker")
-	inst.Label:SetFontSize(35)
-	inst.Label:SetFont(TALKINGFONT)
-	inst.Label:SetPosition(0,5,0)
-
-	------------------------------------------------------
+	inst:RemoveTag("_named")
 
 	inst:AddComponent("named")
 	inst.components.named:SetName("Shopkeeper")

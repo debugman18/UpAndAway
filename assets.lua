@@ -1,4 +1,4 @@
-modimport "asset_utils.lua"
+use "asset_utils"
 
 --These assets are for everything.
 Assets = GLOBAL.JoinArrays(

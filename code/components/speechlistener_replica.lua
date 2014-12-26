@@ -229,10 +229,10 @@ doAbortCutScene = function(inst)
 	local speechgiver = replica(speaker).speechgiver
 
 	local function reset_condition()
-		return not speaker:IsValid() or not speechgiver or not speechgiver:IsInCutScene()
+		return not speaker:IsValid() or not speechgiver or not (speechgiver:IsInCutScene() or speechgiver:WantsCutScene())
 	end
 
-	listener:DoTaskInTime(2*FRAMES, function()
+	listener:DoTaskInTime(0.33, function()
 		if reset_condition() then
 			Game.ShowPlayerHUD(listener, true)
 
