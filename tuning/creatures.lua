@@ -26,7 +26,7 @@ SHOPKEEPER.MAX_COW_DIST = 17
 --Sheep / Storm Ram
 
 SHEEP.HEALTH = 100
-RAM.HEALTH = 600
+RAM.HEALTH = 250
 
 SHEEP.DAMAGE = 5
 RAM.DAMAGE = 35
@@ -51,14 +51,14 @@ SHEEP.UNCHARGE_DELAY = SHEEP.CHARGE_DELAY
 
 -- Sheep Brain
 
-SHEEP.STOP_RUN_DIST = 2
+SHEEP.STOP_RUN_DIST = 4
 SHEEP.SEE_PLAYER_DIST = 10
 
 SHEEP.AVOID_PLAYER_DIST = 2
-SHEEP.AVOID_PLAYER_STOP = 2
+SHEEP.AVOID_PLAYER_STOP = 5
 
 SHEEP.SEE_BAIT_DIST = 20
-SHEEP.MAX_WANDER_DIST = 50
+SHEEP.MAX_WANDER_DIST = 35
 
 -- Ram Brain
 
@@ -71,10 +71,10 @@ RAM.AVOID_PLAYER_STOP = 0
 RAM.SEE_BAIT_DIST = 20
 RAM.MAX_WANDER_DIST = 50
 
-RAM.START_FACE_DIST = 6
+RAM.START_FACE_DIST = 10
 RAM.KEEP_FACE_DIST = 16
 
-RAM.GO_HOME_DIST = 40
+RAM.GO_HOME_DIST = 35
 
 RAM.MAX_CHASE_TIME = 8
 RAM.MAX_CHASE_DIST = 40
@@ -96,8 +96,24 @@ SHEEP.PREFABS = {
 
 SHEEP.PERIODICSPAWN_PREFAB = "skyflower"
 
-SHEEP.LOOT = {}
-RAM.LOOT = {}
+SHEEP.LOOT = {
+	{'meat',	0.70},	
+	{'meat',	0.70},
+	{'meat',	0.70},
+	{'cloud_cotton',	0.70},
+	{'cloud_cotton',	0.70},
+	{'cloud_cotton',	0.70},
+}
+
+RAM.LOOT = {
+	{'meat',	0.80},	
+	{'meat',	0.80},
+	{'meat',	0.70},
+	{'meat',	0.70},
+	{'wool',	0.80},
+	{'wool',	0.80},
+	{'wool',	0.80},
+}
 
 SHEEP.SHAVE_BITS = 3
 SHEEP.HAIR_GROWTH_DAYS = 3
@@ -113,11 +129,11 @@ SHEEP.HAIR_GROWTH_DAYS = 3
 OWL.SCALE = 1.2
 OWL.WHO_INTERVAL = function() return math.random(1,4) end
 
-OWL.HEALTH = 250
+OWL.HEALTH = 180
 OWL.DAMAGE = 15
-OWL.ATTACK_PERIOD = .7
-OWL.WALKSPEED = 8
-OWL.RUNSPEED = 10
+OWL.ATTACK_PERIOD = 0.7
+OWL.WALKSPEED = 5
+OWL.RUNSPEED = 7
 
 OWL.DEFEND_DIST = 8
 OWL.MAX_TARGET_SHARES = 5
@@ -140,13 +156,14 @@ OWL.PREFABS = {
    --"owl_beak",
    --"owl_gizzard",
    --"owl_feather",
-   --"owl_amulet",
+   --"black_crystal_amulet",
    "rope",
    "crystal_fragment_black",
 }
 
-OCTOCOPTER.LOOT = {
-	{'crystal_fragment_black', 0.33},
+OWL.LOOT = {
+	{'crystal_fragment_black', 0.40},
+	{'rope',                   0.40},
 }
 
 ---------------------------------------
@@ -183,7 +200,7 @@ BALL_LIGHTNING.MIN_FOLLOW_DIST = 0
 BALL_LIGHTNING.MAX_FOLLOW_DIST = 4
 BALL_LIGHTNING.TARGET_FOLLOW_DIST = 4
 
-BALL_LIGHTNING.MAX_WANDER_DIST = 40
+BALL_LIGHTNING.MAX_WANDER_DIST = 30
 
 BALL_LIGHTNING.CHILD = "ball_lightning_fx"
 BALL_LIGHTNING.FX = "lightning_rod_fx"
@@ -212,8 +229,8 @@ GOOSE.LAY_PERIOD = 120
 -- Delay after static starts until an egg is laid. May be a function.
 GOOSE.LAY_DELAY = function() return 5 + 5*math.random() end
 
-GOOSE.WALKSPEED = 8
-GOOSE.RUNSPEED = 10
+GOOSE.WALKSPEED = 3
+GOOSE.RUNSPEED = 8
 
 GOOSE.HEALTH = 40
 
@@ -239,7 +256,13 @@ GOOSE.PREFABS = {
 }
 
 GOOSE.LOOT = {
-	{'drumstick', 1.00},	
+	{'drumstick', 	 1.00},	
+	{'drumstick', 	 0.90},
+	{'drumstick', 	 0.50},
+	{'drumstick', 	 1.00},	
+	{'robin_winter', 1.00},
+	{'robin_winter', 0.90},	
+	{'golden_egg',	 0.10},
 }
 
 -- This really shouldn't ever be changed.
@@ -290,29 +313,29 @@ BALLOON_HOUND.MOVING_SPAWN_DIST = {8, 12}
 -- Octocopter
 
 OCTOCOPTER.TARGET_DIST = 15
-OCTOCOPTER.RANGE = 5
+OCTOCOPTER.RANGE = 6
 OCTOCOPTER.HEALTH = 3000
-OCTOCOPTER.ATTACK_PERIOD = 2
-OCTOCOPTER.DAMAGE = 100
-OCTOCOPTER.AREA_RANGE = 5
+OCTOCOPTER.ATTACK_PERIOD = 4
+OCTOCOPTER.DAMAGE = 80
+OCTOCOPTER.AREA_RANGE = 6
 OCTOCOPTER.AREA_DAMAGE = 0.4
 
 OCTOCOPTER.SLEEP_DIST_FROMHOME = 1
 OCTOCOPTER.SLEEP_DIST_FROMTHREAT = 20
-OCTOCOPTER.MAX_CHASEAWAY_DIST = 40
+OCTOCOPTER.MAX_CHASEAWAY_DIST = 20
 OCTOCOPTER.MAX_TARGET_SHARES = 5
 OCTOCOPTER.SHARE_TARGET_DIST = 40
 
 -- Octocopter Brain
 
 OCTOCOPTER.START_FACE_DIST = 15
-OCTOCOPTER.KEEP_FACE_DIST = 15
+OCTOCOPTER.KEEP_FACE_DIST = 20
 OCTOCOPTER.GO_HOME_DIST = 1
 OCTOCOPTER.MAX_CHASE_TIME = 10
 OCTOCOPTER.MAX_CHASE_DIST = 20
 OCTOCOPTER.RUN_AWAY_DIST = 5
 OCTOCOPTER.STOP_RUN_AWAY_DIST = 8
-OCTOCOPTER.FOLLOW_RADIUS = 1.5
+OCTOCOPTER.FOLLOW_RADIUS = 3
 
 -- Loot and Prefabs
 
@@ -322,6 +345,7 @@ OCTOCOPTER.PREFABS = {
 
 OCTOCOPTER.LOOT = {
 	{'trinket_12', 1.00},
+	-- Good loot will be here.
 }
 
 ---------------------------------------
@@ -384,28 +408,26 @@ BEANLET.PREFABS = {
 
 BEANLET.LOOT = {
     {'greenbean',       1.00},
-    {'greenbean',       0.90},
     {'greenbean',       0.80},
     {'greenbean',       0.70},
-    {'beanlet_shell',   0.33},
+    {'beanlet_shell',   0.20},
 }
 
 BEANLET_ZEALOT.LOOT = {
     {'greenbean',       1.00},
     {'greenbean',       0.90},
     {'greenbean',       0.80},
-    {'greenbean',       0.70},
-    {'beanlet_shell',   0.33},
+    {'beanlet_shell',   0.43},
 }
 
 ---------------------------------------
 
 -- Skytrap
 
-SKYTRAP.ATTACK_PERIOD = 0.75
+SKYTRAP.ATTACK_PERIOD = 0.70
 SKYTRAP.RANGE = 4
-SKYTRAP.DAMAGE = 40
-SKYTRAP.HEALTH = 50
+SKYTRAP.DAMAGE = 50
+SKYTRAP.HEALTH = 40
 
 -- Loot and Prefabs
 
@@ -418,11 +440,11 @@ SKYTRAP.PREFABS = {
 
 SKYTRAP.LOOT = {
     {'beanstalk_chunk', 1.00},
-    {'beanstalk_chunk', 1.00},
+    {'beanstalk_chunk', 0.70},
     {'beanstalk_chunk', 0.50},
     {'cloud_cotton',    0.50},
-    {'cloud_cotton',    0.50},
-    {'cloud_cotton',    0.30},
+    {'cloud_cotton',    0.25},
+    {'cloud_cotton',    0.25},
     {'ambrosia',        0.30},
 }
 
@@ -490,11 +512,11 @@ GUMMYBEAR.ALPHA = 0.75
 GUMMYBEAR.WALKSPEED = 2
 GUMMYBEAR.RUNSPEED = 5
 
-GUMMYBEAR.HEALTH = 300
+GUMMYBEAR.HEALTH = 310
 
-GUMMYBEAR.DAMAGE = 34
-GUMMYBEAR.ATTACK_PERIOD = 2
-GUMMYBEAR.RANGE = 2
+GUMMYBEAR.DAMAGE = 30
+GUMMYBEAR.ATTACK_PERIOD = 2.20
+GUMMYBEAR.RANGE = 2.05
 
 -- Gummybear Brain
 
@@ -524,19 +546,21 @@ GUMMYBEAR.PREFABS = {
 }
 
 GUMMYBEAR.LOOT = {
-	
+	{'nightmarefuel', 1.00},
+	{'nightmarefuel', 1.00},
+	{'nightmarefuel', 0.50},
 }
 
 ---------------------------------------
 
 -- Bean Giant
 
-BEAN_GIANT.HEALTH = 1400
+BEAN_GIANT.HEALTH = 1300
 
 BEAN_GIANT.WALKSPEED = 3
 BEAN_GIANT.RUNSPEED = 3
 
-BEAN_GIANT.DAMAGE = 160
+BEAN_GIANT.DAMAGE = 130
 BEAN_GIANT.RANGE = 4
 BEAN_GIANT.ATTACK_PERIOD = 3
 
@@ -544,15 +568,15 @@ BEAN_GIANT.SCALE = 1
 
 BEAN_GIANT.PLAYER_DAMAGE_PERCENT = 0.8
 
-BEAN_GIANT.AREA_RANGE = 2
+BEAN_GIANT.AREA_RANGE = 4
 BEAN_GIANT.AREA_DAMAGE = 0.8
 
 BEAN_GIANT.CHILD = "vine"
 BEAN_GIANT.RARECHILD = "beanlet_zealot"
 BEAN_GIANT.RARECHILD_CHANCE = 0.2
-BEAN_GIANT.SPAWN_PERIOD = 0.5
+BEAN_GIANT.SPAWN_PERIOD = 0.3
 BEAN_GIANT.REGEN_MODIFER = 0.1
-BEAN_GIANT.MAX_CHILDREN = 30
+BEAN_GIANT.MAX_CHILDREN = 10
 
 BEAN_GIANT.TARGET_DIST = 30
 
@@ -563,8 +587,8 @@ BEAN_GIANT.CALM_SANITY_AURA = -TUNING.SANITYAURA_HUGE
 
 BEAN_GIANT.SEE_DIST = 40
 
-BEAN_GIANT.CHASE_DIST = 32
-BEAN_GIANT.CHASE_TIME = 20
+BEAN_GIANT.CHASE_DIST = 30
+BEAN_GIANT.CHASE_TIME = 30
 
 -- Loot and Prefabs
 
@@ -577,29 +601,39 @@ BEAN_GIANT.PREFABS = {
 }
 
 BEAN_GIANT.LOOT = {
-	
+	{'beanstalk_chunk', 1.00},
+	{'beanstalk_chunk', 1.00},
+	{'beanstalk_chunk', 0.70},
+	{'beanstalk_chunk', 0.70},
+	{'beanstalk_chunk', 0.70},
+	{'greenbean',       1.00},
+	{'greenbean',       1.00},
+	{'greenbean',       0.70},
+	{'greenbean',       0.70},
+	{'greenbean',       0.70},
+	--{'bean_brain'}    1.00},
 }
 
 ---------------------------------------
 
 -- Vine
 
-VINE.HEALTH = 20
-VINE.RANGE = 2.5
-VINE.DAMAGE = 8
-VINE.ATTACK_PERIOD = 6
+VINE.HEALTH = 30
+VINE.RANGE = 2
+VINE.DAMAGE = 6
+VINE.ATTACK_PERIOD = 5
 
-VINE.SANITY_AURA = 100/60
+VINE.SANITY_AURA = -TUNING.SANITYAURA_LARGE*0.5
 
 VINE.WALKSPEED = 6.3
 VINE.RUNSPEED = 6.3
 
 -- Vine Brain
 
-VINE.MAX_CHASE_TIME = 10
-VINE.MAX_CHASE_DIST = 15
+VINE.MAX_CHASE_TIME = 9
+VINE.MAX_CHASE_DIST = 12
 
-VINE.MAX_WANDER_DIST = 16
+VINE.MAX_WANDER_DIST = 12
 
 VINE.START_FACE_DIST = 8
 VINE.KEEP_FACE_DIST = 10
@@ -614,7 +648,9 @@ VINE.PREFABS = {
 }
 
 VINE.LOOT = {
-	
+	{'beanstalk_chunk',	0.80},
+	{'beanstalk_chunk',	0.70},
+	{'beanstalk_chunk',	0.50},
 }
 
 ---------------------------------------
