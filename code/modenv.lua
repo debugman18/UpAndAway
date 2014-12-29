@@ -15,6 +15,9 @@ Debuggable = wickerrequire "adjectives.debuggable"
 
 FunctionQueue = wickerrequire "gadgets.functionqueue"
 
+RegisterServerEvent = wickerrequire "plugins.serverevents"
+
+
 LOGROOT = MODROOT .. "log/"
 
 
@@ -48,23 +51,6 @@ function inventoryimage_atlas(prefab)
 end
 function inventoryimage_texture(prefab)
 	return "images/inventoryimages/"..prefab..".tex"
-end
-
-
-if VarExists("IsDLCEnabled") then
-	IsDLCEnabled = _G.IsDLCEnabled
-else
-	IsDLCEnabled = Lambda.False
-end
-if VarExists("IsDLCInstalled") then
-	IsDLCInstalled = _G.IsDLCInstalled
-else
-	IsDLCInstalled = Lambda.False
-end
-if VarExists("REIGN_OF_GIANTS") then
-	REIGN_OF_GIANTS = _G.REIGN_OF_GIANTS
-else
-	REIGN_OF_GIANTS = 1
 end
 
 
