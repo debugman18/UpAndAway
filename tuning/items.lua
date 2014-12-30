@@ -187,3 +187,34 @@ FLYING_FISH.PREFABS = {
 }
 
 ---------------------------------------
+
+-- Ambrosia
+
+AMBROSIA.FOODTYPE = "VEGGIE"
+
+CFG.AMBROSIA.HEALTHVALUE = function() return math.random(-40,20) end
+CFG.AMBROSIA.HUNGERVALUE = function() return math.random(-40,20) end
+CFG.AMBROSIA.SANITYVALUE = function() return math.random(-40,20) end
+
+---------------------------------------
+
+-- Beanlet Armor
+
+---------------------------------------
+
+-- Beanlet Lamp
+
+---------------------------------------
+
+-- Beanstalk Chunk
+
+---------------------------------------
+
+-- Beanstalk Wall
+
+---------------------------------------
+
+-- Dragonblood Log
+
+---------------------------------------
+

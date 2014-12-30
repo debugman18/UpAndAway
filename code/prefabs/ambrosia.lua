@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
 	Asset("ANIM", "anim/ambrosia.zip"),
@@ -42,10 +44,10 @@ local function fn(Sim)
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/ambrosia.xml"
 
     inst:AddComponent("edible")
-    inst.components.edible.foodtype = "VEGGIE"
-    inst.components.edible.healthvalue = math.random(-40,20)
-    inst.components.edible.hungervalue = math.random(-40,20)
-    inst.components.edible.sanityvalue = math.random(-40,20)
+    inst.components.edible.foodtype = CFG.AMBROSIA.FOODTYPE
+    inst.components.edible.healthvalue = CFG.AMBROSIA.HEALTHVALUE
+    inst.components.edible.hungervalue = CFG.AMBROSIA.HUNGERVALUE
+    inst.components.edible.sanityvalue = CFG.AMBROSIA.SANITYVALUE
     inst.components.edible:SetOnEatenFn(oneatfn)
 
 	return inst

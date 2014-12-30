@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local beecommon = require "brains/beecommon"
 
 local workersounds = 
@@ -32,10 +34,9 @@ local assets=
     Asset( "IMAGE", "images/inventoryimages/bee_marshmallow.tex" ), 
 }
     
-local prefabs =
-{
-	"marshmallow",
-}
+local prefabs = CFG.BEE_MARSHMALLOW.PREFABS
+
+SetSharedLootTable( 'bee_marshmallow', CFG.BEE_MARSHMALLOW.LOOT)
 
 local workerbrain = require("brains/beebrain")
 local killerbrain = require("brains/killerbeebrain")
@@ -54,11 +55,11 @@ local function onunchargefn(inst)
     inst.AnimState:SetBank("bee")
     inst.AnimState:SetBuild("bee_marshmallow")
     inst.AnimState:PlayAnimation("idle")
-    inst.Transform:SetScale(1, 1, 1)
+    inst.Transform:SetScale(BEE_MARSHMALLOW.UNCHARGED_SCALE, BEE_MARSHMALLOW.UNCHARGED_SCALE, BEE_MARSHMALLOW.UNCHARGED_SCALE)
     inst:RemoveTag("scarytoprey")
-    inst.components.health:SetMaxHealth(TUNING.BEE_HEALTH)
-    inst.components.combat:SetDefaultDamage(0)
-    inst.components.combat:SetAttackPeriod(TUNING.BEE_ATTACK_PERIOD)
+    inst.components.health:SetMaxHealth(CFG.BEE_MARSHMALLOW.UNCHARGED_HEALTH)
+    inst.components.combat:SetDefaultDamage(CFG.BEE_MARSHMALLOW.UNCHARGED_DAMAGE)
+    inst.components.combat:SetAttackPeriod(CFG.BEE_MARSHMALLOW.UNCHARGED_ATTACK_PERIOD)
 	if not inst.components.pollinator then
 		inst:AddComponent("pollinator")   
 	end
@@ -74,10 +75,10 @@ local function onchargefn(inst)
     inst.AnimState:SetBank("bee")
     inst.AnimState:SetBuild("bee_marshmallow")
     inst.AnimState:PlayAnimation("idle")
-    inst.Transform:SetScale(1.8, 2, 2)
-    inst.components.health:SetMaxHealth(TUNING.BEE_HEALTH)
-    inst.components.combat:SetDefaultDamage(TUNING.BEE_DAMAGE)
-    inst.components.combat:SetAttackPeriod(TUNING.BEE_ATTACK_PERIOD)
+    inst.Transform:SetScale(BEE_MARSHMALLOW.CHARGED_SCALE, BEE_MARSHMALLOW.CHARGED_SCALE, BEE_MARSHMALLOW.CHARGED_SCALE)
+    inst.components.health:SetMaxHealth(CFG.BEE_MARSHMALLOW.CHARGED_HEALTH)
+    inst.components.combat:SetDefaultDamage(CFG.BEE_MARSHMALLOW.CHARGED_DAMAGE)
+    inst.components.combat:SetAttackPeriod(CFG.BEE_MARSHMALLOW.CHARGED_ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(2, KillerRetarget)
 	if inst.components.pollinator then
 		inst:RemoveComponent("pollinator")
@@ -89,7 +90,7 @@ local function onchargefn(inst)
 end
 
 local function OnAttacked(inst)
-    print "Test."
+    --
 end    
 
 local function OnWorked(inst, worker)
@@ -183,9 +184,8 @@ local function commonfn()
 	---------------------
 	
 	inst:AddComponent("lootdropper")
-	inst.components.lootdropper:AddRandomLoot("marshmallow", 1)
-	inst.components.lootdropper:AddRandomLoot("stinger", 5)   
-	inst.components.lootdropper.numrandomloot = 1
+	inst.components.lootdropper:AddChanceLootTable("bee_marshmallow")
+	inst.components.lootdropper.numrandomloot = CFG.BEE_MARSHMALLOW.NUMRANDOMLOOT
 	
 	 ------------------
 	inst:AddComponent("workable")
@@ -212,10 +212,10 @@ local function commonfn()
     inst:AddComponent("knownlocations")
 
     inst:AddComponent("edible")
-    inst.components.edible.foodtype = "MEAT"
-    inst.components.edible.healthvalue = 0
-    inst.components.edible.hungervalue = 10
-    inst.components.edible.sanityvalue = -10
+    inst.components.edible.foodtype = CFG.BEE_MARSHMALLOW.FOODTYPE
+    inst.components.edible.healthvalue = CFG.BEE_MARSHMALLOW.HEALTHVALUE
+    inst.components.edible.hungervalue = CFG.BEE_MARSHMALLOW.HUNGERVALUE
+    inst.components.edible.sanityvalue = CFG.BEE_MARSHMALLOW.SANITYVALUE
     
     inst:AddComponent("inspectable")
     

@@ -1,20 +1,12 @@
 BindGlobal()
 
-local prefabs =
-{
-    "nightmarefuel",
-    "crystal_fragment_relic",
-    "crystal_fragment_light",
-    "crystal_fragment_spire",
-    "crystal_fragment_water",
-}
+local CFG = TheMod:GetConfig()
 
-local fragments = {
-    "crystal_fragment_relic",
-    "crystal_fragment_light",
-    "crystal_fragment_spire",
-    "crystal_fragment_water",
-}
+local prefabs = CFG.ALIEN.PREFABS
+
+local fragments = CFG.ALIEN.FRAGMENTS
+
+SetSharedLootTable( 'alien', CFG.ALIEN.LOOT)
 
 local function retargetfn(inst)
     local entity = FindEntity(inst, TUNING.SHADOWCREATURE_TARGET_DIST, function(guy) 
@@ -28,10 +20,6 @@ local function onkilledbyother(inst, attacker)
 		attacker.components.sanity:DoDelta(inst.sanityreward or TUNING.SANITY_SMALL)
 	end
 end
-
-local loot_common = {
-    "nightmarefuel"
-}
 
 local function CalcSanityAura(inst, observer)
 	if inst.components.combat.target then
@@ -66,15 +54,7 @@ local sounds =
     disappear = "dontstarve/sanity/creature1/dissappear",
 }
 
-local colours=
-{
-    {198/255,43/255,43/255},
-    {79/255,153/255,68/255},
-    {35/255,105/255,235/255},
-    {233/255,208/255,69/255},
-    {109/255,50/255,163/255},
-    {222/255,126/255,39/255},
-}
+local colours = CFG.ALIEN.COLOURS
 
 local function fn()
     local inst = CreateEntity()
@@ -91,7 +71,7 @@ local function fn()
     inst.Physics:CollidesWith(COLLISION.SANITY)
     --inst.Physics:CollidesWith(COLLISION.WORLD)
 
-    inst.Transform:SetScale(.6,.6,.6)
+    inst.Transform:SetScale(CFG.ALIEN.SCALE, CFG.ALIEN.SCALE, CFG.ALIEN.SCALE)
 
 	inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
     inst.colour_idx = math.random(#colours)
@@ -112,7 +92,7 @@ local function fn()
     anim:PlayAnimation("idle_loop")
     anim:SetMultColour(1, 1, 1, 0.2)
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
-    inst.components.locomotor.walkspeed = 3.5
+    inst.components.locomotor.walkspeed = CFG.ALIEN.WALKSPEED
     inst.sounds = sounds
     inst:SetStateGraph("SGshadowcreature")
 
@@ -120,31 +100,21 @@ local function fn()
     inst.components.sanityaura.aurafn = CalcSanityAura
     
     inst:AddComponent("health")
-    inst.components.health:SetMaxHealth(30)
+    inst.components.health:SetMaxHealth(CFG.ALIEN.HEALTH)
 	
     inst:AddComponent("combat")
-    inst.components.combat:SetDefaultDamage(50)
-    inst.components.combat:SetAttackPeriod(5)
+    inst.components.combat:SetDefaultDamage(CFG.ALIEN.DAMAGE)
+    inst.components.combat:SetAttackPeriod(CFG.ALIEN.ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(3, retargetfn)
     inst.components.combat.onkilledbyother = onkilledbyother
     inst.components.combat.canbeattackedfn = canbeattackedfn
 
     inst:AddComponent("lootdropper")
 
-    local lootchance = math.random(0,100)
-
     local fragment = fragments[math.random(#fragments)]
 
-    local loot_rare = {
-        fragment
-    }
-
-    if lootchance <= 50 then
-        inst.components.lootdropper:SetLoot(loot_common)
-    else 
-        inst.components.lootdropper:SetLoot(loot_rare) 
-    end
-    inst.components.lootdropper:AddChanceLoot("nightmarefuel", 0.2)
+    inst.components.lootdropper:AddChanceLootTable("alien")
+    inst.components.lootdropper:AddChanceLoot(fragment, CFG.ALIEN.RARECHANCE)
 
     local brain = require "brains/shadowcreaturebrain"
     inst:SetBrain(brain)

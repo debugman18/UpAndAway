@@ -654,3 +654,84 @@ VINE.LOOT = {
 }
 
 ---------------------------------------
+
+---------------------------------------
+
+-- Alien
+
+ALIEN.HEALTH = 30
+
+ALIEN.WALKSPEED = 3.2
+
+ALIEN.DAMAGE = 50
+ALIEN.ATTACK_PERIOD = 5
+
+ALIEN.SCALE = 0.6
+
+ALIEN.COLOURS = {
+    {198/255,43/255,43/255},
+    {79/255,153/255,68/255},
+    {35/255,105/255,235/255},
+    {233/255,208/255,69/255},
+    {109/255,50/255,163/255},
+    {222/255,126/255,39/255},
+}
+
+-- Loot and Prefabs
+
+ALIEN.PREFABS = {
+    "nightmarefuel",
+    "crystal_fragment_relic",
+    "crystal_fragment_light",
+    "crystal_fragment_spire",
+    "crystal_fragment_water",
+}
+
+ALIEN.LOOT = {
+    {'nightmarefuel', 0.80}
+}
+
+ALIEN.FRAGMENTS = {
+    "crystal_fragment_relic",
+    "crystal_fragment_light",
+    "crystal_fragment_spire",
+    "crystal_fragment_water",
+}
+
+--Chance for a fragment to drop.
+ALIEN.RARECHANCE = 0.20
+
+---------------------------------------
+
+-- Marshmallow Bee
+
+BEE_MARSHMALLOW.UNCHARGED_HEALTH = TUNING.BEE_HEALTH
+BEE_MARSHMALLOW.CHARGED_HEALTH = TUNING.BEE_HEALTH
+
+BEE_MARSHMALLOW.UNCHARGED_DAMAGE = 0
+BEE_MARSHMALLOW.CHARGED_DAMAGE = TUNING.BEE_DAMAGE
+
+BEE_MARSHMALLOW.UNCHARGED_ATTACK_PERIOD = TUNING.BEE_ATTACK_PERIOD
+BEE_MARSHMALLOW.CHARGED_ATTACK_PERIOD = TUNING.BEE_ATTACK_PERIOD
+
+BEE_MARSHMALLOW.UNCHARGED_SCALE = 1
+BEE_MARSHMALLOW.CHARGED_SCALE = 2
+
+BEE_MARSHMALLOW.FOODTYPE = "MEAT"
+BEE_MARSHMALLOW.HEALTHVALUE = 0
+BEE_MARSHMALLOW.HUNGERVALUE = 10
+BEE_MARSHMALLOW.SANITYVALUE = -10
+
+-- Loot and Prefabs
+
+BEE_MARSHMALLOW.PREFABS = {
+	"marshmallow",
+	"bee_stinger",
+}
+
+BEE_MARSHMALLOW.LOOT = {
+	{'marshmallow',	0.80},
+	{'bee_stinger',	0.70},
+}
+
+BEE_MARSHMALLOW.NUMRANDOMLOOT = 1
