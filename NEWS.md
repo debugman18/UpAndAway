@@ -37,6 +37,8 @@ for quite some time.
 + Wilson garden gnome added.
 + Stat flipper potion added.
 
++ Creatures were balanced across the board.
+
 ### stable
 + nil
 

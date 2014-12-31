@@ -127,6 +127,11 @@ local function DoInit(self)
     	self.RoGUpgrade:SetPosition(435, 215, 0)
     end
 
+    --Here we move the upsell, if it exists.
+    if self.chester_upsell then
+    	self.chester_upsell:Hide()
+    end
+
     --Here we wrap everything up.
 	self:MainMenu()
 	self.menu:SetFocus()

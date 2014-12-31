@@ -192,17 +192,41 @@ FLYING_FISH.PREFABS = {
 
 AMBROSIA.FOODTYPE = "VEGGIE"
 
-CFG.AMBROSIA.HEALTHVALUE = function() return math.random(-40,20) end
-CFG.AMBROSIA.HUNGERVALUE = function() return math.random(-40,20) end
-CFG.AMBROSIA.SANITYVALUE = function() return math.random(-40,20) end
+AMBROSIA.HEALTHVALUE = function() return math.random(-40,20) end
+AMBROSIA.HUNGERVALUE = function() return math.random(-40,20) end
+AMBROSIA.SANITYVALUE = function() return math.random(-40,20) end
 
 ---------------------------------------
 
 -- Beanlet Armor
 
+BEANLET_ARMOR.WALKMULTIPLIER = 1.3
+
+BEANLET_ARMOR.ARMOR_HEALTH = 200
+BEANLET_ARMOR.ARMOR_ABSORB = 0.5
+
 ---------------------------------------
 
 -- Beanlet Lamp
+-- Not to be confused with the Crystal Lamp
+
+BEANLET_LAMP.RADIUS = 1.5
+BEANLET_LAMP.FALLOFF = 1
+BEANLET_LAMP.INTENSITY = 0.5
+
+BEANLET_LAMP.WORK_TIME = 4
+
+BEANLET_LAMP.PREFABS = {
+    "lightning_rod_fx",
+}
+
+BEANLET_LAMP.LOOT = {
+
+}
+
+---------------------------------------
+
+-- Beanlet Hut
 
 ---------------------------------------
 
@@ -211,6 +235,62 @@ CFG.AMBROSIA.SANITYVALUE = function() return math.random(-40,20) end
 ---------------------------------------
 
 -- Beanstalk Wall
+
+---------------------------------------
+
+-- Cloud Algae
+
+---------------------------------------
+
+-- Cloud Algae Fragment 
+
+---------------------------------------
+
+-- Cloud Candy Bush
+
+---------------------------------------
+
+-- Cloud Coral
+
+---------------------------------------
+
+-- Cloud Coral Fragment
+
+---------------------------------------
+
+-- Cloud Cotton
+
+---------------------------------------
+
+-- Cloud Jelly
+
+---------------------------------------
+
+-- Cloud Wall
+
+---------------------------------------
+
+-- Coloured Corn
+
+---------------------------------------
+
+-- Cotton Candy
+
+---------------------------------------
+
+-- Cotton Hat
+
+---------------------------------------
+
+-- Cotton Vest
+
+---------------------------------------
+
+-- Crystal Armor
+
+---------------------------------------
+
+-- Crystal Axe
 
 ---------------------------------------
 

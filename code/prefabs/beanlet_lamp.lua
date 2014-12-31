@@ -1,15 +1,18 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
+-- These will mark the area around the Bean Giant Pod.
+
+-- TODO
+
 local assets =
 {
 	Asset("ANIM", "anim/beanlet_lamp.zip"),
 	Asset("ANIM", "anim/lightning_rod_fx.zip"),
 }
 
-local prefabs = 
-{
-    "lightning_rod_fx"
-}
+local prefabs = CFG.BEANLET_LAMP.PREFABS
 
 local function onhammered(inst, worker)
 	inst.components.lootdropper:DropLoot()
@@ -57,9 +60,9 @@ local function fn(Sim)
 	
     local light = inst.entity:AddLight()
     inst.Light:Enable(false)
-	inst.Light:SetRadius(1.5)
-    inst.Light:SetFalloff(1)
-    inst.Light:SetIntensity(.5)
+	inst.Light:SetRadius(CFG.BEANLET_LAMP.RADIUS)
+    inst.Light:SetFalloff(CFG.BEANLET_LAMP.FALLOFF)
+    inst.Light:SetIntensity(CFG.BEANLET_LAMP.INTENSITY)
     inst.Light:SetColour(235/255,121/255,12/255)
 
     inst.entity:AddSoundEmitter()
@@ -76,9 +79,10 @@ local function fn(Sim)
 
 
     inst:AddComponent("lootdropper")
+
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
-    inst.components.workable:SetWorkLeft(4)
+    inst.components.workable:SetWorkLeft(CFG.BEANLET_LAMP.WORK_TIME)
 	inst.components.workable:SetOnFinishCallback(onhammered)
 	inst.components.workable:SetOnWorkCallback(onhit)
 	

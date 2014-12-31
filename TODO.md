@@ -10,7 +10,13 @@
 
 + **Code assets in need of attention**
 
-	+ nil
+	+ These need to be clarified and tuned; see Cavetroll thread.
+
+	+ Gnome Revamp
+	+ Faction Implementation
+	+ Winnie Revamp
+	+ Bean Giant Revamp and Setpiece
+	+ Shopkeeper Boss Quest
 
 + **General improvements to be made:*
 
