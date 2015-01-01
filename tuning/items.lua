@@ -276,17 +276,123 @@ BEANSTALK_CHUNK.FUEL_VALUE = 40
 
 -- Beanstalk Wall
 
+BEANSTALK_WALL.NUMRANDOMLOOT = 4
+
+BEANSTALK_WALL.HEALTH = 20
+
+BEANSTALK_WALL.BASE_GROW_TIME = 1.5*TUNING.TOTAL_DAY_TIME
+BEANSTALK_WALL.SHORT_TIME_MODIFIER = 0.5*TUNING.TOTAL_DAY_TIME
+BEANSTALK_WALL.NORMAL_TIME_MODIFIER = 0.8*TUNING.TOTAL_DAY_TIME
+BEANSTALK_WALL.TALL_TIME_MODIFIER = 1.0*TUNING.TOTAL_DAY_TIME
+BEANSTALK_WALL.OLD_TIME_MODIFIER = 1.0*TUNING.TOTAL_DAY_TIME
+
+BEANSTALK_WALL.SCALE = 0.8
+
+BEANSTALK_WALL.STACK_SIZE = TUNING.STACK_SIZE_MEDITEM
+
+BEANSTALK_WALL.FUEL_VALUE = TUNING.SMALL_FUEL
+
+BEANSTALK_WALL.FLAMMABILITY = 1
+
+-- Loot and Prefabs
+
+BEANSTALK_WALL.PREFABS = {
+	"beanstalk_chunk",
+	"beanstalk_wall_item",
+}
+
+BEANSTALK_WALL.STAGE0LOOT = {
+	
+}
+
+BEANSTALK_WALL.STAGE1LOOT = {
+	"beanstalk_chunk",
+}	
+
+BEANSTALK_WALL.STAGE2LOOT = {
+	"beanstalk_chunk",		
+}
+
+BEANSTALK_WALL.STAGE3LOOT = {
+	"beanstalk_chunk",
+	"beanstalk_chunk",
+}	
+
+BEANSTALK_WALL.STAGE4LOOT = {
+	"beanstalk_chunk",
+	"beanstalk_chunk",
+	"beanstalk_chunk",
+	"beanstalk_chunk",			
+}	
+
 ---------------------------------------
 
 -- Cloud Algae
+
+CLOUD_ALGAE.WORK_TIME = 1
+
+CLOUD_ALGAE.SCALE = 1.5
+
+-- Loot and Prefabs
+
+CLOUD_ALGAE.PREFABS = {
+	"cloud_algae_fragment",
+}
+
+CLOUD_ALGAE.LOOT = {
+	"cloud_algae_fragment",
+	"cloud_algae_fragment",
+	"cloud_algae_fragment",
+}
 
 ---------------------------------------
 
 -- Cloud Algae Fragment 
 
+CLOUD_ALGAE_FRAGMENT.STACK_SIZE = TUNING.STACK_SIZE_SMALLITEM
+
+CLOUD_ALGAE_FRAGMENT.FUEL_VALUE = 5
+
+CLOUD_ALGAE_FRAGMENT.FOODTYPE = "VEGGIE"
+
+CLOUD_ALGAE_FRAGMENT.HUNGERVALUE = TUNING.CALORIES_SMALL
+CLOUD_ALGAE_FRAGMENT.HEALTHVALUE = 0
+CLOUD_ALGAE_FRAGMENT.SANITYVALUE = -TUNING.SANITY_TINY
+
+CLOUD_ALGAE_FRAGMENT.PERISH_TIME = TUNING.PERISH_TWO_DAY
+CLOUD_ALGAE_FRAGMENT.PERISH_ITEM = "spoiled_food"
+
 ---------------------------------------
 
 -- Cloud Candy Bush
+
+CLOUD_BUSH.COLOR = 0.5 + math.random() * 0.5
+
+CLOUD_BUSH.GROW_TIME = TUNING.MARSHBUSH_REGROW_TIME
+
+-- Loot and Prefabs
+
+CLOUD_BUSH.PREFABS = {
+    "cloud_cotton",
+    "candy_fruit",
+}
+
+CLOUD_BUSH.CHARGED_DIG_LOOT = {
+	"cloud_cotton",
+	"cloud_cotton",
+	"cloud_cotton",
+	"candy_fruit",
+}
+
+CLOUD_BUSH.UNCHARGED_DIG_LOOT = {
+	"cloud_cotton",
+	"cloud_cotton",
+	"cloud_cotton",
+	"cloud_cotton",
+}
+
+CLOUD_BUSH.PICK_LOOT = "candy_fruit"
+CLOUD_BUSH.PICK_QUANTITY = 2
 
 ---------------------------------------
 

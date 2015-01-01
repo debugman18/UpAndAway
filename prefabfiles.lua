@@ -127,7 +127,6 @@ PrefabFiles = {
 	"refined_white_crystal",
 	"dragonblood_log",
 	"thunder_log",
-	"octocopter_wreckage",
 	"mushroom_hat",
 	"sheepherd",
 	"cloud_jelly",

@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
 	Asset("ANIM", "anim/cloud_algae_fragment.zip"),
@@ -26,25 +28,26 @@ local function fn(Sim)
 
 
 	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+	inst.components.stackable.maxsize = CFG.CLOUD_ALGAE_FRAGMENT.STACK_SIZE
 
 	inst:AddComponent("inspectable")
 
     inst:AddComponent("fuel")
-    inst.components.fuel.fuelvalue = 5
+    inst.components.fuel.fuelvalue = CFG.CLOUD_ALGAE_FRAGMENT.FUEL_VALUE
 
 	inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/cloud_algae_fragment.xml"
 
     inst:AddComponent("edible")
-    inst.components.edible.hungervalue = TUNING.CALORIES_SMALL
-    inst.components.edible.sanityvalue = -TUNING.SANITY_TINY
-    inst.components.edible.foodtype = "VEGGIE"
+    inst.components.edible.hungervalue = CFG.CLOUD_ALGAE_FRAGMENT.HUNGER_VALUE
+    inst.components.edible.sanityvalue = CFG.CLOUD_ALGAE_FRAGMENT.SANITY_VALUE
+    inst.components.edible.healthvalue = CFG.CLOUD_ALGAE_FRAGMENT.HEALTH_VALUE
+    inst.components.edible.foodtype = CFG.CLOUD_ALGAE_FRAGMENT.FOODTYPE
 
 	inst:AddComponent("perishable")
-	inst.components.perishable:SetPerishTime(TUNING.PERISH_TWO_DAY)
+	inst.components.perishable:SetPerishTime(CFG.CLOUD_ALGAE_FRAGMENT.PERISH_TIME)
 	inst.components.perishable:StartPerishing()
-	inst.components.perishable.onperishreplacement = "spoiled_food"
+	inst.components.perishable.onperishreplacement = CFG.CLOUD_ALGAE_FRAGMENT.PERISH_ITEM
 
 	inst:AddTag("algae")
 

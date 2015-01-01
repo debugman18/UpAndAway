@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 require "prefabutil"
 
 local assets =
@@ -11,42 +13,16 @@ local assets =
     Asset( "IMAGE", "images/inventoryimages/beanstalk_wall_item.tex" ),
 }
 
-local prefabs =
-{
-	"beanstalk_chunk",
-	"beanstalk_wall_item",
-}
+local prefabs = CFG.BEANSTALK_WALL.PREFABS
 
-local stage0loot = {
-}
+local stage0loot = CFG.BEANSTALK_WALL.STAGE0LOOT
+local stage1loot = CFG.BEANSTALK_WALL.STAGE1LOOT
+local stage2loot = CFG.BEANSTALK_WALL.STAGE2LOOT
+local stage3loot = CFG.BEANSTALK_WALL.STAGE3LOOT
+local stage4loot = CFG.BEANSTALK_WALL.STAGE4LOOT	
 
-local stage1loot = {
-	"beanstalk_chunk",
-}	
-
-local stage2loot = {
-	"beanstalk_chunk",		
-}	
-
-local stage3loot = {
-	"beanstalk_chunk",
-}	
-
-local stage4loot = {
-	"beanstalk_chunk",
-	"beanstalk_chunk",
-		
-}
-
-local stage4loot = {
-	"beanstalk_chunk",
-	"beanstalk_chunk",
-	"beanstalk_chunk",
-	"beanstalk_chunk",			
-}		
-
-local maxloots = 4
-local maxhealth = 20
+local maxloots = CFG.BEANSTALK_WALL.NUMRANDOMLOOT
+local maxhealth = CFG.BEANSTALK_WALL.HEALTH
 
 local function makeobstacle(inst)
 		
@@ -215,19 +191,12 @@ local function GrowOld(inst)
     inst.components.health.currenthealth = maxhealth
 end
 
-local seg_time = 30
-local total_day_time = seg_time*16
-
-local day_segs = 10
-
-local day_time = seg_time * day_segs
-
 TUNING.BEANWALL_GROW_TIME =
 {
-    {base=1.5*day_time, random=0.5*day_time}, --short
-    {base=1.5*day_time, random=1*day_time},   --normal
-    {base=1.5*day_time, random=1*day_time},   --tall
-    {base=1.5*day_time, random=0.5*day_time}  --old
+    {base = CFG.BEANSTALK_WALL.BASE_GROW_TIME, random = CFG.BEANSTALK_WALL.SHORT_TIME_MODIFIER}, --short
+    {base = CFG.BEANSTALK_WALL.BASE_GROW_TIME, random = CFG.BEANSTALK_WALL.NORMAL_TIME_MODIFIER},   --normal
+    {base = CFG.BEANSTALK_WALL.BASE_GROW_TIME, random = CFG.BEANSTALK_WALL.TALL_TIME_MODIFIER},   --tall
+    {base = CFG.BEANSTALK_WALL.BASE_GROW_TIME, random = CFG.BEANSTALK_WALL.OLD_TIME_MODIFIER}  --old
 }
 
 local growth_stages =
@@ -309,7 +278,7 @@ local function itemfn(inst)
 	inst.AnimState:SetBank("beanstalk_wall")
 	inst.AnimState:SetBuild("beanstalk_wall")
 	inst.AnimState:PlayAnimation("0")
-	inst.Transform:SetScale(.8,.8,.8)
+	inst.Transform:SetScale(CFG.BEANSTALK_WALL.SCALE, CFG.BEANSTALK_WALL.SCALE, CFG.BEANSTALK_WALL.SCALE)
 
 
 	------------------------------------------------------------------------
@@ -318,9 +287,10 @@ local function itemfn(inst)
 
 
 	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_MEDITEM
+	inst.components.stackable.maxsize = CFG.BEANSTALK.WALL.STACK_SIZE
 
 	inst:AddComponent("inspectable")
+
 	inst:AddComponent("inventoryitem")
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/beanstalk_wall_item.xml"
 	    	
@@ -328,7 +298,7 @@ local function itemfn(inst)
 	MakeSmallPropagator(inst)
 			
 	inst:AddComponent("fuel")
-	inst.components.fuel.fuelvalue = TUNING.SMALL_FUEL
+	inst.components.fuel.fuelvalue = CFG.BEANSTALK_WALL.FUEL_VALUE
 		
 	inst:AddComponent("deployable")
 	inst.components.deployable.ondeploy = ondeploywall
@@ -379,7 +349,7 @@ local function fn(inst)
 		
 	MakeSmallBurnable(inst)
 	MakeSmallPropagator(inst)
-	inst.components.burnable.flammability = 1
+	inst.components.burnable.flammability = CFG.BEANSTALK_WALL.FLAMMABILITY
 
 	inst.SoundEmitter:PlaySound("dontstarve/common/place_structure_stone")		
 
