@@ -26,7 +26,7 @@ local function fn(Sim)
 
 
 	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+	inst.components.stackable.maxsize = CFG.BEANSTALK_CHUNK.MAX_SIZE
 
 	inst:AddComponent("inspectable")
 
@@ -34,11 +34,11 @@ local function fn(Sim)
 	inst.components.inventoryitem.atlasname = "images/inventoryimages/beanstalk_chunk.xml"
 
 	inst:AddComponent("repairer")
-	inst.components.repairer.repairmaterial = "beanstalk"
-	inst.components.repairer.healthrepairvalue = 5
+	inst.components.repairer.repairmaterial = CFG.BEANSTALK_CHUNK.REPAIR_MATERIAL
+	inst.components.repairer.healthrepairvalue = CFG.BEANSTALK_CHUNK.REPAIR_VALUE
 
     inst:AddComponent("fuel")
-    inst.components.fuel.fuelvalue = 40
+    inst.components.fuel.fuelvalue = CFG.BEANSTALK_CHUNK.FUEL_VALUE
 
 	inst:AddTag("beanstalk_chunk")
 

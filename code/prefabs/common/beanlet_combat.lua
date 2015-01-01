@@ -1,8 +1,11 @@
-local beanlet_cfg = Configurable "BEANLET"
-local zealot_cfg = Configurable "BEANLET_ZEALOT"
 
-local SCARE_RADIUS = beanlet_cfg("SCARE_RADIUS")
-local SHARE_ATTACK_RADIUS = zealot_cfg("GANG_UP_RADIUS")
+local CFG = TheMod:GetConfig()
+
+--local beanlet_cfg = Configurable "BEANLET"
+--local zealot_cfg = Configurable "BEANLET_ZEALOT"
+
+local SCARE_RADIUS = CFG.BEANLET.SCARE_RADIUS --beanlet_cfg("SCARE_RADIUS")
+local SHARE_ATTACK_RADIUS = CFG.BEANLET_ZEALOT.GANG_UP_RADIUS --zealot_cfg("GANG_UP_RADIUS")
 
 local MAX_RADIUS = math.max(SCARE_RADIUS, SHARE_ATTACK_RADIUS)
 

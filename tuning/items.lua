@@ -192,9 +192,9 @@ FLYING_FISH.PREFABS = {
 
 AMBROSIA.FOODTYPE = "VEGGIE"
 
-AMBROSIA.HEALTHVALUE = function() return math.random(-40,20) end
-AMBROSIA.HUNGERVALUE = function() return math.random(-40,20) end
-AMBROSIA.SANITYVALUE = function() return math.random(-40,20) end
+AMBROSIA.HEALTHVALUE = math.random(-40,20)
+AMBROSIA.HUNGERVALUE = math.random(-40,20)
+AMBROSIA.SANITYVALUE = math.random(-40,20)
 
 ---------------------------------------
 
@@ -228,9 +228,49 @@ BEANLET_LAMP.LOOT = {
 
 -- Beanlet Hut
 
+BEANLET_HUT.RADIUS = 1
+BEANLET_HUT.FALLOFF = 1
+BEANLET_HUT.INTENSITY = 0.5
+
+BEANLET_HUT.SCALE = 3
+
+BEANLET_HUT.REGEN_PERIOD = 100
+BEANLET_HUT.SPAWN_PERIOD = 20
+BEANLET_HUT.MAX_CHILDREN = math.random(1,3)
+BEANLET_HUT.CHILD = "beanlet"
+
+BEANLET_HUT.WORK_TIME = 4
+
+BEANLET_HUT.PROX_NEAR = 10
+BEANLET_HUT.PROX_FAR = 13
+
+-- Loot and Prefabs
+
+BEANLET_HUT.PREFABS = {
+    "beanlet",
+    "boards",
+    "petals",
+}
+
+BEANLET_HUT.LOOT = {
+    {'boards',       1.0},
+    {'boards',       1.0},    
+    {'petals', 1.0},
+    {'petals', 1.0},
+    {'petals', 0.8},
+    {'petals', 0.8},        
+}
+
 ---------------------------------------
 
 -- Beanstalk Chunk
+
+BEANSTALK_CHUNK.MAX_SIZE = TUNING.STACK_SIZE_SMALLITEM
+
+BEANSTALK_CHUNK.REPAIR_MATERIAL = "beanstalk"
+BEANSTALK_CHUNK.REPAIR_VALUE = 5
+
+BEANSTALK_CHUNK.FUEL_VALUE = 40
 
 ---------------------------------------
 

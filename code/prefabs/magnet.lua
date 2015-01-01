@@ -1,3 +1,4 @@
+BindGlobal()
 
 local assets =
 {

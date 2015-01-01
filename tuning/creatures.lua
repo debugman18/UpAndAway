@@ -127,7 +127,7 @@ SHEEP.HAIR_GROWTH_DAYS = 3
 -- Owl
 
 OWL.SCALE = 1.2
-OWL.WHO_INTERVAL = function() return math.random(1,4) end
+OWL.WHO_INTERVAL = math.random(1,4)
 
 OWL.HEALTH = 180
 OWL.DAMAGE = 15
@@ -367,6 +367,8 @@ BEANLET_ZEALOT.HEALTH = 150
 BEANLET_ZEALOT.DAMAGE = 35
 BEANLET_ZEALOT.ATTACK_PERIOD = 1.5
 
+-- Beanlet Combat
+
 BEANLET.SCARE_RADIUS = 12
 
 BEANLET_ZEALOT.GANG_UP_RADIUS = 15
@@ -504,9 +506,9 @@ LIVE_GNOME.COOKED_PRODUCT = "rubber"
 -- Gummybear
 
 GUMMYBEAR.SCALE = 0.9
-GUMMYBEAR.COLOR1 = function() return 0.1 + math.random() * 0.9 end
-GUMMYBEAR.COLOR2 = function() return 0.1 + math.random() * 0.9 end
-GUMMYBEAR.COLOR3 = function() return 0.1 + math.random() * 0.9 end
+GUMMYBEAR.COLOR1 = 0.1 + math.random() * 0.9
+GUMMYBEAR.COLOR2 = 0.1 + math.random() * 0.9
+GUMMYBEAR.COLOR3 = 0.1 + math.random() * 0.9
 GUMMYBEAR.ALPHA = 0.75
 
 GUMMYBEAR.WALKSPEED = 2
