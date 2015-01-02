@@ -19,7 +19,7 @@ local SHARE_ATTACK_RADIUS = SHARE_ATTACK_RADIUS*SHARE_ATTACK_RADIUS
 function OnBeanletAttacked(inst, data)
     local is_zealot = inst:HasTag("zealot")
 
-    local beans = Game.FindAllEntities(inst, MAX_RADIUS, {"beanlet"})
+    local beans = Game.FindAllEntities(inst, MAX_RADIUS, nil, {"beanlet"})
     
     for _, bean in ipairs(beans) do
         local dsq = bean:GetDistanceSqToInst(inst)
