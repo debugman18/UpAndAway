@@ -4,9 +4,9 @@
 
 
 
-local Pred = wickerrequire 'lib.predicates'
+local Pred = wickerrequire "lib.predicates"
 
-local Debuggable = wickerrequire 'adjectives.debuggable'
+local Debuggable = wickerrequire "adjectives.debuggable"
 
 
 --[[
@@ -15,16 +15,16 @@ local Debuggable = wickerrequire 'adjectives.debuggable'
 -- the rest of the code.
 --]]
 Book = Class(Debuggable, function(self)
-	self.pages = {}
+    self.pages = {}
 end)
 
 Pred.IsBook = Pred.IsInstanceOf(Book)
 local IsBook = Pred.IsBook
 
 function Book:AddPage(p)
-	assert( IsBook(self) )
-	assert( Pred.IsWordable(p) )
-	table.insert( self.pages, tostring(p):gsub("^%s+", ""):gsub("%s+$", "") )
+    assert( IsBook(self) )
+    assert( Pred.IsWordable(p) )
+    table.insert( self.pages, tostring(p):gsub("^%s+", ""):gsub("%s+$", "") )
 end
 
 --[[
@@ -32,9 +32,9 @@ end
 -- book, 
 --]]
 function Book:Compiler()
-	local function compiler(page)
-		self:AddPage(page)
-		return compiler
-	end
-	return compiler
+    local function compiler(page)
+        self:AddPage(page)
+        return compiler
+    end
+    return compiler
 end

@@ -2,13 +2,13 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/potion_tunnel_mound.zip"),
+    Asset("ANIM", "anim/potion_tunnel_mound.zip"),
 }
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
 
     anim:SetBank("potion_tunnel_mound")
     anim:SetBuild("potion_tunnel_mound")
@@ -16,9 +16,9 @@ local function fn(Sim)
 
     inst.Transform:SetScale(.6,.6,.6)
 
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
 
     return inst
 end

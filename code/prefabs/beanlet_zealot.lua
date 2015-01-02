@@ -16,7 +16,7 @@ local assets =
 
 local prefabs = CFG.BEANLET.PREFABS
 
-SetSharedLootTable( 'beanletzealot', CFG.BEANLET_ZEALOT.LOOT)
+SetSharedLootTable( "beanletzealot", CFG.BEANLET_ZEALOT.LOOT)
 
 local function RetargetFn(inst)
     return FindEntity(inst, 8, function(guy)
@@ -70,7 +70,7 @@ local function fn(Sim)
     inst.components.health:SetMaxHealth(CFG.BEANLET_ZEALOT.HEALTH)
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetChanceLootTable('beanlet')
+    inst.components.lootdropper:SetChanceLootTable("beanlet")
 
     inst:AddComponent("inspectable")
 

@@ -32,7 +32,7 @@ local states=
         tags = {"idle"},
         
         onenter = function(inst)
-			inst.Physics:Stop()
+            inst.Physics:Stop()
             Gobble(inst)
             
             inst.AnimState:PlayAnimation("idle_loop")
@@ -45,7 +45,7 @@ local states=
     },
     
     
-	State{
+    State{
         name = "death",
         tags = {"busy"},
         
@@ -169,38 +169,38 @@ CommonStates.AddWalkStates(states,
 {
     starttimeline = 
     {
-		TimeEvent(0*FRAMES, Gobble),
+        TimeEvent(0*FRAMES, Gobble),
     },
     
-	walktimeline = {
-		TimeEvent(0*FRAMES, PlayFootstep ),
-		TimeEvent(12*FRAMES, PlayFootstep ),
-	},
+    walktimeline = {
+        TimeEvent(0*FRAMES, PlayFootstep ),
+        TimeEvent(12*FRAMES, PlayFootstep ),
+    },
 })
 CommonStates.AddRunStates(states,
 {
     starttimeline = 
     {
-		TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/perd/run") end ),
+        TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/perd/run") end ),
     },
     
-	runtimeline = {
-		TimeEvent(0*FRAMES, PlayFootstep ),
-		TimeEvent(5*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/perd/run") end ),
-		TimeEvent(10*FRAMES, PlayFootstep ),
-	},
+    runtimeline = {
+        TimeEvent(0*FRAMES, PlayFootstep ),
+        TimeEvent(5*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/perd/run") end ),
+        TimeEvent(10*FRAMES, PlayFootstep ),
+    },
 })
 
 CommonStates.AddSleepStates(states,
 {
     starttimeline = 
     {
-		TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/perd/sleep") end ),
+        TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/perd/sleep") end ),
     },
     
-	sleeptimeline = {
+    sleeptimeline = {
         TimeEvent(40*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/perd/sleep") end),
-	},
+    },
 })
 
 CommonStates.AddIdle(states,"gobble_idle")

@@ -2,39 +2,39 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/skyflies.zip"),
-    Asset( "ATLAS", "images/inventoryimages/skyflies.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/skyflies.tex" ),
+    Asset("ANIM", "anim/skyflies.zip"),
+    Asset( "ATLAS", inventoryimage_atlas("skyflies") ),
+    Asset( "IMAGE", inventoryimage_texture("skyflies") ),
 
-    Asset( "ATLAS", "images/inventoryimages/skyflies_pink.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/skyflies_pink.tex" ),
+    Asset( "ATLAS", inventoryimage_atlas("skyflies_pink") ),
+    Asset( "IMAGE", inventoryimage_texture("skyflies_pink") ),
 
-    Asset( "ATLAS", "images/inventoryimages/skyflies_green.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/skyflies_green.tex" ),
+    Asset( "ATLAS", inventoryimage_atlas("skyflies_green") ),
+    Asset( "IMAGE", inventoryimage_texture("skyflies_green") ),
 
-    Asset( "ATLAS", "images/inventoryimages/skyflies_blue.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/skyflies_blue.tex" ),
+    Asset( "ATLAS", inventoryimage_atlas("skyflies_blue") ),
+    Asset( "IMAGE", inventoryimage_texture("skyflies_blue") ),
 
-    Asset( "ATLAS", "images/inventoryimages/skyflies_orange.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/skyflies_orange.tex" ),   
+    Asset( "ATLAS", inventoryimage_atlas("skyflies_orange") ),
+    Asset( "IMAGE", inventoryimage_texture("skyflies_orange") ),   
 
-    Asset( "ATLAS", "images/inventoryimages/skyflies_purple.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/skyflies_purple.tex" ),
+    Asset( "ATLAS", inventoryimage_atlas("skyflies_purple") ),
+    Asset( "IMAGE", inventoryimage_texture("skyflies_purple") ),
 
-    Asset( "ATLAS", "images/inventoryimages/skyflies_red.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/skyflies_red.tex" ),               
+    Asset( "ATLAS", inventoryimage_atlas("skyflies_red") ),
+    Asset( "IMAGE", inventoryimage_texture("skyflies_red") ),               
 }
 
 local INTENSITY = .7
 
 local colours =
 {
-	{198/255,43/255,43/255},
-	{79/255,153/255,68/255},
-	{35/255,105/255,235/255},
-	{233/255,208/255,69/255},
-	{109/255,50/255,163/255},
-	{222/255,126/255,39/255},
+    {198/255,43/255,43/255},
+    {79/255,153/255,68/255},
+    {35/255,105/255,235/255},
+    {233/255,208/255,69/255},
+    {109/255,50/255,163/255},
+    {222/255,126/255,39/255},
 }
 
 local itemcolours = {
@@ -47,7 +47,7 @@ local itemcolours = {
 }
 
 local function fadein(inst)
-	inst:AddTag("NOCLICK")
+    inst:AddTag("NOCLICK")
     inst.components.fader:StopAll()
     inst.AnimState:PlayAnimation("swarm_pre")
     inst.AnimState:PushAnimation("swarm_loop", true)
@@ -57,7 +57,7 @@ local function fadein(inst)
 end
 
 local function fadeout(inst)
-	inst:AddTag("NOCLICK")
+    inst:AddTag("NOCLICK")
     inst.components.fader:StopAll()
     inst.Light:SetIntensity(INTENSITY)
     inst.components.fader:Fade(INTENSITY, 0, 3+math.random()*2, function(v) inst.Light:SetIntensity(v) end, function() inst:Remove() end)
@@ -90,13 +90,13 @@ local function onfar(inst)
 end
 
 local function onnear(inst) 
-	updatelight(inst) 
+    updatelight(inst) 
 end
 
 local function try_remove(inst)
-	if GetStaticGenerator() and not GetStaticGenerator():IsCharged() then
-		fadeout(inst)
-	end
+    if GetStaticGenerator() and not GetStaticGenerator():IsCharged() then
+        fadeout(inst)
+    end
 end
 
 local function onsave(inst, data)
@@ -108,7 +108,7 @@ local function onload(inst, data)
         if data.colour_idx then
             inst.colour_idx = math.min(#colours, data.colour_idx)
             inst.AnimState:SetMultColour(colours[inst.colour_idx][1],colours[inst.colour_idx][2],colours[inst.colour_idx][3],1)
-			inst.Light:SetColour(colours[inst.colour_idx][1],colours[inst.colour_idx][2],colours[inst.colour_idx][3])
+            inst.Light:SetColour(colours[inst.colour_idx][1],colours[inst.colour_idx][2],colours[inst.colour_idx][3])
             local itemcolourid = itemcolours[inst.colour_idx]
             print(itemcolourid)
             --inst.components.inventoryitem:ChangeImageName("skyflies_"..itemcolours[inst.colour_idx])
@@ -117,19 +117,19 @@ local function onload(inst, data)
 end
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     inst.entity:AddPhysics()
     MakeInventoryPhysics(inst)
  
     local light = inst.entity:AddLight()
     light:SetFalloff(1)
 
-	inst.colour_idx = math.random(#colours)
+    inst.colour_idx = math.random(#colours)
     inst.AnimState:SetMultColour(colours[inst.colour_idx][1],colours[inst.colour_idx][2],colours[inst.colour_idx][3],1)
     light:SetRadius(.5)
-	light:SetColour(colours[inst.colour_idx][1],colours[inst.colour_idx][2],colours[inst.colour_idx][3])
+    light:SetColour(colours[inst.colour_idx][1],colours[inst.colour_idx][2],colours[inst.colour_idx][3])
     inst.Light:Enable(true)
     inst.Light:SetIntensity(.5)	
     
@@ -145,7 +145,7 @@ local function fn(Sim)
     inst.Physics:SetCollisionGroup(COLLISION.FLYERS)
     inst.Physics:ClearCollisionMask()
     inst.Physics:CollidesWith(COLLISION.WORLD)
-	
+    
     inst.AnimState:SetRayTestOnBB(true)
 
 
@@ -173,30 +173,30 @@ local function fn(Sim)
     inst:AddComponent("fader")
     
     --inst:AddComponent("stackable")
-	--inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+    --inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
     --inst.components.stackable.forcedropsingle = true
 
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem:SetOnDroppedFn(ondropped)
     inst.components.inventoryitem.canbepickedup = false
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/skyflies_"..itemcolours[inst.colour_idx]..".xml"
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("skyflies_"..itemcolours[inst.colour_idx])
     inst.components.inventoryitem:ChangeImageName("skyflies_"..itemcolours[inst.colour_idx])
 
     inst.components.playerprox:SetDist(3,5)
     inst.components.playerprox:SetOnPlayerNear(onnear)
     inst.components.playerprox:SetOnPlayerFar(onfar)
-	
+    
     inst:AddComponent("locomotor")
     inst.components.locomotor:EnableGroundSpeedMultiplier(false)
-	inst.components.locomotor:SetTriggersCreep(false)
+    inst.components.locomotor:SetTriggersCreep(false)
     inst:SetStateGraph("SGskyfly")	
-	
-	local brain = require "brains/skyflybrain"
+    
+    local brain = require "brains/skyflybrain"
     inst:SetBrain(brain)
-	
-	inst:AddTag("FX")
+    
+    inst:AddTag("FX")
 
-	inst:ListenForEvent("upandaway_uncharge", function() try_remove(inst) end, GetWorld())
+    inst:ListenForEvent("upandaway_uncharge", function() try_remove(inst) end, GetWorld())
 
     updatelight(inst)
     inst.OnSave = onsave

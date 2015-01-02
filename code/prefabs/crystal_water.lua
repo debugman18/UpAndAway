@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/crystal.zip"),
+    Asset("ANIM", "anim/crystal.zip"),
 }
 
 local prefabs =
@@ -35,11 +35,11 @@ local function MakeFishSpawner(inst)
 end
 
 local function onMined(inst, worker)
-	inst.components.lootdropper:DropLoot()
     inst.components.lootdropper:DropLoot()
-	inst.SoundEmitter:PlaySound("dontstarve/common/destroy_rock")
+    inst.components.lootdropper:DropLoot()
+    inst.SoundEmitter:PlaySound("dontstarve/common/destroy_rock")
 
-	inst:Remove()	
+    inst:Remove()	
 end
 
 local function workcallback(inst, worker, workleft)
@@ -87,17 +87,17 @@ local function onload(inst, data)
 end
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+    MakeInventoryPhysics(inst)
 
     --local minimap = inst.entity:AddMiniMapEntity()
     --minimap:SetIcon("crystal_water.png")
 
-	inst.AnimState:SetBank("crystal_water")
-	inst.AnimState:SetBuild("crystal")
+    inst.AnimState:SetBank("crystal_water")
+    inst.AnimState:SetBuild("crystal")
     inst.AnimState:PlayAnimation("idle_full")
     MakeObstaclePhysics(inst, 1)
 
@@ -105,12 +105,12 @@ local function fn(Sim)
     inst:AddTag("crystal_water")
 
 
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
 
 
-	inst:AddComponent("inspectable")
+    inst:AddComponent("inspectable")
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot(loot) 	
@@ -125,7 +125,7 @@ local function fn(Sim)
     inst.components.workable:SetOnWorkCallback(workcallback)
     inst.components.workable:SetOnFinishCallback(onMined)	
 
-	return inst
+    return inst
 end
 
 return Prefab ("common/inventory/crystal_water", fn, assets, prefabs) 

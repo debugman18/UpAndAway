@@ -1,7 +1,0 @@
-<Atlas>
-	<Texture filename="golden_egg.tex" />
-	<Elements>
-		<Element name="golden_egg.tex" u1="0" u2="1" v1="0.5" v2="1" />
-		<Element name="golden_egg_frozen.tex" u1="0" u2="1" v1="0" v2="0.5" />
-	</Elements>
-</Atlas>

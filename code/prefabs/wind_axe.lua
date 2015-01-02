@@ -3,13 +3,13 @@ BindGlobal()
 local cfg = Configurable "WIND_AXE"
 
 local assets = {
-	Asset("ANIM", "anim/axe.zip"),
-	Asset("ANIM", "anim/wind_axe.zip"),
-	Asset("ANIM", "anim/swap_axe.zip"),
-	Asset("ANIM", "anim/swap_wind_axe.zip"),	
+    Asset("ANIM", "anim/axe.zip"),
+    Asset("ANIM", "anim/wind_axe.zip"),
+    Asset("ANIM", "anim/swap_axe.zip"),
+    Asset("ANIM", "anim/swap_wind_axe.zip"),	
 
-    Asset( "ATLAS", "images/inventoryimages/wind_axe.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/wind_axe.tex" ),
+    Asset( "ATLAS", inventoryimage_atlas("wind_axe") ),
+    Asset( "IMAGE", inventoryimage_texture("wind_axe") ),
 }
 
 local prefabs = {
@@ -22,34 +22,34 @@ local OWNER_STRIKE_CHANCE = cfg:GetConfig "OWNER_LIGHTNING_CHANCE"
 local WHIRL_CHANCE = cfg:GetConfig "WHIRLWIND_CHANCE"
 
 local function onattackfn(inst, owner, target)
-	local p = math.random()
+    local p = math.random()
 
     local target_pt = target:GetPosition()
     local owner_pt = owner:GetPosition()
     if p < TARG_STRIKE_CHANCE then
-		local lightning = SpawnPrefab("lightning")
+        local lightning = SpawnPrefab("lightning")
         lightning.Transform:SetPosition(target_pt.x, target_pt.y, target_pt.z)
     elseif p < TARG_STRIKE_CHANCE + OWNER_STRIKE_CHANCE then
-		local lightning = SpawnPrefab("lightning")
+        local lightning = SpawnPrefab("lightning")
         lightning.Transform:SetPosition(owner_pt.x, owner_pt.y, owner_pt.z)
 
-		local damaged = false
+        local damaged = false
         if IsDLCEnabled(REIGN_OF_GIANTS) and owner.components.inventory then
             local headinsulator = owner.components.inventory:GetEquippedItem(EQUIPSLOTS.HEAD)
             local bodyinsulator = owner.components.inventory:GetEquippedItem(EQUIPSLOTS.BODY)
             local insulator = headinsulator or bodyinsulator
             if insulator and insulator.components.insulator then
                 owner.components.health:DoDelta(-10)
-				damaged = true
-			end
-		end
+                damaged = true
+            end
+        end
 
-		if not damaged then
-			owner.components.health:DoDelta(-30)
-		end
+        if not damaged then
+            owner.components.health:DoDelta(-30)
+        end
     elseif p < TARG_STRIKE_CHANCE + OWNER_STRIKE_CHANCE + WHIRL_CHANCE then
-		local whirlwind = SpawnPrefab("whirlwind")
-		whirlwind.components.entityflinger:RequestDeathIn(15)
+        local whirlwind = SpawnPrefab("whirlwind")
+        whirlwind.components.entityflinger:RequestDeathIn(15)
         whirlwind.Transform:SetPosition(target_pt.x, target_pt.y, target_pt.z)
     end
 end
@@ -76,9 +76,9 @@ local TOOL_USES = cfg:GetConfig "TOOL_USES"
 local TOOL_CONSUMPTION = WEAPON_USES/TOOL_USES
 
 local function fn(inst)
-	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()        
     MakeInventoryPhysics(inst)
   
@@ -102,7 +102,7 @@ local function fn(inst)
     inst:AddComponent("inspectable")
     
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/wind_axe.xml"
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("wind_axe")
 
     inst:AddComponent("finiteuses")
     inst.components.finiteuses:SetMaxUses(WEAPON_USES)
@@ -116,7 +116,7 @@ local function fn(inst)
     
     inst.components.equippable:SetOnUnequip(onunequipfn)
 
-	return inst
+    return inst
 end
 
 return Prefab("cloudrealm/inventory/wind_axe", fn, assets, prefabs)

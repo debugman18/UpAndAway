@@ -72,7 +72,7 @@ return {
           visible = true,
           properties = {}
         },
-	    {
+        {
           name = "",
           type = "firepit",
           shape = "rectangle",
@@ -96,7 +96,7 @@ return {
             ["scenario"] = "upandaway_test_chest",
           }
         },
-		{
+        {
           name = "",
           type = "treasurechest",
           shape = "rectangle",
@@ -131,19 +131,19 @@ return {
           visible = true,
           properties = {}
         },
-		{
-		  name = "",
-		  type = "shopkeeper",
-		  shape = "rectangle",
-		  x = 224,
-		  y = 224,
-		  width = 0,
-		  height = 0,
-		  visible = true,
-		  properties = {
-		    ["scenario"] = "upandaway_test_shopkeeper",
-		  }
-		}
+        {
+          name = "",
+          type = "shopkeeper",
+          shape = "rectangle",
+          x = 224,
+          y = 224,
+          width = 0,
+          height = 0,
+          visible = true,
+          properties = {
+            ["scenario"] = "upandaway_test_shopkeeper",
+          }
+        }
       }
     }
   }

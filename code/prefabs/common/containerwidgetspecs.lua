@@ -13,51 +13,51 @@ local ContainerWidgetSpec = wickerrequire "gadgets.containerwidgetspec"
 -- standard art (including the kettle).
 --]]
 local function NewVerticalLineWidgetSpec(prefab_name, numslots, has_button, acceptsstacks)
-	local widget_spec = ContainerWidgetSpec(prefab_name, numslots)
+    local widget_spec = ContainerWidgetSpec(prefab_name, numslots)
 
-	local last_slot_pos = widget_spec:SetupSlotsLine {
-		direction = "y",
+    local last_slot_pos = widget_spec:SetupSlotsLine {
+        direction = "y",
 
-		-- Vertical offset for all widget elements.
-		offset = Vector3(0, 14, 0),
+        -- Vertical offset for all widget elements.
+        offset = Vector3(0, 14, 0),
 
-		margin = 8,
+        margin = 8,
 
-		slot_length = 64,
-	}
+        slot_length = 64,
+    }
 
-	widget_spec:Include {
-		type = "cooker",
-		acceptsstacks = acceptsstacks and true or false,
+    widget_spec:Include {
+        type = "cooker",
+        acceptsstacks = acceptsstacks and true or false,
 
-		widget = {
-			pos = Point(200, 0, 0),
-			side_align_tip = 100,
-		},
-	}
+        widget = {
+            pos = Point(200, 0, 0),
+            side_align_tip = 100,
+        },
+    }
 
-	if has_button then
-		widget_spec:SetButtonInfoPos(last_slot_pos + Vector3(0, -57, 0))
-	end
+    if has_button then
+        widget_spec:SetButtonInfoPos(last_slot_pos + Vector3(0, -57, 0))
+    end
 
-	return widget_spec
+    return widget_spec
 end
 
 local function GetBrewingButtonInfo(text)
-	return {
-		text = text,
-		-- position is already set from the function above.
-		fn = function(inst)
-			local container = inst.components.container
-			local container_rep = replica(inst).container
-			if container or (IsClient() and container_rep and not container_rep:IsBusy()) then
-				ServerRPC.DoWidgetButtonAction(ACTIONS.BREW, inst)
-			end
-		end,
-		validfn = function(inst)
-			return replica(inst).container and Game.IsNonEmptyContainer(inst)
-		end,
-	}
+    return {
+        text = text,
+        -- position is already set from the function above.
+        fn = function(inst)
+            local container = inst.components.container
+            local container_rep = replica(inst).container
+            if container or (IsClient() and container_rep and not container_rep:IsBusy()) then
+                ServerRPC.DoWidgetButtonAction(ACTIONS.BREW, inst)
+            end
+        end,
+        validfn = function(inst)
+            return replica(inst).container and Game.IsNonEmptyContainer(inst)
+        end,
+    }
 end
 
 ---

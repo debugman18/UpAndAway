@@ -2,23 +2,23 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/cloudcotton.zip"),
-	
-	Asset( "ATLAS", "images/inventoryimages/candy_fruit.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/candy_fruit.tex" ),	
+    Asset("ANIM", "anim/cloudcotton.zip"),
+    
+    Asset( "ATLAS", inventoryimage_atlas("candy_fruit") ),
+    Asset( "IMAGE", inventoryimage_texture("candy_fruit") ),	
 }
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
 
     MakeInventoryPhysics(inst)
     
     anim:SetBank("berries")
     anim:SetBuild("candy_fruit")
     anim:PlayAnimation("idle")
-	trans:SetScale(0.4, 0.6, 0.6)
+    trans:SetScale(0.4, 0.6, 0.6)
 
 
     ------------------------------------------------------------------------
@@ -27,14 +27,14 @@ local function fn(Sim)
 
     
     inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+    inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
  
     inst:AddComponent("inspectable")  
     
     inst:AddComponent("inventoryitem") 
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/candy_fruit.xml"
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("candy_fruit")
     
-	--Is not filling.
+    --Is not filling.
     inst:AddComponent("edible")
     inst.components.edible.foodtype = "VEGGIE"
     inst.components.edible.healthvalue = 0

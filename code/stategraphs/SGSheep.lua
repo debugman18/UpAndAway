@@ -27,7 +27,7 @@ local events=
     end),]]         
     EventHandler("loseloyalty", function(inst) if inst.components.health:GetPercent() > 0 and not inst.sg:HasStateTag("attack") then inst.sg:GoToState("shake") end end),    
     --Currently trying to figure out how to make sheep move horizontally as well as bounce up and down.
-	--EventHandler("locomote", function(inst) if inst.components.locomotor and not inst.sg:HasStateTag("running") then inst.sg:GoToState("bounce") end end),
+    --EventHandler("locomote", function(inst) if inst.components.locomotor and not inst.sg:HasStateTag("running") then inst.sg:GoToState("bounce") end end),
 }   
 
 local states=
@@ -79,25 +79,25 @@ local states=
         
         onenter = function(inst)
             inst.components.locomotor:WalkForward()
-			inst.Physics:SetDamping(0)
+            inst.Physics:SetDamping(0)
             inst.Physics:SetMotorVel(0,8+math.random()*8,0)
-			inst.AnimState:PlayAnimation("walk_pre")
+            inst.AnimState:PlayAnimation("walk_pre")
             inst.AnimState:PushAnimation("walk_loop")
         end,
         
         onupdate = function(inst)
             local pt = Point(inst.Transform:GetWorldPosition())
             if pt.y > 1 then
-				inst.components.locomotor:WalkForward()
-				inst.Physics:SetMotorVel(0,0,0)
+                inst.components.locomotor:WalkForward()
+                inst.Physics:SetMotorVel(0,0,0)
                 pt.y = 0
-				inst.Physics:SetDamping(5)
+                inst.Physics:SetDamping(5)
                 inst.Physics:Teleport(pt.x,pt.y,pt.z)
-	            inst.DynamicShadow:Enable(true)
+                inst.DynamicShadow:Enable(true)
                 inst.sg:GoToState("idle")
             end
         end,       
-		
+        
         events=
         {
             EventHandler("animqueueover", function (inst) inst.sg:GoToState("idle") end),
@@ -109,7 +109,7 @@ local states=
         tags = {"canrotate"},
         
         onenter = function(inst)
-			inst.AnimState:PushAnimation("walk_pst")
+            inst.AnimState:PushAnimation("walk_pst")
             inst.components.locomotor:StopMoving()
             inst.AnimState:PlayAnimation("shake")
         end,
@@ -125,7 +125,7 @@ local states=
         tags = {"canrotate"},
         
         onenter = function(inst)
-			inst.AnimState:PushAnimation("walk_pst")
+            inst.AnimState:PushAnimation("walk_pst")
             inst.components.locomotor:StopMoving()
             inst.AnimState:PlayAnimation("bellow")
             inst.SoundEmitter:PlaySound(inst.sounds.grunt)
@@ -204,7 +204,7 @@ local states=
         tags = {"attack", "busy"},
         
         onenter = function(inst, target)    
-			inst.sg.statemem.target = target
+            inst.sg.statemem.target = target
             inst.SoundEmitter:PlaySound(inst.sounds.angry)
             inst.components.combat:StartAttack()
             inst.components.locomotor:StopMoving()
@@ -229,7 +229,7 @@ local states=
         tags = {"busy"},
         
         onenter = function(inst)
-			inst.SoundEmitter:PlaySound(inst.sounds.yell)
+            inst.SoundEmitter:PlaySound(inst.sounds.yell)
             inst.AnimState:PlayAnimation("death")
             inst.Physics:Stop()
             RemovePhysicsColliders(inst)            

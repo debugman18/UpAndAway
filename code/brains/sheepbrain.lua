@@ -30,7 +30,7 @@ local function GoHomeAction(inst)
     if inst.components.homeseeker and 
        inst.components.homeseeker.home and 
        inst.components.homeseeker.home:IsValid() and
-	   inst.sg:HasStateTag("trapped") == false then
+       inst.sg:HasStateTag("trapped") == false then
         return BufferedAction(inst, inst.components.homeseeker.home, ACTIONS.GOHOME)
     end
 end

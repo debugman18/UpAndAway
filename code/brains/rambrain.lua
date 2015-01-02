@@ -17,7 +17,7 @@ local function GoHomeAction(inst)
     if inst.components.homeseeker and 
        inst.components.homeseeker.home and 
        inst.components.homeseeker.home:IsValid() and
-	   inst.sg:HasStateTag("trapped") == false then
+       inst.sg:HasStateTag("trapped") == false then
         return BufferedAction(inst, inst.components.homeseeker.home, ACTIONS.GOHOME)
     end
 end
@@ -66,8 +66,8 @@ function RamBrain:OnStart()
             "RamAttack",
             ChaseAndRam(self.inst, CFG.RAM.MAX_CHASE_TIME, CFG.RAM.CHASE_GIVEUP_DIST, CFG.RAM.MAX_CHARGE_DIST) ),		
         WhileNode( function() return self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst)),		
-		ChaseAndAttack(self.inst, CFG.RAM.MAX_CHASE_TIME, CFG.RAM.MAX_CHASE_DIST),
-		IfNode( function() return self.inst.components.combat.target ~= nil end, "hastarget", AttackWall(self.inst)),			
+        ChaseAndAttack(self.inst, CFG.RAM.MAX_CHASE_TIME, CFG.RAM.MAX_CHASE_DIST),
+        IfNode( function() return self.inst.components.combat.target ~= nil end, "hastarget", AttackWall(self.inst)),			
         DoAction(self.inst, EatFoodAction),
         Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, CFG.RAM.MAX_WANDER_DIST)
     }, .25)

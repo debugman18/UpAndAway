@@ -1,5 +1,5 @@
 
-require 'map/rooms'
-modrequire 'map.tiledefs'
+require "map/rooms"
+modrequire "map.tiledefs"
 
-modrequire 'map.rooms.cloud'
+modrequire "map.rooms.cloud"

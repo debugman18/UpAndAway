@@ -2,11 +2,11 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/cloud_fruit_tree.zip"),
+    Asset("ANIM", "anim/cloud_fruit_tree.zip"),
 }
 
 local prefabs = {
-	"cloud_fruit",
+    "cloud_fruit",
 }
 
 local function onregenfn(inst)
@@ -15,8 +15,8 @@ local function onregenfn(inst)
 end
 
 local function onpickedfn(inst)
-	inst.components.pickable.cycles_left = 2
-	inst.AnimState:Hide("BANANA") 
+    inst.components.pickable.cycles_left = 2
+    inst.AnimState:Hide("BANANA") 
     inst.picked = true
 end	
 
@@ -42,7 +42,7 @@ local function chop_down_tree(inst, chopper)
     end
     inst:Remove()
     
-	--inst:AddComponent("workable")
+    --inst:AddComponent("workable")
     --inst.components.workable:SetWorkAction(ACTIONS.DIG)
     --inst.components.workable:SetOnFinishCallback(dig_up_stump)
     --inst.components.workable:SetWorkLeft(1)
@@ -62,36 +62,36 @@ local function onload(inst, data)
 end
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
 
     inst.AnimState:SetBank("cave_banana_tree")
     inst.AnimState:SetBuild("cloud_fruit_tree")
-	inst.AnimState:PlayAnimation("idle_loop", true)
+    inst.AnimState:PlayAnimation("idle_loop", true)
 
 
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
 
 
-	inst:AddComponent("inspectable")
+    inst:AddComponent("inspectable")
 
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("cloud_fruit_tree.tex") 
 
     inst:AddComponent("pickable")
-	inst.components.pickable:SetUp("cloud_fruit", 40)	
-	inst.components.pickable:SetOnPickedFn(onpickedfn) 
+    inst.components.pickable:SetUp("cloud_fruit", 40)	
+    inst.components.pickable:SetOnPickedFn(onpickedfn) 
     inst.components.pickable:SetOnRegenFn(onregenfn)
 
-	inst:AddComponent("lootdropper")
-	inst.components.lootdropper.loot = {
-		"thunder_log",
+    inst:AddComponent("lootdropper")
+    inst.components.lootdropper.loot = {
+        "thunder_log",
         "thunder_log"
-	}
+    }
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.CHOP)
@@ -102,7 +102,7 @@ local function fn(Sim)
     inst.OnSave = onsave
     inst.OnLoad = onload
 
-	return inst
+    return inst
 end
 
 return Prefab ("common/inventory/cloud_fruit_tree", fn, assets, prefabs) 

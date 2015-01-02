@@ -1,4 +1,4 @@
-local Add = modrequire 'lib.addstrings'
+local Add = modrequire "lib.addstrings"
 
 
 -- Winnie stuff.
@@ -7,7 +7,9 @@ local Add = modrequire 'lib.addstrings'
 
 STRINGS.CHARACTER_TITLES.winnie = "The Innocent"
 STRINGS.CHARACTER_NAMES.winnie = "Winnie"
-STRINGS.CHARACTER_DESCRIPTIONS.winnie = "*Is a vegetarian\n*Has a green thumb\n*Is not so innocent"
+STRINGS.CHARACTER_DESCRIPTIONS.winnie = "*Is a vegetarian\
+*Has a green thumb\
+*Is not so innocent"
 STRINGS.CHARACTER_QUOTES.winnie = "\"Where have you gone, little sheep?\""
 STRINGS.CHARACTERS.WINNIE = modrequire "speech_winnie"
 
@@ -2342,7 +2344,8 @@ Add.QuotesFor {"balloon_icehound", "balloon_firehound"} {
 ------------------------------------------------------------------------
 
 Add.StringsBy "ANY" {
-    ANNOUNCE_CANFIX = "\nI think I can fix this!",
+    ANNOUNCE_CANFIX = "\
+I think I can fix this!",
 }
 
 ------------------------------------------------------------------------

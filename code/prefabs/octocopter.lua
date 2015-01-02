@@ -9,7 +9,7 @@ local assets =
 
 local prefabs = CFG.OCTOCOPTER.PREFABS
 
-SetSharedLootTable( 'octocopter', CFG.OCTOCOPTER.LOOT)
+SetSharedLootTable( "octocopter", CFG.OCTOCOPTER.LOOT)
 
 local PART_NAMES = {
     "part1", --Rotor Blade
@@ -133,7 +133,7 @@ local function MakeOctocopter()
         inst.MiniMapEntity:SetIcon("octocopter.tex") 
 
         inst:AddComponent("lootdropper")
-        inst.components.lootdropper:SetChanceLootTable('octocopter')    
+        inst.components.lootdropper:SetChanceLootTable("octocopter")    
 
         inst:ListenForEvent("death", function(inst)
 

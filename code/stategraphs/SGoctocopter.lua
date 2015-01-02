@@ -22,7 +22,7 @@ local events=
 {
     CommonHandlers.OnLocomote(true, true),
     EventHandler("attacked", function(inst) if inst.components.health:GetPercent() > 0 then inst.sg:GoToState("hit") end end),
-	EventHandler("death", function(inst) inst.sg:GoToState("die") end),
+    EventHandler("death", function(inst) inst.sg:GoToState("die") end),
 }
 ]]--
 
@@ -82,10 +82,10 @@ CommonStates.AddWalkStates(states,
 {
     starttimeline = 
     {
-	    TimeEvent(0*FRAMES, function(inst) inst.Physics:Stop() end ),
+        TimeEvent(0*FRAMES, function(inst) inst.Physics:Stop() end ),
     },
-	walktimeline = {
-		    TimeEvent(0*FRAMES, function(inst) inst.Physics:Stop() end ),
+    walktimeline = {
+            TimeEvent(0*FRAMES, function(inst) inst.Physics:Stop() end ),
             TimeEvent(7*FRAMES, function(inst) 
                 --inst.SoundEmitter:PlaySound("dontstarve/creatures/knight"..inst.kind.."/bounce")
                 inst.components.locomotor:WalkForward()
@@ -94,7 +94,7 @@ CommonStates.AddWalkStates(states,
                 --inst.SoundEmitter:PlaySound("dontstarve/creatures/knight"..inst.kind.."/land")
                 inst.Physics:Stop()
             end ),
-	},
+    },
 }, nil,true)
 
 CommonStates.AddCombatStates(states,

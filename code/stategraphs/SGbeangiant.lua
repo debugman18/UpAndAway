@@ -4,8 +4,8 @@ require("stategraphs/commonstates")
 
 local actionhandlers = 
 {
-	ActionHandler(ACTIONS.HAMMER, "attack"),
-	ActionHandler(ACTIONS.GOHOME, "taunt"),
+    ActionHandler(ACTIONS.HAMMER, "attack"),
+    ActionHandler(ACTIONS.GOHOME, "taunt"),
 }
 
 local SHAKE_DIST = 40
@@ -52,7 +52,7 @@ local states=
         },
     },      
     
-	State{
+    State{
         name = "taunt",
         tags = {"busy"},
         
@@ -82,10 +82,10 @@ local states=
 
 CommonStates.AddWalkStates( states,
 {
-	starttimeline =
-	{
+    starttimeline =
+    {
         TimeEvent(1*FRAMES, DeerclopsFootstep),
-	},
+    },
     walktimeline = 
     { 
         TimeEvent(1*FRAMES, DeerclopsFootstep),
@@ -99,10 +99,10 @@ CommonStates.AddWalkStates( states,
 
 CommonStates.AddCombatStates(states,
 {
-	hittimeline =
-	{
+    hittimeline =
+    {
         TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/hurt") end),
-	},
+    },
     attacktimeline = 
     {
         TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/attack") end),

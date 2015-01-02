@@ -2,8 +2,8 @@ BindGlobal()
 
 local RandomlyWaitNode = Class(BehaviourNode, function(self, mintime, maxtime)
     BehaviourNode._ctor(self, "Wait")
-	self.min_wait_time = mintime
-	self.max_wait_time = maxtime or mintime
+    self.min_wait_time = mintime
+    self.max_wait_time = maxtime or mintime
 end)
 
 function RandomlyWaitNode:DBString()

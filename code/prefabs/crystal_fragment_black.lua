@@ -2,42 +2,42 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/crystal_fragment_black.zip"),
+    Asset("ANIM", "anim/crystal_fragment_black.zip"),
 
-	Asset( "ATLAS", "images/inventoryimages/crystal_fragment_black.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/crystal_fragment_black.tex" ),		
+    Asset( "ATLAS", inventoryimage_atlas("crystal_fragment_black") ),
+    Asset( "IMAGE", inventoryimage_texture("crystal_fragment_black") ),		
 }
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+    MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("icebox")
-	inst.AnimState:SetBuild("crystal_fragment_black")
-	inst.AnimState:PlayAnimation("closed")
-
-
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
+    inst.AnimState:SetBank("icebox")
+    inst.AnimState:SetBuild("crystal_fragment_black")
+    inst.AnimState:PlayAnimation("closed")
 
 
-	--inst.Transform:SetScale(.6,.6,.6)
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
 
-	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
-	inst:AddComponent("inspectable")
+    --inst.Transform:SetScale(.6,.6,.6)
 
-	inst:AddTag("crystal")
+    inst:AddComponent("stackable")
+    inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
-	inst:AddComponent("inventoryitem")
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/crystal_fragment_black.xml"		
+    inst:AddComponent("inspectable")
 
-	return inst
+    inst:AddTag("crystal")
+
+    inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("crystal_fragment_black")		
+
+    return inst
 end
 
 return Prefab ("common/inventory/crystal_fragment_black", fn, assets) 

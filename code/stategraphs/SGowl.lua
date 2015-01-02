@@ -25,17 +25,17 @@ local states=
 
 CommonStates.AddWalkStates(states,
 {
-	walktimeline = {
-		TimeEvent(0*FRAMES, PlayFootstep ),
-		TimeEvent(12*FRAMES, PlayFootstep ),
-	},
+    walktimeline = {
+        TimeEvent(0*FRAMES, PlayFootstep ),
+        TimeEvent(12*FRAMES, PlayFootstep ),
+    },
 })
 CommonStates.AddRunStates(states,
 {
-	runtimeline = {
-		TimeEvent(0*FRAMES, PlayFootstep ),
-		TimeEvent(10*FRAMES, PlayFootstep ),
-	},
+    runtimeline = {
+        TimeEvent(0*FRAMES, PlayFootstep ),
+        TimeEvent(10*FRAMES, PlayFootstep ),
+    },
 })
 
 CommonStates.AddCombatStates(states,

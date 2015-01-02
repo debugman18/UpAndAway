@@ -10,7 +10,7 @@
 --]]
 
 local UATemperature = HostClass(function(self, inst)
-	self.inst = inst
+    self.inst = inst
 end)
 
 return UATemperature

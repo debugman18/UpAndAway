@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/crystal.zip"),
+    Asset("ANIM", "anim/crystal.zip"),
 }
 
 local prefabs =
@@ -39,9 +39,9 @@ local function onMined(inst, worker)
 end
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
 
     --local minimap = inst.entity:AddMiniMapEntity()
@@ -89,7 +89,7 @@ local function fn(Sim)
     inst.components.staticchargeable:SetOnChargeFn(function() light:Enable(true) end)
     inst.components.staticchargeable:SetOnUnchargeFn(function() light:Enable(false) end)
 
-	return inst
+    return inst
 end
 
 return Prefab ("common/inventory/crystal_light", fn, assets, prefabs) 

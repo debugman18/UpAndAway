@@ -6,31 +6,31 @@ local prefabs = CFG.ALIEN.PREFABS
 
 local fragments = CFG.ALIEN.FRAGMENTS
 
-SetSharedLootTable( 'alien', CFG.ALIEN.LOOT)
+SetSharedLootTable( "alien", CFG.ALIEN.LOOT)
 
 local function retargetfn(inst)
     local entity = FindEntity(inst, TUNING.SHADOWCREATURE_TARGET_DIST, function(guy) 
-		return guy:HasTag("player") and inst.components.combat:CanTarget(guy)
+        return guy:HasTag("player") and inst.components.combat:CanTarget(guy)
     end)
     return entity
 end
 
 local function onkilledbyother(inst, attacker)
-	if attacker and attacker.components.sanity then
-		attacker.components.sanity:DoDelta(inst.sanityreward or TUNING.SANITY_SMALL)
-	end
+    if attacker and attacker.components.sanity then
+        attacker.components.sanity:DoDelta(inst.sanityreward or TUNING.SANITY_SMALL)
+    end
 end
 
 local function CalcSanityAura(inst, observer)
-	if inst.components.combat.target then
-		return -TUNING.SANITYAURA_LARGE
-	end	
-	return 0
+    if inst.components.combat.target then
+        return -TUNING.SANITYAURA_LARGE
+    end	
+    return 0
 end
 
 local function canbeattackedfn(inst, attacker)
-	return inst.components.combat.target ~= nil or
-		(attacker.components.sanity)
+    return inst.components.combat.target ~= nil or
+        (attacker.components.sanity)
 end
 
 local function OnAttacked(inst, data)
@@ -64,7 +64,7 @@ local function fn()
     local sound = inst.entity:AddSoundEmitter()
     inst.Transform:SetFourFaced()
     inst:AddTag("shadowcreature")
-	
+    
     MakeCharacterPhysics(inst, 10, 1.5)
     RemovePhysicsColliders(inst)
     inst.Physics:SetCollisionGroup(COLLISION.SANITY)
@@ -73,7 +73,7 @@ local function fn()
 
     inst.Transform:SetScale(CFG.ALIEN.SCALE, CFG.ALIEN.SCALE, CFG.ALIEN.SCALE)
 
-	inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
+    inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
     inst.colour_idx = math.random(#colours)
     anim:SetMultColour(colours[inst.colour_idx][1],colours[inst.colour_idx][2],colours[inst.colour_idx][3],0.7)
 
@@ -81,9 +81,9 @@ local function fn()
     inst:AddTag("hostile")
     inst:AddTag("shadow")
 
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
     
     inst:AddComponent("inspectable")
      
@@ -101,7 +101,7 @@ local function fn()
     
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(CFG.ALIEN.HEALTH)
-	
+    
     inst:AddComponent("combat")
     inst.components.combat:SetDefaultDamage(CFG.ALIEN.DAMAGE)
     inst.components.combat:SetAttackPeriod(CFG.ALIEN.ATTACK_PERIOD)
@@ -113,7 +113,7 @@ local function fn()
 
     local fragment = fragments[math.random(#fragments)]
 
-    inst.components.lootdropper:AddChanceLootTable("alien")
+    inst.components.lootdropper:SetChanceLootTable("alien")
     inst.components.lootdropper:AddChanceLoot(fragment, CFG.ALIEN.RARECHANCE)
 
     local brain = require "brains/shadowcreaturebrain"

@@ -4,8 +4,8 @@ local assets=
 {
     Asset("ANIM", "anim/gustflower_seeds.zip"),
 
-    Asset( "ATLAS", "images/inventoryimages/gustflower_seeds.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/gustflower_seeds.tex" ), 
+    Asset( "ATLAS", inventoryimage_atlas("gustflower_seeds") ),
+    Asset( "IMAGE", inventoryimage_texture("gustflower_seeds") ), 
 }
 
 local function onpickedfn(inst)
@@ -27,7 +27,7 @@ local function ondeploy (inst, pt)
     inst:Remove()
 end
 
-local notags = {'NOBLOCK', 'player', 'FX'}
+local notags = {"NOBLOCK", "player", "FX"}
 local function test_ground(inst, pt)
     local tiletype = GetGroundTypeAtPosition(pt)
     local ground_OK = tiletype ~= GROUND.ROCKY and tiletype ~= GROUND.ROAD and tiletype ~= GROUND.IMPASSABLE and
@@ -57,9 +57,9 @@ local function spawngustflower(inst)
 end    
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     
     
     MakeInventoryPhysics(inst)
@@ -75,12 +75,12 @@ local function fn(Sim)
 
     
     inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+    inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
     inst:AddComponent("inspectable")
     
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/gustflower_seeds.xml"
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("gustflower_seeds")
     
     inst.components.inventoryitem:SetOnPickupFn(function(inst) 
         inst.components.periodicspawner:Stop()

@@ -90,8 +90,8 @@ local function penalty_combat(inst, target)
 end        
 
 local fn = function(inst)
-	
-	inst.soundsname = "winnie"
+    
+    inst.soundsname = "winnie"
 
         inst.entity:AddMiniMapEntity()
         inst.MiniMapEntity:SetIcon("winnie.tex")

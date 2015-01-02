@@ -4,39 +4,39 @@ local CFG = TheMod:GetConfig()
 
 local assets =
 {
-	Asset("ANIM", "anim/cloud_algae_fragment.zip"),
+    Asset("ANIM", "anim/cloud_algae_fragment.zip"),
 
-	Asset( "ATLAS", "images/inventoryimages/cloud_algae_fragment.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/cloud_algae_fragment.tex" ),
+    Asset( "ATLAS", inventoryimage_atlas("cloud_algae_fragment") ),
+    Asset( "IMAGE", inventoryimage_texture("cloud_algae_fragment") ),
 }
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+    MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("icebox")
-	inst.AnimState:SetBuild("cloud_algae_fragment")
-	inst.AnimState:PlayAnimation("closed")
-
-
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
+    inst.AnimState:SetBank("icebox")
+    inst.AnimState:SetBuild("cloud_algae_fragment")
+    inst.AnimState:PlayAnimation("closed")
 
 
-	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = CFG.CLOUD_ALGAE_FRAGMENT.STACK_SIZE
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
 
-	inst:AddComponent("inspectable")
+
+    inst:AddComponent("stackable")
+    inst.components.stackable.maxsize = CFG.CLOUD_ALGAE_FRAGMENT.STACK_SIZE
+
+    inst:AddComponent("inspectable")
 
     inst:AddComponent("fuel")
     inst.components.fuel.fuelvalue = CFG.CLOUD_ALGAE_FRAGMENT.FUEL_VALUE
 
-	inst:AddComponent("inventoryitem")
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/cloud_algae_fragment.xml"
+    inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("cloud_algae_fragment")
 
     inst:AddComponent("edible")
     inst.components.edible.hungervalue = CFG.CLOUD_ALGAE_FRAGMENT.HUNGER_VALUE
@@ -44,16 +44,16 @@ local function fn(Sim)
     inst.components.edible.healthvalue = CFG.CLOUD_ALGAE_FRAGMENT.HEALTH_VALUE
     inst.components.edible.foodtype = CFG.CLOUD_ALGAE_FRAGMENT.FOODTYPE
 
-	inst:AddComponent("perishable")
-	inst.components.perishable:SetPerishTime(CFG.CLOUD_ALGAE_FRAGMENT.PERISH_TIME)
-	inst.components.perishable:StartPerishing()
-	inst.components.perishable.onperishreplacement = CFG.CLOUD_ALGAE_FRAGMENT.PERISH_ITEM
+    inst:AddComponent("perishable")
+    inst.components.perishable:SetPerishTime(CFG.CLOUD_ALGAE_FRAGMENT.PERISH_TIME)
+    inst.components.perishable:StartPerishing()
+    inst.components.perishable.onperishreplacement = CFG.CLOUD_ALGAE_FRAGMENT.PERISH_ITEM
 
-	inst:AddTag("algae")
+    inst:AddTag("algae")
 
-	inst:AddComponent("tradable")
+    inst:AddComponent("tradable")
 
-	return inst
+    return inst
 end
 
 return Prefab ("common/inventory/cloud_algae_fragment", fn, assets) 

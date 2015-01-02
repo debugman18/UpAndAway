@@ -3,12 +3,12 @@ BindGlobal()
 
 local assets=
 {
-	Asset("ANIM", "anim/golden_sunflower.zip"),
+    Asset("ANIM", "anim/golden_sunflower.zip"),
 }
 
 local prefabs =
 {
-	"golden_sunflower_seeds",
+    "golden_sunflower_seeds",
     "goldnugget",
     "golden_petals",
 }
@@ -28,15 +28,15 @@ local function onpickedfn(inst)
         end
     end)
 
-	inst:Remove()
+    inst:Remove()
 end
 
 local function fn(Sim)
 
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
    
     inst.AnimState:SetBank("golden_sunflower")
     inst.AnimState:SetBuild("golden_sunflower")
@@ -67,12 +67,12 @@ local function fn(Sim)
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
     inst.components.pickable:SetUp(loot, regentime, lootcount)
-	inst.components.pickable.onpickedfn = onpickedfn
+    inst.components.pickable.onpickedfn = onpickedfn
     inst.components.pickable.quickpick = false
 
-	MakeSmallBurnable(inst)
+    MakeSmallBurnable(inst)
     MakeSmallPropagator(inst)
-	
+    
     return inst
 end
 

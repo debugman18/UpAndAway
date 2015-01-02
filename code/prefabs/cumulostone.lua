@@ -2,38 +2,38 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/cumulostone.zip"),
+    Asset("ANIM", "anim/cumulostone.zip"),
 
-    Asset( "ATLAS", "images/inventoryimages/cumulostone.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/cumulostone.tex" ),
+    Asset( "ATLAS", inventoryimage_atlas("cumulostone") ),
+    Asset( "IMAGE", inventoryimage_texture("cumulostone") ),
 }
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+    MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("nitre")
-	inst.AnimState:SetBuild("cumulostone")
-	inst.AnimState:PlayAnimation("idle")
-
-
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
+    inst.AnimState:SetBank("nitre")
+    inst.AnimState:SetBuild("cumulostone")
+    inst.AnimState:PlayAnimation("idle")
 
 
-	inst:AddComponent("inspectable")
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
 
-	inst:AddComponent("inventoryitem")
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/cumulostone.xml"
 
-	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_LARGEITEM
+    inst:AddComponent("inspectable")
 
-	return inst
+    inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("cumulostone")
+
+    inst:AddComponent("stackable")
+    inst.components.stackable.maxsize = TUNING.STACK_SIZE_LARGEITEM
+
+    return inst
 end
 
 return Prefab ("common/inventory/cumulostone", fn, assets) 

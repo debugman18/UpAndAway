@@ -2,19 +2,19 @@ BindGlobal()
 
 local assets=
 {
-	Asset("ANIM", "anim/gustflower.zip"),
+    Asset("ANIM", "anim/gustflower.zip"),
 }
 
 local prefabs=
 {
-	"gustflower_seeds",
+    "gustflower_seeds",
     "whirlwind",
 }
 
 local cfg = wickerrequire("adjectives.configurable")("GUSTFLOWER")
 
 local function onpickedfn(inst)
-	inst.components.pickable.cycles_left = 0
+    inst.components.pickable.cycles_left = 0
 end
 
 local function StopSpawning(inst)
@@ -48,11 +48,11 @@ end
 local function onunchargedfn(inst)
     inst.components.childspawner:StopSpawning()
     for k, child in pairs(inst.components.childspawner.childrenoutside) do
-		if child.components.entityflinger then
-			child.components.entityflinger:RequestDeath()
-		else
-			child:Remove()
-		end
+        if child.components.entityflinger then
+            child.components.entityflinger:RequestDeath()
+        else
+            child:Remove()
+        end
     end
     inst.AnimState:PlayAnimation("idle_2")
     inst.AnimState:SetBank("gustflower")
@@ -62,18 +62,18 @@ end
 local function onchargedfn(inst)
     inst:DoTaskInTime(1 + math.random(), function(inst)
         inst.components.childspawner:ReleaseAllChildren() 
-		StartSpawning(inst)
-		inst.AnimState:SetBank("gustflower_charged")
-		inst.AnimState:PlayAnimation("sway", true)       
+        StartSpawning(inst)
+        inst.AnimState:SetBank("gustflower_charged")
+        inst.AnimState:PlayAnimation("sway", true)       
     end)    
 end
 
 local function fn(Sim)
     --Carrot you eat is defined in veggies.lua
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
    
     inst.AnimState:SetBank("gustflower")
     inst.AnimState:SetBuild("gustflower")
@@ -91,7 +91,7 @@ local function fn(Sim)
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
     inst.components.pickable:SetUp("gustflower_seeds", 1, 1)
-	inst.components.pickable.onpickedfn = onpickedfn
+    inst.components.pickable.onpickedfn = onpickedfn
     
     inst.components.pickable.quickpick = false
 
@@ -111,12 +111,12 @@ local function fn(Sim)
     inst.components.staticchargeable:SetChargedFn(onchargedfn)
     inst.components.staticchargeable:SetUnchargedFn(onunchargedfn)
 
-	MakeSmallBurnable(inst)
+    MakeSmallBurnable(inst)
     MakeSmallPropagator(inst)
 
     inst.OnSave = onsave
     inst.OnLoad = onload
-	
+    
     return inst
 end
 

@@ -6,44 +6,44 @@ local PopupDialogScreen = require "screens/popupdialog"
 
 local assets=
 {
-	Asset("ANIM", "anim/rock_stalagmite_tall.zip"),
-	Asset("ANIM", "anim/beanstalk_exit.zip"),
+    Asset("ANIM", "anim/rock_stalagmite_tall.zip"),
+    Asset("ANIM", "anim/beanstalk_exit.zip"),
 }
 
 local function OnActivate(inst)
-	TryPause(true)
-	
-	local function startadventure()
-		TryPause(false)	
-		if inst.components.climbable then
-			inst.components.climbable:Climb()
-		end
-	end
+    TryPause(true)
+    
+    local function startadventure()
+        TryPause(false)	
+        if inst.components.climbable then
+            inst.components.climbable:Climb()
+        end
+    end
 
-	local function rejectadventure()
-		TryPause(false) 
-		inst.components.activatable.inactive = true
-		TheFrontEnd:PopScreen()
-	end		
-	
-	local options = {
-		{text="YES", cb = startadventure},
-		{text="NO", cb = rejectadventure},  
-	}
+    local function rejectadventure()
+        TryPause(false) 
+        inst.components.activatable.inactive = true
+        TheFrontEnd:PopScreen()
+    end		
+    
+    local options = {
+        {text="YES", cb = startadventure},
+        {text="NO", cb = rejectadventure},  
+    }
 
-	TheFrontEnd:PushScreen(PopupDialogScreen(
-	
-	"Up and Away", 
-	"Would you like to return to the world below?",
-	
-	options))
+    TheFrontEnd:PushScreen(PopupDialogScreen(
+    
+    "Up and Away", 
+    "Would you like to return to the world below?",
+    
+    options))
 end
 
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
     --MakeObstaclePhysics(inst, 1)
     
@@ -53,7 +53,7 @@ local function fn(Sim)
     anim:SetBank("rock_stalagmite_tall")
     anim:SetBuild("beanstalk_exit")
 
-	inst.type = math.random(2)
+    inst.type = math.random(2)
     inst.AnimState:PlayAnimation("full_"..inst.type)
 
 
@@ -72,10 +72,10 @@ local function fn(Sim)
 
     inst:AddComponent("inspectable")
 
-	inst:AddComponent("activatable")
+    inst:AddComponent("activatable")
     inst.components.activatable.OnActivate = OnActivate
     inst.components.activatable.inactive = true
-	inst.components.activatable.quickaction = true
+    inst.components.activatable.quickaction = true
 
     return inst
 end

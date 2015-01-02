@@ -2,20 +2,20 @@ BindGlobal()
 
 local assets=
 {
-	Asset("ANIM", "anim/longbill.zip"),
+    Asset("ANIM", "anim/longbill.zip"),
     Asset("ANIM", "anim/knight_nightmare.zip"),
-	Asset("SOUND", "sound/chess.fsb"),
+    Asset("SOUND", "sound/chess.fsb"),
 }
 
 local prefabs =
 {
-	"feather_crow",
+    "feather_crow",
 }
 
 local loot = 
 {
-	"feather_crow",
-	"feather_crow",
+    "feather_crow",
+    "feather_crow",
 }
 
 local SLEEP_DIST_FROMHOME = 1
@@ -86,17 +86,17 @@ local function OnAttacked(inst, data)
 end
  
 local function fn()
-	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
-	local sound = inst.entity:AddSoundEmitter()
-	local shadow = inst.entity:AddDynamicShadow()
-	shadow:SetSize( 1.5, .75 )
+    local inst = CreateEntity()
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
+    local sound = inst.entity:AddSoundEmitter()
+    local shadow = inst.entity:AddDynamicShadow()
+    shadow:SetSize( 1.5, .75 )
     inst.Transform:SetFourFaced()
 
     MakeCharacterPhysics(inst, 50, .5)
-	
-	anim:SetBank("knight")
+    
+    anim:SetBank("knight")
 
     inst.kind = ""
     anim:SetBuild("longbill")
@@ -129,7 +129,7 @@ local function fn()
     inst.components.combat:SetAttackPeriod(TUNING.KNIGHT_ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(3, Retarget)
     inst.components.combat:SetKeepTargetFunction(KeepTarget)
-	
+    
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(TUNING.KNIGHT_HEALTH)
     inst.components.combat:SetDefaultDamage(TUNING.KNIGHT_DAMAGE)

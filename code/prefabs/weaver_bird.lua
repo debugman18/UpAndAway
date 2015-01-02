@@ -6,8 +6,8 @@ local assets =
     Asset("ANIM", "anim/weaver_bird.zip"),
     Asset("SOUND", "sound/birds.fsb"),
 
-    Asset( "ATLAS", "images/inventoryimages/weaver_bird.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/weaver_bird.tex" ),
+    Asset( "ATLAS", inventoryimage_atlas("weaver_bird") ),
+    Asset( "IMAGE", inventoryimage_texture("weaver_bird") ),
 }
 
 local prefabs =
@@ -22,7 +22,7 @@ local sounds =
 {
     takeoff = "dontstarve/birds/takeoff_robin",
     chirp = "dontstarve/birds/chirp_robin",
-	flyin = "dontstarve/birds/flyin",
+    flyin = "dontstarve/birds/flyin",
 }
 
 local function ShouldSleep(inst)
@@ -30,12 +30,12 @@ local function ShouldSleep(inst)
 end
 
 local function ondrop(inst)
-	inst.sg:GoToState("stunned")
+    inst.sg:GoToState("stunned")
 end
 
 local function OnAttacked(inst, data)
     local x,y,z = inst.Transform:GetWorldPosition()
-    local ents = TheSim:FindEntities(x,y,z, 30, {'bird'})
+    local ents = TheSim:FindEntities(x,y,z, 30, {"bird"})
     
     local num_friends = 0
     local maxnum = 5
@@ -53,7 +53,7 @@ local function OnAttacked(inst, data)
 end
 
 local function nesttest()
-	return GetWorld().components.seasonmanager:IsWinter()
+    return GetWorld().components.seasonmanager:IsWinter()
 end
 
 local function OnTrapped(inst, data)
@@ -123,7 +123,7 @@ local function fn()
     inst.components.inventoryitem.nobounce = true
     inst.components.inventoryitem.canbepickedup = false
     inst.components.inventoryitem:SetOnDroppedFn(ondrop)
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/weaver_bird.xml"
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("weaver_bird")
     
     inst:AddComponent("cookable")
     inst.components.cookable.product = "cookedsmallmeat"
@@ -148,7 +148,7 @@ local function fn()
     inst.components.periodicspawner:SetPrefab("weavernest")
     inst.components.periodicspawner:SetDensityInRange(40, 1)
     inst.components.periodicspawner:SetMinimumSpacing(8)
-	inst.components.periodicspawner:SetSpawnTestFn(nesttest)
+    inst.components.periodicspawner:SetSpawnTestFn(nesttest)
 
     --inst.TrackInSpawner = TrackInSpawner
     

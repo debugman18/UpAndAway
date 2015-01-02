@@ -4,8 +4,8 @@
 
 
 local is_character_with_unbelievably_silly_implementation = {
-	WATHGRITHR = true,
-	WEBBER = true,
+    WATHGRITHR = true,
+    WEBBER = true,
 }
 
 
@@ -26,31 +26,31 @@ local FunctionQueue = wickerrequire "gadgets.functionqueue"
 ---
 -- Returns all characters. To be used as an iterator.
 local all_characters = (function()
-	local main_list = Lambda.CompactlyFilter(
-		Lambda.Not(Lambda.IsEqualTo("wilson")),
-		ipairs(rawget(_G, "MAIN_CHARACTERLIST") or rawget(_G, "CHARACTERLIST"))
-	)
-	local mod_list = _G.MODCHARACTERLIST
+    local main_list = Lambda.CompactlyFilter(
+        Lambda.Not(Lambda.IsEqualTo("wilson")),
+        ipairs(rawget(_G, "MAIN_CHARACTERLIST") or rawget(_G, "CHARACTERLIST"))
+    )
+    local mod_list = _G.MODCHARACTERLIST
 
-	local lists = {main_list, mod_list}
+    local lists = {main_list, mod_list}
 
-	local dlc_list = rawget(_G, "ROG_CHARACTERLIST")
-	if dlc_list then
-		table.insert(lists, dlc_list)
-	end
+    local dlc_list = rawget(_G, "ROG_CHARACTERLIST")
+    if dlc_list then
+        table.insert(lists, dlc_list)
+    end
 
-	local function all_characters_coroutine()
-		coroutine.yield("GENERIC")
-		for _, list in ipairs(lists) do
-			for _, character in ipairs(list) do
-				coroutine.yield(character)
-			end
-		end
-	end
+    local function all_characters_coroutine()
+        coroutine.yield("GENERIC")
+        for _, list in ipairs(lists) do
+            for _, character in ipairs(list) do
+                coroutine.yield(character)
+            end
+        end
+    end
 
-	return function()
-		return coroutine.wrap(all_characters_coroutine)
-	end
+    return function()
+        return coroutine.wrap(all_characters_coroutine)
+    end
 end)()
 
 ---
@@ -58,17 +58,17 @@ end)()
 --
 -- @param names Table mapping a prefab name to its user visible name.
 function Add.Names(names)
-	for ks, v in pairs(names) do
-		if type(ks) ~= "table" then ks = {ks} end
-		for _, k in ipairs(ks) do
-			local ku = k:upper()
-			local real_v = v
-			if type(v) == "function" then
-				real_v = v(ku)
-			end
-			STRINGS.NAMES[ku] = real_v
-		end
-	end
+    for ks, v in pairs(names) do
+        if type(ks) ~= "table" then ks = {ks} end
+        for _, k in ipairs(ks) do
+            local ku = k:upper()
+            local real_v = v
+            if type(v) == "function" then
+                real_v = v(ku)
+            end
+            STRINGS.NAMES[ku] = real_v
+        end
+    end
 end
 
 
@@ -84,110 +84,110 @@ TheMod:AddSimPostInit(delayed_additions:ToFunction())
 -- The pieces are put in uppercase if they are not already.
 --]]
 local add_character_string = (function()
-	local function do_add(character_upper, branch, str, no_override)
-		local t = STRINGS.CHARACTERS[character_upper]
-		if not t then return end
+    local function do_add(character_upper, branch, str, no_override)
+        local t = STRINGS.CHARACTERS[character_upper]
+        if not t then return end
 
-		local branch_sz = #branch
-		local leaf = branch[branch_sz]
+        local branch_sz = #branch
+        local leaf = branch[branch_sz]
 
-		for i = 1, branch_sz - 1 do
-			local node = branch[i]
-			if type(t[node]) == "string" then
-				t[node] = {GENERIC = t[node]}
-			elseif not t[node] then
-				t[node] = {}
-			else
-				assert( type(t[node]) == "table" )
-			end
-			t = t[node]
-		end
+        for i = 1, branch_sz - 1 do
+            local node = branch[i]
+            if type(t[node]) == "string" then
+                t[node] = {GENERIC = t[node]}
+            elseif not t[node] then
+                t[node] = {}
+            else
+                assert( type(t[node]) == "table" )
+            end
+            t = t[node]
+        end
 
-		if no_override and t[leaf] ~= nil then return end
+        if no_override and t[leaf] ~= nil then return end
 
-		local real_str = str
-		if type(str) == "function" then
-			real_str = str(character_upper, unpack(branch))
-		end
-		t[leaf] = str
-	end
+        local real_str = str
+        if type(str) == "function" then
+            real_str = str(character_upper, unpack(branch))
+        end
+        t[leaf] = str
+    end
 
-	return function(character_upper, branch, str)
-		local upper_branch = Lambda.CompactlyMap(string.upper, ipairs(branch))
+    return function(character_upper, branch, str)
+        local upper_branch = Lambda.CompactlyMap(string.upper, ipairs(branch))
 
-		if is_character_with_unbelievably_silly_implementation[character_upper] then
-			table.insert(delayed_additions, function()
-				return do_add(character_upper, upper_branch, str)
-			end)
-		elseif character_upper == "ANY" then
-			table.insert(delayed_additions, function()
-				for char in all_characters() do
-					do_add(char:upper(), upper_branch, str, true)
-				end
-			end)
-		else
-			return do_add(character_upper, upper_branch, str)
-		end
-	end
+        if is_character_with_unbelievably_silly_implementation[character_upper] then
+            table.insert(delayed_additions, function()
+                return do_add(character_upper, upper_branch, str)
+            end)
+        elseif character_upper == "ANY" then
+            table.insert(delayed_additions, function()
+                for char in all_characters() do
+                    do_add(char:upper(), upper_branch, str, true)
+                end
+            end)
+        else
+            return do_add(character_upper, upper_branch, str)
+        end
+    end
 end)()
 
 local function normalize_branch(branch)
-	if branch then
-		return Lambda.CompactlyMap(string.upper, ipairs(branch))
-	else
-		return {}
-	end
+    if branch then
+        return Lambda.CompactlyMap(string.upper, ipairs(branch))
+    else
+        return {}
+    end
 end
 
 -- Returns a new one.
 -- Assumes branch has already been normalized.
 local function append_prefab_to_branch(branch, prefab)
-	local b = Lambda.CompactlyInjectInto({}, ipairs(branch))
-	Lambda.CompactlyMapInto(string.upper, b, prefab:gmatch("[^%.]+"))
-	return b
+    local b = Lambda.CompactlyInjectInto({}, ipairs(branch))
+    Lambda.CompactlyMapInto(string.upper, b, prefab:gmatch("[^%.]+"))
+    return b
 end
 
 local function NewPrefabStringAdder(prefix_branch)
-	prefix_branch = normalize_branch(prefix_branch)
+    prefix_branch = normalize_branch(prefix_branch)
 
-	return function(prefabs)
-		if type(prefabs) ~= "table" then
-			prefabs = {prefabs}
-		end
+    return function(prefabs)
+        if type(prefabs) ~= "table" then
+            prefabs = {prefabs}
+        end
 
-		local branches = Lambda.CompactlyMap(
-			Lambda.BindFirst(append_prefab_to_branch, prefix_branch),
-			ipairs(prefabs)
-		)
+        local branches = Lambda.CompactlyMap(
+            Lambda.BindFirst(append_prefab_to_branch, prefix_branch),
+            ipairs(prefabs)
+        )
 
-		return function(quotes)
-			for _, branch in ipairs(branches) do
-				for characters, quote in pairs(quotes) do
-					if type(characters) ~= "table" then characters = {characters} end
-					for _, character in ipairs(characters) do
-						add_character_string(character:upper(), branch, quote)
-					end
-				end
-			end
-		end
-	end
+        return function(quotes)
+            for _, branch in ipairs(branches) do
+                for characters, quote in pairs(quotes) do
+                    if type(characters) ~= "table" then characters = {characters} end
+                    for _, character in ipairs(characters) do
+                        add_character_string(character:upper(), branch, quote)
+                    end
+                end
+            end
+        end
+    end
 end
 
 local function NewCharacterStringAdder(prefix_branch)
-	prefix_branch = normalize_branch(prefix_branch)
+    prefix_branch = normalize_branch(prefix_branch)
 
-	return function(character)
-		local character_upper = character:upper()
-		return function(quotes)
-			for prefabs, quote in pairs(quotes) do
-				if type(prefabs) ~= "table" then prefabs = {prefabs} end
-				for _, prefab in ipairs(prefabs) do
-					local branch = append_prefab_to_branch(prefix_branch, prefab)
-					add_character_string(character_upper, branch, quote)
-				end
-			end
-		end
-	end
+    return function(character)
+        local character_upper = character:upper()
+        return function(quotes)
+            for prefabs, quote in pairs(quotes) do
+                if type(prefabs) ~= "table" then prefabs = {prefabs} end
+                for _, prefab in ipairs(prefabs) do
+                    local branch = append_prefab_to_branch(prefix_branch, prefab)
+                    add_character_string(character_upper, branch, quote)
+                end
+            end
+        end
+    end
 end
 
 ---

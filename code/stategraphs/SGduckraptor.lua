@@ -28,27 +28,27 @@ local function Gobble(inst)
 end
 
 local function Blink(inst, offset_min, offset_max)
-	local target = inst.components.combat and inst.components.combat.target
-	if GetWorld().Map and target then
-		local max_tries = 4
-		for k = 1, max_tries do
-			local pos = target:GetPosition()
-			local offset = math.random(offset_min, offset_max)
-			pos.x = pos.x + (math.random(2*offset)-offset)          
-			pos.z = pos.z + (math.random(2*offset)-offset)
-			if Pred.IsUnblockedPoint(pos) then
-				inst.Transform:SetPosition(pos:Get())
-				return true
-			end
-		end
-	end
-	return false
+    local target = inst.components.combat and inst.components.combat.target
+    if GetWorld().Map and target then
+        local max_tries = 4
+        for k = 1, max_tries do
+            local pos = target:GetPosition()
+            local offset = math.random(offset_min, offset_max)
+            pos.x = pos.x + (math.random(2*offset)-offset)          
+            pos.z = pos.z + (math.random(2*offset)-offset)
+            if Pred.IsUnblockedPoint(pos) then
+                inst.Transform:SetPosition(pos:Get())
+                return true
+            end
+        end
+    end
+    return false
 end
 
 local states=
 {
       
-	State{
+    State{
         name = "death",
         tags = {"busy"},
         
@@ -99,7 +99,7 @@ local states=
         events =
         {
             EventHandler("animover", function(inst) 
-				Blink(inst, 1, 4)
+                Blink(inst, 1, 4)
                 inst.sg:GoToState("appear")
             end),
         },
@@ -142,24 +142,24 @@ local states=
         events=
         {
             EventHandler("animover", function(inst)
-				if math.random() > 0.5 then
-					local ally = SpawnPrefab("duckraptor")
-					if ally then
-						local newsize = 0.8*ally.duckraptorsize
-						ally.duckraptorsize = newsize
-						ally.Transform:SetScale(newsize, newsize, newsize)
+                if math.random() > 0.5 then
+                    local ally = SpawnPrefab("duckraptor")
+                    if ally then
+                        local newsize = 0.8*ally.duckraptorsize
+                        ally.duckraptorsize = newsize
+                        ally.Transform:SetScale(newsize, newsize, newsize)
 
-						Game.Move(ally, inst)
-						inst:Remove()
-						Blink(ally, 10, 20)
+                        Game.Move(ally, inst)
+                        inst:Remove()
+                        Blink(ally, 10, 20)
 
-						if ally.duckraptorsize <= 0.5 then
-							ally.sg:GoToState("death")
-						end
-					end
-				else
-					Blink(inst, 6, 10)
-				end
+                        if ally.duckraptorsize <= 0.5 then
+                            ally.sg:GoToState("death")
+                        end
+                    end
+                else
+                    Blink(inst, 6, 10)
+                end
 
                 if inst:IsValid() then
                     inst.sg:GoToState("idle")
@@ -174,38 +174,38 @@ CommonStates.AddWalkStates(states,
 {
     starttimeline = 
     {
-		TimeEvent(0*FRAMES, Gobble),
+        TimeEvent(0*FRAMES, Gobble),
     },
     
-	walktimeline = {
-		TimeEvent(0*FRAMES, PlayFootstep ),
-		TimeEvent(12*FRAMES, PlayFootstep ),
-	},
+    walktimeline = {
+        TimeEvent(0*FRAMES, PlayFootstep ),
+        TimeEvent(12*FRAMES, PlayFootstep ),
+    },
 })
 CommonStates.AddRunStates(states,
 {
     starttimeline = 
     {
-		TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/perd/run") end ),
+        TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/perd/run") end ),
     },
     
-	runtimeline = {
-		TimeEvent(0*FRAMES, PlayFootstep ),
-		TimeEvent(5*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/perd/run") end ),
-		TimeEvent(10*FRAMES, PlayFootstep ),
-	},
+    runtimeline = {
+        TimeEvent(0*FRAMES, PlayFootstep ),
+        TimeEvent(5*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/perd/run") end ),
+        TimeEvent(10*FRAMES, PlayFootstep ),
+    },
 })
 
 CommonStates.AddSleepStates(states,
 {
     starttimeline = 
     {
-		TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/perd/sleep") end ),
+        TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/perd/sleep") end ),
     },
     
-	sleeptimeline = {
+    sleeptimeline = {
         TimeEvent(40*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/perd/sleep") end),
-	},
+    },
 })
 
 CommonStates.AddSimpleActionState(states, "gohome", "hit", 4*FRAMES, {"busy"})

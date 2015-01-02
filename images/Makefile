@@ -11,10 +11,18 @@ PNG_ASSETS:=$(wildcard *.png inventoryimages/*.png saveslot_portraits/*.png sele
 TEX_ASSETS:=$(patsubst %.png, %.tex, $(PNG_ASSETS))
 
 
-.PHONY: all selectscreen_portraits saveslot_portraits portraits clean distclean
+.PHONY: all inventoryimages minimap selectscreen_portraits saveslot_portraits portraits clean distclean
 
 
-all: $(TEX_ASSETS)
+all: $(TEX_ASSETS) inventoryimages minimap
+
+inventoryimages: ua_inventoryimages.tex ua_inventoryimages.xml
+
+ua_inventoryimages.tex ua_inventoryimages.xml: $(wildcard inventoryimages/*.png)
+
+minimap: ua_minimap.tex ua_minimap.xml
+
+ua_minimap.tex ua_minimap.xml: $(wildcard minimap/*.png)
 
 selectscreen_portraits: $(filter selectscreen_portraits/%.tex,$(TEX_ASSETS))
 

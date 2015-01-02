@@ -10,8 +10,8 @@ error "This shouldn't be used presently."
 --]]
 
 local UACamera = HostClass(Debuggable, function(self, inst)
-	self.inst = inst
-	Debuggable._ctor(self, "UACamera")
+    self.inst = inst
+    Debuggable._ctor(self, "UACamera")
 end)
 
 return UACamera

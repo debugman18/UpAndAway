@@ -9,8 +9,8 @@ local assets =
     Asset("ANIM", "anim/livegnome.zip"),   
     Asset("ANIM", "anim/trinkets.zip"), 
 
-    Asset( "ATLAS", "images/inventoryimages/live_gnome.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/live_gnome.tex" ),  
+    Asset( "ATLAS", inventoryimage_atlas("live_gnome") ),
+    Asset( "IMAGE", inventoryimage_texture("live_gnome") ),  
 }
 
 local prefabs = CFG.LIVE_GNOME.PREFABS
@@ -52,7 +52,7 @@ local function DropToy(inst)
         inst.components.health:SetInvincible(true)
         MakeInventoryPhysics(inst)
         inst:AddComponent("inventoryitem")
-        inst.components.inventoryitem.atlasname = "images/inventoryimages/live_gnome.xml"
+        inst.components.inventoryitem.atlasname = inventoryimage_atlas("live_gnome")
         inst.components.inventoryitem:SetOnPickupFn(onpickup)
         inst.AnimState:SetBank("trinkets")
         inst.AnimState:SetBuild("trinkets")
@@ -65,10 +65,10 @@ local function DropToy(inst)
 end    
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
 
     inst.AnimState:SetBank("livegnome")
     inst.AnimState:SetBuild("livegnome")
@@ -98,7 +98,7 @@ local function fn(Sim)
 
     inst.Transform:SetScale(3.8, 3.8, 3.8)
 
-	inst:AddComponent("inspectable")
+    inst:AddComponent("inspectable")
 
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "pig_torso"
@@ -117,7 +117,7 @@ local function fn(Sim)
 
     inst:DoTaskInTime(1, SetBeard)
 
-	return inst
+    return inst
 end
 
 return Prefab ("common/inventory/live_gnome", fn, assets, prefabs) 

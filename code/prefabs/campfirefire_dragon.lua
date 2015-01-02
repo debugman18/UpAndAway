@@ -2,27 +2,27 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/campfire_fire_dragon.zip"),
-	Asset("SOUND", "sound/common.fsb"),
+    Asset("ANIM", "anim/campfire_fire_dragon.zip"),
+    Asset("SOUND", "sound/common.fsb"),
 }
 
 --local heats = { 70, 120, 180, 220 }
 local heats = { 200, 250, 300, 350 }
 local function GetHeatFn(inst)
-	return heats[inst.components.firefx.level] or 20
+    return heats[inst.components.firefx.level] or 20
 end
 
 local function fn(Sim)
 
-	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
-	local sound = inst.entity:AddSoundEmitter()
-	local light = inst.entity:AddLight()
+    local inst = CreateEntity()
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
+    local sound = inst.entity:AddSoundEmitter()
+    local light = inst.entity:AddLight()
 
     anim:SetBank("campfire_fire")
     anim:SetBuild("campfire_fire_dragon")
-	anim:SetBloomEffectHandle( "shaders/anim.ksh" )
+    anim:SetBloomEffectHandle( "shaders/anim.ksh" )
     inst.AnimState:SetMultColour(100,0,0,1)
     inst.AnimState:SetRayTestOnBB(true)
     

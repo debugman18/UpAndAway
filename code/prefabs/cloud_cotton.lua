@@ -2,23 +2,23 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/cloudcotton.zip"),
-	
-	Asset( "ATLAS", "images/inventoryimages/cloud_cotton.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/cloud_cotton.tex" ),	
+    Asset("ANIM", "anim/cloudcotton.zip"),
+    
+    Asset( "ATLAS", inventoryimage_atlas("cloud_cotton") ),
+    Asset( "IMAGE", inventoryimage_texture("cloud_cotton") ),	
 }
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
 
     MakeInventoryPhysics(inst)
     
     anim:SetBank("gears")
     anim:SetBuild("cloudcotton")
     anim:PlayAnimation("idle")
-	trans:SetScale(0.7, 0.7, 0.7)
+    trans:SetScale(0.7, 0.7, 0.7)
 
 
     ------------------------------------------------------------------------
@@ -27,32 +27,32 @@ local function fn(Sim)
 
     
     inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+    inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
  
     inst:AddComponent("inspectable")  
     
     inst:AddComponent("inventoryitem") 
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/cloud_cotton.xml"
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("cloud_cotton")
     
     inst:AddComponent("fuel")
     inst.components.fuel.fuelvalue = 8
 
-	--Is not filling.
+    --Is not filling.
     inst:AddComponent("edible")
     inst.components.edible.foodtype = "VEGGIE"
     inst.components.edible.healthvalue = -2
     inst.components.edible.hungervalue = 2
     inst.components.edible.sanityvalue = 2
 
-	inst:AddComponent("perishable")
-	inst.components.perishable:SetPerishTime(TUNING.PERISH_FAST)
-	inst.components.perishable:StartPerishing()
-	inst.components.perishable.onperishreplacement = "spoiled_food"
+    inst:AddComponent("perishable")
+    inst.components.perishable:SetPerishTime(TUNING.PERISH_FAST)
+    inst.components.perishable:StartPerishing()
+    inst.components.perishable.onperishreplacement = "spoiled_food"
 
-	--Is like snow on its structures.
-	inst:AddComponent("repairer")
-	inst.components.repairer.repairmaterial = "cloud"
-	inst.components.repairer.healthrepairvalue = 5
+    --Is like snow on its structures.
+    inst:AddComponent("repairer")
+    inst.components.repairer.repairmaterial = "cloud"
+    inst.components.repairer.healthrepairvalue = 5
     
     return inst
 end

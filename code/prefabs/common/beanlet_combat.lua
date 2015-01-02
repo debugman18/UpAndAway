@@ -17,24 +17,24 @@ local SHARE_ATTACK_RADIUS = SHARE_ATTACK_RADIUS*SHARE_ATTACK_RADIUS
 ---
 
 function OnBeanletAttacked(inst, data)
-	local is_zealot = inst:HasTag("zealot")
+    local is_zealot = inst:HasTag("zealot")
 
-	local beans = Game.FindAllEntities(inst, MAX_RADIUS, {"beanlet"})
+    local beans = Game.FindAllEntities(inst, MAX_RADIUS, {"beanlet"})
     
     for _, bean in ipairs(beans) do
-		local dsq = bean:GetDistanceSqToInst(inst)
-		if not bean:HasTag("zealot") then
-			if dsq < SCARE_RADIUS_SQ then
-				bean:PushEvent("gohome")
-			end
-		elseif bean.components.combat then
-			if dsq < SHARE_ATTACK_RADIUS then
-				if is_zealot then
-					bean.components.combat:SuggestTarget(data.attacker)
-				else
-					bean.components.combat:SetTarget(data.attacker)
-				end
-			end
-		end
+        local dsq = bean:GetDistanceSqToInst(inst)
+        if not bean:HasTag("zealot") then
+            if dsq < SCARE_RADIUS_SQ then
+                bean:PushEvent("gohome")
+            end
+        elseif bean.components.combat then
+            if dsq < SHARE_ATTACK_RADIUS then
+                if is_zealot then
+                    bean.components.combat:SuggestTarget(data.attacker)
+                else
+                    bean.components.combat:SetTarget(data.attacker)
+                end
+            end
+        end
     end
 end

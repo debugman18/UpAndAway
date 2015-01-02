@@ -4,8 +4,8 @@ BindGlobal()
 local PopupDialogScreen = require "screens/popupdialog"
 
 
-local Logic = wickerrequire 'paradigms.logic'
-local game = wickerrequire 'game'
+local Logic = wickerrequire "paradigms.logic"
+local game = wickerrequire "game"
 local Game = game
 local Effects = game.effects
 
@@ -19,37 +19,37 @@ local Effects = game.effects
 --]]
 local prefabs = 
 {
-	--Mod prefabs.
-	"golden_egg",
-	"magic_beans",
+    --Mod prefabs.
+    "golden_egg",
+    "magic_beans",
 }
 
 local assets =
 {
-	Asset("ANIM", "anim/beanstalk.zip"),
-	--Asset("ANIM", "anim/beanstalk_chopped.zip" ),	
-	Asset("SOUND", "sound/tentacle.fsb"),
+    Asset("ANIM", "anim/beanstalk.zip"),
+    --Asset("ANIM", "anim/beanstalk_chopped.zip" ),	
+    Asset("SOUND", "sound/tentacle.fsb"),
 }
 
 -- Loot specification. The field 'n' specifies how many, the field 'p'
 -- the probability. 'n' defaults to 1, and so does 'p'.
 local loot = {
-	{"beanstalk_chunk"},
-	{"beanstalk_chunk", p = 0.75},
-	{"beanstalk_chunk", p = 0.5, n = 8},
+    {"beanstalk_chunk"},
+    {"beanstalk_chunk", p = 0.75},
+    {"beanstalk_chunk", p = 0.5, n = 8},
 
-	{"skeleton", p = 0.6},
-	{"skeleton", p = 0.2},
+    {"skeleton", p = 0.6},
+    {"skeleton", p = 0.2},
 
-	{"goldnugget", p = 0.7},
-	{"goldnugget", p = 0.5},
+    {"goldnugget", p = 0.7},
+    {"goldnugget", p = 0.5},
 
-	{"marble", p = 0.8, n = 2},
+    {"marble", p = 0.8, n = 2},
 
-	{"cloud_turf", p = 0.5, n = 3},
+    {"cloud_turf", p = 0.5, n = 3},
 
-	{"magic_beans", p = 0.21},
-	{"magic_beans", p = 0.18},
+    {"magic_beans", p = 0.21},
+    {"magic_beans", p = 0.18},
 }
 
 
@@ -61,12 +61,12 @@ local loot = {
 -- the actual game, once on each world generation) it doesn't really matter.
 --]]
 for _, l in ipairs(loot) do
-	local name = l[1]
-	assert( type(name) == "string" )
-	
-	if not Logic.ThereExists(Logic.IsEqualTo(name), ipairs(prefabs)) then
-		table.insert(prefabs, name)
-	end
+    local name = l[1]
+    assert( type(name) == "string" )
+    
+    if not Logic.ThereExists(Logic.IsEqualTo(name), ipairs(prefabs)) then
+        table.insert(prefabs, name)
+    end
 end
 
 
@@ -75,302 +75,303 @@ end
 -- is just for code encapsulation (and to get the same efficiency as writing
 -- the preprocessing code directly in the main file).
 local function NewLootAdder()
-	-- Ugly name.
-	-- Lists the prefabs which always drop, with multiplicity.
-	local alwaysloot = {}
-	
-	-- Lists tables, whose first entry is a prefab name and the second one
-	-- is the probability for it to drop.
-	local notalwaysloot = {}
+    -- Ugly name.
+    -- Lists the prefabs which always drop, with multiplicity.
+    local alwaysloot = {}
+    
+    -- Lists tables, whose first entry is a prefab name and the second one
+    -- is the probability for it to drop.
+    local notalwaysloot = {}
 
-	for _, l in ipairs(loot) do
-		local prefab = l[1]
-		assert( type(prefab) == "string" )
+    for _, l in ipairs(loot) do
+        local prefab = l[1]
+        assert( type(prefab) == "string" )
 
-		for i = 1, (l.n or 1) do
-			if (l.p or 1) == 1 then
-				table.insert(alwaysloot, prefab)
-			else
-				assert( type(l.p) == "number" )
-				table.insert(notalwaysloot, {prefab, l.p})
-			end
-		end
-	end
+        for i = 1, (l.n or 1) do
+            if (l.p or 1) == 1 then
+                table.insert(alwaysloot, prefab)
+            else
+                assert( type(l.p) == "number" )
+                table.insert(notalwaysloot, {prefab, l.p})
+            end
+        end
+    end
 
-	return function(inst)
-		local dropper = inst.components.lootdropper
-		if not dropper then
-			inst:AddComponent("lootdropper")
-			dropper = inst.components.lootdropper
-		end
+    return function(inst)
+        local dropper = inst.components.lootdropper
+        if not dropper then
+            inst:AddComponent("lootdropper")
+            dropper = inst.components.lootdropper
+        end
 
-		-- Non-probabilistic loot needs to be added first.
-		dropper:SetLoot( alwaysloot )
+        -- Non-probabilistic loot needs to be added first.
+        dropper:SetLoot( alwaysloot )
 
-		for _, t in ipairs(notalwaysloot) do
-			assert( #t == 2 )
-			dropper:AddChanceLoot( unpack(t) )
-		end
-	end
+        for _, t in ipairs(notalwaysloot) do
+            assert( #t == 2 )
+            dropper:AddChanceLoot( unpack(t) )
+        end
+    end
 end
 
 local AddLoot = NewLootAdder()
 
 
 local function onsave(inst, data)
-	-- Lets save a bit of disk space: use nil instead of false.
-	data.chopped = inst.chopped or nil
+    -- Lets save a bit of disk space: use nil instead of false.
+    data.chopped = inst.chopped or nil
 end		   
 
 local function onload(inst, data)
-	inst.chopped = data and data.chopped
+    inst.chopped = data and data.chopped
 
-	if inst.chopped then
-		chopped(inst)
-	end
+    if inst.chopped then
+        chopped(inst)
+    end
 end  
 
 --Fixes silly string.
 local function GetVerb(inst)
-	return STRINGS.ACTIONS.ACTIVATE.CLIMB
+    return STRINGS.ACTIONS.ACTIVATE.CLIMB
 end
 
 
 --Makes the beanstalk climbable.
 local function OnActivate(inst)
-	
-	TryPause(true)
+    
+    TryPause(true)
 
-	local function startadventure()
-		TryPause(false)
-		inst.components.climbable:Climb()
-	end
-	
-	local function rejectadventure()
-		TryPause(false) 
-		inst.components.activatable.inactive = true
-		TheFrontEnd:PopScreen()
-	end		
+    local function startadventure()
+        TryPause(false)
+        inst.components.climbable:Climb()
+    end
+    
+    local function rejectadventure()
+        TryPause(false) 
+        inst.components.activatable.inactive = true
+        TheFrontEnd:PopScreen()
+    end		
 
-	local function regenadventure()
+    local function regenadventure()
 
-		TheFrontEnd:PopScreen()
+        TheFrontEnd:PopScreen()
 
-		local function regencloud()
-			TryPause(false)
-			inst.components.climbable:DestroyCave()
-			inst.components.climbable:Climb()
-		end
+        local function regencloud()
+            TryPause(false)
+            inst.components.climbable:DestroyCave()
+            inst.components.climbable:Climb()
+        end
 
-		local function keepcloud()
-			TryPause(false)
-			TheFrontEnd:PopScreen()
-		end
+        local function keepcloud()
+            TryPause(false)
+            TheFrontEnd:PopScreen()
+        end
 
-		local regenoptions = {
-			{
-				text="YES", 
-				cb = regencloud
-			},
+        local regenoptions = {
+            {
+                text="YES", 
+                cb = regencloud
+            },
 
-			{
-				text="NO", 
-				cb = keepcloud
-			},  
-		}
+            {
+                text="NO", 
+                cb = keepcloud
+            },  
+        }
 
-		TheFrontEnd:PushScreen(PopupDialogScreen(
-	
-		"Warning", 
-		"You are about to erase your cloud world. \nAre you sure you want to continue?",
-	
-		regenoptions))
+        TheFrontEnd:PushScreen(PopupDialogScreen(
+    
+        "Warning", 
+        "You are about to erase your cloud world. \
+Are you sure you want to continue?",
+    
+        regenoptions))
 
-	end
-	
-	local options = {
-		{
-			text="YES", 
-			cb = startadventure
-		},
+    end
+    
+    local options = {
+        {
+            text="YES", 
+            cb = startadventure
+        },
 
-		{
-			text="NO", 
-			cb = rejectadventure
-		},  
+        {
+            text="NO", 
+            cb = rejectadventure
+        },  
 
-		{
-			text="REGEN", 
-			cb = regenadventure
-		},
-	}
+        {
+            text="REGEN", 
+            cb = regenadventure
+        },
+    }
 
-	TheFrontEnd:PushScreen(PopupDialogScreen(
-	
-	"Up and Away", 
-	"The land above is strange and foreign. Do you want to continue?",
-	
-	options))
-	
+    TheFrontEnd:PushScreen(PopupDialogScreen(
+    
+    "Up and Away", 
+    "The land above is strange and foreign. Do you want to continue?",
+    
+    options))
+    
 end
 
 
 --This changes the screen some if the player is far.
 local function onfar(inst)
-	--TheCamera:SetDistance(100)
+    --TheCamera:SetDistance(100)
 end
 
 --This changes the screen some if the player is near.
 local function onnear(inst)
-	--TheCamera:SetDistance(100)
+    --TheCamera:SetDistance(100)
 end
 
 local function chopbeanstalk(inst, chopper, chops)
-	if chopper and chopper.components.beaverness and chopper.components.beaverness:IsBeaver() then
-		inst.SoundEmitter:PlaySound("dontstarve/characters/woodie/beaver_chop_tree")		  
-	else
-		inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree")		  
-	end
+    if chopper and chopper.components.beaverness and chopper.components.beaverness:IsBeaver() then
+        inst.SoundEmitter:PlaySound("dontstarve/characters/woodie/beaver_chop_tree")		  
+    else
+        inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree")		  
+    end
 end
 
 chopped = function(inst)
-	inst.chopped = true	
+    inst.chopped = true	
 
-	inst:RemoveComponent("workable")
+    inst:RemoveComponent("workable")
 
-	-- Removing this component was causing a crash sometimes by a race condition.
-	-- (the crash was caused by the game attempting to get the "verb" for the activation)
-	--
-	-- The issue is with non-instant buffered actions that only run later.
-	--inst:RemoveComponent("activatable")
-	
-	inst.components.activatable.inactive = true
-	inst:DoTaskInTime(2, function(inst)
-			inst:RemoveComponent("activatable")
-	end)
+    -- Removing this component was causing a crash sometimes by a race condition.
+    -- (the crash was caused by the game attempting to get the "verb" for the activation)
+    --
+    -- The issue is with non-instant buffered actions that only run later.
+    --inst:RemoveComponent("activatable")
+    
+    inst.components.activatable.inactive = true
+    inst:DoTaskInTime(2, function(inst)
+            inst:RemoveComponent("activatable")
+    end)
 
-	-- This destroys the cloud level savedata, if any.
-	inst:RemoveComponent("climbable")
+    -- This destroys the cloud level savedata, if any.
+    inst:RemoveComponent("climbable")
 
-	inst.AnimState:PlayAnimation("idle_hole","loop")
+    inst.AnimState:PlayAnimation("idle_hole","loop")
 end
 
 local function chopdownbeanstalk(inst, chopper)
-	inst.chopped = true
+    inst.chopped = true
 
-	Effects.DropLootFromTheSky(inst, 4)
+    Effects.DropLootFromTheSky(inst, 4)
 
-	inst:DoTaskInTime(.4, function(inst) 
-		local sz = 10
-		for _, player in ipairs(Game.FindAllPlayerInRange(inst, 64)) do
-			Effects.ShakeCamera(player, inst, "FULL", 0.25, 0.03, sz, 6)
-		end
-	end)
+    inst:DoTaskInTime(.4, function(inst) 
+        local sz = 10
+        for _, player in ipairs(Game.FindAllPlayerInRange(inst, 64)) do
+            Effects.ShakeCamera(player, inst, "FULL", 0.25, 0.03, sz, 6)
+        end
+    end)
 
-	inst.AnimState:PlayAnimation("retract", false)
+    inst.AnimState:PlayAnimation("retract", false)
 
-	game.ListenForEventOnce(inst, "animover", chopped)
+    game.ListenForEventOnce(inst, "animover", chopped)
 end
 
 local function fn(Sim)
-	--[[
-	-- Engine-level components.
-	--]]
-	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
-	local physics = inst.entity:AddPhysics()
-	local anim = inst.entity:AddAnimState()	
-	local sound = inst.entity:AddSoundEmitter()
-	local minimap = inst.entity:AddMiniMapEntity()
+    --[[
+    -- Engine-level components.
+    --]]
+    local inst = CreateEntity()
+    local trans = inst.entity:AddTransform()
+    local physics = inst.entity:AddPhysics()
+    local anim = inst.entity:AddAnimState()	
+    local sound = inst.entity:AddSoundEmitter()
+    local minimap = inst.entity:AddMiniMapEntity()
 
-	--[[
-	-- Why was this here? exitcavelight should be spawned (and set to the player's/beanstalk's position)
-	-- when he exits the foreign land, just to prevent the grue from insta-killing him in case
-	-- it's night. It's not really a part of entity creation.
-	--
-	-- I renamed it "exitlight" to avoid confusion with inst.Light (which the beanstalk currently does
-	-- not have, but anyway).
-	--]]
-	--[[
-	local exitlight = SpawnPrefab("exitcavelight")	
-	exitlight.Transform:SetPosition(inst.Transform:GetWorldPosition())
-	]]--
-	
+    --[[
+    -- Why was this here? exitcavelight should be spawned (and set to the player's/beanstalk's position)
+    -- when he exits the foreign land, just to prevent the grue from insta-killing him in case
+    -- it's night. It's not really a part of entity creation.
+    --
+    -- I renamed it "exitlight" to avoid confusion with inst.Light (which the beanstalk currently does
+    -- not have, but anyway).
+    --]]
+    --[[
+    local exitlight = SpawnPrefab("exitcavelight")	
+    exitlight.Transform:SetPosition(inst.Transform:GetWorldPosition())
+    ]]--
+    
 
-	--[[
-	-- Engine-level components configuration (and related tags).
-	--]]
-	
-	trans:SetScale(1.5, 1, 1.5)
+    --[[
+    -- Engine-level components configuration (and related tags).
+    --]]
+    
+    trans:SetScale(1.5, 1, 1.5)
 
-	inst:AddTag("blocker")
-	physics:SetMass(0) -- 0 mass means infinite mass, actually (i.e., static object).
-	--physics:SetCylinder(0.6, 2)
-	physics:SetCylinder(2, 24)
-	physics:SetCollisionGroup(COLLISION.OBSTACLES)
-	physics:SetFriction(10000)
-	physics:CollidesWith(COLLISION.WORLD)
-	physics:CollidesWith(COLLISION.ITEMS)
-	physics:CollidesWith(COLLISION.CHARACTERS)
+    inst:AddTag("blocker")
+    physics:SetMass(0) -- 0 mass means infinite mass, actually (i.e., static object).
+    --physics:SetCylinder(0.6, 2)
+    physics:SetCylinder(2, 24)
+    physics:SetCollisionGroup(COLLISION.OBSTACLES)
+    physics:SetFriction(10000)
+    physics:CollidesWith(COLLISION.WORLD)
+    physics:CollidesWith(COLLISION.ITEMS)
+    physics:CollidesWith(COLLISION.CHARACTERS)
 
-	anim:SetBank("tentaclepillar")
-	anim:SetBuild("beanstalk")
-	anim:PushAnimation("idle", true)	
+    anim:SetBank("tentaclepillar")
+    anim:SetBuild("beanstalk")
+    anim:PushAnimation("idle", true)	
 
     inst.MiniMapEntity:SetIcon( "beanstalk.tex" )
 
-	sound:PlaySound("dontstarve/tentacle/tentapiller_idle_LP","loop")
+    sound:PlaySound("dontstarve/tentacle/tentapiller_idle_LP","loop")
 
 
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
 
 
-	
-	--[[
-	-- Lua-level components.
-	--]]
-	
-	inst:AddComponent("climbable")
-	inst.components.climbable:SetDirection("UP")
-	
-	---------------------  
+    
+    --[[
+    -- Lua-level components.
+    --]]
+    
+    inst:AddComponent("climbable")
+    inst.components.climbable:SetDirection("UP")
+    
+    ---------------------  
 
-	inst:AddComponent("playerprox")
-	inst.components.playerprox:SetDist(10, 30)
-	inst.components.playerprox:SetOnPlayerNear(onnear)
-	inst.components.playerprox:SetOnPlayerFar(onfar)
+    inst:AddComponent("playerprox")
+    inst.components.playerprox:SetDist(10, 30)
+    inst.components.playerprox:SetOnPlayerNear(onnear)
+    inst.components.playerprox:SetOnPlayerFar(onfar)
 
-	---------------------  
-	
-	inst:AddComponent("activatable")
-	inst.components.activatable.getverb = GetVerb
-	inst.components.activatable.OnActivate = OnActivate	
-	inst.components.activatable.quickaction = true
+    ---------------------  
+    
+    inst:AddComponent("activatable")
+    inst.components.activatable.getverb = GetVerb
+    inst.components.activatable.OnActivate = OnActivate	
+    inst.components.activatable.quickaction = true
 
-	---------------------  
-	
-	--inst:AddComponent("workable")
-	--inst.components.workable:SetWorkAction(ACTIONS.CHOP)
-	--inst.components.workable:SetOnWorkCallback(chopbeanstalk)
-	--inst.components.workable:SetOnFinishCallback(chopdownbeanstalk)
+    ---------------------  
+    
+    --inst:AddComponent("workable")
+    --inst.components.workable:SetWorkAction(ACTIONS.CHOP)
+    --inst.components.workable:SetOnWorkCallback(chopbeanstalk)
+    --inst.components.workable:SetOnFinishCallback(chopdownbeanstalk)
 
-	---------------------  
-	
-	inst:AddComponent("inspectable")
-	
-	---------------------
-	
-	inst:AddComponent("lootdropper")
-	AddLoot(inst)
+    ---------------------  
+    
+    inst:AddComponent("inspectable")
+    
+    ---------------------
+    
+    inst:AddComponent("lootdropper")
+    AddLoot(inst)
 
-	---------------------
-	
-	inst.chopped = false
-	inst.OnSave = onsave
-	inst.OnLoad = onload
-	return inst
+    ---------------------
+    
+    inst.chopped = false
+    inst.OnSave = onsave
+    inst.OnLoad = onload
+    return inst
 end
 
 return Prefab( "common/monsters/beanstalk", fn, assets, prefabs )

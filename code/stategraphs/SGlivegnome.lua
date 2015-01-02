@@ -29,7 +29,7 @@ local events=
 
 local states=
 {
-	State{
+    State{
         name = "death",
         tags = {"busy"},
         

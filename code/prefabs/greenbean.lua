@@ -2,14 +2,14 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/greenbean.zip"),
-	Asset("ANIM", "anim/greenbean_cooked.zip"),
+    Asset("ANIM", "anim/greenbean.zip"),
+    Asset("ANIM", "anim/greenbean_cooked.zip"),
 
-    Asset( "ATLAS", "images/inventoryimages/greenbean.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/greenbean.tex" ),
+    Asset( "ATLAS", inventoryimage_atlas("greenbean") ),
+    Asset( "IMAGE", inventoryimage_texture("greenbean") ),
 
-    Asset( "ATLAS", "images/inventoryimages/greenbean_cooked.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/greenbean_cooked.tex" ),
+    Asset( "ATLAS", inventoryimage_atlas("greenbean_cooked") ),
+    Asset( "IMAGE", inventoryimage_texture("greenbean_cooked") ),
 }
 
 local prefabs =
@@ -18,30 +18,30 @@ local prefabs =
 }
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+    MakeInventoryPhysics(inst)
 
     inst.AnimState:SetBank("icebox")
     inst.AnimState:SetBuild("greenbean")
     inst.AnimState:PlayAnimation("closed")
 
 
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
 
 
-	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = 10
+    inst:AddComponent("stackable")
+    inst.components.stackable.maxsize = 10
 
-	inst:AddComponent("inspectable")
+    inst:AddComponent("inspectable")
 
-	inst:AddComponent("inventoryitem")
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/greenbean.xml"
-	
+    inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("greenbean")
+    
     inst:AddComponent("edible")
     inst.components.edible.foodtype = "VEGGIE"
     inst.components.edible.healthvalue = 10
@@ -51,54 +51,54 @@ local function fn(Sim)
     inst:AddComponent("cookable")
     inst.components.cookable.product = "greenbean_cooked" 
 
-	inst:AddComponent("perishable")
-	inst.components.perishable:SetPerishTime(TUNING.PERISH_FAST)
-	inst.components.perishable:StartPerishing()
-	inst.components.perishable.onperishreplacement = "seeds"
+    inst:AddComponent("perishable")
+    inst.components.perishable:SetPerishTime(TUNING.PERISH_FAST)
+    inst.components.perishable:StartPerishing()
+    inst.components.perishable.onperishreplacement = "seeds"
 
-	return inst
+    return inst
 end
 
 local function cookedfn(inst)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+    MakeInventoryPhysics(inst)
 
     inst.AnimState:SetBank("icebox")
     inst.AnimState:SetBuild("greenbean_cooked")
     inst.AnimState:PlayAnimation("closed")
 
 
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
 
 
-	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = 10
+    inst:AddComponent("stackable")
+    inst.components.stackable.maxsize = 10
 
-	inst:AddComponent("inspectable")
+    inst:AddComponent("inspectable")
 
-	inst:AddComponent("inventoryitem")
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/greenbean_cooked.xml"
-	
+    inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("greenbean_cooked")
+    
     inst:AddComponent("edible")
     inst.components.edible.foodtype = "VEGGIE"
     inst.components.edible.healthvalue = 20
     inst.components.edible.hungervalue = 10
     inst.components.edible.sanityvalue = -40	
 
-	inst:AddComponent("perishable")
-	inst.components.perishable:SetPerishTime(TUNING.PERISH_SLOW)
-	inst.components.perishable:StartPerishing()
-	inst.components.perishable.onperishreplacement = "spoiled_food"
+    inst:AddComponent("perishable")
+    inst.components.perishable:SetPerishTime(TUNING.PERISH_SLOW)
+    inst.components.perishable:StartPerishing()
+    inst.components.perishable.onperishreplacement = "spoiled_food"
 
-	return inst
+    return inst
 end	
 
 return {
-	Prefab("common/inventory/greenbean", fn, assets, prefabs),
-	Prefab("common/inventory/greenbean_cooked", cookedfn, assets),
+    Prefab("common/inventory/greenbean", fn, assets, prefabs),
+    Prefab("common/inventory/greenbean_cooked", cookedfn, assets),
 }

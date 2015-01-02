@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets=
 {
-	Asset("ANIM", "anim/cotton_hat.zip"),
+    Asset("ANIM", "anim/cotton_hat.zip"),
     Asset("ANIM", "anim/hat_miner_off.zip"),
 }
 
@@ -41,7 +41,7 @@ local function onunequip(inst, owner)
 end
 
 local function onperish(inst)
-	inst:Remove()
+    inst:Remove()
 end
 
 local function fn(Sim)
@@ -66,7 +66,7 @@ local function fn(Sim)
         inst:AddComponent("inspectable")
 
         inst:AddComponent("inventoryitem")
-        inst.components.inventoryitem.atlasname = "images/inventoryimages/cotton_hat.xml"
+        inst.components.inventoryitem.atlasname = inventoryimage_atlas("cotton_hat")
 
         inst:AddComponent("tradable")
 

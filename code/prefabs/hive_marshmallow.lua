@@ -2,14 +2,14 @@ BindGlobal()
 
 local prefabs = 
 {
-	"bee_marshmallow",
+    "bee_marshmallow",
     "marshmallow",
 }
 
 local assets =
 {
     Asset("ANIM", "anim/hive_marshmallow.zip"),
-	Asset("SOUND", "sound/bee.fsb"),
+    Asset("SOUND", "sound/bee.fsb"),
 }
 
 
@@ -18,23 +18,23 @@ local function OnEntityWake(inst)
 end
 
 local function OnEntitySleep(inst)
-	inst.SoundEmitter:KillSound("loop")
+    inst.SoundEmitter:KillSound("loop")
 end
 
 local function StartSpawningFn(inst)
-	local fn = function(world)
-		inst.components.childspawner:StartSpawning()
-	end
-	return fn
+    local fn = function(world)
+        inst.components.childspawner:StartSpawning()
+    end
+    return fn
 end
 
 local function StopSpawningFn(inst)
-	local fn = function(world)
-		if inst.components.childspawner then
-			inst.components.childspawner:StopSpawning()
-		end
-	end
-	return fn
+    local fn = function(world)
+        if inst.components.childspawner then
+            inst.components.childspawner:StopSpawning()
+        end
+    end
+    return fn
 end
 
 local function OnIgnite(inst)
@@ -59,19 +59,19 @@ end
 
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
-	
+    
     MakeObstaclePhysics(inst, .5)
 
-	local minimap = inst.entity:AddMiniMapEntity()
-	minimap:SetIcon( "beehive.png" )
+    local minimap = inst.entity:AddMiniMapEntity()
+    minimap:SetIcon( "beehive.png" )
 
-	anim:SetBank("beehive")
-	anim:SetBuild("hive_marshmallow")
-	anim:PlayAnimation("cocoon_small", true)
+    anim:SetBank("beehive")
+    anim:SetBuild("hive_marshmallow")
+    anim:PlayAnimation("cocoon_small", true)
 
     inst:AddTag("structure")
 
@@ -84,19 +84,19 @@ local function fn(Sim)
 
     
     -------------------
-	inst:AddComponent("health")
+    inst:AddComponent("health")
     inst.components.health:SetMaxHealth(200)
 
     -------------------
-	inst:AddComponent("childspawner")
-	inst.components.childspawner.childname = "bee_marshmallow"
-	inst.components.childspawner:SetRegenPeriod(TUNING.BEEHIVE_REGEN_TIME)
-	inst.components.childspawner:SetSpawnPeriod(TUNING.BEEHIVE_RELEASE_TIME)
-	inst.components.childspawner:SetMaxChildren(TUNING.BEEHIVE_BEES)
-	if GetPseudoSeasonManager() and GetPseudoSeasonManager():IsSummer() then
-		inst.components.childspawner:StartSpawning()
-	end
-	
+    inst:AddComponent("childspawner")
+    inst.components.childspawner.childname = "bee_marshmallow"
+    inst.components.childspawner:SetRegenPeriod(TUNING.BEEHIVE_REGEN_TIME)
+    inst.components.childspawner:SetSpawnPeriod(TUNING.BEEHIVE_RELEASE_TIME)
+    inst.components.childspawner:SetMaxChildren(TUNING.BEEHIVE_BEES)
+    if GetPseudoSeasonManager() and GetPseudoSeasonManager():IsSummer() then
+        inst.components.childspawner:StartSpawning()
+    end
+    
     ---------------------  
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot({"marshmallow","marshmallow","marshmallow","marshmallow"})
@@ -130,12 +130,12 @@ local function fn(Sim)
     inst.MiniMapEntity:SetIcon("hive_marshmallow.tex")   
     
     inst:AddComponent("inspectable")
-	inst.OnEntitySleep = OnEntitySleep
-	inst.OnEntityWake = OnEntityWake
+    inst.OnEntitySleep = OnEntitySleep
+    inst.OnEntityWake = OnEntityWake
     
     inst.Transform:SetScale(2.0, 1.7, 2.0)
     
-	return inst
+    return inst
 end
 
 return Prefab( "forest/monsters/hive_marshmallow", fn, assets, prefabs ) 

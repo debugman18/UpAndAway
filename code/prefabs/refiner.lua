@@ -8,7 +8,7 @@ local widget_spec = pkgrequire "common.containerwidgetspecs" .refiner
 
 local assets =
 {
-	Asset("ANIM", "anim/refiner.zip"),
+    Asset("ANIM", "anim/refiner.zip"),
 }
 
 local prefabs =
@@ -64,17 +64,17 @@ end
 
 
 local valid_extra_ingredients = {
-	beanstalk_chunk = true,
-	cloud_coral_fragment = true,
-	cloud_algae_fragment = true,
-	cloud_cotton = true,
-	bonestew = true,
-	cloud_jelly = true,
-	jellycap_red = true,
-	jellycap_blue = true,
-	jellycap_green = true,
-	golden_petals = true,
-	thunder_log = true,
+    beanstalk_chunk = true,
+    cloud_coral_fragment = true,
+    cloud_algae_fragment = true,
+    cloud_cotton = true,
+    bonestew = true,
+    cloud_jelly = true,
+    jellycap_red = true,
+    jellycap_blue = true,
+    jellycap_green = true,
+    golden_petals = true,
+    thunder_log = true,
 }
 local function itemtest(inst, item, slot)
     return (item:HasTag("refinable")) 
@@ -90,14 +90,14 @@ local function onhammered(inst, worker)
 end
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
 
-	inst.AnimState:SetBank("refiner")
-	inst.AnimState:SetBuild("refiner")
-	inst.AnimState:PlayAnimation("idle_closed")
+    inst.AnimState:SetBank("refiner")
+    inst.AnimState:SetBuild("refiner")
+    inst.AnimState:PlayAnimation("idle_closed")
     --inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
     inst.Transform:SetScale(3,3,3)
     MakeObstaclePhysics(inst, 1)
@@ -114,28 +114,28 @@ local function fn(Sim)
 
 
     inst:AddComponent("brewer")
-	do
-		local brewer = inst.components.brewer
+    do
+        local brewer = inst.components.brewer
 
-		brewer:SetRecipeBook(RefiningRecipeBook)
+        brewer:SetRecipeBook(RefiningRecipeBook)
         brewer.onstartbrewing = startbrewfn
         brewer.oncontinuebrewing = continuebrewfn
         brewer.oncontinuedone = continuedonefn
         brewer.ondonebrewing = donebrewfn
         brewer.onharvest = harvestfn
-	end
+    end
 
     inst:AddComponent("inspectable")
         
     inst:AddComponent("container")
-	do
-		local container = inst.components.container
+    do
+        local container = inst.components.container
 
-		widget_spec:ConfigureEntity(inst)
+        widget_spec:ConfigureEntity(inst)
 
-		inst.components.container.onopenfn = onopen
-		inst.components.container.onclosefn = onclose
-	end
+        inst.components.container.onopenfn = onopen
+        inst.components.container.onclosefn = onclose
+    end
 
     inst:AddTag("structure")
     inst:AddComponent("lootdropper")
@@ -144,7 +144,7 @@ local function fn(Sim)
     inst.components.workable:SetWorkLeft(4)
     inst.components.workable:SetOnFinishCallback(onhammered)
 
-	return inst
+    return inst
 end
 
 return {

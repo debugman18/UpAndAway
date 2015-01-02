@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets=
 {
-	Asset("ANIM", "anim/lionblob.zip"),
+    Asset("ANIM", "anim/lionblob.zip"),
 }
 
 local function fn(Sim)
@@ -24,7 +24,7 @@ local function fn(Sim)
 
 
     inst:AddComponent("inspectable")
-	
+    
     return inst
 end
 

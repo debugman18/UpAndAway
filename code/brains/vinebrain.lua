@@ -16,7 +16,7 @@ local function GoHomeAction(inst)
     if inst.components.homeseeker and 
        inst.components.homeseeker.home and 
        inst.components.homeseeker.home:IsValid() and
-	   inst.sg:HasStateTag("trapped") == false then
+       inst.sg:HasStateTag("trapped") == false then
         return BufferedAction(inst, inst.components.homeseeker.home, ACTIONS.GOHOME)
     end
 end
@@ -62,8 +62,8 @@ function VineBrain:OnStart()
             "RamAttack",
             ChaseAndRam(self.inst, CFG.VINE.MAX_CHASE_TIME, CFG.VINE.CHASE_GIVEUP_DIST, CFG.VINE.MAX_CHARGE_DIST) ),		
         WhileNode( function() return self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst)),		
-		ChaseAndAttack(self.inst, CFG.VINE.MAX_CHASE_TIME, CFG.VINE.MAX_CHASE_DIST),
-		Wander(self.inst),
+        ChaseAndAttack(self.inst, CFG.VINE.MAX_CHASE_TIME, CFG.VINE.MAX_CHASE_DIST),
+        Wander(self.inst),
     }, 1)
         
     self.bt = BT(self.inst, root)

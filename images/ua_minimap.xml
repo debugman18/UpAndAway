@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<Atlas>
+	<Texture filename="ua_minimap.tex" />
+	<Elements>
+		<Element name="shopkeeper.tex" u1="0.000244141" u2="0.0310059" v1="0.503906" v2="0.996094" />
+		<Element name="cloud_coral.tex" u1="0.0314941" u2="0.0622559" v1="0.503906" v2="0.996094" />
+		<Element name="cloud_bush.tex" u1="0.0627441" u2="0.0935059" v1="0.503906" v2="0.996094" />
+		<Element name="cloud_algae.tex" u1="0.0939941" u2="0.124756" v1="0.503906" v2="0.996094" />
+		<Element name="weavernest.tex" u1="0.125244" u2="0.173584" v1="0.222656" v2="0.996094" />
+		<Element name="refiner.tex" u1="0.174072" u2="0.204834" v1="0.503906" v2="0.996094" />
+		<Element name="hive_marshmallow.tex" u1="0.205322" u2="0.236084" v1="0.503906" v2="0.996094" />
+		<Element name="jellyshroom_blue.tex" u1="0.236572" u2="0.267334" v1="0.503906" v2="0.996094" />
+		<Element name="gummybear_den.tex" u1="0.267822" u2="0.298584" v1="0.503906" v2="0.996094" />
+		<Element name="cloudcrag.tex" u1="0.299072" u2="0.329834" v1="0.503906" v2="0.996094" />
+		<Element name="dragonblood_tree.tex" u1="0.330322" u2="0.361084" v1="0.503906" v2="0.996094" />
+		<Element name="cauldron.tex" u1="0.361572" u2="0.392334" v1="0.503906" v2="0.996094" />
+		<Element name="jellyshroom_red.tex" u1="0.392822" u2="0.423584" v1="0.503906" v2="0.996094" />
+		<Element name="crystal_lamp.tex" u1="0.424072" u2="0.454834" v1="0.503906" v2="0.996094" />
+		<Element name="tea_bush.tex" u1="0.455322" u2="0.486084" v1="0.503906" v2="0.996094" />
+		<Element name="beanlet_hut.tex" u1="0.486572" u2="0.517334" v1="0.503906" v2="0.996094" />
+		<Element name="beanstalk.tex" u1="0.517822" u2="0.548584" v1="0.503906" v2="0.996094" />
+		<Element name="jellyshroom_green.tex" u1="0.549072" u2="0.579834" v1="0.503906" v2="0.996094" />
+		<Element name="octocopter.tex" u1="0.580322" u2="0.611084" v1="0.503906" v2="0.996094" />
+		<Element name="winnie.tex" u1="0.611572" u2="0.642334" v1="0.503906" v2="0.996094" />
+		<Element name="thunder_tree.tex" u1="0.642822" u2="0.673584" v1="0.503906" v2="0.996094" />
+		<Element name="research_lectern.tex" u1="0.674072" u2="0.704834" v1="0.503906" v2="0.996094" />
+		<Element name="beanstalk_exit.tex" u1="0.705322" u2="0.736084" v1="0.503906" v2="0.996094" />
+		<Element name="scarecrow.tex" u1="0.736572" u2="0.767334" v1="0.503906" v2="0.996094" />
+		<Element name="weather_machine.tex" u1="0.767822" u2="0.798584" v1="0.503906" v2="0.996094" />
+		<Element name="cloud_fruit_tree.tex" u1="0.799072" u2="0.829834" v1="0.503906" v2="0.996094" />
+		<Element name="kettle.tex" u1="0.830322" u2="0.861084" v1="0.503906" v2="0.996094" />
+	</Elements>
+</Atlas>

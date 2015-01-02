@@ -24,19 +24,19 @@ local killersounds =
 
 local assets=
 {
-	Asset("ANIM", "anim/bee_marshmallow.zip"),
-	Asset("ANIM", "anim/bee_angry_build.zip"),
+    Asset("ANIM", "anim/bee_marshmallow.zip"),
+    Asset("ANIM", "anim/bee_angry_build.zip"),
     Asset("ANIM", "anim/bee_build.zip"),
     Asset("ANIM", "anim/bee.zip"),
-	Asset("SOUND", "sound/bee.fsb"),
+    Asset("SOUND", "sound/bee.fsb"),
 
-    Asset( "ATLAS", "images/inventoryimages/bee_marshmallow.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/bee_marshmallow.tex" ), 
+    Asset( "ATLAS", inventoryimage_atlas("bee_marshmallow") ),
+    Asset( "IMAGE", inventoryimage_texture("bee_marshmallow") ), 
 }
     
 local prefabs = CFG.BEE_MARSHMALLOW.PREFABS
 
-SetSharedLootTable( 'bee_marshmallow', CFG.BEE_MARSHMALLOW.LOOT)
+SetSharedLootTable( "bee_marshmallow", CFG.BEE_MARSHMALLOW.LOOT)
 
 local workerbrain = require("brains/beebrain")
 local killerbrain = require("brains/killerbeebrain")
@@ -55,14 +55,14 @@ local function onunchargefn(inst)
     inst.AnimState:SetBank("bee")
     inst.AnimState:SetBuild("bee_marshmallow")
     inst.AnimState:PlayAnimation("idle")
-    inst.Transform:SetScale(BEE_MARSHMALLOW.UNCHARGED_SCALE, BEE_MARSHMALLOW.UNCHARGED_SCALE, BEE_MARSHMALLOW.UNCHARGED_SCALE)
+    inst.Transform:SetScale(CFG.BEE_MARSHMALLOW.UNCHARGED_SCALE, CFG.BEE_MARSHMALLOW.UNCHARGED_SCALE, CFG.BEE_MARSHMALLOW.UNCHARGED_SCALE)
     inst:RemoveTag("scarytoprey")
     inst.components.health:SetMaxHealth(CFG.BEE_MARSHMALLOW.UNCHARGED_HEALTH)
     inst.components.combat:SetDefaultDamage(CFG.BEE_MARSHMALLOW.UNCHARGED_DAMAGE)
     inst.components.combat:SetAttackPeriod(CFG.BEE_MARSHMALLOW.UNCHARGED_ATTACK_PERIOD)
-	if not inst.components.pollinator then
-		inst:AddComponent("pollinator")   
-	end
+    if not inst.components.pollinator then
+        inst:AddComponent("pollinator")   
+    end
     inst:SetBrain(workerbrain)
     inst.sounds = workersounds
 
@@ -80,9 +80,9 @@ local function onchargefn(inst)
     inst.components.combat:SetDefaultDamage(CFG.BEE_MARSHMALLOW.CHARGED_DAMAGE)
     inst.components.combat:SetAttackPeriod(CFG.BEE_MARSHMALLOW.CHARGED_ATTACK_PERIOD)
     inst.components.combat:SetRetargetFunction(2, KillerRetarget)
-	if inst.components.pollinator then
-		inst:RemoveComponent("pollinator")
-	end
+    if inst.components.pollinator then
+        inst:RemoveComponent("pollinator")
+    end
     inst:SetBrain(killerbrain)
     inst.sounds = killersounds    
     
@@ -110,22 +110,22 @@ local function OnDropped(inst)
         inst.components.workable:SetWorkLeft(1)
     end
     if inst.brain then
-		inst.brain:Start()
-	end
-	if inst.sg then
-	    inst.sg:Start()
-	end
-	if inst.components.stackable then
-	    while inst.components.stackable:StackSize() > 1 do
-	        local item = inst.components.stackable:Get()
-	        if item then
-	            if item.components.inventoryitem then
-	                item.components.inventoryitem:OnDropped()
-	            end
-	            item.Physics:Teleport(inst.Transform:GetWorldPosition() )
-	        end
-	    end
-	end
+        inst.brain:Start()
+    end
+    if inst.sg then
+        inst.sg:Start()
+    end
+    if inst.components.stackable then
+        while inst.components.stackable:StackSize() > 1 do
+            local item = inst.components.stackable:Get()
+            if item then
+                if item.components.inventoryitem then
+                    item.components.inventoryitem:OnDropped()
+                end
+                item.Physics:Teleport(inst.Transform:GetWorldPosition() )
+            end
+        end
+    end
 end
 
 local function OnPickedUp(inst)
@@ -133,14 +133,14 @@ local function OnPickedUp(inst)
 end
 
 local function commonfn()
-	local inst = CreateEntity()
-	
+    local inst = CreateEntity()
+    
     inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	inst.entity:AddLightWatcher()
-	inst.entity:AddDynamicShadow()
-	inst.DynamicShadow:SetSize( .8, .5 )
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+    inst.entity:AddLightWatcher()
+    inst.entity:AddDynamicShadow()
+    inst.DynamicShadow:SetSize( .8, .5 )
     inst.Transform:SetFourFaced()
  
     inst.AnimState:SetBank("bee")
@@ -169,29 +169,29 @@ local function commonfn()
     
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
     inst.components.locomotor:EnableGroundSpeedMultiplier(false)
-	inst.components.locomotor:SetTriggersCreep(false)
+    inst.components.locomotor:SetTriggersCreep(false)
     inst:SetStateGraph("SGbee")
     
-	inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/bee_marshmallow.xml"
+    inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("bee_marshmallow")
 
-	inst:AddComponent("stackable")
-	inst.components.inventoryitem.nobounce = true
-	inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
-	inst.components.inventoryitem:SetOnPutInInventoryFn(OnPickedUp)
-	inst.components.inventoryitem.canbepickedup = false
+    inst:AddComponent("stackable")
+    inst.components.inventoryitem.nobounce = true
+    inst.components.inventoryitem:SetOnDroppedFn(OnDropped)
+    inst.components.inventoryitem:SetOnPutInInventoryFn(OnPickedUp)
+    inst.components.inventoryitem.canbepickedup = false
 
-	---------------------
-	
-	inst:AddComponent("lootdropper")
-	inst.components.lootdropper:AddChanceLootTable("bee_marshmallow")
-	inst.components.lootdropper.numrandomloot = CFG.BEE_MARSHMALLOW.NUMRANDOMLOOT
-	
-	 ------------------
-	inst:AddComponent("workable")
-	inst.components.workable:SetWorkAction(ACTIONS.NET)
-	inst.components.workable:SetWorkLeft(1)
-	inst.components.workable:SetOnFinishCallback(OnWorked)
+    ---------------------
+    
+    inst:AddComponent("lootdropper")
+    inst.components.lootdropper:SetChanceLootTable("bee_marshmallow")
+    inst.components.lootdropper.numrandomloot = CFG.BEE_MARSHMALLOW.NUMRANDOMLOOT
+    
+     ------------------
+    inst:AddComponent("workable")
+    inst.components.workable:SetWorkAction(ACTIONS.NET)
+    inst.components.workable:SetWorkLeft(1)
+    inst.components.workable:SetOnFinishCallback(OnWorked)
    
     MakeSmallBurnableCharacter(inst, "body", Vector3(0, -1, 0))
     MakeTinyFreezableCharacter(inst, "body", Vector3(0, -1, 0))
@@ -224,7 +224,7 @@ local function commonfn()
     inst:AddComponent("staticchargeable")
     inst.components.staticchargeable:SetOnChargeFn(onchargefn)
     inst.components.staticchargeable:SetOnUnchargeFn(onunchargefn)
-	
+    
     onunchargefn(inst)
 
     return inst

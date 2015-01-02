@@ -3,11 +3,11 @@ BindGlobal()
 
 local assets=
 {
-	Asset("ANIM", "anim/golden_sunflower_seeds.zip"),
+    Asset("ANIM", "anim/golden_sunflower_seeds.zip"),
     Asset("ANIM", "anim/golden_sunflower.zip"),
 
-    Asset( "ATLAS", "images/inventoryimages/golden_sunflower_seeds.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/golden_sunflower_seeds.tex" ),
+    Asset( "ATLAS", inventoryimage_atlas("golden_sunflower_seeds") ),
+    Asset( "IMAGE", inventoryimage_texture("golden_sunflower_seeds") ),
 }
 
 local prefabs = {
@@ -22,7 +22,7 @@ local function ondeploy (inst, pt)
     inst:Remove()
 end
 
-local notags = {'NOBLOCK', 'player', 'FX'}
+local notags = {"NOBLOCK", "player", "FX"}
 local function test_ground(inst, pt)
     local tiletype = GetGroundTypeAtPosition(pt)
     local ground_OK = tiletype ~= GROUND.ROCKY and tiletype ~= GROUND.ROAD and tiletype ~= GROUND.IMPASSABLE and
@@ -46,9 +46,9 @@ local function test_ground(inst, pt)
 end
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
     MakeInventoryPhysics(inst)
     
     inst.AnimState:SetBank("flint")
@@ -62,12 +62,12 @@ local function fn(Sim)
 
     
     inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+    inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
     inst:AddComponent("inspectable")
     
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/golden_sunflower_seeds.xml"
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("golden_sunflower_seeds")
 
     inst:AddComponent("deployable")
     inst.components.deployable.test = test_ground

@@ -4,8 +4,8 @@ require("stategraphs/commonstates")
 
 local events=
 {
-	CommonHandlers.OnLocomote(true, true),
-	EventHandler("doattack", function(inst, data) if not inst.components.health:IsDead() then inst.sg:GoToState("attack", data.target) end end),
+    CommonHandlers.OnLocomote(true, true),
+    EventHandler("doattack", function(inst, data) if not inst.components.health:IsDead() then inst.sg:GoToState("attack", data.target) end end),
     EventHandler("attacked", function(inst) if inst.components.health:GetPercent() > 0 and not inst.sg:HasStateTag("attack") then inst.sg:GoToState("attack_post") end end),
     EventHandler("death", function(inst) inst.sg:GoToState("death") end),
     CommonHandlers.OnFreeze(),
@@ -41,11 +41,11 @@ local states=
             inst.AnimState:PushAnimation("idle", true)
             inst.sg:SetTimeout(GetRandomWithVariance(10, 5) )
             inst.SoundEmitter:KillAllSounds()
-			inst.Physics:Stop()
+            inst.Physics:Stop()
         end,
                 
         ontimeout = function(inst)
-			--inst.sg:GoToState("rumble")
+            --inst.sg:GoToState("rumble")
         end,
     },
     
@@ -53,12 +53,12 @@ local states=
         name = "taunt",
         tags = {"taunting", "canrotate"},
         onenter = function(inst)
-			inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentacle_rumble_LP", "tentacle")
-			inst.SoundEmitter:SetParameter( "tentacle", "state", 0)
+            inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentacle_rumble_LP", "tentacle")
+            inst.SoundEmitter:SetParameter( "tentacle", "state", 0)
             
             inst.AnimState:PushAnimation("breach_pre")
             inst.AnimState:PushAnimation("breach_loop", true)
-			inst.Physics:Stop()
+            inst.Physics:Stop()
         end,
 
         onupdate = function(inst)
@@ -82,11 +82,11 @@ local states=
             inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentacle_emerge")
             inst.components.combat:StartAttack()
             inst.AnimState:PushAnimation("atk_pre")
-			if not inst.SoundEmitter:PlayingSound("tentacle") then
-				inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentacle_rumble_LP", "tentacle")
-			end      
-			inst.SoundEmitter:SetParameter("tentacle", "state", 1) 
-			inst.Physics:Stop()
+            if not inst.SoundEmitter:PlayingSound("tentacle") then
+                inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentacle_rumble_LP", "tentacle")
+            end      
+            inst.SoundEmitter:SetParameter("tentacle", "state", 1) 
+            inst.Physics:Stop()
         end,
         events=
         {
@@ -103,22 +103,22 @@ local states=
         name = "attack",
         tags = {"attack", "canrotate"},
         onenter = function(inst)
-		    inst.components.combat:StartAttack()
+            inst.components.combat:StartAttack()
             inst.AnimState:PushAnimation("atk_loop")
             --inst.AnimState:PushAnimation("atk_idle", false)
-			inst.Physics:Stop()
+            inst.Physics:Stop()
         end,
         
         timeline=
         {
             TimeEvent(2*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentacle_attack") end),
-			TimeEvent(7*FRAMES, function(inst) inst.components.combat:DoAttack() end),
+            TimeEvent(7*FRAMES, function(inst) inst.components.combat:DoAttack() end),
             TimeEvent(18*FRAMES, function(inst) inst.sg:RemoveStateTag("attack") end),			
         },
         
         events=
         {
-			EventHandler("animqueueover", function(inst) inst.sg:GoToState("idle") end),	
+            EventHandler("animqueueover", function(inst) inst.sg:GoToState("idle") end),	
         },
     },
     
@@ -127,7 +127,7 @@ local states=
         onenter = function(inst)
             inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentacle_disappear")
             inst.AnimState:PushAnimation("atk_pst")
-			inst.Physics:Stop()
+            inst.Physics:Stop()
         end,
         events=
         {
@@ -225,7 +225,7 @@ local states=
             },
         }, 
     
-	State{
+    State{
         name = "death",
         tags = {"busy"},
         
@@ -241,8 +241,8 @@ local states=
         events =
         {
             EventHandler("animover", function(inst) 
-				inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentacle_splat")
-			end ),
+                inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentacle_splat")
+            end ),
         },        
     },
     

@@ -1,10 +1,10 @@
 --FIXME: not MP compatible
 
-local Climbing = modrequire 'lib.climbing'
+local Climbing = modrequire "lib.climbing"
 
 
-local Pred = wickerrequire 'lib.predicates'
-local Debuggable = wickerrequire 'gadgets.debuggable'
+local Pred = wickerrequire "lib.predicates"
+local Debuggable = wickerrequire "gadgets.debuggable"
 
 
 --[[
@@ -21,14 +21,14 @@ local Debuggable = wickerrequire 'gadgets.debuggable'
 -- @name Climbable
 --
 local Climbable = HostClass(Debuggable, function(self, inst)
-	self.inst = inst
-	Debuggable._ctor(self, "Climbable")
+    self.inst = inst
+    Debuggable._ctor(self, "Climbable")
 
-	self.direction = nil
+    self.direction = nil
 
-	-- Target cave number, i.e. cave number of the world to be generated.
-	-- This should never be set directly.
-	self.cavenum = nil
+    -- Target cave number, i.e. cave number of the world to be generated.
+    -- This should never be set directly.
+    self.cavenum = nil
 end)
 
 
@@ -37,19 +37,19 @@ end)
 --
 -- @param callback An optional callback to be called after completion.
 function Climbable:DestroyCave(callback)
-	local function actual_callback()
-		self.cavenum = nil
-		if callback then callback(self.inst) end
-	end
+    local function actual_callback()
+        self.cavenum = nil
+        if callback then callback(self.inst) end
+    end
 
-	if self.cavenum then
-		self:DebugSay("Destroying cave number ", self.cavenum, "...")
+    if self.cavenum then
+        self:DebugSay("Destroying cave number ", self.cavenum, "...")
 
-		-- This actually destroys it.
-		SaveGameIndex:ResetCave(self.cavenum, actual_callback)
-	else
-		actual_callback()
-	end
+        -- This actually destroys it.
+        SaveGameIndex:ResetCave(self.cavenum, actual_callback)
+    else
+        actual_callback()
+    end
 end
 
 ---
@@ -69,8 +69,8 @@ end
 -- @name should_have_cavenum
 -- 
 local function should_have_cavenum(self)
-	--return self.direction and self.direction*Climbing.GetLevelHeight() >= 0
-	return self.direction and Climbing.GetLevelHeight() == 0
+    --return self.direction and self.direction*Climbing.GetLevelHeight() >= 0
+    return self.direction and Climbing.GetLevelHeight() == 0
 end
 
 
@@ -83,39 +83,39 @@ end
 -- If it is a number, its sign will dictate the direction.
 --]]
 function Climbable:SetDirection(direction)
-	if not Pred.IsNumber(direction) then
-		if not Pred.IsWordable(direction) then
-			return error("The climbing direction should either a number or a string.")
-		end
-		direction = tostring(direction)
-		if direction:lower() == "up" then
-			direction = 1
-		elseif direction:lower() == "down" then
-			direction = -1
-		else
-			return error(("Invalid climbing direction %q."):format(direction))
-		end
-	elseif direction == 0 then
-		return error("The climbing direction can't be zero!")
-	end
+    if not Pred.IsNumber(direction) then
+        if not Pred.IsWordable(direction) then
+            return error("The climbing direction should either a number or a string.")
+        end
+        direction = tostring(direction)
+        if direction:lower() == "up" then
+            direction = 1
+        elseif direction:lower() == "down" then
+            direction = -1
+        else
+            return error(("Invalid climbing direction %q."):format(direction))
+        end
+    elseif direction == 0 then
+        return error("The climbing direction can't be zero!")
+    end
 
-	if direction > 0 then
-		direction = 1
-	elseif direction < 0 then
-		direction = -1
-	end
+    if direction > 0 then
+        direction = 1
+    elseif direction < 0 then
+        direction = -1
+    end
 
-	self.direction = direction
+    self.direction = direction
 
-	if not should_have_cavenum(self) then
-		self:DestroyCave()
-	end
+    if not should_have_cavenum(self) then
+        self:DestroyCave()
+    end
 end
 
 ---
 -- Returns the current climbing direction.
 function Climbable:GetDirection()
-	return self.direction
+    return self.direction
 end
 
 ---
@@ -123,21 +123,21 @@ end
 --
 -- @return "UP", "DOWN" or "".
 function Climbable:GetDirectionString()
-	if not self.direction then return "" end
-	if self.direction > 0 then
-		return "UP"
-	elseif self.direction < 0 then
-		return "DOWN"
-	else
-		return error("The climbing direction can't be zero!")
-	end
+    if not self.direction then return "" end
+    if self.direction > 0 then
+        return "UP"
+    elseif self.direction < 0 then
+        return "DOWN"
+    else
+        return error("The climbing direction can't be zero!")
+    end
 end
 
 
 ---
 -- Returns the current cave number, if any.
 function Climbable:GetCaveNumber()
-	return self.cavenum
+    return self.cavenum
 end
 
 ---
@@ -145,70 +145,70 @@ end
 --
 -- If the climbable prefab has a cave number, returns it. Otherwise, if we are in a cave level, returns its cave number. Otherwise, returns 0.
 function Climbable:GetEffectiveCaveNumber()
-	local n = self:GetCaveNumber()
-	if n then
-		return n
-	elseif SaveGameIndex:GetCurrentMode() == "cave" then
-		return SaveGameIndex:GetCurrentCaveNum()
-	else
-		return 0
-	end
+    local n = self:GetCaveNumber()
+    if n then
+        return n
+    elseif SaveGameIndex:GetCurrentMode() == "cave" then
+        return SaveGameIndex:GetCurrentCaveNum()
+    else
+        return 0
+    end
 end
 
 
 ---
 -- Climbs in the configured direction. Raises an error if there isn't any.
 function Climbable:Climb()
-	assert( self.direction, "Attempt to climb a climbable without a direction set." )
-	local function doclimb()
-		if self:Debug() then
-			self:Say("Climbing ", self:GetDirectionString(), " into cave number ", self:GetEffectiveCaveNumber(), ". Current height: ", Climbing.GetLevelHeight(), ".")
-		end
-		Climbing.Climb(self.direction, self.cavenum)
-	end
+    assert( self.direction, "Attempt to climb a climbable without a direction set." )
+    local function doclimb()
+        if self:Debug() then
+            self:Say("Climbing ", self:GetDirectionString(), " into cave number ", self:GetEffectiveCaveNumber(), ". Current height: ", Climbing.GetLevelHeight(), ".")
+        end
+        Climbing.Climb(self.direction, self.cavenum)
+    end
 
-	if not self.cavenum and should_have_cavenum(self) then
-		self.cavenum = SaveGameIndex:GetNumCaves() + 1
-		SaveGameIndex:AddCave(nil, doclimb)
-	else
-		doclimb()
-	end
+    if not self.cavenum and should_have_cavenum(self) then
+        self.cavenum = SaveGameIndex:GetNumCaves() + 1
+        SaveGameIndex:AddCave(nil, doclimb)
+    else
+        doclimb()
+    end
 end
 
 ---
 -- Destroys the cave.
 function Climbable:OnRemoveEntity()
-	self:DestroyCave()
+    self:DestroyCave()
 end
 
 ---
 -- Destroys the cave.
 function Climbable:OnRemoveFromEntity()
-	self:DestroyCave()
+    self:DestroyCave()
 end
 
 ---
 -- Saves the cave number.
 function Climbable:OnSave()
-	return {
-		cavenum = self.cavenum,
-	}
+    return {
+        cavenum = self.cavenum,
+    }
 end
 
 ---
 -- Loads the cave number.
 function Climbable:OnLoad(data)
-	if data then
-		self.cavenum = data.cavenum
+    if data then
+        self.cavenum = data.cavenum
 
-		if self.cavenum then
-			self.inst:DoTaskInTime(3 + 2*math.random(), function()
-				if self.cavenum and not should_have_cavenum(self) then
-					self:DestroyCave()
-				end
-			end)
-		end
-	end
+        if self.cavenum then
+            self.inst:DoTaskInTime(3 + 2*math.random(), function()
+                if self.cavenum and not should_have_cavenum(self) then
+                    self:DestroyCave()
+                end
+            end)
+        end
+    end
 end
 
 return Climbable

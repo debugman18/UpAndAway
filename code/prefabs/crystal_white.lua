@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/crystal.zip"),
+    Asset("ANIM", "anim/crystal.zip"),
 }
 
 local prefabs =
@@ -32,53 +32,53 @@ local function workcallback(inst, worker, workleft)
 end
 
 local function onMined(inst, worker)
-	inst.components.lootdropper:DropLoot()
-	inst.SoundEmitter:PlaySound("dontstarve/common/destroy_rock")
+    inst.components.lootdropper:DropLoot()
+    inst.SoundEmitter:PlaySound("dontstarve/common/destroy_rock")
 
-	inst:Remove()	
+    inst:Remove()	
 end
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+    MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("crystal_white")
-	inst.AnimState:SetBuild("crystal")
+    inst.AnimState:SetBank("crystal_white")
+    inst.AnimState:SetBuild("crystal")
     inst.AnimState:PlayAnimation("idle_full")
     MakeObstaclePhysics(inst, 1.)
     inst.AnimState:SetMultColour(1, 1, 1, 0.7)
-	inst:AddTag("crystal")
-	inst:AddTag("gnome_crystal")
+    inst:AddTag("crystal")
+    inst:AddTag("gnome_crystal")
 
-	local scale = math.random(3,4)
-	inst.Transform:SetScale(scale, scale, scale)
-
-
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
+    local scale = math.random(3,4)
+    inst.Transform:SetScale(scale, scale, scale)
 
 
-	inst:AddComponent("inspectable")
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+
+    inst:AddComponent("inspectable")
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetLoot(loot) 	
 
-	inst:AddComponent("workable")
-	inst.components.workable:SetWorkAction(ACTIONS.MINE)
-	inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE)
-	inst.components.workable:SetOnFinishCallback(onMined)
-	inst.components.workable:SetOnWorkCallback(workcallback)      
+    inst:AddComponent("workable")
+    inst.components.workable:SetWorkAction(ACTIONS.MINE)
+    inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE)
+    inst.components.workable:SetOnFinishCallback(onMined)
+    inst.components.workable:SetOnWorkCallback(workcallback)      
 
     inst:AddComponent("periodicspawner")
     inst.components.periodicspawner:SetPrefab("live_gnome")
     inst.components.periodicspawner:SetDensityInRange(5, 3)
     inst.components.periodicspawner:SetMinimumSpacing(5)
 
-	return inst
+    return inst
 end
 
 return Prefab ("common/inventory/crystal_white", fn, assets, prefabs) 

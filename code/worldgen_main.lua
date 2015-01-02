@@ -6,7 +6,7 @@
 
 
 
-BindModModule 'modenv'
+BindModModule "modenv"
 -- This just enables syntax conveniences.
 BindTheMod()
 
@@ -16,11 +16,11 @@ wickerrequire "plugins.ensureuniqueid"
 wickerrequire "plugins.savable_infinity"
 
 -- These embed the corresponding methods in TheMod.
-wickerrequire 'plugins.addtile'
-wickerrequire 'plugins.addsaveindexpostinit'
+wickerrequire "plugins.addtile"
+wickerrequire "plugins.addsaveindexpostinit"
 
 
-modrequire 'api_abstractions'
+modrequire "api_abstractions"
 
 
 LoadConfiguration "tuning.lua"
@@ -31,9 +31,9 @@ if _G.kleifileexists(MODROOT .. "rc.lua") then LoadConfiguration "rc.lua" end
 if _G.kleifileexists(MODROOT .. "dev.rc.lua") then LoadConfiguration "dev.rc.lua" end
 
 
-modrequire 'worldgen_patches'
+modrequire "worldgen_patches"
 
-modrequire 'modcompat'
+modrequire "modcompat"
 
 
 ----------------------------------
@@ -71,12 +71,12 @@ modrequire 'modcompat'
 --
 -----------------------------------
 
-modrequire 'map.tiledefs'
+modrequire "map.tiledefs"
 
-modrequire 'map.layouts'
-modrequire 'map.rooms'
-modrequire 'map.tasks'
-modrequire 'map.levels'
+modrequire "map.layouts"
+modrequire "map.rooms"
+modrequire "map.tasks"
+modrequire "map.levels"
 
 local TRANSLATE_TO_PREFABS = GLOBAL.require("map/forest_map").TRANSLATE_TO_PREFABS
 TRANSLATE_TO_PREFABS["skyflowers"] = {"skyflower"}
@@ -99,33 +99,33 @@ local StaticLayout = GLOBAL.require("map/static_layout")
 Layouts["ShopkeeperStall"] = StaticLayout.Get("map/static_layouts/shopkeeper_stall")
 
 AddRoomPreInit("PigKingdom", function(room)
-	if not room.contents.countstaticlayouts then
-		room.contents.countstaticlayouts = {}
-	end
-	room.contents.countstaticlayouts["ShopkeeperStall"] = 1
+    if not room.contents.countstaticlayouts then
+        room.contents.countstaticlayouts = {}
+    end
+    room.contents.countstaticlayouts["ShopkeeperStall"] = 1
 end)
 
 GLOBAL.require("constants")
 local GROUND = GLOBAL.GROUND
 
 AddRoom("Shopkeeper", {
-	colour={r=.010,g=.010,b=.10,a=.50},
-	value = GROUND.MARSH,
-	contents =  {
-			countprefabs= {
-				shopkeeper = 1,
-				gravestone = function () return 4 + math.random(4) end,
-				marblepillar = function () return 1 + math.random(3) end
-		}
-	}
+    colour={r=.010,g=.010,b=.10,a=.50},
+    value = GROUND.MARSH,
+    contents =  {
+            countprefabs= {
+                shopkeeper = 1,
+                gravestone = function () return 4 + math.random(4) end,
+                marblepillar = function () return 1 + math.random(3) end
+        }
+    }
 })
 ]]--
 
 --[[
 local function InsertShopkeeper(task)
-	-- Insert the custom room we created above into the task.
-	-- We could modify the task here as well.
-	task.room_choices["Shopkeeper"] = 1
+    -- Insert the custom room we created above into the task.
+    -- We could modify the task here as well.
+    task.room_choices["Shopkeeper"] = 1
 end
 AddTaskPreInit("One of everything", InsertShopkeeper)
 ]]--

@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/tree_thunder.zip"),
+    Asset("ANIM", "anim/tree_thunder.zip"),
 }
 
 local prefabs =
@@ -130,7 +130,7 @@ local function chop_tree(inst, chopper, chops)
 end
 
 local function dig_up_stump(inst, chopper)
-	--inst.components.lootdropper:SpawnLootPrefab("cloud_lightning")
+    --inst.components.lootdropper:SpawnLootPrefab("cloud_lightning")
     inst.components.lootdropper:SpawnLootPrefab("thunder_log")
     inst:Remove()
 end
@@ -139,17 +139,17 @@ local function set_stump(inst, push_anim)
     inst:RemoveComponent("workable")
     inst:RemoveComponent("burnable")
     inst:RemoveComponent("propagator")
-	inst:RemoveComponent("growable")
+    inst:RemoveComponent("growable")
     RemovePhysicsColliders(inst)
     inst:AddTag("stump")
 
-	if push_anim then
-		inst.AnimState:PushAnimation("stump", false)
-	else
-		inst.AnimState:PlayAnimation("stump", false)
-	end
+    if push_anim then
+        inst.AnimState:PushAnimation("stump", false)
+    else
+        inst.AnimState:PlayAnimation("stump", false)
+    end
 
-	inst:AddComponent("workable")
+    inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.DIG)
     inst.components.workable:SetOnFinishCallback(dig_up_stump)
     inst.components.workable:SetWorkLeft(1)
@@ -168,37 +168,37 @@ local function onsave(inst, data)
     if inst:HasTag("stump") then
         data.stump = true
     end
-	data.color = inst.color
-	data.scale = inst.scale
+    data.color = inst.color
+    data.scale = inst.scale
 end
         
 local function onload(inst, data)
     if data then
         if data.stump then
-			set_stump(inst)
+            set_stump(inst)
         end
-		if data.color then
-			inst.color = data.color
-			inst.AnimState:SetMultColour(inst.color, inst.color, inst.color, 1)
-		end
-		if data.scale then
-			inst.scale = data.scale
-		    inst.Transform:SetScale(inst.scale, inst.scale, inst.scale)
-		end
+        if data.color then
+            inst.color = data.color
+            inst.AnimState:SetMultColour(inst.color, inst.color, inst.color, 1)
+        end
+        if data.scale then
+            inst.scale = data.scale
+            inst.Transform:SetScale(inst.scale, inst.scale, inst.scale)
+        end
     end
 end   
 
 local function OnSpawned(inst, child)
-	if not GetStaticGenerator() or not GetStaticGenerator():IsCharged() then
-		local lightning = SpawnPrefab("lightning")
-		lightning.Transform:SetPosition(child.Transform:GetWorldPosition())
+    if not GetStaticGenerator() or not GetStaticGenerator():IsCharged() then
+        local lightning = SpawnPrefab("lightning")
+        lightning.Transform:SetPosition(child.Transform:GetWorldPosition())
     end   
 end
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
     local shadow = inst.entity:AddDynamicShadow()
     local sound = inst.entity:AddSoundEmitter()
 
@@ -216,9 +216,9 @@ local function fn(Sim)
     inst.components.growable.loopstages = true
     inst.components.growable:StartGrowing()
 
-	local minimap = inst.entity:AddMiniMapEntity()
-	minimap:SetIcon( "marshtree.png" )
-	minimap:SetPriority(-1)
+    local minimap = inst.entity:AddMiniMapEntity()
+    minimap:SetIcon( "marshtree.png" )
+    minimap:SetPriority(-1)
 
     MakeObstaclePhysics(inst, .25)   
     inst:AddTag("tree")
@@ -233,7 +233,7 @@ local function fn(Sim)
     inst.components.childspawner:SetSpawnedFn(OnSpawned)
     inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*16)
     --inst.components.childspawner:SetSpawnPeriod(10)
-	inst.components.childspawner:SetSpawnPeriod(50)
+    inst.components.childspawner:SetSpawnPeriod(50)
     inst.components.childspawner:SetMaxChildren(1)
     inst.components.childspawner.spawnoffscreen = false
     --inst.components.childspawner:SetRareChild("ball_lightning", 0.2)

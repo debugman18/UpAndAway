@@ -1,8 +1,8 @@
-local Pred = wickerrequire 'lib.predicates'
+local Pred = wickerrequire "lib.predicates"
 
-local Debuggable = wickerrequire 'adjectives.debuggable'
+local Debuggable = wickerrequire "adjectives.debuggable"
 
-local FunctionQueue = wickerrequire 'gadgets.functionqueue'
+local FunctionQueue = wickerrequire "gadgets.functionqueue"
 
 local Game = wickerrequire "game"
 local AL = Game.AmbientLighting
@@ -17,116 +17,116 @@ local AL = Game.AmbientLighting
 -- @class table
 -- @name CloudAmbientManager
 local CloudAmbientManager = HostClass(Debuggable, function(self, inst)
-	self.inst = inst
-	Debuggable._ctor(self, "CloudAmbientManager")
+    self.inst = inst
+    Debuggable._ctor(self, "CloudAmbientManager")
 
-	assert( GetPseudoClock(), "The clock should be added before cloudambientmanager!" )
+    assert( GetPseudoClock(), "The clock should be added before cloudambientmanager!" )
 
-	self:SetConfigurationKey("CLOUD_AMBIENT")
+    self:SetConfigurationKey("CLOUD_AMBIENT")
 
-	self.colours = {}
-	self.colours.UNCHARGED = self:GetConfig "UNCHARGED_COLOUR"
-	self.colours.CHARGED = self:GetConfig "CHARGED_COLOUR"
-	self.current_colour = self.colours.UNCHARGED
+    self.colours = {}
+    self.colours.UNCHARGED = self:GetConfig "UNCHARGED_COLOUR"
+    self.colours.CHARGED = self:GetConfig "CHARGED_COLOUR"
+    self.current_colour = self.colours.UNCHARGED
 
-	self.transition_time = self:GetConfig "COLOUR_TRANSITION_TIME"
-	self.fx_transition_delay = self:GetConfig "FX_TRANSITION_DELAY"
+    self.transition_time = self:GetConfig "COLOUR_TRANSITION_TIME"
+    self.fx_transition_delay = self:GetConfig "FX_TRANSITION_DELAY"
 
-	self.lightning_delay = {unpack(self:GetConfig "LIGHTNING_DELAY")}
-	self.lightning_distance = self:GetConfig "MAX_LIGHTNING_DISTANCE"
+    self.lightning_delay = {unpack(self:GetConfig "LIGHTNING_DELAY")}
+    self.lightning_distance = self:GetConfig "MAX_LIGHTNING_DISTANCE"
 
 
-	self.onStateChangeCleanup = FunctionQueue()
+    self.onStateChangeCleanup = FunctionQueue()
 
-	self.inst:ListenForEvent("upandaway_chargechange", function(inst, data)
-		local _self = inst.components.cloudambientmanager
-		if self == _self then
-			local state = assert( data.state )
-			if self.onStateChangeCleanup then
-				self:onStateChangeCleanup()
-				self.onStateChangeCleanup = FunctionQueue()
-			end
-			self:OnEnterState(state)
-		end
-	end)
+    self.inst:ListenForEvent("upandaway_chargechange", function(inst, data)
+        local _self = inst.components.cloudambientmanager
+        if self == _self then
+            local state = assert( data.state )
+            if self.onStateChangeCleanup then
+                self:onStateChangeCleanup()
+                self.onStateChangeCleanup = FunctionQueue()
+            end
+            self:OnEnterState(state)
+        end
+    end)
 
-	self:ApplyColour()
-	self.inst:DoTaskInTime(0, function()
-		self:ApplyColour()
-	end)
+    self:ApplyColour()
+    self.inst:DoTaskInTime(0, function()
+        self:ApplyColour()
+    end)
 end)
 
 function CloudAmbientManager:ApplyColour()
-	for _, phase in ipairs{"day", "dusk", "night", "cave"} do
-		AL.SetPhaseColour(phase, self.current_colour)
-	end
+    for _, phase in ipairs{"day", "dusk", "night", "cave"} do
+        AL.SetPhaseColour(phase, self.current_colour)
+    end
 
-	AL.SetAmbientColour(self.current_colour)
+    AL.SetAmbientColour(self.current_colour)
 end
 
 --[[
 -- The effects are local to each player, not networked.
 --]]
 local function do_charged_effects(self)
-	if IsDedicated() then return end
+    if IsDedicated() then return end
 
-	local Sleep = _G.Sleep
+    local Sleep = _G.Sleep
 
-	Sleep(self:GetConfig "FX_TRANSITION_DELAY")
+    Sleep(self:GetConfig "FX_TRANSITION_DELAY")
 
 
-	local wait = (function()
-		local min, max = unpack(self:GetConfig "LIGHTNING_DELAY")
-		return function()
-			Sleep(min + (max - min)*math.random())
-		end
-	end)()
+    local wait = (function()
+        local min, max = unpack(self:GetConfig "LIGHTNING_DELAY")
+        return function()
+            Sleep(min + (max - min)*math.random())
+        end
+    end)()
 
-	local strike = (function()
-		local prefab = "cloud_lightning"
+    local strike = (function()
+        local prefab = "cloud_lightning"
 
-		local min_radius, max_radius = unpack(self:GetConfig "LIGHTNING_DISTANCE")
+        local min_radius, max_radius = unpack(self:GetConfig "LIGHTNING_DISTANCE")
 
-		return function()
-			local player = GetLocalPlayer()
-			if not player then return end
+        return function()
+            local player = GetLocalPlayer()
+            if not player then return end
 
-			local r = min_radius + (max_radius - min_radius)*math.random()
-			local theta = 2*math.pi*math.random()
+            local r = min_radius + (max_radius - min_radius)*math.random()
+            local theta = 2*math.pi*math.random()
 
-			local pt = player:GetPosition() + Vector3(r*math.cos(theta), 0, r*math.sin(theta))
-			
-			local it = SpawnPrefab(prefab)
-			it.Transform:SetPosition(pt:Get())
-		end
-	end)()
+            local pt = player:GetPosition() + Vector3(r*math.cos(theta), 0, r*math.sin(theta))
+            
+            local it = SpawnPrefab(prefab)
+            it.Transform:SetPosition(pt:Get())
+        end
+    end)()
 
-	
-	while true do
-		strike()
-		wait()
-	end
+    
+    while true do
+        strike()
+        wait()
+    end
 end
 
 function CloudAmbientManager:OnEnterState(state)
-	local clock = assert( GetPseudoClock() )
+    local clock = assert( GetPseudoClock() )
 
-	local target_colour = assert( self.colours[state] )
+    local target_colour = assert( self.colours[state] )
 
-	local colour_transition_time = self.transition_time
-	if self.inst:GetTimeAlive() <= 2*_G.FRAMES then
-		colour_transition_time = 0
-	end
-	clock:LerpAmbientColour(self.current_colour, target_colour, colour_transition_time)
+    local colour_transition_time = self.transition_time
+    if self.inst:GetTimeAlive() <= 2*_G.FRAMES then
+        colour_transition_time = 0
+    end
+    clock:LerpAmbientColour(self.current_colour, target_colour, colour_transition_time)
 
-	if state == "CHARGED" then
-		local thread = self.inst:StartThread(function() do_charged_effects(self) end)
-		table.insert(self.onStateChangeCleanup, function()
-			CancelThread(thread)
-		end)
-	end
+    if state == "CHARGED" then
+        local thread = self.inst:StartThread(function() do_charged_effects(self) end)
+        table.insert(self.onStateChangeCleanup, function()
+            CancelThread(thread)
+        end)
+    end
 
-	self.current_colour = target_colour
+    self.current_colour = target_colour
 end
 
 

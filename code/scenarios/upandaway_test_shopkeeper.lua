@@ -1,8 +1,8 @@
 local function OnCreate(inst, scenariorunner)
-	inst:AddTag("permanent")
+    inst:AddTag("permanent")
 end
 
 return 
 {
-	OnCreate = OnCreate
+    OnCreate = OnCreate
 }

@@ -2,10 +2,10 @@ BindGlobal()
 
 local assets = 
 {
-	Asset("ANIM", "anim/kiki_basic.zip"),
-	Asset("ANIM", "anim/kiki_build.zip"),
-	Asset("ANIM", "anim/kiki_nightmare_skin.zip"),
-	Asset("SOUND", "sound/monkey.fsb"),
+    Asset("ANIM", "anim/kiki_basic.zip"),
+    Asset("ANIM", "anim/kiki_build.zip"),
+    Asset("ANIM", "anim/kiki_nightmare_skin.zip"),
+    Asset("SOUND", "sound/monkey.fsb"),
 }
 
 local prefabs = 
@@ -13,34 +13,34 @@ local prefabs =
 }
 
 local function fn()
-	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
-	local sound = inst.entity:AddSoundEmitter()	
+    local inst = CreateEntity()
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
+    local sound = inst.entity:AddSoundEmitter()	
     inst.soundtype = ""
-	local shadow = inst.entity:AddDynamicShadow()
-	shadow:SetSize( 2, 1.25 )
-	
-	inst.Transform:SetFourFaced()
+    local shadow = inst.entity:AddDynamicShadow()
+    shadow:SetSize( 2, 1.25 )
+    
+    inst.Transform:SetFourFaced()
 
-	MakeCharacterPhysics(inst, 10, 0.25)
+    MakeCharacterPhysics(inst, 10, 0.25)
 
     anim:SetBank("kiki")
-	anim:SetBuild("kiki_basic")
-	
-	anim:PlayAnimation("idle_loop", true)
+    anim:SetBuild("kiki_basic")
+    
+    anim:PlayAnimation("idle_loop", true)
 
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
 
     MakeMediumBurnableCharacter(inst)
 
-	inst:AddComponent("inventory")
+    inst:AddComponent("inventory")
 
-	inst:AddComponent("inspectable")
+    inst:AddComponent("inspectable")
 
-	inst:AddComponent("thief")
+    inst:AddComponent("thief")
 
     inst:AddComponent("locomotor")
     inst.components.locomotor:SetSlowMultiplier( 1 )
@@ -64,23 +64,23 @@ local function fn()
     inst.components.lootdropper:AddChanceLoot("nightmarefuel", 0.5)
     inst.components.lootdropper.droppingchanceloot = false
 
-	inst:AddComponent("eater")
-	--inst.components.eater:SetVegetarian()
-	--inst.components.eater:SetOnEatFn(oneat)
+    inst:AddComponent("eater")
+    --inst.components.eater:SetVegetarian()
+    --inst.components.eater:SetOnEatFn(oneat)
 
 
-	--local brain = require "brains/monkeybrain"
-	--inst:SetBrain(brain)
-	--inst:SetStateGraph("SGmonkey")
+    --local brain = require "brains/monkeybrain"
+    --inst:SetBrain(brain)
+    --inst:SetStateGraph("SGmonkey")
 
-	--inst.FindTargetOfInterestTask = inst:DoPeriodicTask(10, FindTargetOfInterest)	--Find something to be interested in!
-	
-	--inst.HasAmmo = hasammo
-	inst.curious = true
+    --inst.FindTargetOfInterestTask = inst:DoPeriodicTask(10, FindTargetOfInterest)	--Find something to be interested in!
+    
+    --inst.HasAmmo = hasammo
+    inst.curious = true
 
     inst:AddComponent("knownlocations")    
 
-	--inst:ListenForEvent("onpickup", onpickup)
+    --inst:ListenForEvent("onpickup", onpickup)
     --inst:ListenForEvent("attacked", OnAttacked)
 
     inst.harassplayer = false
@@ -88,7 +88,7 @@ local function fn()
     --inst.OnSave = OnSave
     --inst.OnLoad = OnLoad
 
-	return inst
+    return inst
 end
 
 return Prefab("cloudrealm/monsters/rainbowcoon", fn, assets, prefabs)

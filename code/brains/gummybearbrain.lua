@@ -23,12 +23,12 @@ local function EatFoodAction(inst)
 end
 
 local function GoHomeAction(inst)
-	if inst.components.homeseeker and 
-		inst.components.homeseeker.home and 
-		inst.components.homeseeker.home:IsValid() and 
-		inst.components.homeseeker.home.components.childspawner then
-		return BufferedAction(inst, inst.components.homeseeker.home, ACTIONS.GOHOME)
-	end
+    if inst.components.homeseeker and 
+        inst.components.homeseeker.home and 
+        inst.components.homeseeker.home:IsValid() and 
+        inst.components.homeseeker.home.components.childspawner then
+        return BufferedAction(inst, inst.components.homeseeker.home, ACTIONS.GOHOME)
+    end
 end
 
 local function InvestigateAction(inst)
@@ -58,7 +58,7 @@ function GummyBearBrain:OnStart()
             DoAction(self.inst, function() return EatFoodAction(self.inst) end ),
             Follow(self.inst, function() return self.inst.components.follower.leader end, CFG.GUMMYBEAR.MIN_FOLLOW_DIST, CFG.GUMMYBEAR.TARGET_FOLLOW_DIST, CFG.GUMMYBEAR.MAX_FOLLOW_DIST),
             IfNode(function() return self.inst.components.follower.leader ~= nil end, "HasLeader",
-			FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn )),            
+            FaceEntity(self.inst, GetFaceTargetFn, KeepFaceTargetFn )),            
             DoAction(self.inst, function() return InvestigateAction(self.inst) end ),
             -- WhileNode(function() return not GetPseudoClock():IsDay() end, "IsDay",
             --DoAction(self.inst, function() return GoHomeAction(self.inst) end ) ),

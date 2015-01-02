@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/thunder_sapling.zip"),
+    Asset("ANIM", "anim/thunder_sapling.zip"),
 }
 
 local prefabs =
@@ -17,8 +17,8 @@ local day_time = seg_time * day_segs
 TUNING.THUNDER_SAPLING_GROW_TIME =
 {
     {
-    	base=2*day_time, 
-    	random=1*day_time
+        base=2*day_time, 
+        random=1*day_time
     },
 
     {
@@ -29,8 +29,8 @@ TUNING.THUNDER_SAPLING_GROW_TIME =
 
 local function dig_up(inst, chopper)
 
-	inst.components.lootdropper:SpawnLootPrefab("thunder_pinecone")
-	inst:Remove()
+    inst.components.lootdropper:SpawnLootPrefab("thunder_pinecone")
+    inst:Remove()
 
 end
 
@@ -75,21 +75,21 @@ end
 local growth_stages =
 {
     {
-    	name="sapling", 
+        name="sapling", 
 
-    	time = function(inst) 
-    		return GetRandomWithVariance(
-    			TUNING.THUNDER_SAPLING_GROW_TIME[1].base, 
-    			TUNING.THUNDER_SAPLING_GROW_TIME[1].random) 
-    	end, 
+        time = function(inst) 
+            return GetRandomWithVariance(
+                TUNING.THUNDER_SAPLING_GROW_TIME[1].base, 
+                TUNING.THUNDER_SAPLING_GROW_TIME[1].random) 
+        end, 
 
-		fn = function(inst) 
-			growSapling(inst) 
-		end,  
+        fn = function(inst) 
+            growSapling(inst) 
+        end,  
 
-		growfn = function(inst) 
-			growSapling(inst) 
-		end 
+        growfn = function(inst) 
+            growSapling(inst) 
+        end 
     },
 
     {
@@ -159,11 +159,11 @@ end
 
 local function fn(Sim)
 
-	local inst = CreateEntity()
+    local inst = CreateEntity()
 
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
 
     inst.AnimState:SetBank("thunder_sapling")
     inst.AnimState:SetBuild("thunder_sapling")
@@ -175,7 +175,7 @@ local function fn(Sim)
 
 
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/thunder_pinecone.xml"
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("thunder_pinecone")
 
     if inst.components.inventoryitem then
         inst.AnimState:PlayAnimation("pinecone", true)
@@ -183,11 +183,11 @@ local function fn(Sim)
         inst.AnimState:PlayAnimation("idle", true)
     end
 
-	inst:AddComponent("inspectable")
+    inst:AddComponent("inspectable")
 
     inst:AddComponent("stackable")
 
-	inst:AddComponent("lootdropper")
+    inst:AddComponent("lootdropper")
 
     MakeMediumBurnable(inst)
     MakeSmallPropagator(inst)  
@@ -201,7 +201,7 @@ local function fn(Sim)
     inst.OnSave = onsave
     inst.OnLoad = onload
 
-	return inst
+    return inst
 
 end
 

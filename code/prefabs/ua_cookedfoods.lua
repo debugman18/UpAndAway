@@ -2,20 +2,20 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/redjelly.zip"),
-	
-	Asset( "ATLAS", "images/inventoryimages/redjelly.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/redjelly.tex" ),	
+    Asset("ANIM", "anim/redjelly.zip"),
+    
+    Asset( "ATLAS", inventoryimage_atlas("redjelly") ),
+    Asset( "IMAGE", inventoryimage_texture("redjelly") ),	
 
     Asset("ANIM", "anim/greenjelly.zip"),
     
-    Asset( "ATLAS", "images/inventoryimages/greenjelly.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/greenjelly.tex" ),   
+    Asset( "ATLAS", inventoryimage_atlas("greenjelly") ),
+    Asset( "IMAGE", inventoryimage_texture("greenjelly") ),   
 
     Asset("ANIM", "anim/crystalcandy.zip"),
     
-    Asset( "ATLAS", "images/inventoryimages/crystalcandy.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/crystalcandy.tex" ),    
+    Asset( "ATLAS", inventoryimage_atlas("crystalcandy") ),
+    Asset( "IMAGE", inventoryimage_texture("crystalcandy") ),    
 }
 
 local prefabs =
@@ -97,7 +97,7 @@ local function redjellyfn(inst)
     inst.AnimState:SetBuild("redjelly")
     inst.AnimState:PlayAnimation("closed")
 
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/redjelly.xml"
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("redjelly")
     
     inst.components.edible.healthvalue = redjellyhealth
     inst.components.edible.hungervalue = redjellyhunger
@@ -112,7 +112,7 @@ local function greenjellyfn(inst)
     inst.AnimState:SetBuild("greenjelly")
     inst.AnimState:PlayAnimation("closed")
 
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/greenjelly.xml"
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("greenjelly")
     
     inst.components.edible.healthvalue = greenjellyhealth
     inst.components.edible.hungervalue = greenjellyhunger
@@ -127,7 +127,7 @@ local function crystalcandyfn(inst)
     inst.AnimState:SetBuild("crystalcandy")
     inst.AnimState:PlayAnimation("closed")
 
-    inst.components.inventoryitem.atlasname = "images/inventoryimages/crystalcandy.xml"
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("crystalcandy")
 
     inst.components.stackable.maxsize = 10
     

@@ -5,14 +5,14 @@ local TryAttack = Class(BehaviourNode, function(self, inst, findnewtargetfn)
     self.inst = inst
     self.findnewtargetfn = findnewtargetfn
 
-	--[[
-	local function success()
-		self.status = SUCCESS
-	end
+    --[[
+    local function success()
+        self.status = SUCCESS
+    end
 
-	self.inst:ListenForEvent("onattackother", success)
-	self.inst:ListenForEvent("onmissother", success)
-	]]--
+    self.inst:ListenForEvent("onattackother", success)
+    self.inst:ListenForEvent("onmissother", success)
+    ]]--
 end)
 
 function TryAttack:__tostring()
@@ -47,7 +47,7 @@ function TryAttack:Visit()
             local hp = Point(combat.target.Transform:GetWorldPosition())
             local pt = Point(self.inst.Transform:GetWorldPosition())
             local dsq = distsq(hp, pt)
-			local rangesq = combat:CalcAttackRangeSq()
+            local rangesq = combat:CalcAttackRangeSq()
             
             if dsq <= rangesq and not (self.inst.sg and self.inst.sg:HasStateTag("jumping")) then
                 self.inst.components.locomotor:Stop()
@@ -57,10 +57,10 @@ function TryAttack:Visit()
             end
                 
             if combat:TryAttack() then
-				self.status = SUCCESS
-			else
-				self.status = FAILED
-			end
+                self.status = SUCCESS
+            else
+                self.status = FAILED
+            end
             
             self:Sleep(.125)
         end

@@ -1,9 +1,9 @@
 BindGlobal()
 
 return {
-	Sandbox = {
-		Any = {},
-		Rare = {},
-	},
-	Layouts = {},
+    Sandbox = {
+        Any = {},
+        Rare = {},
+    },
+    Layouts = {},
 }

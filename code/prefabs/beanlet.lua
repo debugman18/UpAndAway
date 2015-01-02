@@ -10,13 +10,13 @@ local BeanletCombat = pkgrequire "common.beanlet_combat"
 
 local assets =
 {
-	Asset("ANIM", "anim/beanlet.zip"),  -- same name as the .scml
+    Asset("ANIM", "anim/beanlet.zip"),  -- same name as the .scml
     Asset("SOUND", "sound/pengull.fsb"),
 }
 
 local prefabs = CFG.BEANLET.PREFABS
 
-SetSharedLootTable( 'beanlet', CFG.BEANLET.LOOT)
+SetSharedLootTable( "beanlet", CFG.BEANLET.LOOT)
 
 local function OnIgnite(inst)
     DefaultBurnFn(inst)
@@ -56,7 +56,7 @@ local function fn()
     inst.components.locomotor.walkspeed = CFG.BEANLET.WALKSPEED
     inst.components.locomotor.runspeed = CFG.BEANLET.RUNSPEED
 
-	inst.data = {}
+    inst.data = {}
 
     inst:AddComponent("combat")
 
@@ -67,7 +67,7 @@ local function fn()
     inst.components.burnable:SetOnIgniteFn(OnIgnite)
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetChanceLootTable('beanlet')
+    inst.components.lootdropper:SetChanceLootTable("beanlet")
 
     inst:SetStateGraph("SGbeanlet")
 

@@ -4,16 +4,16 @@ local CFG = TheMod:GetConfig()
 
 local assets=
 {
-	Asset("ANIM", "anim/owl.zip"),
-	Asset("ANIM", "anim/ds_pig_basic.zip"),
-	Asset("ANIM", "anim/ds_pig_actions.zip"),
-	Asset("ANIM", "anim/ds_pig_attacks.zip"),
-	Asset("SOUND", "sound/merm.fsb"),
+    Asset("ANIM", "anim/owl.zip"),
+    Asset("ANIM", "anim/ds_pig_basic.zip"),
+    Asset("ANIM", "anim/ds_pig_actions.zip"),
+    Asset("ANIM", "anim/ds_pig_attacks.zip"),
+    Asset("SOUND", "sound/merm.fsb"),
 }
 
 local prefabs = CFG.OWL.PREFABS
 
-SetSharedLootTable( 'owl', CFG.OWL.LOOT) 
+SetSharedLootTable( "owl", CFG.OWL.LOOT) 
 
 local function ontalk(inst, script)
     inst.SoundEmitter:PlaySound("dontstarve/pig/grunt")
@@ -44,8 +44,8 @@ local function RetargetFn(inst, target)
         and not guy:HasTag("owl") 
         and not guy:HasTag("epic")
         and not guy:HasTag("beanmonster")
-		and not guy:HasTag("beanprotector")
-		and not guy:HasTag("cloudneutral")
+        and not guy:HasTag("beanprotector")
+        and not guy:HasTag("cloudneutral")
         and not guy:HasTag("beanlet")
     end)
     return invader
@@ -82,12 +82,12 @@ local function OnAttacked(inst, data)
 end
 
 local function fn()
-	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
-	local sound = inst.entity:AddSoundEmitter()
-	local shadow = inst.entity:AddDynamicShadow()
-	shadow:SetSize(1.5, .75)
+    local inst = CreateEntity()
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
+    local sound = inst.entity:AddSoundEmitter()
+    local shadow = inst.entity:AddDynamicShadow()
+    shadow:SetSize(1.5, .75)
     inst.Transform:SetFourFaced()
     inst.Transform:SetScale(CFG.OWL.SCALE, CFG.OWL.SCALE, CFG.OWL.SCALE)
 
@@ -111,7 +111,7 @@ local function fn()
 
     inst:AddTag("character")
     inst:AddTag("owl")
-	inst:AddTag("cloudmonster")
+    inst:AddTag("cloudmonster")
 
     local brain = require "brains/owlbrain"
     inst:SetBrain(brain)

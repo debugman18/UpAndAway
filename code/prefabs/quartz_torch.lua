@@ -2,7 +2,7 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/void_placeholder.zip"),
+    Asset("ANIM", "anim/void_placeholder.zip"),
 }
 
 local function onequip(inst, owner) 
@@ -29,9 +29,9 @@ end
 
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
     local sound = inst.entity:AddSoundEmitter()
     anim:SetBank("torch")
     anim:SetBuild("torch")

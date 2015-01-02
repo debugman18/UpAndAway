@@ -2,10 +2,10 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/marshmallow.zip"),
-	
-	Asset( "ATLAS", "images/inventoryimages/marshmallow.xml" ),
-	Asset( "IMAGE", "images/inventoryimages/marshmallow.tex" ),	
+    Asset("ANIM", "anim/marshmallow.zip"),
+    
+    Asset( "ATLAS", inventoryimage_atlas("marshmallow") ),
+    Asset( "IMAGE", inventoryimage_texture("marshmallow") ),	
 }
 
 local prefabs =
@@ -14,9 +14,9 @@ local prefabs =
 }
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
 
     MakeInventoryPhysics(inst)
     
@@ -31,14 +31,14 @@ local function fn(Sim)
 
     
     inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+    inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
  
     inst:AddComponent("inspectable")  
     
     inst:AddComponent("inventoryitem") 
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/marshmallow.xml"
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("marshmallow")
     
-	--Is not filling.
+    --Is not filling.
     inst:AddComponent("edible")
     inst.components.edible.foodtype = "VEGGIE"
     inst.components.edible.healthvalue = -8

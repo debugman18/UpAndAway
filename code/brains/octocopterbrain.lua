@@ -73,10 +73,10 @@ function OctocopterBrain:OnStart()
             DoAction(self.inst, GoHomeAction, "Go Home", true )),
 
         SequenceNode{
-			ParallelNodeAny{
-				WaitNode(3),
-				Wander(self.inst),
-			},
+            ParallelNodeAny{
+                WaitNode(3),
+                Wander(self.inst),
+            },
             ActionNode(function() self.inst.sg:GoToState("idle") end),
         }
     }, 1)

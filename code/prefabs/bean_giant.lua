@@ -17,20 +17,20 @@ local assets =
 
 local prefabs = CFG.BEAN_GIANT.PREFABS
 
-SetSharedLootTable('bean_giant', CFG.BEAN_GIANT.LOOT)
+SetSharedLootTable("bean_giant", CFG.BEAN_GIANT.LOOT)
 
 local function onunchargedfn(inst)
-	inst:RemoveComponent("childspawner")
+    inst:RemoveComponent("childspawner")
 end
 
 local function onchargedfn(inst)
-	inst:AddComponent("childspawner")
-	inst.components.childspawner.childname = CFG.BEAN_GIANT.CHILD
-	inst.components.childspawner:SetRareChild(CFG.BEAN_GIANT.RARECHILD, CFG.BEAN_GIANT.RARECHILD_CHANCE)
-	inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*CFG.BEAN_GIANT.REGEN_MODIFIER)
-	inst.components.childspawner:SetSpawnPeriod(CFG.BEAN_GIANT.SPAWN_PERIOD)
-	inst.components.childspawner:SetMaxChildren(CFG.BEAN_GIANT.MAX_CHILDREN)
-	inst.components.childspawner:StartSpawning()
+    inst:AddComponent("childspawner")
+    inst.components.childspawner.childname = CFG.BEAN_GIANT.CHILD
+    inst.components.childspawner:SetRareChild(CFG.BEAN_GIANT.RARECHILD, CFG.BEAN_GIANT.RARECHILD_CHANCE)
+    inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*CFG.BEAN_GIANT.REGEN_MODIFIER)
+    inst.components.childspawner:SetSpawnPeriod(CFG.BEAN_GIANT.SPAWN_PERIOD)
+    inst.components.childspawner:SetMaxChildren(CFG.BEAN_GIANT.MAX_CHILDREN)
+    inst.components.childspawner:StartSpawning()
 end
 
 local function CalcSanityAura(inst, observer)
@@ -212,9 +212,9 @@ local function fn(Sim)
     inst:AddComponent("knownlocations")
     inst:SetBrain(brain)
     
-	inst:AddComponent("staticchargeable")
-	inst.components.staticchargeable:SetChargedFn(onchargedfn)
-	inst.components.staticchargeable:SetUnchargedFn(onunchargedfn)
+    inst:AddComponent("staticchargeable")
+    inst.components.staticchargeable:SetChargedFn(onchargedfn)
+    inst.components.staticchargeable:SetUnchargedFn(onunchargedfn)
 
     inst:ListenForEvent("working", AfterWorking)
     inst:ListenForEvent("attacked", OnAttacked)

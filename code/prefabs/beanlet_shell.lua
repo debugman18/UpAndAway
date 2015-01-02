@@ -2,39 +2,39 @@ BindGlobal()
 
 local assets =
 {
-	Asset("ANIM", "anim/beanlet_shell.zip"),
+    Asset("ANIM", "anim/beanlet_shell.zip"),
 
-    Asset( "ATLAS", "images/inventoryimages/beanlet_shell.xml" ),
-    Asset( "IMAGE", "images/inventoryimages/beanlet_shell.tex" ),	
+    Asset( "ATLAS", inventoryimage_atlas("beanlet_shell") ),
+    Asset( "IMAGE", inventoryimage_texture("beanlet_shell") ),	
 }
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	inst.entity:AddTransform()
-	inst.entity:AddAnimState()
-	inst.entity:AddSoundEmitter()
-	MakeInventoryPhysics(inst)
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddAnimState()
+    inst.entity:AddSoundEmitter()
+    MakeInventoryPhysics(inst)
 
-	inst.AnimState:SetBank("icebox")
-	inst.AnimState:SetBuild("beanlet_shell")
-	inst.AnimState:PlayAnimation("closed")
-	inst.Transform:SetScale(1.2,1.2,1.2)
-
-
-	------------------------------------------------------------------------
-	SetupNetwork(inst)
-	------------------------------------------------------------------------
+    inst.AnimState:SetBank("icebox")
+    inst.AnimState:SetBuild("beanlet_shell")
+    inst.AnimState:PlayAnimation("closed")
+    inst.Transform:SetScale(1.2,1.2,1.2)
 
 
-	inst:AddComponent("stackable")
-	inst.components.stackable.maxsize = TUNING.STACK_SIZE_LARGEITEM
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
 
-	inst:AddComponent("inspectable")
 
-	inst:AddComponent("inventoryitem")
-	inst.components.inventoryitem.atlasname = "images/inventoryimages/beanlet_shell.xml"
+    inst:AddComponent("stackable")
+    inst.components.stackable.maxsize = TUNING.STACK_SIZE_LARGEITEM
 
-	return inst
+    inst:AddComponent("inspectable")
+
+    inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("beanlet_shell")
+
+    return inst
 end
 
 return Prefab ("common/inventory/beanlet_shell", fn, assets) 

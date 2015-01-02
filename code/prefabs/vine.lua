@@ -6,13 +6,13 @@ local brain = require "brains/vinebrain"
 
 local assets=
 {
-	Asset("ANIM", "anim/vine.zip"),
+    Asset("ANIM", "anim/vine.zip"),
     Asset("SOUND", "sound/tentacle.fsb"),
 }
 
 local prefabs = CFG.VINE.PREFABS
 
-SetSharedLootTable( 'vine', CFG.VINE.LOOT)
+SetSharedLootTable( "vine", CFG.VINE.LOOT)
 
 local function OnHit(inst, attacker, damage)
     if attacker and attacker.prefab == bean_giant then
@@ -27,7 +27,7 @@ local function Retarget(inst)
                    and not (inst.components.follower and inst.components.follower.leader == guy)
                    and not guy:HasTag("vine")
                    and not guy:HasTag("beanmonster")
-				   and not guy:HasTag("beanprotector")
+                   and not guy:HasTag("beanprotector")
                    and not guy:HasTag("cloudneutral")
                    and inst.components.combat:CanTarget(guy)
     end)
@@ -36,29 +36,29 @@ end
 
 local function KeepTarget(inst, target)
     if target and target:IsValid() and target.components.health and not target.components.health:IsDead() then
-		return distsq(Vector3(target.Transform:GetWorldPosition() ), Vector3(inst.Transform:GetWorldPosition() ) ) < 30*30
+        return distsq(Vector3(target.Transform:GetWorldPosition() ), Vector3(inst.Transform:GetWorldPosition() ) ) < 30*30
     end
 end
 
 local function fn(Sim)
-	local inst = CreateEntity()
-	local trans = inst.entity:AddTransform()
-	local anim = inst.entity:AddAnimState()
+    local inst = CreateEntity()
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
     inst.entity:AddPhysics()
     inst.Physics:SetCylinder(0.50,2)
-	trans:SetScale(.6, .7, 0.5)
+    trans:SetScale(.6, .7, 0.5)
     MakeGhostPhysics(inst, 1, .5)
-	
+    
     anim:SetBank("tentacle")
     anim:SetBuild("vine")
     anim:PlayAnimation("idle")
- 	inst.entity:AddSoundEmitter()
+     inst.entity:AddSoundEmitter()
 
     inst:AddTag("monster")    
     inst:AddTag("hostile")
     inst:AddTag("vine")
-	inst:AddTag("cloudmonster")
-	inst:AddTag("beanprotector")
+    inst:AddTag("cloudmonster")
+    inst:AddTag("beanprotector")
     inst:AddTag("beanmonster")
 
 
@@ -80,7 +80,7 @@ local function fn(Sim)
     
     MakeLargeFreezableCharacter(inst)
     
-	inst:AddComponent("sanityaura")
+    inst:AddComponent("sanityaura")
     inst.components.sanityaura.aura = CFG.VINE.SANITYAURA
        
     inst:AddComponent("inspectable")
@@ -88,17 +88,17 @@ local function fn(Sim)
     inst.components.lootdropper:SetChanceLootTable("vine")
 
     inst:ListenForEvent("attacked", OnAttacked)
-	
+    
     inst:AddComponent("locomotor")
     inst.components.locomotor.walkspeed = CFG.VINE.WALKSPEED
-	inst.components.locomotor.runspeed = CFG.VINE.RUNSPEED
-	inst.components.locomotor.directdrive = true
+    inst.components.locomotor.runspeed = CFG.VINE.RUNSPEED
+    inst.components.locomotor.directdrive = true
     
     inst:SetStateGraph("SGvine")
-	inst:SetBrain(brain)
+    inst:SetBrain(brain)
 
-	inst:ListenForEvent("death", function(inst) inst:StopBrain() end)
-	
+    inst:ListenForEvent("death", function(inst) inst:StopBrain() end)
+    
     return inst
 end
 

@@ -21,9 +21,7 @@ RecipeAdder:TrackRecipes(TheMod:Debug())
 -- 'prefab' is the prefab of the recipe's result (or of the igredient,
 -- see ModIngredient below).
 --]]
-RecipeAdder:SetDefaultAtlasFn(function(prefab)
-	return "images/inventoryimages/"..prefab..".xml"
-end)
+RecipeAdder:SetDefaultAtlasFn(inventoryimage_atlas)
 
 --[[
 -- This works and is used exactly the same as Ingredient.
@@ -124,7 +122,7 @@ RefineFable(1).refined_white_crystal { ModIng("crystal_fragment_white", 6) }
 
 RefineFable(1).refiner { Ing("hammer", 1), Ing("gears", 3), ModIng("thunderboards", 3) }
     .placer "refiner_placer"
-    .atlas "images/refiner.xml"
+    .atlas "images/ua_minimap.xml"
     .sortkey (1)
 
 RefineFable(1).thunderboards { ModIng("thunder_log", 4) }
@@ -138,7 +136,7 @@ ScienceFable(1).weather_machine { ModIng("cumulostone", 3), ModIng("crystal_frag
 
 ScienceFable(2).research_lectern { Ing("goldnugget", 4), ModIng("crystal_fragment_light", 2), ModIng("thunder_log", 6) }
     .placer "research_lectern_placer"
-    .atlas "images/research_lectern.xml"
+    .atlas "images/ua_minimap.xml"
     .sortkey (Recipes.researchlab2.sortkey)
 
 ---
@@ -154,12 +152,12 @@ ToolsFable(1).magnet { Ing("gears", 2), ModIng("crystal_fragment_quartz", 3), In
 ---
 
 TownFable(1).beanstalk_wall_item { ModIng("beanstalk_chunk", 4), Ing("twigs", 1) }
-	.numtogive (6)
-	.sortkey (Recipes.wall_stone_item.sortkey)
+    .numtogive (6)
+    .sortkey (Recipes.wall_stone_item.sortkey)
 
 TownFable(1).crystal_wall_item { ModIng("crystal_fragment_light", 4), ModIng("crystal_fragment_water", 4), ModIng("crystal_fragment_spire", 4) }
-	.numtogive (6)
-	.sortkey (Recipes.wall_stone_item.sortkey)
+    .numtogive (6)
+    .sortkey (Recipes.wall_stone_item.sortkey)
 
 ---
 
@@ -172,6 +170,6 @@ WarFable(1).cotton_candy { ModIng("cloud_cotton", 6), ModIng("candy_fruit", 6) }
 ---
 
 if RecipeAdder:IsTrackingRecipes() then
-	local ValidateRecipes = modrequire "debugtools.validate_recipes"
-	ValidateRecipes( RecipeAdder:GetTrackedRecipes() )
+    local ValidateRecipes = modrequire "debugtools.validate_recipes"
+    ValidateRecipes( RecipeAdder:GetTrackedRecipes() )
 end

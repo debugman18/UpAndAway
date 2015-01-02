@@ -1,5 +1,5 @@
 
-modrequire 'map.tiledefs'
+modrequire "map.tiledefs"
 
 --Controls setpeices.
 local Layouts = require("map/layouts").Layouts

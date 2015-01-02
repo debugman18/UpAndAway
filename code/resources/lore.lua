@@ -3,7 +3,7 @@
 --]]
 
 
-local StoryTelling = modrequire 'lib.storytelling'
+local StoryTelling = modrequire "lib.storytelling"
 
 
 MercuriusJournal = StoryTelling.Book()
@@ -21,7 +21,7 @@ Of the dark thoughts that storm his mind.
 So peaceful. Such calm. It's very nice.
 And so dreadfully BORING.
 Mercurius's mind rebels against such stagnation.
-How these 'gods' can remain sane in such static is beyond understanding
+How these "gods" can remain sane in such static is beyond understanding
 Static....Mercurius can feel a plan beginning to form.
 
 ]=][=[

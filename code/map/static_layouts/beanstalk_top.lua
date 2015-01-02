@@ -60,7 +60,7 @@ return {
       opacity = 1,
       properties = {},
       objects = {
-	  
+      
         {
           name = "",
           type = "spawnpoint",
@@ -71,9 +71,9 @@ return {
           height = 0,
           visible = true,
           properties = {
-		  }		  
+          }		  
         },
-		
+        
         {
           name = "",
           type = "beanstalk_exit",
@@ -84,9 +84,9 @@ return {
           height = 16,
           visible = true,
           properties = {
-		  }
+          }
         }
-		
+        
       }	  
     }
   }

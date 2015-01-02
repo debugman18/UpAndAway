@@ -45,7 +45,7 @@ CommonStates.AddWalkStates(states,
 
     },
 
-	walktimeline = 
+    walktimeline = 
     {
         TimeEvent(4*FRAMES, function(inst) PlayFootstep(inst) end),
         TimeEvent(5*FRAMES, function(inst) PlayFootstep(inst) end),
@@ -55,7 +55,7 @@ CommonStates.AddWalkStates(states,
          end),
         TimeEvent(11*FRAMES, function(inst) PlayFootstep(inst) end),
 
-	},
+    },
 
     endtimeline =
     {
