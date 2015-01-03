@@ -304,15 +304,6 @@ local function fn(Sim)
 
             staticgen:StartGenerating()
         end
-
-		if IsDST() then
-			if not inst.components.playerspawner then
-				inst:AddComponent("playerspawner")
-			end
-			if not inst.components.worldsanitymonsterspawner then
-				inst:AddComponent("worldsanitymonsterspawner")
-			end
-		end
     end
 
     ---------------------------------------------
@@ -321,8 +312,12 @@ local function fn(Sim)
     --
 
     if IsDST() and IsMasterSimulation() then
-        inst:AddComponent("playerspawner")
-        inst:AddComponent("worldsanitymonsterspawner")
+		if not inst.components.playerspawner then
+			inst:AddComponent("playerspawner")
+		end
+		if not inst.components.worldsanitymonsterspawner then
+			inst:AddComponent("worldsanitymonsterspawner")
+		end
     end
 
     if not IsDedicated() then
