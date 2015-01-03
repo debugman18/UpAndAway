@@ -20,8 +20,6 @@ local CloudAmbientManager = HostClass(Debuggable, function(self, inst)
     self.inst = inst
     Debuggable._ctor(self, "CloudAmbientManager")
 
-    assert( GetPseudoClock(), "The clock should be added before cloudambientmanager!" )
-
     self:SetConfigurationKey("CLOUD_AMBIENT")
 
     self.colours = {}
@@ -50,10 +48,19 @@ local CloudAmbientManager = HostClass(Debuggable, function(self, inst)
         end
     end)
 
-    self:ApplyColour()
-    self.inst:DoTaskInTime(0, function()
-        self:ApplyColour()
-    end)
+	local function initialize_self()
+		self:ApplyColour()
+		self.inst:DoTaskInTime(0, function()
+			self:ApplyColour()
+		end)
+	end
+	if IsDST() then
+		assert( GetPseudoClock() == nil )
+		TheMod:AddPrefabPostInit("world_network", initialize_self)
+	else
+		assert( GetPseudoClock(), "The clock should be added before cloudambientmanager!" )
+		initialize_self()
+	end
 end)
 
 function CloudAmbientManager:ApplyColour()

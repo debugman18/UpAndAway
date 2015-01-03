@@ -1,9 +1,40 @@
-
 modrequire "map.tiledefs"
 
 --Controls setpeices.
 local Layouts = require("map/layouts").Layouts
 local StaticLayout = require("map/static_layout")
+
+-- Adds spawnpoints for multiplayer.
+-- This must be set up before the first call to StaticLayout.Get.
+if IsDST() then
+	wickerrequire "plugins.addstaticlayoutpreinit"
+
+	TheMod:AddStaticLayoutPreInit(function(data, name)
+		local objgroup = Lambda.Find(function(layer)
+			return layer.type == "objectgroup"
+		end, ipairs(data.layers))
+		assert( objgroup )
+
+		local objects = assert( objgroup.objects )
+		
+		local spawnpts = {}
+		for _, obj in ipairs(objects) do
+			if obj.type == "spawnpoint_master" then
+				return
+			end
+			if obj.type == "spawnpoint" then
+				TheMod:DebugSay("Generating multiplayer spawnpoint for '", name, "' from singleplayer data...")
+				table.insert(spawnpts, obj)
+			end
+		end
+		for _, obj in ipairs(spawnpts) do
+			local dst_obj = Lambda.Map(Lambda.Identity, pairs(obj))
+			dst_obj.type = "spawnpoint_master"
+			table.insert(objects, dst_obj)
+		end
+	end)
+end
+
 
 Layouts["BeanstalkTop"] = StaticLayout.Get("map.static_layouts.beanstalk_top")
 Layouts["OctocopterWreckage"] = StaticLayout.Get("map.static_layouts.octocopter_wreckage")

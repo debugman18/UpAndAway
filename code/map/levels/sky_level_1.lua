@@ -42,7 +42,7 @@ local sky_level_1 = {
         {"location",		"cave"},
 
         --{"world_size", 		"small"},
-        {"world_size", 		"medium"},
+        {"world_size", 		IfDST("large", "medium")},
         --{"world_size", 		"tiny"},
         --{"day", 			"longdusk"}, 
         {"day", 			"onlydusk"}, 
@@ -127,6 +127,9 @@ local sky_level_1 = {
         "Cloudhenge",
         "StrixShrine",
         "WitchGrove",
+        "OctocopterPart1",
+        "OctocopterPart2",
+        "OctocopterPart3",
         "OctocopterWreckage",				
     },
 

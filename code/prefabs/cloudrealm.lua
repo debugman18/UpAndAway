@@ -292,7 +292,7 @@ local function fn(Sim)
 
     --inst.Map:SetOverlayTexture( "levels/textures/snow.tex" )
     
-    if IsHost() then
+    if IsMasterSimulation() then
         inst:AddComponent("staticgenerator")
         do
             local staticgen = inst.components.staticgenerator
@@ -304,6 +304,15 @@ local function fn(Sim)
 
             staticgen:StartGenerating()
         end
+
+		if IsDST() then
+			if not inst.components.playerspawner then
+				inst:AddComponent("playerspawner")
+			end
+			if not inst.components.worldsanitymonsterspawner then
+				inst:AddComponent("worldsanitymonsterspawner")
+			end
+		end
     end
 
     ---------------------------------------------
