@@ -106,11 +106,12 @@ SHEEP.LOOT = {
 }
 
 RAM.LOOT = {
-	{'meat',	0.80},	
-	{'meat',	0.80},
+	{'meat',	1.00},	
+	{'meat',	0.90},
 	{'meat',	0.70},
 	{'meat',	0.70},
-	{'wool',	0.80},
+	{'meat',	0.70},	
+	{'wool',	0.90},
 	{'wool',	0.80},
 	{'wool',	0.80},
 }
@@ -260,8 +261,10 @@ GOOSE.LOOT = {
 	{'drumstick', 	 0.90},
 	{'drumstick', 	 0.50},
 	{'drumstick', 	 1.00},	
-	{'robin_winter', 1.00},
-	{'robin_winter', 0.90},	
+	{'feather_robin_winter', 1.00},
+	{'feather_robin_winter', 0.90},	
+	{'feather_robin_winter', 0.90},
+	{'feather_robin_winter', 0.90},
 	{'golden_egg',	 0.10},
 }
 
@@ -507,9 +510,9 @@ LIVE_GNOME.COOKED_PRODUCT = "rubber"
 
 GUMMYBEAR.SCALE = 0.9
 
-GUMMYBEAR.COLOR = 0.1 + math.random() * 0.9
+GUMMYBEAR.COLOR = function() return 0.1 + math.random() * 0.9 end
 
-GUMMYBEAR.ALPHA = 0.75
+GUMMYBEAR.ALPHA = function() return 0.75 + math.random(0.05,0.15) end
 
 GUMMYBEAR.WALKSPEED = 2
 GUMMYBEAR.RUNSPEED = 5

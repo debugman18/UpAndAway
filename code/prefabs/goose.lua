@@ -128,8 +128,8 @@ local function fn()
     MakeMediumBurnableCharacter(inst, "pig_torso")
     MakeMediumFreezableCharacter(inst, "pig_torso")
     
-     inst:AddComponent("staticchargeable")
-     inst.components.staticchargeable:SetOnChargeFn(NewEggDropper(CFG.GOOSE.LAY_PERIOD), CFG.GOOSE.LAY_DELAY)
+    inst:AddComponent("staticchargeable")
+    inst.components.staticchargeable:SetOnChargeFn(NewEggDropper(CFG.GOOSE.LAY_PERIOD), (CFG.GOOSE.LAY_DELAY))
 
     return inst
 end

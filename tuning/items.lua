@@ -418,6 +418,34 @@ CLOUD_CORAL.DROP_RATE = 0.9
 
 ---------------------------------------
 
+-- Cauldron
+
+CAULDRON.RADIUS = 5
+CAULDRON.FALLOFF = 1
+CAULDRON.INTENSITY = 5
+
+-- This will be replaced by a unique FX.
+CAULDRON.BURNFX = "campfirefire"
+
+CAULDRON.INGREDIENTS = {
+    bonestew = true,
+    cloud_jely = true,
+    jellycap_red = true,
+    jellycap_blue = true,
+    jellycap_green = true,
+    golden_petals = true,
+    nightmarefuel = true,
+    rocks = true,
+    marble = true,
+    poop = true,
+    beardhair = true,
+    dragonblood_log = true,
+    charcoal = true,
+    ash = true,	
+}
+
+---------------------------------------
+
 -- Cloud Cotton
 
 ---------------------------------------
