@@ -7,9 +7,9 @@ local StaticLayout = require("map/static_layout")
 -- Adds spawnpoints for multiplayer.
 -- This must be set up before the first call to StaticLayout.Get.
 if IsDST() then
-	wickerrequire "plugins.addstaticlayoutpreinit"
+	wickerrequire "plugins.addstaticlayoutpreinitany"
 
-	TheMod:AddStaticLayoutPreInit(function(data, name)
+	TheMod:AddStaticLayoutPreInitAny(function(data, name)
 		local objgroup = Lambda.Find(function(layer)
 			return layer.type == "objectgroup"
 		end, ipairs(data.layers))
