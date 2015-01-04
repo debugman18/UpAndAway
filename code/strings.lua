@@ -2370,10 +2370,14 @@ STRINGS.RECIPE_DESC.CRYSTAL_WALL_ITEM = "Elegant yet durable."
 STRINGS.RECIPE_DESC.REFINER = "Smash, crunch, create."
 STRINGS.RECIPE_DESC.WIND_AXE = "Stormy weather in your hands."
 STRINGS.RECIPE_DESC.BEANLET_ARMOR = "Armor that takes the weight off."
+STRINGS.RECIPE_DESC.MUSHROOM_HAT = "For the fungi in all of us."
 
 STRINGS.POTION_NAMES = {
     "Mysterious",
     "Strange",
+    "Interesting",
+    "Alluring",
+    "Enticing",
     "Odd",
 }
 

@@ -506,9 +506,9 @@ LIVE_GNOME.COOKED_PRODUCT = "rubber"
 -- Gummybear
 
 GUMMYBEAR.SCALE = 0.9
-GUMMYBEAR.COLOR1 = 0.1 + math.random() * 0.9
-GUMMYBEAR.COLOR2 = 0.1 + math.random() * 0.9
-GUMMYBEAR.COLOR3 = 0.1 + math.random() * 0.9
+
+GUMMYBEAR.COLOR = 0.1 + math.random() * 0.9
+
 GUMMYBEAR.ALPHA = 0.75
 
 GUMMYBEAR.WALKSPEED = 2

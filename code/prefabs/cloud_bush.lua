@@ -70,7 +70,7 @@ local function onchargedfn(inst)
 
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/harvest_sticks"
-    inst.components.pickable:SetUp(CFG.CLOUD_BUSH.PICK_LOOT, CFG.CLOUD_BUSH.GROW_TIME, CLOUD_BUSH.PICK_QUANTITY)
+    inst.components.pickable:SetUp(CFG.CLOUD_BUSH.PICK_LOOT, CFG.CLOUD_BUSH.GROW_TIME, CFG.CLOUD_BUSH.PICK_QUANTITY)
     inst.components.pickable.onregenfn = onchargedfn
     inst.components.pickable.onpickedfn = onpickedfn
     inst.components.pickable.makebarrenfn = makebarrenfn

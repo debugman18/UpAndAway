@@ -1,27 +1,17 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
     Asset("ANIM", "anim/cloud_coral.zip"),
 }
 
-local prefabs = {
-    "cloud_coral_fragment",
-}
-
-local loot1 = {
-    "cloud_coral_fragment",
-}
-
-local loot2 = {
-    "cloud_coral_fragment",
-    "cloud_coral_fragment",
-    "cloud_coral_fragment",
-}
+local prefabs = CFG.CLOUD_CORAL.PREFABS
 
 local function grow(inst, dt)
     if inst.components.scaler.scale < 2 then
-        local new_scale = math.min(inst.components.scaler.scale + TUNING.ROCKY_GROW_RATE*dt, 2)
+        local new_scale = math.min(inst.components.scaler.scale + CFG.CLOUD_CORAL.GROW_RATE*dt, 2)
         inst.components.scaler:SetScale(new_scale)
     else
         if inst.growtask then
@@ -32,12 +22,13 @@ local function grow(inst, dt)
 end
 
 local function applyscale(inst, scale)
-    inst.components.workable:SetWorkLeft(scale*TUNING.ROCKS_MINE)
-    if scale == 1 and inst.components.lootdropper then
-        inst.components.lootdropper:SetLoot(loot1)
-    elseif scale == 2 and inst.components.lootdropper then
-        inst.components.lootdropper:SetLoot(loot2)
-    end	
+    inst.components.workable:SetWorkLeft(scale*CFG.CLOUD_CORAL.WORK_TIME)
+
+    local function lootscaling()
+        local lootamount = scale*0.2
+
+        inst.components.lootdropper.numrandomloot = lootamount
+    end
 end
 
 local function onMined(inst, chopper)
@@ -46,10 +37,10 @@ local function onMined(inst, chopper)
 end
 
 local function OnWork(inst, worker, workleft)
-    local pt = Point(inst.Transform:GetWorldPosition())			
-    if workleft < TUNING.ROCKS_MINE*(1/3) then
+    local pt = Point(inst.Transform:GetWorldPosition())         
+    if workleft < CFG.CLOUD_CORAL.WORK_TIME*(1/3) then
         inst.AnimState:PlayAnimation("idle_low")
-    elseif workleft < TUNING.ROCKS_MINE*(2/3) then
+    elseif workleft < CFG.CLOUD_CORAL.WORK_TIME*(2/3) then
         inst.AnimState:PlayAnimation("idle_med")
     else
         inst.AnimState:PlayAnimation("idle_full")
@@ -65,7 +56,7 @@ end
 local function onload(inst, data)
     if data and data.scale then
         inst.components.scaler:SetScale(data.scale)
-    end	
+    end 
 end
 
 local function fn(Sim)
@@ -89,24 +80,25 @@ local function fn(Sim)
     ------------------------------------------------------------------------
     SetupNetwork(inst)
     ------------------------------------------------------------------------
-     
+    
 
     inst:AddComponent("inspectable")
     
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.MINE)
     inst.components.workable:SetOnFinishCallback(onMined)
-    inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE)
+    inst.components.workable:SetWorkLeft(CFG.CLOUD_CORAL.WORK_TIME)
     inst.components.workable:SetOnWorkCallback(OnWork)
 
     inst:AddComponent("scaler")
     inst.components.scaler.OnApplyScale = applyscale
 
-       inst:AddComponent("lootdropper") 
+    inst:AddComponent("lootdropper") 
+    inst.components.lootdropper:AddRandomLoot("cloud_coral_fragment", CFG.CLOUD_CORAL.DROP_RATE)
 
-    local start_scale = math.random(1, 2)
+    local start_scale = CFG.CLOUD_CORAL.START_SCALE
     inst.components.scaler:SetScale(start_scale)
-    local dt = 60+math.random()*10
+    local dt = CFG.CLOUD_CORAL.GROW_RATE
     inst.growtask = inst:DoPeriodicTask(dt, grow, nil, dt)
     
     inst.OnLongUpdate = grow

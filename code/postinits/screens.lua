@@ -49,7 +49,7 @@ local function DoInit(self)
 
     ---------------------------------------------
 
-    if ENABLED then
+    if cfg and ENABLED then
         
     print("Custom menu enabled.")
 
@@ -119,7 +119,7 @@ local function DoInit(self)
     end
     _G.TheSim:LoadPrefabs {"shopkeeper"} -- needed for its assets to be loaded.
     configureCornerDude(self, "shop", "shop_basic", "idle")
-    self.shopkeeper:SetPosition(-10,-330,0)
+    self.shopkeeper:SetPosition(80,-330,0) -- Original is -10, -330, 0
     self.shopkeeper:SetScale(.45,.45,.45)
 
     --Here we move that pesky RoG advert.
@@ -129,7 +129,7 @@ local function DoInit(self)
 
     --Here we move the upsell, if it exists.
     if self.chester_upsell then
-        self.chester_upsell:Hide()
+        self.chester_upsell:SetPosition(-70, -170, 0)
     end
 
     --Here we wrap everything up.
