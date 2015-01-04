@@ -398,6 +398,20 @@ CLOUD_BUSH.PICK_QUANTITY = 2
 
 -- Cloud Coral
 
+CLOUD_CORAL.START_SCALE = math.random(1, 2)
+
+CLOUD_CORAL.GROW_RATE = 0.7*TUNING.ROCKY_GROW_RATE
+
+CLOUD_CORAL.WORK_TIME = 0.5*TUNING.ROCKS_MINE
+
+-- Loot and Prefabs
+
+CLOUD_CORAL.PREFABS = {
+    "cloud_coral_fragment",
+}
+
+CLOUD_CORAL.DROP_RATE = 0.9
+
 ---------------------------------------
 
 -- Cloud Coral Fragment
@@ -405,6 +419,14 @@ CLOUD_BUSH.PICK_QUANTITY = 2
 ---------------------------------------
 
 -- Cloud Cotton
+
+---------------------------------------
+
+-- Cloud Fruit
+
+---------------------------------------
+
+-- Cloud Fruit Tree
 
 ---------------------------------------
 

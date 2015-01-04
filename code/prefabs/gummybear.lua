@@ -82,7 +82,7 @@ local function bear()
     inst.AnimState:SetBuild("gummybear_nice")
     inst.AnimState:PlayAnimation("idle", true)
 
-    inst.AnimState:SetMultColour(CFG.GUMMYBEAR.COLOR1, CFG.GUMMYBEAR.COLOR2, CFG.GUMMYBEAR.COLOR3, CFG.GUMMYBEAR.ALPHA)    
+    inst.AnimState:SetMultColour(0.1 + math.random() * 0.9, 0.1 + math.random() * 0.9, 0.1 + math.random() * 0.9, CFG.GUMMYBEAR.ALPHA)  
 
     -----------------------------------------------------------------------
     SetupNetwork(inst)
