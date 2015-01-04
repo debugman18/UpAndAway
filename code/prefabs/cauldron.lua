@@ -27,7 +27,6 @@ local function startbrewfn(inst)
     inst.components.burnable:Ignite()
     inst.SoundEmitter:KillSound("snd")
     inst.SoundEmitter:PlaySound("dontstarve/common/campfire", "snd")
-    inst.Light:Enable(true)
 end
 
 local function donebrewfn(inst)
@@ -38,7 +37,6 @@ local function donebrewfn(inst)
 
     inst.SoundEmitter:KillSound("snd")
     inst.SoundEmitter:PlaySound("dontstarve/common/blackpowder_explo", "snd")
-    inst.Light:Enable(false)
 end
 
 local function fn()
@@ -54,20 +52,13 @@ local function fn()
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("cauldron.tex")	
 
-    local light = inst.entity:AddLight()
-    light:Enable(false)
-    light:SetRadius(CFG.CAULDRON.RADIUS)
-    light:SetFalloff(CFG.CAULDRON.FALLOFF)
-    light:SetIntensity(CFG.CAULDRON.INTENSITY)
-    light:SetColour(235/255,62/255,12/255)  
-
     ------------------------------------------------------------------------
     SetupNetwork(inst)
     ------------------------------------------------------------------------
 
     -----------------------
     inst:AddComponent("burnable")
-    inst.components.burnable:AddBurnFX(CFG.CAULDRON.BURNFX, Vector3(0, .4, 0))
+    inst.components.burnable:AddBurnFX(CFG.CAULDRON.BURNFX, Vector3(CFG.CAULDRON.BURNFX_POSX, CFG.CAULDRON.BURNFX_POSY, CFG.CAULDRON.BURNFX_POSZ))
 
     inst:AddComponent("brewer")
     do
