@@ -4,6 +4,8 @@
 
 local Reflection = wickerrequire "game.reflection"
 
+--TODO: review this once caves are properly in.
+modrequire "patches.cave_support"
 
 modrequire "patches.temperature"
 modrequire "patches.itemtile"

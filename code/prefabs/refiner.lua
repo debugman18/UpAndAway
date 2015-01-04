@@ -16,7 +16,7 @@ local prefabs =
     "rocks",
     "twigs",
     "cutgrass",
-    "logs",
+    "log",
 }    
 
 local function startbrewfn(inst)
