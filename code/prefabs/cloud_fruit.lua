@@ -6,11 +6,11 @@ local assets =
 {
 	Asset("ANIM", "anim/cloud_fruit.zip"),
 
-	Asset( "ATLAS", inventoryimage_atlas("cloud_fruit")),
-	Asset( "IMAGE", inventoryimage_atlas("cloud_fruit")),	
+	Asset( "ATLAS", inventoryimage_atlas("cloud_fruit") ),
+	Asset( "IMAGE", inventoryimage_texture("cloud_fruit") ),	
 
-	Asset( "ATLAS", inventoryimage_atlas("cloud_fruit_cooked")),
-	Asset( "IMAGE", inventoryimage_texture("cloud_fruit_cooked")),
+	Asset( "ATLAS", inventoryimage_atlas("cloud_fruit_cooked") ),
+	Asset( "IMAGE", inventoryimage_texture("cloud_fruit_cooked") ),
 }
 
 local function fn(Sim)

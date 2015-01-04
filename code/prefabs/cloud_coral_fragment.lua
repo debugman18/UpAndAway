@@ -6,8 +6,8 @@ local assets =
 {
 	Asset("ANIM", "anim/cloud_coral_fragment.zip"),
 
-	Asset( "ATLAS", inventoryimage_atlas("cloud_coral_fragment")),
-	Asset( "IMAGE", inventoryimage_texture("cloud_coral_fragment")),	
+	Asset( "ATLAS", inventoryimage_atlas("cloud_coral_fragment") ),
+	Asset( "IMAGE", inventoryimage_texture("cloud_coral_fragment") ),	
 }
 
 local function fn(Sim)
