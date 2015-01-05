@@ -219,13 +219,11 @@ local function fn()
 
     SetupLevelTypeFix(inst)
 
-    if not IsDST() and not inst.components.clock then
-        inst:AddComponent("clock")
-    end
-
     if not IsDST() then
-        inst:AddComponent("seasonmanager")
-        PatchSeasonManager(inst.components.seasonmanager)
+		assert( inst.components.clock )
+
+        local sm = assert( inst.components.seasonmanager )
+        PatchSeasonManager(sm)
     end
 
     --AddNeutralComponent(inst, "quaker")

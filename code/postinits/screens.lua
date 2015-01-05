@@ -148,6 +148,8 @@ end
 
 --This gives us custom worldgen screens.	
 local function UpdateWorldGenScreen(self, profile, cb, world_gen_options)
+	if not world_gen_options then return end
+
     --Check for cloudrealm.
     local Climbing = modrequire "lib.climbing"
 

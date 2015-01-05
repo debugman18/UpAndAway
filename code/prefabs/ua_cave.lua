@@ -76,9 +76,19 @@ local function setup_colourcube_override(inst, cc)
 					data.dooverride()
 				end
 			end
+			data.callback = callback
 			inst:ListenForEvent("overridecolourcube", callback)
 		end
     end
+end
+
+local function addcmp(inst, cmpname)
+	local cmp = inst.components[cmpname]
+	if cmp == nil then
+		inst:AddComponent(cmpname)
+		cmp = inst.components[cmpname]
+	end
+	return cmp
 end
 
 local function fn()
@@ -88,18 +98,26 @@ local function fn()
 	inst.prefab = "cave"
 
 	if IsSingleplayer() then
-		--cave specifics
-		inst:AddComponent("clock")
-		inst:AddComponent("quaker")
-		inst:AddComponent("seasonmanager")
+		addcmp(inst, "clock")
+		--inst:AddComponent("quaker")
+		addcmp(inst, "seasonmanager")
 		--inst:DoTaskInTime(0, function(inst) inst.components.seasonmanager:SetCaves() end)
-		inst:AddComponent("colourcubemanager")
+		addcmp(inst, "colourcubemanager")
 	end
 
 	if IsRoG() then
-		inst:AddComponent("bigfooter")
+		addcmp(inst, "bigfooter")
 	end
+
+	---
 	
+	if IsDST() and IsMasterSimulation() then
+		addcmp(inst, "playerspawner")
+		addcmp(inst, "worldsanitymonsterspawner")
+    end
+
+	---
+
 	setup_ambient_sound(inst)
 
 	inst.SetReverbPreset = setup_ambient_sound
