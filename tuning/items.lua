@@ -192,9 +192,9 @@ FLYING_FISH.PREFABS = {
 
 AMBROSIA.FOODTYPE = "VEGGIE"
 
-AMBROSIA.HEALTHVALUE = math.random(-40,20)
-AMBROSIA.HUNGERVALUE = math.random(-40,20)
-AMBROSIA.SANITYVALUE = math.random(-40,20)
+AMBROSIA.HEALTHVALUE = function() return math.random(-40,20) end
+AMBROSIA.HUNGERVALUE = function() math.random(-40,20) end
+AMBROSIA.SANITYVALUE = function() math.random(-40,20) end
 
 ---------------------------------------
 
@@ -491,6 +491,29 @@ CLOUD_FRUIT.PERISH_ITEM = "spoiled_food"
 ---------------------------------------
 
 -- Cloud Fruit Tree
+
+CLOUD_FRUIT.WORK_TIME = 6
+
+CLOUD_FRUIT_TREE.PICK_LOOT = 
+CLOUD_FRUIT_TREE.PICK_REGEN = 100
+CLOUD_FRUIT_TREE.PICK_QUANTITY = 1
+
+-- Loot and Prefabs
+
+CLOUD_FRUIT_TREE.PREFABS = {
+	"cloud_fruit",
+}
+
+CLOUD_FRUIT.LOOT = {
+		"thunder_log",
+        "thunder_log"
+}
+
+CLOUD_FRUIT.LOOT_WITH_FRUIT = {
+    "thunder_log",
+    "thunder_log",
+    "cloud_fruit"
+}
 
 ---------------------------------------
 

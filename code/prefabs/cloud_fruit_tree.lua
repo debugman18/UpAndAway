@@ -7,9 +7,7 @@ local assets =
 	Asset("ANIM", "anim/cloud_fruit_tree.zip"),
 }
 
-local prefabs = {
-	"cloud_fruit",
-}
+local prefabs = CFG.CLOUD_FRUIT_TREE.PREFABS
 
 local function onregenfn(inst)
     inst.AnimState:Show("BANANA") 
@@ -35,11 +33,7 @@ local function chop_down_tree(inst, chopper)
     if inst.picked then
         inst.components.lootdropper:DropLoot()
     else 
-        inst.components.lootdropper.loot = {
-            "thunder_log",
-            "thunder_log",
-            "cloud_fruit"
-        }
+        inst.components.lootdropper.loot = CFG.CLOUD_FRUIT_TREE.LOOT_WITH_FRUIT
         inst.components.lootdropper:DropLoot()
     end
     inst:Remove()
@@ -85,19 +79,16 @@ local function fn(Sim)
     inst.MiniMapEntity:SetIcon("cloud_fruit_tree.tex") 
 
     inst:AddComponent("pickable")
-	inst.components.pickable:SetUp("cloud_fruit", 40)	
+	inst.components.pickable:SetUp(CFG.CLOUD_FRUIT_TREE.PICK_LOOT, CFG.CLOUD_FRUIT_TREE.PICK_REGEN. CFG.CLOUD_FRUIT_TREE.PICK_QUANTITY)	
 	inst.components.pickable:SetOnPickedFn(onpickedfn) 
     inst.components.pickable:SetOnRegenFn(onregenfn)
 
 	inst:AddComponent("lootdropper")
-	inst.components.lootdropper.loot = {
-		"thunder_log",
-        "thunder_log"
-	}
+	inst.components.lootdropper.loot = CFG/CLOUD_FRUIT_TREE.LOOT
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.CHOP)
-    inst.components.workable:SetWorkLeft(6)
+    inst.components.workable:SetWorkLeft(CFG.CLOUD_FRUIT_TREE.WORK_TIME)
     inst.components.workable:SetOnWorkCallback(chop_tree)
     inst.components.workable:SetOnFinishCallback(chop_down_tree)
 
