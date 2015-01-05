@@ -84,7 +84,7 @@ local function fn(Sim)
     inst.components.pickable:SetOnRegenFn(onregenfn)
 
 	inst:AddComponent("lootdropper")
-	inst.components.lootdropper.loot = CFG/CLOUD_FRUIT_TREE.LOOT
+	inst.components.lootdropper.loot = CFG.CLOUD_FRUIT_TREE.LOOT
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.CHOP)
