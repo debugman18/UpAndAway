@@ -79,7 +79,7 @@ local function fn(Sim)
     inst.MiniMapEntity:SetIcon("cloud_fruit_tree.tex") 
 
     inst:AddComponent("pickable")
-	inst.components.pickable:SetUp(CFG.CLOUD_FRUIT_TREE.PICK_LOOT, CFG.CLOUD_FRUIT_TREE.PICK_REGEN. CFG.CLOUD_FRUIT_TREE.PICK_QUANTITY)	
+	inst.components.pickable:SetUp(CFG.CLOUD_FRUIT_TREE.PICK_LOOT, CFG.CLOUD_FRUIT_TREE.PICK_REGEN, CFG.CLOUD_FRUIT_TREE.PICK_QUANTITY)	
 	inst.components.pickable:SetOnPickedFn(onpickedfn) 
     inst.components.pickable:SetOnRegenFn(onregenfn)
 
