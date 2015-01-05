@@ -2344,8 +2344,19 @@ Add.QuotesFor {"balloon_icehound", "balloon_firehound"} {
 ------------------------------------------------------------------------
 
 Add.StringsBy "ANY" {
-    ANNOUNCE_CANFIX = "\
-I think I can fix this!",
+    ANNOUNCE_CANFIX = "\nI think I can fix this!",
+}
+
+Add.StringsBy "GENERIC" {
+	ACTIONFAIL = {
+		CLIMB = {
+			GENERIC = "I can't do that.",
+			INVALID = "INVALID CLIMBING TARGET. THIS IS A BUG.",
+			INUSE = "I should wait for the current poll to end.",
+			GATHERPARTY = "I must gather my party before venturing forth.",
+			COOLDOWN = "Someone already tried this too recently.",
+		},
+	},
 }
 
 ------------------------------------------------------------------------
@@ -2433,4 +2444,31 @@ STRINGS.UPUI = {
     CRAFTING = {
         NEEDRESEARCHLECTERN = ("Use a %s to build a prototype!"):format( STRINGS.NAMES.RESEARCH_LECTERN ),
     },
+	CLIMBINGSCREEN = {
+		UP = {
+			TITLE = "Up and Away",
+			BODY = "The land above is strange and foreign. Do you want to continue?",
+			BUTTONS = {
+				YES = "YES",
+				NO = "NO",
+				REGEN = "REGEN",
+			},
+			REGEN = {
+				TITLE = "Warning!",
+				BODY = "You are about to erase your cloud world.\nAre you sure you want to continue?",
+				BUTTONS = {
+					YES = "YES",
+					NO = "NO",
+				},
+			}
+		},
+		DOWN = {
+			TITLE = "Up and Away",
+			BODY = "Would you like to return to the world below?",
+			BUTTONS = {
+				YES = "YES",
+				NO = "NO",
+			},
+		},
+	},
 }   

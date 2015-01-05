@@ -24,8 +24,6 @@ local Climbable = HostClass(Debuggable, function(self, inst)
     self.inst = inst
     Debuggable._ctor(self, "Climbable")
 
-    self.direction = nil
-
     -- Target cave number, i.e. cave number of the world to be generated.
     -- This should never be set directly.
     self.cavenum = nil
@@ -69,8 +67,8 @@ end
 -- @name should_have_cavenum
 -- 
 local function should_have_cavenum(self)
-    --return self.direction and self.direction*Climbing.GetLevelHeight() >= 0
-    return self.direction and Climbing.GetLevelHeight() == 0
+    --return self:GetDirection() and self:GetDirection()*Climbing.GetLevelHeight() >= 0
+    return self:GetDirection() and Climbing.GetLevelHeight() == 0
 end
 
 
@@ -105,7 +103,7 @@ function Climbable:SetDirection(direction)
         direction = -1
     end
 
-    self.direction = direction
+	replica(self.inst).climbable:SetDirection(direction)
 
     if not should_have_cavenum(self) then
         self:DestroyCave()
@@ -115,7 +113,10 @@ end
 ---
 -- Returns the current climbing direction.
 function Climbable:GetDirection()
-    return self.direction
+    local ret = replica(self.inst).climbable:GetDirection()
+	if ret ~= 0 then
+		return ret
+	end
 end
 
 ---
@@ -123,14 +124,7 @@ end
 --
 -- @return "UP", "DOWN" or "".
 function Climbable:GetDirectionString()
-    if not self.direction then return "" end
-    if self.direction > 0 then
-        return "UP"
-    elseif self.direction < 0 then
-        return "DOWN"
-    else
-        return error("The climbing direction can't be zero!")
-    end
+	return replica(self.inst).climbable:GetDirectionString()
 end
 
 
@@ -159,12 +153,12 @@ end
 ---
 -- Climbs in the configured direction. Raises an error if there isn't any.
 function Climbable:Climb()
-    assert( self.direction, "Attempt to climb a climbable without a direction set." )
+    assert( self:GetDirection(), "Attempt to climb a climbable without a direction set." )
     local function doclimb()
         if self:Debug() then
             self:Say("Climbing ", self:GetDirectionString(), " into cave number ", self:GetEffectiveCaveNumber(), ". Current height: ", Climbing.GetLevelHeight(), ".")
         end
-        Climbing.Climb(self.direction, self.cavenum)
+        Climbing.Climb(self:GetDirection(), self.cavenum)
     end
 
     if not self.cavenum and should_have_cavenum(self) then

@@ -42,6 +42,22 @@ GetStaticGenerator = memoize_0ary(function()
 end)
 GetStaticGen = GetStaticGenerator
 
+GetClimbingManager = memoize_0ary(function()
+	local inst
+	if IsDST() then
+		inst = TheWorld and TheWorld.net
+	else
+		inst = TheWorld
+	end
+	if inst then
+		if IsServer() then
+			return inst.components.climbingmanager
+		else
+			return replica(inst).climbingmanager
+		end
+	end
+end)
+
 
 --[[
 -- This is to simplify atlasing several textures into one later on.

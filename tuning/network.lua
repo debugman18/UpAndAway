@@ -12,6 +12,8 @@ CLIMBING_MANAGER.TIMEOUT = 15
 -- Period between updating and broadcasting the current poll data.
 --
 -- Range (randomized).
+--
+-- obs: Currently unused. An update is performed whenever a vote is received.
 --]]
 CLIMBING_MANAGER.UPDATE_PERIOD = {0.7, 1}
 
@@ -20,6 +22,12 @@ CLIMBING_MANAGER.UPDATE_PERIOD = {0.7, 1}
 -- Check components/climbingmanager.lua for the possibilities.
 --]]
 CLIMBING_MANAGER.CONSENSUS = "UNANIMOUS"
+
+--[[
+-- Maximum range from the climbable object for players to be able to vote.
+--]]
+CLIMBING_VOTER.RANGE = 30
+
 
 -- Percentage of an entity's temperature that must change in order for
 -- it to be broadcast to the clients.

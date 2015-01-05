@@ -1,9 +1,6 @@
 BindGlobal()
 
 
-local PopupDialogScreen = require "screens/popupdialog"
-
-
 local Logic = wickerrequire "paradigms.logic"
 local game = wickerrequire "game"
 local Game = game
@@ -130,92 +127,6 @@ local function onload(inst, data)
     end
 end  
 
---Fixes silly string.
-local function GetVerb(inst)
-    return STRINGS.ACTIONS.ACTIVATE.CLIMB
-end
-
-
---Makes the beanstalk climbable.
-local function OnActivate(inst)
-    
-    TryPause(true)
-
-    local function startadventure()
-        TryPause(false)
-        inst.components.climbable:Climb()
-    end
-    
-    local function rejectadventure()
-        TryPause(false) 
-        inst.components.activatable.inactive = true
-        TheFrontEnd:PopScreen()
-    end		
-
-    local function regenadventure()
-
-        TheFrontEnd:PopScreen()
-
-        local function regencloud()
-            TryPause(false)
-            inst.components.climbable:DestroyCave()
-            inst.components.climbable:Climb()
-        end
-
-        local function keepcloud()
-            TryPause(false)
-            TheFrontEnd:PopScreen()
-        end
-
-        local regenoptions = {
-            {
-                text="YES", 
-                cb = regencloud
-            },
-
-            {
-                text="NO", 
-                cb = keepcloud
-            },  
-        }
-
-        TheFrontEnd:PushScreen(PopupDialogScreen(
-    
-        "Warning", 
-        "You are about to erase your cloud world. \
-Are you sure you want to continue?",
-    
-        regenoptions))
-
-    end
-    
-    local options = {
-        {
-            text="YES", 
-            cb = startadventure
-        },
-
-        {
-            text="NO", 
-            cb = rejectadventure
-        },  
-
-        {
-            text="REGEN", 
-            cb = regenadventure
-        },
-    }
-
-    TheFrontEnd:PushScreen(PopupDialogScreen(
-    
-    "Up and Away", 
-    "The land above is strange and foreign. Do you want to continue?",
-    
-    options))
-    
-end
-
-
 --This changes the screen some if the player is far.
 local function onfar(inst)
     --TheCamera:SetDistance(100)
@@ -338,17 +249,12 @@ local function fn(Sim)
     
     ---------------------  
 
+	--[[
     inst:AddComponent("playerprox")
     inst.components.playerprox:SetDist(10, 30)
     inst.components.playerprox:SetOnPlayerNear(onnear)
     inst.components.playerprox:SetOnPlayerFar(onfar)
-
-    ---------------------  
-    
-    inst:AddComponent("activatable")
-    inst.components.activatable.getverb = GetVerb
-    inst.components.activatable.OnActivate = OnActivate	
-    inst.components.activatable.quickaction = true
+	]]--
 
     ---------------------  
     

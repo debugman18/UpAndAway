@@ -21,6 +21,31 @@ end)()
 
 ---
 
+local Climb = Action()
+Climb.str = "Climb"
+Climb.id = "CLIMB"
+Climb.fn = function(act)
+	local doer = act.doer
+	local targ = act.target or act.invobject
+	if doer and doer.components.climbingvoter and targ and targ.components.climbable then
+		if GetClimbingManager():HasRequest() then
+			return false, "INUSE"
+		end
+		return doer.components.climbingvoter:BeginPoll(targ)
+	end
+end
+
+AddAction(Climb)
+
+local climb_sg_handler = "doshortaction"
+
+AddStategraphActionHandler("wilson", ActionHandler(Climb, climb_sg_handler))
+if IsClient() then
+	AddStategraphActionHandler("wilson_client", ActionHandler(Climb, climb_sg_handler))
+end
+
+---
+
 local Withdraw = Action(1)
 Withdraw.str = "Withdraw"
 Withdraw.id = "WITHDRAW"

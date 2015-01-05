@@ -53,6 +53,7 @@ modrequire "postinits"
 modrequire "actions"
 modrequire "componentactions"
 modrequire "replicas"
+modrequire "rpcs"
 modrequire "resources.recipes"
 
 

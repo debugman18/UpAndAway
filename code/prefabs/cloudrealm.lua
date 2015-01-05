@@ -270,15 +270,6 @@ local function fn()
     -- Spawners
     --
 
-    if IsDST() and IsMasterSimulation() then
-		if not inst.components.playerspawner then
-			inst:AddComponent("playerspawner")
-		end
-		if not inst.components.worldsanitymonsterspawner then
-			inst:AddComponent("worldsanitymonsterspawner")
-		end
-    end
-
     if not IsDedicated() then
         inst:AddComponent("cloudambientmanager")
     end

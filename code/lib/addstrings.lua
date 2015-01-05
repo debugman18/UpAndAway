@@ -84,24 +84,40 @@ TheMod:AddSimPostInit(delayed_additions:ToFunction())
 -- The pieces are put in uppercase if they are not already.
 --]]
 local add_character_string = (function()
-    local function do_add(character_upper, branch, str, no_override)
-        local t = STRINGS.CHARACTERS[character_upper]
+	local function descend(t, node)
+		if type(t[node]) == "string" then
+			t[node] = {GENERIC = t[node]}
+		elseif not t[node] then
+			t[node] = {}
+		else
+			assert( type(t[node]) == "table" )
+		end
+		return t[node]
+	end
+
+    local function do_add(character_upper, branch, str, no_override, base_table)
+        local t = base_table
+		if not t then
+			t = STRINGS.CHARACTERS[character_upper]
+		end
         if not t then return end
 
         local branch_sz = #branch
         local leaf = branch[branch_sz]
 
         for i = 1, branch_sz - 1 do
-            local node = branch[i]
-            if type(t[node]) == "string" then
-                t[node] = {GENERIC = t[node]}
-            elseif not t[node] then
-                t[node] = {}
-            else
-                assert( type(t[node]) == "table" )
-            end
-            t = t[node]
+            t = descend(t, branch[i])
         end
+
+		if type(str) == "table" then
+			t = descend(t, leaf)
+			local branch_suffix = {nil}
+			for k, substr in pairs(str) do
+				branch_suffix[1] = k
+				do_add(character_upper, branch_suffix, substr, no_override, t)
+			end
+			return
+		end
 
         if no_override and t[leaf] ~= nil then return end
 
@@ -109,7 +125,7 @@ local add_character_string = (function()
         if type(str) == "function" then
             real_str = str(character_upper, unpack(branch))
         end
-        t[leaf] = str
+        t[leaf] = real_str
     end
 
     return function(character_upper, branch, str)
@@ -179,10 +195,10 @@ local function NewCharacterStringAdder(prefix_branch)
     return function(character)
         local character_upper = character:upper()
         return function(quotes)
-            for prefabs, quote in pairs(quotes) do
-                if type(prefabs) ~= "table" then prefabs = {prefabs} end
-                for _, prefab in ipairs(prefabs) do
-                    local branch = append_prefab_to_branch(prefix_branch, prefab)
+            for whats, quote in pairs(quotes) do
+                if type(whats) ~= "table" then whats = {whats} end
+                for _, what in ipairs(whats) do
+                    local branch = append_prefab_to_branch(prefix_branch, what)
                     add_character_string(character_upper, branch, quote)
                 end
             end
