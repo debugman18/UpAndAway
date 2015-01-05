@@ -17,7 +17,7 @@ local function fn(Sim)
 
     MakeInventoryPhysics(inst)
     
-    anim:SetBank("gears")
+    anim:SetBank("cloudcotton")
     anim:SetBuild("cloudcotton")
     anim:PlayAnimation("idle")
 	trans:SetScale(CFG.CLOUD_COTTON.SCALE, CFG.CLOUD_COTTON.SCALE, CFG.CLOUD_COTTON.SCALE)
