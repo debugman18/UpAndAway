@@ -494,7 +494,7 @@ CLOUD_FRUIT.PERISH_ITEM = "spoiled_food"
 
 CLOUD_FRUIT.WORK_TIME = 6
 
-CLOUD_FRUIT_TREE.PICK_LOOT = 
+CLOUD_FRUIT_TREE.PICK_LOOT = "cloud_fruit"
 CLOUD_FRUIT_TREE.PICK_REGEN = 100
 CLOUD_FRUIT_TREE.PICK_QUANTITY = 1
 
@@ -518,6 +518,8 @@ CLOUD_FRUIT.LOOT_WITH_FRUIT = {
 ---------------------------------------
 
 -- Cloud Jelly
+
+
 
 ---------------------------------------
 
