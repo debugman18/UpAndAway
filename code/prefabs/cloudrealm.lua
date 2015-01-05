@@ -55,6 +55,8 @@ local essential_assets =
 local essential_prefabs = 
 {
     "world",
+	"ua_cave",
+
     "cloud_mist",
     --"snow",
     --"rain",
@@ -208,8 +210,8 @@ local function SetupLevelTypeFix(inst, new_level_type)
 end
 
 
-local function fn(Sim)
-    local inst = SpawnPrefab("world")
+local function fn()
+    local inst = SpawnPrefab("ua_cave")
     inst.entity:SetCanSleep(false)
 
     inst.prefab = "cave"
@@ -236,26 +238,8 @@ local function fn(Sim)
     waves:SetWaveEffect("shaders/waves.ksh" ) -- texture.ksh   
     waves:SetWaveSize(2048, 562) --This definitely works.
    
-    --inst.components.ambientsoundmixer:SetReverbPreset("clouds")
-
-    local TUNING_OVERRIDES = require "tuning_override"
-    if not IsDST() then
-        TUNING_OVERRIDES = TUNING_OVERRIDES.OVERRIDES
-    end
-
-    TUNING_OVERRIDES.areaambientdefault = (function()
-        local oldfn = TUNING_OVERRIDES.areaambientdefault
-        local function newfn(...)
-            TheSim:SetReverbPreset("default")
-            return oldfn(...)
-        end
-        if IsDST() then
-            return newfn
-        else
-            oldfn = assert( oldfn.doit )
-            return { doit = newfn }
-        end
-    end)()
+    --inst:SetReverbPreset("clouds")
+	
     if not IsDST() then
         --[[
         -- This is wrong. The AmbientSoundMixer:SetOverride is for sounds
@@ -265,30 +249,7 @@ local function fn(Sim)
     end
     --inst.componentsambientsoundmixer.wave_sound = "dontstarve/common/clouds"
    
-    local COLOURCUBE = "images/colour_cubes/snowdusk_cc.tex"
-    if not IsDST() then
-        inst:AddComponent("colourcubemanager")
-        do
-            local ccman = inst.components.colourcubemanager
-
-            ccman:SetOverrideColourCube(COLOURCUBE)
-        end
-    else
-        assert(inst.components.colourcube)
-
-        local function dooverride()
-            inst:PushEvent("overridecolourcube", COLOURCUBE)
-        end
-
-        dooverride()
-
-        -- This is for the mess caused by inst:SetGhostMode(), where inst is a player.
-        inst:ListenForEvent("overridecolourcube", function(inst, data)
-            if not data then
-                dooverride()
-            end
-        end)
-    end
+    inst:SetOverrideColourCube("images/colour_cubes/snowdusk_cc.tex")
 
     --inst.Map:SetOverlayTexture( "levels/textures/snow.tex" )
     
@@ -322,37 +283,39 @@ local function fn(Sim)
 
     if not IsDedicated() then
         inst:AddComponent("cloudambientmanager")
-
-        inst:AddComponent("skyflyspawner")
-        do
-            local flyspawner = inst.components.skyflyspawner
-            local cfg = Configurable("SKYFLYSPAWNER")
-
-            flyspawner:SetFlyPrefab("skyflies")
-            flyspawner:SetMaxFlies( cfg:GetConfig "MAX_FLIES" )
-            do
-                local min, max = unpack(cfg:GetConfig "SPAWN_DELAY")
-                local dt = max - min
-                flyspawner:SetDelay( function() return min + dt*math.random() end )
-            end
-            do
-                local min, max = unpack(cfg:GetConfig "PLAYER_DISTANCE")
-                flyspawner:SetMinDistance(min)
-                flyspawner:SetMaxDistance(max)
-            end
-            flyspawner:SetMinFlySpread(cfg:GetConfig "MIN_FLY2FLY_DISTANCE")
-            flyspawner:SetPersistence( cfg:GetConfig "PERSISTENT" )
-
-            flyspawner:SetShouldSpawnFn(function()
-                local sgen = inst.components.staticgenerator
-                return sgen and sgen:IsCharged()
-            end)
-
-            TheMod:AddLocalPlayerPostActivation(function()
-                flyspawner:Touch()
-            end)
-        end
     end
+
+	if IsServer() then
+		inst:AddComponent("skyflyspawner")
+		do
+			local flyspawner = inst.components.skyflyspawner
+			local cfg = Configurable("SKYFLYSPAWNER")
+
+			flyspawner:SetFlyPrefab("skyflies")
+			flyspawner:SetMaxFlies( cfg:GetConfig "MAX_FLIES" )
+			do
+				local min, max = unpack(cfg:GetConfig "SPAWN_DELAY")
+				local dt = max - min
+				flyspawner:SetDelay( function() return min + dt*math.random() end )
+			end
+			do
+				local min, max = unpack(cfg:GetConfig "PLAYER_DISTANCE")
+				flyspawner:SetMinDistance(min)
+				flyspawner:SetMaxDistance(max)
+			end
+			flyspawner:SetMinFlySpread(cfg:GetConfig "MIN_FLY2FLY_DISTANCE")
+			flyspawner:SetPersistence( cfg:GetConfig "PERSISTENT" )
+
+			flyspawner:SetShouldSpawnFn(function()
+				local sgen = inst.components.staticgenerator
+				return sgen and sgen:IsCharged()
+			end)
+
+			TheMod:AddLocalPlayerPostActivation(function()
+				flyspawner:Touch()
+			end)
+		end
+	end
 
     if not IsDST() then
         --FIXME: not MP compatible
@@ -368,4 +331,4 @@ local function fn(Sim)
 end
 
 
-return Prefab("cloudrealm", fn, assets, prefabs)
+return Prefab("worlds/cloudrealm", fn, assets, prefabs)

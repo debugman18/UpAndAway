@@ -16,7 +16,7 @@ local AL = Game.AmbientLighting
 --
 -- @class table
 -- @name CloudAmbientManager
-local CloudAmbientManager = HostClass(Debuggable, function(self, inst)
+local CloudAmbientManager = Class(Debuggable, function(self, inst)
     self.inst = inst
     Debuggable._ctor(self, "CloudAmbientManager")
 

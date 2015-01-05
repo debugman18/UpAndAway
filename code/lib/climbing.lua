@@ -21,6 +21,8 @@ local Game = wickerrequire "game"
 -- to have them in a centralized location accessible throughout the code.
 local Pred = wickerrequire "lib.predicates"
 
+wickerrequire "plugins.addpopulateworldpreinit"
+
 
 -- Direction of level number inserting. It should be +-1, indicating whether
 -- we are adding levels after the ruins or before everything (through negative
@@ -78,13 +80,100 @@ function AddCloudLevel(data)
 end
 TheMod:EmbedAdder("CloudLevel", AddCloudLevel)
 
+---
+
+local function get_saveindex_topology(slot, cavenum)
+	local SG = assert( _G.SaveGameIndex )
+
+	local t = {}
+
+	if slot == nil then
+		slot = SG:GetCurrentSaveSlot() or 1
+	end
+
+	t.level_type = SG:GetCurrentMode(slot)
+	if t.level_type == "cave" or t.level_type == "cloudrealm" then
+		if cavenum == nil then
+			cavenum = SG:GetCurrentCaveNum(slot)
+		end
+		t.cavenum = cavenum
+
+		t.level_number = SG:GetCurrentCaveLevel(slot, t.cavenum)
+	end
+
+	return t
+end
+
+local function get_savedata_topology(savedata)
+	local topo = assert(savedata.map and savedata.map.topology)
+
+	local SG = rawget(_G, "SaveGameIndex")
+
+	local t = {}
+
+	t.level_type = topo.level_type
+	if t.level_type == "cave" or t.level_type == "cloudrealm" then
+		if SG then
+			t.cavenum = SG:GetCaveNumber()
+		end
+
+		t.level_number = topo.level_number
+	end
+
+	return t
+end
+
+local function ptable(t)
+	local pieces = {}
+	for k, v in pairs(t) do
+		table.insert(pieces, tostring(k).." = "..tostring(v))
+	end
+	return "{"..table.concat(pieces, ", ").."}"
+end
+
+local cached_saveindex_topology = nil
+
+local cached_savedata_topology = nil
+TheMod:AddPopulateWorldPreInit(function(savedata)
+	--TheMod:Say "CLIMBING SAVEDATA"
+	cached_savedata_topology = get_savedata_topology(savedata)
+	cached_saveindex_topology = nil
+end)
+
+local function get_current_topology()
+	--TheMod:Say "get_current_topology"
+	if cached_savedata_topology ~= nil then
+		--TheMod:Say("savedata: ", ptable(cached_savedata_topology))
+		return cached_savedata_topology
+	end
+
+	if cached_saveindex_topology == nil then
+		local SG = assert( _G.SaveGameIndex )
+
+		local slot = SG:GetCurrentSaveSlot()
+		cached_saveindex_topology = get_saveindex_topology(slot)
+	end
+	--TheMod:Say("savindex: ", ptable(cached_saveindex_topology))
+	return cached_saveindex_topology
+end
+
+local function get_topology(slot, cavenum)
+	if not slot then
+		return get_current_topology()
+	else
+		return get_saveindex_topology(slot, cavenum)
+	end
+end
+
+---
 
 local function is_current(slotnum, cavenum)
     if slotnum then
         if slotnum ~= SaveGameIndex:GetCurrentSaveSlot() then return false end
 
         if cavenum then
-            if SaveGameIndex:GetCurrentMode() ~= "cave" then return false end
+			local mode = SaveGameIndex:GetCurrentMode()
+            if moce ~= "cave" and mode ~= "cloudrealm" then return false end
             if SaveGameIndex:GetCurrentCaveNum(slotnum) ~= cavenum then return false end
         end
     end
@@ -95,8 +184,11 @@ end
 
 local function get_default_height(slot, cavenum)
     -- wicker imports the SaveGameIndex.
-    if cavenum or SaveGameIndex:GetCurrentMode(slot) == "cave" then
+	local lt = get_topology(slot, cavenum)
+    if lt == "cave" then
         return -1
+	elseif lt == "cloudrealm" then
+		return 1
     else
         return 0
     end
@@ -155,8 +247,9 @@ end
 -- @see GetLevelHeight
 function GetRawLevelHeight(slot, cavenum)
     -- wicker imports the SaveGameIndex.
-    if SaveGameIndex:GetCurrentMode(slot) == "cave" then
-        return level_to_height(SaveGameIndex:GetCurrentCaveLevel(slot, cavenum))
+	local lt = get_topology(slot, cavenum).level_type
+    if lt == "cave" or lt == "cloudrealm" then
+        return level_to_height(get_topology(slot, cavenum).level_number)
     else
         return 0
     end
@@ -253,14 +346,20 @@ end
 --
 -- @see Climb
 function ClimbTo(height, cavenum)
+	if not IsHost() then
+		return error("ClimbTo() should only be used in the host.", 2)
+	end
+
     assert( Pred.IsNumber(height), "The given height is not a number." )
     assert( height == math.floor(height), "The given height is not an integer." )
 
+	local topo = get_current_topology()
+
     if not cavenum then
-        if SaveGameIndex:GetCurrentMode() ~= "cave" then
-            return error("Attempt to climb outside of a cave level without giving a cave number.")
+        if topo.level_type ~= "cave" and topo.level_type ~= "cloudrealm" then
+            return error("Attempt to climb outside of a cave level without giving a cave number.", 2)
         end
-        cavenum = SaveGameIndex:GetCurrentCaveNum()
+        cavenum = topo.cavenum
     end
 
 
@@ -281,7 +380,7 @@ function ClimbTo(height, cavenum)
 
     local function onsaved()
         StartNextInstance({
-            reset_action = RESET_ACTION.LOAD_SLOT,
+            reset_action = _G.RESET_ACTION.LOAD_SLOT,
             save_slot = SaveGameIndex:GetCurrentSaveSlot(),
         }, true)
     end

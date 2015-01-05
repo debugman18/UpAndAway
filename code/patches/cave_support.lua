@@ -82,7 +82,9 @@ else
 		FileMetadata:Save()
 	end)
 
-	TheMod:AddPrefabPostInit("world", function(wrld)
-		wrld:AddComponent("ua_playertracker")
-	end)
+	if IsServer() then
+		TheMod:AddPrefabPostInit("world", function(wrld)
+			wrld:AddComponent("ua_playertracker")
+		end)
+	end
 end

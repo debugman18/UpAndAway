@@ -26,6 +26,7 @@ PrefabFiles = {
 
 	------------------------------
 
+	"ua_cave",
 	"cloudrealm",
 	"cloud_mist",
 	"cloud_lightning",
