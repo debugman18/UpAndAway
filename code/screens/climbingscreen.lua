@@ -27,7 +27,7 @@ local build_options
 
 local ClimbingScreen = Class(CustomPopup, function(self, target_inst, direction)
 	assert( Pred.IsValidEntity(target_inst), "Invalid target entity." )
-
+	
 	assert( Pred.IsString(direction), "String expected as climbing direction." )
 	direction = direction:upper()
 

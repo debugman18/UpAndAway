@@ -4,10 +4,17 @@ local UniformVariable = wickerrequire "math.probability.randomvariable" .Uniform
 
 local cfg = Configurable "CLIMBING_MANAGER"
 
-local function proportional_test(p)
-	local ceil = math.ceil
-	return function(total)
-		return ceil(p*total)
+local function proportional_test(p, strict)
+	if strict then
+		local floor = math.floor
+		return function(total)
+			return floor(p*total + 1)
+		end
+	else
+		local ceil = math.ceil
+		return function(total)
+			return ceil(p*total)
+		end
 	end
 end
 
@@ -26,7 +33,7 @@ end
 --]]
 local consensus_modes = {
 	UNANIMOUS = proportional_test(1),
-	SIMPLE_MAJORITY = proportional_test(1/2),
+	SIMPLE_MAJORITY = proportional_test(1/2, true),
 	THREE_QUARTERS = proportional_test(3/4),
 	EIGHTY_PERCENT = proportional_test(0.8),
 	NINETY_PERCENT = proportional_test(0.9),
@@ -248,8 +255,16 @@ function ClimbingManager:AddRequest(climbable_inst)
 	end
 
 	if self.current_request == nil then
-		local time_left = GetTime() - (self.last_request_time + self:GetConfig("COOLDOWN"))
+		local now = GetTime()
+		local cooldown
+		if IsDST() then
+			cooldown = assert( self:GetConfig("COOLDOWN") )
+		else
+			cooldown = 0
+		end
+		local time_left = now - (self.last_request_time + cooldown)
 		if time_left > 0 then
+			self.last_request_time = now
 			self.current_request = {
 				target = climbable_inst,
 				agreeing_set = new_playerset(),

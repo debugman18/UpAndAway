@@ -11,13 +11,17 @@ local ClimbingVoter = Class(Debuggable, function(self, inst)
 
 	self.poll_screen = nil
 
-	local cm = assert( GetClimbingManager() )
+	self.inst:DoTaskInTime(0.1, function()
+		if self.inst == GetLocalPlayer() then
+			local cm = assert( GetClimbingManager() )
 
-	cm:AddStartRequestCallback(function(poll_data)
-		pushscreen(self, poll_data)
-	end)
-	cm:AddFinishRequestCallback(function(poll_data)
-		popscreen(self, poll_data)
+			cm:AddStartRequestCallback(function(poll_data)
+				pushscreen(self, poll_data)
+			end)
+			cm:AddFinishRequestCallback(function(poll_data)
+				popscreen(self, poll_data)
+			end)
+		end
 	end)
 end)
 
@@ -55,6 +59,7 @@ pushscreen = function(self, poll_data)
 			self.poll_screen = nil
 		end)
 
+		self.poll_screen = screen
 		TheFrontEnd:PushScreen(screen)
 	end
 end
@@ -64,6 +69,7 @@ popscreen = function(self, poll_data)
 		TheFrontEnd:PopScreen(self.poll_screen)
 		self.poll_screen = nil
 	end
+	return true
 end
 
 ---

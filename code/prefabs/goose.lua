@@ -129,7 +129,7 @@ local function fn()
     MakeMediumFreezableCharacter(inst, "pig_torso")
     
     inst:AddComponent("staticchargeable")
-    inst.components.staticchargeable:SetOnChargeFn(NewEggDropper(CFG.GOOSE.LAY_PERIOD), (CFG.GOOSE.LAY_DELAY))
+    inst.components.staticchargeable:SetOnChargeFn(NewEggDropper(CFG.GOOSE.LAY_PERIOD, CFG.GOOSE.LAY_DELAY))
 
     return inst
 end

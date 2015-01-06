@@ -133,10 +133,12 @@ else
 end
 
 function ClimbingManager:OnStartRequest()
+	self:DebugSay "OnStartRequest()"
 	self.net_startrequest()
 end
 
 function ClimbingManager:OnFinishRequest()
+	self:DebugSay "OnFinishRequest()"
 	self.net_finishrequest()
 end
 
