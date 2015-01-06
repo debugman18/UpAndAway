@@ -1,12 +1,12 @@
 --[[
 -- Cooldown for a player to be able to request climbing to another level.
 --]]
-CLIMBING_MANAGER.COOLDOWN = 30
+CLIMBING_MANAGER.COOLDOWN = IfDST(20, 0)
 
 --[[
 -- Maximum time players have to agree to a climb before the request times out.
 --]]
-CLIMBING_MANAGER.TIMEOUT = 15
+CLIMBING_MANAGER.TIMEOUT = IfDST(15, math.huge)
 
 --[[
 -- Period between updating and broadcasting the current poll data.

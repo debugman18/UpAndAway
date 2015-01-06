@@ -1,49 +1,3 @@
-local UniformVariable = wickerrequire "math.probability.randomvariable" .Uniform
-
----
-
-local cfg = Configurable "CLIMBING_MANAGER"
-
-local function proportional_test(p, strict)
-	if strict then
-		local floor = math.floor
-		return function(total)
-			return floor(p*total + 1)
-		end
-	else
-		local ceil = math.ceil
-		return function(total)
-			return ceil(p*total)
-		end
-	end
-end
-
-local function all_but(k)
-	return function(total)
-		return total - k
-	end
-end
-
---[[
--- These are the available consensus modes.
---
--- Each is a function receiving the total number of players
--- and returning the minimum amount of players required to
--- approve the motion.
---]]
-local consensus_modes = {
-	UNANIMOUS = proportional_test(1),
-	SIMPLE_MAJORITY = proportional_test(1/2, true),
-	THREE_QUARTERS = proportional_test(3/4),
-	EIGHTY_PERCENT = proportional_test(0.8),
-	NINETY_PERCENT = proportional_test(0.9),
-	ALL_BUT_ONE = all_but(1),
-	ALL_BUT_TWO = all_but(2),
-	ALL_BUT_THREE = all_but(3),
-}
-
----
-
 local ClearPlayer
 
 ---
@@ -62,7 +16,7 @@ local ClimbingManager = Class(Debuggable, function(self, inst)
 
 	self:SetConfigurationKey "CLIMBING_MANAGER"
 
-	self:SetConsensusMode(cfg "CONSENSUS")
+	self:SetConsensusMode(self:GetConfig "CONSENSUS")
 
 	self.current_request = nil
 	self.last_request_time = -math.huge
@@ -111,9 +65,14 @@ function ClimbingManager:GetConsensusMode()
 end
 
 function ClimbingManager:SetConsensusMode(modename)
+	local consensus_modes = assert( self:GetConfig("CONSENSUS_MODES") )
 	local mode = consensus_modes[modename]
 	if mode == nil then
-		return error("Invalid consensus mode name '"..tostring(modename).."'", 2)
+		local msg_pieces = {"Invalid consensus mode name '"..tostring(modename).."'.\nAvailable consensus modes are:"}
+		for k in pairs(consensus_modes) do
+			table.insert(msg_pieces, "    "..tostring(k))
+		end
+		return error(table.concat(msg_pieces, "\n"), 2)
 	end
 	self.consensus = mode
 end
@@ -219,20 +178,14 @@ end
 local function StartUpdating(self)
 	StopUpdating(self)
 
-	--local delay_range = self:GetConfig "UPDATE_PERIOD"
-	--local get_delay = UniformVariable(delay_range[1], delay_range[2])
-
 	local TIMEOUT = self:GetConfig "TIMEOUT"
-	--local t0 = GetTime()
 
 	self.updating_thread = self.inst:StartThread(function()
-		--[[
-		repeat
-			self:Broadcast()
-			Sleep(get_delay())
-		until GetTime() - t0 >= TIMEOUT
-		]]--
-		Sleep(TIMEOUT)
+		if TIMEOUT == math.huge then
+			_G.Hibernate()
+		else
+			_G.Sleep(TIMEOUT)
+		end
 		StopUpdating(self, true)
 	end)
 end
