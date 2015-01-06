@@ -11,7 +11,7 @@ local Physics = modrequire "lib.physics"
 
 local BitMask = modrequire "lib.bitmask"
 
-local NewEntityTable = modrequire "lib.entity_table"
+local NewEntityTable = wickerrequire "gadgets.entity_table"
 
 
 --[[

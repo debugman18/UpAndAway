@@ -111,7 +111,7 @@ local get_poll_data = (function()
 			return "FAILED"
 		else
 			return table.concat({
-				data.agreeable.."/"..data.min.." yays",
+				data.agreeable.."/"..data.min.." yeas",
 				data.disagreeable.."/"..min_disagreeing.." nays",
 				data.undecided.. " undecided",
 			}, ", ")

@@ -36,16 +36,22 @@ local CloudAmbientManager = Class(Debuggable, function(self, inst)
 
     self.onStateChangeCleanup = FunctionQueue()
 
-    self.inst:ListenForEvent("upandaway_chargechange", function(inst, data)
-        local _self = inst.components.cloudambientmanager
+	local function OnChangeState(inst, state)
+		local _self = inst.components.cloudambientmanager
         if self == _self then
-            local state = assert( data.state )
             if self.onStateChangeCleanup then
                 self:onStateChangeCleanup()
                 self.onStateChangeCleanup = FunctionQueue()
             end
             self:OnEnterState(state)
         end
+	end
+
+    self.inst:ListenForEvent("upandaway_charge", function(inst)
+		return OnChangeState(inst, "CHARGED")
+    end)
+    self.inst:ListenForEvent("upandaway_uncharge", function(inst)
+		return OnChangeState(inst, "UNCHARGED")
     end)
 
 	local function initialize_self()

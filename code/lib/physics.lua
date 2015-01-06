@@ -1,7 +1,7 @@
 local _M = _M
 
 
-local EntityMeta = modrequire("lib.entity_table")()
+local EntityMeta = wickerrequire("gadgets.entity_table")()
 
 local PhysicsPatches = modrequire "patches.physics"
 

@@ -17,8 +17,6 @@ local function NewStateTransitionFunction(self)
         CHARGED = "upandaway_charge",
     }
 
-    local generic_event = "upandaway_chargechange"
-
     return function(old, new)
         if self.inst:IsValid() then
             local event = assert( events_map[new] )
@@ -26,11 +24,6 @@ local function NewStateTransitionFunction(self)
                 self:Say("Pushing event ", ("%q"):format(event))
             end
             self.inst:PushEvent(event)
-
-            if self:Debug() then
-                self:Say("Pushing generic event ",("(%q, {state = %q})"):format(generic_event, new))
-            end
-            self.inst:PushEvent(generic_event, {state = new})
 
             local cooldown = self:GetCooldown()
             if cooldown then
