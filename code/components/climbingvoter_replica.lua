@@ -9,6 +9,8 @@ local ClimbingVoter = Class(Debuggable, function(self, inst)
 	self.inst = inst
 	Debuggable._ctor(self, "ClimbingVoterReplica")
 
+	self:SetConfigurationKey "CLIMBING_VOTER"
+
 	self.poll_screen = nil
 
 	self.inst:DoTaskInTime(0.1, function()
@@ -43,7 +45,15 @@ pushscreen = function(self, poll_data)
 	popscreen(self, poll_data)
 
 	local target = poll_data.target
-	if target and replica(target).climbable then
+
+	if not target then return end
+
+	if replica(target).climbable then
+		local range = assert( self:GetConfig "RANGE" )
+		if self.inst:GetDistanceSqToInst(target) > range*range then
+			return
+		end
+
 		local screen = ClimbingScreen(target, replica(target).climbable:GetDirectionString())
 
 		screen:SetOnYesFn(function()
