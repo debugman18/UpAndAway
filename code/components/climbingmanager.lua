@@ -1,3 +1,7 @@
+local ClimbingManagerReplica = require "components/climbingmanager_replica"
+
+---
+
 local ClearPlayer
 
 ---
@@ -129,7 +133,7 @@ end
 ---
 
 function ClimbingManager:GetPollData()
-	return replica(self.inst).climbingmanager:GetPollData()
+	return ClimbingManagerReplica.GetPollData(self)
 end
 
 function ClimbingManager:AddStartRequestCallback(fn)
@@ -141,6 +145,7 @@ function ClimbingManager:AddFinishRequestCallback(fn)
 end
 
 function ClimbingManager:Broadcast()
+	self:GetPollData():announce()
 	replica(self.inst).climbingmanager:Broadcast()
 end
 

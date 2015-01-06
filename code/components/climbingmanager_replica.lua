@@ -78,7 +78,64 @@ end
 ---
 
 local get_poll_data = (function()
-	local meta = {}
+	local methods = {}
+	local meta = { __index = methods }
+
+	local function get_action_string(target)
+		local climbable = assert( replica(target).climbable )
+		return "climb "..climbable:GetDirectionString():lower()
+	end
+
+	local function get_target_name(target)
+		local ret = nil
+
+		local prefab = target.prefab
+		if prefab then
+			ret = STRINGS.NAMES[prefab:upper()]
+		end
+
+		if ret == nil then
+			ret = prefab
+		end
+		
+		return ret or "???"
+	end
+
+	local function get_poll_results(data)
+		-- to fail the motion.
+		local min_disagreeing = data.total - data.min + 1
+
+		if data.remaining <= 0 then
+			return "PASSED"
+		elseif data.disagreeable >= min_disagreeing then
+			return "FAILED"
+		else
+			return table.concat({
+				data.agreeable.."/"..data.min.." yays",
+				data.disagreeable.."/"..min_disagreeing.." nays",
+				data.undecided.. " undecided",
+			}, ", ")
+		end
+	end
+
+	local required_announce_data = {"target", "total", "min", "agreeable", "disagreeable", "undecided", "remaining"}
+
+	if IsDST() then
+		function methods.announce(data)
+			local TheNet = assert( _G.TheNet )
+
+			for _, k in ipairs(required_announce_data) do
+				if data[k] == nil then return end
+			end
+
+			local target = assert( data.target )
+			if not replica(target).climbable then return end
+
+			TheNet:Announce("Motion to "..get_action_string(target).." "..get_target_name(target)..": "..get_poll_results(data)..".")
+		end
+	else
+		methods.announce = Lambda.Nil
+	end
 
 	function meta.__tostring(data)
 		return ("{agreeable = %d, disagreeable = %d, undecided = %d, min = %d}"):format(data.agreeable or 0, data.disagreeable or 0, data.undecided or 0, data.min or 0)
