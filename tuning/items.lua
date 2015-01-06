@@ -519,19 +519,121 @@ CLOUD_FRUIT.LOOT_WITH_FRUIT = {
 
 -- Cloud Jelly
 
+CLOUD_JELLY.FUEL_VALUE = 5
+CLOUD_JELLY.FUEL_CLOUD = "poopcloud"
 
+CLOUD_JELLY.STACK_SIZE = TUNING.STACK_SIZE_SMALLITEM
+
+CLOUD_JELLY.FOODTYPE = "VEGGIE"
+CLOUD_JELLY.HEALTH_VALUE = 0
+CLOUD_JELLY.HUNGER_VALUE = 16
+CLOUD_JELLY.SANITY_VALUE = -20
+
+CLOUD_JELLY.PERISH_TIME = TUNING.PERISH_SLOW
+CLOUD_JELLY.PERISH_ITEM = "ash"
+
+---------------------------------------
+
+-- Candy Fruit
+
+CANDY_FRUIT.STACK_SIZE = TUNING.STACK_SIZE_SMALLITEM
+
+CANDY_FRUIT.FOODTYPE = "VEGGIE"
+CANDY_FRUIT.HEALTH_VALUE = -2
+CANDY_FRUIT.HUNGER_VALUE = 5
+CANDY_FRUIT.SANITY_VALUE = 10
+
+CANDY_FRUIT.PERISH_TIME = 700
+CANDY_FRUIT.PERISH_ITEM = "honey"
+
+CANDY_FRUIT.FUEL_VALUE = 5
+
+---------------------------------------
+
+-- Cotton Candy
+
+COTTON_CANDY.SPEED_DEBUFF = 2
+COTTON_CANDY.DEBUFF_TIME = 4
+
+COTTON_CANDY.DAMAGE = 15
+
+COTTON_CANDY.PERISH_TIME = 0.5 * TUNING.PERISH_MED
+COTTON_CANDY.PERISH_ITEM = "cloud_cotton"
+
+COTTON_CANDY.FOODTYPE = "VEGGIE"
+COTTON_CANDY.HEALTH_VALUE = -15
+COTTON_CANDY.HUNGER_VALUE = 20
+COTTON_CANDY.SANITY_VALUE = 25
+
+COTTON_CANDY.REPAIR_MATERIAL = "cloud"
+COTTON_CANDY.REPAIR_VALUE = 15
+
+---------------------------------------
+ 
+-- Cloud Crag
+
+CLOUD_CRAG.WORK_TIME = 0.7 * TUNING.ROCKS_MINE
+
+-- Loot and Prefabs
+
+CLOUD_CRAG.PREFABS = {
+    "cloud_cotton",
+    "rocks",
+}    
+
+CLOUD_CRAG.LOOT = {
+	{'cloud_cotton',	0.70},	
+	{'cloud_cotton',	0.70},
+	{'cloud_cotton',	0.50},
+	{'rocks',	        0.70},
+	{'rocks',	        0.70},
+	{'rocks',	        0.50},
+}
 
 ---------------------------------------
 
 -- Cloud Wall
 
+CLOUD_WALL.SCALE = 0.8
+
+CLOUD_WALL.STACK_SIZE = TUNING.STACK_SIZE_MEDITEM
+
+CLOUD_WALL.HEALTH = 60
+
+CLOUD_WALL.REPAIR_MATERIAL = "cloud_cotton"
+CLOUD_WALL.REPAIR_VALUE = CLOUD_WALL.HEALTH / 6
+CLOUD_WALL.WORK_REPAIR = TUNING.REPAIR_THULECITE_WORK
+
+CLOUD_WALL.WORK_TIME = 1
+
+CLOUD_WALL.PROX_FAR = 2
+CLOUD_WALL.PROX_NEAR = 0
+
+-- Loot and Prefabs
+
+CLOUD_WALL.PREFABS = {
+    "cloud_wall_item",
+    "cloud_cotton",
+}
+
+CLOUD_WALL.LOOT = {
+    {"cloud_cotton", 1.0},
+    {"cloud_cotton", 1.0},
+    {"cloud_cotton", 1.0},
+}
+
+CLOUD_WALL.NUMRANDOMLOOT = 4
+
 ---------------------------------------
 
--- Coloured Corn
+-- Gem Corn
 
----------------------------------------
+GEM_CORN.FOODTYPE = "VEGGIE"
+GEM_CORN.HEALTH_VALUE = 15
+GEM_CORN.HUNGER_VALUE = 60
+GEM_CORN.SANITY_VALUE = 15
 
--- Cotton Candy
+GEM_CORN.STACK_SIZE = TUNING.STACK_SIZE_LARGEITEM
 
 ---------------------------------------
 

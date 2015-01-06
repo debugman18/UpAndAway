@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 require "prefabutil"
 
 local assets =
@@ -10,21 +12,12 @@ local assets =
     Asset( "IMAGE", inventoryimage_texture("cloud_wall_item") ),
 }
 
-local prefabs =
-{
-    "cloud_wall_item",
-    "cloud_cotton",
-}
+local prefabs = CFG.CLOUD_WALL.PREFABS
 
-SetSharedLootTable( "cloudwallloot",
-{
-    {"cloud_cotton", 1},
-    {"cloud_cotton", 1},
-    {"cloud_cotton", 1},
-})
+SetSharedLootTable( "cloudwallloot", CFG.CLOUD_WALL.LOOT)
 
-local maxloots = 4
-local maxhealth = 60
+local maxloots = CFG.CLOUD_WALL.NUMRANDOMLOOT
+local maxhealth = CFG.CLOUD_WALL.HEALTH
 
 local function denyentry(inst)
     inst.Physics:SetActive(true)
@@ -156,7 +149,7 @@ local function itemfn(inst)
     inst.AnimState:SetBank("cloud_wall")
     inst.AnimState:SetBuild("cloud_wall")
     inst.AnimState:PlayAnimation("1_4")
-    inst.Transform:SetScale(.8,.8,.8)
+    inst.Transform:SetScale(CFG.CLOUD_WALL.SCALE, CFG.CLOUD_WALL.SCALE, CFG.CLOUD_WALL.SCALE)
 
 
     ------------------------------------------------------------------------
@@ -165,16 +158,16 @@ local function itemfn(inst)
 
 
     inst:AddComponent("stackable")
-    inst.components.stackable.maxsize = TUNING.STACK_SIZE_MEDITEM
+    inst.components.stackable.maxsize = CFG.CLOUD_WALL.STACK_SIZE
 
     inst:AddComponent("inspectable")
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.atlasname = inventoryimage_atlas("cloud_wall_item")
         
     inst:AddComponent("repairer")
-    inst.components.repairer.repairmaterial = "cloud_cotton"
-    inst.components.repairer.healthrepairvalue = maxhealth / 6
-    inst.components.repairer.workrepairvalue = TUNING.REPAIR_THULECITE_WORK
+    inst.components.repairer.repairmaterial = CFG.CLOUD_WALL.REPAIR_MATERIAL
+    inst.components.repairer.healthrepairvalue = CFG.CLOUD_WALL.REPAIR_VALUE
+    inst.components.repairer.workrepairvalue = CFG.CLOUD_WALL.WORK_REPAIR
         
     inst:AddComponent("deployable")
     inst.components.deployable.ondeploy = ondeploywall
@@ -253,12 +246,12 @@ local function fn(inst)
         
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.MINE)
-    inst.components.workable:SetWorkLeft(1)
+    inst.components.workable:SetWorkLeft(CFG.CLOUD_WALL.WORK_TIME)
     inst.components.workable:SetOnFinishCallback(onmined)
     inst.components.workable:SetOnWorkCallback(onhit) 
 
     inst:AddComponent("playerprox")
-    inst.components.playerprox:SetDist(0, 2)
+    inst.components.playerprox:SetDist(CFG.CLOUD_WALL.PROX_NEAR, CFG.CLOUD_WALL.PROX_FAR)
     inst.components.playerprox:SetOnPlayerNear(allowentry)
     inst.components.playerprox:SetOnPlayerFar(denyentry)
                         

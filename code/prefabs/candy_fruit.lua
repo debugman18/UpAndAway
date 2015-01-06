@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
     Asset("ANIM", "anim/cloudcotton.zip"),
@@ -27,7 +29,7 @@ local function fn(Sim)
 
     
     inst:AddComponent("stackable")
-    inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+    inst.components.stackable.maxsize = CFG.CANDY_FRUIT.STACK_SIZE
  
     inst:AddComponent("inspectable")  
     
@@ -36,15 +38,15 @@ local function fn(Sim)
     
     --Is not filling.
     inst:AddComponent("edible")
-    inst.components.edible.foodtype = "VEGGIE"
-    inst.components.edible.healthvalue = 0
-    inst.components.edible.hungervalue = 5
-    inst.components.edible.sanityvalue = 10
+    inst.components.edible.foodtype = CFG.CANDY_FRUIT.FOODTYPE
+    inst.components.edible.healthvalue = CFG.CANDY_FRUIT.HEALTH_VALUE
+    inst.components.edible.hungervalue = CFG.CANDY_FRUIT.HUNGER_VALUE
+    inst.components.edible.sanityvalue = CFG.CANDY_FRUIT.SANITY_VALUE
 
     inst:AddComponent("perishable")
-    inst.components.perishable:SetPerishTime(600)
+    inst.components.perishable:SetPerishTime(CFG.CANDY_FRUIT.PERISH_TIME)
     inst.components.perishable:StartPerishing()
-    inst.components.perishable.onperishreplacement = "spoiled_food" 
+    inst.components.perishable.onperishreplacement = CFG.CANDY_FRUIT.PERISH_ITEM 
 
     inst:AddComponent("fuel")
     inst.components.fuel.fuelvalue = 5

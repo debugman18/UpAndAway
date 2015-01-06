@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
     Asset("ANIM", "anim/cotton_candy.zip"),
@@ -13,12 +15,12 @@ local function onattackfn(inst, owner, target)
     if target and target.components.locomotor then
         local locomotor = target.components.locomotor
         if locomotor.walkspeed then
-            locomotor.bonusspeed = -(locomotor.walkspeed / 2)
+            locomotor.bonusspeed = -(locomotor.walkspeed / CFG.COTTON_CANDY.SPEED_DEBUFF)
         elseif locomotor.runspeed then
-            locomotor.bonusspeed = -(locomotor.runspeed / 2) 
+            locomotor.bonusspeed = -(locomotor.runspeed / CFG.COTTON_CANDY.SPEED_DEBUFF) 
         end
         locomotor:UpdateGroundSpeedMultiplier()
-        target:DoTaskInTime(2, function() 
+        target:DoTaskInTime(CFG.COTTON_CANDY.DEBUFF_TIME, function() 
             locomotor.bonusspeed = 0
             locomotor:UpdateGroundSpeedMultiplier()
         end)
@@ -59,28 +61,28 @@ local function fn(Sim)
     inst.components.inventoryitem.atlasname = inventoryimage_atlas("cotton_candy")
    
     inst:AddComponent("weapon")
-    inst.components.weapon:SetDamage(6)
+    inst.components.weapon:SetDamage(CFG.COTTON_CANDY.DAMAGE)
     inst.components.weapon:SetOnAttack(onattackfn)
 
     inst:AddComponent("perishable")
-    inst.components.perishable:SetPerishTime(TUNING.PERISH_MED)
+    inst.components.perishable:SetPerishTime(CFG.COTTON_CANDY.PERISH_TIME)
     inst.components.perishable:StartPerishing()
-    inst.components.perishable.onperishreplacement = "spoiled_food"
+    inst.components.perishable.onperishreplacement = CFG.COTTON_CANDY.PERISH_ITEM
 
     inst:AddComponent("equippable")
     inst.components.equippable:SetOnEquip(onequip)
     inst.components.equippable:SetOnUnequip(onunequip)
 
     inst:AddComponent("edible")
-    inst.components.edible.foodtype = "VEGGIE"
-    inst.components.edible.healthvalue = -15
-    inst.components.edible.hungervalue = 20
-    inst.components.edible.sanityvalue = 20
+    inst.components.edible.foodtype = CFG.COTTON_CANDY.FOODTYPE
+    inst.components.edible.healthvalue = CFG.COTTON_CANDY.HEALTH_VALUE
+    inst.components.edible.hungervalue = CFG.COTTON_CANDY.HUNGER_VALUE
+    inst.components.edible.sanityvalue = CFG.COTTON_CANDY.SANITY_VALUE
 
     --Is like snow on its structures.
     inst:AddComponent("repairer")
-    inst.components.repairer.repairmaterial = "cloud"
-    inst.components.repairer.value = 10
+    inst.components.repairer.repairmaterial = CFG.COTTON_CANDY.REPAIR_MATERIAL
+    inst.components.repairer.value = CFG.COTTON_CANDY.REPAIR_VALUE
     
     return inst
 end

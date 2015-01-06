@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
     Asset("ANIM", "anim/cloud_jelly.zip"),
@@ -9,7 +11,7 @@ local assets =
 }
 
 local function FuelTaken(inst, taker)
-    local cloud = SpawnPrefab("poopcloud")
+    local cloud = SpawnPrefab(CFG.CLOUD_JELLY.FUEL_CLOUD)
     if cloud then
         cloud.AnimState:SetMultColour(130,10,10,.5)
         cloud.Transform:SetPosition(taker.Transform:GetWorldPosition() )
@@ -34,23 +36,23 @@ local function fn(Sim)
 
 
     inst:AddComponent("stackable")
-    inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+    inst.components.stackable.maxsize = CFG.CLOUD_JELLY.STACK_SIZE
 
     inst:AddComponent("edible")
-    inst.components.edible.foodtype = "VEGGIE"
-    inst.components.edible.healthvalue = -5
-    inst.components.edible.hungervalue = 15
-    inst.components.edible.sanityvalue = -5
+    inst.components.edible.foodtype = CFG.CLOUD_JELLY.FOODTYPE
+    inst.components.edible.healthvalue = CFG.CLOUD_JELLY.HEALTH_VALUE
+    inst.components.edible.hungervalue = CFG.CLOUD_JELLY.HUNGER_VALUE
+    inst.components.edible.sanityvalue = CFG.CLOUD_JELLY.SANITY_VALUE
 
     inst:AddComponent("perishable")
-    inst.components.perishable:SetPerishTime(TUNING.PERISH_SLOW)
+    inst.components.perishable:SetPerishTime(CFG.CLOUD_JELLY.PERISH_TIME)
     inst.components.perishable:StartPerishing()
-    inst.components.perishable.onperishreplacement = "ash"    
+    inst.components.perishable.onperishreplacement = CFG.CLOUD_JELLY.PERISH_ITEM    
 
     inst:AddComponent("inspectable")
 
     inst:AddComponent("fuel")
-    inst.components.fuel.fuelvalue = 5
+    inst.components.fuel.fuelvalue = CFG.CLOUD_JELLY.FUEL_VALUE
     inst.components.fuel:SetOnTakenFn(FuelTaken)
 
     inst:AddTag("alchemy")
