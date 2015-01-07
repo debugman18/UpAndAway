@@ -2,6 +2,10 @@ local RegisterBroadcastEvent = wickerrequire "plugins.broadcastevents"
 
 ---
 
+local assert = assert
+
+---
+
 local function AddAnnouncer(self, base_event_name)
 	local inst = assert( self.inst )
 	local event_name = base_event_name.."_broadcast"
@@ -13,14 +17,14 @@ local function AddAnnouncer(self, base_event_name)
 			self:DebugSay("Broadcasting event '", event_name, "'.")
 			ServerRPC.PushBroadcastEvent(inst, event_name)
 		end, TheWorld)
-	else
-		inst:ListenForEvent(event_name, function(inst)
-			if inst ~= TheWorld then
-				self:DebugSay("Translating event '", event_name, "' to '", base_event_name, "' over [", TheWorld, "].")
-				TheWorld:PushEvent(base_event_name)
-			end
-		end)
 	end
+	inst:ListenForEvent(event_name, function(inst)
+		assert( TheWorld )
+		if inst ~= TheWorld then
+			self:DebugSay("Repushing event '", event_name, "' under entity [", TheWorld, "].")
+			TheWorld:PushEvent(event_name)
+		end
+	end)
 end
 
 ---
@@ -31,6 +35,8 @@ local StaticAnnouncer = Class(Debuggable, function(self, inst)
 	Debuggable._ctor(self, "StaticAnnouncer")
 
 	self:SetConfigurationKey "STATIC_ANNOUNCER"
+
+	assert( TheWorld )
 
 	AddAnnouncer(self, "upandaway_charge")
 	AddAnnouncer(self, "upandaway_uncharge")

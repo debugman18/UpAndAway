@@ -43,6 +43,7 @@ local function AddToNode(inst, node)
 end
 
 local function fn()
+	--[[ Non-networked entity ]]--
     local inst = SpawnPrefab("mist")
 
     inst.components.emitter.ground_height = GROUND_HEIGHT

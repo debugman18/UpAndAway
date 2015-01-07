@@ -274,38 +274,6 @@ local function fn()
         inst:AddComponent("cloudambientmanager")
     end
 
-	if IsServer() then
-		inst:AddComponent("skyflyspawner")
-		do
-			local flyspawner = inst.components.skyflyspawner
-			local cfg = Configurable("SKYFLYSPAWNER")
-
-			flyspawner:SetFlyPrefab("skyflies")
-			flyspawner:SetMaxFlies( cfg:GetConfig "MAX_FLIES" )
-			do
-				local min, max = unpack(cfg:GetConfig "SPAWN_DELAY")
-				local dt = max - min
-				flyspawner:SetDelay( function() return min + dt*math.random() end )
-			end
-			do
-				local min, max = unpack(cfg:GetConfig "PLAYER_DISTANCE")
-				flyspawner:SetMinDistance(min)
-				flyspawner:SetMaxDistance(max)
-			end
-			flyspawner:SetMinFlySpread(cfg:GetConfig "MIN_FLY2FLY_DISTANCE")
-			flyspawner:SetPersistence( cfg:GetConfig "PERSISTENT" )
-
-			flyspawner:SetShouldSpawnFn(function()
-				local sgen = inst.components.staticgenerator
-				return sgen and sgen:IsCharged()
-			end)
-
-			TheMod:AddLocalPlayerPostActivation(function()
-				flyspawner:Touch()
-			end)
-		end
-	end
-
     if not IsDST() then
         --FIXME: not MP compatible
         inst:AddComponent("balloonhounded")

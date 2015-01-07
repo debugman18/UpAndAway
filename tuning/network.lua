@@ -20,6 +20,9 @@ CLIMBING_MANAGER.UPDATE_PERIOD = {0.7, 1}
 --[[
 -- Consensus method to determine if a climb (up or down) should be performed.
 -- Check components/climbingmanager.lua for the possibilities.
+--
+-- This is now a mod configuration option, but a dummy option should still
+-- be set here for singleplayer.
 --]]
 CLIMBING_MANAGER.CONSENSUS = "UNANIMOUS"
 

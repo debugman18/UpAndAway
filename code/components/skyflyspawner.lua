@@ -251,7 +251,7 @@ end
 ---
 -- Gets a flower to spawn a fly on.
 function SkyflySpawner:GetSpawnFlower()
-    local player = GetLocalPlayer()
+    local player = self.inst
 
     if not player then return end
 
@@ -293,5 +293,21 @@ function SkyflySpawner:TrySpawn()
     self:DebugSay("TrySpawn failed")
 end
 
+---
+
+function SkyflySpawner:OnRemoveFromEntity()
+	for fly in pairs(self.flies) do
+		fly.persists = false
+		fly:DoTaskInTime(0.2 + 2*math.random(), function(fly)
+			if fly:IsValid() then
+				fly:Remove()
+			end
+		end)
+	end
+end
+
+SkyflySpawner.OnRemoveEntity = SkyflySpawner.OnRemoveFromEntity
+
+---
 
 return SkyflySpawner

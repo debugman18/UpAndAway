@@ -99,6 +99,23 @@ return {
 		end
 		modinfo.dst_api_version = nil
 
+		if modinfo.configuration_options then
+			local kinds = {"forbids_dst", "requires_dst"}
+			local bad_kind = opts.dst and "forbids_dst" or "requires_dst"
+
+			local opts = modinfo.configuration_options
+			for i = #opts, 1, -1 do
+				local opt = opts[i]
+				if opt[bad_kind] then
+					table.remove(opts, i)
+				else
+					for _, k in ipairs(kinds) do
+						opt[k] = nil
+					end
+				end
+			end
+		end
+
 		return modinfo
 	end,
 }

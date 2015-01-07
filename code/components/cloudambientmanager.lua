@@ -12,6 +12,9 @@ local AL = Game.AmbientLighting
 -- World entity component for handling the ambiance of the cloud realm, such
 -- as ambient light.
 --
+-- It is not networked. Instead, it relies on components.staticannouncer to
+-- broadcast the charge/uncharge events across the network.
+--
 -- @author simplex
 --
 -- @class table
@@ -28,15 +31,11 @@ local CloudAmbientManager = Class(Debuggable, function(self, inst)
     self.current_colour = self.colours.UNCHARGED
 
     self.transition_time = self:GetConfig "COLOUR_TRANSITION_TIME"
-    self.fx_transition_delay = self:GetConfig "FX_TRANSITION_DELAY"
-
-    self.lightning_delay = {unpack(self:GetConfig "LIGHTNING_DELAY")}
-    self.lightning_distance = self:GetConfig "MAX_LIGHTNING_DISTANCE"
-
 
     self.onStateChangeCleanup = FunctionQueue()
 
 	local function OnChangeState(inst, state)
+		--self:Say("OnChangeState => ", state)
 		local _self = inst.components.cloudambientmanager
         if self == _self then
             if self.onStateChangeCleanup then
@@ -47,14 +46,15 @@ local CloudAmbientManager = Class(Debuggable, function(self, inst)
         end
 	end
 
-    self.inst:ListenForEvent("upandaway_charge", function(inst)
+    self.inst:ListenForEvent("upandaway_charge_broadcast", function(inst)
 		return OnChangeState(inst, "CHARGED")
     end)
-    self.inst:ListenForEvent("upandaway_uncharge", function(inst)
+    self.inst:ListenForEvent("upandaway_uncharge_broadcast", function(inst)
 		return OnChangeState(inst, "UNCHARGED")
     end)
 
 	local function initialize_self()
+		assert( GetPseudoClock() )
 		self:ApplyColour()
 		self.inst:DoTaskInTime(0, function()
 			self:ApplyColour()
@@ -96,7 +96,7 @@ local function do_charged_effects(self)
     end)()
 
     local strike = (function()
-        local prefab = "cloud_lightning"
+        local prefab = "cloud_lightning_nonet"
 
         local min_radius, max_radius = unpack(self:GetConfig "LIGHTNING_DISTANCE")
 
@@ -133,10 +133,12 @@ function CloudAmbientManager:OnEnterState(state)
     clock:LerpAmbientColour(self.current_colour, target_colour, colour_transition_time)
 
     if state == "CHARGED" then
-        local thread = self.inst:StartThread(function() do_charged_effects(self) end)
-        table.insert(self.onStateChangeCleanup, function()
-            CancelThread(thread)
-        end)
+		if not IsDedicated() then
+			local thread = self.inst:StartThread(function() do_charged_effects(self) end)
+			table.insert(self.onStateChangeCleanup, function()
+				CancelThread(thread)
+			end)
+		end
     end
 
     self.current_colour = target_colour

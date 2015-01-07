@@ -69,18 +69,20 @@ do
 end
 
 
-AddGamePostInit(function()
-    local ground = GetWorld()
-    if ground and Pred.IsCloudLevel() then
-        for _, node in ipairs(ground.topology.nodes) do
-            local mist = assert( SpawnPrefab("cloud_mist") )
-            mist:AddToNode(node)
-            if mist:IsValid() and mist.components.emitter then
-                mist.components.emitter:Emit()
-            end
-        end
-    end
-end)
+if not IsDedicated() then
+	AddGamePostInit(function()
+		local ground = GetWorld()
+		if ground and Pred.IsCloudLevel() then
+			for _, node in ipairs(ground.topology.nodes) do
+				local mist = assert( SpawnPrefab("cloud_mist") )
+				mist:AddToNode(node)
+				if mist:IsValid() and mist.components.emitter then
+					mist.components.emitter:Emit()
+				end
+			end
+		end
+	end)
+end
 
 --[[
 -- This is just to prevent changes in our implementation breaking old saves.

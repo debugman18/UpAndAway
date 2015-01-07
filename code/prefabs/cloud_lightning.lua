@@ -66,7 +66,7 @@ local function perform(inst)
     end)
 end
 
-local function fn()
+local function make_nonet_entity(parent)
     local inst = CreateEntity()
     inst.persists = false
 
@@ -76,9 +76,48 @@ local function fn()
     inst.entity:AddSoundEmitter()
     inst.entity:AddLight()
 
+	if parent then
+		assert( IsDST() )
+		parent:AddChild( inst )
+		inst.Transform:SetFromProxy(parent.GUID)
+	end
+
     inst:DoTaskInTime(0, perform)
 
     return inst
 end
 
-return Prefab( "common/fx/cloud_lightning", fn, assets, prefabs )
+local function nonet_fn()
+	return make_nonet_entity(nil)
+end
+
+local fn
+if IsSingleplayer() then
+	fn = nonet_fn
+else
+	fn = function()
+		local inst = CreateEntity()
+		inst.persists = false
+
+		if not IsDedicated() and ENABLED then
+			inst.local_child = make_nonet_entity(inst)
+		end
+
+		------------------------------------------------------------------------
+		SetupNetwork(inst)
+		------------------------------------------------------------------------
+
+		if inst.local_child then
+			inst:ListenForEvent("onremove", inst.Remove, inst.local_child)
+		else
+			inst:DoTaskInTime(1.1*LIFETIME + 2*FRAMES, inst.Remove)
+		end
+
+		return inst
+	end
+end
+
+return {
+	Prefab( "common/fx/cloud_lightning", fn, assets, prefabs ),
+	Prefab( "common/fx/cloud_lightning_nonet", nonet_fn, assets, prefabs ),
+}

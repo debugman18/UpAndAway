@@ -130,7 +130,7 @@ local function chop_tree(inst, chopper, chops)
 end
 
 local function dig_up_stump(inst, chopper)
-    --inst.components.lootdropper:SpawnLootPrefab("cloud_lightning")
+    inst.components.lootdropper:SpawnLootPrefab("cloud_lightning")
     inst.components.lootdropper:SpawnLootPrefab("thunder_log")
     inst:Remove()
 end

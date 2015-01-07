@@ -78,6 +78,7 @@ function ClimbingManager:SetConsensusMode(modename)
 		end
 		return error(table.concat(msg_pieces, "\n"), 2)
 	end
+	self:Say("Setting consensus mode to '", modename, "'...")
 	self.consensus = mode
 end
 

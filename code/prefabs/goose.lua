@@ -45,10 +45,10 @@ local function NewEggDropper(period, delay)
                 if math.random(1,4) == 4 then
                     local egg = SpawnPrefab(CFG.GOOSE.EGG)
                     egg.Transform:SetPosition(inst.Transform:GetWorldPosition())
-                    TheMod:DebugSay("[", inst, "] laid [", egg, "]!")
+                    --TheMod:DebugSay("[", inst, "] laid [", egg, "]!")
                     lastlay = GetTime()
                 else
-                    TheMod:DebugSay("No egg laid this time.")	
+                    --TheMod:DebugSay("No egg laid this time.")	
                 end
             else
                 task = inst:DoTaskInTime(getdelay(), task_callback)
