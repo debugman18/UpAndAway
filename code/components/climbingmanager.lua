@@ -87,7 +87,7 @@ function ClimbingManager:HasRequest()
 end
 
 function ClimbingManager:GetMinimumPlayers()
-	return self.consensus(GetTotalPlayers())
+	return math.max(1, self.consensus(GetTotalPlayers()))
 end
 
 local function count_player_set(set)
