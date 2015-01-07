@@ -1,10 +1,8 @@
 BindGlobal()
 
-local prefabs =
-{
-    "lavalight",
-    "campfirefire_dragon",
-}
+local CFG = TheMod:GetConfig()
+
+local prefabs = CFG.DRAGONBLOOD.PREFABS
 
 local assets =
 {
@@ -78,9 +76,9 @@ local function FuelTaken(inst, taker)
                 end	
 
                 blaze:AddComponent("propagator")
-                blaze.components.propagator.propagaterange = 5
+                blaze.components.propagator.propagaterange = CFG.DRAGONBLOOD.SPREAD_RANGE
                 blaze.components.propagator:StartSpreading()
-                blaze.components.heater.heatfn = function() return 300 end
+                blaze.components.heater.heatfn = function() return CFG.DRAGONBLOOD.HEAT end
 
                 taker:DoTaskInTime(5.6, function() 
                     if blaze then
@@ -119,23 +117,23 @@ local function fn(Sim)
 
 
     inst:AddComponent("temperature")
-    inst.components.temperature.maxtemp = 2
-    inst.components.temperature.mintemp = 2
-    inst.components.temperature.current = 2
-    inst.components.temperature.inherentinsulation = TUNING.INSULATION_MED
+    inst.components.temperature.maxtemp = CFG.DRAGONBLOOD.TEMPERATURE
+    inst.components.temperature.mintemp = CFG.DRAGONBLOOD.TEMPERATURE
+    inst.components.temperature.current = CFG.DRAGONBLOOD.TEMPERATURE
+    inst.components.temperature.inherentinsulation = CFG.DRAGONBLOOD.INSULATION
 
     inst:AddComponent("heater")
     inst.components.heater.heatfn = HeatFn
     inst.components.heater.carriedheatfn = HeatFn
 
     inst:AddComponent("fuel")
-    inst.components.fuel.fuelvalue = 30
+    inst.components.fuel.fuelvalue = CFG.DRAGONBLOOD.FUEL_VALUE
     inst.components.fuel:SetOnTakenFn(FuelTaken)
 
     inst:AddComponent("inspectable")
 
     inst:AddComponent("stackable")
-    inst.components.stackable.maxsize = 10
+    inst.components.stackable.maxsize = CFG.DRAGONBLOOD.STACK_SIZE
 
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.atlasname = inventoryimage_atlas("dragonblood_log")

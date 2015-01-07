@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
     Asset("ANIM", "anim/crystal_fragment_spire.zip"),
@@ -28,7 +30,7 @@ local function fn(Sim)
     --inst.Transform:SetScale(.6,.6,.6)
 
     inst:AddComponent("stackable")
-    inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+    inst.components.stackable.maxsize = CFG.CRYSTAL_FRAGMENT.STACK_SIZE
 
     inst:AddComponent("inspectable")
 
@@ -38,8 +40,8 @@ local function fn(Sim)
     inst:AddTag("crystal")
 
     inst:AddComponent("repairer")
-    inst.components.repairer.repairmaterial = "crystal"
-    inst.components.repairer.value = 1	
+    inst.components.repairer.repairmaterial = CFG.CRYSTAL_FRAGMENT.REPAIR_MATERIAL
+    inst.components.repairer.value = CFG.CRYSTAL_FRAGMENT.REPAIR_VALUE 
 
     return inst
 end

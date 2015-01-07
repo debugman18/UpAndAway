@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
     Asset("ANIM", "anim/crystal_fragment_quartz.zip"),
@@ -28,7 +30,7 @@ local function fn(Sim)
     --inst.Transform:SetScale(.6,.6,.6)
 
     inst:AddComponent("stackable")
-    inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+    inst.components.stackable.maxsize = CFG.CRYSTAL_FRAGMENT.STACK_SIZE
 
     inst:AddComponent("inspectable")
 

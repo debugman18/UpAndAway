@@ -83,7 +83,31 @@ local function fn(Sim)
     inst:AddComponent("repairer")
     inst.components.repairer.repairmaterial = CFG.COTTON_CANDY.REPAIR_MATERIAL
     inst.components.repairer.value = CFG.COTTON_CANDY.REPAIR_VALUE
-    
+  
+    local function melt(inst)
+        TheMod:DebugSay("Rain start.")
+        inst.updatetask = inst:DoPeriodicTask(CFG.COTTON_CANDY.MELT_INTERVAL, function()
+            TheMod:DebugSay("Still raining.")
+            inst.components.perishable:ReducePercent(CFG.COTTON_CANDY.MELT_VALUE)
+        end)
+    end    
+
+    inst:ListenForEvent("rainstart", function() 
+        melt(inst)
+    end, GetWorld())
+
+    inst:ListenForEvent("rainstop", function()
+        TheMod:DebugSay("Rain stop.")
+        if inst.updatetask then
+            inst.updatetask:Cancel()
+            inst.updatetask = nil
+        end    
+    end, GetWorld())
+
+    if GetPseudoSeasonManager():IsRaining() then
+        melt(inst)
+    end
+
     return inst
 end
 

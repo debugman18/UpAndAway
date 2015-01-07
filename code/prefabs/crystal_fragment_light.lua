@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
     Asset("ANIM", "anim/crystal_fragment_light.zip"),
@@ -28,7 +30,7 @@ local function fn(Sim)
     --inst.Transform:SetScale(.6,.6,.6)
 
     inst:AddComponent("stackable")
-    inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+    inst.components.stackable.maxsize = CFG.CRYSTAL_FRAGMENT.STACK_SIZE
 
     inst:AddComponent("inspectable")
 
@@ -38,8 +40,8 @@ local function fn(Sim)
     inst:AddTag("crystal")	
 
     inst:AddComponent("fuel")
-    inst.components.fuel.fueltype = "CRYSTAL"
-    inst.components.fuel.fuelvalue = 15
+    inst.components.fuel.fueltype = CFG.CRYSTAL_FRAGMENT.FUEL_TYPE
+    inst.components.fuel.fuelvalue = CFG.CRYSTAL_FRAGMENT.FUEL_VALUE
 
     return inst
 end

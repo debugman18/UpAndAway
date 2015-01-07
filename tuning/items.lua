@@ -568,6 +568,9 @@ COTTON_CANDY.SANITY_VALUE = 25
 COTTON_CANDY.REPAIR_MATERIAL = "cloud"
 COTTON_CANDY.REPAIR_VALUE = 15
 
+COTTON_CANDY.MELT_INTERVAL = 0.5
+COTTON_CANDY.MELT_VALUE = 0.05
+
 ---------------------------------------
  
 -- Cloud Crag
@@ -639,21 +642,179 @@ GEM_CORN.STACK_SIZE = TUNING.STACK_SIZE_LARGEITEM
 
 -- Cotton Hat
 
+CLOUD_HAT.INSULATION = TUNING.INSULATION_LARGE * 1.2
+
+CLOUD_HAT.FUEL = TUNING.SWEATERVEST_PERISHTIME * 0.6
+
+CLOUD_HAT.MELT_INTERVAL = 0.5
+CLOUD_HAT.MELT_VALUE = -25
+
 ---------------------------------------
 
 -- Cotton Vest
 
----------------------------------------
+CLOUD_VEST.DAPPERNESS = TUNING.DAPPERNESS_TINY * 1.5
 
--- Crystal Armor
+CLOUD_VEST.FUEL = TUNING.SWEATERVEST_PERISHTIME * 0.6
 
----------------------------------------
+CLOUD_VEST.MELT_INTERVAL = 0.5
+CLOUD_VEST.MELT_VALUE = -25
 
--- Crystal Axe
+CLOUD_VEST.INSULATION = TUNING.INSULATION_LARGE * 1.1
 
 ---------------------------------------
 
 -- Dragonblood Log
 
+DRAGONBLOOD.STACK_SIZE = 10
+
+DRAGONBLOOD.SPREAD_RANGE = 5
+
+DRAGONBLOOD.HEAT = 300
+
+DRAGONBLOOD.FUEL_VALUE = 30
+
+DRAGONBLOOD.INSULATION = TUNING.INSULATION_MED
+DRAGONBLOOD.TEMPERATURE = 2
+
+-- Loot and Prefabs
+
+DRAGONBLOOD.PREFABS = {
+    "lavalight",
+    "campfirefire_dragon",
+}
+
 ---------------------------------------
 
+-- Crystal Fragments
+
+CRYSTAL_FRAGMENT.STACK_SIZE = TUNING.STACK_SIZE_SMALLITEM
+
+CRYSTAL_FRAGMENT.FUEL_VALUE = 15
+CRYSTAL_FRAGMENT.FUEL_TYPE = "CRYSTAL"
+
+CRYSTAL_FRAGMENT.REPAIR_VALUE = 5
+CRYSTAL_FRAGMENT.REPAIR_MATERIAL = "crystal"
+
+---------------------------------------
+
+-- Crystal Lamp
+
+CRYSTAL_LAMP.FUEL = 100
+CRYSTAL_LAMP.START_FUEL = 60
+CRYSTAL_LAMP.FUEL_RATE = 0.7
+CRYSTAL_LAMP.FUEL_TYPE = "CRYSTAL"
+
+CRYSTAL_LAMP.WORK_TIME = 4
+
+CRYSTAL_LAMP.FALLOFF = 5
+CRYSTAL_LAMP.INTENSITY = 0.7
+
+CRYSTAL_LAMP.RADIUS_MODIFIER = 20
+
+CRYSTAL_LAMP.EMPTY_VALUE = 2
+
+---------------------------------------
+
+-- Crystals
+
+---------------------------------------
+
+-- Dragonblood Sap
+
+DRAGONBLOOD_SAP.STACK_SIZE = 20
+
+DRAGONBLOOD_SAP.HEALTH_VALUE = 15
+DRAGONBLOOD_SAP.HUNGER_VALUE = 7
+DRAGONBLOOD_SAP.SANITY_VALUE = 0
+
+DRAGONBLOOD_SAP.PERISH_TIME = TUNING.PERISH_FAST
+DRAGONBLOOD_SAP.PERISH_ITEM = "spoiled_food"
+
+DRAGONBLOOD_SAP.HEAT_CAPACITY = 0.15
+
+---------------------------------------
+
+-- Dragonblood Tree
+
+---------------------------------------
+
+-- Cumulostone
+
+---------------------------------------
+
+-- Golden Petals
+
+---------------------------------------
+
+-- Golden Rose
+
+---------------------------------------
+
+-- Golden Sunflower
+
+---------------------------------------
+
+-- Golden Sunflower Seeds
+
+---------------------------------------
+
+-- Marhsmallow Hive
+
+---------------------------------------
+
+-- Jellyshrooms
+
+---------------------------------------
+
+-- Kettle
+
+---------------------------------------
+
+-- Gustflower
+
+---------------------------------------
+
+-- Gustflower Seeds
+
+---------------------------------------
+
+-- Marshmallow
+
+---------------------------------------
+
+-- Pineapple
+
+---------------------------------------
+
+-- Rubber
+
+---------------------------------------
+
+-- Shopkeeper Umbrella
+
+---------------------------------------
+
+-- Skyflower
+
+---------------------------------------
+
+-- Skyflower Petals
+
+---------------------------------------
+
+-- Smores
+
+---------------------------------------
+
+-- Thunder Pinecone
+
+---------------------------------------
+
+-- Weavernest
+
+---------------------------------------
+
+-- Wind Axe
+
+---------------------------------------

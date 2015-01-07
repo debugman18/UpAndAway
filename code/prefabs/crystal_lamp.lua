@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
     Asset("ANIM", "anim/crystal_lamp.zip"),
@@ -128,24 +130,24 @@ local function fn(Sim)
     inst:AddComponent("lootdropper")
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
-    inst.components.workable:SetWorkLeft(4)
+    inst.components.workable:SetWorkLeft(CFG.CRYSTAL_LAMP.WORK_TIME)
     inst.components.workable:SetOnFinishCallback(onhammered)
 
     inst:AddComponent("fueled")
-    inst.components.fueled.maxfuel = 100
-    inst.components.fueled.fueltype = "CRYSTAL"
+    inst.components.fueled.maxfuel = CFG.CRYSTAL_LAMP.FUEL
+    inst.components.fueled.fueltype = CFG.CRYSTAL_LAMP.FUEL_TYPE
     inst.components.fueled:SetDepletedFn(onEmpty)  
     inst.components.fueled.ontakefuelfn = onFill
     inst.components.fueled.accepting = true
-    inst.components.fueled:InitializeFuelLevel(60)
-    inst.components.fueled.rate = 0.7
+    inst.components.fueled:InitializeFuelLevel(CFG.CRYSTAL_LAMP.START_FUEL)
+    inst.components.fueled.rate = CFG.CRYSTAL_LAMP.FUEL_RATE
 
     local light = inst.entity:AddLight()
-    inst:DoPeriodicTask(0.7, function(inst)
+    inst:DoPeriodicTask(CFG.CRYSTAL_LAMP.FUEL_RATE, function(inst)
         if inst.components.fueled.currentfuel and inst.components.fueled.currentfuel >= 0 then
-            inst.Light:SetRadius(inst.components.fueled.currentfuel / 20)
+            inst.Light:SetRadius(inst.components.fueled.currentfuel / CFG.CRYSTAL_LAMP.RADIUS_MODIFIER)
         else
-            if inst.components.fueled.currentfuel <= 2 then
+            if inst.components.fueled.currentfuel <= CFG.CRYSTAL_LAMP.EMPTY_VALUE then
                 onEmpty(inst)
                 inst.Light:SetRadius(0) 
             end

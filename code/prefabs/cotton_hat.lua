@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets=
 {
     Asset("ANIM", "anim/cotton_hat.zip"),
@@ -73,23 +75,23 @@ local function fn(Sim)
         inst:AddComponent("equippable")
         inst.components.equippable.equipslot = EQUIPSLOTS.HEAD
 
-        inst.components.equippable:SetOnEquip( onequip )
+        inst.components.equippable:SetOnEquip(onequip)
 
-        inst.components.equippable:SetOnUnequip( onunequip )
+        inst.components.equippable:SetOnUnequip(onunequip)
 
         inst:AddComponent("insulator")
-        inst.components.insulator.insulation = TUNING.INSULATION_LARGE
+        inst.components.insulator.insulation = CFG.COTTON_HAT.INSULATION
 
         inst:AddComponent("fueled")
         inst.components.fueled.fueltype = "USAGE"
-        inst.components.fueled:InitializeFuelLevel(TUNING.SWEATERVEST_PERISHTIME)
+        inst.components.fueled:InitializeFuelLevel(CFG.COTTON_HAT.FUEL)
         inst.components.fueled:SetDepletedFn(onperish)
 
         local function melt(inst)
             TheMod:DebugSay("Rain start.")
-            inst.updatetask = inst:DoPeriodicTask(0.5, function()
+            inst.updatetask = inst:DoPeriodicTask(CFG.COTTON_HAT.MELT_INTERVAL, function()
                 TheMod:DebugSay("Still raining.")
-                inst.components.fueled:DoDelta(-25)
+                inst.components.fueled:DoDelta(CFG.CLOUD_HAT.MELT_VALUE)
             end)
         end    
 
