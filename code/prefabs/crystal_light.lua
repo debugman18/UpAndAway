@@ -65,7 +65,7 @@ local function fn(Sim)
     light:SetColour(237/255, 237/255, 209/255)
     light:Enable(false)    
 
-    inst.Transform:SetScale(CFG.CRYSTAL.SCALE, CFG.CRYSTAL.SCALE, CFG.CRYSTAL.SCALE)
+    inst.Transform:SetScale(CFG.CRYSTAL.SCALE(), CFG.CRYSTAL.SCALE(), CFG.CRYSTAL.SCALE())
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable("crystal_light")   

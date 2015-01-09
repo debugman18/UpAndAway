@@ -81,7 +81,7 @@ local function fn(Sim)
     MakeLargeFreezableCharacter(inst)
     
     inst:AddComponent("sanityaura")
-    inst.components.sanityaura.aura = CFG.VINE.SANITYAURA
+    inst.components.sanityaura.aura = -(CFG.VINE.SANITY_AURA)
        
     inst:AddComponent("inspectable")
     inst:AddComponent("lootdropper")

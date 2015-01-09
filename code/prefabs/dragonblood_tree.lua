@@ -33,6 +33,8 @@ local function chopped(inst)
         inst.chopped = true
     end
 
+    inst.Transform:SetScale(0.2,0.2,0.2)
+
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.DIG)
     inst.components.workable:SetOnFinishCallback(dig_up_stump)
@@ -46,7 +48,7 @@ end
 
 local function SetShort(inst)
     if inst.components.workable then
-        inst.components.workable:SetWorkLeft(DRAGONBLOOD_TREE.WORK_TIME)
+        inst.components.workable:SetWorkLeft(CFG.DRAGONBLOOD_TREE.WORK_TIME)
     end
     if not inst.components.lootdropper then
         inst:AddComponent("lootdropper")
@@ -62,7 +64,7 @@ end
 
 local function SetNormal(inst)
     if inst.components.workable then
-        inst.components.workable:SetWorkLeft(DRAGONBLOOD_TREE.WORK_TIME + 1)
+        inst.components.workable:SetWorkLeft(CFG.DRAGONBLOOD_TREE.WORK_TIME + 1)
     end
     if not inst.components.lootdropper then
         inst:AddComponent("lootdropper")
@@ -77,8 +79,8 @@ local function GrowNormal(inst)
 end
 
 local function SetTall(inst)
-    if inst.components.workable thenCFG.DRAGONBLOOD_TREE.TALL_SCALE
-        inst.components.workable:SetWorkLeft(DRAGONBLOOD_TREE.WORK_TIME + 2)
+    if inst.components.workable then
+        inst.components.workable:SetWorkLeft(CFG.DRAGONBLOOD_TREE.WORK_TIME + 2)
     end
     if not inst.components.lootdropper then
         inst:AddComponent("lootdropper")

@@ -9,12 +9,7 @@ local assets =
 
 local prefabs = CFG.CRYSTAL.PREFABS
 
-local loot = 
-{
-    "crystal_fragment_relic",
-    "crystal_fragment_relic",
-    "crystal_fragment_relic",
-}
+SetSharedLootTable("crystal_relic", CFG.CRYSTAL_RELIC.LOOT)
         
 local function onMined(inst, worker)
     inst:RemoveComponent("resurrector")
@@ -135,7 +130,7 @@ local function fn()
     ------------------------------------------------------------------------
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot(loot)
+    inst.components.lootdropper:SetChanceLootTable("crystal_relic")
     
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.MINE)
@@ -143,13 +138,12 @@ local function fn()
     inst.components.workable:SetOnWorkCallback(onhit)
     inst.components.workable:SetOnFinishCallback(onMined)	
     
-    local scale = math.random(3,4)
-    inst.Transform:SetScale(scale, scale, scale)
+    inst.Transform:SetScale(CFG.CRYSTAL.SCALE(), CFG.CRYSTAL.SCALE(), CFG.CRYSTAL.SCALE())
 
     inst:AddComponent("periodicspawner")
-    inst.components.periodicspawner:SetPrefab("owl")
-    inst.components.periodicspawner:SetDensityInRange(5, 3)
-    inst.components.periodicspawner:SetMinimumSpacing(5)
+    inst.components.periodicspawner:SetPrefab(CFG.CRYSTAL_RELIC.CHILD)
+    inst.components.periodicspawner:SetDensityInRange(CFG.CRYSTAL_RELIC.DENSITY_B, CFG.CRYSTAL_RELIC.DENSITY_B)
+    inst.components.periodicspawner:SetMinimumSpacing(CFG.CRYSTAL_RELIC.SPACING)
 
     inst:AddComponent("resurrector")
     inst.components.resurrector.makeactivefn = makeactive

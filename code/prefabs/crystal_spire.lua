@@ -59,9 +59,7 @@ local function fn()
     --inst.entity:AddMiniMapEntity()
     --inst.MiniMapEntity:SetIcon( "statue_small.png" )
 
-    local basescale = math.random(8,14)
-    local scale = math.random(3,4)
-    inst.Transform:SetScale(scale, scale, scale)
+    inst.Transform:SetScale(CFG.CRYSTAL.SCALE(), CFG.CRYSTAL.SCALE(), CFG.CRYSTAL.SCALE())
 
     inst:AddComponent("inspectable")
 

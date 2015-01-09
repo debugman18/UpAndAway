@@ -104,7 +104,7 @@ local function fn(Sim)
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable("crystal_water")
 
-    inst.Transform:SetScale(CFG.CRYSTAL.SCALE, CFG.CRYSTAL.SCALE, CFG.CRYSTAL.SCALE)
+    inst.Transform:SetScale(CFG.CRYSTAL.SCALE(), CFG.CRYSTAL.SCALE(), CFG.CRYSTAL.SCALE())
     inst.AnimState:SetMultColour(1, 1, 1, 0.8)
 
     inst:AddComponent("workable")

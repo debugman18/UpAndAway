@@ -56,7 +56,7 @@ local function fn(Sim)
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable("crystal_quartz")
 
-    inst.Transform:SetScale(CFG.CRYSTAL.SCALE, CFG.CRYSTAL.SCALE, CFG.CRYSTAL.SCALE)
+    inst.Transform:SetScale(CFG.CRYSTAL.SCALE(), CFG.CRYSTAL.SCALE(), CFG.CRYSTAL.SCALE())
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.MINE)

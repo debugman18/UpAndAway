@@ -46,7 +46,7 @@ local function fn(Sim)
     inst:AddTag("crystal")
     inst:AddTag("gnome_crystal")
     
-    inst.Transform:SetScale(CFG.CRYSTAL.SCALE, CFG.CRYSTAL.SCALE, CFG.CRYSTAL.SCALE)
+    inst.Transform:SetScale(CFG.CRYSTAL.SCALE(), CFG.CRYSTAL.SCALE(), CFG.CRYSTAL.SCALE())
 
     ------------------------------------------------------------------------
     SetupNetwork(inst)
