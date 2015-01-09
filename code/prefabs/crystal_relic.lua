@@ -1,17 +1,13 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
     Asset("ANIM", "anim/crystal.zip"),
 }
 
-local prefabs = 
-{
-    "owl",
-    "crystal_fragment_relic",
-}
-
-local CFG = TheMod:GetConfig()
+local prefabs = CFG.CRYSTAL.PREFABS
 
 local loot = 
 {
@@ -104,7 +100,7 @@ local function onhit(inst, worker)
         --inst.components.lootdropper:DropLoot()
         inst:Remove()
     else            
-        if workleft and workleft <= TUNING.SPILAGMITE_ROCK * 0.5 then
+        if workleft and workleft <= CFG.CRYSTAL.WORK_TIME * 0.5 then
             inst.AnimState:PlayAnimation("idle_low")
         else
             inst.AnimState:PlayAnimation("idle_med")
@@ -143,7 +139,7 @@ local function fn()
     
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.MINE)
-    inst.components.workable:SetWorkLeft(TUNING.SPILAGMITE_ROCK*1.5)
+    inst.components.workable:SetWorkLeft(CFG.CRYSTAL.WORK_TIME)
     inst.components.workable:SetOnWorkCallback(onhit)
     inst.components.workable:SetOnFinishCallback(onMined)	
     

@@ -512,7 +512,7 @@ GUMMYBEAR.SCALE = 0.9
 
 GUMMYBEAR.COLOR = function() return 0.1 + math.random() * 0.9 end
 
-GUMMYBEAR.ALPHA = function() return 0.75 + math.random() * 0.05 + 0.15 end
+GUMMYBEAR.ALPHA = function() return 0.75 + math.random() end
 
 GUMMYBEAR.WALKSPEED = 2
 GUMMYBEAR.RUNSPEED = 5

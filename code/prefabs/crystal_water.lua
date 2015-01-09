@@ -7,18 +7,9 @@ local assets =
     Asset("ANIM", "anim/crystal.zip"),
 }
 
-local prefabs =
-{
-   "crystal_fragment_water",
-   "flying_fish",
-}
+local prefabs = CFG.CRYSTAL.PREFABS
 
-local loot = 
-{
-   "crystal_fragment_water",
-   "crystal_fragment_water",
-   "crystal_fragment_water",
-}
+SetSharedLootTable("crystal_water", CFG.CRYSTAL_WATER.LOOT)
 
 local function MakeFishSpawner(inst)
     local fish = SpawnPrefab("flying_fish")
@@ -27,7 +18,6 @@ local function MakeFishSpawner(inst)
     fish.Transform:SetPosition(pt:Get())
     local down = TheCamera:GetDownVec()
     local angle = math.atan2(down.z, down.x) + (math.random()*60-30)*DEGREES
-    --local angle = (-TUNING.CAM_ROT-90 + math.random()*60-30)/180*PI
     local sp = math.random()*4+2
     fish.Physics:SetVel(sp*math.cos(angle), math.random()*2+8, sp*math.sin(angle))
     
@@ -51,7 +41,7 @@ local function workcallback(inst, worker, workleft)
         inst.components.lootdropper:DropLoot(pt)
         inst:Remove()
     else            
-        if workleft <= TUNING.SPILAGMITE_ROCK * 0.5 then
+        if workleft <= CFG.CRYSTAL.WORK_TIME * 0.5 then
             inst.AnimState:PlayAnimation("idle_low")
             print "Water at low."
         else
@@ -65,10 +55,7 @@ end
 local function GoToBrokenState(inst)
     inst.broken = true
     
-    inst.SoundEmitter:PlaySound("dontstarve/wilson/rock_break")
-    
-    --inst.components.workable:SetOnWorkCallback(workcallback)
-    --inst.components.workable:SetWorkLeft(TUNING.SPILAGMITE_ROCK)    
+    inst.SoundEmitter:PlaySound("dontstarve/wilson/rock_break")  
 end
 
 local function onsave(inst, data)
@@ -115,15 +102,14 @@ local function fn(Sim)
     inst:AddComponent("inspectable")
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot(loot) 	
+    inst.components.lootdropper:SetChanceLootTable("crystal_water")
 
-    local basescale = math.random(8,14)
-    local scale = math.random(3,4)
-    inst.Transform:SetScale(scale, scale, scale)
-    inst.AnimState:SetMultColour(1, 1, 1, 0.7)
+    inst.Transform:SetScale(CFG.CRYSTAL.SCALE, CFG.CRYSTAL.SCALE, CFG.CRYSTAL.SCALE)
+    inst.AnimState:SetMultColour(1, 1, 1, 0.8)
+
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.MINE)
-    inst.components.workable:SetWorkLeft(TUNING.SPILAGMITE_ROCK)
+    inst.components.workable:SetWorkLeft(CFG.CRYSTAL.WORK_TIME)
     inst.components.workable:SetOnWorkCallback(workcallback)
     inst.components.workable:SetOnFinishCallback(onMined)	
 

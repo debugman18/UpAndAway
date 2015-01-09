@@ -16,7 +16,7 @@ local assets =
 
 local prefabs = CFG.BEANLET.PREFABS
 
-SetSharedLootTable( "beanlet", CFG.BEANLET.LOOT)
+SetSharedLootTable("beanlet", CFG.BEANLET.LOOT)
 
 local function OnIgnite(inst)
     DefaultBurnFn(inst)

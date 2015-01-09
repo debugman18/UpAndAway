@@ -718,6 +718,75 @@ CRYSTAL_LAMP.EMPTY_VALUE = 2
 
 -- Crystals
 
+CRYSTAL.WORK_TIME = TUNING.ROCKS_MINE * 1.1
+
+CRYSTAL.SCALE = function() return math.random(3,4) end
+
+CRYSTAL_BLACK.SCALE = 2.4
+CRYSTAL_BLACK.CHILD = "owl"
+CRYSTAL_BLACK.REGEN_PERIOD = TUNING.TOTAL_DAY_TIME * 7
+CRYSTAL_BLACK.SPAWN_PERIOD = 10
+CRYSTAL_BLACK.MAX_CHILDREN = 2s
+
+CRYSTAL_LIGHT.FALLOFF = 0.5
+CRYSTAL_LIGHT.INTENSITY = 0.8
+CRYSTAL_LIGHT.RADIUS = 1.5
+
+-- Loot and Prefabs
+
+CRYSTAL.PREFABS = {
+    "owl",
+    "flying_fish",
+    "crystal_fragment_relic",
+	"crystal_fragment_black",
+	"crystal_fragment_light",
+	"crystal_fragment_quartz",
+	"crystal_fragment_spire",
+	"crystal_fragment_water",
+	"crystal_fragment_white",
+}
+
+CRYSTAL_WATER.LOOT = {
+    {"crystal_fragment_water", 1.0},
+}
+
+CRYSTAL_SPIRE.LOOT = {
+    {"crystal_fragment_spire", 1.0},
+}
+
+CRYSTAL_WHITE.LOOT = {
+    {"crystal_fragment_white", 1.0},
+    {"crystal_fragment_white", 1.0},
+    {"crystal_fragment_white", 0.9},
+    {"crystal_fragment_white", 0.8},
+    {"crystal_fragment_white", 0.7},
+}
+
+CRYSTAL_QUARTZ.LOOT = {
+    {"crystal_fragment_quartz", 1.0},
+    {"crystal_fragment_quartz", 1.0},
+    {"crystal_fragment_quartz", 1.0},
+}
+
+CRYSTAL_LIGHT.LOOT = {
+    {"crystal_fragment_light", 1.0},
+    {"crystal_fragment_light", 1.0},
+    {"crystal_fragment_light", 1.0},
+}
+
+CRYSTAL_BLACK.LOOT = {
+    {"crystal_fragment_black", 1.0},
+    {"crystal_fragment_black", 1.0},
+    {"crystal_fragment_black", 0.9},
+    {"crystal_fragment_black", 0.5},
+}
+
+CRYSTAL_RELIC.LOOT = {
+    {"crystal_fragment_relic", 1.0},
+    {"crystal_fragment_relic", 1.0},
+    {"crystal_fragment_relic", 1.0},
+}
+
 ---------------------------------------
 
 -- Dragonblood Sap
@@ -737,9 +806,52 @@ DRAGONBLOOD_SAP.HEAT_CAPACITY = 0.15
 
 -- Dragonblood Tree
 
+DRAGONBLOOD_TREE.WORK_TIME = 3
+
+DRAGONBLOOD_TREE.SHORT_SCALE = 0.75
+DRAGONBLOOD_TREE.NORMAL_SCALE = 0.9
+DRAGONBLOOD_TREE.TALL_SCALE = 1
+
+DRAGONBLOOD_TREE.BASE_GROW_TIME = TUNING.EVERGREEN_GROW_TIME[2].base
+DRAGONBLOOD_TREE.RAND_GROW_TIME = TUNING.EVERGREEN_GROW_TIME[2].random
+
+-- Loot and Prefabs
+
+DRAGONBLOOD_TREE.PREFABS = {
+	"dragonblood_log",
+	"dragonblood_sap",
+}
+
+DRAGONBLOOD_TREE.DUG_LOOT = {
+	"dragonblood_log",
+	"dragonblood_log",
+	"dragonblood_sap",
+}
+
+DRAGONBLOOD_TREE.SHORT_LOOT = {
+	"dragonblood_log",
+	"dragonblood_log",	
+}
+
+DRAGONBLOOD_TREE.NORMAL_LOOT = {
+	"dragonblood_log",
+	"dragonblood_log",
+	"dragonblood_log",	
+}
+
+DRAGONBLOOD_TREE.TALL_LOOT = {
+	"dragonblood_log",
+	"dragonblood_log",
+	"dragonblood_log",
+	"dragonblood_log",	
+	"dragonblood_sap",	
+}
+
 ---------------------------------------
 
 -- Cumulostone
+
+CUMULOSTONE.STACK_SIZE = TUNING.STACK_SIZE_LARGEITEM
 
 ---------------------------------------
 
@@ -808,6 +920,10 @@ DRAGONBLOOD_SAP.HEAT_CAPACITY = 0.15
 ---------------------------------------
 
 -- Thunder Pinecone
+
+---------------------------------------
+
+-- Thunder Tree
 
 ---------------------------------------
 

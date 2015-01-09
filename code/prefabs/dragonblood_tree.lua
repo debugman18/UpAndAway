@@ -1,38 +1,24 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
     Asset("ANIM", "anim/dragonblood_tree.zip"),
 }
 
-local prefabs =
-{
-    "dragonblood_sap",
-    "dragonblood_log",
-}
+local prefabs = CFG.DRAGONBLOOD_TREE.PREFABS
 
-local short_loot = 
-{
-    "dragonblood_log",	
-}
+local short_loot = CFG.DRAGONBLOOD_TREE.SHORT_LOOT
 
-local normal_loot = 
-{
-    "dragonblood_log",
-    "dragonblood_log",	
-}
+local normal_loot = CFG.DRAGONBLOOD_TREE.NORMAL_LOOT
 
-local tall_loot = 
-{
-    "dragonblood_log",
-    "dragonblood_log",
-    "dragonblood_log",		
-    "dragonblood_log",
-}
+local tall_loot = CFG.DRAGONBLOOD_TREE.TALL_LOOT
 
 local function dig_up_stump(inst, chopper)
-    inst.components.lootdropper:SpawnLootPrefab("dragonblood_sap")
-    inst.components.lootdropper:SpawnLootPrefab("dragonblood_sap")
+    for k,drop in ipairs(CFG.DRAGONBLOOD_TREE.DUG_LOOT) do
+        inst.components.lootdropper:SpawnLootPrefab(drop)
+    end
     inst:Remove()
 end
 
@@ -41,7 +27,6 @@ local function chopped(inst)
     inst.AnimState:SetMultColour(0, 0, 0, 1)
     inst:RemoveComponent("workable")
     inst:RemoveComponent("growable")
-    inst.Transform:SetScale(.3,.3,.3)
 
     if not inst.chopped then
         inst.components.lootdropper:DropLoot()
@@ -61,13 +46,13 @@ end
 
 local function SetShort(inst)
     if inst.components.workable then
-        inst.components.workable:SetWorkLeft(3)
+        inst.components.workable:SetWorkLeft(DRAGONBLOOD_TREE.WORK_TIME)
     end
     if not inst.components.lootdropper then
         inst:AddComponent("lootdropper")
     end	
     inst.components.lootdropper:SetLoot(short_loot)
-    inst.Transform:SetScale(0.6, 0.6, 0.6)
+    inst.Transform:SetScale(CFG.DRAGONBLOOD_TREE.SHORT_SCALE, CFG.DRAGONBLOOD_TREE.SHORT_SCALE, CFG.DRAGONBLOOD_TREE.SHORT_SCALE)
     inst.AnimState:PlayAnimation("idle_harvested")
 end
 
@@ -77,13 +62,13 @@ end
 
 local function SetNormal(inst)
     if inst.components.workable then
-        inst.components.workable:SetWorkLeft(4)
+        inst.components.workable:SetWorkLeft(DRAGONBLOOD_TREE.WORK_TIME + 1)
     end
     if not inst.components.lootdropper then
         inst:AddComponent("lootdropper")
     end		
     inst.components.lootdropper:SetLoot(normal_loot)
-    inst.Transform:SetScale(0.8, 0.8, 0.8)
+    inst.Transform:SetScale(CFG.DRAGONBLOOD_TREE.NORMAL_SCALE, CFG.DRAGONBLOOD_TREE.NORMAL_SCALE, CFG.DRAGONBLOOD_TREE.NORMAL_SCALE)
     inst.AnimState:PlayAnimation("idle_harvested")
 end
 
@@ -92,14 +77,14 @@ local function GrowNormal(inst)
 end
 
 local function SetTall(inst)
-    if inst.components.workable then
-        inst.components.workable:SetWorkLeft(5)
+    if inst.components.workable thenCFG.DRAGONBLOOD_TREE.TALL_SCALE
+        inst.components.workable:SetWorkLeft(DRAGONBLOOD_TREE.WORK_TIME + 2)
     end
     if not inst.components.lootdropper then
         inst:AddComponent("lootdropper")
     end		
     inst.components.lootdropper:SetLoot(tall_loot)
-    inst.Transform:SetScale(1, 1, 1)
+    inst.Transform:SetScale(CFG.DRAGONBLOOD_TREE.TALL_SCALE, CFG.DRAGONBLOOD_TREE.TALL_SCALE, CFG.DRAGONBLOOD_TREE.TALL_SCALE)
 end
 
 local function GrowTall(inst)
@@ -108,9 +93,9 @@ end
 
 local growth_stages =
 {
-    {name="short", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[1].base, TUNING.EVERGREEN_GROW_TIME[1].random) end, fn = function(inst) SetShort(inst) end,  growfn = function(inst) GrowShort(inst) end , leifscale=.7 },
-    {name="normal", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[2].base, TUNING.EVERGREEN_GROW_TIME[2].random) end, fn = function(inst) SetNormal(inst) end, growfn = function(inst) GrowNormal(inst) end, leifscale=1 },
-    {name="tall", time = function(inst) return GetRandomWithVariance(TUNING.EVERGREEN_GROW_TIME[3].base, TUNING.EVERGREEN_GROW_TIME[3].random) end, fn = function(inst) SetTall(inst) end, growfn = function(inst) GrowTall(inst) end, leifscale=1.25 },
+    {name="short", time = function(inst) return GetRandomWithVariance(CFG.DRAGONBLOOD_TREE.BASE_GROW_TIME, CFG.DRAGONBLOOD_TREE.RAND_GROW_TIME) end, fn = function(inst) SetShort(inst) end,  growfn = function(inst) GrowShort(inst) end},
+    {name="normal", time = function(inst) return GetRandomWithVariance(CFG.DRAGONBLOOD_TREE.BASE_GROW_TIME, CFG.DRAGONBLOOD_TREE.RAND_GROW_TIME) end, fn = function(inst) SetNormal(inst) end, growfn = function(inst) GrowNormal(inst) end},
+    {name="tall", time = function(inst) return GetRandomWithVariance(CFG.DRAGONBLOOD_TREE.BASE_GROW_TIME, CFG.DRAGONBLOOD_TREE.RAND_GROW_TIME) end, fn = function(inst) SetTall(inst) end, growfn = function(inst) GrowTall(inst) end},
 }
 
 local function random_colour()
@@ -167,11 +152,11 @@ local function fn()
 
     inst:AddComponent("inspectable")
 
-       inst:AddComponent("lootdropper") 
+    inst:AddComponent("lootdropper") 
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.CHOP)
-    inst.components.workable:SetWorkLeft(3)
+    inst.components.workable:SetWorkLeft(CFG.DRAGONBLOOD_TREE.WORK_TIME)
     inst.components.workable:SetOnFinishCallback(chopped)
     inst.components.workable:SetOnWorkCallback(chop)	
 
@@ -182,10 +167,7 @@ local function fn()
     inst.components.growable:StartGrowing()
 
     inst.entity:AddMiniMapEntity()
-    inst.MiniMapEntity:SetIcon("dragonblood_tree.tex")
-
-    -- The following function is not defined.
-    --inst:ListenForEvent("onremove", removesockets)	   	
+    inst.MiniMapEntity:SetIcon("dragonblood_tree.tex")   	
 
     inst.OnSave = onsave
     inst.OnLoad = onload

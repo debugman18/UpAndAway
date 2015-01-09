@@ -7,26 +7,16 @@ local assets =
     Asset("ANIM", "anim/crystal.zip"),
 }
 
-local prefabs =
-{
-    --marble drops
-    "crystal_fragment_spire",
-}
+local prefabs = CFG.CRYSTAL.PREFABS
 
-local loot = 
-{
-   "crystal_fragment_spire",
-   "crystal_fragment_spire",
-   "crystal_fragment_spire",
-}
+SetSharedLootTable("crystal_spire", CFG.CRYSTAL_SPIRE.LOOT)
 
 local function workcallback(inst, worker, workleft)
     if workleft <= 0 then
         inst.SoundEmitter:PlaySound("dontstarve/wilson/rock_break")
-        --inst.components.lootdropper:DropLoot()
         inst:Remove()
     else            
-        if workleft <= TUNING.SPILAGMITE_ROCK * 0.5 then
+        if workleft <= CFG.CRYSTAL.WORK_TIME * 0.5 then
             inst.AnimState:PlayAnimation("idle_low")
         else
             inst.AnimState:PlayAnimation("idle_med")
@@ -57,9 +47,8 @@ local function fn()
 
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot(loot)
-    inst.components.lootdropper:AddChanceLoot("crystal_fragment_spire", 0.33)
-
+    inst.components.lootdropper:SetChanceLootTable("crystal_spire")
+    
     inst:AddTag("crystal")
 
     anim:SetBank("crystal_spire")
@@ -78,7 +67,7 @@ local function fn()
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.MINE)
-    inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE)
+    inst.components.workable:SetWorkLeft(CFG.CRYSTAL.WORK_TIME)
     inst.components.workable:SetOnFinishCallback(onMined)
     inst.components.workable:SetOnWorkCallback(workcallback)
         

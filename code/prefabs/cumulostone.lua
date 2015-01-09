@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
     Asset("ANIM", "anim/cumulostone.zip"),
@@ -31,7 +33,7 @@ local function fn(Sim)
     inst.components.inventoryitem.atlasname = inventoryimage_atlas("cumulostone")
 
     inst:AddComponent("stackable")
-    inst.components.stackable.maxsize = TUNING.STACK_SIZE_LARGEITEM
+    inst.components.stackable.maxsize = CFG.CUMULOSTONE.STACK_SIZE
 
     return inst
 end

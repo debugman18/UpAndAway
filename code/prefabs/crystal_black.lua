@@ -7,17 +7,9 @@ local assets =
     Asset("ANIM", "anim/crystal_black.zip"),
 }
 
-local prefabs =
-{
-   "crystal_fragment_black",
-}
+local prefabs = CFG.CRYSTAL.PREFABS
 
-local loot = 
-{
-   "crystal_fragment_black",
-   "crystal_fragment_black",
-   "crystal_fragment_black",
-}
+SetSharedLootTable("crystal_black", CFG.CRYSTAL_BLACK.LOOT)
 
 local function onMined(inst, worker)
     inst.components.lootdropper:DropLoot()
@@ -77,8 +69,7 @@ local function fn(Sim)
     inst.AnimState:SetBuild("crystal_black")
     inst.AnimState:PlayAnimation("idle_occupied")
     MakeObstaclePhysics(inst, 1)
-    --inst.AnimState:SetMultColour(1, 1, 1, 0.86)
-    inst.Transform:SetScale(2.4, 2.4, 2.4)
+    inst.Transform:SetScale(CFG.CRYSTAL_BLACK.SCALE, CFG.CRYSTAL_BLACK.SCALE, CFG.CRYSTAL_BLACK.SCALE)
     inst:AddTag("crystal")
     inst:AddTag("owl_crystal")
 
@@ -91,21 +82,21 @@ local function fn(Sim)
     inst:AddComponent("inspectable")
 
     inst:AddComponent("lootdropper")
-    inst.components.lootdropper:SetLoot(loot) 	
+    inst.components.lootdropper:SetChanceLootTable("crystal_black") 	
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.MINE)
-    inst.components.workable:SetWorkLeft(TUNING.ROCKS_MINE)
+    inst.components.workable:SetWorkLeft(CFG.CRYSTAL.WORK_TIME)
     inst.components.workable:SetOnFinishCallback(onMined)
     inst.components.workable:SetOnWorkCallback(onhit)	 
 
     inst:AddComponent("childspawner")
-    inst.components.childspawner.childname = "owl"
+    inst.components.childspawner.childname = CFG.CRYSTAL_BLACK.CHILD
     inst.components.childspawner:SetSpawnedFn(OnSpawned)
     inst.components.childspawner:SetGoHomeFn(OnGoHome)
-    inst.components.childspawner:SetRegenPeriod(TUNING.TOTAL_DAY_TIME*7)
-    inst.components.childspawner:SetSpawnPeriod(10)
-    inst.components.childspawner:SetMaxChildren(2)     
+    inst.components.childspawner:SetRegenPeriod(CFG.CRYSTAL_BLACK.REGEN_PERIOD)
+    inst.components.childspawner:SetSpawnPeriod(CFG.CRYSTAL_BLACK.SPAWN_PERIOD)
+    inst.components.childspawner:SetMaxChildren(CFG.CRYSTAL_BLACK.MAX_CHILDREN)     
 
     return inst
 end
