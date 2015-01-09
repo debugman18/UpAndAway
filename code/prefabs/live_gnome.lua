@@ -120,5 +120,9 @@ local function fn(Sim)
     return inst
 end
 
+-------------------------------------------------------------------------------------
+
+-- Everything above that line is the old gnome code. It will be erased once the new code is finished.
+
 return Prefab ("common/inventory/live_gnome", fn, assets, prefabs) 
 --As opposed to a dead gnome.

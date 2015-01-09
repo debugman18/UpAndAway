@@ -1,5 +1,6 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
 
 local Configurable = wickerrequire "adjectives.configurable"
 local goodcfg = Configurable("SKYFLOWER")
@@ -37,9 +38,9 @@ local function update_anim(inst)
     local sc = inst.components.staticchargeable
 
     if sc and sc:IsCharged() then
-        inst.AnimState:PlayAnimation( get_datura_anim_name(inst) )
+        inst.AnimState:PlayAnimation(get_datura_anim_name(inst))
     else
-        inst.AnimState:PlayAnimation( get_anim_name(inst) )
+        inst.AnimState:PlayAnimation(get_anim_name(inst))
     end
 end
 
@@ -49,9 +50,9 @@ end
 
 local function onpickedfn(inst, picker)
     if not inst:HasTag("flower_datura") and picker and picker.components.sanity then
-        picker.components.sanity:DoDelta(TUNING.SANITY_TINY)
+        picker.components.sanity:DoDelta(CFG.SKYFLOWER.PICK_SANITY)
     elseif inst:HasTag("flower_datura") and picker and picker.components.sanity then
-        picker.components.sanity:DoDelta(-TUNING.SANITY_TINY)		
+        picker.components.sanity:DoDelta(-(CFG.DATURA.PICK_SANITY))		
     end
 
     inst:Remove()
@@ -68,10 +69,11 @@ local function onunchargefn(inst)
     --inst:AddTag("flower")	
     
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
-    inst.components.pickable:SetUp("skyflower_petals", 40)
+    inst.components.pickable:SetUp("skyflower_petals", CFG.SKYFLOWER.REGEN_PERIOD)
     inst.components.pickable.onpickedfn = onpickedfn	
 
-    inst.components.sanityaura.aura = 0	
+    --I think a very small sanity boost is appropriate, because sanity constantly falls.
+    inst.components.sanityaura.aura = CFG.SKYFLOWER.SANITY_AURA	
     
     return inst
 end
@@ -88,10 +90,10 @@ local function onchargefn(inst)
     inst:AddTag("flower_datura")
     
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
-    inst.components.pickable:SetUp("datura_petals", 40)
+    inst.components.pickable:SetUp("datura_petals", CFG.SKYFLOWER.REGEN_PERIOD)
     inst.components.pickable.onpickedfn = onpickedfn
     
-    inst.components.sanityaura.aura = -TUNING.SANITYAURA_LARGE		
+    inst.components.sanityaura.aura = -(CFG.DATURA.SANITY_AURA)		
     
     return inst
 end
@@ -139,8 +141,8 @@ local function fn()
     inst:AddComponent("staticchargeable")
     inst.components.staticchargeable:SetOnChargeFn(onchargefn)
     inst.components.staticchargeable:SetOnUnchargeFn(onunchargefn)
-    inst.components.staticchargeable:SetOnChargeDelay( goodcfg:GetConfig "CHARGE_DELAY" )
-    inst.components.staticchargeable:SetOnUnchargeDelay( goodcfg:GetConfig "UNCHARGE_DELAY" )
+    inst.components.staticchargeable:SetOnChargeDelay(goodcfg:GetConfig "CHARGE_DELAY")
+    inst.components.staticchargeable:SetOnUnchargeDelay(goodcfg:GetConfig "UNCHARGE_DELAY")
 
     --------SaveLoad
     inst.OnSave = onsave 

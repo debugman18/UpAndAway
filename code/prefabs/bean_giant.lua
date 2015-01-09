@@ -225,4 +225,119 @@ local function fn(Sim)
     return inst
 end
 
-return Prefab ("common/bean_giant", fn, assets, prefabs) 
+-------------------------------------------------------------------------------------
+
+-- Everything above that line is the old beangiant code. It will be erased once the new code is finished.
+
+--[[
+local CFG = TheMod:GetConfig()
+
+local brain = require "brains/beangiantbrain"
+
+local assets =
+{
+    Asset("ANIM", "anim/bean_giant.zip"),
+
+    Asset("ANIM", "anim/deerclops_basic.zip"),
+    Asset("ANIM", "anim/deerclops_actions.zip"),
+    Asset("ANIM", "anim/deerclops_build.zip"),
+
+    Asset("SOUND", "sound/deerclops.fsb"),
+}
+
+local prefabs = CFG.BEAN_GIANT.PREFABS
+
+SetSharedLootTable("bean_giant", CFG.BEAN_GIANT.LOOT)
+
+]]--
+
+-- The function run upon world charge.
+local function pod_chargefn(inst)
+end
+
+-- The function run upon world uncharge.
+local function pod_unchargefn(inst)
+end
+
+-- Run this every time the pod or bean giant grows.
+local function on_growth(inst) 
+    -- Shake the screen and spawn children.
+end
+
+-- Run this every time the pod or bean giant is attacked.
+local function attacked_fn(inst)
+    if inst and inst:HasTag("pod") then
+        -- Do pod shaking here.
+    else
+        -- Do giant stuff here, because it clearly isn't a pod.
+    end
+end
+
+-- This will turn the pod into a functional bean giant.
+local function giant_fn(inst)
+
+    inst:AddComponent("health")
+    inst.components.health:SetMaxHealth(CFG.BEAN_GIANT.HEALTH)
+
+    inst:AddComponent("combat")
+
+end
+
+--local function OnLoad(inst, data)
+--end
+
+--local function OnSave(inst, data)
+--end
+
+-- This will create the pod which will turn into the bean giant.
+local function pod_fn(inst)
+    
+    local inst = CreateEntity()
+
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
+    local sound = inst.entity:AddSoundEmitter()
+    local shadow = inst.entity:AddDynamicShadow()
+
+    -- This adds basic tags (non-local uses) efficiently.
+    for i,tag in ipairs(CFG.BEAN_GIANT.TAGS) do
+        inst:AddTag(tag)
+    end
+
+    -- This runs after entity creation and before components.
+    ------------------------------------------------------------------------
+    SetupNetwork(inst)
+    ------------------------------------------------------------------------
+
+    -- The pod will not walk, so we'll set this to zero for now.
+    inst:AddComponent("locomotor")
+    inst.components.locomotor.walkspeed = 0
+    inst.components.locomotor.runspeed = 0
+
+    -- This runs after locomotor and before the brain.
+    ------------------------------------------
+    inst:SetStateGraph("SGbeangiant")
+    ------------------------------------------
+
+    inst:SetBrain(brain)
+
+    inst:AddComponent("growable")
+
+    inst:AddComponent("childspawner")
+
+    inst:AddComponent("staticchargeable")
+    inst.components.staticchargeable:SetChargedFn(pod_chargefn)
+    inst.components.staticchargeable:SetUnchargedFn(pod_unchargefn)  
+
+    inst:ListenForEvent("attacked", attacked_fn)
+
+    inst.OnSave = OnSave
+    inst.OnLoad = OnLoad
+
+    return inst
+end
+
+return {
+    Prefab("common/bean_giant", fn, assets, prefabs),
+    --Prefab("common/bean_giant", pod_fn, assets, prefabs),
+} 

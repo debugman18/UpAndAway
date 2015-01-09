@@ -560,6 +560,15 @@ GUMMYBEAR.LOOT = {
 
 -- Bean Giant
 
+BEAN_GIANT.TAGS = {
+	"epic",
+	"monster",
+	"hostile",
+	"scarytoprey",
+	"beanmonster",
+	"largecreature",
+}
+
 BEAN_GIANT.HEALTH = 1300
 
 BEAN_GIANT.WALKSPEED = 3

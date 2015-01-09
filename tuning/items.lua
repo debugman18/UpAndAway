@@ -860,6 +860,29 @@ CUMULOSTONE.STACK_SIZE = TUNING.STACK_SIZE_LARGEITEM
 
 ---------------------------------------
 
+-- Skyflower and Datura
+
+SKYFLOWER.PICK_SANITY = TUNING.SANITY_TINY - 1
+DATURA.PICK_SANITY = TUNING.SANITY_TINY + 1
+
+SKYFLOWER.REGEN_PERIOD = 40
+
+SKYFLOWER.SANITY_AURA = SKYFLOWER.PICK_SANITY
+DATURA.SANITY_AURA = TUNING.SANITY_LARGE - 3
+
+-- Loot and Prefabs
+
+SKYFLOWER.PREFABS = {
+    "skyflower_petals",
+    "datura_petals",
+}  
+
+---------------------------------------
+
+-- Skyflower Petals
+
+---------------------------------------
+
 -- Golden Petals
 
 ---------------------------------------
@@ -909,14 +932,6 @@ CUMULOSTONE.STACK_SIZE = TUNING.STACK_SIZE_LARGEITEM
 ---------------------------------------
 
 -- Shopkeeper Umbrella
-
----------------------------------------
-
--- Skyflower
-
----------------------------------------
-
--- Skyflower Petals
 
 ---------------------------------------
 
