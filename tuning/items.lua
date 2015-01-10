@@ -193,8 +193,8 @@ FLYING_FISH.PREFABS = {
 AMBROSIA.FOODTYPE = "VEGGIE"
 
 AMBROSIA.HEALTHVALUE = function() return math.random(-40,20) end
-AMBROSIA.HUNGERVALUE = function() math.random(-40,20) end
-AMBROSIA.SANITYVALUE = function() math.random(-40,20) end
+AMBROSIA.HUNGERVALUE = function() return math.random(-40,20) end
+AMBROSIA.SANITYVALUE = function() return math.random(-40,20) end
 
 ---------------------------------------
 
