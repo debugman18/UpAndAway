@@ -113,7 +113,8 @@ local function fn()
 	
 	if IsDST() and IsMasterSimulation() then
 		addcmp(inst, "playerspawner")
-		addcmp(inst, "worldsanitymonsterspawner")
+		addcmp(inst, "shadowcreaturespawner")
+		addcmp(inst, "shadowhandspawner")
     end
 
 	---
