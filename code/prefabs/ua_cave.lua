@@ -118,6 +118,18 @@ local function fn()
     end
 
 	---
+	
+	if IsDST() then
+		addcmp(inst, "ambientlighting")
+		if not IsDedicated() then
+			addcmp(inst, "dynamicmusic")
+			addcmp(inst, "ambientsound")
+			addcmp(inst, "colourcube")
+			addcmp(inst, "hallucinations")
+		end
+	end
+
+	---
 
 	setup_ambient_sound(inst)
 
