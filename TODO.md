@@ -3,6 +3,10 @@
 + **Current bugs:**
 
 	+ World generation time is too short. (Vanilla bug?)
+	+ Staves are non-functional in DST due to test fn.
+	+ Ambience is non-functional in DS.
+	+ Reputation component is not saving tables. Deepcopy?
+	+ Cloud realm is somehow succeptible to overworld weather. (I was so confused when seeds burst into flames.)
 
 + **Art assets in need of attention**
 
@@ -12,17 +16,22 @@
 
 	+ These need to be clarified and tuned; see Cavetroll thread.
 
-	+ Gnome Revamp
-	+ Faction Implementation
-	+ Winnie Revamp
-	+ Bean Giant Revamp and Setpiece
-	+ Shopkeeper Boss Quest
+	+ Gnome overhaul.
+	+ Reputation component needs decay functionality.
+	+ Winnie overhaul.
+	+ Bean Giant is being overhauled.
+	+ Shopkeeper Boss Quest implementation.
+
+	+ These need to be added; they currently do not exist.
+
+	+ Bean Giant and Semiconductor drops.
+	+ Semiconductor boss.
+	+ Static damage type.
 
 + **General improvements to be made:*
 
-	+ Allow for more cloud stuff in the overworld.
+	+ Allow for more cloud stuff in the overworld, and vice-versa.
 	+ Adjust world density.
-	+ More teas.
 
 + **Miscellanea (Suggestions to be considered) **
 
@@ -32,7 +41,7 @@
 
 ******
 
-Anything else that needs to be added will be added, current version is from memory. 
+Anything else that needs to be added will be added (eventually). 
 If something is missing (bugs or otherwise), let either @simplex or @debugman18 know.
 
 <!--

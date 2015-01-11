@@ -21,7 +21,7 @@ TEA_LEAF.SPOILED_PREFAB = "wetgoop"
 -- Tea Bush
 
 TEA_BUSH.CYCLES = 4
-TEA_BUSH.REGROW_TIME = 3*TUNING.TOTAL_DAY_TIME
+TEA_BUSH.REGROW_TIME = 3 * TUNING.TOTAL_DAY_TIME
 
 ---------------------------------------
 

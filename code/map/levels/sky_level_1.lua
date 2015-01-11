@@ -35,22 +35,17 @@ local sky_level_1 = {
     id="SKY_LEVEL_1",
     name="Sky",
     nomaxwell=true,
-    --hideminimap = true,
     desc="Up and Away.",
 
     overrides={
         {"location",		"cave"},
+        {"world_size", 		IfDST("large", "medium")}, 
 
-        --{"world_size", 		"small"},
-        {"world_size", 		IfDST("large", "medium")},
-        --{"world_size", 		"tiny"},
-        --{"day", 			"longdusk"}, 
         {"day", 			"onlydusk"}, 
+
         {"waves", 			"on"},
         {"branching",		"more"},
         {"looping",		    "default"},
-
-        --{"world_complexity", "verycomplex"},		
 
         -- The only effect the following has is preventing snow on the
         -- ground.
@@ -68,24 +63,6 @@ local sky_level_1 = {
         {"deerclops", 		"never"},
         {"hounds", 			"never"},	
         {"rain",			"never"},
-
-        --[[
-        {"spiders", 		"never"},
-        {"rabbits",         "never"},
-        {"trees",           "never"},
-        {"rock",           "never"},	
-        {"carrot",         "never"},	
-        {"berrybush", 		"never"},				
-        {"beefalo",         "never"},	
-        {"grass",           "never"},	
-        {"pigs",            "never"},
-        {"sapling",        "never"},	
-        ]]--
-                    
-        --This is custom content.
-        {"skyflower",     "up_everywhere"},
-        {"cloud_bush",    "up_moreplaces"},
-        {"sheep",         "up_fewplaces"},
         
         {"start_setpeice", 	"BeanstalkTop"},				
         {"start_node",		"BeanstalkSpawn"},
@@ -101,10 +78,6 @@ local sky_level_1 = {
         "Cloud_Innocent_Snow_Biome",
         "Cloud_Snow_Biome",
     },
-    
-        --numoptionaltasks = math.random(2,3),
-        --optionaltasks = {
-        --},
     
     set_pieces = {
         ["OctocopterWreckage"] = { count=1, tasks={"Cloud_Aurora_Biome"} },	
@@ -145,29 +118,5 @@ local sky_level_1 = {
 
 }
 
-
-
---[[
---This is the level that is generated.
-
-local adventure_sky_level_1 = DeepCopy(sky_level_1)
-
-TheMod:AddLevel(LEVELTYPE.ADVENTURE, adventure_sky_level_1)
-]]--
-
-
 local cave_sky_level_1 = DeepCopy(sky_level_1)
 TheMod:AddCloudLevel(cave_sky_level_1)
-
---[[
---I'm not sure we will want/need this in the future. With ClimbTo(), this is obsolete.
-
---This is the preset for testing purposes.
-
-local survival_sky_level_1 = DeepCopy(sky_level_1)
-
--- Removes the start set "peice".
-table.TrimArray(survival_sky_level_1.overrides, function(v) return v[1] ~= "start_setpeice" end)
-
-TheMod:AddLevel(LEVELTYPE.SURVIVAL, survival_sky_level_1)
---]]

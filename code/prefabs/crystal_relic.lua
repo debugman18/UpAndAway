@@ -155,7 +155,6 @@ local function fn()
     inst.components.activatable.inactive = true
 
     inst:AddComponent("inspectable")
-    inst.components.inspectable.nameoverride = "Sacred Crystal"
 
     return inst
 end

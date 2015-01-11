@@ -91,10 +91,11 @@ SHEEP.PREFABS = {
 	"meat",
 	"skyflower",
 	"cloud_cotton",
-	"wool",
+	"beefalowool",
 }
 
 SHEEP.PERIODICSPAWN_PREFAB = "skyflower"
+SHEEP.MINIMUM_SPACING = 0
 
 SHEEP.LOOT = {
 	{'meat',	0.70},	
@@ -111,9 +112,9 @@ RAM.LOOT = {
 	{'meat',	0.70},
 	{'meat',	0.70},
 	{'meat',	0.70},	
-	{'wool',	0.90},
-	{'wool',	0.80},
-	{'wool',	0.80},
+	{'beefalowool',	0.90},
+	{'beefalowool',	0.80},
+	{'beefalowool',	0.80},
 }
 
 SHEEP.SHAVE_BITS = 3

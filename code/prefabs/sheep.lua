@@ -44,6 +44,9 @@ local function GetStatus(inst)
     return inst.components.staticchargeable:IsCharged() and "RAM" or "SHEEP"
 end
 
+local function SpawnFlower(inst)
+    inst.components.sleeper:AddSleepiness(1, 10)
+end
 
 local retarget_fns = {}
 
@@ -127,10 +130,6 @@ local function set_electricsheep(inst)
     
     inst.AnimState:SetBuild("sheep_baby_build")
     inst.AnimState:PlayAnimation("idle_loop", true)
-
-    --inst.components.beard.bits = CFG.SHEEP.SHAVE_BITS
-    --inst.components.beard.daysgrowth = hair_growth_days + 1 
-    --inst.components.beard.onreset = function() inst.sg:GoToState("shaved") end
     
     inst.components.combat:SetDefaultDamage(CFG.SHEEP.DAMAGE)
      
@@ -141,7 +140,8 @@ local function set_electricsheep(inst)
     inst.components.periodicspawner:Stop()
     inst.components.periodicspawner:SetRandomTimes(20, 100)
     inst.components.periodicspawner:SetDensityInRange(10, 1)
-    inst.components.periodicspawner:SetMinimumSpacing(10)
+    inst.components.periodicspawner:SetMinimumSpacing(CFG.SHEEP.MINIMUM_SPACING)
+    inst.components.periodicspawner:SetOnSpawnFn(SpawnFlower)
     inst.components.periodicspawner:Start()
     
     inst.components.sleeper:SetResistance(2)
@@ -191,7 +191,8 @@ local function set_stormram(inst)
     inst.components.periodicspawner:Stop()
     inst.components.periodicspawner:SetRandomTimes(40, 60)
     inst.components.periodicspawner:SetDensityInRange(20, 2)
-    inst.components.periodicspawner:SetMinimumSpacing(8)
+    inst.components.periodicspawner:SetMinimumSpacing(CFG.SHEEP.MINIMUM_SPACING)
+    inst.components.periodicspawner:SetOnSpawnFn(SpawnFlower)
     inst.components.periodicspawner:Start()
     
     inst.components.sleeper:SetResistance(4)
@@ -274,8 +275,22 @@ local function fn()
     inst:AddComponent("eater")	
     inst.components.eater:SetVegetarian()	
 
-    --inst:AddComponent("beard")
-    --local hair_growth_days = CFG.SHEEP.HAIR_GROWTH_DAYS	
+    inst:AddComponent("beard")
+    inst.components.beard.bits = CFG.SHEEP.SHAVE_BITS
+    inst.components.beard.daysgrowth = CFG.SHEEP.HAIR_GROWTH_DAYS + 1 
+    inst.components.beard.onreset = function() inst.sg:GoToState("shaved") end   
+    inst.components.beard.prize = "beefalowool"
+    inst.components.beard:AddCallback(0, function()
+        if inst.components.beard.bits == 0 then
+            -- We need a shaved sheep build.
+            --anim:SetBuild("sheep_shaved_build")
+        end
+    end)
+    inst.components.beard:AddCallback(CFG.SHEEP.HAIR_GROWTH_DAYS, function()
+        if inst.components.beard.bits == 0 then
+            inst.hairGrowthPending = true
+        end
+    end)
     
     inst:AddComponent("combat")	
     inst.components.combat.hiteffectsymbol = "beefalo_body"
@@ -302,7 +317,7 @@ local function fn()
     inst.components.periodicspawner:SetPrefab(CFG.SHEEP.PERIODICSPAWN_PREFAB)	
     inst.components.periodicspawner:SetRandomTimes(30, 80)
     inst.components.periodicspawner:SetDensityInRange(40, 3)
-    inst.components.periodicspawner:SetMinimumSpacing(10)
+    inst.components.periodicspawner:SetMinimumSpacing(CFG.SHEEP.MINIMUM_SPACING)
     inst.components.periodicspawner:Start()
 
     MakeLargeBurnableCharacter(inst, "beefalo_body")
@@ -315,7 +330,7 @@ local function fn()
     inst:AddComponent("lootdropper")
     
     inst:AddComponent("sleeper")	
-    
+
     inst:SetStateGraph("SGSheep")
     
     inst:AddComponent("staticchargeable")

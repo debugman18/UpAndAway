@@ -274,10 +274,13 @@ local function fn()
         inst:AddComponent("cloudambientmanager")
     end
 
+    -- Temporarily disabled to reduce blasphemy.
+    --[[
     if not IsDST() then
         --FIXME: not MP compatible
         inst:AddComponent("balloonhounded")
     end
+    ]]
 
     ---------------------------------------------
 
