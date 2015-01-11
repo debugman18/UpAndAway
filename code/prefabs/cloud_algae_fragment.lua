@@ -39,10 +39,10 @@ local function fn(Sim)
     inst.components.inventoryitem.atlasname = inventoryimage_atlas("cloud_algae_fragment")
 
     inst:AddComponent("edible")
+    inst.components.edible.foodtype = CFG.CLOUD_ALGAE_FRAGMENT.FOODTYPE
     inst.components.edible.hungervalue = CFG.CLOUD_ALGAE_FRAGMENT.HUNGER_VALUE
     inst.components.edible.sanityvalue = CFG.CLOUD_ALGAE_FRAGMENT.SANITY_VALUE
     inst.components.edible.healthvalue = CFG.CLOUD_ALGAE_FRAGMENT.HEALTH_VALUE
-    inst.components.edible.foodtype = CFG.CLOUD_ALGAE_FRAGMENT.FOODTYPE
 
     inst:AddComponent("perishable")
     inst.components.perishable:SetPerishTime(CFG.CLOUD_ALGAE_FRAGMENT.PERISH_TIME)

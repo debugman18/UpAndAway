@@ -7,7 +7,7 @@ PrefabFiles = {
 	"cauldron",
 	"refiner",
 
-	--Stuff in dev branch.
+	--Stuff in progress.
 	--------------------
 
 	"pineapple_bush",
@@ -23,6 +23,10 @@ PrefabFiles = {
 	"gnome_decor",
 	"gnome_plot",
 	--"cloud_wall",
+	--"bean_giant",
+	
+	--"live_gnome"
+	"live_gnome",
 
 	------------------------------
 
@@ -74,8 +78,7 @@ PrefabFiles = {
 	"crystal_fragment_relic",
 	"crystal_fragment_spire",
 	"cotton_vest",
-	"research_lectern",
-	--"bean_giant",	
+	"research_lectern",	
 	"beanstalk_wall",
 	"smores",
 	"weather_machine",	
@@ -96,7 +99,6 @@ PrefabFiles = {
 	"gustflower_seeds",		
 	"beanlet_zealot",	
 	"octocopter",	
-	"live_gnome",
 	"crystal_black",
 	"crystal_white",	
 	"beanlet",		

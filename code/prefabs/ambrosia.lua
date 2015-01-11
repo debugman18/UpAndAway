@@ -45,9 +45,9 @@ local function fn(Sim)
 
     inst:AddComponent("edible")
     inst.components.edible.foodtype = CFG.AMBROSIA.FOODTYPE
-    inst.components.edible.healthvalue = CFG.AMBROSIA.HEALTHVALUE()
-    inst.components.edible.hungervalue = CFG.AMBROSIA.HUNGERVALUE()
-    inst.components.edible.sanityvalue = CFG.AMBROSIA.SANITYVALUE()
+    inst.components.edible.healthvalue = CFG.AMBROSIA.HEALTH_VALUE()
+    inst.components.edible.hungervalue = CFG.AMBROSIA.HUNGER_VALUE()
+    inst.components.edible.sanityvalue = CFG.AMBROSIA.SANITY_VALUE()
     inst.components.edible:SetOnEatenFn(oneatfn)
 
     return inst

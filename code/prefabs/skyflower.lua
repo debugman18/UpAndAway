@@ -12,11 +12,7 @@ local assets=
     Asset("ANIM", "anim/datura.zip"),	
 }
 
-local prefabs =
-{
-    "skyflower_petals",
-    "datura_petals",
-}    
+local prefabs = CFG.SKYFLOWER.PREFABS  
 
 local anim_names = {"f1","f2","f3","f4","f5","f6","f7","f8","f9","f10"}
 local datura_anim_names = {"f1","f2","f3","f4","f5","f6","f7","f8"}

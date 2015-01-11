@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
     Asset("ANIM", "anim/rubber.zip"),
@@ -27,8 +29,15 @@ local function fn(Sim)
     SetupNetwork(inst)
     ------------------------------------------------------------------------
 
+    inst:AddComponent("edible")
+    inst.components.edible.foodtype = CFG.RUBBER.FOODTYPE
+    inst.components.edible.healthvalue = CFG.RUBBER.HEALTH_VALUE
+    inst.components.edible.hungervalue = CFG.RUBBER.HUNGER_VALUE
+    inst.components.edible.sanityvalue = CFG.RUBBER.SANITY_VALUE
 
     inst:AddComponent("inspectable")
+
+    inst:AddTag("rubber")
 
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.atlasname = inventoryimage_atlas("rubber")
