@@ -14,6 +14,7 @@
 + nil
 
 ### Custom animation banks/builds in need of attention, in order of priority.
++ Sheep -- Needs shaved art.
 + Bean Giant Boss -- Needs polishing and animation. Millenium and Battal are working on this. They may need help animating, because of the complexities. 
 + Bean Pod -- The pod which the bean giant will burst from. May potentially even be part of the bean giants animations.
 + Gnomes. -- Vivalavie was working on this. Battal began animations. Unknown status.

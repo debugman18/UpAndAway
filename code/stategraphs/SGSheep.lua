@@ -263,16 +263,8 @@ local states=
             inst.components.locomotor:StopMoving()
             inst.AnimState:PlayAnimation("hair_growth") 
                 inst.SoundEmitter:PlaySound("dontstarve/beefalo/hairgrow_pop")
-                if inst:HasTag("baby") and inst.components.growable then
-                    inst.AnimState:SetBuild("beefalo_baby_build")
-                    inst.components.growable:SetStage(inst.components.growable:GetNextStage() )
-                elseif inst.components.beard then
-                    local herd = inst.components.herdmember and inst.components.herdmember:GetHerd()
-                    if herd and herd.components.mood and herd.components.mood:IsInMood() then
-                        inst.AnimState:SetBuild("beefalo_heat_build") 
-                    else
-                        inst.AnimState:SetBuild("beefalo_build") 
-                    end
+                if inst.components.beard then
+                    inst.AnimState:SetBuild("beefalo_build") 
                     inst.components.beard.bits = 3
                 end
                 inst.hairGrowthPending = false
@@ -289,7 +281,7 @@ local states=
         tags = {"busy", "sleeping"},
         
         onenter = function(inst)
-            inst.AnimState:SetBuild("beefalo_shaved_build")
+            --inst.AnimState:SetBuild("beefalo_shaved_build")
             inst.AnimState:PlayAnimation("shave")
         end,
         
