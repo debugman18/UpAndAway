@@ -28,6 +28,8 @@ PrefabFiles = {
 	--"live_gnome"
 	"live_gnome",
 
+	"bean_giant_statue",
+
 	------------------------------
 
 	"ua_cave",

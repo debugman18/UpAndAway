@@ -9,7 +9,7 @@ end)
 
 --Sets minimum reputation value for a specific faction.
 function Reputation:SetMinRep(faction, minrep)
-	if self.factions[faction]s then
+	if self.factions[faction] then
 		self.factions[faction].minrep = minrep
 	end
 end
@@ -33,7 +33,7 @@ end
 --Increase reputation by a specific amount for a specific faction.
 function Reputation:IncreaseReputation(faction, delta)
 	if self.factions[faction] then
-		if self.factions[faction].reputation = (self.factions[faction].reputation + (delta)) <= self.factions[faction].maxrep then
+		if self.factions[faction].reputation == (self.factions[faction].reputation + (delta)) <= self.factions[faction].maxrep then
 			self.factions[faction].reputation = (self.factions[faction].reputation + (delta)) <= self.factions[faction].maxrep
 		else
 			self.factions[faction].reputation = self.factions[faction].maxrep
@@ -46,7 +46,7 @@ end
 --Lower reputation by a specific amount for a specific faction.
 function Reputation:LowerReputation(faction, delta)
 	if self.factions.faction then
-		if self.factions[faction].reputation = (self.factions[faction].reputation + (delta)) >= self.factions[faction].minrep then
+		if self.factions[faction].reputation == (self.factions[faction].reputation + (delta)) >= self.factions[faction].minrep then
 			self.factions[faction].reputation = (self.factions[faction].reputation + (delta)) >= self.factions[faction].minrep
 		else
 			self.factions[faction].reputation = self.factions[faction].minrep
