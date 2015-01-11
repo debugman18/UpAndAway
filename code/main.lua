@@ -55,7 +55,7 @@ modrequire "componentactions"
 modrequire "replicas"
 modrequire "rpcs"
 modrequire "resources.recipes"
-modrequire "resources.cooking_recipes"
+modrequire "resources.cooking_recipebook"
 
 do
     local oldSpawnPrefab = _G.SpawnPrefab
