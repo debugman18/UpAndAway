@@ -22,7 +22,7 @@ function Reputation:OnDelta(faction, positive)
 end
 
 --Increase reputation by a specific amount for a specific faction.
-function Reputation:IncreaseReputation(faction, delta)
+function Reputation:IncreaseReputation(faction, delta, trigger)
 	TheMod:DebugSay("Increasing the reputation of the " .. faction .. " faction by " .. delta .. " points.")
 	if self.factions[faction] then
 		if self.factions[faction].reputation + delta <= self.factions[faction].maxrep then
@@ -32,11 +32,14 @@ function Reputation:IncreaseReputation(faction, delta)
 		end
 	end
 
-	self:OnDelta(faction, true)
+	-- Whether or not to trigger a stage callback.
+	if trigger then
+		self:OnDelta(faction, true)
+	end
 end
 
 --Lower reputation by a specific amount for a specific faction.
-function Reputation:LowerReputation(faction, delta)
+function Reputation:LowerReputation(faction, delta, trigger)
 	TheMod:DebugSay("Lowering the reputation of the " .. faction .. " faction by " .. delta .. " points.")
 	if self.factions[faction] then
 		if self.factions[faction].reputation - delta >= self.factions[faction].minrep then
@@ -46,7 +49,10 @@ function Reputation:LowerReputation(faction, delta)
 		end	
 	end
 
-	self:OnDelta(faction, false)
+	-- Whether or not to trigger a stage callback.
+	if trigger then
+		self:OnDelta(faction, false)
+	end
 end
 
 --Add a stage, threshold, and callback for a specific faction.
@@ -61,13 +67,32 @@ function Reputation:AddStage(callback, faction, stage, threshold)
 end
 
 --Add a faction if it does not exist.
-function Reputation:AddFaction(faction, baserep, minrep, maxrep)
+function Reputation:AddFaction(faction, baserep, minrep, maxrep, decay, decay_positive, decay_rate)
 	if not self.factions then
 		self.factions = {}
 	end
 	if not self.factions[faction] then
 		TheMod:DebugSay("Adding the " .. faction .. " faction.")
-		self.factions[faction] = {reputation = baserep, minrep = minrep, maxrep = maxrep}
+		self.factions[faction] = {
+
+			-- The base reputation value.
+			reputation = baserep, 
+
+			-- The minimum reputation value.
+			minrep = minrep, 
+
+			-- The maximum reputation value.
+			maxrep = maxrep, 
+
+			-- Whether or not reputation will decay.
+			decay = decay, 
+
+			-- Whether or not the decay is positive.
+			decay_positive = decay_positive, 
+
+			-- The rate at which reputation decays.
+			decay_rate = decay_rate
+		}
 	end
 end
 

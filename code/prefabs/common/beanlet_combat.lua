@@ -20,9 +20,9 @@ function OnBeanletAttacked(inst, data)
     local is_zealot = inst:HasTag("zealot")
 
     if is_zealot then
-        TheWorld.components.reputation:LowerReputation("bean", 15)
+        TheWorld.components.reputation:LowerReputation("bean", 15, true)
     else
-        TheWorld.components.reputation:LowerReputation("bean", 8)
+        TheWorld.components.reputation:LowerReputation("bean", 8, true)
     end
 
     local beans = Game.FindAllEntities(inst, MAX_RADIUS, nil, {"beanlet"})
