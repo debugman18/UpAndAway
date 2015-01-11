@@ -1,10 +1,7 @@
---We don't need no stinking _G.
-BindGlobal()
-
 --The compoment constructor.
 local Reputation = HostClass(Debuggable, function(self, inst)
-    self.inst = inst
-    self.factions = {}
+	self.inst = inst
+    self.factions = nil
 end)
 
 --Runs when reputation is increased or decreased for a specific faction.
@@ -20,6 +17,7 @@ end
 
 --Increase reputation by a specific amount for a specific faction.
 function Reputation:IncreaseReputation(faction, delta)
+	print("Increasing the reputation of the " .. faction .. " faction by " .. delta .. " points.")
 	if self.factions[faction] then
 		if self.factions[faction].reputation + (delta) <= self.factions[faction].maxrep then
 			self.factions[faction].reputation = (self.factions[faction].reputation + (delta)) <= self.factions[faction].maxrep
@@ -33,7 +31,8 @@ end
 
 --Lower reputation by a specific amount for a specific faction.
 function Reputation:LowerReputation(faction, delta)
-	if self.factions.faction then
+	print("Lowering the reputation of the " .. faction .. " faction by " .. delta .. " points.")
+	if self.factions[faction] then
 		if self.factions[faction].reputation + (delta) >= self.factions[faction].minrep then
 			self.factions[faction].reputation = (self.factions[faction].reputation + (delta)) >= self.factions[faction].minrep
 		else
@@ -49,24 +48,33 @@ function Reputation:AddStage(callback, faction, stage, threshold)
 	if not self.factions[faction].stages then
 		self.factions[faction].stages = {}
 	end
-	self.factions[faction].stages[stage] = {callback = callback, threshold = threshold}
+	if not self.factions[faction].stages[stage] then
+		print("Adding the " .. stage .. " stage to the " .. faction .. " faction.")
+		self.factions[faction].stages[stage] = {callback = callback, threshold = threshold}
+	end
 end
 
 --Add a faction if it does not exist.
-function Reputation:SetFaction(faction, baserep, minrep, maxrep)
+function Reputation:AddFaction(faction, baserep, minrep, maxrep)
+	if not self.factions then
+		self.factions = {}
+	end
 	if not self.factions[faction] then
+		print("Adding the " .. faction .. " faction.")
 		self.factions[faction] = {reputation = baserep, minrep = minrep, maxrep = maxrep}
 	end
 end
 
 --OnSave
 function Reputation:OnSave()
-    return self.factions
+	if self.factions then
+    	return self.factions
+    end
 end
 
 --OnLoad
 function Reputation:OnLoad(data)
-	if data then
+	if data and data.factions then
     	self.factions = data.factions
     end
 end

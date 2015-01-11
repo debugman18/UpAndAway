@@ -52,7 +52,7 @@ local function fn(Sim)
     anim:SetBank("tentacle")
     anim:SetBuild("vine")
     anim:PlayAnimation("idle")
-     inst.entity:AddSoundEmitter()
+    inst.entity:AddSoundEmitter()
 
     inst:AddTag("monster")    
     inst:AddTag("hostile")
@@ -60,7 +60,6 @@ local function fn(Sim)
     inst:AddTag("cloudmonster")
     inst:AddTag("beanprotector")
     inst:AddTag("beanmonster")
-
 
     ------------------------------------------------------------------------
     SetupNetwork(inst)
