@@ -19,6 +19,12 @@ local SHARE_ATTACK_RADIUS = SHARE_ATTACK_RADIUS*SHARE_ATTACK_RADIUS
 function OnBeanletAttacked(inst, data)
     local is_zealot = inst:HasTag("zealot")
 
+    if is_zealot then
+        TheWorld.components.reputation:LowerReputation("bean", 15)
+    else
+        TheWorld.components.reputation:LowerReputation("bean", 8)
+    end
+
     local beans = Game.FindAllEntities(inst, MAX_RADIUS, nil, {"beanlet"})
     
     for _, bean in ipairs(beans) do

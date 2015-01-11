@@ -5,12 +5,18 @@ local Reputation = HostClass(Debuggable, function(self, inst)
 end)
 
 --Runs when reputation is increased or decreased for a specific faction.
-function Reputation:OnDelta(faction)
+function Reputation:OnDelta(faction, positive)
 	if self.factions[faction] then
 		for k,v in pairs(self.factions[faction].stages) do
-			if v.threshold <= self.factions[faction].reputation then
-				v.callback()
-			end 
+			if positive then
+				if v.threshold <= self.factions[faction].reputation then
+					v.callback()
+				end 
+			else
+				if v.threshold >= self.factions[faction].reputation then
+					v.callback()
+				end 
+			end
 		end
 	end
 end
@@ -19,28 +25,28 @@ end
 function Reputation:IncreaseReputation(faction, delta)
 	TheMod:DebugSay("Increasing the reputation of the " .. faction .. " faction by " .. delta .. " points.")
 	if self.factions[faction] then
-		if self.factions[faction].reputation + (delta) <= self.factions[faction].maxrep then
-			self.factions[faction].reputation = (self.factions[faction].reputation + (delta)) <= self.factions[faction].maxrep
+		if self.factions[faction].reputation + delta <= self.factions[faction].maxrep then
+			self.factions[faction].reputation = self.factions[faction].reputation + delta
 		else
 			self.factions[faction].reputation = self.factions[faction].maxrep
 		end
 	end
 
-	self:OnDelta(faction)
+	self:OnDelta(faction, true)
 end
 
 --Lower reputation by a specific amount for a specific faction.
 function Reputation:LowerReputation(faction, delta)
 	TheMod:DebugSay("Lowering the reputation of the " .. faction .. " faction by " .. delta .. " points.")
 	if self.factions[faction] then
-		if self.factions[faction].reputation + (delta) >= self.factions[faction].minrep then
-			self.factions[faction].reputation = (self.factions[faction].reputation + (delta)) >= self.factions[faction].minrep
+		if self.factions[faction].reputation - delta >= self.factions[faction].minrep then
+			self.factions[faction].reputation = self.factions[faction].reputation - delta
 		else
 			self.factions[faction].reputation = self.factions[faction].minrep
 		end	
 	end
 
-	self:OnDelta(faction)
+	self:OnDelta(faction, false)
 end
 
 --Add a stage, threshold, and callback for a specific faction.

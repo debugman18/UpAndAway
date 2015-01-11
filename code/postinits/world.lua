@@ -5,9 +5,8 @@ if IsHost() then
 		--Reputation stuff is worldwide.
     	inst:AddComponent("reputation")
 
-    	inst.components.reputation:AddFaction("bean", 50, 0, 100)
-    	inst.components.reputation:AddStage(function() print("Testing: Stage 1 completed.") end, "bean", "one", 50)
-    	inst.components.reputation:AddStage(function() print("Testing: Stage 2 completed.") end, "bean", "two", 100)
+    	inst.components.reputation:AddFaction("bean", 100, 0, 100)
+    	inst.components.reputation:AddStage(function() print("Testing: Stage 1 completed.") end, "bean", "beanhated_one", 50)
 	end)
 end
 
