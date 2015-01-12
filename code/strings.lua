@@ -60,6 +60,7 @@ Add.Names {
     cloud_storage = "Cloud Chest",
     cloud_turf = "Cloud Turf",
     cloud_wall = "Cloud Wall",
+    cloud_wall_item = "Cloud Wall",
     cloudcrag = "Cloudcrag",
     colored_corn = "Gem Corn",
     cotton_candy = "Cotton Candy",
@@ -2382,6 +2383,7 @@ STRINGS.RECIPE_DESC.REFINER = "Smash, crunch, create."
 STRINGS.RECIPE_DESC.WIND_AXE = "Stormy weather in your hands."
 STRINGS.RECIPE_DESC.BEANLET_ARMOR = "Armor that takes the weight off."
 STRINGS.RECIPE_DESC.MUSHROOM_HAT = "For the fungi in all of us."
+STRINGS.RECIPE_DESC.CLOUD_WALL_ITEM = "Its usefulness is questionable."
 
 STRINGS.POTION_NAMES = {
     "Mysterious",

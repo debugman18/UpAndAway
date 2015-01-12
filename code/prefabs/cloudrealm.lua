@@ -49,6 +49,11 @@ local essential_assets =
     Asset("SOUND", "sound/cave_AMB.fsb"),
     Asset("SOUND", "sound/cave_mem.fsb"),
 
+    Asset("SOUNDPACKAGE", "sound/upandaway.fev"),
+    Asset("SOUND",        "sound/upandaway.fsb"),
+
+    --sound/upandaway/bgm/ambiance[1-5]
+
     Asset("IMAGE", "images/cloudwave.tex"),
 }
 

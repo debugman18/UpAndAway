@@ -155,7 +155,11 @@ TownFable(1).beanstalk_wall_item { ModIng("beanstalk_chunk", 4), Ing("twigs", 1)
     .numtogive (6)
     .sortkey (Recipes.wall_stone_item.sortkey)
 
-TownFable(1).crystal_wall_item { ModIng("crystal_fragment_light", 4), ModIng("crystal_fragment_water", 4), ModIng("crystal_fragment_spire", 4) }
+TownFable(1).cloud_wall_item { ModIng("cloud_cotton", 4), Ing("silk", 1) }
+    .numtogive (6)
+    .sortkey (Recipes.wall_stone_item.sortkey)    
+
+TownFable(1).crystal_wall_item { ModIng("crystal_fragment_light", 2), ModIng("crystal_fragment_water", 2), ModIng("crystal_fragment_spire", 2) }
     .numtogive (6)
     .sortkey (Recipes.wall_stone_item.sortkey)
 
