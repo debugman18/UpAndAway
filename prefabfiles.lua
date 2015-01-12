@@ -22,7 +22,7 @@ PrefabFiles = {
 	"gnome_wilson",
 	"gnome_decor",
 	"gnome_plot",
-	--"cloud_wall",
+	"cloud_wall",
 	--"bean_giant",
 	
 	--"live_gnome"

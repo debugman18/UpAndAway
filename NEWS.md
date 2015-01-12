@@ -22,30 +22,54 @@ I'm prefixing the list of changes by date, since I suppose we'll remain at preal
 for quite some time.
 -->
 
+### Dev Version: alpha-0.2.0 (Horrors in the Sky)
+
+----------------------------------------------------
+
+### Update 2015-?-?? (alpha-0.2.0 release)
+
++ Added Don't Starve Together compatibility.
++ Creatures and items were balanced across the board.
++ New crops have been added.
++ Potions have been added, and the cauldron is now functional.
++ Special gnome decoration added.
++ New turf textures have been added.
++ Octocopter no longer spawns wreckage on death.
++ Added a faction/reputation mechanic.
++ Sheep can now be shaved.
++ Sheep now run from the player.
++ Added cloud wall structure.
++ Squashed some bugs.
++ Added some new bugs.
++ Updated various art assets.
+
+----------------------------------------------------
+
+### Changes in Progress
+
++ Added a new boss; the Semiconductor.
++ Bean Giant no longer spawns via beanlet kills.
++ Bean Giant has recieved an overhaul.
++ Giant Bean Pod added as a setpiece.
++ Added the static damagetype.
++ Added new rubber armor type.
++ Added new crystal armor type.
++ Winnie has recieved an overhaul.
++ Gnomes have recieved an overhaul.
++ Octocopter rotor parts now used for crafting.
++ Added recipes for new boss-related items.
++ Added a new Shopkeeper quest.
+
+----------------------------------------------------
+
 ### Current Version: alpha-0.0.9
-
-### dev
-+ Pineapple Bushes and Pineapples added.
-+ Default potion added.
-+ Stat rotator potion added.
-+ Bearded potion added.
-+ Tunneler potion added.
-+ Alternate turf textures added.
-+ Dragon potion added.
-+ Colored Corn added.
-+ Gnome farm plot added.
-+ Wilson garden gnome added.
-+ Stat flipper potion added.
-
-+ Creatures were balanced across the board.
-
-### stable
-+ nil
 
 ### Update 2014-7-14 (alpha-0.0.9 release)
 + Fixed a TMI crash.
 + Fixed a magic beans crash.
 + Updated the cloud cotton inventory image.
+
+----------------------------------------------------
 
 ### Update 2014-7-8 (alpha-0.0.8 release)
 + Fixed an issue where mound mechanics conflicted with webber's skull.
@@ -92,6 +116,8 @@ for quite some time.
 + The scarecrow is now hammerable.
 + Added beta foreshadowing.
 
+----------------------------------------------------
+
 ### Update 2014-6-23 (alpha-0.0.7 release)
 + Updated beanlet animations.
 + Updated rose animations.
@@ -118,6 +144,7 @@ for quite some time.
 + Tea leaves can be dried for black tea.
 + Added lots of tea recipes.
 
+----------------------------------------------------
 
 ### Update 2014-6-9 (alpha-0.0.6 release)
 + Fixed items going into storage containers when opened.
@@ -128,6 +155,7 @@ for quite some time.
 + Fixed an incompatibility with the BetterWalls mod.
 + Lowered duckraptor spawning.
 
+----------------------------------------------------
 
 ### Update 2014-5-31 (alpha-0.0.5 release)
 + Hopefully fixed cloud waves being black.
@@ -135,6 +163,7 @@ for quite some time.
 + Gustflower seeds are not infinite anymore.
 + Kettle no longer flashes.
 
+----------------------------------------------------
 
 ### Update 2014-5-28 (alpha-0.0.4 release)
 
@@ -151,6 +180,7 @@ for quite some time.
 + Made Crystal Relics spawn a little more commonly.
 + Original cloud waves are back.
 
+----------------------------------------------------
 
 ### Update 2014-5-23 (alpha-0.0.3 release)
 
@@ -167,12 +197,15 @@ for quite some time.
 + Whirlwinds now dissapear when the world uncharges.
 + Wickerbottom's strings now make more sense.
 
+----------------------------------------------------
 
 #### Update: 2013-09-09
 
 + Ambient color shift according to the static mechanic.
 + "Cloud lightning" during the charged static state.
 + Skyflies now spawn from skyflowers.
+
+----------------------------------------------------
 
 #### Update: 2013-09-07
 
@@ -195,6 +228,8 @@ Things listed here are in-progress, but have no/minimum art assets.
 + Base aetheel.
 + Base goose.
 + Base marshmallow.
+
+----------------------------------------------------
 
 #### Update: 2013-09-03
 

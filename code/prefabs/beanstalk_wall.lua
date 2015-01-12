@@ -287,7 +287,7 @@ local function itemfn(inst)
 
 
     inst:AddComponent("stackable")
-    inst.components.stackable.maxsize = CFG.BEANSTALK.WALL.STACK_SIZE
+    inst.components.stackable.maxsize = CFG.BEANSTALK_WALL.STACK_SIZE
 
     inst:AddComponent("inspectable")
 

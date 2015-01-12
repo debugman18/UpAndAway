@@ -19,16 +19,44 @@ SetSharedLootTable( "cloudwallloot", CFG.CLOUD_WALL.LOOT)
 local maxloots = CFG.CLOUD_WALL.NUMRANDOMLOOT
 local maxhealth = CFG.CLOUD_WALL.HEALTH
 
-local function denyentry(inst)
+local function makeobstacle(inst)      
+    inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES) 
+    inst.Physics:ClearCollisionMask()
+    inst.Physics:SetMass(0)
+    inst.Physics:CollidesWith(COLLISION.ITEMS)
+    inst.Physics:CollidesWith(COLLISION.CHARACTERS)
     inst.Physics:SetActive(true)
+    local ground = GetWorld()
+    if ground then
+        local pt = Point(inst.Transform:GetWorldPosition())
+        ground.Pathfinder:AddWall(pt.x, pt.y, pt.z)
+    end
+end
+
+local function clearobstacle(inst)
+    inst:DoTaskInTime(2*FRAMES, function() inst.Physics:SetActive(false) end)
+
+    local ground = GetWorld()
+    if ground then
+        local pt = Point(inst.Transform:GetWorldPosition())
+        ground.Pathfinder:RemoveWall(pt.x, pt.y, pt.z)
+    end
+end
+
+local function denyentry(inst)
+    TheMod:DebugSay("Denying entry.")
+    inst.AnimState:SetMultColour(1,1,1,1)
+    makeobstacle(inst)
 end
 
 local function allowentry(inst)
-    inst.Physics:SetActive(false)
+    TheMod:DebugSay("Allowing entry.")
+    inst.AnimState:SetMultColour(1,1,1,CFG.CLOUD_WALL.ALPHA)
+    clearobstacle(inst)
 end
 
 local function ondeploywall(inst, pt, deployer)
-    local wall = SpawnPrefab("crystal_wall") 
+    local wall = SpawnPrefab("cloud_wall") 
     if wall then 
         pt = Vector3(math.floor(pt.x)+.5, 0, math.floor(pt.z)+.5)
         wall.Physics:SetCollides(false)
@@ -83,31 +111,6 @@ local function test_wall(inst, pt)
         
 end
 
-local function makeobstacle(inst)
-        
-    inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)	
-    inst.Physics:ClearCollisionMask()
-    inst.Physics:SetMass(0)
-    inst.Physics:CollidesWith(COLLISION.ITEMS)
-    inst.Physics:CollidesWith(COLLISION.CHARACTERS)
-    inst.Physics:SetActive(true)
-    local ground = GetWorld()
-    if ground then
-        local pt = Point(inst.Transform:GetWorldPosition())
-        ground.Pathfinder:AddWall(pt.x, pt.y, pt.z)
-    end
-end
-
-local function clearobstacle(inst)
-    inst:DoTaskInTime(2*FRAMES, function() inst.Physics:SetActive(false) end)
-
-    local ground = GetWorld()
-    if ground then
-        local pt = Point(inst.Transform:GetWorldPosition())
-        ground.Pathfinder:RemoveWall(pt.x, pt.y, pt.z)
-    end
-end
-
 local function resolveanimtoplay(percent)
     local anim_to_play = nil
     if percent <= 0 then
@@ -149,7 +152,7 @@ local function itemfn(inst)
     inst.AnimState:SetBank("cloud_wall")
     inst.AnimState:SetBuild("cloud_wall")
     inst.AnimState:PlayAnimation("1_4")
-    inst.Transform:SetScale(CFG.CLOUD_WALL.SCALE, CFG.CLOUD_WALL.SCALE, CFG.CLOUD_WALL.SCALE)
+    inst.Transform:SetScale(CFG.CLOUD_WALL.SCALE * 0.6, CFG.CLOUD_WALL.SCALE * 0.6, CFG.CLOUD_WALL.SCALE * 0.6)
 
 
     ------------------------------------------------------------------------
@@ -230,6 +233,8 @@ local function fn(inst)
 
     inst.components.repairable.onrepaired = onrepaired
         
+    inst.Transform:SetScale(CFG.CLOUD_WALL.SCALE, CFG.CLOUD_WALL.SCALE, CFG.CLOUD_WALL.SCALE)
+
     inst:AddComponent("combat")
     inst.components.combat.onhitfn = onhit
         
@@ -264,5 +269,5 @@ end
 return {
     Prefab ("common/inventory/cloud_wall", fn, assets, prefabs),
     Prefab ("common/inventoryitem/cloud_wall_item", itemfn, assets, prefabs),
-    MakePlacer("common/cloud_wall_placer", "cloud_wall", "cloud_wall", "1_2", false, false, true),
+    MakePlacer("common/cloud_wall_placer", "cloud_wall", "cloud_wall", "1_2", false, false, true, CFG.CLOUD_WALL.SCALE),
 }

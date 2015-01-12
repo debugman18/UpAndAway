@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r2">
+    <folder id="0">
+        <file id="0" name="0.png" width="85" height="67" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="1_2.png" width="86" height="110" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="1_4.png" width="86" height="87" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="3_4.png" width="80" height="137" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="1.png" width="86" height="162" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="cloud_wall">
+        <animation id="0" name="0" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="0">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-42" y="44" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="1_4" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="0">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-45" y="64.042614" angle="0" scale_y="0.914773"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="1_2" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="0">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-44" y="84" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="3_4" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="0">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-41" y="106.038043" angle="0" scale_y="0.923913"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="1" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="0">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-41.508621" y="136.029141" angle="0" scale_x="0.982759" scale_y="0.941718"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
