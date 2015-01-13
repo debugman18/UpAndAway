@@ -1,5 +1,7 @@
 BindGlobal()
 
+local CFG = TheMod:GetConfig()
+
 local assets =
 {
     Asset("ANIM", "anim/golden_petals.zip"),
@@ -28,19 +30,19 @@ local function fn(Sim)
     inst:AddComponent("inspectable")
 
     inst:AddComponent("fuel")
-    inst.components.fuel.fuelvalue = 30
+    inst.components.fuel.fuelvalue = CFG.GOLD_PETALS.FUEL_VALUE
 
-       inst:AddComponent("stackable")
-    inst.components.stackable.maxsize = 10
+    inst:AddComponent("stackable")
+    inst.components.stackable.maxsize = CFG.GOLD_PETALS.STACK_SIZE
     
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.atlasname = inventoryimage_atlas("golden_petals")
 
     inst:AddComponent("edible")
-    inst.components.edible.foodtype = "VEGGIE"
-    inst.components.edible.healthvalue = 0
-    inst.components.edible.hungervalue = 0
-    inst.components.edible.sanityvalue = 5
+    inst.components.edible.foodtype = CFG.GOLD_PETALS.FOODTYPE
+    inst.components.edible.healthvalue = CFG.GOLD_PETALS.HEALTH_VALUE
+    inst.components.edible.hungervalue = CFG.GOLD_PETALS.HUNGER_VALUE
+    inst.components.edible.sanityvalue = CFG.GOLD_PETALS.SANITY_VALUE
 
     return inst
 end

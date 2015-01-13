@@ -15,20 +15,21 @@ PrefabFiles = {
 	"cloudblob",
 	"alchemy_potions",
 	"potion_tunnel_mound",
-	--"metal_ball",
-	--"thundertree_sapling",
 	"colored_corn",
 	"gemcorn",
 	"gnome_wilson",
 	"gnome_decor",
 	"gnome_plot",
 	"cloud_wall",
-	--"bean_giant",
-	
-	--"live_gnome"
+	"chest_sky",
 	"live_gnome",
-
 	"bean_giant_statue",
+	--"rubber_armor",
+	--"rubber_cap",
+	--"rubber_ducky",
+	--"bean_giant",
+	--"semiconductor",
+	--"thundertree_sapling",
 
 	------------------------------
 
@@ -150,19 +151,14 @@ PrefabFiles = {
 	--------------------
 
 	--"beanlet_lamp",
-	--"rubber_armor",
-	--"rubber_cap",
-	--"rubber_ducky",
 	--"crystal_moss",	
 	--"crystal_crown",
-	--"cloud_wall",
 	--"cloud_bomb",	
 	--"golden_amulet",
 	--"kite",
 	--"antlion",	
 	--"cheshire",
 	--"chimera",
-	--"bean_giant_statue",
 	--'bird_paradise',
 	--"rainbowcoon",	
 	--"grabber",
@@ -172,14 +168,12 @@ PrefabFiles = {
 	--"mantaspawner",
 	--"crystal_armor",
 	--"crystal_axe",
-	--"golden_amulet",	
 	--"sky_lemur",
 	--"quartz_torch",
 	--"jellyshroomfish",
 	--"manta",
 	--"manta_baby",
 	--"manta_leather",
-	--"shopkeep_umbrella",
 	
 }
 

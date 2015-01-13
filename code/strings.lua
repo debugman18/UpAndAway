@@ -166,7 +166,7 @@ Add.Names {
     scarecrow = "Scarecrow",
     sheep = "Sheep",
     shopkeeper = "Shopkeeper",
-    sky_chest = "Eldrichest",
+    chest_sky = "Eldrichest",
     sky_lemur = "Lemur",
     skyflies = "Lightning Bug",
     skyflower = "Skyflower",
@@ -2045,9 +2045,9 @@ Add.QuotesFor "shopkeeper" {
     wx78 = "A PEDDLER OF GOODS.",
 }    
 
-Add.QuotesFor "sky_chest" {
+Add.QuotesFor "chest_sky" {
     
-    GENERIC = "I wonder who's it is?",
+    GENERIC = "I wonder whose it is?",
     wathgrithr = "I don't trust it.",
     waxwell = "Very fancy.",
     webber = "To put stuff we don't need.",
