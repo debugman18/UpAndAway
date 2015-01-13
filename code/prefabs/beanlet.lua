@@ -11,7 +11,8 @@ local BeanletCombat = pkgrequire "common.beanlet_combat"
 local assets =
 {
     Asset("ANIM", "anim/beanlet.zip"),  -- same name as the .scml
-    Asset("SOUND", "sound/pengull.fsb"),
+    Asset("SOUND", "sound/rabbit.fsb"),
+    Asset("SOUND", "sound/slurtle.fsb"),
 }
 
 local prefabs = CFG.BEANLET.PREFABS

@@ -15,6 +15,8 @@
 
 + **Code assets in need of attention**
 
+	+ Winnie crashes in DST, but I'm not sure why.
+	+ Add ambiant sound to the cloudrealm. Sounds now exist in mod files.
 	+ Reputation component needs decay functionality.
 	+ Winnie is being overhauled.
 	+ Bean Giant is being overhauled.	

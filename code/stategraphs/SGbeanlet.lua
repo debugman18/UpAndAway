@@ -20,13 +20,11 @@ local events=
                                 local is_running = inst.sg:HasStateTag("running") or inst.sg:HasStateTag("runningattack")
 
                                 if is_attacking or is_busy then return end
-                                if inst.sg:HasStateTag("flying") then return end
 
                                 local should_move = inst.components.locomotor:WantsToMoveForward()
                                 local should_run = inst.components.locomotor:WantsToRun()
                                 
                                 if is_moving and not should_move then
-                                    inst.SoundEmitter:KillSound("slide")
                                     if is_running then
                                         inst.sg:GoToState("run_stop")
                                     else
@@ -57,7 +55,6 @@ local events=
                                 end
                                 if inst.components.health and not inst.components.health:IsDead()
                                    and (inst.sg:HasStateTag("hit") or not inst.sg:HasStateTag("busy")) then
-                                    inst.SoundEmitter:KillSound("slide")
                                     inst.sg:GoToState(nstate,targ)
                                 end
                             end),
@@ -73,7 +70,6 @@ local states=
         tags = {"idle", "canrotate"},
         
         onenter = function(inst, pushanim)
-            --inst.components.locomotor:StopMoving()
             inst.AnimState:PlayAnimation("idle", true)
             inst.sg:SetTimeout(2 + 2*math.random())
         end,
@@ -89,8 +85,6 @@ local states=
         
         onenter = function(inst)
             inst.SoundEmitter:PlaySound("")
-            --inst.AnimState:PlayAnimation("alert_pre")
-            --inst.AnimState:PushAnimation("alert_idle", true)
         end,
     },
 
@@ -99,12 +93,10 @@ local states=
             
             onenter = function(inst)
                 inst.components.locomotor:RunForward()
-                --inst.AnimState:SetTime(math.random()*2)
-                inst.SoundEmitter:KillSound("slide")
                 if GetPseudoSeasonManager():GetSnowPercent() < 0.1 then
-                    inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/land")
+                    inst.SoundEmitter:PlaySound("dontstarve/movement/walk_moss_large")
                 else
-                    inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/land_dirt")
+                    inst.SoundEmitter:PlaySound("dontstarve/movement/walk_moss_large")
                 end
                 inst.AnimState:PlayAnimation("run_start")
                 inst.sg.mem.foosteps = 0
@@ -117,9 +109,9 @@ local states=
             
             onexit = function(inst)
                 if GetPseudoSeasonManager():IsWinter() then
-                    inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/slide","slide")
+                    inst.SoundEmitter:PlaySound("dontstarve/movement/walk_moss_large")
                 else
-                    inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/slide_dirt","slide")
+                    inst.SoundEmitter:PlaySound("dontstarve/movement/walk_moss_large")
                 end
             end,
 
@@ -150,7 +142,6 @@ local states=
             tags = {"canrotate", "idle"},
             
             onenter = function(inst)
-                inst.SoundEmitter:KillSound("slide")
                 inst.components.locomotor:Stop()
                 inst.AnimState:PlayAnimation("run_stop")
             end,
@@ -165,9 +156,7 @@ local states=
             tags = {"moving", "canrotate"},
             
             onenter = function(inst)
-                inst.SoundEmitter:KillSound("slide")
                 inst.components.locomotor:WalkForward()
-                -- inst.AnimState:SetTime(math.random()*2)
                 inst.AnimState:PlayAnimation("run_start")
             end,
 
@@ -183,8 +172,7 @@ local states=
             onenter = function(inst)
                 inst.components.locomotor:WalkForward()
                 inst.AnimState:PlayAnimation("run_loop", true)
-                inst.SoundEmitter:KillSound("slide")
-                inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/idle")
+                inst.SoundEmitter:PlaySound("dontstarve/movement/walk_water")
             end,
     
             events=
@@ -195,16 +183,16 @@ local states=
             timeline = {
                 TimeEvent(5*FRAMES, function(inst)
                                         if GetPseudoSeasonManager():IsWinter() then
-                                            inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/footstep")
+                                            inst.SoundEmitter:PlaySound("dontstarve/movement/run_mud_small")
                                         else
-                                            inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/footstep_dirt")
+                                            inst.SoundEmitter:PlaySound("dontstarve/movement/run_mud_small")
                                         end
                                     end),
                 TimeEvent(21*FRAMES, function(inst)
                                         if GetPseudoSeasonManager():IsWinter() then
-                                            inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/footstep")
+                                            inst.SoundEmitter:PlaySound("dontstarve/movement/run_mud_small")
                                         else
-                                            inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/footstep_dirt")
+                                            inst.SoundEmitter:PlaySound("dontstarve/movement/run_mud_small")
                                         end
                                     end),
             },
@@ -214,7 +202,6 @@ local states=
             tags = {"canrotate", "idle"},
             
             onenter = function(inst)
-                inst.SoundEmitter:KillSound("slide")
                 inst.components.locomotor:Stop()
                 inst.AnimState:PlayAnimation("run_stop", true)
             end,
@@ -229,11 +216,11 @@ local states=
             onenter = function(inst, playanim)
                 inst:PerformBufferedAction()
                 inst.components.locomotor:WalkForward()
-                inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/idle")
+                inst.SoundEmitter:PlaySound("dontstarve/movement/walk_water")
             end,
             timeline = {
-                TimeEvent(1*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/footstep") end),
-                TimeEvent(21*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/footstep") end),
+                TimeEvent(1*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/movement/run_mud_small") end),
+                TimeEvent(21*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/movement/run_mud_small") end),
             },
             events=
             {
@@ -251,8 +238,8 @@ local states=
                 if target then
                     inst.sg.statemem.target = target
                 end
-                inst.SoundEmitter:KillSound("slide")
-                inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/attack")
+                inst.SoundEmitter:PlaySound("dontstarve/creatures/slurtle/bite")
+                inst.SoundEmitter:PlaySound("dontstarve/creatures/bunnyman/eat")
                 inst.components.combat:StartAttack()
                 inst.components.locomotor:StopMoving()
                 inst.AnimState:PlayAnimation("atk_pre")
@@ -264,7 +251,6 @@ local states=
                 TimeEvent(15*FRAMES, function(inst)
                                         eprint(inst,"DoAttack()",inst.sg.statemem.target)
                                         inst.components.combat:DoAttack(inst.sg.statemem.target)
-                                        -- inst.components.combat:DoAttack()
                                      end),
             },
             
@@ -278,11 +264,9 @@ local states=
             tags = {"runningattack"},
             
             onenter = function(inst)
-                inst.SoundEmitter:KillSound("slide")
-                inst.SoundEmitter:PlaySound("dontstarve/creatures/pengull/attack")
+                inst.SoundEmitter:PlaySound("dontstarve/creatures/slurtle/bite")
+                inst.SoundEmitter:PlaySound("dontstarve/creatures/bunnyman/eat")
                 inst.components.combat:StartAttack()
-                --inst.components.locomotor:StopMoving()
-                --inst.AnimState:PlayAnimation("slide_bounce")
             end,
             
             timeline =
@@ -304,6 +288,7 @@ local states=
         
         onenter = function(inst)
             inst.AnimState:PlayAnimation("death")
+            inst.SoundEmitter:PlaySound("dontstarve/creatures/rabbit/scream")
             inst.components.locomotor:StopMoving()
             inst.components.lootdropper:DropLoot(Vector3(inst.Transform:GetWorldPosition()))            
         end,

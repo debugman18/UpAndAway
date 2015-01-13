@@ -11,7 +11,8 @@ local CFG = TheMod:GetConfig()
 local assets =
 {
     Asset("ANIM", "anim/beanlet_zealot.zip"),  -- same name as the .scml
-    Asset("SOUND", "sound/pengull.fsb"),
+    Asset("SOUND", "sound/rabbit.fsb"),
+    Asset("SOUND", "sound/slurtle.fsb"),
 }
 
 local prefabs = CFG.BEANLET.PREFABS
