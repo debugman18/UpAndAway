@@ -149,72 +149,9 @@ if IsHost() then
     AddPrefabPostInit("mound", addmoundtag)
 end
 
---FIXME: not MP compatible
-if not IsDST() then
-    table.insert(GLOBAL.CHARACTER_GENDERS.FEMALE, "winnie")
-    AddModCharacter("winnie")
-end
+-- Winnie is now compatible with both DS and DST.
+table.insert(GLOBAL.CHARACTER_GENDERS.FEMALE, "winnie")
+AddModCharacter("winnie")
 
---This adds our minimap atlases.
+-- This adds our minimap atlases.
 AddMinimapAtlas("images/ua_minimap.xml")
-
---[[
-AddMinimapAtlas("images/winnie.xml")
-AddMinimapAtlas("images/beanstalk.xml")
-AddMinimapAtlas("images/beanstalk_exit.xml")
-AddMinimapAtlas("images/cloud_coral.xml")
-AddMinimapAtlas("images/shopkeeper.xml")
-AddMinimapAtlas("images/scarecrow.xml")
-
-AddMinimapAtlas("images/cloudcrag.xml")
-AddMinimapAtlas("images/octocopter.xml")
-AddMinimapAtlas("images/dragonblood_tree.xml")
-AddMinimapAtlas("images/hive_marshmallow.xml")
-AddMinimapAtlas("images/cauldron.xml")
-AddMinimapAtlas("images/thunder_tree.xml")
-AddMinimapAtlas("images/jellyshroom_red.xml")
-AddMinimapAtlas("images/jellyshroom_green.xml")
-AddMinimapAtlas("images/jellyshroom_blue.xml")
-AddMinimapAtlas("images/cloud_bush.xml")
-AddMinimapAtlas("images/tea_bush.xml")
-
-AddMinimapAtlas("images/crystal_lamp.xml")
-AddMinimapAtlas("images/cloud_fruit_tree.xml")
-AddMinimapAtlas("images/kettle.xml")
-AddMinimapAtlas("images/gummybear_den.xml")
-
-AddMinimapAtlas("images/cloud_algae.xml")
-
-AddMinimapAtlas("images/weather_machine.xml")
-
-AddMinimapAtlas("images/beanlet_hut.xml")
-
-AddMinimapAtlas("images/refiner.xml")
-
-AddMinimapAtlas("images/research_lectern.xml")
-AddMinimapAtlas("images/weavernest.xml")
-
---AddMinimapAtlas("images/bean_giant_statue.xml"
-]]--
-
-if not IsDST() then
-    --This lets Winnie grow crops during the winter.
-
-    local oldMakeNoGrowInWinter = _G.MakeNoGrowInWinter
-
-    --FIXME: not MP compatible
-    local function winnie_aware_MakeNoGrowInWinter(inst)
-        if GetLocalPlayer().prefab ~= "winnie" or not (inst.components.pickable and inst.components.pickable.transplanted) then
-            return oldMakeNoGrowInWinter(inst)
-        end
-    end
-     
-    function _G.MakeNoGrowInWinter(inst)
-        if GetLocalPlayer() then
-            return winnie_aware_MakeNoGrowInWinter(inst)
-        else
-            -- We need to delay the actual work because spawning the player happens late.
-            inst:DoTaskInTime(0, winnie_aware_MakeNoGrowInWinter)
-        end
-    end
-end

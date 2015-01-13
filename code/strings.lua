@@ -11,7 +11,17 @@ STRINGS.CHARACTER_DESCRIPTIONS.winnie = "*Is a vegetarian\
 *Has a green thumb\
 *Is not so innocent"
 STRINGS.CHARACTER_QUOTES.winnie = "\"Where have you gone, little sheep?\""
+
 STRINGS.CHARACTERS.WINNIE = modrequire "speech_winnie"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.WINNIE = 
+{
+    GENERIC = "It's Winnie!",
+    ATTACKER = "She has a scary look in her eyes.",
+    MURDERER = "Murderer!",
+    REVIVER = "She's not so bad.",
+    GHOST = "Winnie could use a heart.",
+}
 
 
 --This gives each prefab its own in-game name.

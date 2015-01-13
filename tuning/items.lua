@@ -1,5 +1,24 @@
 ---------------------------------------
 
+-- Winnie Staff
+
+-- Max dist for a beefalo to become a follower.
+WINNIE_STAFF.MAX_FOLLOWER_DIST = 20
+
+-- Max beefalo followers.
+WINNIE_STAFF.MAX_FOLLOWERS = 5
+
+-- Sanity gain/loss per follower.
+WINNIE_STAFF.SANITY_PER_FOLLOWER = -1
+
+-- Keeps the follower(s) loyal.
+WINNIE_STAFF.LOYALTY_TIME = 1.1
+
+-- Rate of sanity gain/loss.
+WINNIE_STAFF.UPDATE_RATE = 1
+
+---------------------------------------
+
 -- Brewed Tea
 
 BEVERAGE.INHERENT_INSULATION = 60
@@ -127,16 +146,6 @@ MUSHROOM_HAT.STATES = {
 
 -- Period between widget announcements of stat change.
 MUSHROOM_HAT.NAGGING_PERIOD = 3
-
----------------------------------------
-
--- Winnie Staff
-
--- Max dist for a beefalo to become a follower.
-WINNIE_STAFF.MAX_FOLLOWER_DIST = 20
-
--- Max beefalo followers.
-WINNIE_STAFF.MAX_FOLLOWERS = 5
 
 ---------------------------------------
 

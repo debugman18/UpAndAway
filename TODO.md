@@ -14,13 +14,14 @@
 
 + **Code assets in need of attention**
 
+	+ Reputation component needs decay functionality.
+	+ Winnie is being overhauled.
+	+ Bean Giant is being overhauled.	
+	+ Shopkeeper Boss Quest implementation.
+
 	+ These need to be clarified and tuned; see Cavetroll thread.
 
 	+ Gnome overhaul.
-	+ Reputation component needs decay functionality.
-	+ Winnie overhaul.
-	+ Bean Giant is being overhauled.
-	+ Shopkeeper Boss Quest implementation.
 
 	+ These need to be added; they currently do not exist.
 

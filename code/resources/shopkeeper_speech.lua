@@ -247,3 +247,69 @@ SPEECHES.ALL_IS_FORGIVEN = function(mgr)
 
     Sleep(1)
 end
+
+-- These are played when the shopkeeper gives the player the boss quest, dependant on the boss slain.
+
+-- Player killed the octocopter.
+SPEECHES.OCTOCOPTER_SLAIN = function(mgr)
+    if mgr:EnterCutScene() then
+        mgr:MakeNonInterruptible()
+        Sleep(0.75)
+    end
+
+    mgr "Congratulations are in order, I think."
+
+    Sleep(1.5)
+
+    mgr "That robotic cephalopod you slew..."
+
+    Sleep(1.5)
+
+    mgr "Could be the key to an even greater adventure."
+
+    Sleep(1.5)
+
+    mgr "Perhaps in your travels..."
+
+    Sleep(1.5)
+
+    mgr "You might discover some items of interest."
+
+    Sleep(1.5)
+
+    mgr "Just a thought."
+
+    Sleep(1)
+end
+
+-- Player killed the semiconductor.
+SPEECHES.SEMICONDUCTOR_SLAIN = function(mgr)
+    if mgr:EnterCutScene() then
+        mgr:MakeNonInterruptible()
+        Sleep(0.75)
+    end
+
+    mgr "Congratulations are in order, I think."
+
+    Sleep(1.5)
+
+    mgr "Just a thought."
+
+    Sleep(1)
+end
+
+-- Player killed the bean giant.
+SPEECHES.BEANGIANT_SLAIN = function(mgr)
+    if mgr:EnterCutScene() then
+        mgr:MakeNonInterruptible()
+        Sleep(0.75)
+    end
+
+    mgr "Congratulations are in order, I think."
+
+    Sleep(1.5)
+
+    mgr "Just a thought."
+
+    Sleep(1)
+end
