@@ -204,7 +204,6 @@ Add.Names {
     cottontea = "Cottony Tea",
     goldtea = "Gold Tea",
     candytea = "Candy Tea",
-
     oolongtea = "Oolong Tea",
     chaitea = "Chai Tea",
     spoiledtea = "Spoiled Tea",
@@ -220,6 +219,7 @@ Add.Names {
     marshmallowtea = "Marshmallow Tea",
     ambrosiatea = "Ambrosia Tea",
     algaetea = "Algae Tea",
+
     redjelly = "Red Jelly",
     greenjelly = "Green Jelly",
     crystalcandy = "Crystal Candy",
@@ -2338,6 +2338,22 @@ Add.QuotesFor "winnie_staff" {
     woodie = "I'm quite good at making staves.",
     wx78 = "FOLLOW ME, MEATSACKS",
     winnie = "For herding my animal friends.",
+}
+
+-- Dunno if we'll ever need this, but I think it's gold.
+Add.QuotesFor "rabbit_tea" {
+    
+    GENERIC = "Ew, it's got a hare in it!",
+    wathgrithr = "Ew, it's got a hare in it!",
+    waxwell = "Ew, it's got a hare in it!",
+    webber = "Ew, it's got a hare in it!",
+    wendy = "Ew, it's got a hare in it!",
+    wickerbottom = "Ew, it's got a hare in it!",
+    willow = "Ew, it's got a hare in it!",
+    wolfgang = "Ew, it's got a hare in it!",
+    woodie = "Ew, it's got a hare in it!",
+    wx78 = "Ew, it's got a hare in it!",
+    winnie = "Ew, it's got a hare in it!",
 }
 
 ------------------------------------------------------------------------

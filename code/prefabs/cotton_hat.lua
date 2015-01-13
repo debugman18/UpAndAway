@@ -91,7 +91,7 @@ local function fn(Sim)
             TheMod:DebugSay("Rain start.")
             inst.updatetask = inst:DoPeriodicTask(CFG.COTTON_HAT.MELT_INTERVAL, function()
                 TheMod:DebugSay("Still raining.")
-                inst.components.fueled:DoDelta(CFG.CLOUD_HAT.MELT_VALUE)
+                inst.components.fueled:DoDelta(CFG.COTTON_HAT.MELT_VALUE)
             end)
         end    
 

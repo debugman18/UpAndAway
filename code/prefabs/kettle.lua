@@ -38,7 +38,7 @@ local function BuildKettlePrefab()
 
 
     local function itemtest(inst, item, slot)
-        return item:HasTag("tea_leaf") or Game.IsEdibleNotOfType("MEAT")
+        return item:HasTag("tea_leaf") or Game.IsEdibleNotOfType(item, "MEAT")
     end
     widget_spec:SetItemTestFn(itemtest)
 

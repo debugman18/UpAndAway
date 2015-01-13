@@ -2,11 +2,11 @@
 
 + **Current bugs:**
 
-	+ World generation time is too short. (Vanilla bug?)
+	+ Characters lose equipped items on climbing beanstalk. (Cannot reproduce; was reported by tester using a large number of mods.)
 	+ Staves are non-functional in DST due to test fn.
 	+ Ambience is non-functional in DS.
 	+ Reputation component is not saving tables. Deepcopy?
-	+ Cloud realm is somehow succeptible to overworld weather. (I was so confused when seeds burst into flames.)
+	+ Cloud realm is somehow succeptible to overworld weather in DS. (I was so confused when seeds burst into flames.)
 	+ Static damage shows as shenanigans in morgue.
 
 + **Art assets in need of attention**
@@ -26,6 +26,10 @@
 
 	+ Bean Giant and Semiconductor drops.
 	+ Semiconductor boss.
+
++** Strings in need of attention**
+
+	+ Red Jellycap missing strings.
 
 + **General improvements to be made:*
 
