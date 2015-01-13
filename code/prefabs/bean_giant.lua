@@ -90,7 +90,7 @@ local function giant_fn(inst)
 
     -- We don't want the player doing too much damage during transformation.
     inst:DoTasKInTime(CFG.BEAN_GIANT.TRANSFORM_BUFFER, function()
-    inst.components.health:SetInvincible(false) end))
+    inst.components.health:SetInvincible(false) end)
 
     -- It can fight back now!
     inst:AddComponent("combat")
