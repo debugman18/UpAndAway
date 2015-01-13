@@ -1,4 +1,4 @@
--- The compoment constructor.
+-- The component constructor.
 local Reputation = HostClass(Debuggable, function(self, inst)
 	self.inst = inst
     self.factions = nil

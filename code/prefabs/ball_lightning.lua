@@ -19,10 +19,12 @@ SetSharedLootTable("ball_lightning", CFG.BALL_LIGHTNING.LOOT)
 
 local function charge(inst)
     inst:AddTag("ball_lightning_charged")
+    inst.components.staticconductor:StartSpreading()
 end
 
 local function uncharge(inst)
     inst:RemoveTag("ball_lightning_charged")
+    inst.components.staticconductor:StopSpreading()
 end
 
 local function IsAttractingPlayer(player)
@@ -132,6 +134,8 @@ local function fn()
     inst.components.temperature.mintemp = CFG.BALL_LIGHTNING.MINTEMP
     inst.components.temperature.current = CFG.BALL_LIGHTNING.CURRENT_TEMP
     inst.components.temperature.inherentinsulation = CFG.BALL_LIGHTNING.INSULATION
+
+    inst:AddComponent("staticconductor")
 
     inst:AddComponent("heater")	  
     inst.components.heater.heat = CFG.BALL_LIGHTNING.HEAT

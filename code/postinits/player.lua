@@ -49,6 +49,7 @@ TheMod:AddPlayerPostInit(function(player)
         player:AddComponent("ambrosiarespawn")
         player:AddComponent("beanhated")
         player:AddComponent("ua_beardable")
+        player:AddComponent("staticconductor")
 
 		configure_skyflyspawner(player)
     end

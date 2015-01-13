@@ -1,3 +1,5 @@
+---------------------------------------
+
 --[[
 -- List here the new tile names, in lowercase.
 --
@@ -20,6 +22,8 @@ NEW_TILES = {
 	"rainbowtwo"
 }
 
+---------------------------------------
+
 --[[
 -- Defines the fire extinguish speed (relative to its total burn time)
 -- within cloud levels. Indexed by the level height.
@@ -32,7 +36,16 @@ FIRE.EXTINGUISH.SPEED = {
 	default = math.huge
 }
 
+---------------------------------------
+
 -- The level of bean hate to spawn a bean giant.
 BEANHATED.THRESHOLD = 10
 -- How long it takes (seconds) to reduce the bean hate level in 1 unit.
 BEANHATED.DECAY_DELAY = 120
+
+---------------------------------------
+
+-- Static Conductor component.
+
+STATIC_CONDUCTOR.SHOCK_RANGE = 3
+STATIC_CONDUCTOR.SHOCK_DAMAGE = 4

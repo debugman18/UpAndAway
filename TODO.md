@@ -7,6 +7,7 @@
 	+ Ambience is non-functional in DS.
 	+ Reputation component is not saving tables. Deepcopy?
 	+ Cloud realm is somehow succeptible to overworld weather. (I was so confused when seeds burst into flames.)
+	+ Static damage shows as shenanigans in morgue.
 
 + **Art assets in need of attention**
 
@@ -18,16 +19,13 @@
 	+ Winnie is being overhauled.
 	+ Bean Giant is being overhauled.	
 	+ Shopkeeper Boss Quest implementation.
-
-	+ These need to be clarified and tuned; see Cavetroll thread.
-
 	+ Gnome overhaul.
+	+ Add a slight visual effect to static damage.
 
 	+ These need to be added; they currently do not exist.
 
 	+ Bean Giant and Semiconductor drops.
 	+ Semiconductor boss.
-	+ Static damage type.
 
 + **General improvements to be made:*
 
