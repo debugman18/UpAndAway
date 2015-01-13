@@ -40,7 +40,7 @@ local function growth_fn(inst)
         inst.scale = 1 
     end
 
-    local upscale = (inst.scale + (inst.scale / 4)
+    local upscale = (inst.scale) + (inst.scale / 4)
 
     inst.Transform:SetScale(upscale, upscale, upscale)
     inst.scale = upscale
