@@ -8,6 +8,7 @@
 	+ Reputation component is not saving tables. Deepcopy?
 	+ Cloud realm is somehow succeptible to overworld weather in DS. (I was so confused when seeds burst into flames.)
 	+ Static damage shows as shenanigans in morgue.
+	+ Winnie crashes in DST, but I'm not sure why.
 
 + **Art assets in need of attention**
 
@@ -15,7 +16,7 @@
 
 + **Code assets in need of attention**
 
-	+ Winnie crashes in DST, but I'm not sure why.
+	+ Add heat to Magnet during static.
 	+ Add ambiant sound to the cloudrealm. Sounds now exist in mod files.
 	+ Reputation component needs decay functionality.
 	+ Winnie is being overhauled.

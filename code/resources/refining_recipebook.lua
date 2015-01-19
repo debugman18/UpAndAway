@@ -16,12 +16,8 @@ BindModModule "lib.brewing"
 return RecipeBook {
     refined_rocks  = Recipe("rocks", Ingredient("cloud_coral_fragment", 2), 0),
     refined_grass  = Recipe("cutgrass", Ingredient("cloud_algae_fragment", 2), 0),
-    refined_twigs  = Recipe("twigs", Ingredient("beanstalk_chunk", 2), 0),
     refined_honey  = Recipe("honey", Ingredient("candy_fruit", 4), 0),
     refined_honey  = Recipe("honey", Ingredient("dragonblood_sap", 2), 0),
     refined_silk   = Recipe("silk", Ingredient("cloud_cotton", 4), 0),
-    refined_petals = Recipe("petals", Ingredient("golden_petals", 1), 0),
     refined_gold   = Recipe("goldnugget", Ingredient("golden_petals", 4), 1),
-    refined_ash    = Recipe("ash", Ingredient("cloud_jelly", 1), 0),
-    refined_logs   = Recipe("log", Ingredient("thunder_log", 1), 0),
 }
