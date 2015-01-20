@@ -641,7 +641,7 @@ BEAN_GIANT.LOOT = {
 	{'greenbean',       0.60},
 	{'greenbean',       0.60},
 	{'greenbean',       0.60},	
-	{'bean_brain'}      1.00},
+	{'bean_brain',      1.00},
 }
 
 ---------------------------------------

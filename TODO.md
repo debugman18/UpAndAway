@@ -5,7 +5,6 @@
 	+ Characters lose equipped items on climbing beanstalk. (Cannot reproduce; was reported by tester using a large number of mods.)
 	+ Staves are non-functional in DST due to test fn.
 	+ Ambience is non-functional in DS.
-	+ Reputation component is not saving tables. Deepcopy?
 	+ Cloud realm is somehow succeptible to overworld weather in DS. (I was so confused when seeds burst into flames.)
 	+ Static damage shows as shenanigans in morgue.
 	+ Winnie crashes in DST, but I'm not sure why.

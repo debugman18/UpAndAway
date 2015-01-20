@@ -93,7 +93,7 @@ function Reputation:IncreaseReputation(faction, delta, trigger)
 
 	-- Stops decay if necessary.
 	if not self.factions[faction].decay_negative then
-	    if self.reputation >= self.factions[faction].maxrep then
+	    if self.factions[faction].reputation >= self.factions[faction].maxrep then
 	        --StopDecaying()
 	    end
 	end
@@ -119,7 +119,7 @@ function Reputation:LowerReputation(faction, delta, trigger)
 
 	-- Stops decay if necessary.
 	if self.factions[faction].decay_negative then
-	    if self.reputation >= self.factions[faction].minrep then
+	    if self.factions[faction].reputation >= self.factions[faction].minrep then
 	        --StopDecaying()
 	    end
 	end
@@ -202,9 +202,11 @@ end
 
 -- OnSave
 function Reputation:OnSave()
+	local data = {}
 	if self.factions then
-		deepcopy(self.factions)
+		data.factions = deepcopy(self.factions)
     end
+    return data
 end
 
 -- OnLoad

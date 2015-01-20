@@ -8,7 +8,7 @@ if IsHost() then
     	inst.components.reputation:AddFaction("bean", 100, 0, 100)
     	inst.components.reputation:SetDecay("bean", true)
     	inst.components.reputation:SetDecayRate("bean", false, 1)
-    	inst.components.reputation:AddStage("bean", "beanhated_one", 95, function() print("Testing succeeded!") end)
+    	inst.components.reputation:AddStage("bean", "beanhated_one", 80, function() print("Testing succeeded!") end)
 	end)
 end
 
