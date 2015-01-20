@@ -4,8 +4,8 @@ local CFG = TheMod:GetConfig()
 local StaticConductor = HostClass(Debuggable, function(self, inst)
     self.inst = inst
 
-    self.shockrange = CFG.STATIC_CONDUCTOR.SHOCK_RANGE
-    self.shockdamage = CFG.STATIC_CONDUCTOR.SHOCK_DAMAGE
+    self.shockrange = CFG.STATIC_CONDUCTOR.SHOCK_RANGE --5
+    self.shockdamage = CFG.STATIC_CONDUCTOR.SHOCK_DAMAGE --5
 
     self.resistance = 0
 
@@ -14,6 +14,18 @@ local StaticConductor = HostClass(Debuggable, function(self, inst)
 end)
 
 local dt = 0.5
+
+function StaticConductor:SetDamage(damage)
+    self.shockdamage = damage
+end
+
+function StaticConductor:SetRange(shockrange)
+    self.shockrange = shockrange
+end
+
+function StaticConductor:SetResistance(resistance)
+    self.resistance = resistance
+end
 
 function StaticConductor:StopUpdating()
     if self.task then
@@ -39,7 +51,11 @@ function StaticConductor:StopSpreading()
 end
 
 local function calc_damage(self, staticresistance) 
-    return -((self.shockdamage * dt) / staticresistance) 
+    if ((self.shockdamage * dt) - staticresistance) <= 0 then
+        return 0
+    else
+        return -((self.shockdamage * dt) - staticresistance) 
+    end
 end
 
 function StaticConductor:OnUpdate(dt)
@@ -48,15 +64,23 @@ function StaticConductor:OnUpdate(dt)
         
         local pos = Vector3(self.inst.Transform:GetWorldPosition())
         local ents = TheSim:FindEntities(pos.x, pos.y, pos.z, self.shockrange)
-        
+        local staticresistance = 0
+
         for k,v in pairs(ents) do
             if not v:IsInLimbo() then
 			    if v.components.staticconductor and v.components.staticconductor.conductive then
-                    local staticresistance = v.components.staticconductor.resistance
+                    if v.components.inventory then
+                        local inventory = v.components.inventory
+                        for equipslots,item in pairs(inventory.equipslots) do
+                            if item.components.staticconductor and item.components.staticconductor.resistance then
+                                staticresistance = item.components.staticconductor.resistance
+                            end
+                        end
+                    end                   
 				    local dsq = distsq(pos, Vector3(v.Transform:GetWorldPosition()))                    
 			        if dsq < self.shockrange*self.shockrange then
                         if v.components.health then
-                            if staticresistance > 0 then
+                            if staticresistance then
 				                v.components.health:DoDelta(calc_damage(self, staticresistance))
                             else
                                 v.components.health:DoDelta(-self.shockdamage * dt)

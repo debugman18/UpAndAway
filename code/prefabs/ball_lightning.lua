@@ -136,6 +136,8 @@ local function fn()
     inst.components.temperature.inherentinsulation = CFG.BALL_LIGHTNING.INSULATION
 
     inst:AddComponent("staticconductor")
+    inst.components.staticconductor:SetRange(3)
+    inst.components.staticconductor:SetDamage(4)
 
     inst:AddComponent("heater")	  
     inst.components.heater.heat = CFG.BALL_LIGHTNING.HEAT

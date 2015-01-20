@@ -24,7 +24,7 @@ PrefabFiles = {
 	"chest_sky",
 	"live_gnome",
 	"bean_brain",
-	--"rubber_armor",
+	"rubber_armor",
 	--"rubber_cap",
 	--"rubber_ducky",
 	--"bean_giant",
