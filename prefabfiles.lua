@@ -23,7 +23,7 @@ PrefabFiles = {
 	"cloud_wall",
 	"chest_sky",
 	"live_gnome",
-	"bean_giant_statue",
+	"bean_brain",
 	--"rubber_armor",
 	--"rubber_cap",
 	--"rubber_ducky",

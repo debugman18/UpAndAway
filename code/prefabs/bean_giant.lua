@@ -200,11 +200,6 @@ local function pod_fn(inst)
     inst:AddComponent("growable")
     inst.components.growable:SetOnGrowthFn(growth_fn)
 
-    --inst:AddComponent("reputation")
-    --inst.components.reputation:SetMinRep(0)
-    --inst.components.reputation:SetMaxRep(100)
-    --inst.components.reputation:SetFaction("bean")
-
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable("bean_giant")
 

@@ -49,3 +49,6 @@ AddStringPatch(ACTIONS.GIVE, Pred.IsPrefab("refiner"), "Refine")
 
 --Changes "Give" to "Cook" for the dragonblood tree.
 AddStringPatch(ACTIONS.GIVE, Pred.HasTag("dragonblood"), "Cook")
+
+--Changes "Use" to "Eat" for the bean brain.
+AddStringPatch(ACTIONS.USEITEM, Pred.IsPrefab("bean_brain"), "Eat")

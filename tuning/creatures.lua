@@ -618,7 +618,7 @@ BEAN_GIANT.PREFABS = {
     "vine",
     "beanlet_zealot",
     "greenbean",   
-    --"bean_brain"
+    "bean_brain",
 }
 
 BEAN_GIANT.LOOT = {
@@ -641,7 +641,7 @@ BEAN_GIANT.LOOT = {
 	{'greenbean',       0.60},
 	{'greenbean',       0.60},
 	{'greenbean',       0.60},	
-	--{'bean_brain'}    1.00},
+	{'bean_brain'}      1.00},
 }
 
 ---------------------------------------

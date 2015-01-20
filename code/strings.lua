@@ -35,7 +35,7 @@ Add.Names {
     balloon_hound = "Hound",
     balloon_icehound = "Blue Hound",
     bean_giant = "Bean Giant",
-    bean_giant_statue = "Giant Statue",
+    bean_brain = "Grey Legum",
     beanlet = "Beanlet",
     beanlet_armor = "Beanlet Armor",
     beanlet_hut = "Flower Hut",
@@ -2354,6 +2354,18 @@ Add.QuotesFor "rabbit_tea" {
     woodie = "Ew, it's got a hare in it!",
     wx78 = "Ew, it's got a hare in it!",
     winnie = "Ew, it's got a hare in it!",
+}
+
+Add.QuotesFor "bean_brain" {
+    
+    GENERIC = "What a strange looking bean...",
+
+}
+
+Add.QuotesFor "bean_brain.inedible" {
+    
+    GENERIC = "There's not enough left to eat.",
+
 }
 
 ------------------------------------------------------------------------
