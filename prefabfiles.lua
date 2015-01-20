@@ -25,6 +25,7 @@ PrefabFiles = {
 	"live_gnome",
 	"bean_brain",
 	"rubber_armor",
+	"shopkeeper_umbrella",
 	--"rubber_cap",
 	--"rubber_ducky",
 	--"bean_giant",

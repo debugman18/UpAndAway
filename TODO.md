@@ -4,6 +4,7 @@
 
 	+ Characters lose equipped items on climbing beanstalk. (Cannot reproduce; was reported by tester using a large number of mods.)
 	+ Staves are non-functional in DST due to test fn.
+	+ Odd inconsistencies with shopkeeper umbrella and climbing.
 	+ Ambience is non-functional in DS.
 	+ Cloud realm is somehow succeptible to overworld weather in DS. (I was so confused when seeds burst into flames.)
 	+ Static damage shows as shenanigans in morgue.
