@@ -48,15 +48,28 @@ local function direction_fn(inst)
     end
 end
 
+local function get_cavenum(inst)
+    local pos = Vector3(inst.Transform:GetWorldPosition())
+    local ents = TheSim:FindEntities(pos.x, pos.y, pos.z, 9001)
+    for k,v in pairs(ents) do
+        if v and v:HasTag("beanstalk_climbable") then
+            print(v.prefab)
+            local cavenum = v.components.climbable.cavenum or 1
+            inst.components.climbable.cavenum = cavenum
+        end
+    end
+end
+
 local function canuse_fn(inst)
-    inst:DoPeriodicTask(1, function()
+    if inst.components.equippable:IsEquipped() then
         if TheWorld and TheWorld:HasTag("cloudrealm") then
+            get_cavenum(inst)
             inst.components.climbable:SetDirection(-1)
         else
+            get_cavenum(inst)
             inst.components.climbable:SetDirection(1)
         end
-    end)
-
+    end
     return inst.components.equippable:IsEquipped()
 end
 
@@ -96,7 +109,7 @@ local function fn(Sim)
 
     inst:AddComponent("climbable")
     inst.components.climbable:SetDirection(direction_fn())
-    inst.components.climbable.cavenum = 1
+    get_cavenum(inst)
 
     inst:ListenForEvent("rainstop", function() UpdateSound(inst) end, GetWorld()) 
 	inst:ListenForEvent("rainstart", function() UpdateSound(inst) end, GetWorld()) 

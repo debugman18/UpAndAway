@@ -166,6 +166,7 @@ Add.Names {
     scarecrow = "Scarecrow",
     sheep = "Sheep",
     shopkeeper = "Shopkeeper",
+    shopkeeper_umbrella = "Incredible Umbrella",
     chest_sky = "Eldrichest",
     sky_lemur = "Lemur",
     skyflies = "Lightning Bug",

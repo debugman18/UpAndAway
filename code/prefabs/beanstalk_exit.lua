@@ -19,6 +19,8 @@ local function fn(Sim)
     anim:SetBank("rock_stalagmite_tall")
     anim:SetBuild("beanstalk_exit")
 
+    inst:AddTag("beanstalk_climbable")
+
     inst.type = math.random(2)
     inst.AnimState:PlayAnimation("full_"..inst.type)
 

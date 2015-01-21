@@ -216,6 +216,7 @@ local function fn(Sim)
     trans:SetScale(1.5, 1, 1.5)
 
     inst:AddTag("blocker")
+    inst:AddTag("beanstalk_climbable")
     physics:SetMass(0) -- 0 mass means infinite mass, actually (i.e., static object).
     --physics:SetCylinder(0.6, 2)
     physics:SetCylinder(2, 24)
