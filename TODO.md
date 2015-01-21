@@ -26,8 +26,7 @@
 
 	+ These need to be added; they currently do not exist.
 
-	+ Bean Giant and Semiconductor drops.
-	+ Semiconductor boss.
+	+ Semiconductor boss and drops.
 
 +** Strings in need of attention**
 

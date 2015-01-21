@@ -265,7 +265,7 @@ SPEECHES.OCTOCOPTER_SLAIN = function(mgr)
 
     Sleep(1.5)
 
-    mgr "Could be the key to an even greater adventure."
+    mgr "Could be a key to an even greater adventure."
 
     Sleep(1.5)
 
@@ -289,11 +289,14 @@ SPEECHES.SEMICONDUCTOR_SLAIN = function(mgr)
         Sleep(0.75)
     end
 
-    mgr "Congratulations are in order, I think."
+    mgr "Well now; what a shocking result."
+    mgr "Your heart must be racing."
+    mgr "That could be just palpitations, from the electricity."
+    mgr "Don't worry, though..."
 
     Sleep(1.5)
 
-    mgr "Just a thought."
+    mgr "There could be more surprises ahead."
 
     Sleep(1)
 end
@@ -305,11 +308,65 @@ SPEECHES.BEANGIANT_SLAIN = function(mgr)
         Sleep(0.75)
     end
 
-    mgr "Congratulations are in order, I think."
+    mgr "Fee, fi, fo, fum."
+    mgr "Say, I think a few bits of that walking hedge..."
 
     Sleep(1.5)
 
-    mgr "Just a thought."
+    mgr "Might be salvageable."
+    mgr "And, who knows..."
+
+    Sleep(1.5)
+
+    mgr "Your feat may have more interesting consequences..."
+
+    Sleep(1.5)
+
+    mgr "Than you can imagine."
+
+    Sleep(1)
+end
+
+-- This is played when the player has killed all three bosses.
+SPEECHES.LEVEL_ONE_BOSSES_SLAIN = function(mgr, arges)
+    if mgr:EnterCutScene() then
+        mgr:MakeNonInterruptible()
+        Sleep(0.75)
+    end
+
+    assert( args.giveumbrella )
+    assert( args.giveportal )
+
+    mgr "Look at you..."
+
+    Sleep(1.5)
+
+    mgr "A conqueror in your own right."
+    mgr "All three of those abominations..."
+
+    Sleep(1.5)
+
+    mgr "Downed by your mighty hands."
+    mgr "In recognition of your deeds..."
+
+    Sleep(1.5)
+
+    mgr "I bequeath to you my umbrella."
+    mgr "And..."
+
+    Sleep(1.5)
+
+    mgr "As an added bonus..."
+
+    Sleep(1.5)
+
+    mgr "The blueprints to something quite grand."
+    mgr "There's far more than mere clouds..."
+
+    Sleep(1.5)
+
+    mgr "Waiting for you, my friend."
+    mgr "You're in for a real treat..."
 
     Sleep(1)
 end

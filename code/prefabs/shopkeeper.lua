@@ -422,6 +422,23 @@ local function fn(Sim)
                 player.components.inventory:GiveItem(blueprint)
             end,
         })
+
+        speechgiver:AddSpeechData("LEVEL_ONE_BOSSES_SLAIN", {
+            giveumbrella = function(inst, player)
+                local quester = player.components.quester
+
+                local umbrella = assert( SpawnPrefab("shopkeeper_umbrella"), "Failed to spawn kettle_item." )
+                player.components.inventory:GiveItem(umbrella)
+            end,
+            giveportal = function(inst, player)
+                local quester = player.components.quester
+
+                --local portal = assert( SpawnPrefab("cloud_portal_blueprint"), "Failed to spawn research_lectern_blueprint." )
+                --player.components.inventory:GiveItem(portal)
+            end,
+        })
+
+
     end
     
     inst:AddComponent("playerprox")
