@@ -85,7 +85,7 @@ local function on_combat(inst)
     local target = inst.components.combat.target
     if target then
         inst.components.sanity:DoDelta(bonus_fn(target))
-        inst.components.kramped:OnNaughtyAction(bonus_fn(target) * CFG.WINNIE.NAUGHTY_BONUS)
+        TheWorld.components.kramped:OnNaughtyAction(bonus_fn(target) * CFG.WINNIE.NAUGHTY_BONUS, GetLocalPlayer())
         TheMod:DebugSay("Applying a sanity bonus of " .. bonus_fn(target) .. ".")        
     end
 end        
@@ -107,7 +107,8 @@ local function post_compat_fn(inst)
 
     inst:ListenForEvent("onattackother", on_combat)  
 
-    inst.components.inventory:GuaranteeItems(CFG.WINNIE.PERMANENT_ITEMS)
+    -- This is deprecated with DST.
+    --inst.components.inventory:GuaranteeItems(CFG.WINNIE.PERMANENT_ITEMS)
 
     inst.components.health:SetMaxHealth(CFG.WINNIE.HEALTH)
     inst.components.hunger:SetMax(CFG.WINNIE.HUNGER)
@@ -117,8 +118,6 @@ local function post_compat_fn(inst)
 
     inst.components.locomotor.walkspeed = CFG.WINNIE.WALK_SPEED
     inst.components.locomotor.runspeed = CFG.WINNIE.RUN_SPEED
-
-    inst.components.kramped.timetodecay = CFG.WINNIE.NAUGHTY_DECAY
 
 end
 
