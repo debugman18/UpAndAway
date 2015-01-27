@@ -52,12 +52,14 @@ local function herd_disable(inst, owner)
     if leadercmp then
         for follower in pairs(leadercmp.followers) do
             if follower:HasTag("beefalo") and follower.components.follower then
-                leadercmp:RemoveFollower(follower)
-                follower.components.follower:SetLeader(nil)
-                if follower.brain and follower.brain.bt then
-                    follower.brain.bt:Reset()
+                if not follower:HasTag("winnie_sheep") then
+                    leadercmp:RemoveFollower(follower)
+                    follower.components.follower:SetLeader(nil)
+                    if follower.brain and follower.brain.bt then
+                        follower.brain.bt:Reset()
+                    end
+                    TheMod:DebugSay("Removing follower [",follower, "]")
                 end
-                TheMod:DebugSay("Removing follower [",follower, "]")
             end
         end
     end 

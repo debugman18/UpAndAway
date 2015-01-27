@@ -86,6 +86,10 @@ local function fn()
     inst:AddComponent("eater")	
     inst.components.eater:SetVegetarian()	
 
+    inst:AddComponent("combat")
+
+    inst:AddTag("winnie_sheep")
+
     inst:AddComponent("beard")
     inst.components.beard.bits = CFG.SHEEP.SHAVE_BITS
     inst.components.beard.daysgrowth = CFG.SHEEP.HAIR_GROWTH_DAYS + 1 
