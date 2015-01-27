@@ -9,22 +9,9 @@ require "behaviours/panic"
 require "behaviours/follow"
 require "behaviours/faceentity"
 
-local SheepBrain = Class(Brain, function(self, inst)
+local WinnieSheepBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
 end)
-
-
-local function GetFaceTargetFn(inst)
-    local target = GetClosestInstWithTag("player", inst, 4)
-    if target and not target:HasTag("notarget") then
-        return target
-    end
-end
-
-local function KeepFaceTargetFn(inst, target)
-    return inst:GetDistanceSqToInst(target) <= 6*6 and not target:HasTag("notarget")
-end
-
 
 local function GoHomeAction(inst)
     if inst.components.homeseeker and 
@@ -45,19 +32,17 @@ local function EatFoodAction(inst)
     end
 end
 
-function SheepBrain:OnStart()
+function WinnieSheepBrain:OnStart()
     local clock = GetPseudoClock()
     
     local root = PriorityNode(
     {
         WhileNode( function() return self.inst.components.health.takingfiredamage end, "OnFire", Panic(self.inst)),
         Follow(self.inst, function() return self.inst.components.follower and self.inst.components.follower.leader end, 1, 5, 5, false),
-        RunAway(self.inst, "scarytoprey", CFG.SHEEP.AVOID_PLAYER_DIST, CFG.SHEEP.AVOID_PLAYER_STOP),
-        RunAway(self.inst, "scarytoprey", CFG.SHEEP.SEE_PLAYER_DIST, CFG.SHEEP.STOP_RUN_DIST, nil, true),
         Wander(self.inst, function() return self.inst.components.knownlocations:GetLocation("home") end, CFG.SHEEP.MAX_WANDER_DIST),
         DoAction(self.inst, EatFoodAction)
     }, .25)
     self.bt = BT(self.inst, root)
 end
 
-return SheepBrain
+return WinnieSheepBrain

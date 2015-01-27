@@ -1,3 +1,11 @@
+--[[
+__TODO__
+Winnie should be able to craft lureplant bulbs fairly inexpensively.
+Likely will use seeds, nightmare fuel, and health.
+
+Winnie gameplay is based around soft vegetarianism, naughtiness, and lureplants. Combat and sanity are the main mechanics.
+--]]
+
 BindGlobal()
 
 local CFG = TheMod:GetConfig()
@@ -43,11 +51,58 @@ local seed = seeds[math.random(#seeds)]
 
 local starting_inventory = CFG.WINNIE.STARTING_INV
 
+local kramped = nil
+
+-- Gives winnie a random seed nicely.
 table.insert(starting_inventory, seed)
 
--- Winnie gets a damage resistance to lureplants.
+-- Spawns Winnie with a special named sheep.
+local function spawn_sheep(inst)
+    if not inst.hadsheep then
+        TheMod:DebugSay("Attemping to spawn sheep.")
 
--- Winnie can craft a Lureplant Bulb, which costs health.
+        local sheep = SpawnPrefab("winnie_sheep")
+
+        sheep.Transform:SetPosition(inst.Transform:GetWorldPosition())
+
+        inst.components.leader:AddFollower(sheep)
+
+        inst.hadsheep = true
+    end
+end
+
+-- Winnie only gets one sheep companion.
+local function onload(inst, data)
+    if data.hadsheep then
+        TheMod:DebugSay("A sheep may already have existed.")
+        inst.hadsheep = data.hadsheep
+    else
+        spawn_sheep(inst)
+    end
+end
+
+local function onsave(inst, data)
+    if inst then
+        data.hadsheep = inst.hadsheep
+    end
+end
+
+-- Calculate how much health Winnie regains.
+local function calcresist(inst, attacker)
+    local attacker_damage = attacker.components.combat.defaultdamage or 0
+    local veggie_resist = CFG.WINNIE.VEGGIE_RESIST
+
+    return (attacker_damage * veggie_resist)
+end
+
+-- Winnie gets a damage resistance to lureplants.
+local function onattacked(inst, data)
+    local attacker = data.attacker
+
+    if attacker:HasTag("veggie") then
+        inst.components.health:DoDelta(calcresist(inst, attacker))
+    end    
+end
 
 -- Winnie gets special gains/losses for eating.
 local function penalty(inst, food)
@@ -55,15 +110,16 @@ local function penalty(inst, food)
     local food = food.components.edible.foodtype
     local prefab = food.prefab
 
-    if eater and food == "MEAT" and not (prefab == "plantmeat" or "plantmeat_cooked") then
-            inst.components.sanity:DoDelta(-45)
-            inst.components.health:DoDelta(-35)
-            inst.components.talker:Say("Blech.")
-            inst.components.kramped:OnNaughtyAction(5)
+    if eater and food == "MEAT" and not (prefab == "plantmeat" or prefab == "plantmeat_cooked") then
+        inst.components.sanity:DoDelta(CFG.WINNIE.MEAT_PENALTY_SANITY)
+        inst.components.health:DoDelta(CFG.WINNIE.MEAT_PENALTY_HEALTH)
+        inst.components.talker:Say("Blech.")
+        kramped:OnNaughtyAction(CFG.WINNIE.MEAT_PENALTY_NAUGHTY)
     elseif eater and food == "VEGGIE" then
-            inst.components.sanity:DoDelta(2)
-            inst.components.health:DoDelta(1)
-            inst.components.hunger:DoDelta(5)
+        inst.components.sanity:DoDelta(CFG.WINNIE.VEGGIE_BONUS_SANITY)
+        inst.components.health:DoDelta(CFG.WINNIE.VEGGIE_BONUS_HEALTH)
+        inst.components.hunger:DoDelta(CFG.WINNIE.VEGGIE_BONUS_HUNGER)
+        kramped:OnNaughtyAction(CFG.WINNIE.VEGGIE_BONUS_NAUGHTY)
     end
 end
 
@@ -79,13 +135,30 @@ local function bonus_fn(target)
     end
 end
 
+local function calc_naughtydamage(inst)
+    local base_damage = CFG.WINNIE.DAMAGE_MULTIPLIER 
+
+    local naughtiness = kramped.actions
+
+    local bonus_damage = CFG.WINNIE.NAUGHTY_BONUS * naughtiness
+
+    local new_damage = base_damage + bonus_damage
+
+    return new_damage
+end
+
 -- Winnie will gain sanity and naughtiness when attacking.
 local function on_combat(inst)
-    TheMod:DebugSay("Attemping to apply sanity bonus.")
+    TheMod:DebugSay("Attemping to calculate naughty bonuses.")
+
+    if inst then
+        inst.components.combat.damagemultiplier = calc_naughtydamage(inst)
+    end
+
     local target = inst.components.combat.target
     if target then
         inst.components.sanity:DoDelta(bonus_fn(target))
-        TheWorld.components.kramped:OnNaughtyAction(bonus_fn(target) * CFG.WINNIE.NAUGHTY_BONUS, GetLocalPlayer())
+        kramped:OnNaughtyAction(bonus_fn(target) * CFG.WINNIE.NAUGHTY_BONUS, GetLocalPlayer())
         TheMod:DebugSay("Applying a sanity bonus of " .. bonus_fn(target) .. ".")        
     end
 end        
@@ -95,20 +168,26 @@ local function compat_fn(inst)
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("winnie.tex")
 
+    inst.OnSave = onsave
+    inst.OnLoad = onload
+
 end
 
 local function post_compat_fn(inst)
 
     TheMod:DebugSay("Applying character stats.")
 
+    if IsDST() then
+        kramped = TheWorld.components.kramped
+    else 
+        kramped = inst.components.kramped
+    end
+
     inst.soundsname = "winnie"
 
     inst.components.eater:SetOnEatFn(penalty)
 
     inst:ListenForEvent("onattackother", on_combat)  
-
-    -- This is deprecated with DST.
-    --inst.components.inventory:GuaranteeItems(CFG.WINNIE.PERMANENT_ITEMS)
 
     inst.components.health:SetMaxHealth(CFG.WINNIE.HEALTH)
     inst.components.hunger:SetMax(CFG.WINNIE.HUNGER)
@@ -119,6 +198,7 @@ local function post_compat_fn(inst)
     inst.components.locomotor.walkspeed = CFG.WINNIE.WALK_SPEED
     inst.components.locomotor.runspeed = CFG.WINNIE.RUN_SPEED
 
+    inst:ListenForEvent("attacked", onattacked)
 end
 
 -- Don't Starve Together

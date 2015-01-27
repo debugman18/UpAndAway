@@ -1,16 +1,15 @@
 local Add = modrequire "lib.addstrings"
 
-
 -- Winnie stuff.
 --
 -- Added early so it doesn't override strings added below.
 
-STRINGS.CHARACTER_TITLES.winnie = "The Innocent"
+STRINGS.CHARACTER_TITLES.winnie = "The Shepherd"
 STRINGS.CHARACTER_NAMES.winnie = "Winnie"
-STRINGS.CHARACTER_DESCRIPTIONS.winnie = "*Is a vegetarian\
+STRINGS.CHARACTER_DESCRIPTIONS.winnie = "*Dislikes meat\
 *Has a green thumb\
 *Is not so innocent"
-STRINGS.CHARACTER_QUOTES.winnie = "\"Where have you gone, little sheep?\""
+STRINGS.CHARACTER_QUOTES.winnie = "\"Stay near me, little sheep.\""
 
 STRINGS.CHARACTERS.WINNIE = modrequire "speech_winnie"
 
@@ -2451,6 +2450,14 @@ STRINGS.GUMMYBEAR_NAMES = {
     "Devourer-y", 
     "Hungry", 
     "Tenderly", 
+}
+
+STRINGS.WINNIE_SHEEP_NAMES = {
+    "Facy",
+    "Mariane",
+    "Sedgewic",
+    "Charlie",
+    "Bear",
 }
 
 STRINGS.UPUI = {

@@ -219,6 +219,11 @@ Assets = GLOBAL.JoinArrays(
 		"winnie",
 	},
 
+	ImageAssets "avatars" {
+		"avatar_winnie",
+		"avatar_ghost_winnie",
+	},
+
 	ImageAssets "selectscreen_portraits" {
 		"winnie",
 		"winnie_silho",

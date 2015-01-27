@@ -153,16 +153,6 @@ local function pod_fn(inst)
 
     MakeCharacterPhysics(inst, 1000, .5)
 
-    -- This adds basic tags (non-local uses) efficiently.
-    for i,tag in ipairs(CFG.BEAN_GIANT.TAGS) do
-        inst:AddTag(tag)
-    end
-
-    -- The "pod" tag is not meant to last.
-    if not inst.giant then
-        inst:AddTag("pod")
-    end
-
     inst.AnimState:SetBank("bean_giant")
     inst.AnimState:SetBuild("bean_giant")
     
@@ -172,6 +162,16 @@ local function pod_fn(inst)
     ------------------------------------------------------------------------
     SetupNetwork(inst)
     ------------------------------------------------------------------------
+
+    -- This adds basic tags (non-local uses) efficiently.
+    for i,tag in ipairs(CFG.BEAN_GIANT.TAGS) do
+        inst:AddTag(tag)
+    end
+
+    -- The "pod" tag is not meant to last.
+    if not inst.giant then
+        inst:AddTag("pod")
+    end
 
     -- The pod will not walk, so we'll set this to zero for now.
     inst:AddComponent("locomotor")

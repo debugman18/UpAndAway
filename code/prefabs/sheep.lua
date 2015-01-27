@@ -33,7 +33,7 @@ SetSharedLootTable( "ram", CFG.RAM.LOOT)
 local sounds = 
 {
     walk = "dontstarve/beefalo/walk",
-    grunt = "dontstarve/beefalo/curious",
+    grunt = "sheep/sheep/baa",
     yell = "dontstarve/beefalo/yell",
     swish = "dontstarve/beefalo/tail_swish",
     curious = "dontstarve/beefalo/curious",
@@ -41,7 +41,11 @@ local sounds =
 }
 
 local function GetStatus(inst)
-    return inst.components.staticchargeable:IsCharged() and "RAM" or "SHEEP"
+    if inst.components.staticchargeable then
+        return inst.components.staticchargeable:IsCharged() and "RAM" or "SHEEP"
+    else 
+        return "SHEEP" 
+    end
 end
 
 local function SpawnFlower(inst)

@@ -20,6 +20,14 @@ local function onunequip(inst, owner)
     inst:RemoveTag("active_magnet")
 end
 
+local function on_charged(inst)
+    inst.components.insulator.insulation = TUNING.INSULATION_SMALL
+end
+
+local function on_uncharged(inst)
+    inst.components.insulator.insulation = 0
+end
+
 local function fn(Sim)
     local inst = CreateEntity()
     inst.entity:AddTransform()
@@ -37,8 +45,16 @@ local function fn(Sim)
     SetupNetwork(inst)
     ------------------------------------------------------------------------
 
+    inst:AddComponent("staticchargeable")
+    inst.components.staticchargeable:SetOnChargedFn(on_charged)
+    inst.components.staticchargeable:SetOnUnchargedFn(on_uncharged)
+    inst.components.staticchargeable:SetOnChargedDelay(math.random())
+    inst.components.staticchargeable:SetOnUnchargedDelay(0.5*math.random())
 
     inst:AddComponent("inspectable")
+
+    inst:AddComponent("insulator")
+    inst.components.insulator.insulation = TUNING.INSULATION_SMALL
 
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.atlasname = inventoryimage_atlas("magnet")

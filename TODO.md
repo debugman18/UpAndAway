@@ -7,7 +7,6 @@
 	+ Ambience is non-functional in DS.
 	+ Cloud realm is somehow succeptible to overworld weather in DS. (I was so confused when seeds burst into flames.)
 	+ Static damage shows as shenanigans in morgue.
-	+ Winnie crashes in DST, but I'm not sure why.
 
 + **Art assets in need of attention**
 
@@ -15,14 +14,14 @@
 
 + **Code assets in need of attention**
 
-	+ Add heat to Magnet during static.
 	+ Add ambiant sound to the cloudrealm. Sounds now exist in mod files.
 	+ Reputation component needs decay functionality.
-	+ Winnie is being overhauled.
+	+ Winnie lureplant recipe (waiting for Klei recipe implementation.)
 	+ Bean Giant is being overhauled.	
 	+ Shopkeeper Boss Quest implementation.
 	+ Gnome overhaul.
 	+ Add a slight visual effect to static damage.
+	+ Port golden egg corruption to DST.
 
 	+ These need to be added; they currently do not exist.
 

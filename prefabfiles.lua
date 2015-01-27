@@ -3,6 +3,7 @@
 PrefabFiles = {
 	"winnie",
 	"winnie_staff",
+	"winnie_sheep",
 	"kettle",
 	"cauldron",
 	"refiner",

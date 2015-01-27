@@ -16,16 +16,7 @@ local events=
 
     EventHandler("doattack", function(inst, data) if not inst.components.health:IsDead() then inst.sg:GoToState("attack", data.target) end end),
     EventHandler("death", function(inst) inst.sg:GoToState("death") end),
-    EventHandler("attacked", function(inst) if inst.components.health:GetPercent() > 0 and not inst.sg:HasStateTag("attack") then inst.sg:GoToState("hit") end end), 
-    --[[EventHandler("heardhorn", function(inst, data)
-        if inst.components.health:GetPercent() > 0
-           and not inst.sg:HasStateTag("attack")
-           and data and data.musician then
-            inst:FacePoint(Vector3(data.musician.Transform:GetWorldPosition()))
-            inst.sg:GoToState("bellow")
-        end
-    end),]]         
-    EventHandler("loseloyalty", function(inst) if inst.components.health:GetPercent() > 0 and not inst.sg:HasStateTag("attack") then inst.sg:GoToState("shake") end end),    
+    EventHandler("attacked", function(inst) if inst.components.health:GetPercent() > 0 and not inst.sg:HasStateTag("attack") then inst.sg:GoToState("hit") end end),     
     --Currently trying to figure out how to make sheep move horizontally as well as bounce up and down.
     --EventHandler("locomote", function(inst) if inst.components.locomotor and not inst.sg:HasStateTag("running") then inst.sg:GoToState("bounce") end end),
 }   
@@ -128,7 +119,7 @@ local states=
             inst.AnimState:PushAnimation("walk_pst")
             inst.components.locomotor:StopMoving()
             inst.AnimState:PlayAnimation("bellow")
-            inst.SoundEmitter:PlaySound(inst.sounds.grunt)
+            inst.SoundEmitter:PlaySound(inst.sounds.grunt, "grunt", 0.1)
         end,
        
         events=

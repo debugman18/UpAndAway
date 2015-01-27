@@ -19,8 +19,6 @@ local function fn(Sim)
     anim:SetBank("rock_stalagmite_tall")
     anim:SetBuild("beanstalk_exit")
 
-    inst:AddTag("beanstalk_climbable")
-
     inst.type = math.random(2)
     inst.AnimState:PlayAnimation("full_"..inst.type)
 
@@ -29,6 +27,7 @@ local function fn(Sim)
     SetupNetwork(inst)
     ------------------------------------------------------------------------
 
+    inst:AddTag("beanstalk_climbable")
 
     inst:AddComponent("climbable")
     inst.components.climbable:SetDirection("DOWN")
