@@ -36,7 +36,7 @@ end
 
 function StaticConductor:StartUpdating()
     if not self.task then
-        self.task = self.inst:DoPeriodicTask(dt, function() self:OnUpdate(dt) end, dt + math.random()*.67)
+        self.task = self.inst:DoPeriodicTask(dt, function() self:OnUpdate(dt) end, dt + math.random()*CFG.STATIC_CONDUCTOR.RATE)
     end
 end
 
@@ -54,8 +54,20 @@ local function calc_damage(self, staticresistance)
     if ((self.shockdamage * dt) - staticresistance) <= 0 then
         return 0
     else
-        return -((self.shockdamage * dt) - staticresistance) 
+        return ((self.shockdamage * dt) - staticresistance) 
     end
+end
+
+-- Some slight trickery to give the component a custom death string.
+local function patch_morgue(v, damage)
+    local static = SpawnPrefab("staticdummy")
+    static.Transform:SetPosition(v.Transform:GetWorldPosition())
+    static.persists = false
+    if v and v.components.combat then
+        TheMod:DebugSay("Dealing " .. damage .. " damage to " .. v.prefab .. " via " .. static.prefab .. ".")
+        v.components.combat:GetAttacked(static, damage)
+    end
+    static:Remove()
 end
 
 function StaticConductor:OnUpdate(dt)
@@ -81,9 +93,11 @@ function StaticConductor:OnUpdate(dt)
 			        if dsq < self.shockrange*self.shockrange then
                         if v.components.health then
                             if staticresistance then
-				                v.components.health:DoDelta(calc_damage(self, staticresistance))
+				                local resist_damage = calc_damage(self, staticresistance)
+                                patch_morgue(v, resist_damage)
                             else
-                                v.components.health:DoDelta(-self.shockdamage * dt)
+                                local raw_damage = (self.shockdamage * dt)
+                                patch_morgue(v, raw_damage)
                             end
 			            end
                     end

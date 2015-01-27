@@ -189,7 +189,7 @@ Add.Names {
     wind_axe = "Axe of Storms",
     winnie_staff = "Shepherd's Staff",
 
-    --Tea names.
+    -- Tea names.
     whitetea = "White Tea",
     petaltea = "Petal Tea",
     mixedpetaltea = "Combo Petal Tea",
@@ -220,9 +220,13 @@ Add.Names {
     ambrosiatea = "Ambrosia Tea",
     algaetea = "Algae Tea",
 
+    -- Cooked food names.
     redjelly = "Red Jelly",
     greenjelly = "Green Jelly",
     crystalcandy = "Crystal Candy",
+
+    -- Dummy name for morgue tricker.
+    staticdummy = "Static",
 }
 
 Add.QuotesFor "alien" {

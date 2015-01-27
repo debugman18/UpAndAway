@@ -8,7 +8,10 @@ PrefabFiles = {
 	"cauldron",
 	"refiner",
 
-	--Stuff in progress.
+	-- Dummy prefab for morgue trickery.
+	"staticdummy",
+
+	-- Stuff in progress.
 	--------------------
 
 	"pineapple_bush",

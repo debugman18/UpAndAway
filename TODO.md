@@ -6,7 +6,6 @@
 	+ Staves are non-functional in DST due to test fn.
 	+ Ambience is non-functional in DS.
 	+ Cloud realm is somehow succeptible to overworld weather in DS. (I was so confused when seeds burst into flames.)
-	+ Static damage shows as shenanigans in morgue.
 
 + **Art assets in need of attention**
 
@@ -19,7 +18,7 @@
 	+ Winnie lureplant recipe (waiting for Klei recipe implementation.)
 	+ Bean Giant is being overhauled.	
 	+ Shopkeeper Boss Quest implementation.
-	+ Gnome overhaul.
+	+ Gnomes are being overhauled.
 	+ Add a slight visual effect to static damage.
 	+ Port golden egg corruption to DST.
 
