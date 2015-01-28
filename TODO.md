@@ -5,7 +5,6 @@
 	+ Characters lose equipped items on climbing beanstalk. (Cannot reproduce; was reported by tester using a large number of mods.)
 	+ Staves are non-functional in DST due to test fn.
 	+ Ambience is non-functional in DS.
-	+ Cloud realm is somehow succeptible to overworld weather in DS. (I was so confused when seeds burst into flames.)
 
 + **Art assets in need of attention**
 

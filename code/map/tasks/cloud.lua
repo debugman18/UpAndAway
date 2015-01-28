@@ -3,6 +3,7 @@ local LK = modrequire "map.lockandkey"
 
 local KEYS, LOCKS = LK.SAFE_KEYS, LK.SAFE_LOCKS
 
+-------------------------------------------------------------------------------
 
 --Generic Biome
 TheMod:AddTask("Cloud_Innocent_Generic_Biome", {
@@ -46,6 +47,7 @@ TheMod:AddTask("Cloud_Generic_Biome", {
       make_loop = true,	
 })
 
+-------------------------------------------------------------------------------
 
 --Snow Biome
 TheMod:AddTask("Cloud_Innocent_Snow_Biome", {
@@ -86,6 +88,8 @@ TheMod:AddTask("Cloud_Snow_Biome", {
       -- Whether or not to connect the last node to the first
       make_loop = false,	
 })
+
+-------------------------------------------------------------------------------
 
 --Aurora Biome
 TheMod:AddTask("Cloud_Innocent_Aurora_Biome", {
@@ -132,6 +136,7 @@ TheMod:AddTask("Cloud_Aurora_Biome", {
       make_loop = false,	
 })
 
+-------------------------------------------------------------------------------
 
 --Rainbow Biome
 TheMod:AddTask("Cloud_Innocent_Rainbow_Biome", {
@@ -173,3 +178,5 @@ TheMod:AddTask("Cloud_Rainbow_Biome", {
       -- Whether or not to connect the last node to the first
       make_loop = true,	
 })
+
+-------------------------------------------------------------------------------

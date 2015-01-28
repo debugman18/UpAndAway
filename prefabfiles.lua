@@ -14,6 +14,7 @@ PrefabFiles = {
 	-- Stuff in progress.
 	--------------------
 
+	"bean_giant",
 	"pineapple_bush",
 	"pineapple",
 	"cloudblob",
@@ -32,7 +33,6 @@ PrefabFiles = {
 	"shopkeeper_umbrella",
 	--"rubber_cap",
 	--"rubber_ducky",
-	--"bean_giant",
 	--"semiconductor",
 	--"thundertree_sapling",
 

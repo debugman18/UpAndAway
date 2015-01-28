@@ -1,9 +1,12 @@
+-- This controls the chances of a given ground type appearing.
+local roll = math.random(1,3)
+
+-- This controls the randomness aspect of distribution.
 local function randomness()
     return 0.1 + 0.5*math.random()
 end
 
 local function randomcloud()
-    local roll = math.random(1,3)
     if roll == 1 then
         return GROUND.CLOUDLAND
     elseif roll == 2 then 
@@ -14,7 +17,6 @@ local function randomcloud()
 end	
 
 local function randomaurora()
-    local roll = math.random(1,2)
     if roll == 1 then
         return GROUND.AURORA
     else 
@@ -23,7 +25,6 @@ local function randomaurora()
 end	
 
 local function randomsnow()
-    local roll = math.random(1,2)
     if roll == 1 then
         return GROUND.SNOW
     else 
@@ -32,7 +33,6 @@ local function randomsnow()
 end	
 
 local function randomrainbow()
-    local roll = math.random(1,2)
     if roll == 1 then
         return GROUND.RAINBOW
     else 
@@ -41,6 +41,8 @@ local function randomrainbow()
 end
 
 BindGlobal()
+
+-------------------------------------------------------------------------------
 
 --Generic Biome Rooms
 
@@ -58,7 +60,6 @@ TheMod:AddRoom("BGCloud", {
             owl = 0.007,
         },
         countprefabs = {
-            lionblob = function() if math.random(1,100) <= 2 then return 1 end return 0 end,
             golden_sunflower = 6,
             thunder_tree = math.random(2,3),
             sheepherd = math.random(1,4),
@@ -147,8 +148,80 @@ TheMod:AddRoom("BushGarden", {
     },
 })
 
+-------------------------------------------------------------------------------
+    
+--Snow Biome Rooms
 
----------
+--Snow BG
+TheMod:AddRoom("BGSnow", {
+    colour={r=.2,g=.2,b=.2,a=1},
+    value = randomsnow(),
+    contents = {
+        distributepercent = randomness(),
+        distributeprefabs = {
+            thunder_tree = 0.008,
+            ball_lightning = 0.001,
+            frog = 0.002,
+            skyflower = 0.1,
+        },
+    }
+})
+
+--Thunder Trees
+TheMod:AddRoom("Thunder_Forest", {
+    colour={r=.2,g=.2,b=.2,a=1},
+    value = randomsnow(),
+    contents = {
+        distributepercent = randomness(),
+        distributeprefabs = {
+            thunder_tree = 0.0011,
+            crystal_quartz = 0.0010,
+            live_gnome = 0.0008,
+            skyflower = 0.1,
+        },
+        countprefabs= {
+            weavernest = 4,
+            crystal_black = 4,
+        }
+    }
+})
+
+TheMod:AddRoom("Sea_Mimic", {
+    colour={r=.2,g=.2,b=.2,a=1},
+    value = randomsnow(),
+    contents = {
+        distributepercent = randomness(),
+        distributeprefabs = {
+            cloud_algae = 0.15,
+            cloud_coral = 0.15,
+            thunder_tree = 0.09,
+            skyflower = 0.2,
+        },
+        countprefabs = {
+            crystal_water = math.random(2,4),
+        }
+    },
+})
+
+TheMod:AddRoom("Manta_Room", {
+    colour={r=.2,g=.2,b=.2,a=1},
+    value = randomsnow(),
+    contents = {
+        distributepercent = randomness(),
+        distributeprefabs = {
+            cloud_bush = 0.03,
+            cloud_fruit_tree = 0.025,
+            jellyshroom_blue = 0.08,
+            owl = 0.007,
+            skyflower = 0.1,
+        },
+        countprefabs = {
+            --mantaspawner = math.random(1,4),
+        }
+    },
+})
+
+-------------------------------------------------------------------------------
 
 --Aurora Biome Rooms
 
@@ -251,80 +324,7 @@ TheMod:AddRoom("Beanlet_Den", {
 })
 
 
-----------
-    
---Snow Biome Rooms
-
---Snow BG
-TheMod:AddRoom("BGSnow", {
-    colour={r=.2,g=.2,b=.2,a=1},
-    value = randomsnow(),
-    contents = {
-        distributepercent = randomness(),
-        distributeprefabs = {
-            thunder_tree = 0.008,
-            ball_lightning = 0.001,
-            frog = 0.002,
-            skyflower = 0.1,
-        },
-    }
-})
-
---Thunder Trees
-TheMod:AddRoom("Thunder_Forest", {
-    colour={r=.2,g=.2,b=.2,a=1},
-    value = randomsnow(),
-    contents = {
-        distributepercent = randomness(),
-        distributeprefabs = {
-            thunder_tree = 0.0011,
-            crystal_quartz = 0.0010,
-            live_gnome = 0.0008,
-            skyflower = 0.1,
-        },
-        countprefabs= {
-            weavernest = 4,
-            crystal_black = 4,
-        }
-    }
-})
-
-TheMod:AddRoom("Sea_Mimic", {
-    colour={r=.2,g=.2,b=.2,a=1},
-    value = randomsnow(),
-    contents = {
-        distributepercent = randomness(),
-        distributeprefabs = {
-            cloud_algae = 0.15,
-            cloud_coral = 0.15,
-            thunder_tree = 0.09,
-            skyflower = 0.2,
-        },
-        countprefabs = {
-            crystal_water = math.random(2,4),
-        }
-    },
-})
-
-TheMod:AddRoom("Manta_Room", {
-    colour={r=.2,g=.2,b=.2,a=1},
-    value = randomsnow(),
-    contents = {
-        distributepercent = randomness(),
-        distributeprefabs = {
-            cloud_bush = 0.03,
-            cloud_fruit_tree = 0.025,
-            jellyshroom_blue = 0.08,
-            owl = 0.007,
-            skyflower = 0.1,
-        },
-        countprefabs = {
-            --mantaspawner = math.random(1,4),
-        }
-    },
-})
-
-----------
+-------------------------------------------------------------------------------
 
 
 --Rainbow Biome Rooms
@@ -412,3 +412,5 @@ TheMod:AddRoom("Fish_Fields", {
         },
     },
 })
+
+-------------------------------------------------------------------------------

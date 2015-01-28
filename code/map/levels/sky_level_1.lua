@@ -63,6 +63,12 @@ local sky_level_1 = {
         {"deerclops", 		"never"},
         {"hounds", 			"never"},	
         {"rain",			"never"},
+
+        -- This is stuff to prevent weather bugs.
+        {"wildfires",       "never"},
+        {"autumn",          "noseason"},
+        {"spring",          "noseason"},
+        {"summer",          "noseason"},
         
         {"start_setpeice", 	"BeanstalkTop"},				
         {"start_node",		"BeanstalkSpawn"},
@@ -85,14 +91,19 @@ local sky_level_1 = {
         ["WitchGrove"] = { count=1, tasks={"Cloud_Snow_Biome"} },
         ["OwlColony"] = { count=1, tasks={"Cloud_Snow_Biome"} },	
         ["StrixShrine"] = { count=3, tasks={"Cloud_Aurora_Biome"} },	
-        ["SkyGrotto"] = { count=3, tasks={"Cloud_Aurora_Biome"} },
-        ["HiveTrees1"] = { count=3, tasks={"Cloud_Rainbow_Biome"} },
-        ["CloudBase1"] = { count=1, tasks={"Cloud_Generic_Biome"} },
         ["CheshireHunting"] = { count=5, tasks={"Cloud_Rainbow_Biome"} },
         ["CloudHoles"] = { count=1, tasks={"Cloud_Generic_Biome"} },
         ["OctocopterPart1"] = { count=1, tasks={"Cloud_Aurora_Biome"} },
         ["OctocopterPart2"] = { count=1, tasks={"Cloud_Rainbow_Biome"} },
         ["OctocopterPart3"] = { count=1, tasks={"Cloud_Snow_Biome"} },	
+    },
+
+    numrandom_set_pieces = 3,
+    random_set_pieces = 
+    {
+        "CloudBase1",
+        "HiveTrees1",
+        "SkyGrotto",
     },
 
     ordered_story_setpieces = {
@@ -114,6 +125,7 @@ local sky_level_1 = {
         "part1spawner",
         "part2spawner",
         "part3spawner",
+        --"bean_giant",
     },
 
 }
