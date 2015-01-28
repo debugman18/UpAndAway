@@ -39,7 +39,7 @@ local sky_level_1 = {
 
     overrides={
         {"location",		"cave"},
-        {"world_size", 		IfDST("large", "medium")}, 
+        {"world_size", 		"medium"}, 
 
         {"day", 			"onlydusk"}, 
 
@@ -86,13 +86,20 @@ local sky_level_1 = {
     },
     
     set_pieces = {
+
+        -- This is the octocopter.
         ["OctocopterWreckage"] = { count=1, tasks={"Cloud_Aurora_Biome"} },	
         ["Cloudhenge"] = { count=1, tasks={"Cloud_Generic_Biome"} },	
         ["WitchGrove"] = { count=1, tasks={"Cloud_Snow_Biome"} },
+
+        -- This disperses owls.
         ["OwlColony"] = { count=1, tasks={"Cloud_Snow_Biome"} },	
         ["StrixShrine"] = { count=3, tasks={"Cloud_Aurora_Biome"} },	
+
+        -- This is the scarecrow/cheshire.
         ["CheshireHunting"] = { count=5, tasks={"Cloud_Rainbow_Biome"} },
-        ["CloudHoles"] = { count=1, tasks={"Cloud_Generic_Biome"} },
+
+        -- These are the octocopter parts.
         ["OctocopterPart1"] = { count=1, tasks={"Cloud_Aurora_Biome"} },
         ["OctocopterPart2"] = { count=1, tasks={"Cloud_Rainbow_Biome"} },
         ["OctocopterPart3"] = { count=1, tasks={"Cloud_Snow_Biome"} },	
@@ -103,7 +110,7 @@ local sky_level_1 = {
     {
         "CloudBase1",
         "HiveTrees1",
-        "SkyGrotto",
+        "CloudHoles",
     },
 
     ordered_story_setpieces = {
@@ -126,6 +133,7 @@ local sky_level_1 = {
         "part2spawner",
         "part3spawner",
         --"bean_giant",
+        --"semiconductor",
     },
 
 }

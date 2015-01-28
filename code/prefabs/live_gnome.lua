@@ -41,7 +41,7 @@ local function toy_fn(inst)
         inst.Transform:SetScale(CFG.LIVE_GNOME.ITEM_SCALE, CFG.LIVE_GNOME.ITEM_SCALE, CFG.LIVE_GNOME.ITEM_SCALE)
 
         -- Stop nearly everything.
-        inst:RemoveComponent("combat")
+        --inst:RemoveComponent("combat")
         inst:ClearStateGraph()
         inst:StopBrain()
         inst.Physics:Stop()

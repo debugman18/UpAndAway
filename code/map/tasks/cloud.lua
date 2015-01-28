@@ -8,7 +8,7 @@ local KEYS, LOCKS = LK.SAFE_KEYS, LK.SAFE_LOCKS
 --Generic Biome
 TheMod:AddTask("Cloud_Innocent_Generic_Biome", {
     locks = LOCKS.NONE,
-    keys_given = {KEYS.TIER1, KEYS.CRAFTABLE_HEAT},
+    keys_given = {KEYS.FABLE_TECH, KEYS.CRAFTABLE_HEAT},
 
     room_choices={
         ["SkyflowerGarden"] = math.random(1, 1),
@@ -35,7 +35,6 @@ TheMod:AddTask("Cloud_Generic_Biome", {
         ["SheepHerd"] = math.random(1, 3),
         ["BushGarden"] = math.random(1, 4),
         ["Sea_Mimic"] = math.random(1, 2),	
-        ["Vine_Room"] = math.random(2, 2),	
     },
 
     room_bg=GROUND.POOPCLOUD,
@@ -125,6 +124,7 @@ TheMod:AddTask("Cloud_Aurora_Biome", {
         ["Crystal_Fields"] = math.random(2, 2),		
         ["SheepHerd"] = math.random(1, 2),
         ["Bigbird_Nest"] = math.random(1, 1),
+        ["Vine_Room"] = math.random(2, 2),  
     },
 
     room_bg=GROUND.GRASS,

@@ -32,7 +32,6 @@
 + **General improvements to be made:*
 
 	+ Allow for more cloud stuff in the overworld, and vice-versa.
-	+ Adjust world density.
 
 + **Miscellanea (Suggestions to be considered) **
 
