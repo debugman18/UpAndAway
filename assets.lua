@@ -12,6 +12,7 @@ Assets = GLOBAL.JoinArrays(
 	AnimationAssets {
 		"generating_cloud",
 		"temperature_meter",
+		--"player_drink.zip",
 	},
 
 	--[=[

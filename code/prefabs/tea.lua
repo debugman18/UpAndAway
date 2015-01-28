@@ -7,9 +7,14 @@ local MakeBeverage = pkgrequire "common.beverage"
 
 local cfg = Configurable("BEVERAGE", "TEA")
 
+-- There's some issues with this animation on characters that aren't Wes.
+local function drink_anim(inst, eater)
+    eater.AnimState:PlayAnimation("mime8", false)
+end
 
 -- oneatenfn for ambrosia tea.
 local function ambrosiafn(inst, eater)
+    drink_anim(inst, eater)
     if math.random() < 0.1 then
         if eater.components.ambrosiarespawn then
             TheMod:DebugSay("Free respawn. Lucky you.")

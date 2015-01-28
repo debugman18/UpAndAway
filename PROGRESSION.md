@@ -154,7 +154,7 @@ Gambling - The action may have unpredictable consquences.
 
 * Octocopter + Victory -> Rotor Plate + Rotor Hub + Rotor Blade (Crafting)
 
-* Semiconductor + Victory -> Plasma Orb (Crafting)
+* Semiconductor + Victory -> Radiant Core (Crafting)
 
 * Bean Giant + Victory -> Bean Seed + Grey Legum (Crafting)
 

@@ -14,7 +14,6 @@ PrefabFiles = {
 	-- Stuff in progress.
 	--------------------
 
-	"bean_giant",
 	"pineapple_bush",
 	"pineapple",
 	"cloudblob",
@@ -28,13 +27,25 @@ PrefabFiles = {
 	"cloud_wall",
 	"chest_sky",
 	"live_gnome",
-	"bean_brain",
 	"rubber_armor",
 	"shopkeeper_umbrella",
+	"rhinoman",
+
 	--"rubber_cap",
 	--"rubber_ducky",
-	--"semiconductor",
 	--"thundertree_sapling",
+
+	------------------------------
+
+	-- Bosses and their drops.
+	"superconductor",
+	"radiant_orb",
+
+	"bean_giant",
+	"bean_brain",
+	"super_beans",
+
+	"octocopter",
 
 	------------------------------
 
@@ -105,8 +116,7 @@ PrefabFiles = {
 	"golden_sunflower_seeds",
 	"gustflower",
 	"gustflower_seeds",		
-	"beanlet_zealot",	
-	"octocopter",	
+	"beanlet_zealot",		
 	"crystal_black",
 	"crystal_white",	
 	"beanlet",		

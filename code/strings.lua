@@ -33,8 +33,6 @@ Add.Names {
     balloon_firehound = "Red Hound",
     balloon_hound = "Hound",
     balloon_icehound = "Blue Hound",
-    bean_giant = "Bean Giant",
-    bean_brain = "Grey Legum",
     beanlet = "Beanlet",
     beanlet_armor = "Beanlet Armor",
     beanlet_hut = "Flower Hut",
@@ -145,11 +143,7 @@ Add.Names {
     marshmallow = "Marshmallow",
     monolith = "Monolith",
     mushroom_hat = "Mushroom Hat",
-    octocopter = "Octocopter",
     octocopter_wreckage = "Wrecked Octocopter",
-    octocopterpart1 = "Rotor Blade",
-    octocopterpart2 = "Rotor Plate",
-    octocopterpart3 = "Rotor Hub",
     owl = "Strix",
     package = "Unknown Package",
     pineapple_bush = "Pineapple Bush",
@@ -227,6 +221,19 @@ Add.Names {
 
     -- Dummy name for morgue tricker.
     staticdummy = "Static",
+
+    -- Bosses and their drops.
+    superconductor = "Superconductor",
+    radiant_orb = "Radiant Core",
+
+    octocopter = "Octocopter",
+    octocopterpart1 = "Rotor Blade",
+    octocopterpart2 = "Rotor Plate",
+    octocopterpart3 = "Rotor Hub",
+
+    bean_giant = "Bean Giant",
+    bean_brain = "Grey Legum",
+    super_beans = "Jumping Beans",
 }
 
 Add.QuotesFor "alien" {
