@@ -3,7 +3,6 @@
 + **Current bugs:**
 
 	+ Characters lose equipped items on climbing beanstalk. (Cannot reproduce; was reported by tester using a large number of mods.)
-	+ Staves are non-functional in DST due to test fn.
 	+ Ambience is non-functional in DS.
 
 + **Art assets in need of attention**

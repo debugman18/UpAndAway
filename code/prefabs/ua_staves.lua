@@ -108,18 +108,21 @@ local function make_black_staff()
     end
 
     local effect_duration = cfg:GetConfig("BLACK", "EFFECT_DURATION")
-    local function black_activate(staff, target, pos)
-        if target and target.components.staticchargeable then
-            target.components.staticchargeable:Charge()
-            target.components.staticchargeable:HoldState(effect_duration)
-            staff.components.finiteuses:Use(1)
 
-            local doer = staff.components.inventoryitem and staff.components.inventoryitem.owner
-            if doer and doer.SoundEmitter then
-                --doer.SoundEmitter:PlaySound("dontstarve/wilson/fireball_explo")  
-                doer.SoundEmitter:PlaySound("dontstarve/rain/thunder_close")
-            end
-        end    
+    local function black_activate(staff, target, pos)
+        local doer = staff.components.inventoryitem and staff.components.inventoryitem.owner
+        -- Perform spelltest here because of DST.
+        if cancharge(staff, doer, target, pos) then
+            if target and target.components.staticchargeable then
+                target.components.staticchargeable:Charge()
+                target.components.staticchargeable:HoldState(effect_duration)
+                staff.components.finiteuses:Use(1)
+
+                if doer and doer.SoundEmitter then
+                    doer.SoundEmitter:PlaySound("dontstarve/rain/thunder_close")
+                end
+            end  
+        end  
     end
 
     return make_staff {
@@ -146,7 +149,10 @@ local function make_black_staff()
 
                 spellcaster.canuseontargets = true
                 spellcaster.canusefrominventory = false
-                spellcaster:SetSpellTestFn(cancharge)
+                if IsDST() then
+                else
+                    spellcaster:SetSpellTestFn(cancharge)
+                end
                 spellcaster:SetSpellFn(black_activate)
             end
 
@@ -178,23 +184,28 @@ local function make_white_staff()
     end
 
     local function white_activate(staff, target, pos)
-        if target and target:IsValid() then
-            local targetpos = target:GetPosition()
-            local package = SpawnPrefab("package")
-            if package then
-                package.components.packer:SetCanPackFn(canshrink)
-                if package.components.packer:Pack(target) then
-                    package.Transform:SetPosition( targetpos:Get() )
-                    staff.components.finiteuses:Use(1)
-                    local doer = staff.components.inventoryitem and staff.components.inventoryitem.owner
-                    if doer and doer.SoundEmitter then
-                        doer.SoundEmitter:PlaySound("dontstarve/rain/thunder_close")
+        local doer = staff.components.inventoryitem and staff.components.inventoryitem.owner
+        -- Perform spelltest here because of DST.
+        if cancastspell(staff, doer, target, pos) then
+            if target and target:IsValid() then
+                local targetpos = target:GetPosition()
+                local package = SpawnPrefab("package")
+                if package then
+                    package.components.packer:SetCanPackFn(canshrink)
+                    if package.components.packer:Pack(target) then
+                        package.Transform:SetPosition( targetpos:Get() )
+                        staff.components.finiteuses:Use(1) 
+                        if doer and doer.SoundEmitter then
+                            doer.SoundEmitter:PlaySound("dontstarve/rain/thunder_close")
+                        end
+                    else
+                        package:Remove()
                     end
-                else
-                    package:Remove()
                 end
-            end
-        end    
+            end    
+        else
+            return
+        end
     end
 
     return make_staff {
@@ -220,7 +231,10 @@ local function make_white_staff()
 
                 spellcaster.canuseontargets = true
                 spellcaster.canusefrominventory = false
-                spellcaster:SetSpellTestFn(cancastspell)
+                if IsDST() then
+                else
+                    spellcaster:SetSpellTestFn(cancastspell)
+                end
                 spellcaster:SetSpellFn(white_activate)
             end
 
