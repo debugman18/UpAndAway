@@ -115,6 +115,7 @@ local function fn()
 		addcmp(inst, "playerspawner")
 		addcmp(inst, "shadowcreaturespawner")
 		addcmp(inst, "shadowhandspawner")
+		addcmp(inst, "kramped")
     end
 
 	---

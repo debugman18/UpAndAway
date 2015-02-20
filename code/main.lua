@@ -156,3 +156,4 @@ AddMinimapAtlas("images/ua_minimap.xml")
 -- Winnie is now compatible with both DS and DST.
 table.insert(GLOBAL.CHARACTER_GENDERS.FEMALE, "winnie")
 AddModCharacter("winnie")
+

@@ -53,6 +53,35 @@ local starting_inventory = CFG.WINNIE.STARTING_INV
 
 local kramped = nil
 
+local kramped_actions = nil
+
+-- Set kramped to appropriate value.
+local function getKramped(inst)
+    if IsDST() then
+
+        kramped = TheWorld.components.kramped
+
+        -- String magic.
+        local debugstring = kramped:GetDebugString()
+        for word in debugstring:gmatch("%w+") do 
+            local number = string.match(word, "%d+")
+            if number and number <= "1000" then
+                kramped_actions = number
+            end
+        end
+        
+    else 
+
+        kramped = inst.components.kramped
+        kramped_actions = kramped.actions
+
+    end
+    
+    if kramped_actions then
+        print("Kramped actions are at " .. kramped_actions .. ".")
+    end
+end
+
 -- Gives winnie a random seed nicely.
 table.insert(starting_inventory, seed)
 
@@ -62,6 +91,8 @@ local function spawn_sheep(inst)
         TheMod:DebugSay("Attemping to spawn sheep.")
 
         local sheep = SpawnPrefab("winnie_sheep")
+
+        sheep:AddTag("winnie_sheep")
 
         sheep.Transform:SetPosition(inst.Transform:GetWorldPosition())
 
@@ -106,6 +137,8 @@ end
 
 -- Winnie gets special gains/losses for eating.
 local function penalty(inst, food)
+    getKramped(inst)
+
     local eater = inst.components.eater
     local food = food.components.edible.foodtype
     local prefab = food.prefab
@@ -136,9 +169,11 @@ local function bonus_fn(target)
 end
 
 local function calc_naughtydamage(inst)
+    getKramped(inst)
+
     local base_damage = CFG.WINNIE.DAMAGE_MULTIPLIER 
 
-    local naughtiness = kramped.actions
+    local naughtiness = kramped_actions or 0
 
     local bonus_damage = CFG.WINNIE.NAUGHTY_BONUS * naughtiness
 
@@ -149,6 +184,9 @@ end
 
 -- Winnie will gain sanity and naughtiness when attacking.
 local function on_combat(inst)
+    getKramped(inst)
+    print(tostring(kramped))
+
     TheMod:DebugSay("Attemping to calculate naughty bonuses.")
 
     if inst then
@@ -156,9 +194,15 @@ local function on_combat(inst)
     end
 
     local target = inst.components.combat.target
+    local naughty_amount = bonus_fn(target) * CFG.WINNIE.NAUGHTY_BONUS
+
     if target then
         inst.components.sanity:DoDelta(bonus_fn(target))
-        kramped:OnNaughtyAction(bonus_fn(target) * CFG.WINNIE.NAUGHTY_BONUS, GetLocalPlayer())
+        if IsDST() then
+            kramped:OnNaughtyAction(naughty_amount)
+        else
+            kramped:OnNaughtyAction(naughty_amount, GetLocalPlayer())
+        end
         TheMod:DebugSay("Applying a sanity bonus of " .. bonus_fn(target) .. ".")        
     end
 end        
@@ -177,11 +221,7 @@ local function post_compat_fn(inst)
 
     TheMod:DebugSay("Applying character stats.")
 
-    if IsDST() then
-        kramped = TheWorld.components.kramped
-    else 
-        kramped = inst.components.kramped
-    end
+    getKramped(inst)
 
     inst.soundsname = "winnie"
 
@@ -199,6 +239,21 @@ local function post_compat_fn(inst)
     inst.components.locomotor.runspeed = CFG.WINNIE.RUN_SPEED
 
     inst:ListenForEvent("attacked", onattacked)
+
+    -- Let's make sure the sheep becomes a follower if it exists.
+    -- We also do not want to break it in the case of multiple Winnies.
+    -- So let's make sure the sheep has no leader first.
+    if inst.hadsheep then
+        local x, y, z = inst.Transform:GetWorldPosition()
+        local ents = TheSim:FindEntities(x, y, z, range, {"winnie_sheep"})
+        for i,ent in ipairs(ents) do
+            TheMod:DebugSay(ent.prefab .. " was found.")
+            if not ent.components.follower.leader == inst then
+                inst.components.leader:AddFollower(v)
+            end
+        end        
+    end
+
 end
 
 -- Don't Starve Together
