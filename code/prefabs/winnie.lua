@@ -53,22 +53,38 @@ local starting_inventory = CFG.WINNIE.STARTING_INV
 
 local kramped = nil
 
-local kramped_actions = nil
+local kramped_actions = nil or 0
+
+-- Rounding function.
+local function Round(num)
+    if num >= 0 then 
+        return math.floor(num+.5) 
+    else 
+        return math.ceil(num-.5) 
+    end
+end
+
+-- String magic.
+local function calc_naughtyactions(inst)
+    local debugstring = kramped:GetDebugString()
+    TheMod:DebugSay("DebugString for Kramped is:")
+    TheMod:DebugSay(debugstring)
+
+    local action_count = string.match(debugstring, "Actions: %d.") or "Actions: 0"
+    for word in action_count:gmatch("%w+") do 
+        local number = string.match(word, "%d+")
+        if number then
+            kramped_actions = number
+        end
+    end
+end
 
 -- Set kramped to appropriate value.
 local function getKramped(inst)
     if IsDST() then
 
         kramped = TheWorld.components.kramped
-
-        -- String magic.
-        local debugstring = kramped:GetDebugString()
-        for word in debugstring:gmatch("%w+") do 
-            local number = string.match(word, "%d+")
-            if number and number <= "1000" then
-                kramped_actions = number
-            end
-        end
+        calc_naughtyactions(inst)
         
     else 
 
@@ -76,9 +92,25 @@ local function getKramped(inst)
         kramped_actions = kramped.actions
 
     end
-    
+
     if kramped_actions then
-        print("Kramped actions are at " .. kramped_actions .. ".")
+        TheMod:DebugSay("Kramped actions are at " .. kramped_actions .. ".")
+    end
+end
+
+-- Spawn and kill a dummy entity for naughtiness.
+local function spawndummy(inst)
+    local dummy = SpawnPrefab("crow")
+    local health = dummy.components.health.currenthealth
+    dummy.components.lootdropper.loot = nil
+    dummy.components.combat:GetAttacked(inst, health)
+end
+
+-- A DST friendly way to incite naughtiness.
+local function DoNaughty(inst, naughty_value)
+    calc_naughtyactions(inst)
+    for k = 1, naughty_value do
+        spawndummy(inst)
     end
 end
 
@@ -123,14 +155,16 @@ local function calcresist(inst, attacker)
     local attacker_damage = attacker.components.combat.defaultdamage or 0
     local veggie_resist = CFG.WINNIE.VEGGIE_RESIST
 
-    return (attacker_damage * veggie_resist)
+    local resist_amount = (attacker_damage * veggie_resist)
+
+    return Round(resist_amount)
 end
 
 -- Winnie gets a damage resistance to lureplants.
 local function onattacked(inst, data)
     local attacker = data.attacker
 
-    if attacker:HasTag("veggie") then
+    if attacker and attacker:HasTag("veggie") then
         inst.components.health:DoDelta(calcresist(inst, attacker))
     end    
 end
@@ -144,15 +178,26 @@ local function penalty(inst, food)
     local prefab = food.prefab
 
     if eater and food == "MEAT" and not (prefab == "plantmeat" or prefab == "plantmeat_cooked") then
-        inst.components.sanity:DoDelta(CFG.WINNIE.MEAT_PENALTY_SANITY)
-        inst.components.health:DoDelta(CFG.WINNIE.MEAT_PENALTY_HEALTH)
+        inst.components.sanity:DoDelta(Round(CFG.WINNIE.MEAT_PENALTY_SANITY))
+        inst.components.health:DoDelta(Round(CFG.WINNIE.MEAT_PENALTY_HEALTH))
         inst.components.talker:Say("Blech.")
-        kramped:OnNaughtyAction(CFG.WINNIE.MEAT_PENALTY_NAUGHTY)
+
+        if IsDST() then
+            DoNaughty(inst, CFG.WINNIE.MEAT_PENALTY_NAUGHTY)
+        else
+            kramped:OnNaughtyAction(Round(CFG.WINNIE.MEAT_PENALTY_NAUGHTY))
+        end
+
     elseif eater and food == "VEGGIE" then
-        inst.components.sanity:DoDelta(CFG.WINNIE.VEGGIE_BONUS_SANITY)
-        inst.components.health:DoDelta(CFG.WINNIE.VEGGIE_BONUS_HEALTH)
-        inst.components.hunger:DoDelta(CFG.WINNIE.VEGGIE_BONUS_HUNGER)
-        kramped:OnNaughtyAction(CFG.WINNIE.VEGGIE_BONUS_NAUGHTY)
+        inst.components.sanity:DoDelta(Round(CFG.WINNIE.VEGGIE_BONUS_SANITY))
+        inst.components.health:DoDelta(Round(CFG.WINNIE.VEGGIE_BONUS_HEALTH))
+        inst.components.hunger:DoDelta(Round(CFG.WINNIE.VEGGIE_BONUS_HUNGER))
+        if IsDST() then
+            DoNaughty(inst, CFG.WINNIE.VEGGIE_BONUS_NAUGHTY)
+        else
+            kramped:OnNaughtyAction(Round(CFG.WINNIE.MEAT_PENALTY_NAUGHTY))
+        end
+
     end
 end
 
@@ -161,9 +206,9 @@ local function bonus_fn(target)
     if target and target.components.health then
         local health_to_sanity = target.components.health.currenthealth / CFG.WINNIE.HEALTH_PERCENT
         if health_to_sanity <= CFG.WINNIE.SANITY_BONUS_CAP then
-            return health_to_sanity
+            return Round(health_to_sanity)
         else
-            return CFG.WINNIE.SANITY_BONUS_CAP
+            return Round(CFG.WINNIE.SANITY_BONUS_CAP)
         end
     end
 end
@@ -179,13 +224,12 @@ local function calc_naughtydamage(inst)
 
     local new_damage = base_damage + bonus_damage
 
-    return new_damage
+    return Round(new_damage)
 end
 
 -- Winnie will gain sanity and naughtiness when attacking.
 local function on_combat(inst)
     getKramped(inst)
-    print(tostring(kramped))
 
     TheMod:DebugSay("Attemping to calculate naughty bonuses.")
 
@@ -194,12 +238,13 @@ local function on_combat(inst)
     end
 
     local target = inst.components.combat.target
-    local naughty_amount = bonus_fn(target) * CFG.WINNIE.NAUGHTY_BONUS
+    local old_naughty_amount = bonus_fn(target) * CFG.WINNIE.NAUGHTY_BONUS
+    local naughty_amount = Round(old_naughty_amount)
 
     if target then
         inst.components.sanity:DoDelta(bonus_fn(target))
         if IsDST() then
-            kramped:OnNaughtyAction(naughty_amount)
+            DoNaughty(inst, naughty_amount)
         else
             kramped:OnNaughtyAction(naughty_amount, GetLocalPlayer())
         end
