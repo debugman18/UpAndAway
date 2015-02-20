@@ -3,7 +3,6 @@ BindGlobal()
 local CFG = TheMod:GetConfig()
 
 require "behaviours/chaseandattack"
-require "behaviours/standstill"
 require "behaviours/runaway"
 require "behaviours/doaction"
 require "behaviours/follow"

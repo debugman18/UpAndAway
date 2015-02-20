@@ -6,7 +6,6 @@ local actionhandlers =
 {
 }
 
-
 local events=
 {
     CommonHandlers.OnLocomote(false, true),
@@ -16,15 +15,6 @@ local events=
     CommonHandlers.OnAttacked(),
     CommonHandlers.OnDeath(),
 }
-
---[[
-local events=
-{
-    CommonHandlers.OnLocomote(true, true),
-    EventHandler("attacked", function(inst) if inst.components.health:GetPercent() > 0 then inst.sg:GoToState("hit") end end),
-    EventHandler("death", function(inst) inst.sg:GoToState("die") end),
-}
-]]--
 
 local states=
 {
@@ -63,11 +53,10 @@ local states=
 
     State{
         name = "hit",
-        tags = {"busy"},
+        tags = {"hit", "busy"},
         
         onenter = function(inst)  
-            inst.AnimState:PlayAnimation("hurt")
-            --inst.Physics:Stop()            
+            inst.AnimState:PlayAnimation("hurt")          
         end,
         
         events=
