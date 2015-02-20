@@ -147,9 +147,18 @@ function AddPrototyperTree(name, spec, hint)
 			return function(self, ...)
 				Refresh(self, ...)
 
+				-- TODO: Get this to work nicely in DST.
 				if self.teaser and self.teaser:IsVisible() and self.teaser:GetString() == ERROR_404 then
-					if _G.CanPrototypeRecipe(self.recipe.level, spec) and _G.GetHintTextForRecipe(self.recipe) == name then
-						self.teaser:SetString(tostring(hint))
+					if not IsDST() then
+						if _G.CanPrototypeRecipe(self.recipe.level, spec) and _G.GetHintTextForRecipe(self.recipe) == name then
+							self.teaser:SetString(tostring(hint))
+						end
+					else
+						--[[
+						if _G.CanPrototypeRecipe(self.recipe.level, spec) and _G.GetHintTextForRecipe(self.recipe) == name then
+							self.teaser:SetString(tostring(hint))
+						end	
+						--]]					
 					end
 				end
 			end
