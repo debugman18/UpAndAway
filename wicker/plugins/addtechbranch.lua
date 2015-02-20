@@ -122,7 +122,7 @@ local function Up_GetHintTextForRecipe(player, recipe)
             end
         end
 
-        local canbuild = CanPrototypeRecipe(adjusted_level, v)
+        local canbuild = _G.CanPrototypeRecipe(adjusted_level, v)
         if canbuild then
             table.insert(validmachines, {TREE = tostring(k), SCORE = 0})
         end
@@ -209,11 +209,9 @@ function AddPrototyperTree(name, spec, hint)
 							self.teaser:SetString(tostring(hint))
 						end
 					else
-						--[[
-						if _G.CanPrototypeRecipe(self.recipe.level, spec) and Up_GetHintTextForRecipe(_G.GetLocalPlayer(), self.recipe) == name then
+						if _G.CanPrototypeRecipe(self.recipe.level, spec) and Up_GetHintTextForRecipe(self.owner, self.recipe) == name then
 							self.teaser:SetString(tostring(hint))
-						end	
-						--]]				
+						end				
 					end
 				end
 			end
