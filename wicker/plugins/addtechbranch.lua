@@ -104,6 +104,61 @@ function AddTechBranch(name, maxlevel)
 	end)()
 end
 
+--------------------------------------------------------
+
+-- Our own copy of the GetHintTextForRecipe function for DST compat.
+local function Up_GetHintTextForRecipe(player, recipe)
+    local validmachines = {}
+    local adjusted_level = _G.deepcopy(recipe.level)
+
+    for k,v in pairs(TUNING.PROTOTYPER_TREES) do
+        if player.replica.builder ~= nil then
+            if k == "SCIENCEMACHINE" or k == "ALCHEMYMACHINE" then
+                adjusted_level.SCIENCE = adjusted_level.SCIENCE - player.replica.builder:ScienceBonus()
+            elseif k == "PRESTIHATITATOR" or k == "SHADOWMANIPULATOR" then
+                adjusted_level.MAGIC = adjusted_level.MAGIC - player.replica.builder:MagicBonus()
+            elseif k == "ANCIENTALTAR_LOW" or k == "ANCIENTALTAR_HIGH" then
+                adjusted_level.ANCIENT = adjusted_level.ANCIENT - player.replica.builder:AncientBonus()
+            end
+        end
+
+        local canbuild = CanPrototypeRecipe(adjusted_level, v)
+        if canbuild then
+            table.insert(validmachines, {TREE = tostring(k), SCORE = 0})
+        end
+    end
+
+    if #validmachines > 0 then
+        if #validmachines == 1 then
+            return validmachines[1].TREE
+        end
+
+        for k,v in pairs(validmachines) do
+            for rk,rv in pairs(adjusted_level) do
+                if TUNING.PROTOTYPER_TREES[v.TREE][rk] == rv then
+                    v.SCORE = v.SCORE + 1
+                    if player.replica.builder ~= nil then
+                        if v.TREE == "SCIENCEMACHINE" or v.TREE == "ALCHEMYMACHINE" then
+                            v.SCORE = v.SCORE + player.replica.builder:ScienceBonus()
+                        elseif v.TREE == "PRESTIHATITATOR" or v.TREE == "SHADOWMANIPULATOR" then
+                            v.SCORE = v.SCORE + player.replica.builder:MagicBonus()
+                        elseif v.TREE == "ANCIENTALTAR_LOW" or v.TREE == "ANCIENTALTAR_HIGH" then
+                            v.SCORE = v.SCORE + player.replica.builder:AncientBonus()
+                        end
+                    end
+                end
+            end
+        end
+
+        table.sort(validmachines, function(a,b) return (a.SCORE) > (b.SCORE) end)
+
+        return validmachines[1].TREE
+    end
+
+    return "CANTRESEARCH"
+end
+
+--------------------------------------------------------
 
 --[[
 -- Adds a new prototyper tree, to be used by an entity with the Prototyper
@@ -155,10 +210,10 @@ function AddPrototyperTree(name, spec, hint)
 						end
 					else
 						--[[
-						if _G.CanPrototypeRecipe(self.recipe.level, spec) and _G.GetHintTextForRecipe(self.recipe) == name then
+						if _G.CanPrototypeRecipe(self.recipe.level, spec) and Up_GetHintTextForRecipe(_G.GetLocalPlayer(), self.recipe) == name then
 							self.teaser:SetString(tostring(hint))
 						end	
-						--]]					
+						--]]				
 					end
 				end
 			end

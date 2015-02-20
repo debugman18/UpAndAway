@@ -62,7 +62,11 @@ local function fn(Sim)
     inst.components.named:SetName("Beanstalk Sapling")
 
     --inst.Transform:SetScale(4, 4, 4)
-    inst:DoTaskInTime(0, function() _G.DeleteCloseEntsWithTag(inst, "mound", 0.5) _G.DeleteCloseEntsWithTag(inst, "grave", 5) end)
+    if not IsDST() then
+        inst:DoTaskInTime(0, function() _G.DeleteCloseEntsWithTag(inst, "mound", 0.5) _G.DeleteCloseEntsWithTag(inst, "grave", 5) end)
+    else
+        inst:DoTaskInTime(0, function() _G.DeleteCloseEntsWithTag("mound", inst, 0.5) _G.DeleteCloseEntsWithTag("grave", inst, 5) end)
+    end
     inst:ListenForEvent("nighttime", function() GrowBeanstalk(inst) end, GetWorld())
 
     return inst
