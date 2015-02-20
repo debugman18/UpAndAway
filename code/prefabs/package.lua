@@ -10,8 +10,8 @@ local assets =
     Asset( "IMAGE", inventoryimage_texture("package") ),	
 }
 
-local function do_unpack(inst)
-    if inst.components.packer:Unpack() then
+local function do_unpack(inst, pt)
+    if inst.components.packer:Unpack(pt) then
         inst:Remove()
     end
 end	
