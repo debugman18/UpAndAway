@@ -154,7 +154,7 @@ local function fx_fn()
     local inst = SpawnPrefab(CFG.BALL_LIGHTNING.FX)
 
     inst.Transform:SetScale(.8,.3,.3)
-    inst.AnimState:SetMultColour(150,150,0,.1)
+    --inst.AnimState:SetMultColour(150,150,0,.1)
     inst:DoTaskInTime(0.2, function(inst)
         inst:Remove()
     end)
