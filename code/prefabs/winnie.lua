@@ -58,9 +58,9 @@ local kramped_actions = nil or 0
 -- Rounding function.
 local function Round(num)
     if num >= 0 then 
-        return math.floor(num+.5) 
+        return math.floor(num + 0.5) 
     else 
-        return math.ceil(num-.5) 
+        return math.ceil(num - 0.5) 
     end
 end
 
@@ -237,18 +237,38 @@ local function on_combat(inst)
         inst.components.combat.damagemultiplier = calc_naughtydamage(inst)
     end
 
+    local weapon = inst.components.combat:GetWeapon()
     local target = inst.components.combat.target
-    local old_naughty_amount = bonus_fn(target) * CFG.WINNIE.NAUGHTY_BONUS
-    local naughty_amount = Round(old_naughty_amount)
 
     if target then
+
+        local old_naughty_amount = bonus_fn(target) * CFG.WINNIE.NAUGHTY_BONUS
+        local naughty_amount = Round(old_naughty_amount)
+
         inst.components.sanity:DoDelta(bonus_fn(target))
+
         if IsDST() then
             DoNaughty(inst, naughty_amount)
         else
             kramped:OnNaughtyAction(naughty_amount, GetLocalPlayer())
         end
-        TheMod:DebugSay("Applying a sanity bonus of " .. bonus_fn(target) .. ".")        
+
+        TheMod:DebugSay("Applying a sanity bonus of " .. bonus_fn(target) .. ".")
+
+    else
+
+        local bonus = CFG.WINNIE.NAUGHTY_BONUS * CFG.WINNIE.SANITY_BONUS_CAP * CFG.WINNIE.PROJECTILE_MULT
+
+        inst.components.sanity:DoDelta(bonus)
+
+        if IsDST() then
+            DoNaughty(inst, bonus)
+        else
+            kramped:OnNaughtyAction(bonus, GetLocalPlayer())
+        end  
+
+        TheMod:DebugSay("Applying a sanity bonus of " .. bonus .. ".")      
+        
     end
 end        
 
@@ -273,6 +293,7 @@ local function post_compat_fn(inst)
     inst.components.eater:SetOnEatFn(penalty)
 
     inst:ListenForEvent("onattackother", on_combat)  
+    inst:ListenForEvent("onareaattackother", on_combat)
 
     inst.components.health:SetMaxHealth(CFG.WINNIE.HEALTH)
     inst.components.hunger:SetMax(CFG.WINNIE.HUNGER)
