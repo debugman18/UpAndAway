@@ -6,6 +6,8 @@
 	+ Ambience is non-functional in DS.
 	+ Silent crash when/after climbing a beanstalk.
 	+ Map icon from overworld persist when in cloudrealm.
+	+ Resolve modenv.MODCONFIG returning nil in configurable.lua
+	+ Resolve TheMod:AddPrefabPostInit being nil in assumptions.lua
 
 + **Art assets in need of attention**
 

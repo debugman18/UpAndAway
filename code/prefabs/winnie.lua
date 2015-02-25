@@ -280,6 +280,8 @@ local function compat_fn(inst)
     inst.OnSave = onsave
     inst.OnLoad = onload
 
+    inst:AddTag("winnie_builder")
+
 end
 
 local function post_compat_fn(inst)
