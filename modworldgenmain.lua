@@ -10,6 +10,26 @@ use 'lib.timing'
 
 local ElapsedTime = GetSingletonTimeMeasurer()
 
+-- Hacky stuff to bomb-proof the worldgen. Do this before Wicker is initialized.
+if postinitfns.PrefabPostInit == nil then
+    postinitfns.PrefabPostInit = {}
+end
+ 
+HackPrefabPostInit = function(prefab, fn)
+    if postinitfns.PrefabPostInit[prefab] == nil then
+        postinitfns.PrefabPostInit[prefab] = {}
+    end
+    table.insert(postinitfns.PrefabPostInit[prefab], fn)
+end
+
+local AddPrefabPostInit = AddPrefabPostInit or HackPrefabPostInit
+
+-- Being redundant here.
+GLOBAL.getfenv(1).AddPrefabPostInit = AddPrefabPostInit
+
+GLOBAL._UNA = {}
+GLOBAL._UNA.AddPrefabPostInit = AddPrefabPostInit
+
 ---
 
 TheMod = use 'start_wicker'
@@ -26,7 +46,9 @@ assert( TUNING.UPANDAWAY )
 TheMod:Say("Running worldgen_main...")
 TheMod:Run("worldgen_main")
 
----
+------------------------------------------
+
+------------------------------------------
 
 local dt = ElapsedTime()
 if TheMod:GetEnvironment().IsWorldgen() then

@@ -277,7 +277,9 @@ local function fn()
 
     
     inst:AddComponent("eater")	
-    inst.components.eater:SetVegetarian()	
+
+    -- This is broken in DST right now.
+    --inst.components.eater:SetVegetarian()	
 
     inst:AddComponent("beard")
     inst.components.beard.bits = CFG.SHEEP.SHAVE_BITS

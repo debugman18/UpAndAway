@@ -28,4 +28,6 @@ TheMod:Run("main")
 
 ---
 
+--------------
+
 TheMod:Say( ("Finished loading in %.3f seconds."):format(ElapsedTime()) )

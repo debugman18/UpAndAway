@@ -5,8 +5,12 @@ local ClimbingScreen = modrequire "screens.climbingscreen"
 local pushscreen
 local popscreen
 
+-- This is broken.
 local ClimbingVoter = Class(Debuggable, function(self, inst)
 	self.inst = inst
+
+	if IsDST() then return end
+
 	Debuggable._ctor(self, "ClimbingVoterReplica")
 
 	self:SetConfigurationKey "CLIMBING_VOTER"
@@ -15,7 +19,8 @@ local ClimbingVoter = Class(Debuggable, function(self, inst)
 
 	self.inst:DoTaskInTime(0.1, function()
 		if self.inst == GetLocalPlayer() then
-			local cm = assert( GetClimbingManager() )
+
+			local cm = assert(GetClimbingManager())
 
 			cm:AddStartRequestCallback(function(poll_data)
 				pushscreen(self, poll_data)

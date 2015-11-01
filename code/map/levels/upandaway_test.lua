@@ -96,7 +96,9 @@ end
 TheMod:AddPostRun(function(file)
     if file ~= "main" then return end
     TheMod:AddPrefabPostInit("forest", function(world)
-        if SaveGameIndex:GetCurrentMode() ~= "survival" then return end
+        if not IsDST() then
+             if TheMod:GetCurrentMode() ~= "survival" then return end
+        end
 
         world.SetPersistData = wrap_with_patch(world.SetPersistData)
         world.LoadPostPass = wrap_with_patch(world.LoadPostPass)

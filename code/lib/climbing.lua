@@ -66,7 +66,10 @@ Pred.IsCloudLevelObject = IsCloudLevelObject
 --
 -- @param data A table describing the level, as in the second parameter of AddLevel.
 --
+
+-- Holy sweetrolls, batman, this is broken as all hell.
 function AddCloudLevel(data)
+    if IsDST() then return end
     TheMod:AddLevel(LEVELTYPE.CAVE, data)
 
     local L = table.remove(Levels.cave_levels)
@@ -91,7 +94,13 @@ local function get_saveindex_topology(slot, cavenum)
 		slot = SG:GetCurrentSaveSlot() or 1
 	end
 
-	t.level_type = SG:GetCurrentMode(slot)
+    -- DST check, because modes don't exist there.
+    if not IsDST() then
+        t.level_type = SG:GetCurrentMode(slot)
+    else
+        t.level_type = "survival"
+    end
+
 	if t.level_type == "cave" or t.level_type == "cloudrealm" then
 		if cavenum == nil then
 			cavenum = SG:GetCurrentCaveNum(slot)
