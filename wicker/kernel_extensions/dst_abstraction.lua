@@ -51,8 +51,8 @@ if IsWorldgen() then
 elseif IsDST() then
 	local postactivations = FunctionQueue()
 
-	TheMod:AddPrefabPostInit("world", function(world)
-		world:ListenForEvent("playeractivated", function(wolrd, player)
+	TheMod:AddPrefabPostInit("world", function(wrld)
+		wrld:ListenForEvent("playeractivated", function(wlrd, player)
 			if player == _G.ThePlayer then
 				postactivations(player)
 				postactivations = nil

@@ -1,6 +1,6 @@
 name = "Up and Away"
 author = "The Fellowship of the Bean"
-version = "alpha-0.2.1"
+version = "alpha-0.2.0"
 
 id = "upandaway"
 branch = "dev"
@@ -21,11 +21,9 @@ clients_only_mod = false
 forumthread = "/forum/49-mod-collaboration-up-and-away"
 
 api_version = 6
-api_version_dst = 10
 
 -- This is used by the packaging system.
--- Not anymore!
---dst_api_version = 10
+dst_api_version = 10
 
 icon_atlas = "favicon/upandaway.xml"
 icon = "upandaway.tex"

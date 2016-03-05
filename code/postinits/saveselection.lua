@@ -1,39 +1,36 @@
 local Climbing = modrequire "lib.climbing"
 
---This stuff doesn't exist in DST.
-if not IsDST() then
-    TheMod:AddClassPostConstruct("screens/loadgamescreen", function(self)
-        self.MakeSaveTile = (function()
-            local MakeSaveTile = self.MakeSaveTile
+TheMod:AddClassPostConstruct("screens/loadgamescreen", function(self)
+    self.MakeSaveTile = (function()
+        local MakeSaveTile = self.MakeSaveTile
 
-            return function(self, slotnum, ...)
-                local tile = MakeSaveTile(self, slotnum, ...)
+        return function(self, slotnum, ...)
+            local tile = MakeSaveTile(self, slotnum, ...)
 
-                local h = Climbing.GetLevelHeight(slotnum)
-                if h > 0 then
-                    tile.text:SetString(("Cloudrealm %d"):format(h))
-                end
-
-                return tile
+            local h = Climbing.GetLevelHeight(slotnum)
+            if h > 0 then
+                tile.text:SetString(("Cloudrealm %d"):format(h))
             end
-        end)()
-    end)
 
-    TheMod:AddClassPostConstruct("screens/slotdetailsscreen", function(self)
-        self.BuildMenu = (function()
-            local BuildMenu = self.BuildMenu
+            return tile
+        end
+    end)()
+end)
 
-            return function(self, ...)
-                BuildMenu(self, ...)
+TheMod:AddClassPostConstruct("screens/slotdetailsscreen", function(self)
+    self.BuildMenu = (function()
+        local BuildMenu = self.BuildMenu
 
-                local slotnum = self.saveslot
+        return function(self, ...)
+            BuildMenu(self, ...)
 
-                local h = Climbing.GetLevelHeight(slotnum)
-                if h > 0 then
-                    local day = SaveGameIndex:GetSlotDay(slotnum)
-                    self.text:SetString(("Cloudrealm %d-%d"):format(h, day))
-                end
+            local slotnum = self.saveslot
+
+            local h = Climbing.GetLevelHeight(slotnum)
+            if h > 0 then
+                local day = SaveGameIndex:GetSlotDay(slotnum)
+                self.text:SetString(("Cloudrealm %d-%d"):format(h, day))
             end
-        end)()
-    end)
-end
+        end
+    end)()
+end)
