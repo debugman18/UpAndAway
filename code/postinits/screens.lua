@@ -22,9 +22,6 @@ local function configureCornerDude(self, bank, build, anim)
     shopkeeper:GetAnimState():SetBuild(build)
     shopkeeper:GetAnimState():PlayAnimation(anim, true)
 
-    if IsDLCInstalled(_G.CAPY_DLC) then
-        shopkeeper:GetAnimState():SetMultColour(1,1,1,0)
-    end
 end
 
 local function OnUpdate(self)

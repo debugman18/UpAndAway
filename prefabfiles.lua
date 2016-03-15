@@ -56,7 +56,7 @@ PrefabFiles = {
 	"shopkeeper",
 	"shopkeeper_spawner",
 	"sheep",	
-	"vine",
+	"beanstalk_vine",
 	"bee_marshmallow",
 	"hive_marshmallow",	
 	"candy_fruit",

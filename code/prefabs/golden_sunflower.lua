@@ -21,7 +21,7 @@ local function onpickedfn(inst)
         local vinechance = (math.random(0,100)) + (math.random(0,10))
         print(vinechance or "nil")
         if vinechance <= 50 then
-            local vine = SpawnPrefab("vine")
+            local vine = SpawnPrefab("beanstalk_vine")
             print("Vine should be spawned.")
             vine.AnimState:SetMultColour(100,100,10,1)
             vine.Transform:SetPosition(inst.Transform:GetWorldPosition())

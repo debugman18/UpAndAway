@@ -292,7 +292,7 @@ TheMod:AddRoom("Vine_Room", {
             skeleton = 0.07,
         },
         countprefabs = {
-            vine = math.random(1,2),
+            beanstalk_vine = math.random(1,2),
         }
     },
 })

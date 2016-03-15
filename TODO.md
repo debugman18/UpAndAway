@@ -2,12 +2,10 @@
 
 + **Current bugs:**
 
-	+ Characters lose equipped items on climbing beanstalk. (Cannot reproduce; was reported by tester using a large number of mods.)
-	+ Ambience is non-functional in DS.
-	+ Silent crash when/after climbing a beanstalk.
-	+ Map icon from overworld persist when in cloudrealm.
-	+ Resolve modenv.MODCONFIG returning nil in configurable.lua
-	+ Resolve TheMod:AddPrefabPostInit being nil in assumptions.lua
+	+ Obsidian staff crashes in cloudrealm.
+	+ Octocopter AI crash.
+	+ Shipwrecked recipes not available in cloudrealm.
+	+ Climbing up and down the beanstalk does not function as expected in Shipwrecked.
 
 + **Art assets in need of attention**
 

@@ -48,7 +48,7 @@ end
 
 local function GetNearbyThreatFn(inst)
     return FindEntity(inst, CFG.VINE.START_FACE_DIST, function(guy)
-        return (guy:HasTag("character") or guy:HasTag("animal") ) and not guy:HasTag("vine") and not guy:HasTag("notarget")
+        return (guy:HasTag("character") or guy:HasTag("animal") ) and not guy:HasTag("beanstalk_vine") and not guy:HasTag("notarget")
     end)
 end
 

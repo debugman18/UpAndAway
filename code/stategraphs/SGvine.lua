@@ -289,5 +289,5 @@ CommonStates.AddRunStates(
     })	
 ]]    
 
-return StateGraph("vine", states, events, "idle")
+return StateGraph("beanstalk_vine", states, events, "idle")
 

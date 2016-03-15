@@ -416,6 +416,12 @@ function ClimbTo(height, cavenum)
     end
 
     SaveGameIndex:GetSaveFollowers(_G.GetPlayer())
+
+    -- Shipwrecked climbing compatibility.
+    if IsDLCEnabled(_G.CAPY_DLC) then
+        -- Do stuff here.
+    end
+
     SaveGameIndex:SaveCurrent(cb, height < current_height and "descend" or "ascend", cavenum)
 end
 

@@ -19,7 +19,7 @@ dst_compatible = true
 all_clients_require_mod = true
 clients_only_mod = false
 
-forumthread = "/forum/49-mod-collaboration-up-and-away"
+forumthread = "/gc/2-up-away/"
 
 api_version = 6
 api_version_dst = 10

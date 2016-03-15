@@ -75,7 +75,7 @@ local custom_assets = {
 }
 
 local custom_prefabs = {
-    "vine",
+    "beanstalk_vine",
     "beanstalk",
     "beanstalk_exit",
     "beanstalk_chunk",

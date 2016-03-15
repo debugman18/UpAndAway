@@ -174,7 +174,7 @@ Add.Names {
     thunder_sapling = "Thunder Tree Sapling",
     thunder_tree = "Thunder Tree",
     thunderboards = "Thundertree Boards",
-    vine = "Vine",
+    beanstalk_vine = "Vine",
     weather_machine = "Tropospherical Relay",
     weaver_bird = "Weaver Bird",
     weavernest = "Weaver Nest",
@@ -2238,7 +2238,7 @@ Add.QuotesFor "thunderboards" {
     wx78 = "FLAT BUT STILL HAZARDOUS",
 }
 
-Add.QuotesFor "vine" {
+Add.QuotesFor "beanstalk_vine" {
     
     GENERIC = "A sentient vine!",
     wathgrithr = "A leafy serpent.",

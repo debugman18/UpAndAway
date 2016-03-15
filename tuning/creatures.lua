@@ -592,7 +592,7 @@ BEAN_GIANT.PLAYER_DAMAGE_PERCENT = 0.8
 BEAN_GIANT.AREA_RANGE = 4
 BEAN_GIANT.AREA_DAMAGE = 0.8
 
-BEAN_GIANT.CHILD = "vine"
+BEAN_GIANT.CHILD = "beanstalk_vine"
 BEAN_GIANT.RARECHILD = "beanlet_zealot"
 BEAN_GIANT.RARECHILD_CHANCE = 0.2
 BEAN_GIANT.SPAWN_PERIOD = 0.3
@@ -615,7 +615,7 @@ BEAN_GIANT.CHASE_TIME = 30
 
 BEAN_GIANT.PREFABS = {
     "beanstalk_chunk",
-    "vine",
+    "beanstalk_vine",
     "beanlet_zealot",
     "greenbean",   
     "bean_brain",
