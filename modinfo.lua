@@ -12,7 +12,8 @@ Original concept by debugman18.
 ]]):gsub("^%s+", ""):gsub("%s+$", "")
 
 dont_starve_compatible = true
-reign_of_giants_compatible = true
+reign_of_giants_compatible = false
+shipwrecked_compatible = true
 dst_compatible = true
 
 all_clients_require_mod = true

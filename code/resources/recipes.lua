@@ -1,5 +1,7 @@
 wickerrequire "plugins.addtechbranch"
 
+-- Sortkeys are evil right now. Come back and fix this later.
+
 TheMod:AddTechBranch("FABLE", 3)
 TheMod:AddPrototyperTree("RESEARCH_LECTERN", {FABLE = 2}, STRINGS.UPUI.CRAFTING.NEEDRESEARCHLECTERN)
 
@@ -87,57 +89,57 @@ local WarFable = War {TECH.FABLE_1, TECH.FABLE_2, TECH.FABLE_3}
 -- (these are also function calls).
 --]]
 DressFable(1).cotton_hat { Ing("silk", 2), ModIng("cloud_cotton", 6) }
-    .sortkey (Recipes.bushhat.sortkey)
+    --.sortkey (Recipes.bushhat.sortkey)
 
 DressFable(1).cotton_vest { Ing("silk", 4), ModIng("cloud_cotton", 4) }
-    .sortkey (Recipes.trunkvest_winter.sortkey)
+    --.sortkey (Recipes.trunkvest_winter.sortkey)
 
 DressFable(1).mushroom_hat { Ing("red_cap", 3), Ing("blue_cap", 3), Ing("green_cap", 3) }
-    .sortkey (Recipes.flowerhat.sortkey)
+    --.sortkey (Recipes.flowerhat.sortkey)
 
 ---
 
 LightFable(1).crystal_lamp { ModIng("beanlet_shell", 1), ModIng("crystal_fragment_light", 4), Ing("rope", 3) }
     .placer "crystal_lamp_placer"
-    .sortkey (Recipes.lantern.sortkey)
+    --.sortkey (Recipes.lantern.sortkey)
 
 ---
 
 MagicFable(1).blackstaff { Ing("spear", 1), ModIng("refined_black_crystal", 1), Ing("nightmarefuel", 6) }
-    .sortkey (Recipes.icestaff.sortkey)
+    --.sortkey (Recipes.icestaff.sortkey)
 
 MagicFable(1).whitestaff { Ing("spear", 1), ModIng("refined_white_crystal", 1), Ing("nightmarefuel", 6) }
-    .sortkey (Recipes.icestaff.sortkey)
+    --.sortkey (Recipes.icestaff.sortkey)
 
 MagicFable(1).wind_axe { ModIng("crystal_fragment_water", 2), ModIng("cumulostone", 3), Ing("rope", 2) }
-    .sortkey (Recipes.batbat.sortkey)
+    --.sortkey (Recipes.batbat.sortkey)
 
 ---
 
 RefineFable(1).refined_black_crystal { ModIng("crystal_fragment_black", 6) }
-    .sortkey (Recipes.purplegem.sortkey)
+    --.sortkey (Recipes.purplegem.sortkey)
 
 RefineFable(1).refined_white_crystal { ModIng("crystal_fragment_white", 6) }
-    .sortkey (Recipes.purplegem.sortkey)
+    --.sortkey (Recipes.purplegem.sortkey)
 
 RefineFable(1).refiner { Ing("hammer", 1), Ing("gears", 3), ModIng("thunderboards", 3) }
     .placer "refiner_placer"
     .atlas "images/ua_minimap.xml"
-    .sortkey (1)
+    --.sortkey (1)
 
 RefineFable(1).thunderboards { ModIng("thunder_log", 4) }
-    .sortkey (Recipes.boards.sortkey)
+    --.sortkey (Recipes.boards.sortkey)
 
 ---
 
 ScienceFable(1).weather_machine { ModIng("cumulostone", 3), ModIng("crystal_fragment_black", 3) , Ing("bluegem", 4)}
     .placer "weather_machine_placer"
-    .sortkey (Recipes.rainometer.sortkey)
+    --.sortkey (Recipes.rainometer.sortkey)
 
 ScienceFable(2).research_lectern { Ing("goldnugget", 4), ModIng("crystal_fragment_light", 2), ModIng("thunder_log", 6) }
     .placer "research_lectern_placer"
     .atlas "images/ua_minimap.xml"
-    .sortkey (Recipes.researchlab2.sortkey)
+    --.sortkey (Recipes.researchlab2.sortkey)
 
 ---
 
@@ -147,29 +149,29 @@ ToolsFable(1).grabber { ModIng("magnet", 2), Ing("twigs", 8), ModIng("rubber", 4
 ]]--
 
 ToolsFable(1).magnet { Ing("gears", 2), ModIng("crystal_fragment_quartz", 3), Ing("rope", 4) }
-    .sortkey (Recipes.razor.sortkey)
+    --.sortkey (Recipes.razor.sortkey)
 
 ---
 
 TownFable(1).beanstalk_wall_item { ModIng("beanstalk_chunk", 4), Ing("twigs", 1) }
     .numtogive (6)
-    .sortkey (Recipes.wall_stone_item.sortkey)
+    --.sortkey (Recipes.wall_stone_item.sortkey)
 
 TownFable(1).cloud_wall_item { ModIng("cloud_cotton", 4), Ing("silk", 1) }
     .numtogive (6)
-    .sortkey (Recipes.wall_stone_item.sortkey)    
+    --.sortkey (Recipes.wall_stone_item.sortkey)    
 
 TownFable(1).crystal_wall_item { ModIng("crystal_fragment_light", 2), ModIng("crystal_fragment_water", 2), ModIng("crystal_fragment_spire", 2) }
     .numtogive (6)
-    .sortkey (Recipes.wall_stone_item.sortkey)
+    --.sortkey (Recipes.wall_stone_item.sortkey)
 
 ---
 
 WarFable(1).beanlet_armor { ModIng("beanlet_shell", 1), ModIng("greenbean", 1), Ing("rope", 2) }
-    .sortkey (Recipes.armormarble.sortkey)
+    --.sortkey (Recipes.armormarble.sortkey)
 
 WarFable(1).cotton_candy { ModIng("cloud_cotton", 6), ModIng("candy_fruit", 6) }
-    .sortkey (Recipes.hambat.sortkey)
+    --.sortkey (Recipes.hambat.sortkey)
 
 ---
 

@@ -96,7 +96,8 @@ end
 TheMod:AddPostRun(function(file)
     if file ~= "main" then return end
     TheMod:AddPrefabPostInit("forest", function(world)
-        if not IsDST() then
+        -- Hacky. Hacky, hacky, hacky.
+        if not IsDST() and not IsDLCInstalled(_G.CAPY_DLC) then
              if TheMod:GetCurrentMode() ~= "survival" then return end
         end
 

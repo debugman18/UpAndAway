@@ -21,7 +21,8 @@ local PU = pkgrequire "pseudoutils"
 
 local TUNING = TUNING
 
-local is_rog = IsDLCEnabled(REIGN_OF_GIANTS)
+local is_rog = IsDLCEnabled(_G.REIGN_OF_GIANTS)
+local is_sw = IsDLCInstalled(_G.CAPY_DLC)
 
 ---
 
@@ -74,7 +75,13 @@ translateSeasonEvents()
 
 local SeasonBase
 if IsSingleplayer() then
-	SeasonBase = require "components/seasonmanager"
+	if is_sw then
+		SeasonBase = require "components/seasonmanager_sw"
+	elseif is_rog then
+		SeasonBase = require "components/seasonmanager_rog"
+	else
+		SeasonBase = require "components/seasonmanager"
+	end
 else
 	SeasonBase = require "components/seasons"
 end

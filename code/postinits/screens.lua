@@ -21,6 +21,10 @@ local function configureCornerDude(self, bank, build, anim)
     shopkeeper:GetAnimState():SetBank(bank)
     shopkeeper:GetAnimState():SetBuild(build)
     shopkeeper:GetAnimState():PlayAnimation(anim, true)
+
+    if IsDLCInstalled(_G.CAPY_DLC) then
+        shopkeeper:GetAnimState():SetMultColour(1,1,1,0)
+    end
 end
 
 local function OnUpdate(self)
@@ -92,9 +96,13 @@ local function DoInit(self)
     self.bg:SetScaleMode(GLOBAL.SCALEMODE_FILLSCREEN)
     
     --We can change the shield image here.
-    self.shield:SetTexture("images/uppanels.xml", "panel_shield.tex")
-    self.shield:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
-    self.shield:SetHRegPoint(GLOBAL.ANCHOR_MIDDLE)
+    if not IsDLCInstalled(_G.CAPY_DLC) then
+        self.shield:SetTexture("images/uppanels.xml", "panel_shield.tex")
+        self.shield:SetVRegPoint(GLOBAL.ANCHOR_MIDDLE)
+        self.shield:SetHRegPoint(GLOBAL.ANCHOR_MIDDLE)
+    else 
+        self.banner = self.shield:AddChild(Image("images/ui.xml", "update_banner.tex"))     
+    end
 
     --This renames the banner.
     self.updatename:SetString(modinfo.name)
