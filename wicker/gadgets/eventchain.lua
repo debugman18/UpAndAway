@@ -105,13 +105,13 @@ end
 
 function EventChain:Attach(inst)
 	if self:IsAttached() then
-		self:Detach()
+		self:Dettach()
 	end
 	self.inst = inst
 	return self
 end
 
-function EventChain:Detach()
+function EventChain:Dettach()
 	self:Disable()
 	self.inst = nil
 	return self
@@ -187,7 +187,7 @@ function EventChain:ApplyEventChaser(i)
 	elseif Pred.IsNumber(arg) then
 		self.inst:DoTaskInTime(arg, function() return self:ApplyEventChaser(i + 1) end)
 	else
-		self:Detach()
+		self:Dettach()
 		return error("Invalid type `" .. type(arg) .. "' in self.Arg[" .. tostring(i) .. "].")
 	end
 end

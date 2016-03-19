@@ -435,9 +435,7 @@ function Configurable:LoadModConfigurationData()
 	if loaded_mod_cfg_data then return end
 	loaded_mod_cfg_data = true
 
-	-- This is a really crappy fix, but it'll do until we resolve the actual issue. How does modenv get MODCONFIG? -debug
-	local OPTS = modenv.MODCONFIG or {{name = "DEBUG", label = "Debugging mode", options = {{description = "Enabled", data = true}, {description = "Disabled", data = false}}, default = true}, {name = "CLOUD_LIGHTNING.ENABLED", label = "Ground lightning", options = {{description = "Enabled", data = true}, {description = "Disabled", data = false}}, default = true}, {name = "CLOUD_MIST.ENABLED", label = "Mist", options = {{description = "Enabled", data = true}, {description = "Disabled", data = false}}, default = true}, {name = "CLIMBING_MANAGER.CONSENSUS", label = "Level switch consensus", default = "SIMPLE_MAJORITY", options = {{description = "Unanimous", data = "UNANIMOUS"}, {description = "Simple majority", data = "SIMPLE_MAJORITY"}, {description = "Three quarters", data = "THREE_QUARTERS"}, {description = "80/100 aproval", data = "EIGHTY_PERCENT"}, {description = "90/100 approval", data = "NINETY_PERCENT"}, {description = "All but one", data = "ALL_BUT_ONE"}, {description = "All but two", data = "ALL_BUT_TWO"}, {description = "All but three", data = "ALL_BUT_THREE"}}}}
-
+	local OPTS = modenv.MODCONFIG
 	if type(OPTS) ~= "table" then
 		return error("Table expected as MODCONFIG value in the mod environment, got "..type(OPTS), 2)
 	end
