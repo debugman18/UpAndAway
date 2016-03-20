@@ -2500,6 +2500,11 @@ STRINGS.UPUI = {
             "nature",       
         },
     },
+	-- Status reports for the destination server when climbing.
+	MIGRATION = {
+		UNAVAILABLE = "The destination server is offline.",
+		FULL = "The destination server is full.",
+	},
     CRAFTING = {
         NEEDRESEARCHLECTERN = ("Use a %s to build a prototype!"):format( STRINGS.NAMES.RESEARCH_LECTERN ),
     },
@@ -2531,3 +2536,8 @@ STRINGS.UPUI = {
 		},
 	},
 }   
+
+if IsDST() then
+	STRINGS.UI.SANDBOXMENU.LOCATION.CLOUDREALM = "Cloudrealm"
+	STRINGS.UI.SANDBOXMENU.LOCATIONTABNAME.CLOUDREALM = "Cloudrealm"
+end

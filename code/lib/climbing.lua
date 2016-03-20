@@ -10,9 +10,11 @@
 
 BindGlobal()
 
+--------------------------------
+
+require "map/level"
 
 local Levels = require "map/levels"
-require "map/level"
 
 local Game = wickerrequire "game"
 
@@ -21,8 +23,20 @@ local Game = wickerrequire "game"
 -- to have them in a centralized location accessible throughout the code.
 local Pred = wickerrequire "lib.predicates"
 
+-- Needed for DST compatibility.
+wickerrequire "plugins.addlevel"
+
 wickerrequire "plugins.addpopulateworldpreinit"
 
+--------------------------------
+
+-- This is the Levels entry we use.
+local LevelSet = assert( Levels[IfDST("sandbox_levels", "cave_levels")] )
+
+-- This is the LEVELTYPE we use.
+local CLOUD_LEVELTYPE = assert( LEVELTYPE[IfDST("SURVIVAL", "CAVE")] )
+
+--------------------------------
 
 -- Direction of level number inserting. It should be +-1, indicating whether
 -- we are adding levels after the ruins or before everything (through negative
@@ -36,9 +50,12 @@ assert( math.abs(LEVEL_NUMBER_DIRECTION) == 1 )
 --]]
 local start_level, current_level
 if LEVEL_NUMBER_DIRECTION > 0 then
-    start_level = #Levels.cave_levels + 1
+    start_level = #LevelSet + 1
 else
     start_level = -1
+	while LevelSet[start_level] ~= nil do
+		start_level = start_level - 1
+	end
 end
 current_level = start_level - LEVEL_NUMBER_DIRECTION -- We start with an empty interval.
 
@@ -66,19 +83,16 @@ Pred.IsCloudLevelObject = IsCloudLevelObject
 --
 -- @param data A table describing the level, as in the second parameter of AddLevel.
 --
-
--- Holy sweetrolls, batman, this is broken as all hell.
 function AddCloudLevel(data)
-    if IsDST() then return end
-    TheMod:AddLevel(LEVELTYPE.CAVE, data)
+    TheMod:AddLevel(CLOUD_LEVELTYPE, data)
 
-    local L = table.remove(Levels.cave_levels)
+    local L = table.remove(LevelSet)
     current_level = current_level + LEVEL_NUMBER_DIRECTION
-    if Levels.cave_levels[current_level] ~= nil then
-        return error( ("The cave level #%d is already occupied by %q!"):format(current_level, Levels.cave_levels[current_level].id or "") )
+    if LevelSet[current_level] ~= nil then
+        return error( ("The cave level #%d is already occupied by %q!"):format(current_level, LevelSet[current_level].id or "") )
     end
     cloud_level_object_set[L] = true
-    Levels.cave_levels[current_level] = L
+    LevelSet[current_level] = L
     TheMod:DebugSay("Added Cloud Level to cave_levels[", current_level, "]")
 end
 TheMod:EmbedAdder("CloudLevel", AddCloudLevel)
@@ -246,7 +260,7 @@ function GetMinHeight()
         -- This case relies quite a bit on the implementation.
         return -(start_level - 1)
     else
-        return -#Levels.cave_levels
+        return -#LevelSet
     end
 end
 

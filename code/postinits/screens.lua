@@ -24,18 +24,16 @@ local function configureCornerDude(self, bank, build, anim)
 
 end
 
-local function OnUpdate(self)
-    if self.timetonewanim then
-        self.timetonewanim = math.huge
-    end
-end	
-
 if not IsDST() then
-    TheMod:AddClassPostConstruct("screens/mainscreen", OnUpdate)
+    TheMod:AddClassPostConstruct("screens/mainscreen", function(self)
+		if self.timetonewanim then
+			self.timetonewanim = math.huge
+		end
+	end)
 end
 
 --Changes the main menu.
-local function DoInit(self)
+local function MainMenuDoInit(self)
     --do
         --return
     --end
@@ -148,7 +146,7 @@ local function DoInit(self)
 end
 
 if not IsDST() then
-    TheMod:AddClassPostConstruct("screens/mainscreen", DoInit)
+    TheMod:AddClassPostConstruct("screens/mainscreen", MainMenuDoInit)
 end
 
 --This gives us custom worldgen screens.	

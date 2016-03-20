@@ -1,44 +1,14 @@
-
-
 modrequire "lib.climbing"
 
-
-local LEVELTYPE = GLOBAL.LEVELTYPE
-
-
--- This embeds all entries in the standard table, so nothing is lost.
-local table = wickerrequire "utils.table"
-
-
--- Copies a table t into a table u.
-local function DeepInject(t, u)
-    for k, v in pairs(t) do
-        if type(v) == "table" then
-            if type(u[k]) ~= "table" then
-                u[k] = {}
-            end
-            DeepInject(v, u[k])
-        else
-            u[k] = v
-        end
-    end
-    return u
-end
-
-local function DeepCopy(t)
-    return DeepInject(t, {})
-end
-
-
--- This is the level template
-local sky_level_1 = {
+TheMod:AddCloudLevel {
     id="SKY_LEVEL_1",
-    name="Sky",
+    name="Cloudrealm",
     nomaxwell=true,
-    desc="Up and Away.",
+    desc="A mysterious land, Up and Away.",
+	location = "cloudrealm",
 
     overrides={
-        {"location",		"cave"},
+        {"location",		"cave"}, -- This is for non-DST only.
         {"world_size", 		"medium"}, 
 
         {"day", 			"onlydusk"}, 
@@ -86,7 +56,6 @@ local sky_level_1 = {
     },
     
     set_pieces = {
-
         -- This is the octocopter.
         ["OctocopterWreckage"] = { count=1, tasks={"Cloud_Aurora_Biome"} },	
         ["Cloudhenge"] = { count=1, tasks={"Cloud_Generic_Biome"} },	
@@ -135,8 +104,4 @@ local sky_level_1 = {
         --"bean_giant",
         --"semiconductor",
     },
-
 }
-
-local cave_sky_level_1 = DeepCopy(sky_level_1)
-TheMod:AddCloudLevel(cave_sky_level_1)
