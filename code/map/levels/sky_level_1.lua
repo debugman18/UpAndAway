@@ -1,6 +1,10 @@
 modrequire "lib.climbing"
 
-TheMod:AddCloudLevel {
+-- This includes the standard 'table' library.
+local table = wickerrequire "utils.table"
+
+-- This is the level data.
+local sky_level_1 = {
     id="SKY_LEVEL_1",
     name="Cloudrealm",
     nomaxwell=true,
@@ -105,3 +109,15 @@ TheMod:AddCloudLevel {
         --"semiconductor",
     },
 }
+
+TheMod:AddCloudLevel(sky_level_1)
+
+if IsDST() and TheMod:Debug() then
+	local sky_level_1_debug = table.Tree.InjectInto({}, sky_level_1)
+	
+	sky_level_1_debug.location = "forest"
+	sky_level_1_debug.id = sky_level_1_debug.id.."_DEBUG"
+	sky_level_1_debug.name = sky_level_1_debug.name.." (DEBUG)"
+
+	TheMod:AddCloudLevel(sky_level_1_debug)
+end
