@@ -26,7 +26,7 @@ local function toy_fn(inst)
 
     local health = inst.components.health:GetPercent()
 
-    if health and heath <= 0.1 then
+    if health and health <= 0.1 then
         inst.components.health:SetInvincible(true)
 
         -- Now it can be picked up.
