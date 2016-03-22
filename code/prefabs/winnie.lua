@@ -146,7 +146,7 @@ end
 
 -- Winnie only gets one sheep companion.
 local function onload(inst, data)
-    if data.hadsheep then
+    if data and data.hadsheep then
         TheMod:DebugSay("A sheep may already have existed.")
         inst.hadsheep = data.hadsheep
     else
