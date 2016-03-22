@@ -57,9 +57,11 @@ local AmbrosiaRespawn = HostClass(Debuggable, function(self, inst)
     self.inst = inst
     self.enabled = false
 
-    if not inst.components.resurrector then
-        inst:AddComponent("resurrector")
-        inst.components.resurrector.doresurrect = doresurrect
+    if not IsDST() then
+        if not inst.components.resurrector then
+            inst:AddComponent("resurrector")
+            inst.components.resurrector.doresurrect = doresurrect
+        end
     end
 end)
 
@@ -67,17 +69,21 @@ function AmbrosiaRespawn:Enable()
     if self.enabled then return end
     self.enabled = true
 
-    if self.inst.components.resurrector and self.inst.components.resurrectable then
-        self.inst.components.resurrector.active = true
-    end	
+    if not IsDST() then
+        if self.inst.components.resurrector and self.inst.components.resurrectable then
+            self.inst.components.resurrector.active = true
+        end	
+    end
 end
 
 function AmbrosiaRespawn:Disable()
     if not self.enabled then return end
     self.enabled = false
 
-    if self.inst.components.resurrector then
-        self.inst.components.resurrector.active = false
+    if not IsDST() then
+        if self.inst.components.resurrector then
+            self.inst.components.resurrector.active = false
+        end
     end
 end
 

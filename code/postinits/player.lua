@@ -46,7 +46,11 @@ TheMod:AddPlayerPostInit(function(player)
         player:AddComponent("quester")
         --player:AddComponent("ua_camera")
         player:AddComponent("speechlistener")
-        --player:AddComponent("ambrosiarespawn") -- This breaks things. Fix ASAP!
+
+        if not IsDST() then
+        	player:AddComponent("ambrosiarespawn")
+       	end
+
         player:AddComponent("beanhated")
         player:AddComponent("ua_beardable")
         player:AddComponent("staticconductor")

@@ -113,7 +113,7 @@ local function fn()
     inst.components.inspectable.getstatus = GetStatus
 
     local relative_description = function() 
-        if ThePlayer.prefab == "winnie" then
+        if ThePlayer and ThePlayer.prefab == "winnie" then
             return "Hello, little sheep..."
         end
     end

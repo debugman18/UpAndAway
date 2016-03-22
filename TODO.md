@@ -1,5 +1,15 @@
 # TODO for Up and Away
 
++ **Current Developments:*
+
+	-- Debug's List
+
+	+ Allow for more cloud stuff in the overworld, and vice-versa.
+	+ Bean Giant fight implementation. Groan.
+	+ Winnie character art implementation.
+	+ Quartz Torch implementation. It should act as a torch that does not dissappear upon loss of fuel. Can be placed into the refiner, placed into quartz lamps, or given to entities to increase reputation with that faction.
+	+ Ambrosia respawned mechanics need to be examined for DST.
+
 + **Current bugs:**
 
 	+ Obsidian staff crashes in cloudrealm.
@@ -27,10 +37,6 @@
 +** Strings in need of attention**
 
 	+ Red Jellycap missing strings.
-
-+ **General improvements to be made:*
-
-	+ Allow for more cloud stuff in the overworld, and vice-versa.
 
 + **Miscellanea (Suggestions to be considered) **
 
