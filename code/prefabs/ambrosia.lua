@@ -11,14 +11,14 @@ local assets =
 }
 
 local function oneatfn(inst, eater)
-    if math.random(1,15) == 1 then
+    --if math.random(1,15) == 1 then
         if eater.components.ambrosiarespawn then
             TheMod:DebugSay("Free respawn. Lucky you.")
             eater.components.ambrosiarespawn:Enable()
         end	
-    else
-        TheMod:DebugSay("No respawn for you.")
-    end	
+    --else
+        --TheMod:DebugSay("No respawn for you.")
+    --end	
 end	
 
 local function fn(Sim)

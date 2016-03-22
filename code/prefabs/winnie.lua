@@ -134,6 +134,16 @@ local function spawn_sheep(inst)
     end
 end
 
+-- Winnie becomes a human.
+local function onbecamehuman(inst)
+    inst.components.locomotor:SetExternalSpeedMultiplier(inst, "winnie_speed_mod", 1)
+end
+
+-- Winnie becomes a ghost.
+local function onbecameghost(inst)
+   inst.components.locomotor:RemoveExternalSpeedMultiplier(inst, "winnie_speed_mod")
+end
+
 -- Winnie only gets one sheep companion.
 local function onload(inst, data)
     if data.hadsheep then
@@ -141,6 +151,18 @@ local function onload(inst, data)
         inst.hadsheep = data.hadsheep
     else
         spawn_sheep(inst)
+    end
+
+    -- Ghosty stuff.
+    if IsDST() then
+        inst:ListenForEvent("ms_respawnedfromghost", onbecamehuman)
+        inst:ListenForEvent("ms_becameghost", onbecameghost)
+
+        if inst:HasTag("playerghost") then
+            onbecameghost(inst)
+        else
+            onbecamehuman(inst)
+        end
     end
 end
 
@@ -279,6 +301,11 @@ local function compat_fn(inst)
 
     inst.OnSave = onsave
     inst.OnLoad = onload
+
+    -- DST only, isn't it?
+    if IsDST() then
+        inst.OnNewSpawn = onload
+    end
 
     inst:AddTag("winnie_builder")
 

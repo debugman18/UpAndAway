@@ -12,8 +12,7 @@ BindTheMod()
 assert(modenv.PrefabFiles)
 if IsDST() then
     local excluded_prefab_files = {
-        -- This causes an explosions because of the resurrector component!
-        ambrosia,
+        -- Nothing currently.
     }
 
     local utils_table = wickerrequire "utils.table"
