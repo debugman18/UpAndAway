@@ -149,7 +149,7 @@ function AddPrototyperTree(name, spec, hint)
 				Refresh(self, ...)
 
 				if self.teaser and self.teaser:IsVisible() and self.teaser:GetString() == ERROR_404 then
-					if _G.CanPrototypeRecipe(self.recipe.level, spec) and _G.GetHintTextForRecipe(self.recipe) == name then
+					if _G.CanPrototypeRecipe(self.recipe.level, spec) then
 						self.teaser:SetString(tostring(hint))
 					end
 				end

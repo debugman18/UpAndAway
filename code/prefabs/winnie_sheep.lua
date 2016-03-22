@@ -112,6 +112,13 @@ local function fn()
     inst:AddComponent("inspectable")
     inst.components.inspectable.getstatus = GetStatus
 
+    local relative_description = function() 
+        if ThePlayer.prefab == "winnie" then
+            return "Hello, little sheep..."
+        end
+    end
+    inst.components.inspectable:SetDescription(relative_description())
+
     inst:AddComponent("knownlocations")
     inst:AddComponent("herdmember")
     inst.components.herdmember.herdprefab = "sheepherd"
@@ -150,7 +157,7 @@ local function fn()
 
     inst.DynamicShadow:SetSize(3, 2)
     
-    inst.Transform:SetScale(0.65, 0.75, 0.65)
+    inst.Transform:SetScale(0.42, 0.42, 0.42)
     
     inst.AnimState:SetBuild("sheep_baby_build")
     inst.AnimState:PlayAnimation("idle_loop", true)
@@ -180,7 +187,7 @@ local function fn()
     end
 
     inst:ListenForEvent("attacked", OnAttacked)
-    
+
     return inst	
 end
 

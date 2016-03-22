@@ -117,18 +117,22 @@ end
 -- Gives winnie a random seed nicely.
 table.insert(starting_inventory, seed)
 
--- Spawns Winnie with a special named sheep.
+-- Spawns Winnie with two special named sheep.
 local function spawn_sheep(inst)
     if not inst.hadsheep then
         TheMod:DebugSay("Attemping to spawn sheep.")
 
-        local sheep = SpawnPrefab("winnie_sheep")
+        local sheep_one = SpawnPrefab("winnie_sheep")
+        local sheep_two = SpawnPrefab("winnie_sheep")
 
-        sheep:AddTag("winnie_sheep")
+        sheep_one:AddTag("winnie_sheep")
+        sheep_two:AddTag("winnie_sheep")
 
-        sheep.Transform:SetPosition(inst.Transform:GetWorldPosition())
+        sheep_one.Transform:SetPosition(inst.Transform:GetWorldPosition())
+        sheep_two.Transform:SetPosition(inst.Transform:GetWorldPosition())
 
-        inst.components.leader:AddFollower(sheep)
+        inst.components.leader:AddFollower(sheep_one)
+        inst.components.leader:AddFollower(sheep_two)
 
         inst.hadsheep = true
     end
