@@ -1134,7 +1134,7 @@ return {
 		FABRIC = "Grandma taught me how to sew.",
 		FEATHERSAIL = "So soft and pretty.",
 		FISHINHOLE = "They swim without a care in the world.",
-		FISH_MED = "It didn't deserve that." --Dead Dogfish
+		FISH_MED = "It didn't deserve that.", --Dead Dogfish
 		FISH_RAW = "Why did I do that?",
 		FISH_RAW_SMALL = "Why did I do that?",
 		FISH_RAW_SMALL_COOKED = "Blech. No.",
