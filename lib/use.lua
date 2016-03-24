@@ -1,5 +1,5 @@
 --[[
-Copyright (c) 2013 simplex
+Copyright (c) 2013, 2016 simplex
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -140,8 +140,46 @@ function ModRequirer:GetModInfo()
 	return self:GetModEnvironment().modinfo
 end
 
+---
+
+--[[
+-- Allows member functions to be used without passing the 'self' parameter.
+--]]
+local function makeImplicit(self)
+	local getmetatable, setmetatable = _G.getmetatable, _G.setmetatable
+	local pairs = _G.pairs
+	local type = _G.type
+
+	local class = getmetatable(self)
+
+	local meta = {}
+	for k, v in pairs(class) do
+		meta[k] = v
+	end
+
+	local index = {}
+	for k, v in pairs( assert(meta.__index) ) do
+		if type(v) == "function" then
+			local oldv = v
+			v = function(mself, ...)
+				if mself == self then
+					return oldv(mself, ...)
+				else
+					return oldv(self, mself, ...)
+				end
+			end
+		end
+		index[k] = v
+	end
+	meta.__index = index
+
+	setmetatable(self, meta)
+	return self
+end
+
+---
 
 
-use = ModRequirer()
+use = makeImplicit(ModRequirer())
 _G[_IDENTIFIER] = use
 return use
