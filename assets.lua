@@ -231,8 +231,17 @@ Assets = GLOBAL.JoinArrays(
 	},
 
 	{
+		--Asset( "IMAGE", "winnie_names.tex"),
+		--Asset( "ATLAS", "winnie_names.xml"),
+	},
+
+	{
 		Asset( "IMAGE", "bigportraits/winnie.tex" ),
 		Asset( "ATLAS", "bigportraits/winnie.xml" ),
+		--Asset( "IMAGE", "bigportraits/winnie_dst.tex" ),
+		--Asset( "ATLAS", "bigportraits/winnie_dst.xml" ),
+		--Asset( "IMAGE", "bigportraits/winnie_none.tex" ),
+		--Asset( "ATLAS", "bigportraits/winnie_none.xml" ),
 	},
 
 	-- Dummy end, just so we can put commas after everything.

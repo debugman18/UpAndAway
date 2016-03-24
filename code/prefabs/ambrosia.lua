@@ -11,15 +11,15 @@ local assets =
 }
 
 local function oneatfn(inst, eater)
+    --Do we think 1 in 15 is balanced?
     if math.random(1,15) == 1 then
-        if eater.components.ambrosiarespawn then
-            TheMod:DebugSay("Free respawn. Lucky you.")
-            eater.components.ambrosiarespawn:Enable()
-        elseif IsDST() then
-            --Here we will manipulate the player's skeleton to glow and act as a resurrector.
-            inst:AddComponent("hauntable")
-            inst.components.hauntable:SetHauntValue(TUNING.HAUNT_INSTANT_REZ)
-        end	
+        --Ditching the component.
+        --if eater.components.ambrosiarespawn then
+            --eater.components.ambrosiarespawn:Enable()
+        --elseif IsDST() then
+        TheMod:DebugSay("Free respawn. Lucky you.")
+        eater:AddTag("ambrosiarespawn")
+        eater.components.health.minhealth = 1 -- 10 works better, but is more visible. The illusion is ruined.
     end
 end	
 
