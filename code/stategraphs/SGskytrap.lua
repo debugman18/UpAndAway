@@ -96,14 +96,15 @@ local states=
             if inst.components.combat.target then    
                 inst:ForceFacePoint(inst.components.combat.target.Transform:GetWorldPosition())
                 inst.components.combat:StartAttack()
-                inst.AnimState:PushAnimation("attack")  
+                inst.AnimState:PlayAnimation("attack")  
             end
         end,
         
         timeline=
         {
-            TimeEvent(10*FRAMES, function(inst) inst.components.combat:DoAttack()
-            inst.SoundEmitter:PlaySound("dontstarve/creatures/eyeplant/eye_bite")
+            TimeEvent(10*FRAMES, function(inst)
+				inst.components.combat:DoAttack()
+				inst.SoundEmitter:PlaySound("dontstarve/creatures/eyeplant/eye_bite")
             end),
         },
         
@@ -119,6 +120,9 @@ local states=
         tags = {"busy"},
         
         onenter = function(inst)
+            inst.Physics:Stop()
+            RemovePhysicsColliders(inst)
+			
             inst.AnimState:PlayAnimation("die")
             inst.components.lootdropper:DropLoot(Vector3(inst.Transform:GetWorldPosition())) 
             inst.SoundEmitter:PlaySound("dontstarve/creatures/eyeplant/eye_retract")  
