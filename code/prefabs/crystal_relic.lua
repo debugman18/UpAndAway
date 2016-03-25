@@ -12,7 +12,9 @@ local prefabs = CFG.CRYSTAL.PREFABS
 SetSharedLootTable("crystal_relic", CFG.CRYSTAL_RELIC.LOOT)
         
 local function onMined(inst, worker)
-    inst:RemoveComponent("resurrector")
+	if not IsDST() then
+		inst:RemoveComponent("resurrector")
+	end
     inst.components.lootdropper:DropLoot()
     inst.SoundEmitter:PlaySound("dontstarve/common/destroy_rock")
 
@@ -20,7 +22,9 @@ local function onMined(inst, worker)
 end
 
 local function OnActivate(inst)
-    inst.components.resurrector.active = true
+	if not IsDST() then
+		inst.components.resurrector.active = true
+	end
     inst.SoundEmitter:PlaySound("dontstarve/common/resurrectionstone_activate")
     inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
 end
@@ -145,10 +149,12 @@ local function fn()
     inst.components.periodicspawner:SetDensityInRange(CFG.CRYSTAL_RELIC.DENSITY_B, CFG.CRYSTAL_RELIC.DENSITY_B)
     inst.components.periodicspawner:SetMinimumSpacing(CFG.CRYSTAL_RELIC.SPACING)
 
-    inst:AddComponent("resurrector")
-    inst.components.resurrector.makeactivefn = makeactive
-    inst.components.resurrector.makeusedfn = makeused
-    inst.components.resurrector.doresurrect = doresurrect
+	if not IsDST() then
+		inst:AddComponent("resurrector")
+		inst.components.resurrector.makeactivefn = makeactive
+		inst.components.resurrector.makeusedfn = makeused
+		inst.components.resurrector.doresurrect = doresurrect
+	end
 
     inst:AddComponent("activatable")
     inst.components.activatable.OnActivate = OnActivate

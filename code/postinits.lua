@@ -4,7 +4,6 @@
 
 
 modrequire "postinits.saveselection"
-modrequire "postinits.world"
 modrequire "postinits.player"
 modrequire "postinits.biome_effects"
 modrequire "postinits.burning"

@@ -84,7 +84,7 @@ local function fn()
 
     
     inst:AddComponent("eater")	
-    --inst.components.eater:SetVegetarian()	
+    inst.components.eater:SetVegetarian()	
 
     inst:AddComponent("combat")
 

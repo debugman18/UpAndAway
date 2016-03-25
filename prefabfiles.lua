@@ -51,6 +51,7 @@ PrefabFiles = {
 
 	"ua_cave",
 	"cloudrealm",
+	"cloudrealm_network",
 	"cloud_mist",
 	"cloud_lightning",
 	"shopkeeper",

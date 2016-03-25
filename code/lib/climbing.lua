@@ -41,7 +41,7 @@ local CLOUD_LEVELTYPE = assert( LEVELTYPE[IfDST("SURVIVAL", "CAVE")] )
 -- Direction of level number inserting. It should be +-1, indicating whether
 -- we are adding levels after the ruins or before everything (through negative
 -- indexes).
-local LEVEL_NUMBER_DIRECTION = -1
+local LEVEL_NUMBER_DIRECTION = 1
 assert( math.abs(LEVEL_NUMBER_DIRECTION) == 1 )
 
 

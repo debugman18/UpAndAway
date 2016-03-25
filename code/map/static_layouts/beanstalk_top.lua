@@ -73,7 +73,18 @@ return {
           properties = {
           }		  
         },
-        
+        {
+          name = "",
+          type = "spawnpoint_multiplayer",
+          shape = "rectangle",
+          x = 162,
+          y = 165,
+          width = 0,
+          height = 0,
+          visible = true,
+          properties = {
+          }		  
+        },
         {
           name = "",
           type = "beanstalk_exit",

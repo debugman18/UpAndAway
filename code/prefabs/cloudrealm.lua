@@ -252,9 +252,10 @@ local function fn()
     end
     --inst.componentsambientsoundmixer.wave_sound = "dontstarve/common/clouds"
    
-    inst:SetOverrideColourCube("images/colour_cubes/snowdusk_cc.tex")
-
-    --inst.Map:SetOverlayTexture( "levels/textures/snow.tex" )
+	if not IsDedicated() then
+		inst:SetOverrideColourCube("images/colour_cubes/snowdusk_cc.tex")
+		--inst.Map:SetOverlayTexture( "levels/textures/snow.tex" )
+	end
     
     if IsMasterSimulation() then
         inst:AddComponent("staticgenerator")

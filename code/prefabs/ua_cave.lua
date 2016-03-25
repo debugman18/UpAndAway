@@ -105,7 +105,7 @@ local function fn()
 		addcmp(inst, "colourcubemanager")
 	end
 
-	if IsRoG() then
+	if IsRoG() and not IsDST() then
 		addcmp(inst, "bigfooter")
 	end
 

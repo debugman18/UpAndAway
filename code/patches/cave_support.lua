@@ -23,6 +23,7 @@ if IsWorldgen() then
 			return
 		end
 
+		--[[
 		local session_id = mdata.last_session_id
 
 		TheMod:Say("Faking session identifier generation for cave support... (session_id = ", session_id, ")")
@@ -35,6 +36,7 @@ if IsWorldgen() then
 		worldsim_index.GenerateSessionIdentifier = function()
 			return session_id
 		end
+		]]--
 	end)
 else
 	wickerrequire "plugins.addworldgenparameterspostconstruct"
