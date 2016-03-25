@@ -685,6 +685,30 @@ VINE.LOOT = {
 
 ---------------------------------------
 
+-- Weaver Nest (ordered by growth stage)
+
+WEAVERNEST.MAXCHILDREN = {
+	4,
+	7,
+	10,
+}
+WEAVERNEST.HEALTH = {
+	40,
+	60,
+	80,
+}
+WEAVERNEST.GROWTIME = { --Actual time is randomly between this and this doubled.
+	TUNING.DAY_SEGS_DEFAULT * TUNING.SEG_TIME * 7,
+	TUNING.DAY_SEGS_DEFAULT * TUNING.SEG_TIME * 10,
+}
+WEAVERNEST.LOOT = {
+	{"twigs","twigs","cutgrass"},
+	{"twigs","twigs","cutgrass","cutgrass","cutgrass"},
+	{"twigs","twigs","cutgrass","cutgrass","cutgrass","cutgrass","bird_egg","bird_egg"},
+}
+WEAVERNEST.REGEN_PERIOD = TUNING.SEG_TIME * 3
+WEAVERNEST.RELEASE_PERIOD = 20
+
 ---------------------------------------
 
 -- Alien
