@@ -15,6 +15,8 @@ local cfg = wickerrequire("adjectives.configurable")("GUSTFLOWER")
 
 local function onpickedfn(inst)
     inst.components.pickable.cycles_left = 0
+	inst.AnimState:PlayAnimation("shake")
+	inst.AnimState:PushAnimation("picked", true)
 end
 
 local function StopSpawning(inst)
@@ -77,7 +79,7 @@ local function fn(Sim)
    
     inst.AnimState:SetBank("gustflower")
     inst.AnimState:SetBuild("gustflower")
-    inst.AnimState:PlayAnimation("sway")
+    inst.AnimState:PlayAnimation("sway", true)
     inst.AnimState:SetRayTestOnBB(true)
 
 
