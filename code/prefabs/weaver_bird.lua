@@ -114,7 +114,9 @@ local function fn()
     inst:AddComponent("occupier")
     
     inst:AddComponent("eater")
-    inst.components.eater:SetBird()
+
+    --This crashes in DST.
+    --inst.components.eater:SetBird()
     
     inst:AddComponent("sleeper")
     inst.components.sleeper:SetSleepTest(ShouldSleep)
