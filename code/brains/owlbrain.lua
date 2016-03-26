@@ -38,10 +38,10 @@ local function GetNearbyThreatFn(inst)
         defenseTarget = home
     end
     local invader = FindEntity(defenseTarget or inst, CFG.OWL.DEFEND_DIST, function(guy)
-        if guy == ThePlayer then 
+        if guy:HasTag("player") then 
             return guy.components.reputation 
             and guy.components.reputation:GetReputation("strix") <= CFG.OWL.REPUTATION.ENEMY_THRESHOLD
-        elseif 
+        else
             return guy.components.health
             and not guy:HasTag("owl") 
             and not guy:HasTag("epic")

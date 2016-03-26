@@ -114,9 +114,11 @@ local function fn()
     inst:AddComponent("occupier")
     
     inst:AddComponent("eater")
-
-    --This crashes in DST.
-    --inst.components.eater:SetBird()
+	if inst.components.eater.SetBird then --DS singleplayer function
+		inst.components.eater:SetBird()
+	elseif inst.components.eater.SetDiet then --DST uses a much nicer way
+		inst.components.eater:SetDiet({ FOODTYPE.SEEDS }, { FOODTYPE.SEEDS })
+	end
     
     inst:AddComponent("sleeper")
     inst.components.sleeper:SetSleepTest(ShouldSleep)

@@ -878,6 +878,7 @@ DATURA.PICK_SANITY = TUNING.SANITY_TINY + 1
 
 SKYFLOWER.REGEN_PERIOD = 40
 
+-- Isn't this a bit much, considering those flowers are always in groups? -Mobb
 SKYFLOWER.SANITY_AURA = SKYFLOWER.PICK_SANITY / 6
 DATURA.SANITY_AURA = DATURA.PICK_SANITY / 6
 
