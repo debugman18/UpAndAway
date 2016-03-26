@@ -8,6 +8,7 @@ local Reflection = wickerrequire "game.reflection"
 modrequire "patches.cave_support"
 
 modrequire "patches.temperature"
+modrequire "patches.eater"
 modrequire "patches.itemtile"
 modrequire "patches.actions"
 modrequire "patches.physics"
