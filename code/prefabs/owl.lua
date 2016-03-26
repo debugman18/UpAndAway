@@ -26,7 +26,6 @@ local function RetargetFn(inst, target)
         for k,v in pairs(ents) do
             if v and v:HasTag("owl_crystal") then
                 local rock = v
-                --print(rock)
                 if inst.components.homeseeker then
                     inst.components.homeseeker:SetHome(rock)
                 end    
@@ -40,13 +39,18 @@ local function RetargetFn(inst, target)
         defenseTarget = home
     end
     local invader = FindEntity(defenseTarget or inst, CFG.OWL.DEFEND_DIST, function(guy)
-        return guy.components.health 
-        and not guy:HasTag("owl") 
-        and not guy:HasTag("epic")
-        and not guy:HasTag("beanmonster")
-        and not guy:HasTag("beanprotector")
-        and not guy:HasTag("cloudneutral")
-        and not guy:HasTag("beanlet")
+        if guy == ThePlayer then 
+            return guy.components.reputation 
+            and guy.components.reputation:GetReputation("strix") <= CFG.OWL.REPUTATION.ENEMY_THRESHOLD
+        elseif 
+            return guy.components.health
+            and not guy:HasTag("owl") 
+            and not guy:HasTag("epic")
+            and not guy:HasTag("beanmonster")
+            and not guy:HasTag("beanprotector")
+            and not guy:HasTag("cloudneutral")
+            and not guy:HasTag("beanlet")
+        end
     end)
     return invader
 end

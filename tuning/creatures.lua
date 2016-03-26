@@ -168,6 +168,10 @@ OWL.LOOT = {
 	{'rope',                   0.40},
 }
 
+-- Reputation values.
+
+OWL.REPUTATION.ENEMY_THRESHOLD = 20
+
 ---------------------------------------
 
 -- Ball Lightning
