@@ -1,3 +1,15 @@
+-- Notes regarding weaver_bird_shadow (flying silhouette)
+-- Similiar to RoG buzzard if that helps
+-- 
+-- Animations are "glide" (static), "glide_loop", "caw" and "flap"
+-- Every animation has a variaton with an item (name has "_item" suffix)
+-- 
+-- Use the following code to make the entity a shadow on the floor:
+-- inst.AnimState:SetMultColour(0,0,0,.35)
+-- inst.AnimState:SetOrientation( ANIM_ORIENTATION.OnGround )
+-- inst.AnimState:SetLayer( LAYER_BACKGROUND )
+-- inst.AnimState:SetSortOrder( 3 )
+
 BindGlobal()
 
 local assets =
