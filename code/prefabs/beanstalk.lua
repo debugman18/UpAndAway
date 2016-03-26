@@ -146,7 +146,6 @@ local function retract(inst, cb, skip_retraction)
 		skip_retraction = true
 	end
 
-	TheMod:Say "retracting"
 	local function animover(inst)
 		if inst.components.activatable then
 			inst.components.activatable.inactive = true
@@ -211,9 +210,7 @@ end
 -- for migration.
 
 local function destination_available(inst)
-	TheMod:Say "DDBG destination_available"
 	if not inst.available then
-		TheMod:Say "availabling"
 		inst.available = true
 
         inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentapiller_emerge") 
@@ -224,12 +221,10 @@ end
 
 local function destination_unavailable(inst)
 	inst.available = false
-	TheMod:Say "DDBG destination_unavailable"
 	retract(inst)
 end
 
 local function destination_full(inst)
-	TheMod:Say "DDBG destination_full"
 	inst.available = false
 	retract(inst)
 end
