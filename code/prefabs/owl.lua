@@ -50,6 +50,8 @@ local function RetargetFn(inst, target)
             and not guy:HasTag("beanprotector")
             and not guy:HasTag("cloudneutral")
             and not guy:HasTag("beanlet")
+            and not guy:HasTag("smallcreature")
+            and not guy:HasTag("gumbear")
         end
     end)
     return invader
