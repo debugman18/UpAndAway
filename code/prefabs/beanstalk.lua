@@ -114,38 +114,10 @@ end
 local AddLoot = NewLootAdder()
 
 
-local function onsave(inst, data)
-    -- Lets save a bit of disk space: use nil instead of false.
-    data.chopped = inst.chopped or nil
-end		   
 
-local function onload(inst, data)
-    inst.chopped = data and data.chopped
-
-    if inst.chopped then
-        chopped(inst)
-    end
-end  
-
---This changes the screen some if the player is far.
-local function onfar(inst)
-    --TheCamera:SetDistance(100)
-end
-
---This changes the screen some if the player is near.
-local function onnear(inst)
-    --TheCamera:SetDistance(100)
-end
-
-local function chopbeanstalk(inst, chopper, chops)
-    if chopper and chopper.components.beaverness and chopper.components.beaverness:IsBeaver() then
-        inst.SoundEmitter:PlaySound("dontstarve/characters/woodie/beaver_chop_tree")		  
-    else
-        inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree")		  
-    end
-end
-
-chopped = function(inst)
+-- Puts the beanstalk in its chopped state.
+-- Does not play any animations in itself (use retract() for that).
+local function makeChopped(inst)
     inst.chopped = true	
 
     inst:RemoveComponent("workable")
@@ -156,15 +128,66 @@ chopped = function(inst)
     -- The issue is with non-instant buffered actions that only run later.
     --inst:RemoveComponent("activatable")
     
-    inst.components.activatable.inactive = true
-    inst:DoTaskInTime(2, function(inst)
-            inst:RemoveComponent("activatable")
-    end)
+	if inst.components.activatable then
+		inst:DoTaskInTime(0.25, function(inst)
+			inst:RemoveComponent("activatable")
+		end)
+	end
 
-    -- This destroys the cloud level savedata, if any.
+    -- In singleplayer, this destroys the cloud level savedata, if any.
     inst:RemoveComponent("climbable")
+end
 
-    inst.AnimState:PlayAnimation("idle_hole","loop")
+--[[
+-- Plays the retract animation sequence and runs an optional callback.
+--]]
+local function retract(inst, cb, skip_retraction)
+	if not Game.FindSomePlayer() then
+		skip_retraction = true
+	end
+
+	TheMod:Say "retracting"
+	local function animover(inst)
+		if inst.components.activatable then
+			inst.components.activatable.inactive = true
+		end
+		inst.AnimState:PlayAnimation("idle_hole", true)
+		if cb then
+			cb(inst)
+		end
+	end
+
+	if skip_retraction then
+		return animover(inst)
+	else
+		inst.AnimState:PlayAnimation("retract", false)
+		game.ListenForEventOnce(inst, "animover", animover)
+	end
+end
+
+local function retractIntoChopped(inst, skip_retraction)
+	return retract(inst, makeChopped, skip_retraction)
+end
+
+local function onsave(inst, data)
+    -- Lets save a bit of disk space: use nil instead of false.
+    data.chopped = inst.chopped or nil
+end		   
+
+local function onload(inst, data)
+    inst.chopped = data and data.chopped
+
+    if inst.chopped then
+        retractIntoChopped(inst, true)
+    end
+end  
+
+local function chopbeanstalk(inst, chopper, chops)
+    if chopper and chopper.components.beaverness and chopper.components.beaverness:IsBeaver() then
+        inst.SoundEmitter:PlaySound("dontstarve/characters/woodie/beaver_chop_tree")		  
+    else
+        inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree")		  
+    end
 end
 
 local function chopdownbeanstalk(inst, chopper)
@@ -174,15 +197,44 @@ local function chopdownbeanstalk(inst, chopper)
 
     inst:DoTaskInTime(.4, function(inst) 
         local sz = 10
-        for _, player in ipairs(Game.FindAllPlayerInRange(inst, 64)) do
+        for _, player in ipairs(Game.FindAllPlayersInRange(inst, 64)) do
             Effects.ShakeCamera(player, inst, "FULL", 0.25, 0.03, sz, 6)
         end
     end)
 
-    inst.AnimState:PlayAnimation("retract", false)
-
-    game.ListenForEventOnce(inst, "animover", chopped)
+	retractIntoChopped(inst)
 end
+
+-------------------------------------------------------------
+-- These functions are meant to provide visual feedback to
+-- the player concerning the status of the destination server
+-- for migration.
+
+local function destination_available(inst)
+	TheMod:Say "DDBG destination_available"
+	if not inst.available then
+		TheMod:Say "availabling"
+		inst.available = true
+
+        inst.SoundEmitter:PlaySound("dontstarve/tentacle/tentapiller_emerge") 
+        inst.AnimState:PlayAnimation("emerge")
+		inst.AnimState:PushAnimation("idle", true)
+	end
+end
+
+local function destination_unavailable(inst)
+	inst.available = false
+	TheMod:Say "DDBG destination_unavailable"
+	retract(inst)
+end
+
+local function destination_full(inst)
+	TheMod:Say "DDBG destination_full"
+	inst.available = false
+	retract(inst)
+end
+
+-------------------------------------------------------------
 
 local function fn(Sim)
     --[[
@@ -227,7 +279,7 @@ local function fn(Sim)
 
     anim:SetBank("tentaclepillar")
     anim:SetBuild("beanstalk")
-    anim:PushAnimation("idle", true)	
+    anim:PlayAnimation("idle", true)	
 
     inst.MiniMapEntity:SetIcon( "beanstalk.tex" )
 
@@ -244,21 +296,19 @@ local function fn(Sim)
     --[[
     -- Lua-level components.
     --]]
+	
+	inst.available = not IsDST()
     
     inst:AddComponent("climbable")
     inst.components.climbable:SetDirection("UP")
+	inst.components.climbable:AddDestinationStatusCallbacks {
+		available = destination_available,
+		unavailable = destination_unavailable,
+		full = destination_full,
+	}
     
     ---------------------  
 
-	--[[
-    inst:AddComponent("playerprox")
-    inst.components.playerprox:SetDist(10, 30)
-    inst.components.playerprox:SetOnPlayerNear(onnear)
-    inst.components.playerprox:SetOnPlayerFar(onfar)
-	]]--
-
-    ---------------------  
-    
     --inst:AddComponent("workable")
     --inst.components.workable:SetWorkAction(ACTIONS.CHOP)
     --inst.components.workable:SetOnWorkCallback(chopbeanstalk)

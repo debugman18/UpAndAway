@@ -6,6 +6,8 @@ local Climbing = modrequire "lib.climbing"
 local Pred = wickerrequire "lib.predicates"
 local Debuggable = wickerrequire "gadgets.debuggable"
 
+local string = wickerrequire "utils.string"
+
 
 --[[
 -- In what follows, "cave" has extended meaning, i.e., any cave level.
@@ -22,19 +24,74 @@ local Debuggable = wickerrequire "gadgets.debuggable"
 --
 local Climbable = HostClass(Debuggable, function(self, inst)
     self.inst = inst
-    Debuggable._ctor(self, "Climbable")
+    Debuggable._ctor(self, self, false)
 
     -- Target cave number, i.e. cave number of the world to be generated.
     -- This should never be set directly.
     self.cavenum = nil
+
+	if IsDST() then
+		inst:AddComponent("worldmigrator")
+	end
 end)
 
+-- 
+-- The following functions check the destination server status, returning sane
+-- constants in the singleplayer case.
+--
+
+local status_checks = {
+	AVAILABLE = Lambda.True,
+	FULL = Lambda.False,
+}
+
+local method_names = {
+	AVAILABLE = "IsActive",
+	FULL = "IsFull",
+}
+
+if IsDST() then
+	for status, methodname in pairs(method_names) do
+		Climbable[methodname] = function(self)
+			local wm = assert(self.inst.components.worldmigrator)
+			return wm[methodname](wm)
+		end
+	end
+else
+	for status, func in pairs(status_checks) do
+		Climbable[method_names[status]] = func
+	end
+end
+
+Climbable.IsOpen = Climbable.IsAvailable
+Climbable.IsClosed = Climbable.IsUnavailable
+
+function Climbable:GetStatus()
+	for status, methodname in pairs(method_names) do
+		if self[methodname](self) then
+			return status
+		end
+	end
+	return "UNAVAILABLE"
+end
+
+function Climbable:__tostring()
+	return ("Climbable (status: %s) [%s]"):format(self:GetStatus(), tostring(self.inst))
+end
 
 ---
 -- Destroys the associated cave, if any.
 --
 -- @param callback An optional callback to be called after completion.
 function Climbable:DestroyCave(callback)
+	if IsDST() then
+		self:Say("DST detected, ignoring DestroyCave() call.")
+		if callback then
+			callback(self.inst)
+		end
+		return
+	end
+
     local function actual_callback()
         self.cavenum = nil
         if callback then callback(self.inst) end
@@ -149,24 +206,58 @@ function Climbable:GetEffectiveCaveNumber()
     end
 end
 
+-- Maps callback keys from the function below to events to listen to in DST.
+local migration_events = {
+	available = "migration_available",
+	unavailable = "migration_unavailable",
+	full = "migration_full",
+}
+
+--- 
+-- @description Sets callbacks for world migration status.
+--
+-- In singleplayer, the 'available' callback is run and the function
+-- immediately returns.
+function Climbable:AddDestinationStatusCallbacks(cbs)
+	assert( type(cbs) == "table" )
+	if IsSingleplayer() then
+		if cbs.available then
+			cbs.available(self.inst)
+		end
+		return
+	end
+
+	for k, event in pairs(migration_events) do
+		local cb = cbs[k]
+		if cb then
+			self.inst:ListenForEvent(event, cb)
+		end
+	end
+end
 
 ---
 -- Climbs in the configured direction. Raises an error if there isn't any.
-function Climbable:Climb()
-    assert( self:GetDirection(), "Attempt to climb a climbable without a direction set." )
-    local function doclimb()
-        if self:Debug() then
-            self:Say("Climbing ", self:GetDirectionString(), " into cave number ", self:GetEffectiveCaveNumber(), ". Current height: ", Climbing.GetLevelHeight(), ".")
-        end
-        Climbing.Climb(self:GetDirection(), self.cavenum)
-    end
+function Climbable:Climb(player)
+	self:Say("being climbed by [", player, "]")
 
-    if not self.cavenum and should_have_cavenum(self) then
-        self.cavenum = SaveGameIndex:GetNumCaves() + 1
-        SaveGameIndex:AddCave(nil, doclimb)
-    else
-        doclimb()
-    end
+	if IsSingleplayer() then
+		assert( self:GetDirection(), "Attempt to climb a climbable without a direction set." )
+		local function doclimb()
+			if self:Debug() then
+				self:Say("Climbing ", self:GetDirectionString(), " into cave number ", self:GetEffectiveCaveNumber(), ". Current height: ", Climbing.GetLevelHeight(), ".")
+			end
+			Climbing.Climb(self:GetDirection(), self.cavenum)
+		end
+
+		if not self.cavenum and should_have_cavenum(self) then
+			self.cavenum = SaveGameIndex:GetNumCaves() + 1
+			SaveGameIndex:AddCave(nil, doclimb)
+		else
+			doclimb()
+		end
+	else
+		self.inst.components.worldmigrator:Activate(player)
+	end
 end
 
 ---
