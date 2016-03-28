@@ -42,7 +42,7 @@ end
 
 TheMod:AddPlayerPostInit(function(player)
     if IsHost() then
-		player:AddComponent("climbingvoter")
+		-- player:AddComponent("climbingvoter")
         player:AddComponent("quester")
         --player:AddComponent("ua_camera")
         player:AddComponent("speechlistener")
