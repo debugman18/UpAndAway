@@ -4,6 +4,38 @@ local Reputation = HostClass(Debuggable, function(self, inst)
     self.factions = nil
 end)
 
+-- Starts reputation decay for a given faction.
+function Reputation:StartDecaying(faction)
+	local rate = self.factions[faction].decay_rate
+	local negative = self.factions[faction].decay_negative
+	local delay = self.factions[faction].decay_delay
+	local trigger = self.factions[faction].decay_trigger
+
+	if self.updatetask == nil then
+        self.updatetask = self.inst:DoPeriodicTask(delay, function()
+        	if negative then 
+        		self:LowerReputation(faction, rate, trigger)
+        	else
+        		self:IncreaseReputation(faction, rate, trigger)
+        	end
+        end)
+    end
+
+    -- I'm not sure how or where we could use this right now, 
+    -- because the actual reputation component isn't tied to a specific faction on save and load. -Debug
+    self.[faction]..decaying = true
+end
+
+-- Stops reputation decay for a given faction.
+function Reputation:StopDecaying(faction)
+    if self.updatetask then
+        self.updatetask:Cancel()
+        self.updatetask = nil
+    end
+
+    self.[faction]..decaying = false
+end
+
 -- Returns the current reputation of a given faction.
 function Reputation:GetReputation(faction)
 	return self.factions[faction].reputation
@@ -13,17 +45,18 @@ end
 function Reputation:SetDecay(faction, boolean)
 	self.factions[faction].decay = boolean
 	if boolean == false then
-		--StopDecaying()
+		StopDecaying()
 	else
-		--StartDecaying()
+		StartDecaying()
 	end
 end
 
 -- Changes values related to decay.
-function Reputation:SetDecayRate(faction, decay_negative, decay_rate, decay_delay)
+function Reputation:SetDecayRate(faction, decay_negative, decay_rate, decay_delay, decay_trigger)
 	self.factions[faction].decay_negative = decay_negative
 	self.factions[faction].decay_rate = decay_rate
 	self.factions[faction].decay_delay = decay_delay
+	self.factions[faction].decay_trigger = decay_trigger or true
 end
 
 -- Changes minimum reputation value.
@@ -94,7 +127,7 @@ function Reputation:IncreaseReputation(faction, delta, trigger)
 	-- Stops decay if necessary.
 	if not self.factions[faction].decay_negative then
 	    if self.factions[faction].reputation >= self.factions[faction].maxrep then
-	        --StopDecaying()
+	        StopDecaying()
 	    end
 	end
 
@@ -120,7 +153,7 @@ function Reputation:LowerReputation(faction, delta, trigger)
 	-- Stops decay if necessary.
 	if self.factions[faction].decay_negative then
 	    if self.factions[faction].reputation >= self.factions[faction].minrep then
-	        --StopDecaying()
+	        StopDecaying()
 	    end
 	end
 
@@ -167,6 +200,9 @@ function Reputation:AddFaction(faction, baserep, minrep, maxrep)
 
 			-- The delay between each decay task.
 			decay_delay = 0,
+
+			-- Whether or not decay will trigger triggers.
+			decay_trigger = true,
 
 			-- The decay task.
     		decaying_task = nil,
