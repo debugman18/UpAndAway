@@ -1,3 +1,5 @@
+if not IsDST() then return {} end
+
 local MakeWorldNetwork = require("prefabs/world_network")
 
 local assets = {
