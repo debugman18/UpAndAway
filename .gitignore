@@ -4,6 +4,7 @@ dev.rc.lua
 asset_compilation.lua
 make/config.mk
 wicker_local
+Thumbs.db
 
 # Patterns
 /*.zip
