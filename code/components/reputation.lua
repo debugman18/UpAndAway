@@ -23,7 +23,7 @@ function Reputation:StartDecaying(faction)
 
     -- I'm not sure how or where we could use this right now, 
     -- because the actual reputation component isn't tied to a specific faction on save and load. -Debug
-    self.[faction]..decaying = true
+    self.factions[faction].decaying = true
 end
 
 -- Stops reputation decay for a given faction.
@@ -33,7 +33,7 @@ function Reputation:StopDecaying(faction)
         self.updatetask = nil
     end
 
-    self.[faction]..decaying = false
+    self.factions[faction].decaying = false
 end
 
 -- Returns the current reputation of a given faction.
