@@ -1,4 +1,4 @@
-if not IsDST() then return {} end
+if not IsDST() then return Prefab("common/dummies/cloudrealm_network", CreateEntity) end
 
 local MakeWorldNetwork = require("prefabs/world_network")
 
