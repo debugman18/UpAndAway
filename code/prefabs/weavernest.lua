@@ -126,14 +126,20 @@ local function OnKilled(inst)
     inst.components.lootdropper:DropLoot(Vector3(inst.Transform:GetWorldPosition()))
 end
 
-local function SpawnDefenders(inst, attacker)
+local function OnHit(inst, attacker)
     if not inst.components.health:IsDead() then
         inst.SoundEmitter:PlaySound("dontstarve/creatures/spider/spiderLair_hit")
         inst.AnimState:PlayAnimation(inst.anims.hit)
         inst.AnimState:PushAnimation(inst.anims.idle)
+		
         if inst.components.childspawner then
             inst.components.childspawner:ReleaseAllChildren()
         end
+		
+		if inst.components.inventory and #inst.components.inventory.itemslots > 0 then
+			local item = inst.components.inventory:GetItemInSlot(#inst.components.inventory.itemslots)
+			inst.components.inventory:DropItem(item, true, true)
+		end
     end
 end
 
@@ -267,7 +273,8 @@ local function MakeWeaverNestFn(den_level)
         anim:SetBuild("weavernest")
         anim:PlayAnimation("idle_1", true)
 
-        inst:AddTag("structure") --wouldn't this confuse creatures such as deerclops? -Mobb
+        inst:AddTag("structure") --Isn't this reserved for civilised structures? -Mobb
+        inst:AddTag("cloudneutral")
         inst:AddTag("weavernest")
         inst:AddTag("hive")
 
@@ -280,10 +287,16 @@ local function MakeWeaverNestFn(den_level)
 
 
         -------------------
+		
         inst:AddComponent("health")
         inst.components.health:SetMaxHealth(50)
+        -------------------
+        inst:AddComponent("combat")
+        inst.components.combat:SetOnHit(OnHit)
+        inst:ListenForEvent("death", OnKilled)
 
         -------------------
+		
         inst:AddComponent("childspawner")
         inst.components.childspawner.childname = "weaver_bird"
         inst.components.childspawner:SetRegenPeriod(CFG_WN.REGEN_PERIOD)
@@ -307,11 +320,16 @@ local function MakeWeaverNestFn(den_level)
         ---------------------
         inst:AddComponent("lootdropper")
         ---------------------
+		inst:AddComponent("inventory")
+		inst.components.inventory.ignorescangoincontainer = true
+		--dummy equipment to force armor etc. into item slots?
+        ---------------------
 
         ---------------------
         MakeMediumBurnable(inst)
         inst.components.burnable:SetOnIgniteFn(OnIgnite)
-        ---------------------
+		
+        MakeLargePropagator(inst)
 
         ---------------------
         --MakeMediumFreezableCharacter(inst)
@@ -323,15 +341,7 @@ local function MakeWeaverNestFn(den_level)
 		--Does the clock work like this? -Mobb
         inst:ListenForEvent("dusktime", function() StopSpawning(inst) end, GetWorld())
         inst:ListenForEvent("daytime", function() StartSpawning(inst) end , GetWorld())
-
-        -------------------
-
-        inst:AddComponent("combat")
-        inst.components.combat:SetOnHit(SpawnDefenders)
-        inst:ListenForEvent("death", OnKilled)
-
         ---------------------
-        MakeLargePropagator(inst)
 
         ---------------------
         inst:AddComponent("growable")
