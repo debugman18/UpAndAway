@@ -69,6 +69,26 @@ TheMod:AddPlayerPostInit(function(player)
         player:AddComponent("ua_beardable")
         player:AddComponent("staticconductor")
 
+
+		-- Reputation stuff is worldwide.
+		player:AddComponent("reputation")
+		do
+			-- Bean faction.
+			player.components.reputation:AddFaction("bean", 100, 0, 100)
+			player.components.reputation:SetDecay("bean", true)
+			player.components.reputation:SetDecayRate("bean", false, 1)
+			player.components.reputation:AddStage("bean", "beanhated_one", 80, function() --[[dummy]] end)
+
+			-- Gnomes faction.
+			player.components.reputation:AddFaction("gnomes", 50, 0, 100)
+			player.components.reputation:SetDecay("gnomes", false)
+			player.components.reputation:AddStage("gnomes", "ally_one", 70, function () --[[dummy]] end)
+
+			-- Strix faction.
+			player.components.reputation:AddFaction("strix", 20, 0, 100)
+			player.components.reputation:SetDecay("strix", false)
+			player.components.reputation:AddStage("strix", "ally_one", 50, function () --[[dummy]] end)
+		end
 		configure_skyflyspawner(player)
     end
 end)
