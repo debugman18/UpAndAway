@@ -54,8 +54,8 @@ end
 -- Changes values related to decay.
 function Reputation:SetDecayRate(faction, decay_negative, decay_rate, decay_delay, decay_trigger)
 	self.factions[faction].decay_negative = decay_negative
-	self.factions[faction].decay_rate = decay_rate
-	self.factions[faction].decay_delay = decay_delay
+	self.factions[faction].decay_rate = decay_rate or 1
+	self.factions[faction].decay_delay = decay_delay or 60
 	self.factions[faction].decay_trigger = decay_trigger or true
 end
 
@@ -196,19 +196,13 @@ function Reputation:AddFaction(faction, baserep, minrep, maxrep)
 			decay_negative = true, 
 
 			-- The rate at which reputation decays.
-			decay_rate = 0,
+			decay_rate = 0, --Default to nothing.
 
 			-- The delay between each decay task.
-			decay_delay = 0,
+			decay_delay = 60, --Default to a minute.
 
 			-- Whether or not decay will trigger triggers.
 			decay_trigger = true,
-
-			-- The decay task.
-    		decaying_task = nil,
-
-    		-- Time till next decay.
-    		next_decay = nil,
 
 			-- Whether or not reputation decreases trigger callbacks.
 			trigger_negative = true,
