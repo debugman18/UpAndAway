@@ -1,0 +1,2 @@
+
+return wickerrequire 'adjectives.debuggable'
