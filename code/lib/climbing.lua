@@ -1,5 +1,3 @@
---FIXME: not MP compatible
-
 ---
 -- Functions for adding, entering, exiting and failing (dying in) a cloud realm,
 -- as well as a few utility functions.
@@ -27,6 +25,8 @@ local Pred = wickerrequire "lib.predicates"
 wickerrequire "plugins.addlevel"
 
 wickerrequire "plugins.addpopulateworldpreinit"
+
+wickerrequire "daemons.shardgraph"
 
 --------------------------------
 
