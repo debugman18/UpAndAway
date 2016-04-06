@@ -107,7 +107,7 @@ end
 
 local function sanityaura_fn(inst, observer)
 
-    if inst.components.combat.target then
+    if inst.components.combat and inst.components.combat.target then
         return CFG.BEAN_GIANT.HOSTILE_SANITY_AURA
     else
         return CFG.BEAN_GIANT.CALM_SANITY_AURA
@@ -199,6 +199,7 @@ local function pod_fn(inst)
 
     inst:AddComponent("growable")
     inst.components.growable:SetOnGrowthFn(growth_fn)
+    inst.components.growable.stages = {"BeanPod"}
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable("bean_giant")
@@ -208,6 +209,8 @@ local function pod_fn(inst)
     inst:AddComponent("knownlocations")
    
     inst:AddComponent("staticchargeable")
+
+    inst:AddComponent("combat")
 
     inst:ListenForEvent("attacked", attacked_fn)
 
