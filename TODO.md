@@ -12,7 +12,6 @@
 + **Current bugs:**
 
     + Attempting to use Obisidian Staff in the cloudrealm results in a crash.
-    + Octocopter will not attack entities.
     + Shipwrecked recipes not available in cloudrealm. This is technically working as intended.
     + When climbing a beanstalk in a Shipwrecked world, recipes break.
     + Lightning strikes cause static to start.
@@ -36,7 +35,7 @@
 +** Strings in need of attention**
 
 	+ New stuff.
-	
+
 + **Miscellanea (Suggestions to be considered) **
 
 	+ Clockwork biome: http://forums.kleientertainment.com/topic/27648-suggestions-cauldron-of-ideas/?p=507711 (This is something I've thought more about. The player should have something more easily relateable once they make some progress in the Cloudrealm. Doesn't have to be clockwork stuff necessarily. Consider it pavlovion. Not that I want the mod to become a skinner-box, but that kind of attribute is necessary to a point in design and balance.)

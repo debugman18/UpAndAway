@@ -6463,7 +6463,7 @@
                 </key>
             </timeline>
         </animation>
-        <animation id="8" name="Idle_Front" length="1500" interval="100">
+        <animation id="8" name="idle_loop" length="1500" interval="100">
             <mainline>
                 <key id="0">
                     <bone_ref id="0" timeline="27" key="0"/>

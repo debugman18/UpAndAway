@@ -85,6 +85,8 @@ local function giant_fn(inst)
     -- Make sure we don't add the "pod" tag again later.
     inst.giant = true
 
+    inst.Transform:SetScale(10,10,10)
+
     inst.AnimState:PushAnimation("pod_transform")
     inst.AnimState:PushAnimation("bean_giant_idle")
 
@@ -155,8 +157,11 @@ local function pod_fn(inst)
 
     inst.AnimState:SetBank("bean_giant")
     inst.AnimState:SetBuild("bean_giant")
-    
-    inst.AnimState:PlayAnimation("pod_idle", true)
+
+    local scale = 5
+    inst.Transform:SetScale(scale,scale,scale)
+    inst.Transform:SetFourFaced()
+    inst.AnimState:PlayAnimation("idle_loop", true)
 
     -- This runs after entity creation and before components.
     ------------------------------------------------------------------------
