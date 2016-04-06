@@ -69,7 +69,7 @@ end
 local function OnAttacked(inst, data)
     inst.components.talker:Say("Whoo!", 2, noanim)
     local attacker = data and data.attacker
-    if attacker and inst.components.combat:CanTarget(attacker) then
+    if attacker and RetargetFn(inst, attacker) then
         inst.components.combat:SetTarget(attacker)
         local targetshares = CFG.OWL.MAX_TARGET_SHARES
         if inst.components.homeseeker and inst.components.homeseeker.home then

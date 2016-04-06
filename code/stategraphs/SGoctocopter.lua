@@ -53,9 +53,9 @@ local states=
 
     State{
         name = "hit",
-        tags = {"hit", "busy"},
+        tags = {"hit"},
         
-        onenter = function(inst)  
+        onenter = function(inst)
             inst.AnimState:PlayAnimation("hurt")          
         end,
         
@@ -65,6 +65,26 @@ local states=
         },
     },
    
+    State{
+        name = "attack",
+        tags = {"attack", "nointerrupt"},
+
+        onenter = function(inst, cb)
+            inst.Physics:Stop()
+            inst.components.combat:StartAttack()
+            inst.AnimState:PlayAnimation("atk")
+        end,
+
+        timeline=
+        {
+            TimeEvent(34*FRAMES, function(inst) inst.components.combat:DoAttack() end),
+        },
+
+        events=
+        {
+            EventHandler("animover", function(inst)inst.sg:GoToState("idle") end),
+        },
+    },
 }
 
 CommonStates.AddWalkStates(states,
@@ -90,8 +110,7 @@ CommonStates.AddCombatStates(states,
 {
     attacktimeline = 
     {
-        TimeEvent(15*FRAMES, function(inst)  end),
-        TimeEvent(17*FRAMES, function(inst) inst.components.combat:DoAttack() end),
+        TimeEvent(34*FRAMES, function(inst) inst.components.combat:DoAttack() end),
     },
     hittimeline = 
     {

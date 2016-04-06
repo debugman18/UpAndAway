@@ -59,6 +59,7 @@ for quite some time.
 + New turf textures have been added.
 + Turf textures were tweaked to be easier on the eyes.
 + Octocopter no longer spawns wreckage on death.
++ Octocopter behavior was tweaked.
 + Added a faction/reputation mechanic to the world(s).
 + Sheep now run from the player.
 + Added cloud wall structure.
@@ -68,6 +69,7 @@ for quite some time.
 + Ball Lightnings have been tweaked.
 + Rubber armor added.
 + Winnie has been tweaked.
++ Owls have been tweaked, and are far less aggressive.
 
 ----------------------------------------------------
 
