@@ -11,10 +11,12 @@
 
 + **Current bugs:**
 
-	+ Obsidian staff crashes in cloudrealm.
-	+ Octocopter AI crash.
-	+ Shipwrecked recipes not available in cloudrealm.
-	+ Climbing up and down the beanstalk does not function as expected in Shipwrecked.
+    + Attempting to use Obisidian Staff in the cloudrealm results in a crash.
+    + Octocopter will not attack entities.
+    + Shipwrecked recipes not available in cloudrealm. This is technically working as intended.
+    + When climbing a beanstalk in a Shipwrecked world, recipes break.
+    + Lightning strikes cause static to start.
+
 
 + **Art assets in need of attention**
 
@@ -23,10 +25,8 @@
 + **Code assets in need of attention**
 
 	+ Add ambiant sound to the cloudrealm. Sounds now exist in mod files.
-	+ Reputation component needs decay functionality.
-	+ Winnie lureplant recipe (waiting for Klei recipe implementation.)
 	+ Bean Giant is being overhauled.	
-	+ Shopkeeper Boss Quest implementation.
+	+ Shopkeeper Boss Quest implementation
 	+ Gnomes are being overhauled.
 	+ Add a slight visual effect to static damage.
 	+ Port golden egg corruption to DST.
@@ -35,8 +35,8 @@
 
 +** Strings in need of attention**
 
-	+ Red Jellycap missing strings.
-
+	+ New stuff.
+	
 + **Miscellanea (Suggestions to be considered) **
 
 	+ Clockwork biome: http://forums.kleientertainment.com/topic/27648-suggestions-cauldron-of-ideas/?p=507711 (This is something I've thought more about. The player should have something more easily relateable once they make some progress in the Cloudrealm. Doesn't have to be clockwork stuff necessarily. Consider it pavlovion. Not that I want the mod to become a skinner-box, but that kind of attribute is necessary to a point in design and balance.)

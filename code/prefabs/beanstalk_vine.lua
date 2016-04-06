@@ -6,7 +6,7 @@ local brain = require "brains/vinebrain"
 
 local assets=
 {
-    Asset("ANIM", "anim/vine.zip"),
+    Asset("ANIM", "anim/vine_ua.zip"),
     Asset("SOUND", "sound/tentacle.fsb"),
 }
 

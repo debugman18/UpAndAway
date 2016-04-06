@@ -26,6 +26,15 @@ local function herd_enable(inst, owner)
                 return followercmp and not leadercmp:IsFollower(beefalo)
             end
 
+            -- Wicker crashes like so...
+            --[[
+            ../mods/UpAndAway/wicker/utils/algo.lua:24: attempt to compare number with nil
+            LUA ERROR stack traceback:
+            ../mods/UpAndAway/wicker/utils/algo.lua:24 in () ? (Lua) <23-53>
+                A = table: 0x2b88d2c8
+               k = nil
+               cmp = function - @../mods/UpAndAway/wicker/game/searching.lua:97
+            --]]
             local ents = Game.FindClosestEntities(owner, CFG.WINNIE_STAFF.MAX_FOLLOWER_DIST, filter_fn, max_new_followers, {"beefalo"})
 
             for _, v in ipairs(ents) do
