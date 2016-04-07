@@ -8,14 +8,14 @@
 	+ Bean Giant fight implementation. Groan.
 	+ Winnie character art implementation.
 	+ Quartz Torch implementation. It should act as a torch that does not dissappear upon loss of fuel. Can be placed into the refiner, placed into quartz lamps, or given to entities to increase reputation with that faction.
+	+ Crystal armor implementation.
 
 + **Current bugs:**
 
     + Attempting to use Obisidian Staff in the cloudrealm results in a crash.
     + Shipwrecked recipes not available in cloudrealm. This is technically working as intended.
-    + When climbing a beanstalk in a Shipwrecked world, recipes break.
     + Lightning strikes cause static to start.
-
+    + Shopkeeper crashes the game.
 
 + **Art assets in need of attention**
 

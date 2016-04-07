@@ -13,6 +13,22 @@ STRINGS.CHARACTER_QUOTES.winnie = "\"Stay near me, little sheep.\""
 
 STRINGS.CHARACTERS.WINNIE = modrequire "speech_winnie"
 
+STRINGS.AMBROSIA_ANNOUNCE = {
+    GENERIC = "TESTING.",
+    wathgrithr = "TESTING.",
+    waxwell = "TESTING.",
+    webber = "TESTING.",
+    wendy = "TESTING.",
+    wickerbottom = "TESTING.",
+    willow = "TESTING.",
+    wolfgang = "TESTING.",
+    woodie = "TESTING.",
+    wx78 = "TESTING.",
+    walani = "TESTING.",
+    warly = "TESTING.",
+    woodlegs = "TESTING.",
+}
+
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.WINNIE = 
 {
     GENERIC = "It's Winnie!",

@@ -30,15 +30,11 @@ for quite some time.
 
 + Sheep can now be shaved.
 + Added a new boss; the Semiconductor.
-+ Bean Giant no longer spawns via beanlet kills.
-+ Bean Giant was overhauled.
 + Giant Bean Pod added as a setpiece.
 + Added new crystal armor type.
-+ Winnie has recieved an overhaul.
 + Gnomes have recieved an overhaul.
 + Octocopter rotor parts now used for crafting.
 + Added recipes for new boss-related items.
-+ Added a new Shopkeeper quest.
 
 ----------------------------------------------------
 
@@ -70,6 +66,8 @@ for quite some time.
 + Rubber armor added.
 + Winnie has been tweaked.
 + Owls have been tweaked, and are far less aggressive.
++ Extended the Shopkeeper's questline.
++ Bean Giant was overhauled.
 
 ----------------------------------------------------
 

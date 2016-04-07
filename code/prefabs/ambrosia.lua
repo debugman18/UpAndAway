@@ -13,13 +13,13 @@ local assets =
 local function oneatfn(inst, eater)
     --Do we think 1 in 15 is balanced?
     if math.random(1,15) == 1 then
-        --Ditching the component.
-        --if eater.components.ambrosiarespawn then
-            --eater.components.ambrosiarespawn:Enable()
-        --elseif IsDST() then
-        TheMod:DebugSay("Free respawn. Lucky you.")
-        eater:AddTag("ambrosiarespawn")
-        eater.components.health.minhealth = 1 -- 10 works better, but is more visible. The illusion is ruined.
+        TheMod:DebugSay("Ambrosia activated.")
+        if eater.components.ambrosiarespawn then
+            eater.components.ambrosiarespawn:Enable()
+        else 
+            eater:AddComponent("ambrosiarespawn")
+            eater.components.ambrosiarespawn:Enable()
+        end
     end
 end	
 

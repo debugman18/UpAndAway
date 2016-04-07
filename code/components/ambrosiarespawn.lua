@@ -1,99 +1,52 @@
---TODO: check precisely how resurrection should work in MP.
-
 BindGlobal()
 
-local function doresurrect(inst, dude)
-    dude:ClearBufferedAction()
-
-    if dude.HUD then
-        dude.HUD:Hide()
-    end
-
-    if dude.components.playercontroller then
-        dude.components.playercontroller:Enable(false)
-    end
-
-    TheCamera:SetDistance(9)
-    dude.components.hunger:Pause()
-    dude.components.health:SetPercent(.5)
-    dude.components.health:SetInvincible(true)
-    
-    dude:DoTaskInTime(2, function()            
-        dude.sg:GoToState("wakeup")
-        
-        dude:DoTaskInTime(2, function() 
-            if dude.HUD then
-                dude.HUD:Show()
-            end
-
-            if dude.components.hunger then
-                dude.components.hunger:SetPercent(1)
-            end
-            
-            if dude.components.sanity then
-                dude.components.sanity:SetPercent(.5)
-            end
-
-            if dude.components.playercontroller then
-                dude.components.playercontroller:Enable(true)
-            end
-            
-            dude.components.hunger:Resume()
-            
-            TheCamera:SetDefault()
-        end)
-
-        dude:DoTaskInTime(3, function() 
-            dude.components.health:SetInvincible(false)
-        end)  
-    end)
-
-    if inst.components.ambrosiarespawn then
-        inst.components.ambrosiarespawn:Disable()
-    end
-end
-
-local AmbrosiaRespawn = HostClass(Debuggable, function(self, inst)
-    self.inst = inst
-    self.enabled = false
-
-    if not IsDST() then
-        if not inst.components.resurrector then
-            inst:AddComponent("resurrector")
-            inst.components.resurrector.doresurrect = doresurrect
-        end
-    end
+local AmbrosiaRespawn = Class(function(self, inst)
+   self.inst = inst
+   self.enabled = false
 end)
 
-function AmbrosiaRespawn:Enable()
+function AmbrosiaRespawn:Enable(inst)
     if self.enabled then return end
     self.enabled = true
+    TheMod:DebugSay("Ambrosia enabled.")
 
-    if not IsDST() then
-        if self.inst.components.resurrector and self.inst.components.resurrectable then
-            self.inst.components.resurrector.active = true
-        end	
-    end
+    ThePlayer.components.health.minhealth = 1 -- 10 works better, but is more visible. The illusion is ruined.
+
+    ThePlayer.components.talker:Say("I feel like I can take on anything!")
+    ThePlayer.HUD.controls.status.heart.anim:GetAnimState():SetMultColour(1,1,0,1) 
+    ThePlayer:DoPeriodicTask(5, function(inst) 
+        ThePlayer.HUD.controls.status.heart.pulse:GetAnimState():SetMultColour(1,1,0,1)
+        ThePlayer.HUD.controls.status.heart.pulse:GetAnimState():PlayAnimation("pulse")
+    end) 
+
 end
 
-function AmbrosiaRespawn:Disable()
+function AmbrosiaRespawn:Disable(inst)
     if not self.enabled then return end
     self.enabled = false
+    TheMod:DebugSay("Ambrosia disabled.")
 
-    if not IsDST() then
-        if self.inst.components.resurrector then
-            self.inst.components.resurrector.active = false
-        end
+    player.components.health:SetPercent(1)
+    player.components.sanity:SetPercent(1)
+    player.components.hunger:SetPercent(1)
+
+    if IsDST() then
+        local announcement_string = _G.GetNewRezAnnouncementString(inst, "Ambrosia magic")
+        _G.TheNet:Announce(announcement_string, player.entity, nil, "resurrect")
     end
+
+    ThePlayer:RemoveEventCallback("minhealth")
+    ThePlayer.components.health.minhealth = nil
+    ThePlayer.components.health:SetInvincible(false)
+    ThePlayer.HUD.controls.status.heart.anim:GetAnimState():SetMultColour(0,0,0,1) 
 end
 
 function AmbrosiaRespawn:OnSave()
     local enabled = self.enabled and true or nil
     if enabled then
-        self:Disable()
         self.inst:DoTaskInTime(0, function(inst)
-            if inst.components.ambrosiarespawn then
-                inst.components.ambrosiarespawn:Enable()
+            if ThePlayer.components.ambrosiarespawn then
+                ThePlayer.components.ambrosiarespawn:Enable()
             end
         end)
     end

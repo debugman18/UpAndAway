@@ -118,6 +118,13 @@ local function sanityaura_fn(inst, observer)
     return 0
 end
 
+-- Tag the player.
+local function OnDeath(data)
+    local cause = data and data.cause or nil
+    cause:AddTag("OctocopterSlayer")
+    GetWorld():PushEvent("octocoptercrash")
+end
+
 -- Load the scale and tags.
 local function OnLoad(inst, data)
 
@@ -218,6 +225,9 @@ local function pod_fn(inst)
     inst:AddComponent("combat")
 
     inst:ListenForEvent("attacked", attacked_fn)
+
+    inst:ListenForEvent("death", function(inst, data)
+        OnDeath(data) end, inst)
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad

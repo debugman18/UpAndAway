@@ -155,6 +155,26 @@ local function flagplayer(inst, player)
         inst.components.speechgiver:PlaySpeech("FLAG_PLAYER", player)
     elseif not quester:GetFlag(PRIMARY_QUEST, "gotbeans") and quester:GetAttribute(PRIMARY_QUEST, "numbeans") > 0 then
         inst.components.speechgiver:PlaySpeech("BEAN_REMINDER", player)
+
+    -- Acknowledge slaying of bosses.
+    elseif quester:GetFlag("OctocopterSlayer") and quester:GetFlag(PRIMARY_QUEST, "gotlectern") then
+        inst.components.speechgiver:PlaySpeech("OCTOCOPTER_SLAIN", player)
+        quester:SetFlag("OctocopterSlayer", false)
+        quester:SetFlag("OctocopterHunter", true)
+
+    elseif quester:HasTag("BeanGiantSlayer") and quester:GetFlag(PRIMARY_QUEST, "gotlectern") then
+        inst.components.speechgiver:PlaySpeech("BEANGIANT_SLAIN", player)
+        quester:SetFlag("BeanGiantSlayer", false)
+        quester:SetFlag("BeanGiantHunter", true)
+
+    elseif quester:HasTag("SemiconductorSlayer") and quester:GetFlag(PRIMARY_QUEST, "gotlectern") then
+        inst.components.speechgiver:PlaySpeech("SEMICONDUCTOR_SLAIN", player)
+        quester:SetFlag("SemiconductorSlayer", false)
+        quester:SetFlag("SemiconductorHunter", true)
+
+    elseif quester:GetFlag("OctocopterHunter") and quester:GetFlag("BeanGiantHunter") and quester:GetFlag("SemiconductorHunter") then
+        inst.components.speechgiver:PlaySpeech("LEVEL_ONE_BOSSES_SLAIN", player)
+
     elseif not quester:GetFlag(PRIMARY_QUEST, "gotbeans") then
         TheMod:DebugSay "I have nothing to give you!"
     end
@@ -427,13 +447,19 @@ local function fn(Sim)
             giveumbrella = function(inst, player)
                 local quester = player.components.quester
 
-                local umbrella = assert( SpawnPrefab("shopkeeper_umbrella"), "Failed to spawn kettle_item." )
+                if not quester or quester:GetFlag(PRIMARY_QUEST, "gotumbrella") or not player.components.inventory then return end
+                quester:SetFlag(PRIMARY_QUEST, "gotumbrella", true)
+
+                local umbrella = assert( SpawnPrefab("shopkeeper_umbrella"), "Failed to spawn shopkeeper_umbrella." )
                 player.components.inventory:GiveItem(umbrella)
             end,
             giveportal = function(inst, player)
                 local quester = player.components.quester
 
-                --local portal = assert( SpawnPrefab("cloud_portal_blueprint"), "Failed to spawn research_lectern_blueprint." )
+                if not quester or quester:GetFlag(PRIMARY_QUEST, "gotportal") or not player.components.inventory then return end
+                quester:SetFlag(PRIMARY_QUEST, "gotportal", true)
+
+                --local portal = assert( SpawnPrefab("cloud_portal_blueprint"), "Failed to spawn cloud_portal_blueprint." )
                 --player.components.inventory:GiveItem(portal)
             end,
         })

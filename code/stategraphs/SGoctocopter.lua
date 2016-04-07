@@ -49,6 +49,13 @@ local states=
         onenter = function(inst)
             inst.AnimState:PlayAnimation("death")
         end,
+
+        timeline = 
+        {
+            TimeEvent(21*FRAMES, function(inst) 
+                --
+            end),
+        },
     },
 
     State{
