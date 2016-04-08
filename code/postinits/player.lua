@@ -46,11 +46,6 @@ TheMod:AddPlayerPostInit(function(player)
         player:AddComponent("quester")
         --player:AddComponent("ua_camera")
         player:AddComponent("speechlistener")
-
-        -- The ambrosia component is now much nicer.
-        player:AddComponent("ambrosiarespawn")
-        player:ListenForEvent("minhealth", player.components.ambrosiarespawn:Disable(), player)
-
         player:AddComponent("beanhated")
         player:AddComponent("ua_beardable")
         player:AddComponent("staticconductor")

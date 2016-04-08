@@ -14,11 +14,11 @@ local function oneatfn(inst, eater)
     --Do we think 1 in 15 is balanced?
     if math.random(1,15) == 1 then
         TheMod:DebugSay("Ambrosia activated.")
-        if eater.components.ambrosiarespawn then
-            eater.components.ambrosiarespawn:Enable()
+        if eater.components.ambrosiabuffer then
+            eater.components.ambrosiabuffer:Enable()
         else 
-            eater:AddComponent("ambrosiarespawn")
-            eater.components.ambrosiarespawn:Enable()
+            eater:AddComponent("ambrosiabuffer")
+            eater.components.ambrosiabuffer:Enable()
         end
     end
 end	
