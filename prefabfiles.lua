@@ -51,7 +51,6 @@ PrefabFiles = {
 
 	"ua_cave",
 	"cloudrealm",
-	"cloudrealm_network",
 	"cloud_mist",
 	"cloud_lightning",
 	"shopkeeper",
@@ -162,6 +161,7 @@ PrefabFiles = {
 	"thunder_pinecone",
 	"ua_cookedfoods",
 	"magic_beans",
+	"crystal_armor",
 
 	--Stuff not started.
 	--------------------
@@ -182,7 +182,6 @@ PrefabFiles = {
 	--"golden_golem",	
 	--"monolith",	
 	--"mantaspawner",
-	--"crystal_armor",
 	--"crystal_axe",
 	--"sky_lemur",
 	--"quartz_torch",
@@ -192,6 +191,10 @@ PrefabFiles = {
 	--"manta_leather",
 	
 }
+
+if GLOBAL.TheSim:GetGameID()=="DST" then
+	table.insert(PrefabFiles, "cloudrealm_network")
+end
 
 -- The return statement is just for if this file is used externally, at
 -- least for now it's the PrefabFiles variable that matters.

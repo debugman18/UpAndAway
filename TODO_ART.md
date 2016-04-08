@@ -20,6 +20,7 @@
 + Gnomes. -- Vivalavie was working on this. Battal began animations. Unknown status.
 + Cloud Wall -- Art uploaded by MilleniumCount. Just needs to be animated. http://forums.kleientertainment.com/topic/44496-current-goals-road-to-beta-v2/?p=573225
 + Cauldron -- Needs animations for brewing and for brewing completion. Bubbling liquid in cauldron will be a FX prefab.
++ Crystal Armor -- Needs inventory, ground and wearing images, or at least they are not in the mod yet.
 + Ball Lightning -- Needs additional animations, IE an aggressive form. I may just do SetColor and spawn FX.
 + Gustflower -- Needs pick animations. Charged sway needs polish, has huge hitbox.
 + Birds of Paradise -- There is existing art and some basic animations. Currently virtually no code.

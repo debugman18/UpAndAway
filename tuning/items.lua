@@ -675,6 +675,13 @@ CLOUD_VEST.INSULATION = TUNING.INSULATION_LARGE * 1.1
 
 ---------------------------------------
 
+-- Crystal Armor
+
+CRYSTAL_ARMOR.ARMOR_HEALTH = 100 --These are just placeholders -Mob
+CRYSTAL_ARMOR.ARMOR_ABSORB = 0.1
+
+---------------------------------------
+
 -- Dragonblood Log
 
 DRAGONBLOOD.STACK_SIZE = 10
