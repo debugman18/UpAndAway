@@ -50,7 +50,6 @@ TheMod:AddPlayerPostInit(function(player)
         player:AddComponent("ua_beardable")
         player:AddComponent("staticconductor")
 
-
 		-- Reputation stuff is worldwide.
 		player:AddComponent("reputation")
 		do

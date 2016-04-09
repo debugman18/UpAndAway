@@ -15,6 +15,7 @@ STRINGS.CHARACTERS.WINNIE = modrequire "speech_winnie"
 
 STRINGS.AMBROSIA_ANNOUNCE = {
     GENERIC = "I feel like I can take on anything!",
+    WILSON = "I am Wilson!",
 }
 
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.WINNIE = 

@@ -11,14 +11,17 @@ local assets =
 }
 
 local function oneatfn(inst, eater)
-    --Do we think 1 in 15 is balanced?
     if math.random(1,15) == 1 then
         TheMod:DebugSay("Ambrosia activated.")
         if eater.components.ambrosiabuffer then
-            eater.components.ambrosiabuffer:Enable()
+            eater.components.ambrosiabuffer:Enable(eater)
+            --eater:ListenForEvent("minhealth", eater.components.ambrosiabuffer:Disable(eater), eater)
+            --eater.components.health:SetMinHealth(1)
         else 
             eater:AddComponent("ambrosiabuffer")
-            eater.components.ambrosiabuffer:Enable()
+            eater.components.ambrosiabuffer:Enable(eater)
+            --eater:ListenForEvent("minhealth", eater.components.ambrosiabuffer:Disable(eater), eater)
+            --eater.components.health:SetMinHealth(1)
         end
     end
 end	

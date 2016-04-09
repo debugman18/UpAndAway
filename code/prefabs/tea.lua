@@ -16,10 +16,13 @@ end
 local function ambrosiafn(inst, eater)
     drink_anim(inst, eater)
     if math.random() < 0.1 then
-        if eater.components.ambrosiarespawn then
-            TheMod:DebugSay("Free respawn. Lucky you.")
-            eater.components.ambrosiarespawn:Enable()
-        end	
+        TheMod:DebugSay("Ambrosia activated.")
+        if eater.components.ambrosiabuffer then
+            eater.components.ambrosiabuffer:Enable(eater)
+        else 
+            eater:AddComponent("ambrosiabuffer")
+            eater.components.ambrosiabuffer:Enable(eater)
+        end
     end	
 end	
 
