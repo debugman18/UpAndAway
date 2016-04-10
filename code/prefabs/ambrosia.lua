@@ -15,13 +15,6 @@ local function oneatfn(inst, eater)
         TheMod:DebugSay("Ambrosia activated.")
         if eater.components.ambrosiabuffer then
             eater.components.ambrosiabuffer:Enable(eater)
-            --eater:ListenForEvent("minhealth", eater.components.ambrosiabuffer:Disable(eater), eater)
-            --eater.components.health:SetMinHealth(1)
-        else 
-            eater:AddComponent("ambrosiabuffer")
-            eater.components.ambrosiabuffer:Enable(eater)
-            --eater:ListenForEvent("minhealth", eater.components.ambrosiabuffer:Disable(eater), eater)
-            --eater.components.health:SetMinHealth(1)
         end
     end
 end	

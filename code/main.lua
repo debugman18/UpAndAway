@@ -95,6 +95,10 @@ AddSimPostInit(function()
     end
 end)
 
+-- Ambrosia buffer.
+AddPlayerPostInit(function(inst) 
+    inst:AddComponent("ambrosiabuffer")
+end)
 
 --[[
 local function OnUnlockMound(inst)
