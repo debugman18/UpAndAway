@@ -1,0 +1,11 @@
+# Patterns
+# I have no idea how this stuff works -Mobbstar
+
+/.fsbcache/*
+/*.zip
+/*.wav
+/*.mp3
+*.txt
+*.log
+*.fdp.bak
+*~
