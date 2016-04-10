@@ -15,6 +15,10 @@
     + Shipwrecked recipes not available in cloudrealm. This is technically working as intended.
     + Lightning strikes cause static to start.
     + Shopkeeper crashes the game.
+	+ Things with 0 burn time can be burnt with a few firestaff strikes. 
+	+ Winnie's meatbulb recipe is visible to anyone.
+	+ Owl people lack unique sounds in general. (Turkey sounds don't fit either.)
+	+ Sound files are not built properly. (need event category)
 
 + **Art assets in need of attention**
 

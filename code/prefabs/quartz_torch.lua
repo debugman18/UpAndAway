@@ -15,17 +15,24 @@ local function StopCharging(inst)
 	inst.components.fueled.rate = CFG.QUARTZ_TORCH.FUELRATE
 end
 
+local function onEmpty(inst, owner)
+    inst.SoundEmitter:KillSound("torch")
+    inst.Light:Enable(false)
+end
+
 local function onequip(inst, owner)
     owner.AnimState:OverrideSymbol("swap_object", "swap_torch", "swap_torch")
     owner.AnimState:Show("ARM_carry") 
     owner.AnimState:Hide("ARM_normal") 
     
-    inst.SoundEmitter:PlaySound("dontstarve/wilson/lantern_LP", "torch")
-    inst.SoundEmitter:PlaySound("dontstarve/wilson/torch_swing")
-    --inst.SoundEmitter:SetParameter( "torch", "intensity", 1 )
-	
-	inst.components.fueled:StartConsuming()
-    inst.Light:Enable(true)
+	if inst.components.fueled and not inst.components.fueled:IsEmpty() then
+		inst.SoundEmitter:PlaySound("dontstarve/wilson/lantern_LP", "torch")
+		inst.SoundEmitter:PlaySound("dontstarve/wilson/torch_swing")
+		--inst.SoundEmitter:SetParameter( "torch", "intensity", 1 )
+		
+		inst.components.fueled:StartConsuming()
+		inst.Light:Enable(true)
+	end
 end
 
 local function onunequip(inst,owner)
@@ -72,6 +79,8 @@ local function fn(Sim)
     
     inst:AddComponent("inventoryitem")
 	--inst.components.inventoryitem.atlasname = inventoryimage_atlas("crystal_fragment_quartz")
+	--InventoryItems automatically enable light when dropped, so counteract that
+	inst:ListenForEvent("ondropped", function(inst) inst.Light:Enable(false) end)
     -----------------------------------
     
     inst:AddComponent("inspectable")
@@ -88,7 +97,7 @@ local function fn(Sim)
     inst:AddComponent("fueled")
 	inst.components.fueled.fueltype = CFG.QUARTZ_TORCH.FUEL_TYPE
 	inst.components.fueled:InitializeFuelLevel(CFG.QUARTZ_TORCH.MAX_FUEL)
-    --inst.components.fueled:SetDepletedFn(onEmpty)
+    inst.components.fueled:SetDepletedFn(onEmpty)
     inst.components.fueled.accepting = false
     inst.components.fueled.rate = CFG.QUARTZ_TORCH.FUELRATE
     -----------------------------------
