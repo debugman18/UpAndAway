@@ -1,10 +1,8 @@
 # Patterns
 # I have no idea how this stuff works -Mobbstar
 
-/.fsbcache/*
-/*.zip
-/*.wav
-/*.mp3
+/.fsbcache/**
+/**.zip
 *.txt
 *.log
 *.fdp.bak
