@@ -7,7 +7,7 @@
 	+ Allow for more cloud stuff in the overworld, and vice-versa.
 	+ Bean Giant fight implementation. Groan.
 	+ Winnie character art implementation.
-	+ Quartz Torch implementation. It should act as a torch that does not dissappear upon loss of fuel. Can be placed into the refiner, placed into quartz lamps, or given to entities to increase reputation with that faction.
+	+ Quartz Torch placable into quartz lamps, givable to entities to increase reputation with that faction.
 
 + **Current bugs:**
 

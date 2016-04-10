@@ -20,4 +20,5 @@ return RecipeBook {
     refined_honey  = Recipe("honey", Ingredient("dragonblood_sap", 2), 0),
     refined_silk   = Recipe("silk", Ingredient("cloud_cotton", 4), 0),
     refined_gold   = Recipe("goldnugget", Ingredient("golden_petals", 4), 1),
+    refined_quartztorch   = Recipe("crystal_fragment_quartz", Ingredient("quartz_torch", 1), 4),
 }

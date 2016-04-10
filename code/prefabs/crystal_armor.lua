@@ -15,6 +15,7 @@ local function onequip(inst, owner)
     owner.AnimState:OverrideSymbol("swap_body", "armor_marble", "swap_body")
     inst:ListenForEvent("blocked", OnBlocked, owner)
 	
+	--Ideally, the flinger would check if any equipment has this tag. Oh well...
 	if not owner.nofling_ents then --use a table for the case there are multiple items with this trait
 		owner.nofling_ents = {inst = true}
 		owner:AddTag("NOFLING") --makes wearer unaffected by whirlwind &c
@@ -61,7 +62,7 @@ local function fn(Sim)
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.foleysound = "dontstarve/movement/foley/marblearmour"
     inst.foleysound = "dontstarve/movement/foley/marblearmour" --For Together
-    inst.components.inventoryitem.atlasname = inventoryimage_atlas("beanlet_armor") --TODO
+    --inst.components.inventoryitem.atlasname = inventoryimage_atlas("beanlet_armor") --TODO
     
     inst:AddComponent("armor")
     inst.components.armor:InitCondition(CFG.CRYSTAL_ARMOR.ARMOR_HEALTH, CFG.CRYSTAL_ARMOR.ARMOR_ABSORB)

@@ -162,6 +162,7 @@ PrefabFiles = {
 	"ua_cookedfoods",
 	"magic_beans",
 	"crystal_armor",
+	"quartz_torch",
 
 	--Stuff not started.
 	--------------------
@@ -184,7 +185,6 @@ PrefabFiles = {
 	--"mantaspawner",
 	--"crystal_axe",
 	--"sky_lemur",
-	--"quartz_torch",
 	--"jellyshroomfish",
 	--"manta",
 	--"manta_baby",
