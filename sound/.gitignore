@@ -1,8 +1,10 @@
 # Patterns
 # I have no idea how this stuff works -Mobbstar
+# We do not use "wav" files because of their file size. Please convert them to "ogg" or "mp3".
 
 /.fsbcache/**
 /**.zip
+**.wav
 *.txt
 *.log
 *.fdp.bak
