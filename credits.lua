@@ -44,4 +44,9 @@ return {
 		"Xjurwi",
 		"KidneyBeanBoy",
 	}},
+	{"freesound", {
+		title = "This mod uses these sounds from freesound:",
+		
+		"\"Sheep.flac\" by Erdie ( http://freesound.org/people/Erdie/ )",
+	}},
 }

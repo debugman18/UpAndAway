@@ -328,7 +328,7 @@ SPEECHES.BEANGIANT_SLAIN = function(mgr)
 end
 
 -- This is played when the player has killed all three bosses.
-SPEECHES.LEVEL_ONE_BOSSES_SLAIN = function(mgr, arges)
+SPEECHES.LEVEL_ONE_BOSSES_SLAIN = function(mgr, args)
     if mgr:EnterCutScene() then
         mgr:MakeNonInterruptible()
         Sleep(0.75)
