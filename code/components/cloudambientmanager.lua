@@ -62,7 +62,7 @@ local CloudAmbientManager = Class(Debuggable, function(self, inst)
 	end
 	if IsDST() then
 		assert( GetPseudoClock() == nil )
-		TheMod:AddPrefabPostInit("world_network", initialize_self)
+		TheMod:AddPrefabPostInit("cloudrealm_network", initialize_self)
 	else
 		assert( GetPseudoClock(), "The clock should be added before cloudambientmanager!" )
 		initialize_self()

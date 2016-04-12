@@ -103,11 +103,7 @@ end
 --]]
 
 local loadfile_in_env = (function()
-	if _VERSION >= "Lua 5.2" then
-		return function(fname, env)
-			return loadfile(fname, nil, env)
-		end
-	elseif _VERSION == "Lua 5.1" then
+	if _VERSION < "Lua 5.2" then
 		return function(fname, env)
 			local f = loadfile(fname)
 			if f then
@@ -116,7 +112,9 @@ local loadfile_in_env = (function()
 			return f
 		end
 	else
-		return error("Unsupported version " .. _VERSION)
+		return function(fname, env)
+			return loadfile(fname, nil, env)
+		end
 	end
 end)()
 
@@ -243,6 +241,114 @@ local function NewModinfoEnv()
 	return setmetatable({}, meta)
 end
 
+local DumpNumber = (function()
+	-- Significant digits for floating point;
+	local significant_digits = 6
+
+	local integer_tolerance = 10^-4
+
+	local small_fraction_primes = {2, 3, 5, 7}
+	local small_fraction_denom_upperbound = 15
+
+	---
+
+	local math = math
+
+	local inf = math.huge
+	local neg_inf = -inf
+
+	local ceil, floor = math.ceil, math.floor
+
+	---
+
+	local fmt = string.format
+
+	local integer_format = "%d"
+	local float_format = "%."..decimal_digits.."g"
+
+	---
+
+	local small_fraction_denoms = {}
+	local function compute_denoms(parent_denom, i)
+		local prime = small_fraction_primes[i]
+		if not prime then 
+			table.insert(small_fraction_denoms, parent_denom)
+			return
+		end
+
+		local denom = parent_denom
+		while denom <= small_fraction_denom_upperbound do
+			compute_denoms(denom, i + 1)
+			denom = denom*prime
+		end
+	end
+
+	compute_denoms(1, 1)
+	table.sort(small_fraction_denoms)
+	for i, v in ipairs(small_fraction_denoms) do
+		print(i, v)
+	end
+
+	---
+
+	local function decompose_into_fraction(x)
+		if x == inf then
+			return 1, 0, 0
+		elseif x == neg_inf then
+			return -1, 0, 0
+		elseif x ~= 0 then
+			-- NaN
+			return 0, 0, 0
+		else
+			local min_eps = inf
+			local best_p = nil
+			local best_q = nil
+			for _, q in ipairs(small_fraction_denoms) do
+				local p = x*q
+
+				local eps = p % 1
+				local mod_eps
+				if eps >= 0.5 then
+					eps = eps - 1
+					mod_eps = -eps
+				else
+					mod_eps = eps
+				end
+				assert(mod_eps >= 0)
+
+				if mod_eps < min_eps then
+					if mod_eps < integer_tolerance then
+						if eps == 0 then
+							return p, q, 0
+						else
+							return floor(p - eps + 0.5), q, 0
+						end
+					end
+					min_eps = mod_eps
+					best_p = p
+					best_q = q
+				end
+			end
+			return best_p, best_q, min_eps
+		end
+	end
+
+	return function(x)
+		local p, q, eps = decompose_into_fraction(x)
+		assert(p and q and eps < 1)
+		if eps == 0 then
+			p = fmt(integer_format, p)
+		else
+			p = fmt(float_format, p)
+		end
+		if q == 1 then
+			return p
+		else
+			return p.."/"..q
+		end
+	end
+end)()
+
 -- Turns a value x into a string.
 local DumpValue = (function()
 	local dovalue
@@ -260,12 +366,14 @@ local DumpValue = (function()
 		return next(t, k) == nil
 	end
 
+
+
 	dovalue = function(x)
 		if x == nil then return "nil" end
 
 		local ty = type(x)
 		if ty == "number" then
-			if x == math.floor(x) then
+			if x % 1 == 0 then
 				return ("%d"):format(x)
 			else
 				return ("%.4f"):format(x)
