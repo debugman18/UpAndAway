@@ -6,24 +6,27 @@ end)
 
 -- Starts reputation decay for a given faction.
 function Reputation:StartDecaying(faction)
-	local rate = self.factions[faction].decay_rate
-	local negative = self.factions[faction].decay_negative
-	local delay = self.factions[faction].decay_delay
-	local trigger = self.factions[faction].decay_trigger
+	-- Better double check.
+	if faction then
+		local rate = self.factions[faction].decay_rate
+		local negative = self.factions[faction].decay_negative
+		local delay = self.factions[faction].decay_delay
+		local trigger = self.factions[faction].decay_trigger
 
-	if self.updatetask == nil then
-        self.updatetask = self.inst:DoPeriodicTask(delay, function()
-        	if negative then 
-        		self:LowerReputation(faction, rate, trigger)
-        	else
-        		self:IncreaseReputation(faction, rate, trigger)
-        	end
-        end)
-    end
+		if self.updatetask == nil then
+	        self.updatetask = self.inst:DoPeriodicTask(delay, function()
+	        	if negative then 
+	        		self:LowerReputation(faction, rate, trigger)
+	        	else
+	        		self:IncreaseReputation(faction, rate, trigger)
+	        	end
+	        end)
+	    end
 
-    -- I'm not sure how or where we could use this right now, 
-    -- because the actual reputation component isn't tied to a specific faction on save and load. -Debug
-    self.factions[faction].decaying = true
+	    -- I'm not sure how or where we could use this right now, 
+	    -- because the actual reputation component isn't tied to a specific faction on save and load. -Debug
+	    self.factions[faction].decaying = true
+	end
 end
 
 -- Stops reputation decay for a given faction.
@@ -33,7 +36,10 @@ function Reputation:StopDecaying(faction)
         self.updatetask = nil
     end
 
-    self.factions[faction].decaying = false
+    -- Better double check.
+    if faction then
+    	self.factions[faction].decaying = false
+    end
 end
 
 -- Returns the current reputation of a given faction.
@@ -45,9 +51,9 @@ end
 function Reputation:SetDecay(faction, boolean)
 	self.factions[faction].decay = boolean
 	if boolean == false then
-		StopDecaying()
+		self:StopDecaying()
 	else
-		StartDecaying()
+		self:StartDecaying()
 	end
 end
 

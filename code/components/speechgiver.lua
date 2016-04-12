@@ -31,7 +31,7 @@ local SpeechGiver = HostClass(Debuggable, function(self, inst)
     Debuggable._ctor(self, "SpeechGiver")
     self:SetConfigurationKey("SPEECHGIVER")
 
-    self.defaultvoice = "dontstarve/maxwell/talk_LP"
+    self.defaultvoice = "upandaway/characters/shopkeeper/talk_LP"
 
     -- Constant delay added to every speech line.
     self.constant_speech_delay = 0.75

@@ -22,47 +22,54 @@ I'm prefixing the list of changes by date, since I suppose we'll remain at preal
 for quite some time.
 -->
 
-### Dev Version: alpha-0.2.0 (Horrors in the Sky)
+### Dev Version: alpha-0.2.1 (Horrors in the Sky)
 
 ----------------------------------------------------
 
-### Update 2015-?-?? (alpha-0.2.0 release)
+### Future Changes
 
-+ Added Don't Starve Together compatibility.
-+ Creatures and items were balanced across the board.
-+ New crops have been added.
-+ Potions have been added, and the cauldron is now functional.
-+ Special gnome decoration added.
-+ New turf textures have been added.
-+ Octocopter no longer spawns wreckage on death.
-+ Added a faction/reputation mechanic.
 + Sheep can now be shaved.
++ Added a new boss; the Semiconductor.
++ Giant Bean Pod added as a setpiece.
++ Added new crystal armor type.
++ Gnomes have recieved an overhaul.
++ Octocopter rotor parts now used for crafting.
++ Added recipes for new boss-related items.
+
+----------------------------------------------------
+
+### Current Version: alpha-0.0.9
+
+----------------------------------------------------
+
+### Update 2016-?-?? (alpha-0.2.1 release)
+
++ Added Don't Starve Together compatibility!(!!!!!)
++ Added Shipwrecked compatibility.
++ Ambrosia was tweaked.
++ Creatures and items were balanced across the board.
++ New crops were added.
++ Potions were added.
++ Cauldrons are now functional.
++ Gnome decoration added.
++ New turf textures have been added.
++ Turf textures were tweaked to be easier on the eyes.
++ Octocopter no longer spawns wreckage on death.
++ Octocopter behavior was tweaked.
++ Added a faction/reputation mechanic to the world(s).
 + Sheep now run from the player.
 + Added cloud wall structure.
 + Squashed some bugs.
 + Added some new bugs.
 + Updated various art assets.
++ Ball Lightnings have been tweaked.
++ Rubber armor added.
++ Winnie has been tweaked.
++ Owls have been tweaked, and are far less aggressive.
++ Extended the Shopkeeper's questline.
++ Bean Giant was overhauled.
 
 ----------------------------------------------------
-
-### Changes in Progress
-
-+ Added a new boss; the Semiconductor.
-+ Bean Giant no longer spawns via beanlet kills.
-+ Bean Giant has recieved an overhaul.
-+ Giant Bean Pod added as a setpiece.
-+ Added the static damagetype.
-+ Added new rubber armor type.
-+ Added new crystal armor type.
-+ Winnie has recieved an overhaul.
-+ Gnomes have recieved an overhaul.
-+ Octocopter rotor parts now used for crafting.
-+ Added recipes for new boss-related items.
-+ Added a new Shopkeeper quest.
-
-----------------------------------------------------
-
-### Current Version: alpha-0.0.9
 
 ### Update 2014-7-14 (alpha-0.0.9 release)
 + Fixed a TMI crash.

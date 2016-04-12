@@ -103,6 +103,9 @@ LightFable(1).crystal_lamp { ModIng("beanlet_shell", 1), ModIng("crystal_fragmen
     .placer "crystal_lamp_placer"
     --.sortkey (Recipes.lantern.sortkey)
 
+LightFable(1).quartz_torch { Ing("torch", 1), ModIng("crystal_fragment_quartz", 4), ModIng("thunder_log", 2) }
+    --.sortkey (Recipes.lantern.sortkey)
+
 ---
 
 MagicFable(1).blackstaff { Ing("spear", 1), ModIng("refined_black_crystal", 1), Ing("nightmarefuel", 6) }

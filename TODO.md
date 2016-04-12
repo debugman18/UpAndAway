@@ -7,14 +7,18 @@
 	+ Allow for more cloud stuff in the overworld, and vice-versa.
 	+ Bean Giant fight implementation. Groan.
 	+ Winnie character art implementation.
-	+ Quartz Torch implementation. It should act as a torch that does not dissappear upon loss of fuel. Can be placed into the refiner, placed into quartz lamps, or given to entities to increase reputation with that faction.
+	+ Quartz Torch placable into quartz lamps, givable to entities to increase reputation with that faction.
 
 + **Current bugs:**
 
-	+ Obsidian staff crashes in cloudrealm.
-	+ Octocopter AI crash.
-	+ Shipwrecked recipes not available in cloudrealm.
-	+ Climbing up and down the beanstalk does not function as expected in Shipwrecked.
+    + Attempting to use Obisidian Staff in the cloudrealm results in a crash.
+    + Shipwrecked recipes not available in cloudrealm. This is technically working as intended.
+    + Lightning strikes cause static to start.
+    + Shopkeeper crashes the game.
+	+ Things with 0 burn time can be burnt with a few firestaff strikes. 
+	+ Winnie's meatbulb recipe is visible to anyone.
+	+ Owl people lack unique sounds in general. (Turkey sounds don't fit either.)
+	+ Sound files are not built properly. (need event category)
 
 + **Art assets in need of attention**
 
@@ -23,10 +27,8 @@
 + **Code assets in need of attention**
 
 	+ Add ambiant sound to the cloudrealm. Sounds now exist in mod files.
-	+ Reputation component needs decay functionality.
-	+ Winnie lureplant recipe (waiting for Klei recipe implementation.)
 	+ Bean Giant is being overhauled.	
-	+ Shopkeeper Boss Quest implementation.
+	+ Shopkeeper Boss Quest implementation
 	+ Gnomes are being overhauled.
 	+ Add a slight visual effect to static damage.
 	+ Port golden egg corruption to DST.
@@ -35,7 +37,7 @@
 
 +** Strings in need of attention**
 
-	+ Red Jellycap missing strings.
+	+ New stuff.
 
 + **Miscellanea (Suggestions to be considered) **
 

@@ -231,8 +231,8 @@ Assets = GLOBAL.JoinArrays(
 	},
 
 	{
-		--Asset( "IMAGE", "winnie_names.tex"),
-		--Asset( "ATLAS", "winnie_names.xml"),
+		Asset( "IMAGE", "images/names_winnie.tex"),
+		Asset( "ATLAS", "images/names_winnie.xml"),
 	},
 
 	{

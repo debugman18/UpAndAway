@@ -59,6 +59,12 @@ local function OnAttacked(inst, data)
     inst.components.combat:ShareTarget(attacker, CFG.OCTOCOPTER.SHARE_TARGET_DIST, function(dude) return dude:HasTag("octocopter") end, CFG.OCTOCOPTER.MAX_TARGET_SHARES)
 end
 
+local function OnDeath(data)
+    local cause = data and data.cause or nil
+    cause:AddTag("OctocopterSlayer")
+    GetWorld():PushEvent("octocoptercrash")
+end
+
 local function MakeOctocopter()
 
     local FULL_PART_NAMES = {}
@@ -135,13 +141,8 @@ local function MakeOctocopter()
         inst:AddComponent("lootdropper")
         inst.components.lootdropper:SetChanceLootTable("octocopter")    
 
-        inst:ListenForEvent("death", function(inst)
-
-            --We don't want to spawn the wreckage anymore.
-            --Game.Move(SpawnPrefab("octocopter_wreckage"), inst)
-
-            GetWorld():PushEvent("octocoptercrash")
-        end)
+        inst:ListenForEvent("death", function(inst, data)
+            OnDeath(data) end, inst)
 
         return inst
 

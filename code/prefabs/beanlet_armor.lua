@@ -49,7 +49,7 @@ local function fn()
     inst.components.inventoryitem.atlasname = inventoryimage_atlas("beanlet_armor")
     
     inst:AddComponent("armor")
-    inst.components.armor:InitCondition(CFG.BEANLET_ARMOR.ARMOR_HEALTH, CFG.BEANLET_ARMOR.AROMR_ABSORB)
+    inst.components.armor:InitCondition(CFG.BEANLET_ARMOR.ARMOR_HEALTH, CFG.BEANLET_ARMOR.ARMOR_ABSORB)
     
     inst:AddComponent("equippable")
     inst.components.equippable.equipslot = EQUIPSLOTS.BODY

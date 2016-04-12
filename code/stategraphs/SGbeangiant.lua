@@ -12,8 +12,10 @@ local SHAKE_DIST = 40
 
 local function DeerclopsFootstep(inst)
     inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/step")
-    for i, v in ipairs(AllPlayers) do
-        v:ShakeCamera(CAMERASHAKE.VERTICAL, .5, .03, 2, inst, SHAKE_DIST)
+    if AllPlayers then
+        for i, v in ipairs(AllPlayers) do
+            v:ShakeCamera(CAMERASHAKE.VERTICAL, .5, .03, 2, inst, SHAKE_DIST)
+        end
     end
 end
 
@@ -123,11 +125,7 @@ CommonStates.AddCombatStates(states,
     {
         TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/death") end),
         TimeEvent(50*FRAMES, function(inst)
-            if GetPseudoSeasonManager():GetSnowPercent() > 0.02 then
-                inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/bodyfall_snow")
-            else
-                inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/bodyfall_dirt")
-            end    
+            inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/bodyfall_snow")  
             for i, v in ipairs(AllPlayers) do
                 v:ShakeCamera(CAMERASHAKE.FULL, .7, .02, 3, inst, SHAKE_DIST)
             end

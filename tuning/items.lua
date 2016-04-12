@@ -675,6 +675,13 @@ CLOUD_VEST.INSULATION = TUNING.INSULATION_LARGE * 1.1
 
 ---------------------------------------
 
+-- Crystal Armor
+
+CRYSTAL_ARMOR.ARMOR_HEALTH = 100 --These are just placeholders -Mob
+CRYSTAL_ARMOR.ARMOR_ABSORB = 0.1
+
+---------------------------------------
+
 -- Dragonblood Log
 
 DRAGONBLOOD.STACK_SIZE = 10
@@ -868,6 +875,18 @@ DRAGONBLOOD_TREE.TALL_LOOT = {
 -- Cumulostone
 
 CUMULOSTONE.STACK_SIZE = TUNING.STACK_SIZE_LARGEITEM
+
+---------------------------------------
+
+QUARTZ_TORCH.FUEL_TYPE = "STATIC"
+QUARTZ_TORCH.MAX_FUEL = 300
+QUARTZ_TORCH.FUELRATE = 1
+QUARTZ_TORCH.CHARGERATE = .6
+
+QUARTZ_TORCH.FALLOFF = 0.8
+QUARTZ_TORCH.INTENSITY = 0.4
+QUARTZ_TORCH.RADIUS = 1
+QUARTZ_TORCH.COLOUR = {135/255,221/255,12/255}
 
 ---------------------------------------
 
