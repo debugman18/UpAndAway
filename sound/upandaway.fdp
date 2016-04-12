@@ -19,7 +19,7 @@
 <templatefileopen>1</templatefileopen>
 <eventcategory>
 <name>music</name>
-<guid>{4ed5687f-fac7-47fc-8e9b-c297c5318aa3}</guid>
+<guid>{1e514144-d9c6-4e0e-9f58-ed6af0e9fffb}</guid>
 <volume_db>0</volume_db>
 <pitch>0</pitch>
 <maxplaybacks>0</maxplaybacks>
@@ -104,7 +104,7 @@
 <maxplaybacks>0</maxplaybacks>
 <maxplaybacks_behavior>Steal_oldest</maxplaybacks_behavior>
 <notes></notes>
-<open>0</open>
+<open>1</open>
 </eventcategory>
 <eventcategory>
 <name>movement</name>
@@ -379,7 +379,7 @@
 <sounddeffolder>
 <name>characters</name>
 <guid>{f7021cbe-a5a0-40ba-8eed-ae45b4759e81}</guid>
-<open>0</open>
+<open>1</open>
 <sounddef>
 <name>/characters/shopkeeper_voice2</name>
 <guid>{21c4dafc-5704-41b9-bb73-93bfe4f853e0}</guid>
@@ -409,7 +409,7 @@
 <position_randomization>0</position_randomization>
 <trigger_delay_min>0</trigger_delay_min>
 <trigger_delay_max>0</trigger_delay_max>
-<spawncount>0</spawncount>
+<spawncount>4</spawncount>
 <notes></notes>
 <entrylistmode>1</entrylistmode>
 <waveform>
@@ -425,8 +425,8 @@
 <guid>{1c50a85b-403a-4e54-b5b0-440fd63f8787}</guid>
 <open>1</open>
 <sounddef>
-<name>/creatures/bleat_by_erdie Copy</name>
-<guid>{7928dc23-b879-4a22-80a4-4f30f6e22c79}</guid>
+<name>/creatures/bleat_by_erdie</name>
+<guid>{e9f825a3-e5ca-4794-9883-834220796855}</guid>
 <type>randomnorepeat</type>
 <playlistmode>0</playlistmode>
 <randomrepeatsounds>0</randomrepeatsounds>
@@ -470,7 +470,7 @@
 <guid>{b4c9e684-b41d-4bdb-998a-89c6ae7e56a8}</guid>
 <eventgroup_nextid>0</eventgroup_nextid>
 <event_nextid>0</event_nextid>
-<open>0</open>
+<open>1</open>
 <notes></notes>
 <event>
 <name>music_work_cloudrealm</name>
@@ -976,12 +976,12 @@
 <envlock>0</envlock>
 <priority>-1</priority>
 <sound>
-<name>/creatures/bleat_by_erdie Copy</name>
+<name>/creatures/bleat_by_erdie</name>
 <x>0</x>
 <width>1</width>
 <startmode>0</startmode>
-<loopmode>0</loopmode>
-<loopcount2>-1</loopcount2>
+<loopmode>1</loopmode>
+<loopcount2>0</loopcount2>
 <autopitchenabled>0</autopitchenabled>
 <autopitchparameter>0</autopitchparameter>
 <autopitchreference>0</autopitchreference>
@@ -1013,13 +1013,13 @@
 <pitch_randomization_units>Octaves</pitch_randomization_units>
 <volume_randomization>0</volume_randomization>
 <priority>128</priority>
-<maxplaybacks>1</maxplaybacks>
-<maxplaybacks_behavior>Steal_newest</maxplaybacks_behavior>
+<maxplaybacks>4</maxplaybacks>
+<maxplaybacks_behavior>Steal_quietest</maxplaybacks_behavior>
 <stealpriority>10000</stealpriority>
 <mode>x_3d</mode>
 <ignoregeometry>Yes</ignoregeometry>
 <rolloff>Linear</rolloff>
-<mindistance>1</mindistance>
+<mindistance>3</mindistance>
 <maxdistance>30</maxdistance>
 <auto_distance_filtering>Off</auto_distance_filtering>
 <distance_filter_centre_freq>1500</distance_filter_centre_freq>
@@ -1144,7 +1144,7 @@
 <guid>{9597c302-51b1-40ca-86b8-ddf2f581fc2e}</guid>
 <eventgroup_nextid>0</eventgroup_nextid>
 <event_nextid>0</event_nextid>
-<open>0</open>
+<open>1</open>
 <notes></notes>
 <eventgroup>
 <name>shopkeeper</name>
@@ -1205,14 +1205,14 @@
 <pitch_randomization_units>Octaves</pitch_randomization_units>
 <volume_randomization>0</volume_randomization>
 <priority>128</priority>
-<maxplaybacks>4</maxplaybacks>
-<maxplaybacks_behavior>Steal_oldest</maxplaybacks_behavior>
+<maxplaybacks>1</maxplaybacks>
+<maxplaybacks_behavior>Steal_quietest</maxplaybacks_behavior>
 <stealpriority>10000</stealpriority>
 <mode>x_3d</mode>
 <ignoregeometry>Yes</ignoregeometry>
 <rolloff>Linear</rolloff>
-<mindistance>1</mindistance>
-<maxdistance>40</maxdistance>
+<mindistance>3</mindistance>
+<maxdistance>30</maxdistance>
 <auto_distance_filtering>Off</auto_distance_filtering>
 <distance_filter_centre_freq>1500</distance_filter_centre_freq>
 <headrelative>World_relative</headrelative>
@@ -1243,7 +1243,7 @@
 <speaker_spread>0</speaker_spread>
 <panlevel3d>1</panlevel3d>
 <fadein_time>0</fadein_time>
-<fadeout_time>0</fadeout_time>
+<fadeout_time>2500</fadeout_time>
 <spawn_intensity>1</spawn_intensity>
 <spawn_intensity_randomization>0</spawn_intensity_randomization>
 <TEMPLATE_PROP_LAYERS>1</TEMPLATE_PROP_LAYERS>
@@ -1425,7 +1425,7 @@
 </waveform>
 <waveform>
 <filename>creatures/sheep/bleat_by_erdie.ogg</filename>
-<guid>{78fba8b0-03fc-4b09-9d41-21a5ff590c48}</guid>
+<guid>{6b7e1b53-90d2-4492-a708-2868f2507d24}</guid>
 <mindistance>1</mindistance>
 <maxdistance>10000</maxdistance>
 <deffreq>32000</deffreq>
@@ -1693,7 +1693,7 @@
 <_IOS_fixedsamplerate>48000</_IOS_fixedsamplerate>
 <notes></notes>
 </waveform>
-<_PC_format>PCM</_PC_format>
+<_PC_format>VORBIS</_PC_format>
 <_PC_quality>50</_PC_quality>
 <_PC_forcesoftware>1</_PC_forcesoftware>
 <_PC_maxstreams>10</_PC_maxstreams>

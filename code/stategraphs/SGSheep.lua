@@ -119,7 +119,7 @@ local states=
             inst.AnimState:PushAnimation("walk_pst")
             inst.components.locomotor:StopMoving()
             inst.AnimState:PlayAnimation("bellow")
-            inst.SoundEmitter:PlaySound(inst.sounds.grunt, "grunt", 0.1)
+            inst.SoundEmitter:PlaySound(inst.sounds.grunt)
         end,
        
         events=

@@ -21,8 +21,6 @@ local assets=
     Asset("ANIM", "anim/beefalo_basic.zip"),
     Asset("ANIM", "anim/beefalo_actions.zip"),
     Asset("SOUND", "sound/beefalo.fsb"),
-    Asset("SOUND", "sound/project_bank00.fsb"),
-    Asset("SOUND", "sound/sheep_bank01.fsb"),		
 }
 
 local prefabs = CFG.SHEEP.PREFABS
@@ -32,7 +30,7 @@ SetSharedLootTable( "sheep", CFG.SHEEP.LOOT)
 local sounds = 
 {
     walk = "dontstarve/beefalo/walk",
-    grunt = "sheep/sheep/baa",
+    grunt = "upandaway/creatures/sheep/bleat",
     yell = "dontstarve/beefalo/yell",
     swish = "dontstarve/beefalo/tail_swish",
     curious = "dontstarve/beefalo/curious",

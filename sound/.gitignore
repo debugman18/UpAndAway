@@ -8,4 +8,5 @@
 *.txt
 *.log
 *.fdp.bak
+*.fdp.autosave
 *~
