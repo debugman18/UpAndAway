@@ -45,8 +45,9 @@ return {
 		"KidneyBeanBoy",
 	}},
 	{"freesound", {
-		title = "This mod uses these sounds from freesound:",
+		title = "This mod uses sounds from freesound.org:",
 		
 		"\"Sheep.flac\" by Erdie ( http://freesound.org/people/Erdie/ )",
+		"\"4CH012I.wav\" by cjpowderhound ( http://freesound.org/people/cjpowderhound/ )",
 	}},
 }

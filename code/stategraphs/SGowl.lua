@@ -42,17 +42,17 @@ CommonStates.AddCombatStates(states,
 {
     attacktimeline = 
     {
-        TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/merm/attack") end),
+        TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("upandaway/creatures/owl/attack") end),
         TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/wilson/attack_whoosh") end),
         TimeEvent(20*FRAMES, function(inst) inst.components.combat:DoAttack() end),
     },
     hittimeline = 
     {
-        TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/merm/hurt") end),
+        TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("upandaway/creatures/owl/hurt") end),
     },
     deathtimeline = 
     {
-        TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/merm/death") end),
+        TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("upandaway/creatures/owl/death") end),
     },
 })
 
