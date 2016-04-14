@@ -164,11 +164,8 @@ Assets = GLOBAL.JoinArrays(
 	]=]--
 
 	{
-		Asset("SOUNDPACKAGE", "sound/project.fev"),
-		Asset("SOUND", "sound/project_bank00.fsb"),
-		
-		Asset("SOUNDPACKAGE", "sound/sheep.fev"),
-		Asset("SOUND", "sound/sheep_bank01.fsb"),	
+		Asset("SOUNDPACKAGE", "sound/upandaway.fev"),
+		Asset("SOUND", "sound/upandaway.fsb"),
 	},
 
 	ImageAssets {
