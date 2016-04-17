@@ -7,26 +7,31 @@ end)
 -- Starts reputation decay for a given faction.
 function Reputation:StartDecaying(faction)
 	-- Better double check.
-	if faction then
-		local rate = self.factions[faction].decay_rate
-		local negative = self.factions[faction].decay_negative
-		local delay = self.factions[faction].decay_delay
-		local trigger = self.factions[faction].decay_trigger
+	assert(faction ~= nil)
 
-		if self.updatetask == nil then
-	        self.updatetask = self.inst:DoPeriodicTask(delay, function()
-	        	if negative then
-        			self:LowerReputation(faction, rate, trigger, true)
-	        	else
-	        		self:IncreaseReputation(faction, rate, trigger, true)
-	        	end
-	        end)
-	    end
+	local rate = self.factions[faction].decay_rate
+	local delay = self.factions[faction].decay_delay
+	local trigger = self.factions[faction].decay_trigger
 
-	    -- I'm not sure how or where we could use this right now, 
-	    -- because the actual reputation component isn't tied to a specific faction on save and load. -Debug
-	    self.factions[faction].decaying = true
-	end
+	if self.factions[faction].updatetask == nil then
+       self.factions[faction].updatetask = self.inst:DoPeriodicTask(delay, function()
+
+        	-- Shift towards a resting value.
+    	    local delta = rate
+    	    local old_reputation = self.factions[faction].reputation
+    	    local resting_reputation = self.factions[faction].decay_resting
+
+		    if old_reputation > resting_reputation then
+		        delta = -delta
+		    end
+
+		    if delta < 0 then
+		    	self:LowerReputation(faction, delta, trigger)
+		    else
+		    	self:IncreaseReputation(faction, delta, trigger)
+		    end
+        end)
+    end
 end
 
 -- Stops reputation decay for a given faction.
@@ -34,11 +39,6 @@ function Reputation:StopDecaying(faction)
     if self.updatetask then
         self.updatetask:Cancel()
         self.updatetask = nil
-    end
-
-    -- Better double check.
-    if faction then
-    	self.factions[faction].decaying = false
     end
 end
 
@@ -58,13 +58,11 @@ function Reputation:SetDecay(faction, boolean)
 end
 
 -- Changes values related to decay.
-function Reputation:SetDecayRate(faction, decay_negative, decay_rate, decay_delay, decay_trigger, decay_floor. decay_ceiling)
-	self.factions[faction].decay_negative = decay_negative
+function Reputation:SetDecayRate(faction, decay_rate, decay_delay, decay_trigger, decay_resting)
 	self.factions[faction].decay_rate = decay_rate or 1
 	self.factions[faction].decay_delay = decay_delay or 60
 	self.factions[faction].decay_trigger = decay_trigger or true
-	self.factions[faction].decay_floor = decay_floor or 0
-	self.factions[faction].decay_ceiling = decay_ceiling or 100
+	self.factions[faction].decay_resting = decay_resting or 0
 end
 
 -- Changes minimum reputation value.
@@ -85,10 +83,6 @@ end
 
 -- Changes whether or not a threshold will trigger callbacks.
 function Reputation:SetStageTrigger(faction, stage, trigger_negative, trigger_positive)
-	print(faction)
-	print(stage)
-	print(stage.trigger_negative)
-	print(stage.trigger_positive)
 	self.factions[faction].stages[stage].trigger_negative = trigger_negative
 	self.factions[faction].stages[stage].trigger_positive = trigger_positive
 end
@@ -117,7 +111,7 @@ function Reputation:OnDelta(faction, positive)
 end
 
 -- Increase reputation by a specific amount for a specific faction.
-function Reputation:IncreaseReputation(faction, delta, trigger)
+function Reputation:IncreaseReputation(faction, delta, trigger, permanent)
 	TheMod:DebugSay("Increasing the reputation of the " .. faction .. " faction by " .. delta .. " points.")
 	if self.factions[faction] then
 		self.factions[faction].reputation = self.factions[faction].reputation + delta
@@ -128,26 +122,28 @@ function Reputation:IncreaseReputation(faction, delta, trigger)
 		self:OnDelta(faction, true)
 	end
 
-	-- Stops decay if necessary.
-	if not self.factions[faction].decay_negative and not isdecay then
-	    if self.factions[faction].reputation >= self.factions[faction].maxrep then
-	        StopDecaying()
-	        self.factions[faction].reputation = self.factions[faction].maxrep
-	    end
-	end
+	-- Will not go above the ceiling.
+    if self.factions[faction].reputation >= self.factions[faction].maxrep then
+        self:StopDecaying()
+        self.factions[faction].reputation = self.factions[faction].maxrep
+    end
 
-	if not self.factions[faction].decay_negative and isdecay then
-	    if self.factions[faction].reputation >= self.factions[faction].decay_ceiling then
-	        StopDecaying()
-	        self.factions[faction].reputation = self.factions[faction].decay_ceiling
-	    end
-	end
+
+    -- Permanently increase the resting reputation.
+    if permanent and self.factions[faction].decay then
+		local decay_rate = self.factions[faction].decay_rate
+		local decay_delay = self.factions[faction].decay_delay
+		local decay_trigger = self.factions[faction].decay_trigger
+		local decay_resting = self.factions[faction].decay_resting + delta
+		
+		self:SetDecayRate(faction, decay_rate, decay_delay, decay_trigger, decay_resting)
+    end
 
 	TheMod:DebugSay("The new reputation of the " .. faction .. " faction is " .. self.factions[faction].reputation .. " points.")
 end
 
 -- Lower reputation by a specific amount for a specific faction.
-function Reputation:LowerReputation(faction, delta, trigger, isdecay)
+function Reputation:LowerReputation(faction, delta, trigger, permanent)
 	TheMod:DebugSay("Lowering the reputation of the " .. faction .. " faction by " .. delta .. " points.")
 	if self.factions[faction] then
 		self.factions[faction].reputation = self.factions[faction].reputation - delta	
@@ -158,20 +154,21 @@ function Reputation:LowerReputation(faction, delta, trigger, isdecay)
 		self:OnDelta(faction, false)
 	end
 
-	-- Stops decay if necessary.
-	if self.factions[faction].decay_negative and not isdecay then
-	    if self.factions[faction].reputation <= self.factions[faction].minrep then
-	        StopDecaying()
-	        self.factions[faction].reputation = self.factions[faction].minrep
-	    end
-	end
+	-- Will not go below the floor.
+    if self.factions[faction].reputation <= self.factions[faction].minrep then
+        self:StopDecaying()
+        self.factions[faction].reputation = self.factions[faction].minrep
+    end
 
-	if self.factions[faction].decay_negative and isdecay then
-	    if self.factions[faction].reputation <= self.factions[faction].decay_floor then
-	        StopDecaying()
-	        self.factions[faction].reputation = self.factions[faction].decay_floor
-	    end
-	end
+    -- Permanently lower the resting reputation.
+    if permanent and self.factions[faction].decay then
+		local decay_rate = self.factions[faction].decay_rate
+		local decay_delay = self.factions[faction].decay_delay
+		local decay_trigger = self.factions[faction].decay_trigger
+		local decay_resting = self.factions[faction].decay_resting - delta
+		
+		self:SetDecayRate(faction, decay_rate, decay_delay, decay_trigger, decay_resting)
+    end
 
 	TheMod:DebugSay("The new reputation of the " .. faction .. " faction is " .. self.factions[faction].reputation .. " points.")
 end
@@ -188,7 +185,7 @@ function Reputation:AddStage(faction, stage, threshold, callback)
 end
 
 -- Add a faction if it does not exist.
-function Reputation:AddFaction(faction, baserep, minrep, maxrep)
+function Reputation:AddFaction(faction, baserep, minrep, maxrep, decay_resting)
 	if not self.factions then
 		self.factions = {}
 	end
@@ -208,9 +205,6 @@ function Reputation:AddFaction(faction, baserep, minrep, maxrep)
 			-- Whether or not reputation will decay.
 			decay = false, 
 
-			-- Whether or not the decay is negative.
-			decay_negative = true, 
-
 			-- The rate at which reputation decays.
 			decay_rate = 0, --Default to nothing.
 
@@ -220,11 +214,8 @@ function Reputation:AddFaction(faction, baserep, minrep, maxrep)
 			-- Whether or not decay will trigger triggers.
 			decay_trigger = true,
 
-			-- When to stop decaying if decay is negative.
-			decay_floor = minrep
-
-			-- When to stop decaying if decay is positive.
-			decay_ceiling = maxrep
+			-- What reputation value to decay towards.
+			decay_resting = decay_resting or 0
 
 			-- Whether or not reputation decreases trigger callbacks.
 			trigger_negative = true,
