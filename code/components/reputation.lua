@@ -110,24 +110,32 @@ function Reputation:OnDelta(faction, positive)
 	end
 end
 
--- Increase reputation by a specific amount for a specific faction.
-function Reputation:IncreaseReputation(faction, delta, trigger, permanent)
-	TheMod:DebugSay("Increasing the reputation of the " .. faction .. " faction by " .. delta .. " points.")
-	if self.factions[faction] then
-		self.factions[faction].reputation = self.factions[faction].reputation + delta
-	end
+-- Increase or decrease reputation by a specific amount for a specific faction.
+function Reputation:DoDelta(faction, delta, trigger, permanent)
+	TheMod:DebugSay("Changing the reputation of the " .. faction .. " faction by " .. delta .. " points.")
+
+	-- We shouldn't be changing a faction that doesn't exist.
+	assert(faction ~= nil)
+
+	-- Do the math.
+	self.factions[faction].reputation = self.factions[faction].reputation + delta
 
 	-- Whether or not to trigger a stage callback.
-	if trigger and self.factions[faction].trigger_positive then
+	if delta >= 0 and trigger and self.factions[faction].trigger_positive then
 		self:OnDelta(faction, true)
+	elseif delta <0 and trigger and self.factions[faction].trigger_negative then
+		self:OnDelta(faction, false)
 	end
 
 	-- Will not go above the ceiling.
     if self.factions[faction].reputation >= self.factions[faction].maxrep then
-        self:StopDecaying()
         self.factions[faction].reputation = self.factions[faction].maxrep
     end
 
+    -- Will not go below the floor.
+    if self.factions[faction].reputation <= self.factions[faction].minrep then
+        self.factions[faction].reputation = self.factions[faction].minrep
+    end
 
     -- Permanently increase the resting reputation.
     if permanent and self.factions[faction].decay then
@@ -135,37 +143,6 @@ function Reputation:IncreaseReputation(faction, delta, trigger, permanent)
 		local decay_delay = self.factions[faction].decay_delay
 		local decay_trigger = self.factions[faction].decay_trigger
 		local decay_resting = self.factions[faction].decay_resting + delta
-		
-		self:SetDecayRate(faction, decay_rate, decay_delay, decay_trigger, decay_resting)
-    end
-
-	TheMod:DebugSay("The new reputation of the " .. faction .. " faction is " .. self.factions[faction].reputation .. " points.")
-end
-
--- Lower reputation by a specific amount for a specific faction.
-function Reputation:LowerReputation(faction, delta, trigger, permanent)
-	TheMod:DebugSay("Lowering the reputation of the " .. faction .. " faction by " .. delta .. " points.")
-	if self.factions[faction] then
-		self.factions[faction].reputation = self.factions[faction].reputation - delta	
-	end
-
-	-- Whether or not to trigger a stage callback.
-	if trigger and self.factions[faction].trigger_negative then
-		self:OnDelta(faction, false)
-	end
-
-	-- Will not go below the floor.
-    if self.factions[faction].reputation <= self.factions[faction].minrep then
-        self:StopDecaying()
-        self.factions[faction].reputation = self.factions[faction].minrep
-    end
-
-    -- Permanently lower the resting reputation.
-    if permanent and self.factions[faction].decay then
-		local decay_rate = self.factions[faction].decay_rate
-		local decay_delay = self.factions[faction].decay_delay
-		local decay_trigger = self.factions[faction].decay_trigger
-		local decay_resting = self.factions[faction].decay_resting - delta
 		
 		self:SetDecayRate(faction, decay_rate, decay_delay, decay_trigger, decay_resting)
     end
