@@ -13,8 +13,8 @@ function Reputation:StartDecaying(faction)
 	local delay = self.factions[faction].decay_delay
 	local trigger = self.factions[faction].decay_trigger
 
-	if self.factions[faction].updatetask == nil then
-       self.factions[faction].updatetask = self.inst:DoPeriodicTask(delay, function()
+	if self.factions[faction].decay_task == nil then
+       self.factions[faction].decay_task = self.inst:DoPeriodicTask(delay, function()
 
         	-- Shift towards a resting value.
     	    local delta = rate
@@ -36,9 +36,9 @@ end
 
 -- Stops reputation decay for a given faction.
 function Reputation:StopDecaying(faction)
-    if self.updatetask then
-        self.updatetask:Cancel()
-        self.updatetask = nil
+    if self.decay_task then
+        self.decay_task:Cancel()
+        self.decay_task = nil
     end
 end
 
