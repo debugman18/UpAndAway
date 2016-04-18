@@ -25,11 +25,7 @@ function Reputation:StartDecaying(faction)
 		        delta = -delta
 		    end
 
-		    if delta < 0 then
-		    	self:LowerReputation(faction, delta, trigger)
-		    else
-		    	self:IncreaseReputation(faction, delta, trigger)
-		    end
+	    	self:DoDelta(faction, delta, trigger)
         end)
     end
 end
