@@ -15,20 +15,16 @@
 
 ### Custom animation banks/builds in need of attention, in order of priority.
 + Sheep -- Needs shaved art.
-+ Bean Giant Boss -- Needs polishing and animation. Millenium and Battal are working on this. They may need help animating, because of the complexities. 
-+ Bean Pod -- The pod which the bean giant will burst from. May potentially even be part of the bean giants animations.
 + Gnomes. -- Vivalavie was working on this. Battal began animations. Unknown status.
 + Cloud Wall -- Art uploaded by MilleniumCount. Just needs to be animated. http://forums.kleientertainment.com/topic/44496-current-goals-road-to-beta-v2/?p=573225
 + Cauldron -- Needs animations for brewing and for brewing completion. Bubbling liquid in cauldron will be a FX prefab.
 + Crystal Armor -- Needs inventory, ground and wearing images, or at least they are not in the mod yet.
-+ Ball Lightning -- Needs additional animations, IE an aggressive form. I may just do SetColor and spawn FX.
-+ Gustflower -- Needs pick animations. Charged sway needs polish, has huge hitbox.
 + Birds of Paradise -- There is existing art and some basic animations. Currently virtually no code.
 + Semiconductor Boss -- Lord Battal is working on this. It needs polishing. If you need to know what animations it needs, let us know. We're still figuring out this fight anyways, which is why it's low on priority list.
 
 ### Entities with no art assets and undefined status (between using custom animations or not)
 + Mantas. -- Postponed
-+ Rainbowcoons -- Postponeds
++ Rainbowcoons -- Postponed
 
 ### Miscellanea
 + Malan-Tal's feather and cooked pineapple, to be colored by Vivalavie: http://forums.kleientertainment.com/topic/27897-artwork-eye-candyland/?p=519474

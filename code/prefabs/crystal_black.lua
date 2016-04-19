@@ -15,7 +15,10 @@ local function onMined(inst, worker)
     inst.components.lootdropper:DropLoot()
     inst.SoundEmitter:PlaySound("dontstarve/common/destroy_rock")
     inst.components.childspawner:ReleaseAllChildren()
-    ThePlayer.components.reputation:DoDelta("strix", -20, true)
+    if worker == ThePlayer then
+        ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.HOME_WORKED_MINOR, true)
+        ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.HOME_WORKED_MAJOR, true, true)
+    end
     inst:Remove()	
 end
 

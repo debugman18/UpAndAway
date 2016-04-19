@@ -176,6 +176,9 @@ WarFable(1).beanlet_armor { ModIng("beanlet_shell", 1), ModIng("greenbean", 1), 
 WarFable(1).cotton_candy { ModIng("cloud_cotton", 6), ModIng("candy_fruit", 6) }
     --.sortkey (Recipes.hambat.sortkey)
 
+WarFable(1).crystal_armor { ModIng("crystal_fragment_quartz", 6), ModIng("rope", 4), }
+    --.sortkey (Recipes.armormarble.sortkey)
+
 ---
 
 if RecipeAdder:IsTrackingRecipes() then

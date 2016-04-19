@@ -14,6 +14,9 @@ SetSharedLootTable("crystal_light", CFG.CRYSTAL_LIGHT.LOOT)
 local function workcallback(inst, worker, workleft)
     if workleft <= 0 then
         inst.SoundEmitter:PlaySound("dontstarve/wilson/rock_break")
+        if worker == ThePlayer then
+            ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.CRYSTAL_WORKED, true)
+        end
         inst:Remove()
     else            
         if workleft <= CFG.CRYSTAL.WORK_TIME * 0.5 then

@@ -22,7 +22,7 @@ end
 local function RetargetFn(inst, target)
     inst:DoTaskInTime(0, function(inst, target)
         local x,y,z = inst.Transform:GetWorldPosition()
-        local ents = TheSim:FindEntities(x,y,z, 15, "owl_crystal")
+        local ents = TheSim:FindEntities(x,y,z, CFG.OWL.SIGHT_DIST, "owl_crystal")
         for k,v in pairs(ents) do
             if v and v:HasTag("owl_crystal") then
                 local rock = v
@@ -179,9 +179,27 @@ local function fn()
     inst:DoPeriodicTask(CFG.OWL.WHO_INTERVAL, function() inst.components.talker:Say("Whoo?", CFG.OWL.WHO_INTERVAL, noanim) end, 12)
     inst:DoPeriodicTask(CFG.OWL.WHO_INTERVAL, function() inst.components.talker:ShutUp() end, 12)
 
-    inst:ListenForEvent("death", function(inst, data)
-        if data.cause == ThePlayer then
-            ThePlayer.components.reputation:DoDelta("strix", -2, true)
+    inst:ListenForEvent("entity_death", function(inst, data)
+        local victim = data.inst
+        local killer = data.cause
+        -- Player killed this owl.
+        if victim == inst and killer == ThePlayer then
+            ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.DEATH, true)
+        -- Player killed this owl's target.
+        elseif victim == inst.components.combat.target and killer == ThePlayer then
+            ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.ENEMY_KILLED, true)
+        -- Player killed something which was targeting this owl.
+        elseif inst = victim.components.combat.target then
+            ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.ENEMY_KILLED, true)
+        -- Player killed an owl within sight of this owl.
+        elseif victim ~= inst and victim.prefab == "OWL" then
+            local x,y,z = inst.Transform:GetWorldPosition()
+            local ents = TheSim:FindEntities(x,y,z, CFG.OWL.SIGHT_DIST, "owl")
+            for k,v in pairs(ents) do
+                if v and v == victim then
+                    ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.FRIEND_KILLED, true)   
+                end    
+            end        
         end
     end, inst)
 
