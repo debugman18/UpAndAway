@@ -28,7 +28,7 @@
 
 	+ Add ambiant sound to the cloudrealm. Sounds now exist in mod files.
 	+ Bean Giant is being overhauled.	
-	+ Shopkeeper Boss Quest implementation
+	+ Shopkeeper Boss Quest implementation.
 	+ Gnomes are being overhauled.
 	+ Add a slight visual effect to static damage.
 	+ Port golden egg corruption to DST.
@@ -43,12 +43,14 @@
 
 	+ Clockwork biome: http://forums.kleientertainment.com/topic/27648-suggestions-cauldron-of-ideas/?p=507711 (This is something I've thought more about. The player should have something more easily relateable once they make some progress in the Cloudrealm. Doesn't have to be clockwork stuff necessarily. Consider it pavlovion. Not that I want the mod to become a skinner-box, but that kind of attribute is necessary to a point in design and balance.)
 
-	+ Stuffed animals that can be created with the sewing kit. They start as a cotton frame, and become a random stuffed animal when sewn. They give very small amounts of sanity and warmth when used.
+	+ Stuffed animals that can be created with the sewing kit. They start as a cotton frame, and become a random stuffed animal when sewn. They give very small amounts of sanity and warmth when used. -- I think there is a mod that basically does this. --Debug
 
 	+ Rhinomen confirmed. http://forums.kleientertainment.com/topic/19488-dont-starve-supermod-mod-abandoned/page-47#entry192646
 	http://forums.kleientertainment.com/topic/3988-the-majestic-rhino-tribe/
 
 	+ Cooked foods. http://forums.kleientertainment.com/topic/27648-suggestions-cauldron-of-ideas/page-56?p=500493#entry500493
+
+	+ Gummybear traps.
 
 ******
 

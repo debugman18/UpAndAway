@@ -15,6 +15,7 @@ local function onMined(inst, worker)
     inst.components.lootdropper:DropLoot()
     inst.SoundEmitter:PlaySound("dontstarve/common/destroy_rock")
     inst.components.childspawner:ReleaseAllChildren()
+    ThePlayer.components.reputation:DoDelta("strix", -20, true)
     inst:Remove()	
 end
 

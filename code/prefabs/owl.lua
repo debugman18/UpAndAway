@@ -125,8 +125,6 @@ local function fn()
     inst:AddComponent("eater")
     inst.components.eater:SetVegetarian()
 
-    --local home = FindEntity(inst, 6, function(ent) end, {"crystal_relic"})
-
     inst:AddComponent("combat")
     inst.components.combat.hiteffectsymbol = "pig_torso"
     inst.components.combat:SetDefaultDamage(CFG.OWL.DAMAGE)
@@ -141,6 +139,23 @@ local function fn()
     inst.components.lootdropper:SetChanceLootTable("owl")
     
     inst:AddComponent("inventory")
+
+    inst:AddComponent("trader")
+    inst.components.trader:Enable()
+    inst.components.trader:SetAcceptTest(function(inst, item)
+        -- TODO
+        -- Check for reputation level before allowing player to give food or crystals. 
+        -- Crystals are accepted at most reputation levels.
+        -- Food is not accepted until a higher reputation level.
+        return false
+    end)
+    inst.components.trader.onaccept = function(inst, giver, item)
+        if item:HasTag("owl_crystal") then
+            ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.CRYSTAL_GIVEN, true)
+        elseif item.components.edible then
+            ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.FOOD_GIVEN, true)
+        end
+    end
     
     inst:AddComponent("inspectable")
     inst:AddComponent("named")
@@ -163,6 +178,12 @@ local function fn()
 
     inst:DoPeriodicTask(CFG.OWL.WHO_INTERVAL, function() inst.components.talker:Say("Whoo?", CFG.OWL.WHO_INTERVAL, noanim) end, 12)
     inst:DoPeriodicTask(CFG.OWL.WHO_INTERVAL, function() inst.components.talker:ShutUp() end, 12)
+
+    inst:ListenForEvent("death", function(inst, data)
+        if data.cause == ThePlayer then
+            ThePlayer.components.reputation:DoDelta("strix", -2, true)
+        end
+    end, inst)
 
     return inst
 end
