@@ -84,6 +84,24 @@ local function doresurrect(inst, dude)
     inst:Remove()
 end
 
+local function doresurrect_dst(inst, dude)
+    GetPseudoSeasonManager():DoLightningStrike(Vector3(inst.Transform:GetWorldPosition()))
+    inst.SoundEmitter:PlaySound("dontstarve/common/resurrectionstone_break")
+    inst.components.lootdropper:DropLoot()
+    dude:PushEvent("usedtouchstone", inst)
+    if dude.components.hunger then
+        dude.components.hunger:SetPercent(.3)
+    end
+
+    if dude.components.health then
+        dude.components.health:Respawn(.3)
+    end
+        
+    if dude.components.sanity then
+        dude.components.sanity:SetPercent(.3)
+    end    
+end
+
 local function makeactive(inst)
     --inst.AnimState:PlayAnimation("idle_activate", true)
     inst.components.activatable.inactive = false
@@ -127,6 +145,8 @@ local function fn()
     inst.AnimState:SetMultColour(1, 1, 1, 0.7)
     inst:AddTag("structure")
 
+    inst:AddTag("resurrector")
+
     --MakeSnowCovered(inst)
 
     ------------------------------------------------------------------------
@@ -154,11 +174,17 @@ local function fn()
 		inst.components.resurrector.makeactivefn = makeactive
 		inst.components.resurrector.makeusedfn = makeused
 		inst.components.resurrector.doresurrect = doresurrect
-	end
+	else
+        inst:ListenForEvent("activateresurrection", doresurrect_dst)
+    end
 
-    inst:AddComponent("activatable")
-    inst.components.activatable.OnActivate = OnActivate
-    inst.components.activatable.inactive = true
+    if not IsDST() then inst:AddComponent("activatable")
+        inst.components.activatable.OnActivate = OnActivate
+        inst.components.activatable.inactive = true
+    else
+        inst:AddComponent("hauntable")
+        inst.components.hauntable:SetHauntValue(TUNING.HAUNT_INSTANT_REZ)
+    end
 
     inst:AddComponent("inspectable")
 
