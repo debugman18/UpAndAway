@@ -57,7 +57,7 @@ end
 function Reputation:SetDecayRate(faction, decay_rate, decay_delay, decay_trigger, decay_resting)
 	self.factions[faction].decay_rate = decay_rate or 1
 	self.factions[faction].decay_delay = decay_delay or 60
-	self.factions[faction].decay_trigger = decay_trigger or true
+	self.factions[faction].decay_trigger = not decay_trigger == false --returns true if nil
 	self.factions[faction].decay_resting = decay_resting or 0
 end
 
