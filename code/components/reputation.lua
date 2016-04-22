@@ -19,7 +19,7 @@ function Reputation:StartDecaying(faction)
         	-- Shift towards a resting value.
     	    local delta = rate
     	    local old_reputation = self.factions[faction].reputation
-    	    local resting_reputation = self.factions[faction].decay_resting
+    	    local resting_reputation = self.factions[faction].decay_resting or 0
 
 		    if old_reputation > resting_reputation then
 		        delta = -delta
@@ -32,9 +32,9 @@ end
 
 -- Stops reputation decay for a given faction.
 function Reputation:StopDecaying(faction)
-    if self.decay_task then
-        self.decay_task:Cancel()
-        self.decay_task = nil
+    if self.factions[faction].decay_task then
+        self.factions[faction].decay_task:Cancel()
+        self.factions[faction].decay_task = nil
     end
 end
 
@@ -47,9 +47,9 @@ end
 function Reputation:SetDecay(faction, boolean)
 	self.factions[faction].decay = boolean
 	if boolean == false then
-		self:StopDecaying()
+		self:StopDecaying(faction)
 	else
-		self:StartDecaying()
+		self:StartDecaying(faction)
 	end
 end
 
@@ -188,7 +188,7 @@ function Reputation:AddFaction(faction, baserep, minrep, maxrep, decay_resting)
 			decay_trigger = true,
 
 			-- What reputation value to decay towards.
-			decay_resting = decay_resting or 0
+			decay_resting = decay_resting or 0,
 
 			-- Whether or not reputation decreases trigger callbacks.
 			trigger_negative = true,

@@ -16,7 +16,14 @@ local prefabs = CFG.OWL.PREFABS
 SetSharedLootTable( "owl", CFG.OWL.LOOT) 
 
 local function ontalk(inst, script)
-    inst.SoundEmitter:PlaySound("dontstarve/pig/grunt")
+	--inst.SoundEmitter:PlaySound("upandaway/creatures/owl/taunt")
+end
+
+local function DoHoot(inst)
+	if not (inst.sg and inst.sg:HasStateTag("busy")) then
+		inst.components.talker:Say("Whoo?", 1, true)
+		inst.SoundEmitter:PlaySound("upandaway/creatures/owl/taunt")
+	end
 end
 
 local function RetargetFn(inst, target)
@@ -39,7 +46,10 @@ local function RetargetFn(inst, target)
         defenseTarget = home
     end
     local invader = FindEntity(defenseTarget or inst, CFG.OWL.DEFEND_DIST, function(guy)
-        if guy:HasTag("player") then 
+        if guy.components.combat and guy.components.combat.target
+		and guy.components.combat.target == inst then --fight back!
+			return true
+		elseif guy:HasTag("player") then --do you like that guy?
             return guy.components.reputation 
             and guy.components.reputation:GetReputation("strix") <= CFG.OWL.REPUTATION.ENEMY_THRESHOLD
         else
@@ -67,7 +77,7 @@ local function KeepTargetFn(inst, target)
 end
 
 local function OnAttacked(inst, data)
-    inst.components.talker:Say("Whoo!", 2, noanim)
+    inst.components.talker:Say("Whoo!", 2, true)
     local attacker = data and data.attacker
     if attacker and RetargetFn(inst, attacker) then
         inst.components.combat:SetTarget(attacker)
@@ -143,23 +153,27 @@ local function fn()
     inst:AddComponent("trader")
     inst.components.trader:Enable()
     inst.components.trader:SetAcceptTest(function(inst, item)
-        -- TODO
-        -- Check for reputation level before allowing player to give food or crystals. 
+        -- Check for reputation level before allowing player to give food or crystals.
+		local reputation = ThePlayer.components.reputation:GetReputation("strix")
         -- Crystals are accepted at most reputation levels.
+        if item:HasTag("owl_crystal") and reputation >= CFG.OWL.REPUTATION.CRYSTAL_THRESHOLD then
+			return true
         -- Food is not accepted until a higher reputation level.
+        elseif item.components.edible and reputation >= CFG.OWL.REPUTATION.FOOD_THRESHOLD then
+			return true
+		end
         return false
     end)
     inst.components.trader.onaccept = function(inst, giver, item)
+		if not giver.components.reputation then return end
         if item:HasTag("owl_crystal") then
-            ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.CRYSTAL_GIVEN, true)
+            giver.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.CRYSTAL_GIVEN, true)
         elseif item.components.edible then
-            ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.FOOD_GIVEN, true)
+            giver.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.FOOD_GIVEN, true)
         end
     end
     
     inst:AddComponent("inspectable")
-    inst:AddComponent("named")
-    inst.components.named:SetName("Strix")
 
     inst:AddComponent("homeseeker")
     inst:AddComponent("knownlocations")
@@ -176,32 +190,34 @@ local function fn()
     inst.components.talker.offset = Vector3(0,-400,0)  
     inst.components.talker:StopIgnoringAll()  
 
-    inst:DoPeriodicTask(CFG.OWL.WHO_INTERVAL, function() inst.components.talker:Say("Whoo?", CFG.OWL.WHO_INTERVAL, noanim) end, 12)
-    inst:DoPeriodicTask(CFG.OWL.WHO_INTERVAL, function() inst.components.talker:ShutUp() end, 12)
+    inst:DoPeriodicTask(CFG.OWL.WHO_INTERVAL, DoHoot, math.random()*6 +6)
 
-    inst:ListenForEvent("entity_death", function(inst, data)
+    inst:ListenForEvent("entity_death", function(world, data)
         local victim = data.inst
         local killer = data.cause
-        -- Player killed this owl.
-        if victim == inst and killer == ThePlayer then
-            ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.DEATH, true)
-        -- Player killed this owl's target.
-        elseif victim == inst.components.combat.target and killer == ThePlayer then
-            ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.ENEMY_KILLED, true)
-        -- Player killed something which was targeting this owl.
-        elseif inst = victim.components.combat.target then
-            ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.ENEMY_KILLED, true)
-        -- Player killed an owl within sight of this owl.
-        elseif victim ~= inst and victim.prefab == "OWL" then
-            local x,y,z = inst.Transform:GetWorldPosition()
-            local ents = TheSim:FindEntities(x,y,z, CFG.OWL.SIGHT_DIST, "owl")
-            for k,v in pairs(ents) do
-                if v and v == victim then
-                    ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.FRIEND_KILLED, true)   
-                end    
-            end        
-        end
-    end, inst)
+		-- This does not work if the player isn't an unique prefab.
+		if ThePlayer.prefab == killer then
+			-- Killed this owl
+			if victim == inst then
+				ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.DEATH, true)
+			-- Killed this owl's target
+			elseif victim == inst.components.combat.target then
+				ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.ENEMY_KILLED, true)
+			-- Killed something which was targeting this owl
+			elseif inst == victim.components.combat.target then
+				ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.ENEMY_KILLED, true)
+			-- Killed an owl within sight of this owl
+			elseif victim ~= inst and victim.prefab == "owl" then
+				local x,y,z = inst.Transform:GetWorldPosition()
+				local ents = TheSim:FindEntities(x,y,z, CFG.OWL.SIGHT_DIST, "owl")
+				for k,v in pairs(ents) do
+					if v and v == victim then
+						ThePlayer.components.reputation:DoDelta("strix", CFG.OWL.REPUTATION.FRIEND_KILLED, true)
+					end
+				end
+			end
+		end
+    end, TheWorld)
 
     return inst
 end
