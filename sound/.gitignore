@@ -3,6 +3,7 @@
 
 /.fsbcache/**
 /**.zip
+/**.rar
 *.txt
 *.log
 *.fdp.bak
