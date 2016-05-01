@@ -13,12 +13,9 @@
 
     + Attempting to use Obisidian Staff in the cloudrealm results in a crash.
     + Shipwrecked recipes not available in cloudrealm. This is technically working as intended.
-    + Lightning strikes cause static to start.
+    + Lightning flash causes default ambient lighting (colour) to be used.
     + Shopkeeper crashes the game.
-	+ Things with 0 burn time can be burnt with a few firestaff strikes. 
 	+ Winnie's meatbulb recipe is visible to anyone.
-	+ Owl people lack unique sounds in general. (Turkey sounds don't fit either.)
-	+ Sound files are not built properly. (need event category)
 
 + **Art assets in need of attention**
 
@@ -35,7 +32,7 @@
 	+ Superconductor implementation.
 	+ Unique item implementation.
 
-+** Strings in need of attention**
++ ** Strings in need of attention**
 
 	+ New stuff.
 

@@ -49,7 +49,7 @@ local function SetSmall(inst)
 
     if inst.components.burnable then
         inst.components.burnable:SetFXLevel(3)
-        inst.components.burnable:SetBurnTime(0)
+        --inst.components.burnable:SetBurnTime(0)
     end
 
     if inst.components.freezable then
@@ -74,7 +74,7 @@ local function SetMedium(inst)
 	
     if inst.components.burnable then
         inst.components.burnable:SetFXLevel(3)
-        inst.components.burnable:SetBurnTime(0)
+        --inst.components.burnable:SetBurnTime(0)
     end
 
     if inst.components.freezable then
@@ -98,7 +98,7 @@ local function SetLarge(inst)
 
     if inst.components.burnable then
         inst.components.burnable:SetFXLevel(4)
-        inst.components.burnable:SetBurnTime(0)
+        --inst.components.burnable:SetBurnTime(0)
     end
 
     if inst.components.freezable then
@@ -290,6 +290,7 @@ local function MakeWeaverNestFn(den_level)
 		
         inst:AddComponent("health")
         inst.components.health:SetMaxHealth(50)
+        inst.components.health.vulnerabletoheatdamage = false
         -------------------
         inst:AddComponent("combat")
         inst.components.combat:SetOnHit(OnHit)
