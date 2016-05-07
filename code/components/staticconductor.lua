@@ -60,14 +60,17 @@ end
 
 -- Some slight trickery to give the component a custom death string.
 local function patch_morgue(v, damage)
+	assert(v ~= nil)
     local static = SpawnPrefab("staticdummy")
     static.Transform:SetPosition(v.Transform:GetWorldPosition())
     static.persists = false
-    if v and v.components.combat then
+    if v.components.combat then
         TheMod:DebugSay("Dealing " .. damage .. " damage to " .. v.prefab .. " via " .. static.prefab .. ".")
         v.components.combat:GetAttacked(static, damage)
+		static.AnimState:PlayAnimation("idle",false) -- Removes itself
+	else
+		static:Remove()
     end
-    static:Remove()
 end
 
 function StaticConductor:OnUpdate(dt)

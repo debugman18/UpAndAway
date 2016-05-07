@@ -24,10 +24,9 @@
 + **Code assets in need of attention**
 
 	+ Add ambiant sound to the cloudrealm. Sounds now exist in mod files.
-	+ Bean Giant is being overhauled.	
+	+ Bean Giant is being overhauled.
 	+ Shopkeeper Boss Quest implementation.
 	+ Gnomes are being overhauled.
-	+ Add a slight visual effect to static damage.
 	+ Port golden egg corruption to DST.
 	+ Superconductor implementation.
 	+ Unique item implementation.

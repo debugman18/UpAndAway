@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+    <folder id="0" name="zap1">
+        <file id="0" name="zap1/zap1-0.png" width="26" height="176" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="zap1/zap1-1.png" width="26" height="176" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="zap1/zap1-2.png" width="26" height="176" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="zap1/zap1-3.png" width="25" height="176" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="zap1/zap1-4.png" width="26" height="176" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="zap1/zap1-5.png" width="26" height="176" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <folder id="1" name="zap2">
+        <file id="0" name="zap2/zap2-0.png" width="110" height="60" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="zap2/zap2-4.png" width="110" height="60" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="zap2/zap2-5.png" width="110" height="60" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="zap2/zap2-3.png" width="110" height="60" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="zap2/zap2-2.png" width="110" height="60" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="zap2/zap2-1.png" width="110" height="60" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="staticdamagefx">
+        <animation id="0" name="idle" length="350">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="zap1-0" folder="0" file="0" abs_x="-24" abs_y="54" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="2" abs_scale_y="-2" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="zap2-0" folder="1" file="0" abs_x="-82" abs_y="69" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1.5" abs_scale_y="1.5" abs_a="1" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="50">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                </key>
+                <key id="2" time="100">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                </key>
+                <key id="3" time="150">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="3" z_index="1"/>
+                </key>
+                <key id="4" time="200">
+                    <object_ref id="0" timeline="0" key="4" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="4" z_index="1"/>
+                </key>
+                <key id="5" time="250">
+                    <object_ref id="0" timeline="0" key="5" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="5" z_index="1"/>
+                </key>
+                <key id="6" time="300">
+                    <object_ref id="0" timeline="0" key="6" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="zap1-0">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-24" y="54" angle="0" scale_x="2" scale_y="-2"/>
+                </key>
+                <key id="1" time="50" spin="0">
+                    <object folder="0" file="1" x="-24" y="54" angle="0" scale_x="2" scale_y="-2"/>
+                </key>
+                <key id="2" time="100" spin="0">
+                    <object folder="0" file="2" x="-24" y="54" angle="0" scale_x="2" scale_y="-2"/>
+                </key>
+                <key id="3" time="150" spin="0">
+                    <object folder="0" file="3" x="-24" y="54" angle="0" scale_x="2" scale_y="-2"/>
+                </key>
+                <key id="4" time="200" spin="0">
+                    <object folder="0" file="1" x="-24" y="54" angle="0" scale_x="2" scale_y="-2"/>
+                </key>
+                <key id="5" time="250" spin="0">
+                    <object folder="0" file="4" x="-24" y="54" angle="0" scale_x="2" scale_y="-2"/>
+                </key>
+                <key id="6" time="300" spin="0">
+                    <object folder="0" file="5" x="-24" y="54" angle="0" scale_x="2" scale_y="-2"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="zap2-0">
+                <key id="0" spin="0">
+                    <object folder="1" file="0" x="-82" y="69" angle="0" scale_x="1.5" scale_y="1.5"/>
+                </key>
+                <key id="1" time="50" spin="0">
+                    <object folder="1" file="5" x="-82" y="69" angle="0" scale_x="1.5" scale_y="1.5"/>
+                </key>
+                <key id="2" time="100" spin="0">
+                    <object folder="1" file="4" x="-82" y="69" angle="0" scale_x="1.5" scale_y="1.5"/>
+                </key>
+                <key id="3" time="150" spin="0">
+                    <object folder="1" file="3" x="-82" y="69" angle="0" scale_x="1.5" scale_y="1.5"/>
+                </key>
+                <key id="4" time="200" spin="0">
+                    <object folder="1" file="1" x="-82" y="69" angle="0" scale_x="1.5" scale_y="1.5"/>
+                </key>
+                <key id="5" time="250" spin="0">
+                    <object folder="1" file="2" x="-82" y="69" pivot_x="0" pivot_y="1" angle="0" scale_x="1.5" scale_y="1.5"/>
+                </key>
+                <key id="6" time="300" spin="0">
+                    <object folder="1" file="2" x="-82" y="69" pivot_x="0" pivot_y="1" angle="0" scale_x="1.5" scale_y="1.5"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
