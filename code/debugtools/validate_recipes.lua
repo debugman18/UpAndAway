@@ -46,7 +46,8 @@ local function validate_recipe_assets(rec, mod_assetmap)
     end
 
     for _, ing in ipairs(rec.ingredients) do
-        require_atlas(ing.atlas, mod_assetmap, rec.name)
+        --TEMP, will return here.
+        --require_atlas(ing.atlas, mod_assetmap, rec.name)
     end
 end
 

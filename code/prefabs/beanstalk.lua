@@ -243,20 +243,6 @@ local function fn(Sim)
     local minimap = inst.entity:AddMiniMapEntity()
 
     --[[
-    -- Why was this here? exitcavelight should be spawned (and set to the player's/beanstalk's position)
-    -- when he exits the foreign land, just to prevent the grue from insta-killing him in case
-    -- it's night. It's not really a part of entity creation.
-    --
-    -- I renamed it "exitlight" to avoid confusion with inst.Light (which the beanstalk currently does
-    -- not have, but anyway).
-    --]]
-    --[[
-    local exitlight = SpawnPrefab("exitcavelight")	
-    exitlight.Transform:SetPosition(inst.Transform:GetWorldPosition())
-    ]]--
-    
-
-    --[[
     -- Engine-level components configuration (and related tags).
     --]]
     
@@ -268,7 +254,9 @@ local function fn(Sim)
     physics:SetCylinder(2, 24)
     physics:SetCollisionGroup(COLLISION.OBSTACLES)
     physics:SetFriction(10000)
-    physics:CollidesWith(COLLISION.WORLD)
+
+    --TEMP, will return here.
+    --physics:CollidesWith(COLLISION.WORLD)
     physics:CollidesWith(COLLISION.ITEMS)
     physics:CollidesWith(COLLISION.CHARACTERS)
 
@@ -326,5 +314,5 @@ local function fn(Sim)
     return inst
 end
 
-return Prefab( "common/monsters/beanstalk", fn, assets, prefabs )
+return Prefab("common/setpieces/beanstalk", fn, assets, prefabs )
 

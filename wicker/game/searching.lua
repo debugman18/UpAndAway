@@ -235,7 +235,7 @@ local player_gens = {}
 
 if not IsDST() then
 	player_gens.basic = function()
-		return Lambda.iterator.SingletonList(1, GetLocalPlayer())
+		return Lambda.iterator.SingletonList(GetLocalPlayer())
 	end
 else
 	player_gens.basic = function()

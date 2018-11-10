@@ -19,7 +19,7 @@ function ClimbingVoter:BeginPoll(target_inst)
 	local cm = assert( GetClimbingManager() )
 
 	local range = assert( self:GetConfig("RANGE") )
-	local nearby_players = Game.FindAllPlayersInRange(target_inst, range, function(player)
+	local nearby_players = Game.FindAllPlayersInRange(target_inst:GetPosition(), range, function(player)
 		return IsSingleplayer() or player.userid ~= nil
 	end)
 	if #nearby_players >= cm:GetMinimumPlayers() then

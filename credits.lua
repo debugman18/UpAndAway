@@ -6,6 +6,8 @@ return {
 
 		"debugman18",
 		"simplex",
+		"Mobbstar",
+		"Zarklod",
 	}},
 	{"art", {
 		title = "Artists",

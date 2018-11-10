@@ -42,7 +42,7 @@ end
 
 TheMod:AddPlayerPostInit(function(player)
     if IsHost() then
-		-- player:AddComponent("climbingvoter")
+		player:AddComponent("climbingvoter")
         player:AddComponent("quester")
         --player:AddComponent("ua_camera")
         player:AddComponent("speechlistener")
@@ -51,8 +51,12 @@ TheMod:AddPlayerPostInit(function(player)
         player:AddComponent("staticconductor")
 
 		-- Reputation stuff is worldwide.
-		player:AddComponent("reputation")
-		do
+
+		--TEMP, will return.
+		--player:AddComponent("reputation")
+		if GetWorld() then GetWorld():AddComponent("climbingmanager") end
+		if player.components.reputation then
+			
 			-- Bean faction.
 			player.components.reputation:AddFaction("bean", 100, 0, 100)
 			player.components.reputation:SetDecay("bean", true)
@@ -69,6 +73,7 @@ TheMod:AddPlayerPostInit(function(player)
 			player.components.reputation:SetDecay("strix", false)
 			player.components.reputation:AddStage("strix", "ally_one", 50, function () --[[dummy]] end)
 		end
+
 		configure_skyflyspawner(player)
     end
 end)

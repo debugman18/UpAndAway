@@ -18,7 +18,7 @@ local function custom_postinit(inst)
     inst:AddComponent("staticannouncer")
 
 	if IsHost() then
-		-- inst:AddComponent("climbingmanager")
+		inst:AddComponent("climbingmanager")
 	end
 end
 
