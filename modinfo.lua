@@ -14,6 +14,7 @@ Original concept by debugman18.
 dont_starve_compatible = true
 reign_of_giants_compatible = true
 shipwrecked_compatible = true
+porkland_compatible = true
 dst_compatible = true
 
 all_clients_require_mod = true

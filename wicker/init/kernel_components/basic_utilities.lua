@@ -851,7 +851,7 @@ local function include_introspectionlib(kernel)
 		local id = doGetShardId()
 		if id == nil then
 			return SHARDID.INVALID
-		end
+		else return id end
 	end
 	_M.GetShardId = GetShardId
 	_M.GetShardID = GetShardId

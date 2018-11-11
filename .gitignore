@@ -5,6 +5,7 @@ asset_compilation.lua
 make/config.mk
 wicker_local
 Thumbs.db
+ds_modding_resource
 
 # Patterns
 /*.zip

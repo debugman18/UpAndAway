@@ -92,7 +92,6 @@ TRANSLATE_TO_PREFABS["crystal_relic"] = {"crystal_relic"}
 local Layouts = GLOBAL.require("map/layouts").Layouts
 local StaticLayout = GLOBAL.require("map/static_layout")
 
-
 --[[
 -- We'll just use an existing layout here, but feel free to add your own in a
 -- scripts/map/static_layouts folder.

@@ -196,7 +196,7 @@ local function is_current(slotnum, cavenum)
 
         if cavenum then
 			local mode = SaveGameIndex:GetCurrentMode()
-            if moce ~= "cave" and mode ~= "cloudrealm" then return false end
+            if mode ~= "cave" and mode ~= "cloudrealm" then return false end
             if SaveGameIndex:GetCurrentCaveNum(slotnum) ~= cavenum then return false end
         end
     end
