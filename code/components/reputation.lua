@@ -200,28 +200,11 @@ function Reputation:AddFaction(faction, baserep, minrep, maxrep, decay_resting)
 	end
 end
 
--- Makes a deep copy of a table.
-local function deepcopy(orig)
-    local orig_type = type(orig)
-    local copy
-    if orig_type == 'table' then
-        copy = {}
-        for orig_key, orig_value in next, orig, nil do
-            --TEMP, will return here.
-            copy[deepcopy(orig_key)] = deepcopy(orig_value)
-        end
-        setmetatable(copy, deepcopy(getmetatable(orig)))
-    else -- number, string, boolean, etc
-        copy = orig
-    end
-    return copy
-end
-
 -- OnSave
 function Reputation:OnSave()
 	local data = {}
 	if self.factions then
-		data.factions = deepcopy(self.factions)
+		data.factions = _G.deepcopy(self.factions)
     end
     return data
 end
@@ -229,7 +212,7 @@ end
 -- OnLoad
 function Reputation:OnLoad(data)
 	if data and data.factions then
-    	self.factions = deepcopy(data.factions)
+    	self.factions = _G.deepcopy(data.factions)
     end
 end
 
