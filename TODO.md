@@ -4,6 +4,7 @@
 
 	-- Debug's List
 
+	+ Random horizontal flipping of jellyshrooms to reduce repetiveness.
 	+ Allow for more cloud stuff in the overworld, and vice-versa.
 	+ Bean Giant fight implementation. Groan.
 	+ Winnie character art implementation.
@@ -12,10 +13,9 @@
 + **Current bugs:**
 
     + Attempting to use Obisidian Staff in the cloudrealm results in a crash.
-    + Shipwrecked recipes not available in cloudrealm. This is technically working as intended.
     + Lightning flash causes default ambient lighting (colour) to be used.
-    + Shopkeeper crashes the game.
 	+ Winnie's meatbulb recipe is visible to anyone.
+	+ Quartz torch errors.
 
 + **Art assets in need of attention**
 
