@@ -49,6 +49,8 @@ local loot = {
     {"magic_beans", p = 0.18},
 }
 
+--Sometimes this will stop shenanigans.
+if SaveGameIndex:IsModeShipwrecked() or SaveGameIndex:IsModePorkland() then return end
 
 --[[
 -- Ensures all the loot prefabs will be preloaded.

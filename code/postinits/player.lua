@@ -51,8 +51,6 @@ TheMod:AddPlayerPostInit(function(player)
         player:AddComponent("staticconductor")
 
 		-- Reputation stuff is worldwide.
-
-		--TEMP, will return.
 		--player:AddComponent("reputation")
 		if GetWorld() then GetWorld():AddComponent("climbingmanager") end
 		if player.components.reputation then

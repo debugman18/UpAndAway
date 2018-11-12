@@ -9,7 +9,7 @@ function Reputation:StartDecaying(faction)
 	-- Better double check.
 	assert(faction ~= nil)
 
-	local rate = self.factions[faction].decay_rate
+	local rate = self.factions[faction].decay_rate or 0
 	local delay = self.factions[faction].decay_delay
 	local trigger = self.factions[faction].decay_trigger
 
@@ -18,7 +18,7 @@ function Reputation:StartDecaying(faction)
 
         	-- Shift towards a resting value.
     	    local delta = rate
-    	    local old_reputation = self.factions[faction].reputation
+    	    local old_reputation = self.factions[faction].reputation or 0
     	    local resting_reputation = self.factions[faction].decay_resting or 0
 
 		    if old_reputation > resting_reputation then

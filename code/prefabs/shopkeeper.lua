@@ -269,7 +269,7 @@ local function start_proximity_task(inst)
     local function should_alert(player)
         local quester = player.components.quester
         if quester and quester:StartedQuest(PRIMARY_QUEST) and not quester:GetFlag(PRIMARY_QUEST, "gotkettle") then
-            if Game.FindSomeEntity(inst, MAX_COW_DIST, is_a_cow) then
+            if Game.FindSomeEntity(inst:GetPosition(), MAX_COW_DIST, is_a_cow) then
                 return true
             end
         end
@@ -278,7 +278,7 @@ local function start_proximity_task(inst)
     inst.shop_proximity_task = inst:StartThread(function()
         while inst:IsValid() do
             if not inst.components.speechgiver:IsSpeaking() then
-                local player = Game.FindSomePlayerInRange(inst, 9, should_alert)
+                local player = Game.FindSomePlayerInRange(inst:GetPosition(), 9, should_alert)
                 if player then
                     inst.components.speechgiver:PlaySpeech("COW_ALERT", player)
                 end

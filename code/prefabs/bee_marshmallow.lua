@@ -158,7 +158,9 @@ local function commonfn()
     MakeCharacterPhysics(inst, 1, .5)
     inst.Physics:SetCollisionGroup(COLLISION.FLYERS)
     inst.Physics:ClearCollisionMask()
-    inst.Physics:CollidesWith(COLLISION.WORLD)
+
+    --TEMP, will return here.
+    --inst.Physics:CollidesWith(COLLISION.WORLD)
     inst.Physics:CollidesWith(COLLISION.FLYERS)
 
 

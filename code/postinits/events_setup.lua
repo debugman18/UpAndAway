@@ -32,6 +32,7 @@ end
 local function shopkeeper_spawner_setup()
     if SaveGameIndex:GetCurrentMode() == "survival" then
         local world = GetWorld()
+
         if world then
             world:ListenForEvent("rainstart", spawn_shopkeeper_spawner)
         end
@@ -39,5 +40,5 @@ local function shopkeeper_spawner_setup()
 end
 
 if IsHost() then
-    TheMod:AddSimPostInit(shopkeeper_spawner_setup)
+    TheMod:AddPrefabPostInit("forest", shopkeeper_spawner_setup)
 end
