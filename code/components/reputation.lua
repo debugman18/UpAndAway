@@ -212,6 +212,7 @@ end
 -- OnLoad
 function Reputation:OnLoad(data)
 	if data and data.factions then
+    	self.factions = _G.deepcopy(data.factions.reputation)
     end
 end
 
