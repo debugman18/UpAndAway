@@ -202,17 +202,23 @@ end
 
 -- OnSave
 function Reputation:OnSave()
-	local data = {}
-	if self.factions then
-		data.factions = _G.deepcopy(self.factions.reputation)
+	 local data = {reputations = {}}
+	 if self.factions then
+        for k, v in pairs(self.factions) do
+            data.reputations[k] = v.reputation
+        end
     end
     return data
 end
 
 -- OnLoad
 function Reputation:OnLoad(data)
-	if data and data.factions then
-    	self.factions = _G.deepcopy(data.factions.reputation)
+	if data and data.reputations and self.factions then
+        for k, v in pairs(self.factions) do
+            if data.reputations[k] ~= nil then
+                v.reputation = data.reputations[k]
+            end
+        end
     end
 end
 
