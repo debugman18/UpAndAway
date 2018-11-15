@@ -192,7 +192,7 @@ PrefabFiles = {
 	
 }
 
-if GLOBAL.TheSim:GetGameID()=="DST" then
+if GLOBAL.TheSim and GLOBAL.TheSim:GetGameID()=="DST" then
 	table.insert(PrefabFiles, "cloudrealm_network")
 end
 
