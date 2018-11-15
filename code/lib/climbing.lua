@@ -14,6 +14,8 @@ require "map/level"
 
 local Levels = require "map/levels"
 
+--local LevelsList = require "map.levels"
+
 local Game = wickerrequire "game"
 
 -- A table of predicates (functions returning true or false).
@@ -31,7 +33,15 @@ wickerrequire "daemons.shardgraph"
 --------------------------------
 
 -- This is the Levels entry we use.
-local LevelSet = assert( Levels[IfDST("sandbox_levels", "cave_levels")] )
+--local LevelSet = assert( Levels[IfDST("sandbox_levels", "cave_levels")] )
+
+local LevelSet
+
+if IsDST() then
+    LevelSet = (assert(LevelsList.GetLevelList("forest")))
+else
+    LevelSet = (assert(Levels[IfDST("sandbox_levels","cave_levels")]))
+end
 
 -- This is the LEVELTYPE we use.
 local CLOUD_LEVELTYPE = assert( LEVELTYPE[IfDST("SURVIVAL", "CAVE")] )
