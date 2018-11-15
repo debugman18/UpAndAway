@@ -38,14 +38,17 @@ for quite some time.
 
 ----------------------------------------------------
 
-### Current Version: alpha-0.0.9
+### Current Version: alpha-0.2.2
+
++ Extended the Shopkeeper's questline.
++ Bean Giant was overhauled.
 
 ----------------------------------------------------
 
-### Update 2016-?-?? (alpha-0.2.1 release)
+### Update 2018-11-?? (alpha-0.2.2 release)
 
-+ Added Don't Starve Together compatibility!(!!!!!)
 + Added Shipwrecked compatibility.
++ Added Hamlet compatibility.
 + Ambrosia was tweaked.
 + Creatures and items were balanced across the board.
 + New crops were added.
@@ -66,8 +69,7 @@ for quite some time.
 + Rubber armor added.
 + Winnie has been tweaked.
 + Owls have been tweaked, and are far less aggressive.
-+ Extended the Shopkeeper's questline.
-+ Bean Giant was overhauled.
+
 
 ----------------------------------------------------
 
