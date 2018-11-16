@@ -741,7 +741,7 @@ EntityFlinger.StartAttracting = (function()
             if self.inst:IsAsleep() or self:WantsToDie() then return end
 
             --print "looking for victims"
-            local Ents = Game.FindAllEntities(self.inst, self:GetAttractionRadius(), test, nil, {"NOFLING"})
+            local Ents = Game.FindAllEntities(self.inst:GetPosition(), self:GetAttractionRadius(), test, nil, {"NOFLING"})
 
             for _, e in ipairs(Ents) do
                 self:ApplyAttraction(e)

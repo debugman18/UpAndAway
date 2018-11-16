@@ -131,9 +131,12 @@ end
 ---
 -- Halts the updating of the state transition.
 function StaticGenerator:StopGenerating()
+    self:DebugSay("line 133")
     if self.task then
         self.task:Cancel()
+        self:DebugSay("line 136")
         self.task = nil
+        self:DebugSay("line 138")
     end
 end
 
@@ -178,6 +181,8 @@ function StaticGenerator:HoldState(dt)
 
     if not self.inst:IsValid() then return end
 
+    if not dt then return end
+
     local release_time = GetTime() + dt
     if self.state_release_time then
         if self.state_release_time < release_time then
@@ -191,14 +196,20 @@ function StaticGenerator:HoldState(dt)
 
     self.state_release_time = release_time
 
+    self:DebugSay("line 192")
+
     self:StopGenerating()
 
+    self:DebugSay("line 196")
+
     if self.state_release_time == math.huge then return end
+    self:DebugSay("line 200")
 
     self.releasetask = self.inst:DoTaskInTime(dt, function(inst)
         local self = inst.components.staticgenerator
+
         if inst:IsValid() and self then
-            self:ReleaseState()
+            self:ReleaseState()          
         end
     end)
 end

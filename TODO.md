@@ -16,6 +16,8 @@
     + Lightning flash causes default ambient lighting (colour) to be used.
 	+ Winnie's meatbulb recipe is visible to anyone.
 	+ Quartz torch errors.
+	+ Datura's do not have anim for 9 and 10.
+	+ Sparks are broken, no anim.
 
 + **Art assets in need of attention**
 

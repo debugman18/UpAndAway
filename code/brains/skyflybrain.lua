@@ -33,7 +33,7 @@ local FlowerWeight = (function()
 
         local basic_exponent = 0
         for _, player in ipairs(Game.FindAllPlayers()) do
-            basic_exponent = basic_exponent + getDistSq(flower, player)
+            basic_exponent = basic_exponent + getDistSq(flower:GetPosition(), player:GetPosition())
         end
 
         return exp(-closeness*basic_exponent)
@@ -44,7 +44,7 @@ function SkyflyBrain:OnStart()
     local clock = GetPseudoClock()
 
     local function far_enough(flower)
-        return self.inst:GetDistanceSqToInst(flower) > 0.25
+        return self.inst:GetDistanceSqToInst(flower:GetPosition()) > 0.25
     end
     
     local root = PriorityNode(
