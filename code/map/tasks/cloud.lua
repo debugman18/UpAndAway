@@ -21,7 +21,7 @@ TheMod:AddTask("Cloud_Innocent_Generic_Biome", {
     background_room="BGCloud",
     colour={r=.2,g=.2,b=.2,a=1},
       -- The number of neighbors beyond the first that each node links to
-      crosslink_factor = 5,
+      crosslink_factor = 10,
       -- Whether or not to connect the last node to the first
       make_loop = true,	
 })
@@ -65,7 +65,7 @@ TheMod:AddTask("Cloud_Innocent_Snow_Biome", {
       -- The number of neighbors beyond the first that each node links to
       crosslink_factor = 4,
       -- Whether or not to connect the last node to the first
-      make_loop = false,
+      make_loop = true,
 })
 
 TheMod:AddTask("Cloud_Snow_Biome", {
@@ -83,7 +83,7 @@ TheMod:AddTask("Cloud_Snow_Biome", {
     background_room="BGSnow",
     colour={r=.8,g=.8,b=.8,a=1},
       -- The number of neighbors beyond the first that each node links to
-      crosslink_factor = 4,
+      crosslink_factor = 0,
       -- Whether or not to connect the last node to the first
       make_loop = false,	
 })
@@ -107,9 +107,9 @@ TheMod:AddTask("Cloud_Innocent_Aurora_Biome", {
     background_room="BGAurora",
     colour={r=.8,g=.8,b=.8,a=1},
     -- The number of neighbors beyond the first that each node links to
-      crosslink_factor = 0,
+      crosslink_factor = 2,
       -- Whether or not to connect the last node to the first
-      make_loop = false,	
+      make_loop = true,	
 })
 
 
@@ -131,7 +131,7 @@ TheMod:AddTask("Cloud_Aurora_Biome", {
     background_room="BGAurora",
     colour={r=.8,g=.8,b=.8,a=1},
     -- The number of neighbors beyond the first that each node links to
-      crosslink_factor = 0,
+      crosslink_factor = 6,
       -- Whether or not to connect the last node to the first
       make_loop = false,	
 })
@@ -154,9 +154,9 @@ TheMod:AddTask("Cloud_Innocent_Rainbow_Biome", {
     background_room="BGRainbow",
     colour={r=.8,g=.8,b=.8,a=1},
     -- The number of neighbors beyond the first that each node links to
-      crosslink_factor = 2,
+      crosslink_factor = 0,
       -- Whether or not to connect the last node to the first
-      make_loop = true,	
+      make_loop = false,	
 })
 
 TheMod:AddTask("Cloud_Rainbow_Biome", {

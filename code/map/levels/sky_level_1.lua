@@ -13,9 +13,9 @@ local sky_level_1 = {
 
     overrides={
         {"location",		"cave"}, -- This is for non-DST only.
-        {"world_size", 		"medium"}, 
+        {"world_size", 		"small"}, 
 
-        {"day", 			"onlydusk"}, 
+        {"day", 			"onlyday"}, 
 
         {"waves", 			"on"},
         {"branching",		"more"},

@@ -198,7 +198,7 @@ local function chopdownbeanstalk(inst, chopper)
 
     inst:DoTaskInTime(.4, function(inst) 
         local sz = 10
-        for _, player in ipairs(Game.FindAllPlayersInRange(inst, 64)) do
+        for _, player in ipairs(Game.FindAllPlayersInRange(inst:GetPosition(), 64)) do
             Effects.ShakeCamera(player, inst, "FULL", 0.25, 0.03, sz, 6)
         end
     end)

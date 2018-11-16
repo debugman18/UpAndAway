@@ -258,10 +258,10 @@ function SkyflySpawner:GetSpawnFlower()
     local minsq = self.min_distance*self.min_distance
 
     return Game.FindRandomEntity(
-        player,
+        player:GetPosition(),
         self.max_distance,
         function(flower)
-            return player:GetDistanceSqToInst(flower) >= minsq and not Game.FindSomeEntity(
+            return player:GetDistanceSqToInst(flower:GetPosition()) >= minsq and not Game.FindSomeEntity(
                 flower,
                 self.min_spread,
                 function(fly)

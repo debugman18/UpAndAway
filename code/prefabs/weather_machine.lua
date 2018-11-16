@@ -89,7 +89,6 @@ local function weather_on(inst)
     inst.AnimState:PlayAnimation("idle_on", true)
     if inst.components.machine:IsOn() then return end
 
-
     if Pred.IsCloudRealm() then
         TheMod:DebugSay("[", inst, "] In cloudrealm.")
         DoCloudrealmEffect(inst)
@@ -98,7 +97,7 @@ local function weather_on(inst)
         DoWeatherPick(inst)
     end
 
-    for _, p in ipairs(Game.FindAllPlayersInRange(inst, 12)) do
+    for _, p in ipairs(Game.FindAllPlayersInRange(inst:GetPosition(), 12)) do
         p.components.sanity:DoDelta(-10)
     end
 

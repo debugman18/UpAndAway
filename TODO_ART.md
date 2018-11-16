@@ -5,6 +5,8 @@
 + Thunder Tree (Currently an atlas swap of spiked tree)
 + Variants of Bean huts.
 + Crystals should be more varied in their design, eventually.
++ Weaver Nest redesign.
++ Sunflower redesign.
 
 ### Inventory images in need of attention, in order of priority.
 + Various Potion Types -- Vivalavie was working on these last I checked.

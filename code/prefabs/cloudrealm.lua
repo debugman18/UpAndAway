@@ -253,7 +253,13 @@ local function fn()
     --inst.componentsambientsoundmixer.wave_sound = "dontstarve/common/clouds"
    
 	if not IsDedicated() then
-		inst:SetOverrideColourCube("images/colour_cubes/snowdusk_cc.tex")
+		inst:SetOverrideColourCube("images/colour_cubes/snow_cc.tex")
+        --[[
+        snowdusk
+        snow
+        insane_day
+        summer_day
+        --]]
 		--inst.Map:SetOverlayTexture( "levels/textures/snow.tex" )
 	end
     
