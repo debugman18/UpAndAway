@@ -1,7 +1,7 @@
 -- Note that the static generator only updates itself every 2 seconds, so
 -- using too low of a value will give low precision.
-STATIC.AVERAGE_UNCHARGED_TIME = 3*TUNING.TOTAL_DAY_TIME
-STATIC.AVERAGE_CHARGED_TIME = 2*TUNING.TOTAL_DAY_TIME
+STATIC.AVERAGE_UNCHARGED_TIME = 2*TUNING.TOTAL_DAY_TIME
+STATIC.AVERAGE_CHARGED_TIME = 1*TUNING.TOTAL_DAY_TIME
 STATIC.COOLDOWN = 20
 
 
@@ -19,8 +19,8 @@ local dusk_colour = Point(100/255, 100/255, 100/255)
 
 -- Ambient colour (RGB) for the static states.
 -- Always multiply with numbers on the right.
-CLOUD_AMBIENT.UNCHARGED_COLOUR = dusk_colour*1.5--2.5 --1.5
-CLOUD_AMBIENT.CHARGED_COLOUR = dusk_colour*0.6 --0.75 --0.6
+CLOUD_AMBIENT.UNCHARGED_COLOUR = dusk_colour*4--2.5 --1.5
+CLOUD_AMBIENT.CHARGED_COLOUR = dusk_colour*0 --0.75 --0.6
 
 -- Transition time between ambient colours.
 CLOUD_AMBIENT.COLOUR_TRANSITION_TIME = 5
@@ -32,7 +32,7 @@ SKYFLOWER.CHARGE_DELAY = function() return 0.5 + 5*math.random() end
 SKYFLOWER.UNCHARGE_DELAY = SKYFLOWER.CHARGE_DELAY
 
 
-SKYFLYSPAWNER.MAX_FLIES = 8
+SKYFLYSPAWNER.MAX_FLIES = 10
 -- Range, (min, max)
 SKYFLYSPAWNER.SPAWN_DELAY = {5, 12} --5,12
 -- Distance from player allowed for spawning, (min, max)

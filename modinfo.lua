@@ -170,7 +170,7 @@ configuration_options = mergeArrays {
 		EnableSwitch("UP_SPLASH.ENABLED", "Custom menu", true),
 		-- In DST, unfortunately it'd be the server setting that affects all
 		-- clients, since spark entities are networked.
-		EnableSwitch("RAM.SPARKS", "Storm ram sparks", true),
+		EnableSwitch("RAM.SPARKS", "Storm ram sparks", false),
 	},
 	--[[
 	-- Options for multiplayer only.

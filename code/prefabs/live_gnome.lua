@@ -19,10 +19,10 @@ local loot = CFG.LIVE_GNOME.LOOT
 local function toy_fn(inst)
 
     -- The player has been bad to gnomes.
-    TheWorld.components.reputation:LowerReputation("gnomes", 8, true)
+    ThePlayer.components.reputation:DoDelta("gnomes", -8, true)
 
     -- The player has been good to owls.
-    TheWorld.components.reputation:IncreaseReputation("strix", 4, false)
+    ThePlayer.components.reputation:DoDelta("strix", 4, false)
 
     local health = inst.components.health:GetPercent()
 

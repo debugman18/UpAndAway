@@ -254,6 +254,7 @@ local function fn()
    
 	if not IsDedicated() then
 		inst:SetOverrideColourCube("images/colour_cubes/snow_cc.tex")
+
         --[[
         snowdusk
         snow
@@ -287,13 +288,13 @@ local function fn()
     end
 
     -- Temporarily disabled to reduce blasphemy.
-    --[[
+    -- Blaspheme away for now.
+    
     if not IsDST() then
         --FIXME: not MP compatible
         inst:AddComponent("balloonhounded")
     end
-    ]]
-
+    
     ---------------------------------------------
 
     inst:DoTaskInTime(0, FilterOverrides)

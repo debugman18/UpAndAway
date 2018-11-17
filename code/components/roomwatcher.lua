@@ -61,6 +61,14 @@ local function on_new_node(self, oldnode, newnode)
         self:Say("Moved from room ", (oldid or "nil"), " to ", assert(newid), ".")
     end
 
+    if GetWorld().components.staticgenerator.chain:IsState("Charged") then
+        print("Charged clock.")
+        GetWorld().components.staticgenerator:SetClockColour(100,100,150,true)
+    else
+        print("Uncharged clock.")
+        GetWorld().components.staticgenerator:SetClockColour(180,180,255)
+    end    
+
     self.onchangeroom(self.inst, newroom, oldroom)
 end
 

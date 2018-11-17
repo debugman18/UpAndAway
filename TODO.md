@@ -9,6 +9,7 @@
 	+ Bean Giant fight implementation. Groan.
 	+ Winnie character art implementation.
 	+ Quartz Torch placable into quartz lamps, givable to entities to increase reputation with that faction.
+	+ Rubber trees that gnomes worship.
 
 + **Current bugs:**
 
@@ -18,6 +19,8 @@
 	+ Quartz torch errors.
 	+ Datura's do not have anim for 9 and 10.
 	+ Sparks are broken, no anim.
+	+ Side-facing textures for cotton hat are bugged.\
+	+ Marshmallow bees are buggy. Very buggy.
 
 + **Art assets in need of attention**
 

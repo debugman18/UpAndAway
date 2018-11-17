@@ -131,12 +131,9 @@ end
 ---
 -- Halts the updating of the state transition.
 function StaticGenerator:StopGenerating()
-    self:DebugSay("line 133")
     if self.task then
         self.task:Cancel()
-        self:DebugSay("line 136")
         self.task = nil
-        self:DebugSay("line 138")
     end
 end
 
@@ -196,14 +193,9 @@ function StaticGenerator:HoldState(dt)
 
     self.state_release_time = release_time
 
-    self:DebugSay("line 192")
-
     self:StopGenerating()
 
-    self:DebugSay("line 196")
-
     if self.state_release_time == math.huge then return end
-    self:DebugSay("line 200")
 
     self.releasetask = self.inst:DoTaskInTime(dt, function(inst)
         local self = inst.components.staticgenerator
@@ -227,14 +219,32 @@ function StaticGenerator:ReleaseState()
     cancelReleaseTask(self)
 end
 
+-- Colorizes the UIClock.
+function StaticGenerator:SetClockColour(r,g,b,static)
+        --Probably not DST-friendly yet.
+    ThePlayer.HUD.controls.clock.DUSK_COLOUR = Vector3(r/255,g/255,b/255)
+    ThePlayer.HUD.controls.clock:RecalcSegs()
+
+    if static then
+        ThePlayer.HUD.controls.clock:ShowMoon()
+        ThePlayer.HUD.controls.clock.moonanim:GetAnimState():SetMultColour(0,0,0,1)
+    else
+        ThePlayer.HUD.controls.clock:ShowMoon()
+        ThePlayer.HUD.controls.clock.moonanim:GetAnimState():SetMultColour(0,0,0,1)
+    end
+end
+
 --[[
 -- These are just convenience functions, mostly for testing.
 --]]
+
 
 ---
 -- Goes to the CHARGED state.
 function StaticGenerator:Charge(force)
     if not force and self:IsHoldingState() then return end
+
+    self:SetClockColour(100,100,150)
 
     self.chain:GoTo("CHARGED")
 end
@@ -243,6 +253,8 @@ end
 -- Goes to the UNCHARGED state.
 function StaticGenerator:Uncharge(force)
     if not force and self:IsHoldingState() then return end
+
+    self:SetClockColour(180,180,255)
 
     self.chain:GoTo("UNCHARGED")
 end
@@ -282,7 +294,7 @@ function StaticGenerator:LoadPostPass(newents, data)
 
     local state = data.state
     if type(state) == "string" then
-        state = state:upper()
+        state = state:upper()      
         if self.chain:IsState(state) then
             self.chain:GoTo(state)
         end

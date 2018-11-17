@@ -122,7 +122,11 @@ local function do_charged_effects(self)
 end
 
 function CloudAmbientManager:OnEnterState(state)
-    local clock = assert( GetPseudoClock() )
+    local clock 
+
+    if IsDST() then clock = assert( GetPseudoClock() ) else
+        clock = GetClock()
+    end
 
     local target_colour = assert( self.colours[state] )
 

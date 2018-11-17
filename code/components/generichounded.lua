@@ -228,7 +228,7 @@ function GenericHounded:OnUpdate(dt)
                 radius = self:GetSpawnDistance() + 30
             end
 
-            local offset = Vector3(GetPlayer().Transform:GetWorldPosition()) +  Vector3(radius * math.cos( theta ), 0, -radius * math.sin( theta ))
+            local offset = Vector3(ThePlayer.Transform:GetWorldPosition()) +  Vector3(radius * math.cos( theta ), 0, -radius * math.sin( theta ))
             
             inst.Transform:SetPosition(offset.x,offset.y,offset.z)
             inst.SoundEmitter:PlaySound(self.warning_sound)

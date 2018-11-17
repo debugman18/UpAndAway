@@ -15,7 +15,7 @@ local sky_level_1 = {
         {"location",		"cave"}, -- This is for non-DST only.
         {"world_size", 		"small"}, 
 
-        {"day", 			"onlyday"}, 
+        {"day", 			"onlydusk"}, 
 
         {"waves", 			"on"},
         {"branching",		"more"},
