@@ -259,8 +259,12 @@ function SkyflySpawner:GetSpawnFlower()
 
     --FIXME
     --[[
+    local x,y,z = player.Transform:GetWorldPosition()
+
     return Game.FindRandomEntity(
-        player:GetPosition(),
+        x,
+        y,
+        z,
         self.max_distance,
         function(flower)
             return player:GetDistanceSqToInst(flower:GetPosition()) >= minsq and not Game.FindSomeEntity(

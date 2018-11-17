@@ -1,6 +1,6 @@
 name = "Up and Away"
 author = "The Fellowship of the Bean"
-version = "alpha-0.2.2"
+version = "alpha-0.2.3"
 
 id = "upandaway"
 branch = "dev"
@@ -8,7 +8,6 @@ branch = "dev"
 description = ([[
 A massive mod that adds many new things to the traditional Don't Starve experience, including new items, new monsters, new food, new structures, new recipes, and more.
 
-Original concept by debugman18.
 ]]):gsub("^%s+", ""):gsub("%s+$", "")
 
 dont_starve_compatible = true

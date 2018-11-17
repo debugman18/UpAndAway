@@ -16,16 +16,19 @@ local function spawn_shopkeeper_spawner()
         end
     end
 
-    -- 64 is the number of tries.
-    local searcher = Math.SearchSpace( GameRoads.TheRoad, 64 )
+    --TEMP, will improve later.
+    local base = _G.GetClosestInstWithTag("structure", ThePlayer, 500)
 
-    local pt = searcher( Pred.IsUnblockedPoint )
-    if pt then
-        local spawner = SpawnPrefab("shopkeeper_spawner")
-        if spawner then
-            TheMod:DebugSay("[", spawner, "] spawned at ", pt)
-            Game.Move(spawner, pt)
-        end
+    local pt = base:GetPosition()
+    print(pt)
+
+    pt.x = pt.x + 3
+    pt.z = pt.z + 3
+
+    local spawner = SpawnPrefab("shopkeeper_spawner")
+    if spawner then
+        TheMod:DebugSay("[", spawner, "] spawned at ", pt)
+        Game.Move(spawner, pt)
     end
 end
 
@@ -40,5 +43,6 @@ local function shopkeeper_spawner_setup()
 end
 
 if IsHost() then
+    --TheMod:AddSimPostInit(shopkeeper_spawner_setup)
     TheMod:AddPrefabPostInit("forest", shopkeeper_spawner_setup)
 end
