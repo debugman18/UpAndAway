@@ -22,14 +22,14 @@ end
 
 local function chop_tree(inst, chopper, chops)
     inst.SoundEmitter:PlaySound("dontstarve/creatures/rocklobster/clawsnap")         
-    --inst.AnimState:PlayAnimation("chop")
+    inst.AnimState:PlayAnimation("chop")
 end
 
 local function chop_down_tree(inst, chopper)
     inst.SoundEmitter:PlaySound("dontstarve/forest/treeCrumble")          
     inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree")
-    --inst.AnimState:PlayAnimation("fall")
-    --inst.AnimState:PushAnimation("stump", false)
+    inst.AnimState:PlayAnimation("fall")
+    inst.AnimState:PushAnimation("stump", false)
     if inst.picked then
         inst.components.lootdropper:DropLoot()
     else 

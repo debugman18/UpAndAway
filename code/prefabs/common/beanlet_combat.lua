@@ -25,7 +25,7 @@ function OnBeanletAttacked(inst, data)
         ThePlayer.components.reputation:DoDelta("bean", -8, true)
     end
 
-    local beans = Game.FindAllEntities(inst, MAX_RADIUS, nil, {"beanlet"})
+    local beans = Game.FindAllEntities(inst:GetPosition(), MAX_RADIUS, nil, {"beanlet"})
     
     for _, bean in ipairs(beans) do
         local dsq = bean:GetDistanceSqToInst(inst)

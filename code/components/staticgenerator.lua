@@ -224,14 +224,6 @@ function StaticGenerator:SetClockColour(r,g,b,static)
         --Probably not DST-friendly yet.
     ThePlayer.HUD.controls.clock.DUSK_COLOUR = Vector3(r/255,g/255,b/255)
     ThePlayer.HUD.controls.clock:RecalcSegs()
-
-    if static then
-        ThePlayer.HUD.controls.clock:ShowMoon()
-        ThePlayer.HUD.controls.clock.moonanim:GetAnimState():SetMultColour(0,0,0,1)
-    else
-        ThePlayer.HUD.controls.clock:ShowMoon()
-        ThePlayer.HUD.controls.clock.moonanim:GetAnimState():SetMultColour(0,0,0,1)
-    end
 end
 
 --[[

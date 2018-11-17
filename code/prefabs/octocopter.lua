@@ -61,7 +61,7 @@ end
 
 local function OnDeath(data)
     local cause = data and data.cause or nil
-    cause:AddTag("OctocopterSlayer")
+    if cause == ThePlayer then cause:AddTag("OctocopterSlayer") end
     GetWorld():PushEvent("octocoptercrash")
 end
 

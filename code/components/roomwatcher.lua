@@ -59,15 +59,7 @@ local function on_new_node(self, oldnode, newnode)
 
     if self:Debug() then
         self:Say("Moved from room ", (oldid or "nil"), " to ", assert(newid), ".")
-    end
-
-    if GetWorld().components.staticgenerator.chain:IsState("Charged") then
-        print("Charged clock.")
-        GetWorld().components.staticgenerator:SetClockColour(100,100,150,true)
-    else
-        print("Uncharged clock.")
-        GetWorld().components.staticgenerator:SetClockColour(180,180,255)
-    end    
+    end 
 
     self.onchangeroom(self.inst, newroom, oldroom)
 end
@@ -80,8 +72,23 @@ local function new_updater_thread(self)
     return self.inst:StartThread(function()
         local inst = self.inst
         local Sleep = _G.Sleep
-        local math = math
+        local math = math  
+
         while inst:IsValid() do
+
+            -- Do some hacky staticgenerator stuff. Don't want to check constantly, but every roomwatcher is fine.
+            if GetWorld().components.staticgenerator:IsCharged() then
+                print("Check: CHARGED")
+                GetWorld().components.staticgenerator:SetClockColour(100,100,150,true)
+                --GetWorld().components.colourcubemanager:StartBlend(5, "images/colour_cubes/fungus_cc.tex")
+                GetWorld():SetOverrideColourCube("images/colour_cubes/fungus_cc.tex")
+            else
+                print("Check: UNCHARGED")
+                GetWorld().components.staticgenerator:SetClockColour(180,180,255)
+                --GetWorld().components.colourcubemanager:StartBlend(5, "images/colour_cubes/snow_cc.tex")
+                GetWorld():SetOverrideColourCube("images/colour_cubes/snow_cc.tex")
+            end 
+
             local oldnode = self:GetCachedNode()
             local newnode = self:GetNode()
             if newnode ~= oldnode then

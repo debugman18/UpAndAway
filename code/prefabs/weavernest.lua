@@ -18,6 +18,25 @@ local assets =
     --Asset("SOUND", "sound/spider.fsb"),
 }
 
+local function GetSpawnPoint(pt)
+    local theta = math.random() * 2 * PI
+    local radius = 6+math.random()*6
+    
+    -- we have to special case this one because birds can't land on creep
+    local result_offset = FindValidPositionByFan(theta, radius, 12, function(offset)
+        local ground = GetWorld()
+        local spawn_point = pt + offset
+        if not (ground.Map and ground.Map:GetTileAtPoint(spawn_point.x, spawn_point.y, spawn_point.z) == GROUND.IMPASSABLE)
+           and not ground.GroundCreep:OnCreep(spawn_point.x, spawn_point.y, spawn_point.z) then
+            return true
+        end
+        return false
+    end)
+
+    if result_offset then
+        return pt+result_offset
+    end
+end
 
 local function SetStage(inst, stage)
     if stage <= 3 then
@@ -340,8 +359,9 @@ local function MakeWeaverNestFn(den_level)
         -------------------
 		
 		--Does the clock work like this? -Mobb
-        inst:ListenForEvent("dusktime", function() StopSpawning(inst) end, GetWorld())
-        inst:ListenForEvent("daytime", function() StartSpawning(inst) end , GetWorld())
+        --No, I don't know what I was thinking. -Debug
+        inst:ListenForEvent("dusktime", function() StartSpawning(inst) end, GetWorld())
+
         ---------------------
 
         ---------------------

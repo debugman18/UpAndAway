@@ -5,6 +5,7 @@ local function start_snow()
     TheMod:DebugSay("start_snow()")
     local sm = GetPseudoSeasonManager()
     if sm then
+        sm:AlwaysWinter()
         sm:AlwaysWet()
         sm:StartPrecip()
     end
@@ -14,6 +15,7 @@ local function stop_snow()
     TheMod:DebugSay("stop_snow()")
     local sm = GetPseudoSeasonManager()
     if sm then
+        sm:AlwaysWinter()
         sm:AlwaysDry()
         sm:StopPrecip()
     end

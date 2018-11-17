@@ -397,7 +397,7 @@ end
 
 
 local function IsCloseToPlayer(pt)
-    return Game.FindSomePlayerInRange(pt:GetPosition(), 25) ~= nil
+    return Game.FindSomePlayerInRange(pt, 25) ~= nil
 end
 
 local function DisableEntity(inst)
@@ -626,7 +626,7 @@ function EntityFlinger:StartFlinging(inst)
     if self:WantsToDie() then
         self:Touch()
     else
-        if IsCloseToPlayer(inst) then
+        if IsCloseToPlayer(inst:GetPosition()) then
             Begin.pre_fling(self, inst)
         else
             self:Fling(inst)

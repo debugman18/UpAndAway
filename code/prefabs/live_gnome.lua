@@ -98,6 +98,12 @@ local function fn(Sim)
 
     inst:ListenForEvent("attacked", toy_fn)
 
+    inst:AddComponent("childspawner")
+    inst.components.childspawner.childname = "live_gnome"
+    inst.components.childspawner:SetRegenPeriod(CFG.LIVE_GNOME.SUMMON_DELAY)
+    inst.components.childspawner:SetSpawnPeriod(CFG.LIVE_GNOME.SUMMON_DELAY)
+    inst.components.childspawner:SetMaxChildren(CFG.LIVE_GNOME.MAX_SUMMONS)
+
     return inst
 end
 
