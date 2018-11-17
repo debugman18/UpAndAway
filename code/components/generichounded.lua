@@ -203,7 +203,7 @@ function GenericHounded:OnUpdate(dt)
             self.announcewarningsoundinterval = self.announcewarningsoundinterval - 1
             if self.announcewarningsoundinterval <= 0 then
                 self.announcewarningsoundinterval = 10 + math.random(5)
-                    GetPlayer().components.talker:Say(GetString(GetPlayer().prefab, self.announcement))
+                    ThePlayer.components.talker:Say(GetString(ThePlayer.prefab, self.announcement))
             end
         
             local inst = CreateEntity()
@@ -302,7 +302,7 @@ function GenericHounded:GetSpecialHoundChance()
 end
 
 function GenericHounded:ReleaseHound(dt)
-    local spawn_pt = self:GetSpawnPoint( GetPlayer():GetPosition() )
+    local spawn_pt = self:GetSpawnPoint( ThePlayer:GetPosition() )
     if spawn_pt then
         self.houndstorelease = self.houndstorelease - 1
         self:SpawnHound(spawn_pt)
@@ -313,7 +313,7 @@ function GenericHounded:SpawnHound(spawn_pt)
     local hound = SpawnPrefab( self:GetPrefabToSpawn() )
     if hound then
         hound.Physics:Teleport(spawn_pt:Get())
-        hound:FacePoint(GetPlayer():GetPosition())
+        hound:FacePoint(ThePlayer:GetPosition())
         hound.components.combat:SuggestTarget(GetPlayer())
         return hound
     end

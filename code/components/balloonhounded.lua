@@ -36,7 +36,7 @@ function BalloonHounded:GetPrefabToSpawn()
 end
 
 function BalloonHounded:GetSpawnPoint(center)
-    local player = GetPlayer()
+    local player = ThePlayer
     if not player then return end
 
     local object
@@ -55,15 +55,15 @@ end
 
 function BalloonHounded:SpawnHound(spawn_pt)
     TheMod:Say("spawn_pt: ", spawn_pt)
-    TheMod:Say("dist to player: ", (spawn_pt - GetPlayer():GetPosition()):Length())
+    TheMod:Say("dist to player: ", (spawn_pt - ThePlayer:GetPosition()):Length())
 
     local vert_offset = Point(0, self:GetConfig("INITIAL_HEIGHT"), 0)
 
     local hound = SpawnPrefab( self:GetPrefabToSpawn() )
     if hound then
         hound.Physics:Teleport( (spawn_pt + vert_offset):Get() )
-        hound:FacePoint(GetPlayer():GetPosition())
-        hound.components.combat:SuggestTarget(GetPlayer())
+        hound:FacePoint(ThePlayer:GetPosition())
+        hound.components.combat:SuggestTarget(ThePlayer)
         return hound
     end
 end

@@ -252,7 +252,7 @@ local function floating_retargetfn(inst)
     -- If even a Deerclops has a radius of 0.5, this should be fine.
     local extra_range = 1
 
-    return Game.FindSomeEntity(inst, range + extra_range, function(guy)
+    return Game.FindSomeEntity(inst:GetPosition(), range + extra_range, function(guy)
         local max_dist = range + (guy.Physics and guy.Physics:GetRadius() or 0)
         if inst:GetDistanceSqToInst(guy) <= max_dist*max_dist then
             return combat:CanTarget(guy)

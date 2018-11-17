@@ -257,12 +257,12 @@ function SkyflySpawner:GetSpawnFlower()
 
     local minsq = self.min_distance*self.min_distance
 
+    --FIXME
+    --[[
     return Game.FindRandomEntity(
         player:GetPosition(),
         self.max_distance,
         function(flower)
-            --TEMP, will return here.
-            --[[
             return player:GetDistanceSqToInst(flower:GetPosition()) >= minsq and not Game.FindSomeEntity(
                 flower:GetPosition(),
                 self.min_spread,
@@ -270,10 +270,11 @@ function SkyflySpawner:GetSpawnFlower()
                     return fly.prefab == self.prefab
                 end
             )
-            --]]
+            
         end,
         {"flower"}
     )
+    --]]
 end
 
 function SkyflySpawner:TrySpawn()
@@ -287,7 +288,7 @@ function SkyflySpawner:TrySpawn()
     if flower then
         local fly = SpawnPrefab(self.prefab)
         if fly then
-            fly.Transform:SetPosition( flower:GetPosition() )
+            fly.Transform:SetPosition(flower)
             self:Track(fly)
             return fly
         end
