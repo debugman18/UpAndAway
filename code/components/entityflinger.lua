@@ -397,7 +397,7 @@ end
 
 
 local function IsCloseToPlayer(pt)
-    return Game.FindSomePlayerInRange(pt, 25) ~= nil
+    return Game.FindSomePlayerInRange(pt:GetPosition(), 25) ~= nil
 end
 
 local function DisableEntity(inst)
