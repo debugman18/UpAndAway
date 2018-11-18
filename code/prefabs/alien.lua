@@ -69,9 +69,8 @@ local function fn()
     RemovePhysicsColliders(inst)
     inst.Physics:SetCollisionGroup(COLLISION.SANITY)
     inst.Physics:CollidesWith(COLLISION.SANITY)
-    --inst.Physics:CollidesWith(COLLISION.WORLD)
 
-    inst.Transform:SetScale(CFG.ALIEN.SCALE, CFG.ALIEN.SCALE, CFG.ALIEN.SCALE)
+    inst.Transform:SetScale(CFG.ALIEN.SCALE, 0.5, CFG.ALIEN.SCALE)
 
     inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
     inst.colour_idx = math.random(#colours)
@@ -90,7 +89,7 @@ local function fn()
     anim:SetBank("shadowcreature1")
     anim:SetBuild("shadow_insanity1_color")
     anim:PlayAnimation("idle_loop")
-    anim:SetMultColour(1, 1, 1, 0.2)
+    --anim:SetMultColour(1, 1, 1, 0.2)
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
     inst.components.locomotor.walkspeed = CFG.ALIEN.WALKSPEED
     inst.sounds = sounds
@@ -116,7 +115,7 @@ local function fn()
     inst.components.lootdropper:SetChanceLootTable("alien")
     inst.components.lootdropper:AddChanceLoot(fragment, CFG.ALIEN.RARECHANCE)
 
-    local brain = require "brains/shadowcreaturebrain"
+    local brain = require "brains/aurorabrain"
     inst:SetBrain(brain)
     
     inst:ListenForEvent("attacked", OnAttacked)
