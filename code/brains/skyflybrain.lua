@@ -33,7 +33,7 @@ local FlowerWeight = (function()
 
         local basic_exponent = 0
         for _, player in ipairs(Game.FindAllPlayers()) do
-            basic_exponent = basic_exponent + getDistSq(flower:GetPosition(), player:GetPosition())
+            basic_exponent = basic_exponent + getDistSq(flower.Transform:GetWorldPosition(), player.Transform:GetWorldPosition())
         end
 
         return exp(-closeness*basic_exponent)
@@ -44,13 +44,11 @@ function SkyflyBrain:OnStart()
     local clock = GetPseudoClock()
 
     local function far_enough(flower)
-        return self.inst:GetDistanceSqToInst(flower:GetPosition()) > 0.25
+        return self.inst:GetDistanceSqToInst(flower) > 0.25
     end
     
     local root = PriorityNode(
     {
-        --RunAway(self.inst, "scarytoprey", RUN_AWAY_DIST, STOP_RUN_AWAY_DIST),
-
         SequenceNode {
             RandomlySelectTarget(self.inst, {
                 range = cfg:GetConfig("HOP_RANGE"),

@@ -22,7 +22,7 @@ I'm prefixing the list of changes by date, since I suppose we'll remain at preal
 for quite some time.
 -->
 
-### Dev Version: alpha-0.2.1 (Horrors in the Sky)
+### Dev Version: alpha-0.2.4 (Horrors in the Sky)
 
 ----------------------------------------------------
 
@@ -35,17 +35,18 @@ for quite some time.
 + Gnomes have recieved an overhaul.
 + Octocopter rotor parts now used for crafting.
 + Added recipes for new boss-related items.
-
-----------------------------------------------------
-
-### Current Version: alpha-0.2.2
-
 + Extended the Shopkeeper's questline.
 + Bean Giant was overhauled.
 
 ----------------------------------------------------
 
-### Update 2018-11-?? (alpha-0.2.2 release)
+### Update 2018-11-17 (alpha-0.2.3 release)
++ Fixed the shopkeeper not spawning.
++ Fixed Winnie's staff crashing the game.
+
+----------------------------------------------------
+
+### Update 2018-11-17 (alpha-0.2.2 release)
 
 + Added Shipwrecked compatibility.
 + Added Hamlet compatibility.
