@@ -14,6 +14,7 @@ Current Development Phase: Horrors in the Sky
 	+ Rubber trees that gnomes worship. 
 	+ Meat wall. Max level monstermeat wall has attacks.
 	+ Cloud coral should grow back over time, as well as starting at different states.
+	+ Refiner should be able to show ingredients.
 
 + **Current bugs:**
 
