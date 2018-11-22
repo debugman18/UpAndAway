@@ -13,6 +13,7 @@ Current Development Phase: Horrors in the Sky
 	+ Quartz Torch placable into quartz lamps, givable to entities to increase reputation with that faction.
 	+ Rubber trees that gnomes worship. 
 	+ Meat wall. Max level monstermeat wall has attacks.
+	+ Cloud coral should grow back over time, as well as starting at different states.
 
 + **Current bugs:**
 

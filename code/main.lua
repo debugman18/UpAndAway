@@ -162,9 +162,6 @@ AddMinimapAtlas("images/ua_minimap.xml")
 table.insert(GLOBAL.CHARACTER_GENDERS.FEMALE, "winnie")
 AddModCharacter("winnie", FEMALE)
 
--- Winnie's recipe. This is here for simplicities sake.
-Recipe("lureplantbulb", {Ingredient("seeds", 10), Ingredient("nightmarefuel", 2)}, _G.RECIPETABS.TOWN, _G.TECH.NONE, nil, nil, nil, nil, "winnie_builder")
-
 -- I shouldn't have to do this here, but lazyvariableadder isn't working correctly for roads.
 GLOBAL.ShopkeeperRoad = "dummy"
 

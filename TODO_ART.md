@@ -1,12 +1,15 @@
 # TODO for Up and Away art
 
 ### Overhauls / Variants (low priority by nature):
-+ Tea Bush
++ Tea Bush?
 + Thunder Tree (Currently an atlas swap of spiked tree)
-+ Variants of Bean huts.
-+ Crystals should be more varied in their design, eventually.
-+ Weaver Nest redesign.
-+ Sunflower redesign.
++ Bean Huts (Need variety in shape/design)
++ Crystals (Need variety in shape/design)
++ Weaver Nest (Total redesign. More like trees, the trees grow the nests like fruit.)
++ Sunflower (Total redesign) -- In progress.
++ Algae (Total redesign)
++ Coral (Adjustment and/or redesign)
++ Dragonblood Log (Adjustment and/or redesign)
 
 ### Inventory images in need of attention, in order of priority.
 + Various Potion Types -- Vivalavie was working on these last I checked.

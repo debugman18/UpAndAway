@@ -39,6 +39,15 @@ local function FuelTaken(inst, taker)
             local pt = Vector3(taker.Transform:GetWorldPosition()) + Vector3(0,.76,0)
             if blaze then
 
+                if ThePlayer and ThePlayer.components.sanity then
+                    ThePlayer.components.sanity:DoDelta(40)
+                end
+                
+                if ThePlayer and ThePlayer.components.health then
+                    ThePlayer.components.health:DoDelta(-40, 6)
+                    ThePlayer.components.health:DoFireDamage(0, blaze)
+                end        
+
                 if taker.prefab == "firepit" then
                     blaze.AnimState:SetMultColour(100,0,0,1)
                 elseif taker.prefab == "coldfirepit" then
@@ -50,7 +59,7 @@ local function FuelTaken(inst, taker)
 
                 if not taker:HasTag("dragonblood") then
                     taker:AddTag("dragonblood")
-                end	
+                end
 
                 blaze.Transform:SetPosition(pt:Get())
 
@@ -81,9 +90,11 @@ local function FuelTaken(inst, taker)
                 blaze.components.heater.heatfn = function() return CFG.DRAGONBLOOD.HEAT end
 
                 taker:DoTaskInTime(5.6, function() 
+
                     if blaze then
                         blaze:Remove()
-                    end	 	
+                    end	 
+
                     if taker then
                         taker.components.inspectable.nameoverride = "firepit"
                         taker.components.trader:Disable()

@@ -239,7 +239,7 @@ local function fn()
     inst:AddTag("sheep")
 
     local trans = inst.entity:AddTransform()
-    trans:SetFourFaced()
+    inst.Transform:SetSixFaced()
 
     local sound = inst.entity:AddSoundEmitter()
     inst.sounds = sounds

@@ -50,7 +50,7 @@ function SkyflyBrain:OnStart()
     local root = PriorityNode(
     {
         SequenceNode {
-            RandomlySelectTarget(self.inst, {
+            RandomlySelectTarget(self.inst, self.inst, {
                 range = cfg:GetConfig("HOP_RANGE"),
                 filter = far_enough,
                 action = ACTIONS.WALKTO,

@@ -311,8 +311,6 @@ local function compat_fn(inst)
         inst.OnNewSpawn = onload
     end
 
-    inst:AddTag("winnie_builder")
-
 end
 
 local function post_compat_fn(inst)
@@ -353,6 +351,8 @@ local function post_compat_fn(inst)
         end        
     end
 
+    inst:AddTag("winnie_builder")
+
 end
 
 -- Don't Starve Together
@@ -373,7 +373,9 @@ local character_fn = function(inst)
 end
 
 if IsDST() then
+    Recipe("lureplantbulb", {Ingredient("seeds", 10), Ingredient("nightmarefuel", 2)}, _G.RECIPETABS.TOWN, _G.TECH.NONE, nil, nil, nil, nil, "winnie_builder")
     return MakePlayerCharacter("winnie", prefabs, assets, common_postinit, master_postinit, starting_inventory)
 else 
+    Recipe("lureplantbulb", {Ingredient("seeds", 10), Ingredient("nightmarefuel", 2)}, _G.RECIPETABS.TOWN, _G.TECH.NONE, nil, nil, nil, nil)
     return MakePlayerCharacter("winnie", prefabs, assets, character_fn, starting_inventory)
 end

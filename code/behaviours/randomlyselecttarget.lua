@@ -43,7 +43,7 @@ function RandomlySelectTarget:GetAction()
 end
 
 function RandomlySelectTarget:PickTarget()
-    local ents = Game.FindAllEntities(self.inst, self.range, self.filter, self.tags, self.not_tags)
+    local ents = Game.FindAllEntities(self.inst:GetPosition(), self.range, self.filter, self.tags, self.not_tags)
     local weights = {}
 
     for i, v in ipairs(ents) do
