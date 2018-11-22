@@ -12,16 +12,15 @@ Current Development Phase: Horrors in the Sky
 	+ Winnie character art implementation.
 	+ Quartz Torch placable into quartz lamps, givable to entities to increase reputation with that faction.
 	+ Rubber trees that gnomes worship. 
-	+ Meat wall. Max level monstermeat wall has attacks.s
+	+ Meat wall. Max level monstermeat wall has attacks.
 
 + **Current bugs:**
 
-    + Attempting to use Obisidian Staff in the cloudrealm results in a crash.
 	+ Winnie's meatbulb recipe is visible to anyone.
 	+ Quartz torch errors.
 	+ Datura's do not have anim for 9 and 10.
 	+ Sparks are broken, no anim.
-	+ Side-facing textures for cotton hat are bugged.\
+	+ Side-facing textures for cotton hat are bugged.
 	+ Marshmallow bees are buggy. Very buggy.
 
 + **Art assets in need of attention**

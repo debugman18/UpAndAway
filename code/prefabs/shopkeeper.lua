@@ -116,7 +116,7 @@ local MAX_COW_DIST_SQ = MAX_COW_DIST*MAX_COW_DIST
 local function negotiateCows(buyer, seller)
     if not seller.components.leader or not seller.components.leader.followers then return false end
 
-    local cows = Game.FindAllEntities(buyer, MAX_COW_DIST, is_a_cow)
+    local cows = Game.FindAllEntities(buyer:GetPosition(), MAX_COW_DIST, is_a_cow)
 
     for _, cow in ipairs(cows) do
         if not canNegotiate(buyer, seller) then break end
@@ -162,12 +162,12 @@ local function flagplayer(inst, player)
         quester:SetFlag("OctocopterSlayer", false)
         quester:SetFlag("OctocopterHunter", true)
 
-    elseif quester:HasTag("BeanGiantSlayer") and quester:GetFlag(PRIMARY_QUEST, "gotlectern") then
+    elseif quester:GetFlag("BeanGiantSlayer") and quester:GetFlag(PRIMARY_QUEST, "gotlectern") then
         inst.components.speechgiver:PlaySpeech("BEANGIANT_SLAIN", player)
         quester:SetFlag("BeanGiantSlayer", false)
         quester:SetFlag("BeanGiantHunter", true)
 
-    elseif quester:HasTag("SemiconductorSlayer") and quester:GetFlag(PRIMARY_QUEST, "gotlectern") then
+    elseif quester:GetFlag("SemiconductorSlayer") and quester:GetFlag(PRIMARY_QUEST, "gotlectern") then
         inst.components.speechgiver:PlaySpeech("SEMICONDUCTOR_SLAIN", player)
         quester:SetFlag("SemiconductorSlayer", false)
         quester:SetFlag("SemiconductorHunter", true)

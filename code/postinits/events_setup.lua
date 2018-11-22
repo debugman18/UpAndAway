@@ -7,7 +7,7 @@ local GROUND_ROAD = _G.GROUND.ROAD
 local TILE_SCALE = _G.TILE_SCALE
 
 local MAX_DISTANCE = 100
-local MAX_RADIUS = 9001
+local MAX_RADIUS = 10
 
 local road_pos_final = 0,0,0
 
@@ -26,11 +26,18 @@ local function spawn_shopkeeper_spawner()
 
     -----
 
-    local function CheckForPlayer(x,z)
+    local function GetTileCoordinates(x,y)  
+        local world = GetWorld()  
+        local tilex, tiley = world.Map:GetTileCoordsAtPoint(0,0,0)
+
+        return Vector3((x-tilex) * _G.TILE_SCALE, 0, (y-tiley) * _G.TILE_SCALE)
+    end
+
+    local function CheckForPlayer(x,y)
         local player_pos = Vector3(ThePlayer.Transform:GetWorldPosition())
         TheMod:DebugSay("Player POS: "..ThePlayer.Transform:GetWorldPosition())
 
-        local road_pos = Vector3(x,0,z)
+        local road_pos = GetTileCoordinates(x,y)
         TheMod:DebugSay("Road POS: "..x.." 0 "..z)
 
         TheMod:DebugSay("Distance from ROAD to PLAYER is "..math.sqrt(distsq(road_pos, player_pos)))
@@ -42,72 +49,35 @@ local function spawn_shopkeeper_spawner()
         return false
     end
 
-    local function FindTile(checkFn, x, y, radius)
-        local world = GetWorld()
-        TheMod:DebugSay("Finding Tile")
-
-        for i = -radius, radius, 1 do
-            if checkFn(world.Map:GetTile(x - radius, y + i)) then
-                return x - radius, y + i
-            end
-
-            if checkFn(world.Map:GetTile(x + radius, y + i)) then
-                return x + radius, y + i
-            end
-        end
-
-        for i = -(radius - 1), radius - 1, 1 do
-            if checkFn(world.Map:GetTile(x + i, y - radius)) then
-                return x + i, y - radius
-            end
-
-            if checkFn(world.Map:GetTile(x + i, y + radius)) then
-                return x + i, y + radius
-            end
-        end
-
-        return nil, nil
-    end
-
-    local function FindTileRadius(checkFn, px, py, pz, max_radius)
-        local x, y = world.Map:GetTileXYAtPoint(px, py, pz)
-
-        TheMod:DebugSay("Finding Tiles In Radius")
-
-        for i=1, max_radius, 1 do
-            local gridx, gridy = FindTile(checkFn, x, y, i)
-
-            if gridx and gridy then
-                return gridx, gridy
-            end
-        end
-
-        return nil, nil
-    end
-
     local function FindRoad(pt, prefab)
         local spawner
         local world = GetWorld()
-        local px, py, pz = pt.Transform:GetWorldPosition()
+        local playerx, playery, playerz = pt.Transform:GetWorldPosition()
 
-        TheMod:DebugSay("Finding Roads ".."near "..px.." "..py.." "..pz)
+        TheMod:DebugSay("Finding Roads ".."near "..playerx.." "..playerz)
 
-        local roadx, roady = FindTileRadius(function(tile) 
-            return _G.GROUND.ROAD
-        end, px, py, pz, MAX_RADIUS)
+        local point1 = playerx - MAX_RADIUS
+        local point2 = playerx + MAX_RADIUS
+        local point3 = playerz - MAX_RADIUS
+        local point4 = playerz + MAX_RADIUS
 
-        if roadx and roady then
-            spawner = SpawnPrefab(prefab)
+        local randX = math.random(-point1, point2)
+        local randZ = math.random(-point3, point4)
+ 
+        local place = _G.Vector3(randX, 0, randZ)    
+        local tile = _G.GetWorld().Map:GetTileAtPoint(place.x, place.y, place.z)    
+        local canspawn = tile == _G.GROUND.ROAD
 
-            if spawner then
-                local width, height = world.Map:GetSize()
-                local spawnerx = (roadx - width/2.0)*_G.TILE_SCALE
-                local spawnerz = (roady - height/2.0)*_G.TILE_SCALE
+        print(tile)
+        print(place)
 
-                TheMod:DebugSay("Spawning Shopkeeper At "..spawnerx.." "..spawnerz)
-                road_pos_final = ""..spawnerx.." "..spawnerz..""
-                spawner.Transform:SetPosition(spawnerx,0,spawnerz) 
-            end
+        if canspawn then     
+            TheMod:DebugSay("Found a road!")
+            spawner = SpawnPrefab(prefab)      
+            spawner.Transform:SetPosition(randX, 0, randZ)   
+        else
+            TheMod:DebugSay("Invalid location. Trying again.")             
+            FindRoad(pt,prefab)    
         end
 
         return spawner
@@ -116,9 +86,6 @@ local function spawn_shopkeeper_spawner()
     -----
 
     local pt = ThePlayer
-
-    -- We don't use this currently.
-    local onroad = RoadManager ~= nil and RoadManager:IsOnRoad(pt.Transform:GetWorldPosition())
 
     local road = FindRoad(pt, "shopkeeper_spawner")
 
