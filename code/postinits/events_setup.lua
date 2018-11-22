@@ -26,30 +26,7 @@ local function spawn_shopkeeper_spawner()
 
     -----
 
-    local function GetTileCoordinates(x,y)  
-        local world = GetWorld()  
-        local tilex, tiley = world.Map:GetTileCoordsAtPoint(0,0,0)
-
-        return Vector3((x-tilex) * _G.TILE_SCALE, 0, (y-tiley) * _G.TILE_SCALE)
-    end
-
-    local function CheckForPlayer(x,y)
-        local player_pos = Vector3(ThePlayer.Transform:GetWorldPosition())
-        TheMod:DebugSay("Player POS: "..ThePlayer.Transform:GetWorldPosition())
-
-        local road_pos = GetTileCoordinates(x,y)
-        TheMod:DebugSay("Road POS: "..x.." 0 "..z)
-
-        TheMod:DebugSay("Distance from ROAD to PLAYER is "..math.sqrt(distsq(road_pos, player_pos)))
-
-        if (road_pos and distsq(road_pos, player_pos)) < MAX_DISTANCE*MAX_DISTANCE then
-            return true
-        end 
-
-        return false
-    end
-
-    local function FindRoad(pt, prefab)
+    local function FindRoadTile(pt, prefab)
         local spawner
         local world = GetWorld()
         local playerx, playery, playerz = pt.Transform:GetWorldPosition()
@@ -61,8 +38,8 @@ local function spawn_shopkeeper_spawner()
         local point3 = playerz - MAX_RADIUS
         local point4 = playerz + MAX_RADIUS
 
-        local randX = math.random(-point1, point2)
-        local randZ = math.random(-point3, point4)
+        local randX = math.random(point1, point2)
+        local randZ = math.random(point3, point4)
  
         local place = _G.Vector3(randX, 0, randZ)    
         local tile = _G.GetWorld().Map:GetTileAtPoint(place.x, place.y, place.z)    
@@ -77,12 +54,35 @@ local function spawn_shopkeeper_spawner()
             spawner.Transform:SetPosition(randX, 0, randZ)   
         else
             TheMod:DebugSay("Invalid location. Trying again.")             
-            FindRoad(pt,prefab)    
+            FindRoadTile(pt,prefab)    
         end
 
         return spawner
 
     end
+
+    local function FindRoad(pt, prefab)
+        -- This is hacky, but otherwise it won't work since AddLazyVariable doesn't work correctly.
+        local road = GameRoads.TheRoad
+        road = _G.ShopkeeperRoad
+
+        -- This way, the shopkeeper will still spawn in worlds without roads, as long as there are road tiles.
+        if tostring(road) == "curve from (0.00, 0.00, 0.00) to (0.00, 0.00, 0.00)" then
+            FindRoadTile(pt, prefab)
+        end
+
+        local searcher = Math.SearchSpace(road, 64)
+        local clear = searcher(Pred.IsUnblockedPoint)
+
+        if clear then
+            local spawner = SpawnPrefab(prefab)
+            if spawner then
+                TheMod:DebugSay("[", spawner, "] spawned at ", clear)
+                Game.Move(spawner, clear)
+            end
+        end   
+    end
+
     -----
 
     local pt = ThePlayer
