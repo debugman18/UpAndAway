@@ -73,7 +73,7 @@ end
 --This is for when it's picked ripe.
 local function onpickedfn(inst)
     local data = get_data(inst)
-    inst.SoundEmitter:PlaySound(data.sounds.picking) 
+    --inst.SoundEmitter:PlaySound(data.sounds.picking) 
     if data.anims.picking then
         inst.AnimState:PlayAnimation(data.anims.picking)
     end
@@ -84,7 +84,7 @@ end
 --This is for when it's picked rotten.
 local function onharvestfn(inst)
     local data = get_data(inst)
-    inst.SoundEmitter:PlaySound(data.sounds.picking)
+    --inst.SoundEmitter:PlaySound(data.sounds.picking)
     inst.components.pickable:MakeBarren()
     inst.AnimState:PlayAnimation(data.anims.harvested)
 end	
@@ -96,7 +96,7 @@ local growfns = {}
 growfns.empty = function(inst)
     local data = get_data(inst)
     inst.AnimState:PlayAnimation(data.anims.empty)
-    inst.SoundEmitter:PlaySound(data.sounds.growth)
+    --inst.SoundEmitter:PlaySound(data.sounds.growth)
     if inst.components.pickable then
         inst.components.pickable:MakeEmpty()    
     end        
@@ -105,7 +105,7 @@ end
 growfns.normal = function(inst)
     local data = get_data(inst)
     inst.AnimState:PlayAnimation(data.anims.normal)
-    inst.SoundEmitter:PlaySound(data.sounds.growth)  
+    --inst.SoundEmitter:PlaySound(data.sounds.growth)  
     if inst.components.pickable then
         inst.components.pickable:MakeEmpty()    
     end                  
@@ -114,7 +114,7 @@ end
 growfns.growing = function(inst)
     local data = get_data(inst)
     inst.AnimState:PlayAnimation(data.anims.growing)
-    inst.SoundEmitter:PlaySound(data.sounds.growth) 
+    --inst.SoundEmitter:PlaySound(data.sounds.growth) 
     if inst.components.pickable then
         inst.components.pickable:MakeEmpty()    
     end          
@@ -124,7 +124,7 @@ end
 growfns.ripe = function(inst)
     local data = get_data(inst)
     inst.AnimState:PlayAnimation(data.anims.ripe)
-    inst.SoundEmitter:PlaySound(data.sounds.growth)
+    --inst.SoundEmitter:PlaySound(data.sounds.growth)
     if inst.components.pickable then
         inst.components.pickable:Regen()
     end
@@ -175,42 +175,23 @@ end
 
 ---
 
-local ValidateData = DataValidator(mandatory_data, "data")
-
-local function IncludeDefaultData(sub_default_data, sub_data)
-    for k, v in pairs(sub_default_data) do
-        if type(v) == "table" then
-            if type(sub_data[k]) ~= "table" then
-                sub_data[k] = {}
-            end
-            IncludeDefaultData(v, sub_data[k])
-        else
-            if sub_data[k] == nil then
-                sub_data[k] = v
-            end
-        end
-    end
-end
-
--- error_level is relative to the parent function.
-local function ProcessData(data, error_level)
-    ValidateData(data, error_level + 1)
-
-    local ret = {}
-
-    Tree.InjectInto(ret, data)
-    IncludeDefaultData(default_data, data)
-
-    return ret
-end
-
----
-
 local function MakeWildCrop(data)
-    data = ProcessData(data, 2)
+    -- We used to process the data for correctness. This makes mandatory+default data moot.
+    data = data
     assert(type(data.name) == "string", "Prefab name expected as first argument.")
 
     local name = data.name
+    print(name)
+    for k,v in pairs(data) do
+        print(tostring(k))
+        print(tostring(v))
+        if type(v) == "table" then
+            for t,e in pairs(v) do
+                print(tostring(t))
+                print(tostring(e))
+            end
+        end
+    end
     local growth_stages = MakeGrowthStages(data)
 
     data.prefabs = data.prefabs or {}

@@ -27,7 +27,7 @@ local function fn(Sim)
     inst:AddComponent("inspectable")
 
     inst:AddComponent("inventoryitem")
-    inst.components.inventoryitem.atlasname = inventoryimage_atlas("pineapple")
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("gnome_wilson")
 
     return inst
 end

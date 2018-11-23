@@ -44,6 +44,8 @@ local function fn(Sim)
     inst.AnimState:SetRayTestOnBB(true);
     inst.Transform:SetScale(2,2,2)
 
+    local minimap = inst.entity:AddMiniMapEntity()
+    minimap:SetIcon("golden_sunflower.tex")
 
     ------------------------------------------------------------------------
     SetupNetwork(inst)

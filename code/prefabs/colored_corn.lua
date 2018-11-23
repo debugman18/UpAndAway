@@ -20,7 +20,7 @@ local prefabs_table = MakeWildCrop {
     bank = "colored_corn",
 
     anims = {
-        --idle = "idle", -- This is optional, since it defaults to "idle".
+        idle = "idle", -- This is optional, since it defaults to "idle".
         empty = "idle_empty",
         normal = "idle_normal",
         growing = "idle_growing",

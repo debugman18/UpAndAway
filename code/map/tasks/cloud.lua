@@ -12,7 +12,7 @@ TheMod:AddTask("Cloud_Innocent_Generic_Biome", {
 
     room_choices={
         ["SkyflowerGarden"] = math.random(1, 1),
-        ["SheepHerd"] = math.random(0, 1),
+        ["SheepHerd"] = math.random(1, 1),
         ["BushGarden"] = math.random(1, 2),
         ["Sea_Mimic"] = math.random(0, 1),	
     },
@@ -44,6 +44,24 @@ TheMod:AddTask("Cloud_Generic_Biome", {
       crosslink_factor = 4,
       -- Whether or not to connect the last node to the first
       make_loop = true,	
+})
+
+TheMod:AddTask("Cloud_Sunflower_Biome", {
+    locks = LOCKS.TIER1,
+    keys_given = {KEYS.TIER2, KEYS.CRAFTABLE_HEAT},
+
+    room_choices={
+        ["SkyflowerGarden"] = math.random(1, 1),
+        ["SunflowerGarden"] = math.random(1, 2),
+    },
+
+    room_bg=GROUND.POOPCLOUD,
+    background_room="BGCloud",
+    colour={r=.2,g=.2,b=.2,a=1},
+      -- The number of neighbors beyond the first that each node links to
+      crosslink_factor = 0,
+      -- Whether or not to connect the last node to the first
+      make_loop = true, 
 })
 
 -------------------------------------------------------------------------------
@@ -86,6 +104,23 @@ TheMod:AddTask("Cloud_Snow_Biome", {
       crosslink_factor = 0,
       -- Whether or not to connect the last node to the first
       make_loop = false,	
+})
+
+TheMod:AddTask("Gnome_Snow_Biome", {
+    locks = {LOCKS.TIER2, LOCKS.SUSTAINABLE_HEAT},
+    keys_given = {KEYS.TIER3},
+
+    room_choices={
+        ["Gnome_Forest"] = math.random(1, 2), 
+    },
+
+    room_bg=GROUND.FUNGUS,
+    background_room="BGSnow",
+    colour={r=1,g=1,b=1,a=1},
+      -- The number of neighbors beyond the first that each node links to
+      crosslink_factor = 4,
+      -- Whether or not to connect the last node to the first
+      make_loop = true,  
 })
 
 -------------------------------------------------------------------------------

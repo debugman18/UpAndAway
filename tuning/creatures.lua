@@ -761,7 +761,7 @@ ALIEN.PREFABS = {
 }
 
 ALIEN.LOOT = {
-    {'nightmarefuel', 0.80}
+    {'nightmarefuel', 0.20}
 }
 
 ALIEN.FRAGMENTS = {

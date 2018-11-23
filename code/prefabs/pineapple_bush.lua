@@ -14,14 +14,13 @@ local prefabs_table = MakeWildCrop {
         "pineapple",
     },
 
-
     product = "pineapple",
 
     build = "pineapple_bush",
     bank = "pineapple_bush",
 
     anims = {
-        --idle = "idle", -- This is optional, since it defaults to "idle".
+        idle = "idle_normal", -- This is optional, since it defaults to "idle".
         empty = "idle_empty",
         normal = "idle_normal",
         growing = "idle_growing",
