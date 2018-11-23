@@ -44,7 +44,8 @@ end
 local function donebrewfn(inst)
     inst.AnimState:PlayAnimation("idle_open_pre")
     inst.AnimState:PushAnimation("idle_open")
-    --inst.AnimState:OverrideSymbol("swap_cooked", "cook_pot_food", inst.components.brewer.product)
+    inst.AnimState:OverrideSymbol("product", inst.components.brewer.product, "idle")
+    TheMod:DebugSay(inst.components.brewer.product)
     inst.SoundEmitter:KillSound("snd")
     inst.SoundEmitter:PlaySound("dontstarve/common/cookingpot_finish", "snd")
 end
