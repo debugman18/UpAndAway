@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b6.1">
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
     <folder id="0">
-        <file id="0" name="sunflower.png" width="103" height="128" pivot_x="0" pivot_y="1"/>
+        <file id="0" name="sunflower.png" width="339" height="631" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="golden_sunflower">
         <animation id="0" name="idle" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" name="sunflower" folder="0" file="0" abs_x="-46.629303" abs_y="143.795282" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="0.305386" abs_scale_y="0.296076" abs_a="1" timeline="0" key="0" z_index="0"/>
                 </key>
-                <key id="1" time="1000">
+                <key id="1" time="999">
                     <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="1000">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
                 </key>
             </mainline>
             <timeline id="0" name="sunflower">
                 <key id="0" spin="0">
-                    <object folder="0" file="0" x="-55.549655" y="120.499203" angle="0"/>
+                    <object folder="0" file="0" x="-46.629303" y="143.795282" angle="0" scale_x="0.305386" scale_y="0.296076"/>
                 </key>
-                <key id="1" time="1000" spin="0">
-                    <object folder="0" file="0" x="-55.549655" y="120.499203" angle="0"/>
+                <key id="1" time="999" spin="0">
+                    <object folder="0" file="0" x="-46.629303" y="143.795282" angle="0" scale_x="0.305386" scale_y="0.296076"/>
+                </key>
+                <key id="2" time="1000" spin="0">
+                    <object folder="0" file="0" x="-42.395018" y="114.379387" angle="0" scale_x="0.249366" scale_y="0.24884"/>
                 </key>
             </timeline>
         </animation>
