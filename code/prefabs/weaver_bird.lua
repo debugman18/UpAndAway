@@ -92,7 +92,7 @@ local function fn()
 
     inst.Physics:SetCollisionGroup(COLLISION.CHARACTERS)
     inst.Physics:ClearCollisionMask()
-    inst.Physics:CollidesWith(COLLISION.WORLD)
+    --inst.Physics:CollidesWith(COLLISION.WORLD)
     inst.Physics:SetSphere(1.5)
     inst.Physics:SetMass(1.5)
     

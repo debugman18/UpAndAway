@@ -102,20 +102,6 @@ if IsServer() then
     end)
 end
 
---[[
-local function OnUnlockMound(inst)
-    if not inst:IsValid() then return end
-
-    local tree = SpawnPrefab("beanstalk_sapling")
-    if tree then
-        tree.Transform:SetPosition(inst.Transform:GetWorldPosition())
-    end
-    TheMod:DebugSay("[", inst, "] unlocked.")
-    inst:Remove()
-end
---]]
- 
-
 local function addmoundtag(inst)
         local function beanstalktest(inst, item)
             if item.prefab == "magic_beans" and not item:HasTag("cooked") then
@@ -140,7 +126,7 @@ local function addmoundtag(inst)
             end
         end
 
-        if not inst.components.hole then
+        if not IsDLCEnabled(REIGN_OF_GIANTS) or IsDLCEnabled(CAPY_DLC) or IsDLCEnabled(PORKLAND_DLC) then
             inst:AddComponent("trader")
             inst.components.trader:SetAcceptTest(beanstalktest)
             inst.components.trader.onaccept = beanstalkaccept
