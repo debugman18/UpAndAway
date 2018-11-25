@@ -56,7 +56,7 @@ local function fn(Sim)
     physics:SetDamping(5)
     physics:SetCollisionGroup(_G.COLLISION.OBSTACLES)
     physics:ClearCollisionMask()
-    physics:CollidesWith(_G.COLLISION.WORLD)
+    physics:CollidesWith(COLLISION.WORLD or COLLISION.WORLD_01)
 
 
     ------------------------------------------------------------------------

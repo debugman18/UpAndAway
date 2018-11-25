@@ -144,7 +144,7 @@ local function fn(Sim)
     MakeCharacterPhysics(inst, 1, .25)
     inst.Physics:SetCollisionGroup(COLLISION.FLYERS)
     inst.Physics:ClearCollisionMask()
-    inst.Physics:CollidesWith(COLLISION.WORLD)
+    inst.Physics:CollidesWith(COLLISION.WORLD or COLLISION.WORLD_01)
     
     inst.AnimState:SetRayTestOnBB(true)
 
@@ -152,7 +152,7 @@ local function fn(Sim)
     ------------------------------------------------------------------------
     SetupNetwork(inst)
     ------------------------------------------------------------------------
-;
+
     
     inst:AddComponent("playerprox")
 

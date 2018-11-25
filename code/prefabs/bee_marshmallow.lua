@@ -159,8 +159,7 @@ local function commonfn()
     inst.Physics:SetCollisionGroup(COLLISION.FLYERS)
     inst.Physics:ClearCollisionMask()
 
-    --TEMP, will return here.
-    --inst.Physics:CollidesWith(COLLISION.WORLD)
+    inst.Physics:CollidesWith(COLLISION.WORLD or COLLISION.WORLD_01)
     inst.Physics:CollidesWith(COLLISION.FLYERS)
 
 

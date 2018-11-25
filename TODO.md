@@ -11,7 +11,7 @@ Current Development Phase: Horrors in the Sky
 	+ Bean Giant fight implementation. Groan.
 	+ Winnie character art implementation.
 	+ Quartz Torch placable into quartz lamps, givable to entities to increase reputation with that faction.
-	+ Rubber trees that gnomes worship. 
+	+ Rubber trees that gnomes worship.
 	+ Meat wall. Max level monstermeat wall has attacks.
 	+ Cloud coral should grow back over time, as well as starting at different states.
 	+ Refiner should be able to show ingredients.
@@ -23,7 +23,6 @@ Current Development Phase: Horrors in the Sky
 	+ Datura's do not have anim for 9 and 10.
 	+ Sparks are broken, no anim.
 	+ Side-facing textures for cotton hat are bugged.
-	+ Marshmallow bees are buggy. Very buggy.
 
 + **Art assets in need of attention**
 

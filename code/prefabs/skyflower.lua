@@ -108,6 +108,9 @@ end
 local function fn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
+
+    inst.entity:AddPhysics()
+    inst.Physics:CollidesWith(COLLISION.WORLD or COLLISION.WORLD_01)
     
     inst.entity:AddAnimState()
     inst.AnimState:SetBank("flowers")

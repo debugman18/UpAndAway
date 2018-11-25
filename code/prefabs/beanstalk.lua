@@ -258,7 +258,7 @@ local function fn(Sim)
     physics:SetFriction(10000)
 
     --TEMP, will return here.
-    --physics:CollidesWith(COLLISION.WORLD)
+    physics:CollidesWith(COLLISION.WORLD or COLLISION.WORLD_01)
     physics:CollidesWith(COLLISION.ITEMS)
     physics:CollidesWith(COLLISION.CHARACTERS)
 

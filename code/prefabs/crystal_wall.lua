@@ -89,7 +89,7 @@ local function makeobstacle(inst)
         
     inst.Physics:SetCollisionGroup(COLLISION.OBSTACLES)	
     inst.Physics:ClearCollisionMask()
-    --inst.Physics:CollidesWith(COLLISION.WORLD)
+    inst.Physics:CollidesWith(COLLISION.WORLD or COLLISION.WORLD_01)
     inst.Physics:SetMass(0)
     inst.Physics:CollidesWith(COLLISION.ITEMS)
     inst.Physics:CollidesWith(COLLISION.CHARACTERS)
