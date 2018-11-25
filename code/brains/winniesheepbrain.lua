@@ -13,6 +13,17 @@ local WinnieSheepBrain = Class(Brain, function(self, inst)
     Brain._ctor(self, inst)
 end)
 
+local function GetFaceTargetFn(inst)
+    local target = GetClosestInstWithTag("player", inst, 4)
+    if target and not target:HasTag("notarget") then
+        return target
+    end
+end
+
+local function KeepFaceTargetFn(inst, target)
+    return inst:GetDistanceSqToInst(target) <= 6*6 and not target:HasTag("notarget")
+end
+
 local function GoHomeAction(inst)
     if inst.components.homeseeker and 
        inst.components.homeseeker.home and 

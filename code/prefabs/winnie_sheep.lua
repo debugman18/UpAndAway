@@ -16,7 +16,6 @@ local CFG = TheMod:GetConfig()
 local assets=
 {
     Asset("ANIM", "anim/sheep_baby_build.zip"),
-    Asset("ANIM", "anim/sheep_electric.zip"),	
 
     Asset("ANIM", "anim/beefalo_basic.zip"),
     Asset("ANIM", "anim/beefalo_actions.zip"),
@@ -57,7 +56,7 @@ local function fn()
     inst:AddTag("sheep")
 
     local trans = inst.entity:AddTransform()
-    trans:SetFourFaced()
+    inst.Transform:SetSixFaced()
 
     local sound = inst.entity:AddSoundEmitter()
     inst.sounds = sounds
@@ -145,7 +144,7 @@ local function fn()
     
     inst:AddComponent("sleeper")	
 
-    inst:SetStateGraph("SGSheep")
+    inst:SetStateGraph("SGwinnie_sheep")
 
     inst:AddComponent("named")
     inst.components.named.possiblenames = STRINGS.WINNIE_SHEEP_NAMES
