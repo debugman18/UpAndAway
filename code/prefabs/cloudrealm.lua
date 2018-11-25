@@ -253,7 +253,7 @@ local function fn()
     --inst.componentsambientsoundmixer.wave_sound = "dontstarve/common/clouds"
    
 	if not IsDedicated() then
-		--inst:SetOverrideColourCube("images/colour_cubes/snow_cc.tex")
+		inst:SetOverrideColourCube("images/colour_cubes/snow_cc.tex")
 
         --[[
         snowdusk
@@ -270,9 +270,9 @@ local function fn()
             local staticgen = inst.components.staticgenerator
             local cfg = Configurable("STATIC")
 
-            staticgen:SetAverageUnchargedTime( cfg:GetConfig "AVERAGE_UNCHARGED_TIME" )
-            staticgen:SetAverageChargedTime( cfg:GetConfig "AVERAGE_CHARGED_TIME" )
-            staticgen:SetCooldown( cfg:GetConfig "COOLDOWN" )
+            staticgen:SetAverageUnchargedTime(cfg:GetConfig "AVERAGE_UNCHARGED_TIME")
+            staticgen:SetAverageChargedTime(cfg:GetConfig "AVERAGE_CHARGED_TIME")
+            staticgen:SetCooldown(cfg:GetConfig "COOLDOWN")
 
             staticgen:StartGenerating()
         end

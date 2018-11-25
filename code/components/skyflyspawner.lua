@@ -271,8 +271,8 @@ function SkyflySpawner:TrySpawn()
 
     local flower = self:GetSpawnFlower()
 
-    local flower_x,flower_y,flower_z = flower.Transform:GetWorldPosition()
     if flower then
+        local flower_x,flower_y,flower_z = flower.Transform:GetWorldPosition()
         local fly = SpawnPrefab(self.prefab)
         if fly then
             fly.Transform:SetPosition(flower_x,flower_y,flower_z)

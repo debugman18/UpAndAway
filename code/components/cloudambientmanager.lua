@@ -35,6 +35,8 @@ local CloudAmbientManager = Class(Debuggable, function(self, inst)
     self.onStateChangeCleanup = FunctionQueue()
 
 	local function OnChangeState(inst, state)
+        TheMod:DebugSay("OnChangeState:")
+        TheMod:DebugSay(state)
 		--self:Say("OnChangeState => ", state)
 		local _self = inst.components.cloudambientmanager
         if self == _self then
@@ -42,29 +44,31 @@ local CloudAmbientManager = Class(Debuggable, function(self, inst)
                 self:onStateChangeCleanup()
                 self.onStateChangeCleanup = FunctionQueue()
             end
+            TheMod:DebugSay("Changing state:")
+            TheMod:DebugSay(state)
             self:OnEnterState(state)
         end
 	end
 
-    self.inst:ListenForEvent("upandaway_charge_broadcast", function(inst)
+    self.inst:ListenForEvent("upandaway_charge", function(inst)
 		return OnChangeState(inst, "CHARGED")
     end)
-    self.inst:ListenForEvent("upandaway_uncharge_broadcast", function(inst)
+    self.inst:ListenForEvent("upandaway_uncharge", function(inst)
 		return OnChangeState(inst, "UNCHARGED")
     end)
 
 	local function initialize_self()
-		assert( GetPseudoClock() )
+		assert(GetPseudoClock())
 		self:ApplyColour()
 		self.inst:DoTaskInTime(0, function()
 			self:ApplyColour()
 		end)
 	end
 	if IsDST() then
-		assert( GetPseudoClock() == nil )
+		assert(GetPseudoClock() == nil)
 		TheMod:AddPrefabPostInit("world_network", initialize_self)
 	else
-		assert( GetPseudoClock(), "The clock should be added before cloudambientmanager!" )
+		assert(GetPseudoClock(), "The clock should be added before cloudambientmanager!")
 		initialize_self()
 	end
 end)
@@ -75,6 +79,8 @@ function CloudAmbientManager:ApplyColour()
     end
 
     AL.SetAmbientColour(self.current_colour)
+    TheMod:DebugSay("Setting ambient colour:")
+    TheMod:DebugSay(self.current_colour)
 end
 
 --[[
@@ -114,26 +120,28 @@ local function do_charged_effects(self)
         end
     end)()
 
-    
     while true do
         strike()
         wait()
     end
 end
 
+-- This is where the ambient colour changes happen.
 function CloudAmbientManager:OnEnterState(state)
-    local clock 
+    TheMod:DebugSay("Entering state:")
+    TheMod:DebugSay(state)
 
-    if IsDST() then clock = assert( GetPseudoClock() ) else
-        clock = GetClock()
-    end
+    local clock = GetPseudoClock()
 
-    local target_colour = assert( self.colours[state] )
+    local target_colour = assert(self.colours[state])
 
     local colour_transition_time = self.transition_time
     if self.inst:GetTimeAlive() <= 2*_G.FRAMES then
         colour_transition_time = 0
     end
+
+    TheMod:DebugSay("Target colour is:")
+    TheMod:DebugSay(target_colour)
     clock:LerpAmbientColour(self.current_colour, target_colour, colour_transition_time)
 
     if state == "CHARGED" then

@@ -77,16 +77,8 @@ local function new_updater_thread(self)
         while inst:IsValid() do
 
             -- Do some hacky staticgenerator stuff. Don't want to check constantly, but every roomwatcher is fine.
-            if GetWorld().components.staticgenerator:IsCharged() then
-                print("Check: CHARGED")
-                GetWorld().components.staticgenerator:SetClockColour(100,100,150,true)
-                --GetWorld().components.colourcubemanager:StartBlend(5, "images/colour_cubes/fungus_cc.tex")
-                GetWorld():SetOverrideColourCube("images/colour_cubes/fungus_cc.tex")
-            else
-                print("Check: UNCHARGED")
+            if not GetWorld().components.staticgenerator:IsCharged() then
                 GetWorld().components.staticgenerator:SetClockColour(180,180,255)
-                --GetWorld().components.colourcubemanager:StartBlend(5, "images/colour_cubes/snow_cc.tex")
-                GetWorld():SetOverrideColourCube("images/colour_cubes/snow_cc.tex")
             end 
 
             local oldnode = self:GetCachedNode()

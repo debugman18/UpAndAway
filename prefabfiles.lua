@@ -29,7 +29,6 @@ PrefabFiles = {
 	"live_gnome",
 	"rubber_armor",
 	"shopkeeper_umbrella",
-	"rhinoman",
 
 	--"rubber_cap",
 	--"rubber_ducky",
