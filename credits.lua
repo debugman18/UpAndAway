@@ -22,6 +22,7 @@ return {
 		"Mr. Tiddles",
 		"Vivalavie",
 		"Minespatch",
+		"CheeseNuggets",
 	}},
 	{"writing", {
 		title = "Writers",
