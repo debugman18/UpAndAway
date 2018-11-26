@@ -5,7 +5,6 @@ local CFG = TheMod:GetConfig()
 local assets=
 {
     Asset("ANIM", "anim/cotton_hat.zip"),
-    Asset("ANIM", "anim/hat_miner_off.zip"),
 }
 
 
@@ -42,6 +41,10 @@ local function onunequip(inst, owner)
     end
 end
 
+local function ondrop(inst)
+    inst.AnimState:PlayAnimation("anim")
+end
+
 local function onperish(inst)
     inst:Remove()
 end
@@ -53,7 +56,7 @@ local function fn(Sim)
         inst.entity:AddAnimState()
         MakeInventoryPhysics(inst)
 
-        inst.AnimState:SetBank("strawhat")
+        inst.AnimState:SetBank("miner_hat")
         inst.AnimState:SetBuild("cotton_hat")
         inst.AnimState:PlayAnimation("anim")
 
@@ -69,6 +72,7 @@ local function fn(Sim)
 
         inst:AddComponent("inventoryitem")
         inst.components.inventoryitem.atlasname = inventoryimage_atlas("cotton_hat")
+        inst.components.inventoryitem:SetOnDroppedFn(ondrop)
 
         inst:AddComponent("tradable")
 

@@ -69,15 +69,27 @@ local function unpicked_setcolour(inst, colour)
     inst.colour = colour
 end
 
+local function unpicked_setflipped(inst, flipped)
+    if flipped == 2 then
+        TheMod:DebugSay("Flipping jellyshroom.")
+        local rx, ry, rz = inst.Transform:GetScale()
+        TheMod:DebugSay(rx.." "..ry.." "..rz)
+        inst.Transform:SetScale(-rx, ry, rz)
+    end
+    inst.flipped = flipped
+end
+
 local function unpicked_common_onsave(inst, data)
     data.scale = inst.scale
     data.colour = inst.colour
+    data.flipped = inst.flipped
 end
 
 local function unpicked_common_onload(inst, data)
     if data then
         if data.scale then unpicked_setscale(inst, data.scale) end
         if data.colour then unpicked_setcolour(inst, data.colour) end
+        if data.flipped then unpicked_setflipped(inst, data.flipped) end
     end
 end
 
@@ -92,17 +104,19 @@ local function unpickedfn_common(bank, name)
 
     inst.AnimState:SetBank(bank) 
     inst.AnimState:SetBuild("jelly_shrooms")
-    inst.AnimState:PlayAnimation("idle_sway", true)	
+    inst.AnimState:PlayAnimation("idle")
+    inst:DoTaskInTime(math.random(0,2), inst.AnimState:PushAnimation("idle_sway", true))
     inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
 
     unpicked_setcolour(inst, random_colour(name))
 
     unpicked_setscale(inst, 0.8 + 0.6*math.random())
 
+    inst:DoTaskInTime(1, unpicked_setflipped(inst, math.random(0,2)))
+
     inst:AddComponent("inspectable") 
 
     inst:AddTag("jelly")
-
     inst:AddComponent("pickable")
     inst.components.pickable.picksound = "dontstarve/wilson/pickup_plants"
     inst.components.pickable.onpickedfn = onpickedfn
