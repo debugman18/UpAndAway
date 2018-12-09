@@ -147,24 +147,20 @@ local function MainMenuDoInit(self)
 
     -- Pop a warning if the number of tiles isn't what it is expected to be!
 
-    local LOW_COUNT_WARNING = "There are less tiles than expected!\nWe STRONGLY encourage you to disable Up and Away before loading your saves.\nOnce the mod has been updated, you may reenable Up and Away.\nHowever, you may need to regenerate your cloudworld once you have updated.\nOtherwise, bugs can occur."
+    local LOW_COUNT_WARNING = "There are less tiles than expected!\nWe STRONGLY encourage you to disable Up and Away before loading your saves.\nYou may need to regenerate your cloudworld once you have updated.\nOtherwise, bugs can occur."
 
-    local HIGH_COUNT_WARNING = "There are more tiles than expected!\nWe STRONGLY encourage you to disable Up and Away before loading your saves.\nOnce the mod has been updated, you may reenable Up and Away.\nHowever, you may need to regenerate your cloudworld once you have updated.\nOtherwise, bugs can occur."
+    local HIGH_COUNT_WARNING = "There are more tiles than expected!\nWe STRONGLY encourage you to disable Up and Away before loading your saves.\nYou may need to regenerate your cloudworld once you have updated.\nOtherwise, bugs can occur."
 
     local PopupDialogScreen = require("screens/popupdialog")
 
     if not self.modtilewarning then
         if TILE_COUNT > LAST_KNOWN_COUNT then
             TheMod:DebugSay(HIGH_COUNT_WARNING)
-            self.modtilewarning = PopupDialogScreen("WARNING!", HIGH_COUNT_WARNING, {text="OKAY", cb = function() end}, {text="OKAY", cb = function() end})
+            --self.modtilewarning = PopupDialogScreen("WARNING!", HIGH_COUNT_WARNING, {text="OKAY", cb = function() TheFrontEnd:PopScreen() end})
         elseif TILE_COUNT < LAST_KNOWN_COUNT then 
             TheMod:DebugSay(LOW_COUNT_WARNING)
-            self.modtilewarning = PopupDialogScreen("WARNING!", LOW_COUNT_WARNING, {text="OKAY", cb = function() end}, {text="OKAY", cb = function() end})
+            --self.modtilewarning = PopupDialogScreen("WARNING!", LOW_COUNT_WARNING, {text="OKAY", cb = function() TheFrontEnd:PopScreen() end})
         end 
-    end
-
-    if self.modtilewarning then
-        TheFrontEnd:PushScreen(self.modtilewarning)
     end
 
     -------------------------------------------------

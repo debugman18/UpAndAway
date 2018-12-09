@@ -50,7 +50,12 @@ IGNORE_TILES = {
 	WALL_STONEEYE_GLOW = 163,
 }
 
-LAST_KNOWN_COUNT = 66
+LAST_KNOWN_COUNT = 65
+
+--ROG IS ?
+--SW IS ?
+--PL IS 65
+--NO DLC IS 20
 
 ---------------------------------------
 

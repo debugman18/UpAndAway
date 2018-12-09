@@ -79,6 +79,8 @@ local function new_updater_thread(self)
             -- Do some hacky staticgenerator stuff. Don't want to check constantly, but every roomwatcher is fine.
             if not GetWorld().components.staticgenerator:IsCharged() then
                 GetWorld().components.staticgenerator:SetClockColour(180,180,255)
+            else 
+                GetWorld().components.staticgenerator:SetClockColour(100,100,150)
             end 
 
             local oldnode = self:GetCachedNode()
