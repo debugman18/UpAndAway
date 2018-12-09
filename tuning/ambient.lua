@@ -4,7 +4,6 @@ STATIC.AVERAGE_UNCHARGED_TIME = 2*TUNING.TOTAL_DAY_TIME
 STATIC.AVERAGE_CHARGED_TIME = 1*TUNING.TOTAL_DAY_TIME
 STATIC.COOLDOWN = 20
 
-
 --[[
 -- The game's dusk ambient coĺour.
 -- It seems not taking a multiple of it as ambient colour creates weird auras
@@ -20,7 +19,7 @@ local dusk_colour = Point(100/255, 100/255, 100/255)
 -- Ambient colour (RGB) for the static states.
 -- Always multiply with numbers on the right.
 CLOUD_AMBIENT.UNCHARGED_COLOUR = dusk_colour*1.5--2.5 --1.5
-CLOUD_AMBIENT.CHARGED_COLOUR = dusk_colour*0.3 --0.75 --0.6
+CLOUD_AMBIENT.CHARGED_COLOUR = dusk_colour*0.18 --0.75 --0.6
 
 -- Transition time between ambient colours.
 CLOUD_AMBIENT.COLOUR_TRANSITION_TIME = 5

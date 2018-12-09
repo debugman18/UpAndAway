@@ -151,3 +151,4 @@ AddModCharacter("winnie", FEMALE)
 -- I shouldn't have to do this here, but lazyvariableadder isn't working correctly for roads.
 GLOBAL.ShopkeeperRoad = "dummy"
 
+

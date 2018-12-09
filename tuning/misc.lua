@@ -10,6 +10,7 @@
 -- For now, avoid removing entries and/or reordering them, otherwise savedata
 -- for new tiles will get messed up (creating a new save will fix it, though).
 --]]
+
 NEW_TILES = {
 	"poopcloud", 
 	"aurora", 
@@ -21,6 +22,35 @@ NEW_TILES = {
 	"auroratwo",
 	"rainbowtwo"
 }
+
+IGNORE_TILES = {
+	INVALID = 255,
+	BATTLEGROUND_PLAINS_NOISE = 119,
+	BATTLEGROUND_RAINFOREST_NOISE = 120,
+    JUNGLE_NOISE = 121,
+    VOLCANO_NOISE = 122,
+    DIRT_NOISE = 123,
+	ABYSS_NOISE = 124,
+	GROUND_NOISE = 125,
+	CAVE_NOISE = 126,
+	FUNGUS_NOISE = 127,
+	UNDERGROUND = 128,
+	WALL_ROCKY = 151,
+	WALL_DIRT = 152,
+	WALL_MARSH = 153,
+	WALL_CAVE = 154,
+	WALL_FUNGUS = 155,
+	WALL_SINKHOLE = 156,
+	WALL_MUD = 157,
+	WALL_TOP = 158,
+	WALL_WOOD = 159,
+	WALL_HUNESTONE = 160,
+	WALL_HUNESTONE_GLOW = 161,
+	WALL_STONEEYE = 162,
+	WALL_STONEEYE_GLOW = 163,
+}
+
+LAST_KNOWN_COUNT = 66
 
 ---------------------------------------
 

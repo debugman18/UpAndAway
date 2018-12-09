@@ -144,14 +144,15 @@ function AddTile(id, numerical_id, name, specs, minispecs)
 	assert( type(specs) == "table" )
 	assert( type(minispecs) == "table" )
 
-	-- Ideally, this should never be passed, and we would wither generate it or load it
+	-- Ideally, this should never be passed, and we would either generate it or load it
 	-- from savedata if it had already been generated once for the current map/saveslot.
 	if numerical_id == nil then
 		numerical_id = getNewGroundValue()
 	else
 		for k, v in pairs(GROUND) do
 			if v == numerical_id then
-				return error(("The numerical value %d is already used by GROUND.%s!"):format(v, tostring(k)), 2)
+				-- Don't produce an error here. Rather, we'll warn the player so that they know what to expect once they've updated.
+				--return error(("The numerical value %d is already used by GROUND.%s!"):format(v, tostring(k)), 2)
 			end
 		end
 	end
