@@ -25,6 +25,13 @@ local function BaseDestroy(inst)
     end
 end
 
+local function PeriodicWiggle(inst)
+    if not self.inst.giant then
+        self.inst.AnimState:PushAnimation("pod_shake")
+        self.inst.AnimState:PushAnimation("pod_loop")
+    end 
+end
+
 local function GoHome(inst)
     if inst.components.knownlocations:GetLocation("home") then
         return BufferedAction(inst, nil, ACTIONS.GOHOME, nil, inst.components.knownlocations:GetLocation("home") )
@@ -52,12 +59,12 @@ function BeanGiantBrain:OnStart()
     local root =
         PriorityNode(
         {
-            AttackWall(self.inst),
-            ChaseAndAttack(self.inst, CFG.BEAN_GIANT.CHASE_TIME, CFG.BEAN_GIANT.CHASE_DIST),
-            DoAction(self.inst, function() return BaseDestroy(self.inst) end, "DestroyBase", true),
-            WhileNode(function() return self.inst.components.knownlocations:GetLocation("home") end, "HasHome",
-                DoAction(self.inst, function() return GoHome(self.inst) end, "GoHome", true) ),
-            Wander(self.inst, GetWanderPos, 30, {minwwwalktime = 10}),
+            --AttackWall(self.inst),
+            --ChaseAndAttack(self.inst, CFG.BEAN_GIANT.CHASE_TIME, CFG.BEAN_GIANT.CHASE_DIST),
+            --DoAction(self.inst, function() return BaseDestroy(self.inst) end, "DestroyBase", true),
+            --WhileNode(function() return self.inst.components.knownlocations:GetLocation("home") end, "HasHome",
+                --DoAction(self.inst, function() return GoHome(self.inst) end, "GoHome", true) ),
+            --Wander(self.inst, GetWanderPos, 30, {minwwwalktime = 10}),
         },1)
     
     self.bt = BT(self.inst, root)

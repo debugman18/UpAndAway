@@ -10,7 +10,7 @@ local actionhandlers =
 
 local SHAKE_DIST = 40
 
-local function DeerclopsFootstep(inst)
+local function Footstep(inst)
     inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/step")
     if AllPlayers then
         for i, v in ipairs(AllPlayers) do
@@ -21,7 +21,7 @@ end
 
 local events=
 {
-    CommonHandlers.OnLocomote(false,true),
+    CommonHandlers.OnLocomote(false,false),
     CommonHandlers.OnSleep(),
     CommonHandlers.OnFreeze(),
     CommonHandlers.OnAttack(),
@@ -86,16 +86,16 @@ CommonStates.AddWalkStates( states,
 {
     starttimeline =
     {
-        TimeEvent(1*FRAMES, DeerclopsFootstep),
+        TimeEvent(1*FRAMES, Footstep),
     },
     walktimeline = 
     { 
-        TimeEvent(1*FRAMES, DeerclopsFootstep),
-        TimeEvent(1*FRAMES, DeerclopsFootstep),
+        TimeEvent(1*FRAMES, Footstep),
+        TimeEvent(1*FRAMES, Footstep),
     },
     endtimeline=
     {
-        TimeEvent(1*FRAMES, DeerclopsFootstep),
+        TimeEvent(1*FRAMES, Footstep),
     },
 })
 
@@ -133,15 +133,7 @@ CommonStates.AddCombatStates(states,
     },
 })
 
-CommonStates.AddIdle(states)
-CommonStates.AddSleepStates(states,
-{
-    sleeptimeline = 
-    {
-        --TimeEvent(46*FRAMES, function(inst) inst.SoundEmitter:PlaySound(inst.sounds.grunt) end)
-    },
-})
-CommonStates.AddFrozenStates(states)
+CommonStates.AddIdle(states, "pod_loop", "pod_loop")
 
 return StateGraph("beangiant", states, events, "idle", actionhandlers)
 

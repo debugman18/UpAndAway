@@ -94,10 +94,10 @@ return {
 	modinfo_filter = function(modinfo)
 		modinfo.branch = "master"
 
-		if opts.dst and modinfo.dst_api_version then
-			modinfo.api_version = modinfo.dst_api_version
+		if opts.dst and modinfo.api_version_dst then
+			modinfo.api_version = modinfo.api_version_dst
 		end
-		modinfo.dst_api_version = nil
+		modinfo.api_version_dst = nil
 
 		if modinfo.configuration_options then
 			local kinds = {"forbids_dst", "requires_dst"}

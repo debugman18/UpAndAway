@@ -69,7 +69,7 @@ local function attacked_fn(inst)
     if inst and inst:HasTag("pod") then
         -- Do pod shaking here.
         inst.AnimState:PushAnimation("pod_shake")
-        inst.AnimState:PushAnimation("pod_idle")
+        inst.AnimState:PushAnimation("pod_loop")
     else
         -- Do giant stuff here, because it clearly isn't a pod.
     end
@@ -88,7 +88,7 @@ local function giant_fn(inst)
     inst.Transform:SetScale(10,10,10)
 
     inst.AnimState:PushAnimation("pod_transform")
-    inst.AnimState:PushAnimation("bean_giant_idle")
+    inst.AnimState:PushAnimation("idle_loop")
 
     -- We don't want the player doing too much damage during transformation.
     inst:DoTasKInTime(CFG.BEAN_GIANT.TRANSFORM_BUFFER, function()
@@ -168,7 +168,7 @@ local function pod_fn(inst)
     local scale = 5
     inst.Transform:SetScale(scale,scale,scale)
     inst.Transform:SetFourFaced()
-    inst.AnimState:PlayAnimation("idle_loop", true)
+    inst.AnimState:PlayAnimation("pod_loop", true)
 
     -- This runs after entity creation and before components.
     ------------------------------------------------------------------------
@@ -217,6 +217,10 @@ local function pod_fn(inst)
     inst.components.lootdropper:SetChanceLootTable("bean_giant")
 
     inst:AddComponent("inspectable")
+    if not inst.giant then
+        inst:AddComponent("named")
+        inst.components.named:SetName("Giant Pod")
+    end
 
     inst:AddComponent("knownlocations")
    
@@ -226,11 +230,14 @@ local function pod_fn(inst)
 
     inst:ListenForEvent("attacked", attacked_fn)
 
-    inst:ListenForEvent("death", function(inst, data)
-        OnDeath(data) end, inst)
+    inst:ListenForEvent("death", function(inst, data) OnDeath(data) end, inst)
 
     inst.OnSave = OnSave
     inst.OnLoad = OnLoad
+
+    if not inst.giant then
+        inst.components.locomotor:Stop()
+    end
 
     return inst
 end
