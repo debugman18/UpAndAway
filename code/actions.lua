@@ -3,25 +3,30 @@ BindGlobal()
 
 local ACTIONS = ACTIONS
 
-
 BindTheMod()
 
+local mount_enabled = {mount_enabled = true}
+local mount_disabled = {mount_enabled = false}
 
-ACTIONS.DEPLOY.strfn = (function()
+local Deploy = Action(mount_enabled)
+Deploy.strfn = (function()
     local oldfn = ACTIONS.DEPLOY.strfn
 
     return function(act)
         if act.invobject and act.invobject:HasTag("portable_structure") then
             return "PORTABLE_STRUCTURE"
         else
-            return oldfn(act)
+            return oldfn(self.act)
         end
     end
 end)()
 
+Deploy.str = "Deploy"
+Deploy.id = "DEPLOY"
+
 ---
 
-local Climb = Action()
+local Climb = Action(mount_enabled)
 Climb.str = "Climb"
 Climb.id = "CLIMB"
 Climb.fn = function(act)
@@ -46,7 +51,7 @@ end
 
 ---
 
-local Withdraw = Action(1)
+local Withdraw = Action(mount_enabled, 1)
 Withdraw.str = "Withdraw"
 Withdraw.id = "WITHDRAW"
 Withdraw.fn = function(act)
@@ -69,7 +74,7 @@ end
 ---
 
 -- Ugly name, but avoids confusion with vanilla's TALKTO action.
-local BeginSpeech = Action(-1, false, false, TheMod:GetConfig("SPEECHGIVER", "MAX_DIST"))
+local BeginSpeech = Action(mount_enabled, -1, false, false, TheMod:GetConfig("SPEECHGIVER", "MAX_DIST"))
 BeginSpeech.str = ACTIONS.TALKTO.str
 BeginSpeech.id = "BEGINSPEECH"
 BeginSpeech.fn = function(act)
@@ -102,7 +107,7 @@ end
 
 ---
 
-local Brew = Action()
+local Brew = Action(mount_enabled)
 Brew.str = "Brew"
 Brew.id = "BREW"
 Brew.fn = function(act)

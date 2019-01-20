@@ -4,17 +4,6 @@ Current Development Phase: Horrors in the Sky
 
 + **Current Developments:*
 
-	-- Debug's List
-
-	+ Random horizontal flipping of jellyshrooms to reduce repetiveness.
-	+ Allow for more cloud stuff in the overworld, and vice-versa.
-	+ Bean Giant fight implementation. Groan.
-	+ Winnie character art implementation.
-	+ Quartz Torch placable into quartz lamps, givable to entities to increase reputation with that faction.
-	+ Rubber trees that gnomes worship.
-	+ Meat wall. Max level monstermeat wall has attacks.
-	+ Cloud coral should grow back over time, as well as starting at different states.
-	+ Refiner should be able to show ingredients.
 
 + **Current bugs:**
 
@@ -37,6 +26,15 @@ Current Development Phase: Horrors in the Sky
 	+ Port golden egg corruption to DST.
 	+ Superconductor implementation.
 	+ Unique item implementation.
+	+ Random horizontal flipping of jellyshrooms to reduce repetiveness.
+	+ Allow for more cloud stuff in the overworld, and vice-versa.
+	+ Bean Giant fight implementation. Groan.
+	+ Winnie character art implementation.
+	+ Quartz Torch placable into quartz lamps, givable to entities to increase reputation with that faction.
+	+ Rubber trees that gnomes worship.
+	+ Meat wall. Max level monstermeat wall has attacks.
+	+ Cloud coral should grow back over time, as well as starting at different states.
+	+ Refiner should be able to show ingredients.
 
 + ** Strings in need of attention**
 
@@ -48,9 +46,6 @@ Current Development Phase: Horrors in the Sky
 
 	+ Stuffed animals that can be created with the sewing kit. They start as a cotton frame, and become a random stuffed animal when sewn. They give very small amounts of sanity and warmth when used. 
 
-	+ Rhinomen confirmed. http://forums.kleientertainment.com/topic/19488-dont-starve-supermod-mod-abandoned/page-47#entry192646
-	http://forums.kleientertainment.com/topic/3988-the-majestic-rhino-tribe/
-
 	+ Cooked foods. http://forums.kleientertainment.com/topic/27648-suggestions-cauldron-of-ideas/page-56?p=500493#entry500493
 
 	+ Gummybear traps.
@@ -58,7 +53,7 @@ Current Development Phase: Horrors in the Sky
 ******
 
 Anything else that needs to be added will be added (eventually). 
-If something is missing (bugs or otherwise), let either @simplex or @debugman18 know.
+If something is missing (bugs or otherwise), let @debugman18 know.
 
 <!--
 vim: ft=markdown nofoldenable

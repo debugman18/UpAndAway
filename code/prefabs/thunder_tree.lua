@@ -3,6 +3,7 @@ BindGlobal()
 local assets =
 {
     Asset("ANIM", "anim/tree_thunder.zip"),
+    Asset("ANIM", "anim/thunder_tree.zip"),
 }
 
 local prefabs =
@@ -249,12 +250,13 @@ local function fn(Sim)
     inst.components.playerprox:SetOnPlayerFar(StopSpawning)
     inst.components.playerprox:SetOnPlayerNear(StartSpawning)
 
-    anim:SetBuild("tree_thunder")
-    anim:SetBank("marsh_tree")
+    anim:SetBuild("thunder_tree")
+    anim:SetBank("thunder_tree")
     inst.color = 0.5 + math.random() * 0.5
     anim:SetMultColour(inst.color, inst.color, inst.color, 1)
-    sway(inst)
-    anim:SetTime(math.random()*2)
+    --sway(inst)
+    --anim:SetTime(math.random()*2)
+    anim:PlayAnimation("idle_loop", true)
     inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
  
     inst.scale = 0.8 + 0.4*math.random()

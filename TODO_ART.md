@@ -6,10 +6,10 @@
 + Bean Huts (Need variety in shape/design)
 + Crystals (Need variety in shape/design)
 + Weaver Nest (Total redesign. More like trees, the trees grow the nests like fruit.)
-+ Sunflower (Total redesign) -- In progress.
 + Algae (Total redesign)
 + Coral (Adjustment and/or redesign)
 + Dragonblood Log (Adjustment and/or redesign)
++ Duckraptor.
 
 ### Inventory images in need of attention, in order of priority.
 + Various Potion Types -- Vivalavie was working on these last I checked.
@@ -21,7 +21,6 @@
 ### Custom animation banks/builds in need of attention, in order of priority.
 + Sheep -- Needs shaved art.
 + Gnomes. -- Vivalavie was working on this. Battal began animations. Unknown status.
-+ Cloud Wall -- Art uploaded by MilleniumCount. Just needs to be animated. http://forums.kleientertainment.com/topic/44496-current-goals-road-to-beta-v2/?p=573225
 + Cauldron -- Needs animations for brewing and for brewing completion. Bubbling liquid in cauldron will be a FX prefab.
 + Crystal Armor -- Needs inventory, ground and wearing images, or at least they are not in the mod yet.
 + Birds of Paradise -- There is existing art and some basic animations. Currently virtually no code.
