@@ -250,8 +250,13 @@ local function fn(Sim)
     inst.components.playerprox:SetOnPlayerFar(StopSpawning)
     inst.components.playerprox:SetOnPlayerNear(StartSpawning)
 
-    anim:SetBuild("thunder_tree")
-    anim:SetBank("thunder_tree")
+    --Until we get the new art/animations working.
+    anim:SetBuild("tree_thunder")
+    anim:SetBank("marsh_tree")
+
+    --anim:SetBuild("thunder_tree")
+    --anim:SetBank("thunder_tree")
+
     inst.color = 0.5 + math.random() * 0.5
     anim:SetMultColour(inst.color, inst.color, inst.color, 1)
     --sway(inst)

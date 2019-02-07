@@ -11,7 +11,6 @@ Current Development Phase: Horrors in the Sky
 	+ Quartz torch errors.
 	+ Datura's do not have anim for 9 and 10.
 	+ Sparks are broken, no anim.
-	+ Side-facing textures for cotton hat are bugged.
 
 + **Art assets in need of attention**
 
