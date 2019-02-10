@@ -19,6 +19,19 @@ WINNIE_STAFF.UPDATE_RATE = 2.5
 
 ---------------------------------------
 
+-- Winnie's Flute
+
+WINNIE_FLUTE.SLEEP_TIME = 6
+WINNIE_FLUTE.SLEEP_RANGE = 6
+
+---------------------------------------
+
+-- Winston's Brush
+
+WINSTON_TOOL.EFFICIENCY = 1
+
+---------------------------------------
+
 -- Brewed Tea
 
 BEVERAGE.INHERENT_INSULATION = 60

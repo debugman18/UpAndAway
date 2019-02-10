@@ -30,23 +30,19 @@ local tall_loot =
 {
     "thunder_log",
     "thunder_log",
-    "thunder_log", 
-    "thunder_log", 
-    "thunder_log", 
+    "thunder_pinecone",
     "thunder_pinecone",    
 }
 
 local function StartSpawning(inst)
     if inst.components.childspawner and GetPseudoSeasonManager() and GetPseudoSeasonManager():IsWinter() and not (GetStaticGenerator() and GetStaticGenerator():IsCharged()) then
         inst.components.childspawner:StartSpawning()
-        --print("Tree spawning.")
     end
 end
 
 local function StopSpawning(inst)
     if inst.components.childspawner then
         inst.components.childspawner:StopSpawning()
-        --print("Tree no longer spawning.")
     end
 end
 
@@ -58,7 +54,7 @@ local function SetShort(inst)
         inst:AddComponent("lootdropper")
     end 
     inst.components.lootdropper:SetLoot(short_loot)
-    inst.Transform:SetScale(0.7, 0.7, 0.7)
+    inst.Transform:SetScale(0.75, 0.75, 0.75)
     if inst.components.staticchargeable then
         inst:RemoveComponent("staticchargeable")
     end    
@@ -77,7 +73,7 @@ local function SetNormal(inst)
     end     
     inst.components.lootdropper:SetLoot(normal_loot)
     inst.components.lootdropper:AddChanceLoot("thunder_pinecone", 0.3)
-    inst.Transform:SetScale(0.8, 0.8, 0.8)
+    inst.Transform:SetScale(1.0, 1.0, 1.0)
     if inst.components.staticchargeable then
         inst:RemoveComponent("staticchargeable")
     end 
@@ -95,7 +91,7 @@ local function SetTall(inst)
         inst:AddComponent("lootdropper")
     end     
     inst.components.lootdropper:SetLoot(tall_loot)
-    inst.Transform:SetScale(0.9, 0.9, 0.9)   
+    inst.Transform:SetScale(1.2, 1.2, 1.2)   
     inst.components.lootdropper:AddChanceLoot("cumulostone", 1)
     inst.components.lootdropper:AddChanceLoot("thunder_pinecone", 0.5)
     if not inst.components.staticchargeable then
@@ -121,13 +117,13 @@ local growth_stages =
 }
 
 local function sway(inst)
-    inst.AnimState:PushAnimation("sway"..math.random(4).."_loop", true)
+    --inst.AnimState:PushAnimation("sway"..math.random(4).."_loop", true)
 end
 
 local function chop_tree(inst, chopper, chops)
     inst.SoundEmitter:PlaySound("dontstarve/creatures/rocklobster/clawsnap")         
-    inst.AnimState:PlayAnimation("chop")
-    sway(inst)
+    inst.AnimState:PlayAnimation("idle_work")
+    --sway(inst)
 end
 
 local function dig_up_stump(inst, chopper)
@@ -145,9 +141,9 @@ local function set_stump(inst, push_anim)
     inst:AddTag("stump")
 
     if push_anim then
-        inst.AnimState:PushAnimation("stump", false)
+        inst.AnimState:PushAnimation("idle_stump", false)
     else
-        inst.AnimState:PlayAnimation("stump", false)
+        inst.AnimState:PlayAnimation("idle_stump", false)
     end
 
     inst:AddComponent("workable")
@@ -217,10 +213,6 @@ local function fn(Sim)
     inst.components.growable.loopstages = true
     inst.components.growable:StartGrowing()
 
-    local minimap = inst.entity:AddMiniMapEntity()
-    minimap:SetIcon( "marshtree.png" )
-    minimap:SetPriority(-1)
-
     MakeObstaclePhysics(inst, .25)   
     inst:AddTag("tree")
     
@@ -250,17 +242,13 @@ local function fn(Sim)
     inst.components.playerprox:SetOnPlayerFar(StopSpawning)
     inst.components.playerprox:SetOnPlayerNear(StartSpawning)
 
-    --Until we get the new art/animations working.
-    anim:SetBuild("tree_thunder")
-    anim:SetBank("marsh_tree")
-
-    --anim:SetBuild("thunder_tree")
-    --anim:SetBank("thunder_tree")
+    anim:SetBuild("thunder_tree")
+    anim:SetBank("thunder_tree")
 
     inst.color = 0.5 + math.random() * 0.5
     anim:SetMultColour(inst.color, inst.color, inst.color, 1)
-    --sway(inst)
-    --anim:SetTime(math.random()*2)
+    sway(inst)
+    anim:SetTime(math.random()*2)
     anim:PlayAnimation("idle_loop", true)
     inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
  
@@ -271,6 +259,7 @@ local function fn(Sim)
 
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("thunder_tree.tex") 
+    inst.MiniMapEntity:SetPriority(-1)
 
     inst.OnSave = onsave
     inst.OnLoad = onload

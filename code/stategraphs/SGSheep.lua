@@ -119,43 +119,9 @@ local states=
             inst.AnimState:PushAnimation("walk_pst")
             inst.components.locomotor:StopMoving()
             inst.AnimState:PlayAnimation("bellow")
-            inst.SoundEmitter:PlaySound(inst.sounds.grunt)
-        end,
-       
-        events=
-        {
-            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
-        },
-    },
-    
-    State{
-        name = "matingcall",
-        tags = {},
-        onenter = function(inst)
-            inst.components.locomotor:StopMoving()
-            inst.AnimState:PlayAnimation("mating_taunt1")
             inst.SoundEmitter:PlaySound(inst.sounds.yell)
         end,
-        events=
-        {
-            EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
-        },
-    },
-    
-    State{
-        name = "tailswish",
-        tags = {},
-        onenter = function(inst)
-            inst.components.locomotor:StopMoving()
-            inst.AnimState:PlayAnimation("mating_taunt2")
-        end,
-        
-        timeline=
-        {
-            TimeEvent(22*FRAMES, function(inst) inst.SoundEmitter:PlaySound(inst.sounds.swish) end),
-            TimeEvent(32*FRAMES, function(inst) inst.SoundEmitter:PlaySound(inst.sounds.swish) end),
-        },
-        
+       
         events=
         {
             EventHandler("animover", function(inst) inst.sg:GoToState("idle") end),
@@ -183,10 +149,7 @@ local states=
         tags = {"idle", "canrotate"},
         
         onenter = function(inst)
-            --inst.components.locomotor:StopMoving()
             inst.SoundEmitter:PlaySound(inst.sounds.curious)
-            --inst.AnimState:PlayAnimation("alert_pre")
-            --inst.AnimState:PushAnimation("alert_idle", true)
         end,
     },
     
@@ -272,7 +235,7 @@ local states=
         tags = {"busy", "sleeping"},
         
         onenter = function(inst)
-            --inst.AnimState:SetBuild("beefalo_shaved_build")
+            --inst.AnimState:SetBuild("sheep_shaved_build")
             inst.AnimState:PlayAnimation("shave")
         end,
         

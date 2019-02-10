@@ -1,9 +1,5 @@
 --[[
-__TODO__
-Winnie should be able to craft lureplant bulbs fairly inexpensively.
-Likely will use seeds, nightmare fuel, and health.
-
-Winnie gameplay is based around soft vegetarianism, naughtiness, and lureplants. Combat and sanity are the main mechanics.
+Winnie gameplay is based around soft vegetarianism and naughtiness. Combat and sanity are the main mechanics.
 --]]
 
 BindGlobal()
@@ -46,9 +42,6 @@ local assets = {
 
 local prefabs = CFG.WINNIE.PREFABS
 
-local seeds = CFG.WINNIE.POTENTIAL_SEEDS
-local seed = seeds[math.random(#seeds)]
-
 local starting_inventory = CFG.WINNIE.STARTING_INV
 
 local kramped = nil
@@ -82,15 +75,11 @@ end
 -- Set kramped to appropriate value.
 local function getKramped(inst)
     if IsDST() then
-
         kramped = TheWorld.components.kramped
-        calc_naughtyactions(inst)
-        
+        calc_naughtyactions(inst)   
     else 
-
         kramped = inst.components.kramped
         kramped_actions = kramped.actions
-
     end
 
     if kramped_actions then
@@ -113,9 +102,6 @@ local function DoNaughty(inst, naughty_value)
         spawndummy(inst)
     end
 end
-
--- Gives winnie a random seed nicely.
-table.insert(starting_inventory, seed)
 
 -- Spawns Winnie with two special named sheep.
 local function spawn_sheep(inst)
@@ -218,12 +204,6 @@ local function penalty(inst, food)
         inst.components.sanity:DoDelta(Round(CFG.WINNIE.VEGGIE_BONUS_SANITY))
         inst.components.health:DoDelta(Round(CFG.WINNIE.VEGGIE_BONUS_HEALTH))
         inst.components.hunger:DoDelta(Round(CFG.WINNIE.VEGGIE_BONUS_HUNGER))
-        if IsDST() then
-            DoNaughty(inst, CFG.WINNIE.VEGGIE_BONUS_NAUGHTY)
-        else
-            kramped:OnNaughtyAction(Round(CFG.WINNIE.MEAT_PENALTY_NAUGHTY))
-        end
-
     end
 end
 
@@ -285,7 +265,7 @@ local function on_combat(inst)
 
         local bonus = CFG.WINNIE.NAUGHTY_BONUS * CFG.WINNIE.SANITY_BONUS_CAP * CFG.WINNIE.PROJECTILE_MULT
 
-        inst.components.sanity:DoDelta(bonus)
+        inst.components.sanity:DoDelta(-bonus)
 
         if IsDST() then
             DoNaughty(inst, bonus)
@@ -350,9 +330,6 @@ local function post_compat_fn(inst)
             end
         end        
     end
-
-    inst:AddTag("winnie_builder")
-
 end
 
 -- Don't Starve Together
@@ -373,9 +350,7 @@ local character_fn = function(inst)
 end
 
 if IsDST() then
-    Recipe("lureplantbulb", {Ingredient("seeds", 10), Ingredient("nightmarefuel", 2)}, _G.RECIPETABS.TOWN, _G.TECH.NONE, nil, nil, nil, nil, "winnie_builder")
     return MakePlayerCharacter("winnie", prefabs, assets, common_postinit, master_postinit, starting_inventory)
 else 
-    Recipe("lureplantbulb", {Ingredient("seeds", 10), Ingredient("nightmarefuel", 2)}, _G.RECIPETABS.TOWN, _G.TECH.NONE, nil, nil, nil, nil)
     return MakePlayerCharacter("winnie", prefabs, assets, character_fn, starting_inventory)
 end

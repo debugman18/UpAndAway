@@ -3,10 +3,12 @@
 PrefabFiles = {
 	"winnie",
 	"winnie_staff",
+	"winnie_flute",
 	"winnie_sheep",
 	"kettle",
 	"cauldron",
 	"refiner",
+	--"winston_tool",
 
 	-- Dummy prefab for morgue trickery.
 	"staticdummy",
@@ -32,7 +34,6 @@ PrefabFiles = {
 
 	--"rubber_cap",
 	--"rubber_ducky",
-	--"thundertree_sapling",
 
 	------------------------------
 
@@ -172,7 +173,6 @@ PrefabFiles = {
 	--"cloud_bomb",	
 	--"golden_amulet",
 	--"kite",
-	--"antlion",	
 	--"cheshire",
 	--"chimera",
 	--'bird_paradise',

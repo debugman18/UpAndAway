@@ -1,13 +1,13 @@
 local Add = modrequire "lib.addstrings"
 
--- Winnie stuff.
+-- Winnie and Winston stuff.
 --
 -- Added early so it doesn't override strings added below.
 
 STRINGS.CHARACTER_TITLES.winnie = "The Shepherd"
 STRINGS.CHARACTER_NAMES.winnie = "Winnie"
 STRINGS.CHARACTER_DESCRIPTIONS.winnie = "*Dislikes meat\
-*Has a green thumb\
+Plays a lovely flute\
 *Is not so innocent"
 STRINGS.CHARACTER_QUOTES.winnie = "\"Stay near me, little sheep.\""
 
@@ -25,6 +25,24 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.WINNIE =
     MURDERER = "Murderer!",
     REVIVER = "She's not so bad.",
     GHOST = "Winnie could use a heart.",
+}
+
+STRINGS.CHARACTER_TITLES.winston = "The Archeologist"
+STRINGS.CHARACTER_NAMES.winston = "Winston"
+STRINGS.CHARACTER_DESCRIPTIONS.winston = "*ONE\
+*TWO\
+*THREE"
+STRINGS.CHARACTER_QUOTES.winston = "\"Stay near me, little sheep.\""
+
+STRINGS.CHARACTERS.WINSTON = modrequire "speech_winston"
+
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.WINSTON = 
+{
+    GENERIC = "",
+    ATTACKER = "",
+    MURDERER = "",
+    REVIVER = "",
+    GHOST = "Winston could use a heart.",
 }
 
 
@@ -193,6 +211,8 @@ Add.Names {
     whitestaff = "White Staff",
     wind_axe = "Axe of Storms",
     winnie_staff = "Shepherd's Staff",
+    winnie_flute = "Winnie's Flute",
+    winston_tool = "Excavating Brush",
 
     -- Tea names.
     whitetea = "White Tea",

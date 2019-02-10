@@ -52,7 +52,7 @@
 <istemplate>Yes</istemplate>
 <usetemplate></usetemplate>
 <notes></notes>
-<category>set_sfx/creature</category>
+<category>set_sfx/HUD/creature</category>
 <position_randomization_min>0</position_randomization_min>
 <position_randomization>0</position_randomization>
 <speaker_l>1</speaker_l>

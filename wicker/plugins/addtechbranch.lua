@@ -18,6 +18,15 @@ TheMod:AddGamePostInit(function()
 			v[name] = v[name] or 0
 		end
 	end
+
+	--[[
+	-- We need a TECH.NONE
+	for _, v in pairs(_G.TECH.NONE) do
+		for _, name in ipairs(new_tech_branches) do
+			v[name] = v[name] or 0
+		end
+	end
+	--]]
 end)
 
 

@@ -37,7 +37,7 @@ end)()
 
 function IsDeployablePoint(inst, pt)
 	if not inst.components.deployable then return false end
-	return IsUnblockedPoint(pt, inst.components.deployable.min_spacing, function(ent) return ent ~= inst end)
+	return IsUnblockedPoint(pt, inst.components.deployable.min_spacing, function(ent) return true end)
 end
 
 -- Returns whether there exists a clear path connecting both points.

@@ -2,9 +2,9 @@
 
 -- Winnie
 
-WINNIE.HEALTH = 150
+WINNIE.HEALTH = 100
 WINNIE.SANITY = 100
-WINNIE.HUNGER = 160
+WINNIE.HUNGER = 100
 
 WINNIE.MEAT_PENALTY_HEALTH = -15
 WINNIE.MEAT_PENALTY_SANITY = -40
@@ -17,7 +17,7 @@ WINNIE.VEGGIE_BONUS_HUNGER = 5
 
 WINNIE.VEGGIE_BONUS_NAUGHTY = -1
 
-WINNIE.DAMAGE_MULTIPLIER = 0.75
+WINNIE.DAMAGE_MULTIPLIER = 0.35
 
 WINNIE.WALK_SPEED = TUNING.WILSON_WALK_SPEED * 1.1 
 WINNIE.RUN_SPEED = TUNING.WILSON_RUN_SPEED * 1.1
@@ -35,24 +35,44 @@ WINNIE.VEGGIE_RESIST = 0.2
 WINNIE.PREFABS = {
     "sheep",
     "winnie_staff",
-    "durian_seeds",
-    "pomegranate_seeds",
-    "dragonfruit_seeds",
-}
-
-WINNIE.POTENTIAL_SEEDS = {
-    "durian_seeds",
-    "pomegranate_seeds",
-    "dragonfruit_seeds",
+    "winnie_flute",
 }
 
 WINNIE.STARTING_INV = {
     "winnie_staff",
-    "lureplantbulb"
+    "winnie_flute"
 }
 
 WINNIE.PERMANENT_ITEMS = {
 	"winnie_staff",
+    "winnie_flute",
+}
+
+---------------------------------------
+
+--  Winston
+
+WINSTON.HEALTH = 300
+WINSTON.SANITY = 80
+WINSTON.HUNGER = 300
+
+WINSTON.WALK_SPEED = TUNING.WILSON_WALK_SPEED * 0.8
+WINSTON.RUN_SPEED = TUNING.WILSON_RUN_SPEED * 0.8
+
+WINNIE.DAMAGE_MULTIPLIER = 0.8
+
+-- Loot and Prefabs
+
+WINSTON.PREFABS = {
+    "winston_tool",
+}
+
+WINSTON.STARTING_INV = {
+    "winston_tool",
+}
+
+WINSTON.PERMANENT_ITEMS = {
+    "winston_tool",
 }
 
 ---------------------------------------
