@@ -11,7 +11,7 @@ local actionhandlers =
 local SHAKE_DIST = 40
 
 local function Footstep(inst)
-    inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/step")
+    inst.SoundEmitter:PlaySound("upandaway/creatures/beanclops/walk")
     if AllPlayers then
         for i, v in ipairs(AllPlayers) do
             v:ShakeCamera(CAMERASHAKE.VERTICAL, .5, .03, 2, inst, SHAKE_DIST)
@@ -44,8 +44,8 @@ local states=
         
         timeline=
         {
-            TimeEvent(5*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/taunt_grrr") end),
-            TimeEvent(16*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/taunt_howl") end),
+            TimeEvent(5*FRAMES, function(inst) inst.SoundEmitter:PlaySound("upandaway/creatures/beanclops/idle") end),
+            TimeEvent(16*FRAMES, function(inst) inst.SoundEmitter:PlaySound("upandaway/creatures/beanclops/idle") end),
         },
         
         events=
@@ -70,8 +70,8 @@ local states=
         
         timeline=
         {
-            TimeEvent(5*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/taunt_grrr") end),
-            TimeEvent(5*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/taunt_howl") end),
+            TimeEvent(5*FRAMES, function(inst) inst.SoundEmitter:PlaySound("upandaway/creatures/beanclops/idle") end),
+            TimeEvent(5*FRAMES, function(inst) inst.SoundEmitter:PlaySound("upandaway/creatures/beanclops/idle") end),
         },
         
         events=
@@ -103,13 +103,13 @@ CommonStates.AddCombatStates(states,
 {
     hittimeline =
     {
-        TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/hurt") end),
+        TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("upandaway/creatures/beanclops/hurt") end),
     },
     attacktimeline = 
     {
-        TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/attack") end),
+        TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("upandaway/creatures/beanclops/idle") end),
         TimeEvent(35*FRAMES, function(inst)
-            inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/swipe")
+            inst.SoundEmitter:PlaySound("upandaway/creatures/beanclops/attack")
             inst.components.combat:DoAttack(inst.sg.statemem.target)
             if inst.bufferedaction and inst.bufferedaction.action == ACTIONS.HAMMER then
                 inst.bufferedaction.target.components.workable:SetWorkLeft(1)
@@ -123,7 +123,7 @@ CommonStates.AddCombatStates(states,
     },
     deathtimeline=
     {
-        TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/death") end),
+        TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("upandaway/creatures/beanclops/death") end),
         TimeEvent(50*FRAMES, function(inst)
             inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/bodyfall_snow")  
             for i, v in ipairs(AllPlayers) do

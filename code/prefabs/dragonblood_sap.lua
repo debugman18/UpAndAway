@@ -40,7 +40,7 @@ local function fn(Sim)
 
     inst:AddComponent("edible")
     inst.components.edible.healthvalue = CFG.DRAGONBLOOD_SAP.HEALTH_VALUE
-    inst.components.edible.hungervalue = CFG.DRAGONBLOOD_SAP.HUNGER_VALUEs
+    inst.components.edible.hungervalue = CFG.DRAGONBLOOD_SAP.HUNGER_VALUE
     inst.components.edible.sanityvalue = CFG.DRAGONBLOOD_SAP.SANITY_VALUE
 
     inst:AddComponent("temperature")

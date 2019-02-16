@@ -16,7 +16,7 @@ local prefabs = CFG.OWL.PREFABS
 SetSharedLootTable( "owl", CFG.OWL.LOOT) 
 
 local function ontalk(inst, script)
-	inst.SoundEmitter:PlaySound("upandaway/creatures/owl/onehoot_by_freemaster2")
+	inst.SoundEmitter:PlaySound("upandaway/creatures/owl/taunt")
 end
 
 local function DoHoot(inst)
