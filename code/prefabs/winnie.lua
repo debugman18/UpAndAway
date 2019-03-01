@@ -313,10 +313,10 @@ local function post_compat_fn(inst)
     inst.components.health:SetMaxHealth(CFG.WINNIE.HEALTH)
 
     inst.components.hunger:SetMax(CFG.WINNIE.HUNGER)
-    inst.components.hunger:SetRate(CFG.WINNIE.HUNGER_RATE)
+    --inst.components.hunger:SetRate(CFG.WINNIE.HUNGER_RATE)
 
     inst.components.sanity:SetMax(CFG.WINNIE.SANITY)
-    inst.components.sanity.custom_rate_fn = function() return CFG.WINNIE.SANITY_RATE end
+    --inst.components.sanity.custom_rate_fn = function() return CFG.WINNIE.SANITY_RATE end
 
     inst.components.combat.damagemultiplier = CFG.WINNIE.DAMAGE_MULTIPLIER
 

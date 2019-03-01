@@ -29,11 +29,9 @@ for quite some time.
 ### Update 2019-3-1 (alpha 0.2.13 release)
 
 + Lowered Winnie's sanity further.
-+ Having followers when equipped with Winnie's Staff no raises sanity instead of lowering it.
++ Having followers when equipped with Winnie's Staff no longer raises sanity instead of lowering it.
 + The followers now have to be near, however.
-+ Winnie's Staff now effects Ox.
 + Fixed a bug causing it to always be summer. If you still experience this bug, please share your save's DLC information.
-+ 
 
 ### Future Changes (These are for the future, they have not been implemented.)
 
