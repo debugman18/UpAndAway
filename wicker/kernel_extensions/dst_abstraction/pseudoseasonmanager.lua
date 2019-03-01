@@ -23,18 +23,22 @@ local TUNING = TUNING
 
 local is_rog = IsRoG()
 
--- It doesn't matter if the game mode itself is SW or not.
+-- It doesn't matter if the game mode itself is SW or not. 
 local is_sw = IsSW()
+
+local is_pork = _G.IsDLCEnabled(PORKLAND_DLC, 3)
 
 ---
 
 local SEASON_NAMES
-if is_sw then
-	SEASON_NAMES = {"autumn", "winter", "spring", "summer", "mild", "wet", "green", "dry"}
+if is_pork then
+	SEASON_NAMES = {"autumn", "winter", "spring", "summer", "caves", "mild", "wet", "green", "dry", "temperate", "humid", "lush", "aporkalypse"}
+elseif is_sw then
+	SEASON_NAMES = {"autumn", "winter", "spring", "summer", "caves", "mild", "wet", "green", "dry"}
 elseif is_rog then
-	SEASON_NAMES = {"autumn", "winter", "spring", "summer"}
+	SEASON_NAMES = {"autumn", "winter", "spring", "summer", "caves"}
 else
-	SEASON_NAMES = {"summer", "winter"}
+	SEASON_NAMES = {"summer", "winter", "caves"}
 end
 
 local LIGHTNING_MODES_PRETTYNAME_MAP = {

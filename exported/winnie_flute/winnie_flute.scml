@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+    <folder id="0">
+        <file id="0" name="shadow.png" width="368" height="44" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="winnie_flute.png" width="937" height="449" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="winnie_flute">
+        <animation id="0" name="idle" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="shadow" folder="0" file="0" abs_x="-55.718921" abs_y="-1.72841" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="0.328115" abs_scale_y="0.26533" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="shadow_000" folder="0" file="0" abs_x="-42.70276" abs_y="-1.664757" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="0.254011" abs_scale_y="0.213491" abs_a="1" timeline="2" key="0" z_index="1"/>
+                    <object_ref id="2" name="winnie_flute" folder="0" file="1" abs_x="-46.42564" abs_y="58.881667" abs_pivot_x="0" abs_pivot_y="1" abs_angle="348.691193" abs_scale_x="0.148721" abs_scale_y="0.162203" abs_a="1" timeline="1" key="0" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="shadow">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-55.718921" y="-1.72841" scale_x="0.328115" scale_y="0.26533"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="winnie_flute">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-46.42564" y="58.881667" angle="348.691193" scale_x="0.148721" scale_y="0.162203"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="shadow_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-42.70276" y="-1.664757" scale_x="0.254011" scale_y="0.213491"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

@@ -18,7 +18,7 @@ local prefabs = {}
 local function herd_enable(inst, owner)
     local leadercmp = owner and owner.components.leader
     if leadercmp then
-        local max_new_followers = CFG.WINNIE_STAFF.MAX_FOLLOWERS - leadercmp:CountFollowers("beefalo")
+        local max_new_followers = CFG.WINNIE_STAFF.MAX_FOLLOWERS - leadercmp:CountFollowers("beefalo", "ox")
 
         if max_new_followers > 0 then
             local function filter_fn(beefalo)
@@ -28,7 +28,7 @@ local function herd_enable(inst, owner)
 
             local x,y,z = owner.Transform:GetWorldPosition()
 
-            local ents = TheSim:FindEntities(x,y,z, CFG.WINNIE_STAFF.MAX_FOLLOWER_DIST, {"beefalo"})
+            local ents = TheSim:FindEntities(x,y,z, CFG.WINNIE_STAFF.MAX_FOLLOWER_DIST, {"beefalo", "ox"})
 
             for _, v in ipairs(ents) do
                 owner.components.leader:AddFollower(v)
@@ -39,7 +39,14 @@ local function herd_enable(inst, owner)
         for k, v in pairs(owner.components.leader.followers) do
             if k:HasTag("beefalo") and k.components.follower then
                 k.components.follower:AddLoyaltyTime(CFG.WINNIE_STAFF.LOYALTY_TIME)
-                owner.components.sanity:DoDelta(CFG.WINNIE_STAFF.SANITY_PER_FOLLOWER)
+                
+                --local x,y,z = owner.Transform:GetWorldPosition()
+                if k:GetDistanceSqToInst(owner) <= CFG.WINNIE_STAFF.SANITY_DIST then
+                    TheMod:DebugSay("Sanity gained from follower.")
+                    print(tostring(inst.prefab))
+                    print(tostring(owner.prefab))
+                    owner.components.sanity:DoDelta(CFG.WINNIE_STAFF.SANITY_PER_FOLLOWER)
+                end
             end
         end
     end          

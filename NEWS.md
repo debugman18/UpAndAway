@@ -22,11 +22,20 @@ I'm prefixing the list of changes by date, since I suppose we'll remain at preal
 for quite some time.
 -->
 
-### Dev Version: alpha-0.2.4 (Horrors in the Sky)
+### Dev Version: alpha-0.2.13 (Horrors in the Sky)
 
 ----------------------------------------------------
 
-### Future Changes
+### Update 2019-3-1 (alpha 0.2.13 release)
+
++ Lowered Winnie's sanity further.
++ Having followers when equipped with Winnie's Staff no raises sanity instead of lowering it.
++ The followers now have to be near, however.
++ Winnie's Staff now effects Ox.
++ Fixed a bug causing it to always be summer. If you still experience this bug, please share your save's DLC information.
++ 
+
+### Future Changes (These are for the future, they have not been implemented.)
 
 + Sheep can now be shaved.
 + Added a new boss; the Semiconductor.

@@ -1,6 +1,6 @@
 name = "Up and Away"
 author = "The Fellowship of the Bean"
-version = "alpha-0.2.12"
+version = "alpha-0.2.13"
 
 id = "upandaway"
 branch = "dev"

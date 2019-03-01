@@ -190,6 +190,7 @@ local function penalty(inst, food)
     local prefab = food.prefab
 
     if eater and food == "MEAT" and not (prefab == "plantmeat" or prefab == "plantmeat_cooked") then
+        TheMod:DebugSay("Food is meat.")
         inst.components.sanity:DoDelta(Round(CFG.WINNIE.MEAT_PENALTY_SANITY))
         inst.components.health:DoDelta(Round(CFG.WINNIE.MEAT_PENALTY_HEALTH))
         inst.components.talker:Say("Blech.")
@@ -201,6 +202,7 @@ local function penalty(inst, food)
         end
 
     elseif eater and food == "VEGGIE" then
+        TheMod:DebugSay("Food is veggie.")
         inst.components.sanity:DoDelta(Round(CFG.WINNIE.VEGGIE_BONUS_SANITY))
         inst.components.health:DoDelta(Round(CFG.WINNIE.VEGGIE_BONUS_HEALTH))
         inst.components.hunger:DoDelta(Round(CFG.WINNIE.VEGGIE_BONUS_HUNGER))
@@ -251,6 +253,7 @@ local function on_combat(inst)
         local old_naughty_amount = bonus_fn(target) * CFG.WINNIE.NAUGHTY_BONUS
         local naughty_amount = Round(old_naughty_amount)
 
+        TheMod:DebugSay("Target, lowered sanity.")
         inst.components.sanity:DoDelta(bonus_fn(target))
 
         if IsDST() then
@@ -265,6 +268,7 @@ local function on_combat(inst)
 
         local bonus = CFG.WINNIE.NAUGHTY_BONUS * CFG.WINNIE.SANITY_BONUS_CAP * CFG.WINNIE.PROJECTILE_MULT
 
+        TheMod:DebugSay("No target, lowered sanity.")
         inst.components.sanity:DoDelta(-bonus)
 
         if IsDST() then

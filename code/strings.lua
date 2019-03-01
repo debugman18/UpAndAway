@@ -7,7 +7,7 @@ local Add = modrequire "lib.addstrings"
 STRINGS.CHARACTER_TITLES.winnie = "The Shepherd"
 STRINGS.CHARACTER_NAMES.winnie = "Winnie"
 STRINGS.CHARACTER_DESCRIPTIONS.winnie = "*Dislikes meat\
-Plays a lovely flute\
+*Plays a lovely flute\
 *Is not so innocent"
 STRINGS.CHARACTER_QUOTES.winnie = "\"Stay near me, little sheep.\""
 

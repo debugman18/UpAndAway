@@ -353,6 +353,7 @@ local function include_platform_detection_functions(kernel)
 
 	REIGN_OF_GIANTS = get.opt("REIGN_OF_GIANTS", 1)
 	CAPY_DLC = get.opt("CAPY_DLC", 2)
+	PORKLAND_DLC = get.opt("PORKLAND_DLC", 3)
 
 	---
 

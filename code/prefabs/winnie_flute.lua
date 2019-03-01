@@ -6,7 +6,9 @@ local CFG = TheMod:GetConfig()
 
 local assets=
 {
-	Asset("ANIM", "anim/pan_flute.zip"),
+	Asset("ANIM", "anim/winnie_flute.zip"),
+    Asset("ATLAS", inventoryimage_atlas("winnie_flute") ),
+    Asset("IMAGE", inventoryimage_texture("winnie_flute") ),    
 }
 
 local function HearWinnieFlute(inst, musician, instrument)
@@ -23,11 +25,13 @@ local function fn(Sim)
 	
 	inst:AddTag("flute")
     
-    inst.AnimState:SetBank("pan_flute")
-    inst.AnimState:SetBuild("pan_flute")
+    inst.AnimState:SetBank("winnie_flute")
+    inst.AnimState:SetBuild("winnie_flute")
     inst.AnimState:PlayAnimation("idle")
 
     MakeInventoryPhysics(inst)
+    inst:AddComponent("inventoryitem")
+    inst.components.inventoryitem.atlasname = inventoryimage_atlas("winnie_flute")
     
     inst:AddComponent("inspectable")
     inst:AddComponent("instrument")
@@ -36,8 +40,6 @@ local function fn(Sim)
     
     inst:AddComponent("tool")
     inst.components.tool:SetAction(ACTIONS.PLAY)
-        
-    inst:AddComponent("inventoryitem")
     
     return inst
 end
