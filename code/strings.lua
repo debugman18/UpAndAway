@@ -2821,7 +2821,7 @@ Add.QuotesFor "winnie_staff" {
     waxwell = "I now command the beasts of the world.",
     webber = "Follow the leader!",
     wendy = "To lead the ignorant masses.",
-    wickerbottom = "A shepherds staff",
+    wickerbottom = "A shepherd's staff",
     willow = "I could probably make a torch out of this.",
     wolfgang = "Is big carved stick.",
     woodie = "I'm quite good at making staves.",
@@ -2830,6 +2830,24 @@ Add.QuotesFor "winnie_staff" {
 	walani = "",
 	warly = "",
 	woodlegs = "I be hittin' some animals in their noggins' wit' this!",
+}
+
+Add.QuotesFor "winnie_flute" {
+    
+    GENERIC = "Some animals I hit with this will follow me!", --NEW!
+    wathgrithr = "For herding mindless beasts.",
+    waxwell = "I now command the beasts of the world.",
+    webber = "Follow the leader!",
+    wendy = "To lead the ignorant masses.",
+    wickerbottom = "A shepherds staff",
+    willow = "I could probably make a torch out of this.",
+    wolfgang = "Is big carved stick.",
+    woodie = "I'm quite good at making staves.",
+    wx78 = "FOLLOW ME, MEATSACKS",
+    winnie = "Ah, it makes such beautiful sounds.",
+    walani = "",
+    warly = "",
+    woodlegs = "I be hittin' some animals in their noggins' wit' this!",
 }
 
 -- Dunno if we'll ever need this, but I think it's gold.
