@@ -167,7 +167,7 @@ PrefabFiles = {
 	--Stuff not started.
 	--------------------
 
-	--"beanlet_lamp",
+	"beanlet_lamp",
 	--"crystal_moss",	
 	--"crystal_crown",
 	--"cloud_bomb",	

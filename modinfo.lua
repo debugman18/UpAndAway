@@ -31,7 +31,7 @@ api_version_dst = 10
 icon_atlas = "favicon/upandaway.xml"
 icon = "upandaway.tex"
 
-priority = -1
+priority = -100
 
 if not _PARSING_ENV and branch ~= "master" then
 	name = name.." ("..branch..")"

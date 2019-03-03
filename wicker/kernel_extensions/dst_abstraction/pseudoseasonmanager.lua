@@ -21,6 +21,7 @@ local PU = pkgrequire "pseudoutils"
 
 local TUNING = TUNING
 
+TheMod:DebugSay("Checking for Reign of Giants...")
 local is_rog = IsRoG()
 
 -- It doesn't matter if the game mode itself is SW or not. 

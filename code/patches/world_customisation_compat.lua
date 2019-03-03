@@ -3,8 +3,9 @@
 -- counterparts, in case RoG is not enabled.
 --]]
 
+if _G.SEASONS.AUTUMN then TheMod:DebugSay("ROG ENABLED") else TheMod:DebugSay("ROG DISABLED") end
 
-if IsDLCEnabled(REIGN_OF_GIANTS) then return end
+if _G.SEASONS.AUTUMN then return end
 
 
 wickerrequire "plugins.addpopulateworldpreinit"
