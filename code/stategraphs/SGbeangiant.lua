@@ -126,9 +126,10 @@ CommonStates.AddCombatStates(states,
         TimeEvent(0*FRAMES, function(inst) inst.SoundEmitter:PlaySound("upandaway/creatures/beanclops/death") end),
         TimeEvent(50*FRAMES, function(inst)
             inst.SoundEmitter:PlaySound("dontstarve/creatures/deerclops/bodyfall_snow")  
-            for i, v in ipairs(AllPlayers) do
-                v:ShakeCamera(CAMERASHAKE.FULL, .7, .02, 3, inst, SHAKE_DIST)
-            end
+            local player = ThePlayer
+            local distToPlayer = inst:GetPosition():Dist(player:GetPosition())
+            local power = Lerp(3, 1, distToPlayer/180)
+            player.components.playercontroller:ShakeCamera(player, "VERTICAL", 0.5, 0.03, power, 40)             
         end),
     },
 })

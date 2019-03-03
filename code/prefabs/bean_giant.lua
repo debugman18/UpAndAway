@@ -35,12 +35,16 @@ end
 -- Run this every time the pod or bean giant grows.
 local function growth_fn(inst) 
     
+    if not inst then return end
+
+    TheMod:DebugSay("Bean Pod growing...")
+
     -- Grow the bean pod some.
     if not inst.scale then 
-        inst.scale = 1 
+        inst.scale = 1
     end
 
-    local upscale = (inst.scale) + (inst.scale / 4)
+    local upscale = inst.scale * 1.2
 
     inst.Transform:SetScale(upscale, upscale, upscale)
     inst.scale = upscale
@@ -48,14 +52,16 @@ local function growth_fn(inst)
     -- Shake the screen.
     inst.SoundEmitter:PlaySound("dontstarve/creatures/spider/spiderLair_grow")
     inst.SoundEmitter:PlaySound("dontstarve/creatures/spiderqueen/distress")
-    for i, v in ipairs(AllPlayers) do
-        v:ShakeCamera(CAMERASHAKE.VERTICAL, .2, .03, 2, inst, CFG.BEAN_GIANT.SHAKE_DIST)
-    end    
+
+    local player = ThePlayer
+    local distToPlayer = inst:GetPosition():Dist(player:GetPosition())
+    local power = Lerp(3, 1, distToPlayer/180)
+    player.components.playercontroller:ShakeCamera(player, "VERTICAL", 0.5, 0.03, power, 40) 
 
     -- Upgrade and release all current children.
     if inst and inst.components.childspawner then
         inst.components.childspawner:SetMaxChildren(CFG.BEAN_GIANT.MAX_CHILDREN + 2)
-        inst.components.childspawner:ReleaseAllChildren()
+        inst.components.childspawner:ReleaseAllChildren(ThePlayer)
         inst.components.childspawner:AddChildrenInside(CFG.BEAN_GIANT.MAX_CHILDREN)
     end
 end
@@ -68,8 +74,10 @@ local function attacked_fn(inst)
 
     if inst and inst:HasTag("pod") then
         -- Do pod shaking here.
-        inst.AnimState:PushAnimation("pod_shake")
-        inst.AnimState:PushAnimation("pod_loop")
+        if not inst.giant then
+            inst.AnimState:PlayAnimation("pod_shake")
+            inst.AnimState:PushAnimation("pod_loop")
+        end
     else
         -- Do giant stuff here, because it clearly isn't a pod.
     end
@@ -79,23 +87,27 @@ end
 -- This will turn the pod into a functional bean giant.
 local function giant_fn(inst)
 
+    if not inst then return end
+
+    TheMod:DebugSay("Bean Giant transforming from Bean Pod.")
+
+    inst.components.growable:StopGrowing()
+
     -- Remove the pod identifier.
     inst:RemoveTag("pod")
 
     -- Make sure we don't add the "pod" tag again later.
     inst.giant = true
 
-    inst.Transform:SetScale(10,10,10)
+    inst.Transform:SetScale(3,3,3)
 
-    inst.AnimState:PushAnimation("pod_transform")
-    inst.AnimState:PushAnimation("idle_loop")
+    -- We need this anim!
+    --inst.AnimState:PushAnimation("pod_transform")
+    inst.AnimState:PlayAnimation("idle_loop", true)
 
     -- We don't want the player doing too much damage during transformation.
-    inst:DoTasKInTime(CFG.BEAN_GIANT.TRANSFORM_BUFFER, function()
+    inst:DoTaskInTime(CFG.BEAN_GIANT.TRANSFORM_BUFFER, function()
     inst.components.health:SetInvincible(false) end)
-
-    -- It can fight back now!
-    inst:AddComponent("combat")
 
     -- It can walk now!
     inst.components.locomotor.walkspeed = CFG.BEAN_GIANT.WALKSPEED
@@ -120,10 +132,17 @@ end
 
 -- Tag the player.
 local function OnDeath(data)
-    local cause = data and data.cause or nil
-    cause:AddTag("OctocopterSlayer")
-    GetWorld():PushEvent("octocoptercrash")
+    ThePlayer:AddTag("BeanGiantSlayer")
 end
+
+-- Stages of growth.
+local growth_stages =
+{
+    {name="BeanPod1", time = function(inst) return CFG.BEAN_GIANT.GROWTIME end, fn = function(inst) growth_fn(inst) end, growfn = function(inst) growth_fn(inst) end},
+    {name="BeanPod2", time = function(inst) return CFG.BEAN_GIANT.GROWTIME end, fn = function(inst) growth_fn(inst) end, growfn = function(inst) growth_fn(inst) end},
+    {name="BeanPod3", time = function(inst) return CFG.BEAN_GIANT.GROWTIME end, fn = function(inst) growth_fn(inst) end, growfn = function(inst) growth_fn(inst) end},
+    {name="BeanGiant", time = function(inst) return CFG.BEAN_GIANT.GROWTIME end, fn = function(inst) giant_fn(inst) end, growfn = function(inst) giant_fn(inst) end},
+}
 
 -- Load the scale and tags.
 local function OnLoad(inst, data)
@@ -165,10 +184,13 @@ local function pod_fn(inst)
     inst.AnimState:SetBank("bean_giant")
     inst.AnimState:SetBuild("bean_giant")
 
-    local scale = 5
+    local scale = 1
     inst.Transform:SetScale(scale,scale,scale)
     inst.Transform:SetFourFaced()
-    inst.AnimState:PlayAnimation("pod_loop", true)
+
+    if not inst.giant then
+        inst.AnimState:PlayAnimation("pod_loop", true)
+    end
 
     -- This runs after entity creation and before components.
     ------------------------------------------------------------------------
@@ -202,7 +224,10 @@ local function pod_fn(inst)
 
     inst:AddComponent("childspawner")
     inst.components.childspawner.childname = CFG.BEAN_GIANT.CHILD
+    inst.components.childspawner:SetRareChild(CFG.BEAN_GIANT.RARECHILD, CFG.BEAN_GIANT.RARECHILD_CHANCE)
     inst.components.childspawner:SetMaxChildren(CFG.BEAN_GIANT.MAX_CHILDREN)
+    inst.components.childspawner:SetSpawnPeriod(CFG.BEAN_GIANT.SPAWN_PERIOD)
+    inst.components.childspawner.spawnoffscreen = true
 
     -- The pod cannot be killed, so make it invincible.
     inst:AddComponent("health")
@@ -210,8 +235,10 @@ local function pod_fn(inst)
     inst.components.health:SetInvincible(true)
 
     inst:AddComponent("growable")
-    inst.components.growable:SetOnGrowthFn(growth_fn)
-    inst.components.growable.stages = {"BeanPod"}
+    inst.components.growable.stages = growth_stages
+    inst.components.growable:SetStage(0)
+    inst.components.growable.loopstages = false
+    inst.components.growable:StartGrowing(CFG.BEAN_GIANT.GROWTIME)
 
     inst:AddComponent("lootdropper")
     inst.components.lootdropper:SetChanceLootTable("bean_giant")

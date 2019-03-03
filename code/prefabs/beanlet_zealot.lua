@@ -33,9 +33,9 @@ local function fn(Sim)
     local anim = inst.entity:AddAnimState()
     local physics = inst.entity:AddPhysics()
     local sound = inst.entity:AddSoundEmitter()
-    --inst.Transform:SetTwoFaced()
+    inst.Transform:SetTwoFaced()
 
-    inst.Transform:SetScale(CFG.BEANLET_ZEALOT.SCALE, CFG.BEANLET_ZEALOT.SCALE, CFG.BEANLET_ZEALOT.SCALE)
+    inst.Transform:SetScale(CFG.BEANLET_ZEALOT.SCALE_INVERT, CFG.BEANLET_ZEALOT.SCALE, CFG.BEANLET_ZEALOT.SCALE)
 
     MakeCharacterPhysics(inst, 50, .5)  
 

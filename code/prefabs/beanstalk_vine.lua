@@ -50,7 +50,7 @@ local function fn(Sim)
     MakeGhostPhysics(inst, 1, .5)
     
     anim:SetBank("tentacle")
-    anim:SetBuild("vine")
+    anim:SetBuild("vine_ua")
     anim:PlayAnimation("idle")
     inst.entity:AddSoundEmitter()
 

@@ -56,7 +56,6 @@ Add.Names {
     balloon_firehound = "Red Hound",
     balloon_hound = "Hound",
     balloon_icehound = "Blue Hound",
-    bean_giant = "Bean Giant",
     bean_giant_statue = "Giant Statue",
     beanlet = "Beanlet",
     beanlet_armor = "Beanlet Armor",
