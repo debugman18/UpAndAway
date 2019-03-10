@@ -2931,6 +2931,8 @@ STRINGS.RECIPE_DESC.WIND_AXE = "Stormy weather in your hands."
 STRINGS.RECIPE_DESC.BEANLET_ARMOR = "Armor that takes the weight off."
 STRINGS.RECIPE_DESC.MUSHROOM_HAT = "For the fungi in all of us."
 STRINGS.RECIPE_DESC.CLOUD_WALL_ITEM = "Its usefulness is questionable."
+STRINGS.RECIPE_DESC.CRYSTAL_ARMOR = "It's heavier than it looks."
+STRINGS.RECIPE_DESC.QUARTZ_TORCH = "Light your path in style."
 
 STRINGS.POTION_NAMES = {
     "Mysterious",

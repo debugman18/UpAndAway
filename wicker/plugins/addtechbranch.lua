@@ -94,6 +94,11 @@ function AddTechBranch(name, maxlevel)
 	-- by my judgement, though: the Builder component has far too much
 	-- hardcoded logic.
 	--]]
+
+	-- Debug
+	-- Doing it another way for now.
+
+	--[[
 	local Builder = _G.require "components/builder"
 	Builder.EvaluateTechTrees = (function()
 		local oldEval = Builder.EvaluateTechTrees
@@ -111,6 +116,8 @@ function AddTechBranch(name, maxlevel)
 			end
 		end
 	end)()
+	--]]
+
 end
 
 
@@ -142,6 +149,9 @@ function AddPrototyperTree(name, spec, hint)
 	spec.MAGIC = spec.MAGIC or 0
 	spec.ANCIENT = spec.ANCIENT or 0
 	spec.OBSIDIAN = spec.OBSIDIAN or 0
+	spec.CITY = spec.CITY or 0
+	spec.HOME = spec.HOME or 0
+	spec.LOST = spec.LOST or 0
 
 	_G.TUNING.PROTOTYPER_TREES[name] = spec
 

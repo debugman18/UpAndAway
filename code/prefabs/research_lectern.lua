@@ -1,5 +1,7 @@
 BindGlobal()
 
+local scale = 1.7
+
 local assets =
 {
     Asset("ANIM", "anim/research_lectern.zip"),
@@ -12,6 +14,11 @@ end
 
 local function OnTurnOff(inst)
     inst.AnimState:PushAnimation("idle", true)
+
+    local builder = GLOBAL.GetPlayer()
+    if builder then
+        builder.components.builder.accessible_tech_trees = GLOBAL.TECH.NONE
+    end   
 end
 
 local function onhammered(inst, worker)
@@ -36,7 +43,6 @@ local function fn(Sim)
     inst.AnimState:SetBuild("research_lectern")
     inst.AnimState:PlayAnimation("idle", true)
 
-    local scale = 2
     inst.Transform:SetScale(scale,scale,scale)
 
     MakeSnowCovered(inst)
@@ -55,14 +61,13 @@ local function fn(Sim)
     inst:AddTag("prototyper")
 
     inst:AddComponent("prototyper")        
-    inst.components.prototyper.trees = TUNING.PROTOTYPER_TREES.RESEARCH_LECTERN
+    inst.components.prototyper.trees = TUNING.PROTOTYPER_TREES.FABLE
     inst.components.prototyper.onactivate = function() 
         inst.AnimState:PlayAnimation("activate")
         inst.AnimState:PushAnimation("player_close", true) 
     end  
     inst.components.prototyper.onturnoff = OnTurnOff      
-    inst.components.prototyper.onturnon = OnTurnOn	
-    inst.components.prototyper.on = true   	   	
+    inst.components.prototyper.onturnon = OnTurnOn	  	   	
 
     inst:AddTag("structure")
     inst:AddComponent("lootdropper")
@@ -72,7 +77,7 @@ local function fn(Sim)
     inst.components.workable:SetOnFinishCallback(onhammered)
     inst.components.workable:SetOnWorkCallback(onhit)		
 
-    inst:ListenForEvent( "onbuilt", function()
+    inst:ListenForEvent("onbuilt", function()
         inst.components.prototyper.on = true
         inst.AnimState:PlayAnimation("plant")
         inst.AnimState:PushAnimation("idle")
@@ -86,5 +91,5 @@ end
 
 return {
     Prefab ("common/inventory/research_lectern", fn, assets),
-    MakePlacer ("common/research_lectern_placer", "research_lectern", "research_lectern", "idle", false, false, false, 2),
+    MakePlacer ("common/research_lectern_placer", "research_lectern", "research_lectern", "idle", false, false, false, scale),
 }	 

@@ -3,7 +3,7 @@ wickerrequire "plugins.addtechbranch"
 -- Sortkeys are evil right now. Come back and fix this later.
 
 TheMod:AddTechBranch("FABLE", 3)
-TheMod:AddPrototyperTree("RESEARCH_LECTERN", {FABLE = 2}, STRINGS.UPUI.CRAFTING.NEEDRESEARCHLECTERN)
+TheMod:AddPrototyperTree("FABLE", {FABLE = 1}, STRINGS.UPUI.CRAFTING.NEEDRESEARCHLECTERN)
 
 ---
 
