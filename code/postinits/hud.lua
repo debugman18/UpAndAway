@@ -11,7 +11,7 @@ if IsSingleplayer() then
 					if not alphawarning and controls.top_root then
 						alphawarning = controls.top_root:AddChild(Text(_G.TITLEFONT, 40))
 						alphawarning:SetRegionSize(400, 50)
-						alphawarning:SetPosition(0, -28, 0)
+						alphawarning:SetPosition(0, -55, 0)
 					end
 				end
 				if alphawarning then

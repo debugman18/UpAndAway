@@ -50,6 +50,10 @@ TheMod:AddPlayerPostInit(function(player)
         player:AddComponent("ua_beardable")
         player:AddComponent("staticconductor")
 
+	    if player then
+	        player.components.builder.accessible_tech_trees = GLOBAL.TECH.NONE
+	    end   
+
 		-- Reputation stuff is worldwide.
 		player:AddComponent("reputation")
 		if GetWorld() then GetWorld():AddComponent("climbingmanager") end

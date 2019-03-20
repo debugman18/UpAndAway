@@ -151,7 +151,8 @@ function AddTile(id, numerical_id, name, specs, minispecs)
 	else
 		for k, v in pairs(GROUND) do
 			if v == numerical_id then
-				return error(("The numerical value %d is already used by GROUND.%s!"):format(v, tostring(k)), 2)
+				-- Come back to this later. Bandaged.
+				--return error(("The numerical value %d is already used by GROUND.%s!"):format(v, tostring(k)), 2)
 			end
 		end
 	end
