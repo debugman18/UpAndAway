@@ -8,15 +8,32 @@ local TILE_SCALE = _G.TILE_SCALE
 
 local MAX_DISTANCE = 100
 local MAX_RADIUS = 10
+local MAX_ITERATIONS = 100
 
 local road_pos_final = 0,0,0
 
-local function FindTile(pt, prefab, tile)
-    local spawner
-    local world = GetWorld()
-    local playerx, playery, playerz = pt.Transform:GetWorldPosition()
+local function FindTile(pt, prefab, tile, iterate)
 
-    TheMod:DebugSay("Finding Tiles ".."near "..playerx.." "..playerz)
+    do
+        local leftovers = Game.FindSomeEntity(Point(), 2^13, nil, nil, nil, {"shopkeeper", "shopkeeper_spawner"})
+        if leftovers then
+            TheMod:DebugSay("Found existing entity [", leftovers, "], skipping spawn.")
+            return
+        end
+    end
+        
+    local pt = pt or ThePlayer
+
+    TheMod:DebugSay("Finding a player...")
+
+    local spawner
+
+    local iterate = iterate or 0
+    TheMod:DebugSay("Iterating "..iterate.." of "..MAX_ITERATIONS)
+
+    TheMod:DebugSay("Finding a tile...")
+    local playerx, playery, playerz = pt.Transform:GetWorldPosition()
+    TheMod:DebugSay("Finding Tiles near "..playerx.." "..playerz)
 
     local point1 = playerx - MAX_RADIUS
     local point2 = playerx + MAX_RADIUS
@@ -37,10 +54,11 @@ local function FindTile(pt, prefab, tile)
         TheMod:DebugSay("Found the specified tile!")
         spawner = SpawnPrefab(prefab)      
         spawner.Transform:SetPosition(randX, 0, randZ)   
-    else
+    elseif iterate < 100 then
+        local iterate = iterate + 1
         TheMod:DebugSay("Invalid location. Trying again.")             
-        FindTile(pt,prefab)    
-    end
+        FindTile(pt,prefab,tile,iterate)    
+    else return end
 
     return spawner
 
@@ -69,11 +87,11 @@ local function spawn_shopkeeper_spawner()
         -- This way, the shopkeeper will still spawn in worlds without roads, as long as there are road tiles.
         if tostring(road) == "curve from (0.00, 0.00, 0.00) to (0.00, 0.00, 0.00)" then
             if not SaveGameIndex:GetCurrentMode() == "shipwrecked" and not SaveGameIndex:GetCurrentMode() == "porkland" then
-                FindRoadTile(pt, prefab, _G.GROUND.ROAD)
+                FindTile(pt, prefab, _G.GROUND.ROAD)
             elseif SaveGameIndex:GetCurrentMode() == "porkland" then
-                FindRoadTile(pt, prefab, _G.GROUND.COBBLEROAD)
+                FindTile(pt, prefab, _G.GROUND.COBBLEROAD)
             elseif SaveGameIndex:GetCurrentMode() == "shipwrecked "then 
-                FindRoadTile(pt, prefab, _G.GROUND.OCEAN_SHIPGRAVEYARD_SHORE)
+                FindTile(pt, prefab, _G.GROUND.ASH)
             end
         end
 
@@ -100,44 +118,6 @@ local function spawn_shopkeeper_spawner()
     end
 end
 
-local function spawn_shopkeeper_spawner_shipwrecked()
-    local world = GetWorld()
-
-    TheMod:DebugSay("Attempting to spawn shopkeeper_spawner...")
-
-    do
-        local leftovers = Game.FindSomeEntity(Point(), 2^13, nil, nil, nil, {"shopkeeper", "shopkeeper_spawner"})
-        if leftovers then
-            TheMod:DebugSay("Found existing entity [", leftovers, "], skipping spawn.")
-            return
-        end
-    end
-
-    -----
-
-    FindTile(pt, prefab, GROUND.MAGMAFIELD)
-
-end
-
-local function spawn_shopkeeper_spawner_hamlet()
-    local world = GetWorld()
-
-    TheMod:DebugSay("Attempting to spawn shopkeeper_spawner...")
-
-    do
-        local leftovers = Game.FindSomeEntity(Point(), 2^13, nil, nil, nil, {"shopkeeper", "shopkeeper_spawner"})
-        if leftovers then
-            TheMod:DebugSay("Found existing entity [", leftovers, "], skipping spawn.")
-            return
-        end
-    end
-
-    -----
-
-    FindTile(pt, prefab, GROUND.COBBLESTONE)
-
-end
-
 local function shopkeeper_spawner_setup()
     local world = GetWorld()
 
@@ -153,25 +133,17 @@ local function shopkeeper_spawner_setup()
         --Shipwrecked conditions.
         TheMod:DebugSay("Shipwrecked Shopkeeper")
         if world then
-            world:ListenForEvent("hurricanestart", spawn_shopkeeper_spawner)
+            world:ListenForEvent("rainstart", spawn_shopkeeper_spawner)
         end
     elseif SaveGameIndex:GetCurrentMode() == "porkland" then
         --Hamlet conditions.
         TheMod:DebugSay("Hamlet Shopkeeper")
         if world then
-            world:ListenForEvent("setfog", spawn_shopkeeper_spawner)
+            world:ListenForEvent("rainstart", spawn_shopkeeper_spawner)
         end        
     end
 end
 
 if IsHost() then
     TheMod:AddPrefabPostInit("world", shopkeeper_spawner_setup)
-
-    --if _G.IsDLCEnabled(_G.CAPY_DLC) then
-        --TheMod:AddPrefabPostInit("shipwrecked", shopkeeper_spawner_setup)
-    --end
-
-    --if _G.IsDLCEnabled(_G.PORKLAND_DLC, 3) then
-        --TheMod:AddPrefabPostInit("porkland", shopkeeper_spawner_setup)
-    --end
 end

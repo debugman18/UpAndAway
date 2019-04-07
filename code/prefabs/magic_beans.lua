@@ -54,6 +54,7 @@ local function common(Sim)
 
     if IsDLCEnabled(REIGN_OF_GIANTS) or IsDLCEnabled(CAPY_DLC) or IsDLCEnabled(PORKLAND_DLC) then
         TheMod:DebugSay("DLC installed.")
+        inst:AddComponent("tradable")
         inst:AddComponent("buryable")
         inst.components.buryable:SetOnBury(plantbeanstalk)
     else

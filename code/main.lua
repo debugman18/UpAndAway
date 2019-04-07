@@ -102,14 +102,24 @@ if IsServer() then
     end)
 end
 
-local function addmoundtag(inst)
-        local function beanstalktest(inst, item)
+local function makehole(inst)
+        local function beanstalktest_vanilla(inst, item)
+            TheMod:DebugSay("Vanilla Bean Test")
             if item.prefab == "magic_beans" and not item:HasTag("cooked") then
                 if not inst.components.workable then
                     return true
                 end
             else return false end
         end
+
+        local function beanstalktest_dlc(inst, item)
+            TheMod:DebugSay("DLC Bean Test")
+            if item.prefab == "magic_beans" and not item:HasTag("cooked") then
+                if inst.components.grower then
+                    return true
+                end
+            else return false end
+        end        
 
         local function beanstalkaccept(inst, giver, item)
             TheMod:DebugSay("Beans accepted.")
@@ -126,19 +136,25 @@ local function addmoundtag(inst)
             end
         end
 
-        if not IsDLCEnabled(REIGN_OF_GIANTS) or IsDLCEnabled(CAPY_DLC) or IsDLCEnabled(PORKLAND_DLC) then
-            inst:AddComponent("trader")
-            inst.components.trader:SetAcceptTest(beanstalktest)
-            inst.components.trader.onaccept = beanstalkaccept
-            inst.components.trader.onrefuse = beanstalkrefuse
-            inst.components.trader:Enable()
+        inst:AddComponent("trader")
+
+        if SaveGameIndex:GetCurrentMode() == "shipwrecked" or SaveGameIndex:GetCurrentMode() == "porkland" then
+            inst.components.trader:SetAcceptTest(beanstalktest_dlc)
+        elseif not IsDLCEnabled(REIGN_OF_GIANTS) then
+            inst.components.trader:SetAcceptTest(beanstalktest_vanilla)
         end
+
+        inst.components.trader.onaccept = beanstalkaccept
+        inst.components.trader.onrefuse = beanstalkrefuse
+        inst.components.trader:Enable()
 
         inst:AddTag("mound")
 end	
 
 if IsHost() then
-    AddPrefabPostInit("mound", addmoundtag)
+    AddPrefabPostInit("mound", makehole)
+    AddPrefabPostInit("slow_farmplot", makehole)
+    AddPrefabPostInit("fast_farmplot", makehole)
 end
 
 -- This adds our minimap atlases.

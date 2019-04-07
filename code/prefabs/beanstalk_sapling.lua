@@ -27,7 +27,7 @@ local function GrowBeanstalk(inst)
                 player.components.talker:Say("What could that be?!")
                 local quester = player.components.quester
                 if quester then
-                    quester:SetFlag(PRIMARY_QUEST, "hasclimbed", true)
+                    quester:SetFlag("reachtheclouds", "hasclimbed", true)
                 end
             end
         end
@@ -67,9 +67,9 @@ local function fn(Sim)
 
     --inst.Transform:SetScale(4, 4, 4)
     if not IsDST() then
-        inst:DoTaskInTime(0, function() _G.DeleteCloseEntsWithTag(inst, "mound", 0.5) _G.DeleteCloseEntsWithTag(inst, "grave", 5) end)
+        inst:DoTaskInTime(0, function() _G.DeleteCloseEntsWithTag(inst, "grave", 5) end)
     else
-        inst:DoTaskInTime(0, function() _G.DeleteCloseEntsWithTag("mound", inst, 0.5) _G.DeleteCloseEntsWithTag("grave", inst, 5) end)
+        inst:DoTaskInTime(0, function() _G.DeleteCloseEntsWithTag("grave", inst, 5) end)
     end
     inst:ListenForEvent("nighttime", function() GrowBeanstalk(inst) end, GetWorld())
 

@@ -137,8 +137,8 @@ SPEECHES.BEAN_QUEST_HAMLET = function(mgr)
 
     Sleep(0.5)
 
-    mgr "I have need of an Elder Mangdrake."
-    mgr "Those orboreal beasts you've seen roaming the grasslands."
+    mgr "I have need of an Elder Mandrake."
+    mgr "Those arboreal beasts you've seen roaming the grasslands."
     mgr "Speak to me again after you've brought me one..."
     Sleep(1)
     mgr "...And I'll give you the ticket out."
@@ -261,7 +261,7 @@ SPEECHES.GIVE_GIFTS = function(mgr, args)
     Sleep(0.75)
     
     mgr "After all,"
-    mgr "no gentleman should be without a good cup of tea."
+    mgr "No gentleman should be without a good cup of tea."
 
 
     Sleep(0.75)

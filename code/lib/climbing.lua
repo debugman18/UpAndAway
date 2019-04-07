@@ -422,13 +422,16 @@ function ClimbTo(height, cavenum)
 
     if height == 0 then
         levelchange_cb = function()
-            TheMod:DebugSay("Returning to survival...")
-
             if _G.IsDLCEnabled(_G.CAPY_DLC) then
+                TheMod:DebugSay("Returning to shipwrecked...")
                 SaveGameIndex:EnterWorld("shipwrecked", onsaved)
             elseif _G.IsDLCEnabled(_G.PORKLAND_DLC, 3) and not _G.IsDLCEnabled(_G.CAPY_DLC, 2) then
+                TheMod:DebugSay("Returning to hamlet...")
                 SaveGameIndex:EnterWorld("porkland", onsaved)
-            else SaveGameIndex:LeaveCave(onsaved) end
+            else 
+                TheMod:DebugSay("Returning to survival...")
+                SaveGameIndex:LeaveCave(onsaved) 
+            end
         end
     else
         -- Target level

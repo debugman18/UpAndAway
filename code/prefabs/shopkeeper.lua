@@ -412,6 +412,22 @@ local function fn(Sim)
             end
         end)
 
+        speechgiver:AddSpeechCallback("BEAN_QUEST_SHIPWRECKED", function(inst, mgr)
+            local quester = mgr.listener.components.quester
+            if quester then
+                quester:StartQuest(PRIMARY_QUEST)
+                inst.gave_quest = true
+            end
+        end)
+
+        speechgiver:AddSpeechCallback("BEAN_QUEST_HAMLET", function(inst, mgr)
+            local quester = mgr.listener.components.quester
+            if quester then
+                quester:StartQuest(PRIMARY_QUEST)
+                inst.gave_quest = true
+            end
+        end)                
+
         speechgiver:AddSpeechData("BEAN_SUCCESS", {
             givebeans = function(inst, player)
                 if inst.beans_to_give and inst.beans_to_give > 0 then
