@@ -68,7 +68,13 @@ local function spawn_shopkeeper_spawner()
 
         -- This way, the shopkeeper will still spawn in worlds without roads, as long as there are road tiles.
         if tostring(road) == "curve from (0.00, 0.00, 0.00) to (0.00, 0.00, 0.00)" then
-            FindRoadTile(pt, prefab, _G.GROUND.ROAD)
+            if not SaveGameIndex:GetCurrentMode() == "shipwrecked" and not SaveGameIndex:GetCurrentMode() == "porkland" then
+                FindRoadTile(pt, prefab, _G.GROUND.ROAD)
+            elseif SaveGameIndex:GetCurrentMode() == "porkland" then
+                FindRoadTile(pt, prefab, _G.GROUND.COBBLEROAD)
+            elseif SaveGameIndex:GetCurrentMode() == "shipwrecked "then 
+                FindRoadTile(pt, prefab, _G.GROUND.OCEAN_SHIPGRAVEYARD_SHORE)
+            end
         end
 
         local searcher = Math.SearchSpace(road, 64)
@@ -109,7 +115,7 @@ local function spawn_shopkeeper_spawner_shipwrecked()
 
     -----
 
-    FindTile(pt, prefab, GROUND.OCEAN_SHIPGRAVEYARD_SHORE)
+    FindTile(pt, prefab, GROUND.MAGMAFIELD)
 
 end
 
@@ -139,23 +145,33 @@ local function shopkeeper_spawner_setup()
 
     if SaveGameIndex:GetCurrentMode() == "survival" then
         --Vanilla or Reign of Giants conditions.
+        TheMod:DebugSay("Vanilla or Reign of Giants Shopkeeper")
         if world then
             world:ListenForEvent("rainstart", spawn_shopkeeper_spawner)
         end
     elseif SaveGameIndex:GetCurrentMode() == "shipwrecked" or SaveGameIndex:GetCurrentMode() == "volcano" then
         --Shipwrecked conditions.
+        TheMod:DebugSay("Shipwrecked Shopkeeper")
         if world then
-            world:ListenForEvent("rainstart", spawn_shopkeeper_spawner_shipwrecked)
+            world:ListenForEvent("hurricanestart", spawn_shopkeeper_spawner)
         end
     elseif SaveGameIndex:GetCurrentMode() == "porkland" then
         --Hamlet conditions.
+        TheMod:DebugSay("Hamlet Shopkeeper")
         if world then
-            world:ListenForEvent("rainstart", spawn_shopkeeper_spawner_porkland)
+            world:ListenForEvent("setfog", spawn_shopkeeper_spawner)
         end        
     end
 end
 
 if IsHost() then
-    --TheMod:AddSimPostInit(shopkeeper_spawner_setup)
-    TheMod:AddPrefabPostInit("forest", shopkeeper_spawner_setup)
+    TheMod:AddPrefabPostInit("world", shopkeeper_spawner_setup)
+
+    --if _G.IsDLCEnabled(_G.CAPY_DLC) then
+        --TheMod:AddPrefabPostInit("shipwrecked", shopkeeper_spawner_setup)
+    --end
+
+    --if _G.IsDLCEnabled(_G.PORKLAND_DLC, 3) then
+        --TheMod:AddPrefabPostInit("porkland", shopkeeper_spawner_setup)
+    --end
 end

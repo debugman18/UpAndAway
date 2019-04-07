@@ -15,7 +15,7 @@ SHOPKEEPER.NUMBEANS = 1
 -- Defining functions in the cfg file should be limited for very simple things,
 -- since the environment is very slim.
 SHOPKEEPER.IS_A_COW = function(inst)
-	return inst.prefab == "beefalo" or inst.prefab == "ox" or inst.prefab == ""
+	return inst.prefab == "beefalo" or inst.prefab == "ox" or inst.prefab == "mandrakeman"
 end
 
 -- Maximum distance for a cow to be negotiated.

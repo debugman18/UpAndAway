@@ -50,7 +50,7 @@ local loot = {
 }
 
 --Sometimes this will stop shenanigans.
-if SaveGameIndex:IsModeShipwrecked() or SaveGameIndex:IsModePorkland() then return end
+--if SaveGameIndex:IsModeShipwrecked() or SaveGameIndex:IsModePorkland() then return end
 
 --[[
 -- Ensures all the loot prefabs will be preloaded.

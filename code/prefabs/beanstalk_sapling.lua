@@ -25,6 +25,10 @@ local function GrowBeanstalk(inst)
             if player:GetDistanceSqToInst(inst) < 64^2 then
                 player.AnimState:PlayAnimation("wakeup")
                 player.components.talker:Say("What could that be?!")
+                local quester = player.components.quester
+                if quester then
+                    quester:SetFlag(PRIMARY_QUEST, "hasclimbed", true)
+                end
             end
         end
 

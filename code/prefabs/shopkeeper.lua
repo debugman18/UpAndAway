@@ -201,6 +201,7 @@ local function oninteract(inst, doer)
 
     local numbeans = quester:GetAttribute(PRIMARY_QUEST, "numbeans")
     local gavebeans = quester:GetFlag(PRIMARY_QUEST, "gotbeans")
+    local hasclimbed = quester:GetFlag(PRIMARY_QUEST, "hasclimbed")
 
     inst.components.speechgiver:CancelAll()
 
@@ -209,7 +210,13 @@ local function oninteract(inst, doer)
     end
 
     if not quester:StartedQuest(PRIMARY_QUEST) then
-        inst.components.speechgiver:PushSpeech("BEAN_QUEST", doer)
+        if not SaveGameIndex:GetCurrentMode() == "shipwrecked" and not SaveGameIndex:GetCurrentMode() == "porkland" then
+            inst.components.speechgiver:PushSpeech("BEAN_QUEST", doer)
+        elseif SaveGameIndex:GetCurrentMode() == "shipwrecked" then
+            inst.components.speechgiver:PushSpeech("BEAN_QUEST_SHIPWRECKED", doer)
+        elseif SaveGameIndex:GetCurrentMode() == "porkland" then
+            inst.components.speechgiver:PushSpeech("BEAN_QUEST_HAMLET", doer)
+        end
         return true
     elseif numbeans > 0 and negotiateCows(inst, doer) then
         inst.components.speechgiver:PushSpeech("BEAN_SUCCESS", doer)
@@ -222,12 +229,16 @@ local function oninteract(inst, doer)
         inst.components.speechgiver:PushSpeech("BEAN_REMINDER", doer)
         inst.components.speechgiver:ForbidCutScenesInQueue()
         return true
-    elseif gavebeans then
+    elseif gavebeans and not hasclimbed then
         inst.components.speechgiver:PushSpeech("BEAN_HINT", doer)
         inst.components.speechgiver:ForbidCutScenesInQueue()
         return true
+    elseif hasclimbed then
+        inst.components.speechgiver:PushSpeech("SLAYER_HINT", doer)
+        inst.components.speechgiver:ForbidCutScenesInQueue()
+        return true        
     else
-        TheMod:DebugSay "What else do you expect from me?"
+        TheMod:DebugSay("What else do you expect from me?")
     end
 end
 

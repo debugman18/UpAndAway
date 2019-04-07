@@ -25,9 +25,9 @@ TheMod:DebugSay("Checking for Reign of Giants...")
 local is_rog = IsRoG()
 
 -- It doesn't matter if the game mode itself is SW or not. 
-local is_sw = IsSW()
+local is_sw = SaveGameIndex:GetCurrentMode() == "shipwrecked"
 
-local is_pork = _G.IsDLCEnabled(PORKLAND_DLC, 3)
+local is_pork = SaveGameIndex:GetCurrentMode() == "porkland"
 
 ---
 
@@ -158,7 +158,7 @@ end
 defineLightningModeMethods(MasterAPI, "Lightning%s", PushWET("ms_setlightningmode"))
 
 local argsToSeasonTable
-if is_rog or is_sw then
+if is_rog or is_sw or is_pork then
 	argsToSeasonTable = function(autumn, winter, spring, summer)
 		return {
 			autumn = autumn,

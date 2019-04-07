@@ -50,16 +50,11 @@ WORD_MAP = {
 -- checking the speechgiver.lua file.
 SPEECHES = {}
 
-
-local metalsnd = "dontstarve/common/destroy_metal"
-
-
 --This is the speech where he asks for beefalo in exchange for magic beans.
 SPEECHES.BEAN_QUEST = function(mgr)
     mgr:MakeNonInterruptible()
     mgr:EnterCutScene()
 
-    mgr:PlaySound(metalsnd)
     mgr "Hello there, fella."
 
     mgr "You look tired."
@@ -85,7 +80,72 @@ SPEECHES.BEAN_QUEST = function(mgr)
     mgr:ExitCutScene()
     Sleep(0.5)
 
-    mgr:PlaySound(metalsnd)
+    mgr "Get to it, fella."
+end
+
+--This is the speech where he asks for ox in exchange for magic beans. (Shipwrecked)
+SPEECHES.BEAN_QUEST_SHIPWRECKED = function(mgr)
+    mgr:MakeNonInterruptible()
+    mgr:EnterCutScene()
+
+    mgr "Hello there, fella."
+
+    mgr "You look tired."
+
+    Sleep(0.5)
+
+    mgr "What if I told you I had something that could get you out?"
+    mgr "That could whisk you away from this miserable plane?"
+
+    Sleep(0.5)
+
+    mgr "Interested?"
+    mgr "Then let's make a deal."
+
+    Sleep(0.5)
+
+    mgr "I have need of an Ox."
+    mgr "Those hairy beasts you've seen roaming the mangroves."
+    mgr "Speak to me again after you've brought me one..."
+    Sleep(1)
+    mgr "...And I'll give you the ticket out."
+
+    mgr:ExitCutScene()
+    Sleep(0.5)
+
+    mgr "Get to it, fella."
+end
+
+--This is the speech where he asks for a elder mandrake in exchange for magic beans. (Hamlet)
+SPEECHES.BEAN_QUEST_HAMLET = function(mgr)
+    mgr:MakeNonInterruptible()
+    mgr:EnterCutScene()
+
+    mgr "Hello there, fella."
+
+    mgr "You look tired."
+
+    Sleep(0.5)
+
+    mgr "What if I told you I had something that could get you out?"
+    mgr "That could whisk you away from this miserable plane?"
+
+    Sleep(0.5)
+
+    mgr "Interested?"
+    mgr "Then let's make a deal."
+
+    Sleep(0.5)
+
+    mgr "I have need of an Elder Mangdrake."
+    mgr "Those orboreal beasts you've seen roaming the grasslands."
+    mgr "Speak to me again after you've brought me one..."
+    Sleep(1)
+    mgr "...And I'll give you the ticket out."
+
+    mgr:ExitCutScene()
+    Sleep(0.5)
+
     mgr "Get to it, fella."
 end
 
@@ -107,10 +167,8 @@ SPEECHES.BEAN_SUCCESS = function(mgr, args)
 
     Sleep(1.5)
 
-    mgr:PlaySound(metalsnd)
     mgr "You fulfilled your end of the bargain."
 
-    mgr:PlaySound(metalsnd)
     mgr "Now for me to keep mine."
 
     mgr:KillVoice()
@@ -122,7 +180,6 @@ SPEECHES.BEAN_SUCCESS = function(mgr, args)
 
     Sleep(0.5)
 
-    mgr:PlaySound(metalsnd)
     mgr "Your ticket out of here."
 
     Sleep(0.75)
@@ -148,7 +205,6 @@ end
 SPEECHES.BEAN_REMINDER = function(mgr)
     Sleep(0.25)
 
-    mgr:PlaySound(metalsnd)
     mgr "Get to it, fella."
 end
 
@@ -156,7 +212,6 @@ end
 SPEECHES.FLAG_PLAYER = function(mgr)
     Sleep(0.25)
 
-    mgr:PlaySound(metalsnd)
     mgr "Hey you! Yes, you there!"
 end
 
@@ -167,19 +222,15 @@ SPEECHES.BEAN_HINT = function(mgr)
         Sleep(0.75)
     end
 
-    mgr:PlaySound(metalsnd)
     mgr "Now, you can't just plant those beans in any old soil."
 
-    mgr:PlaySound(metalsnd)
     mgr "They require a powerful fertilizer."
 
-    mgr:PlaySound(metalsnd)
     mgr "Bonemeal, perhaps. A grave?"
 
     mgr "Then..."
     Sleep(1.5)
 
-    mgr:PlaySound(metalsnd)
     mgr "...Just let the moon do the rest."
 
     Sleep(0.75)
@@ -250,6 +301,30 @@ end
 
 -- These are played when the shopkeeper gives the player the boss quest, dependant on the boss slain.
 
+--This gives the player a hint about the beans.
+SPEECHES.SLAYER_HINT = function(mgr)
+    if mgr:EnterCutScene() then
+        mgr:MakeNonInterruptible()
+        Sleep(0.75)
+    end
+
+    mgr "What now?"
+
+    Sleep(0.25)
+
+    mgr "You aren't happy with my gifts..."
+
+    mgr "Well, it's not as if..."
+
+    mgr "...You've explored all of your options."
+
+    Sleep(0.25)
+
+    mgr "Ah, if only you could climb even higher..."
+
+    Sleep(0.75)
+end
+
 -- Player killed the octocopter.
 SPEECHES.OCTOCOPTER_SLAIN = function(mgr)
     if mgr:EnterCutScene() then
@@ -289,10 +364,15 @@ SPEECHES.SEMICONDUCTOR_SLAIN = function(mgr)
         Sleep(0.75)
     end
 
-    mgr "Well now; what a shocking result."
+    mgr "Well, well, what a shocking result."
+
     mgr "Your heart must be racing."
-    mgr "That could be just palpitations, from the electricity."
-    mgr "Don't worry, though..."
+
+    mgr "That could be just palpitations."
+
+    mgr "...From the electricity."
+
+    mgr "Don't relax yet, though..."
 
     Sleep(1.5)
 
@@ -309,11 +389,13 @@ SPEECHES.BEANGIANT_SLAIN = function(mgr)
     end
 
     mgr "Fee, fi, fo, fum."
+
     mgr "Say, I think a few bits of that walking hedge..."
 
     Sleep(1.5)
 
     mgr "Might be salvageable."
+
     mgr "And, who knows..."
 
     Sleep(1.5)
@@ -334,19 +416,21 @@ SPEECHES.LEVEL_ONE_BOSSES_SLAIN = function(mgr, args)
         Sleep(0.75)
     end
 
-    assert( args.giveumbrella )
-    assert( args.giveportal )
+    assert(args.giveumbrella)
+    assert(args.giveportal)
 
     mgr "Look at you..."
 
     Sleep(1.5)
 
     mgr "A conqueror in your own right."
+
     mgr "All three of those abominations..."
 
     Sleep(1.5)
 
     mgr "Downed by your mighty hands."
+
     mgr "In recognition of your deeds..."
 
     Sleep(1.5)
@@ -361,11 +445,13 @@ SPEECHES.LEVEL_ONE_BOSSES_SLAIN = function(mgr, args)
     Sleep(1.5)
 
     mgr "The blueprints to something quite grand."
+
     mgr "There's far more than mere clouds..."
 
     Sleep(1.5)
 
-    mgr "Waiting for you, my friend."
+    mgr "...Waiting for you, my friend."
+
     mgr "You're in for a real treat..."
 
     Sleep(1)
