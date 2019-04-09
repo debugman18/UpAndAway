@@ -388,9 +388,15 @@ function ClimbTo(height, cavenum)
 
 	local topo = get_current_topology()
 
+    if lastworld == "cave" or "cloudrealm" then
+        -- Do nothing, otherwise the beanstalk will try to send us back to where we are.
+    else
+        ThePlayer.components.worldtracker:SetLastWorld(topo.level_type)
+    end
+
     if not cavenum then
         if topo.level_type ~= "cave" and topo.level_type ~= "cloudrealm" then
-            return error("Attempt to climb outside of a cave level without giving a cave number.", 2)
+            return error("Attempt to climb outside of a cavSavee level without giving a cave number.", 2)
         end
         cavenum = topo.cavenum
     end
@@ -422,16 +428,21 @@ function ClimbTo(height, cavenum)
 
     if height == 0 then
         levelchange_cb = function()
-            if _G.IsDLCEnabled(_G.CAPY_DLC) then
-                TheMod:DebugSay("Returning to shipwrecked...")
-                SaveGameIndex:EnterWorld("shipwrecked", onsaved)
-            elseif _G.IsDLCEnabled(_G.PORKLAND_DLC, 3) and not _G.IsDLCEnabled(_G.CAPY_DLC, 2) then
+
+            local lastworld = ThePlayer.components.worldtracker.lastworld or "survival"
+            TheMod:DebugSay("Player is leaving Cloud Realm to "..lastworld)
+
+            if lastworld == "porkland" then
                 TheMod:DebugSay("Returning to hamlet...")
                 SaveGameIndex:EnterWorld("porkland", onsaved)
-            else 
+            elseif lastworld == "shipwrecked" then
+                TheMod:DebugSay("Returning to shipwrecked...")
+                SaveGameIndex:EnterWorld("shipwrecked", onsaved)
+            elseif lastworld == "survival" then
                 TheMod:DebugSay("Returning to survival...")
-                SaveGameIndex:LeaveCave(onsaved) 
+                SaveGameIndex:LeaveCave(onsaved)
             end
+            
         end
     else
         -- Target level
@@ -449,11 +460,6 @@ function ClimbTo(height, cavenum)
 
     SaveGameIndex:GetSaveFollowers(_G.GetPlayer())
 
-    -- Shipwrecked climbing compatibility.
-    if IsDLCEnabled(_G.CAPY_DLC) then
-        -- Do stuff here.
-    end
-
     SaveGameIndex:SaveCurrent(cb, height < current_height and "descend" or "ascend", cavenum)
 end
 
@@ -470,8 +476,17 @@ function Climb(direction, cavenum)
 
     if direction > 0 then
         direction = 1
+        local topo = get_current_topology()
+
+        TheMod:DebugSay(topo.level_type)
+
+        local lastworld = ThePlayer.components.worldtracker.lastworld or "survival"
+        TheMod:DebugSay("Player is entering Cloud Realm from "..lastworld)
+        TheMod:DebugSay("The player's current level type is "..topo.level_type)
+
+        ThePlayer.components.worldtracker:SetLastWorld(topo.level_type)  
     elseif direction < 0 then
-        direction = -1
+        direction = -1  
     else
         -- assert( direction == 0 )
         return

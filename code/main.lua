@@ -153,8 +153,8 @@ end
 
 if IsHost() then
     AddPrefabPostInit("mound", makehole)
-    AddPrefabPostInit("slow_farmplot", makehole)
-    AddPrefabPostInit("fast_farmplot", makehole)
+    --AddPrefabPostInit("slow_farmplot", makehole)
+    --AddPrefabPostInit("fast_farmplot", makehole)
 end
 
 -- This adds our minimap atlases.

@@ -146,10 +146,9 @@ ScienceFable(2).research_lectern { Ing("goldnugget", 4), ModIng("crystal_fragmen
 
 ---
 
---[[
 ToolsFable(1).grabber { ModIng("magnet", 2), Ing("twigs", 8), ModIng("rubber", 4) }
-    .sortkey (Recipes.prefab.sortkey)
-]]--
+    --.sortkey (Recipes.prefab.sortkey)
+
 
 ToolsFable(1).magnet { Ing("gears", 2), ModIng("crystal_fragment_quartz", 3), Ing("rope", 4) }
     --.sortkey (Recipes.razor.sortkey)
@@ -176,7 +175,7 @@ WarFable(1).beanlet_armor { ModIng("beanlet_shell", 1), ModIng("greenbean", 1), 
 WarFable(1).cotton_candy { ModIng("cloud_cotton", 6), ModIng("candy_fruit", 6) }
     --.sortkey (Recipes.hambat.sortkey)
 
-WarFable(1).crystal_armor { ModIng("crystal_fragment_quartz", 6), ModIng("rope", 4), }
+WarFable(1).crystal_armor { ModIng("crystal_fragment_quartz", 6), Ing("rope", 4), }
     --.sortkey (Recipes.armormarble.sortkey)
 
 ---

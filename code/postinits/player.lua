@@ -48,7 +48,8 @@ TheMod:AddPlayerPostInit(function(player)
         player:AddComponent("speechlistener")
         player:AddComponent("beanhated")
         player:AddComponent("ua_beardable")
-        player:AddComponent("staticconductor")
+        player:AddComponent("staticconductor") 
+        player:AddComponent("worldtracker")
 
 	    if player then
 	        player.components.builder.accessible_tech_trees = GLOBAL.TECH.NONE
