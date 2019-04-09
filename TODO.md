@@ -1,9 +1,28 @@
+
 # TODO for Up and Away
 
 Current Development Phase: Horrors in the Sky
 
 + **Current Developments:*
 
++ **Prefabs To Be**
+	+ Winston
+	+ Winston's Tool
+	+ Crystal Armor
+	+ Meat Wall
+	+ Semiconductor
+	+ Radiant Orb
+	+ Flameingo Phlamingo
+	+ Quartz Torch
+	+ Rubber Tree
+	+ Grabber
+	+ Kite
+	+ Scarecrow
+	+ Super Beans
+	+ Barry
+	+ Cheshire
+	+ Bird of Paradise
+	+ Shopkeeper's Umbrella
 
 + **Current bugs:**
 

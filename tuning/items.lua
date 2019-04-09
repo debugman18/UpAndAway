@@ -1,5 +1,10 @@
 ---------------------------------------
 
+-- Grabber
+GRABBER.BONUS = 10
+
+---------------------------------------
+
 -- Winnie Staff
 
 -- Max dist for a beefalo to become a follower.
