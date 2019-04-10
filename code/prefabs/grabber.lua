@@ -21,10 +21,18 @@ local function fn(Sim)
     inst.AnimState:SetBuild("void_placeholder")
     inst.AnimState:PlayAnimation("anim")
 
-    TheMod:DebugSay(_G.ACTIONS.PICKUP[2])
+    --TheMod:DebugSay("PICKUP RANGE IS " .. _G.ACTIONS.PICKUP[1])
 
-    local range = _G.ACTIONS.PICKUP[2]
-    local extended_range = range + bonus
+    for k,v in pairs(_G.ACTIONS.PICKUP) do
+        print(k)
+        print(v)
+    end
+
+    _G.ACTIONS.PICKUP.crosseswaterboundary = true
+    _G.ACTIONS.PICKUP.distance = bonus
+
+    --local range = _G.ACTIONS.PICKUP[1]
+    --local extended_range = range + bonus
 
 
     ------------------------------------------------------------------------

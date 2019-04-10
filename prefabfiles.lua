@@ -177,7 +177,7 @@ PrefabFiles = {
 	--"chimera",
 	--'bird_paradise',
 	--"rainbowcoon",	
-	--"grabber",
+	"grabber",
 	--"minicopter"
 	--"golden_golem",	
 	--"monolith",	

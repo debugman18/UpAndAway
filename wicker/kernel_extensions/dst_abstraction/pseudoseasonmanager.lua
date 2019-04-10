@@ -22,7 +22,9 @@ local PU = pkgrequire "pseudoutils"
 local TUNING = TUNING
 
 TheMod:DebugSay("Checking for Reign of Giants...")
-local is_rog = IsRoG()
+local is_rog = function()
+	return IsRoG()
+end
 
 -- It doesn't matter if the game mode itself is SW or not. 
 local is_sw = SaveGameIndex:GetCurrentMode() == "shipwrecked"
@@ -33,12 +35,22 @@ local is_pork = SaveGameIndex:GetCurrentMode() == "porkland"
 
 local SEASON_NAMES
 if is_pork then
+	print("HAMLET SEASONS")
 	SEASON_NAMES = {"autumn", "winter", "spring", "summer", "caves", "mild", "wet", "green", "dry", "temperate", "humid", "lush", "aporkalypse"}
 elseif is_sw then
+	print("SHIPWRECKED SEASONS")
 	SEASON_NAMES = {"autumn", "winter", "spring", "summer", "caves", "mild", "wet", "green", "dry"}
 elseif is_rog then
+	if SaveGameIndex:IsSlotROG(SaveGameIndex.current_slot) then
+		print("REIGN OF GIANTS SEASONS")
+		SEASON_NAMES = {"autumn", "winter", "spring", "summer", "caves"}
+	else 
+		print("VANILLA SEASONS")
+		SEASON_NAMES = {"winter", "summer", "caves"}
+	end
 	SEASON_NAMES = {"autumn", "winter", "spring", "summer", "caves"}
 else
+	print("VANILLA SEASONS")
 	SEASON_NAMES = {"summer", "winter", "caves"}
 end
 
