@@ -62,6 +62,9 @@ local function RetargetFn(inst, target)
             and not guy:HasTag("beanlet")
             and not guy:HasTag("smallcreature")
             and not guy:HasTag("gumbear")
+            and not guy.prefab == "octocopter"
+            and not guy.prefab == "semiconductor"
+            and not guy.prefab == "bean_giant"
         end
     end)
     return invader

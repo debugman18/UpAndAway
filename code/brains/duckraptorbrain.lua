@@ -21,7 +21,7 @@ function DuckraptorBrain:OnStart()
     local root = PriorityNode(
     {
         ChaseAndAttack(self.inst, 100),
-        Follow(self.inst, function() return Game.FindClosestPlayer(self.inst) end, MIN_FOLLOW, MED_FOLLOW, MAX_FOLLOW),
+        Follow(self.inst, function() return Game.FindClosestPlayer(self.inst, MED_FOLLOW) end, MIN_FOLLOW, MED_FOLLOW, MAX_FOLLOW),
     }, .25)
     
     self.bt = BT(self.inst, root)

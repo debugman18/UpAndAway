@@ -37,6 +37,8 @@ end
 
 
 Layouts["BeanstalkTop"] = StaticLayout.Get("map.static_layouts.beanstalk_top")
+Layouts["BeanstalkTopSurvival"] = StaticLayout.Get("map.static_layouts.upandaway_test_start_survival")
+
 Layouts["OctocopterWreckage"] = StaticLayout.Get("map.static_layouts.octocopter_wreckage")
 Layouts["WitchGrove"] = StaticLayout.Get("map.static_layouts.witch_grove")
 Layouts["StrixShrine"] = StaticLayout.Get("map.static_layouts.strix_shrine")

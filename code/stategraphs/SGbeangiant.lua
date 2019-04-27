@@ -2,6 +2,8 @@ BindGlobal()
 
 require("stategraphs/commonstates")
 
+local CFG = TheMod:GetConfig()
+
 local actionhandlers = 
 {
     ActionHandler(ACTIONS.HAMMER, "attack"),
@@ -21,7 +23,7 @@ end
 
 local events=
 {
-    CommonHandlers.OnLocomote(false,false),
+    CommonHandlers.OnLocomote(false,true),
     CommonHandlers.OnSleep(),
     CommonHandlers.OnFreeze(),
     CommonHandlers.OnAttack(),
@@ -31,6 +33,29 @@ local events=
 
 local states=
 {
+    State{
+        name = "idle",
+        tags = {"idle", "canrotate"},
+        
+        onenter = function(inst, start_anim)
+            inst.Physics:Stop()
+            local animname = "pod_loop"
+
+            if inst:HasTag("pod") then
+                animname = "pod_loop"
+            else
+                animname = "idle_loop"
+            end
+            
+            if start_anim then
+                inst.AnimState:PlayAnimation(start_anim)
+                inst.AnimState:PushAnimation(animname, true)
+            else
+                inst.AnimState:PlayAnimation(animname, true)
+            end
+        end,
+    },
+
     State{
         name = "gohome",
         tags = {"busy"},
@@ -115,8 +140,11 @@ CommonStates.AddCombatStates(states,
                 inst.bufferedaction.target.components.workable:SetWorkLeft(1)
                 inst:PerformBufferedAction()
             end
-            for i, v in ipairs(AllPlayers) do
-                v:ShakeCamera(CAMERASHAKE.FULL, .5, .05, 2, inst, SHAKE_DIST)
+ 
+            local x,y,z = inst.Transform:GetWorldPosition()
+            local AllPlayers = TheSim:FindEntities(x,y,z, CFG.BEAN_GIANT.CHASE_DIST, {"player"})
+            for i,v in ipairs(AllPlayers) do
+                --v:ShakeCamera(CAMERASHAKE.FULL, .5, .05, 2, inst, SHAKE_DIST)
             end
         end),
         TimeEvent(36*FRAMES, function(inst) inst.sg:RemoveStateTag("attack") end),
@@ -129,12 +157,12 @@ CommonStates.AddCombatStates(states,
             local player = ThePlayer
             local distToPlayer = inst:GetPosition():Dist(player:GetPosition())
             local power = Lerp(3, 1, distToPlayer/180)
-            player.components.playercontroller:ShakeCamera(player, "VERTICAL", 0.5, 0.03, power, 40)             
+
+            --player.components.playercontroller:ShakeCamera(CAMERASHAKE.FULL, .5, .05, 2, inst, SHAKE_DIST)             
         end),
     },
 })
 
-CommonStates.AddIdle(states, "pod_loop", "pod_loop")
 
 return StateGraph("beangiant", states, events, "idle", actionhandlers)
 

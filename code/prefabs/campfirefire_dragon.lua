@@ -19,6 +19,7 @@ local function fn(Sim)
     local anim = inst.entity:AddAnimState()
     local sound = inst.entity:AddSoundEmitter()
     local light = inst.entity:AddLight()
+    light:SetFalloff(2)
 
     anim:SetBank("campfire_fire")
     anim:SetBuild("campfire_fire_dragon")

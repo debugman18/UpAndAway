@@ -22,9 +22,54 @@ I'm prefixing the list of changes by date, since I suppose we'll remain at preal
 for quite some time.
 -->
 
-### Dev Version: alpha-0.2.13 (Horrors in the Sky)
+### Dev Version: alpha-0.3 (Horrors in the Sky)
+
++ These changes are not necessarily implemented, but are being developed.
+
++ Added Semiconductor boss and its drop to the world.
++ Extended Shopkeeper questline.
++ Added Rubber Cap.
++ Added Rubber Ducky. Squeak.
++ Added Monolith and Golden Golem.
++ Added Jellyshroom Fish.
++ Added Cloud Bombs. Handle with care.
++ Added Meat Wall. Feed me, Seymour.
++ Added Crystal Pickaxe.
++ Added Alchemical Plots. For all your magical gardening needs.
++ Added Cloud Moss. Mossy!
++ Added a new character, Winston.
++ Did that scarecrow just move?
 
 ----------------------------------------------------
+
+### Update ????-?-? (alpha 0.3 release)
+
++ Lightning no longer breaks world lighting.
++ Added obstacle physics to many objects that didn't have them before.
++ Up and Away can now be accessed in any world.
++ Fixed a bug causing Winter to repeat infinitely.
++ Fixed Up and Away preset not showing in Preset menu.
++ Added a new preset which starts you right in the cloudrealm. Beware.
++ Fixed Duckraptor crash and appearance.
++ Retuned biomes. It is recommended to regenerate your cloud world.
++ Beanlet Huts now never put their lights out.
++ Jellyshrooms now glow in the dark.
++ Brightened non-static phase in the cloudrealm.
++ Auroras now glow in the dark.
++ Added Grabber, for when you're feeling lazy.
++ Fixed Octocopter boss getting stunlocked.
++ Buffed Octocopter boss damage and lowered time between attacks.
++ Added Bean Giant boss and its drop to the world.
++ Fixed Beanlets running backwards.
++ Beanlets are now less afraid of players.
++ Added a Beanlet death animation.
++ Skyflowers now generate less sanity aura.
++ Added Cloud Slimes.
++ Fixed Thunder Tree saplings not being plantable.
++ Fixed Thunder Trees dissappearing when chopped.
++ Fixed Thunder Trees not having "leaves".
++ Fixed Gustflower Seeds planting themselves into Gustflowers even when in the player's inventory.
++ Fixed Gustflowers playing the wrong animations.
 
 ### Update 2019-3-1 (alpha 0.2.13 release)
 

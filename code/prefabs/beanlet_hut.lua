@@ -92,7 +92,8 @@ end
 local function onnear(inst) 
     if not inst:HasTag("burnt") then
         if inst.components.childspawner and inst.components.childspawner.childreninside >= 1 then
-            LightsOff(inst)
+            --We don't need lights off, because it's never night.
+            --LightsOff(inst)
         end
     end
 end

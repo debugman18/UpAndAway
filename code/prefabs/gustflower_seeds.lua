@@ -52,8 +52,12 @@ end
 
 local function spawngustflower(inst)
     local gustflower = SpawnPrefab("gustflower")
-    gustflower.Transform:SetPosition(inst.Transform:GetWorldPosition())
-    inst:Remove()
+
+    -- Only do this if it's not in the player's inventory.
+    if not inst.components.inventoryitem.owner then
+        gustflower.Transform:SetPosition(inst.Transform:GetWorldPosition())
+        inst:Remove()
+    end
 end    
 
 local function fn(Sim)

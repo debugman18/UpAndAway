@@ -188,6 +188,8 @@ local function plot(level)
         inst.AnimState:SetSortOrder(3)
         inst.Transform:SetRotation(45)
 
+        MakeObstaclePhysics(inst, 0.7)
+
         ------------------------------------------------------------------------
         SetupNetwork(inst)
         ------------------------------------------------------------------------

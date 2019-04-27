@@ -277,7 +277,6 @@ local function MakeWeaverNestFn(den_level)
         local inst = CreateEntity()
         inst.entity:AddTransform()
         local anim = inst.entity:AddAnimState()
-        --inst.entity:AddGroundCreepEntity()
 
         inst.entity:AddSoundEmitter()
 
@@ -292,13 +291,9 @@ local function MakeWeaverNestFn(den_level)
         anim:SetBuild("weavernest")
         anim:PlayAnimation("idle_1", true)
 
-        inst:AddTag("structure") --Isn't this reserved for civilised structures? -Mobb
         inst:AddTag("cloudneutral")
         inst:AddTag("weavernest")
         inst:AddTag("hive")
-
-        MakeSnowCovered(inst) --(as of now) not supported by anim file
-
 
         ------------------------------------------------------------------------
         SetupNetwork(inst)
@@ -323,8 +318,6 @@ local function MakeWeaverNestFn(den_level)
         inst.components.childspawner:SetSpawnPeriod(CFG_WN.RELEASE_PERIOD)
 
         inst.components.childspawner:SetSpawnedFn(onspawnbird)
-        --inst.components.childspawner:SetMaxChildren(TUNING.SPIDERDEN_SPIDERS[stage])
-        --inst.components.childspawner:ScheduleNextSpawn(0)
         inst:ListenForEvent("nestactivate", SpawnInvestigators)
 
         inst:DoPeriodicTask(5, function() 
@@ -352,15 +345,13 @@ local function MakeWeaverNestFn(den_level)
         MakeLargePropagator(inst)
 
         ---------------------
-        --MakeMediumFreezableCharacter(inst)
+
         inst:ListenForEvent("freeze", OnFreeze)
         inst:ListenForEvent("onthaw", OnThaw)
         inst:ListenForEvent("unfreeze", OnUnFreeze)
         -------------------
 		
-		--Does the clock work like this? -Mobb
-        --No, I don't know what I was thinking. -Debug
-        inst:ListenForEvent("dusktime", function() StartSpawning(inst) end, GetWorld())
+        StartSpawning(inst)
 
         ---------------------
 

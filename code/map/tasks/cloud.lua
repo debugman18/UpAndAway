@@ -11,10 +11,8 @@ TheMod:AddTask("Cloud_Innocent_Generic_Biome", {
     keys_given = {KEYS.FABLE_TECH, KEYS.CRAFTABLE_HEAT},
 
     room_choices={
-        ["SkyflowerGarden"] = math.random(1, 1),
-        ["SheepHerd"] = math.random(1, 1),
-        ["BushGarden"] = math.random(1, 2),
-        ["Sea_Mimic"] = math.random(0, 1),	
+        ["SkyflowerGarden"] = 1,
+        ["SheepHerd"] = 1,
     },
 
     room_bg=GROUND.POOPCLOUD,
@@ -32,12 +30,11 @@ TheMod:AddTask("Cloud_Generic_Biome", {
 
     room_choices={
         ["SkyflowerGarden"] = math.random(1, 1),
-        ["SheepHerd"] = math.random(1, 3),
+        ["SheepHerd"] = 3,
         ["BushGarden"] = math.random(1, 4),
-        ["Sea_Mimic"] = math.random(1, 2),	
     },
 
-    room_bg=GROUND.POOPCLOUD,
+    room_bg=GROUND.CLOUDSWIRL,
     background_room="BGCloud",
     colour={r=.2,g=.2,b=.2,a=1},
       -- The number of neighbors beyond the first that each node links to
@@ -51,17 +48,16 @@ TheMod:AddTask("Cloud_Sunflower_Biome", {
     keys_given = {KEYS.TIER2, KEYS.CRAFTABLE_HEAT},
 
     room_choices={
-        ["SkyflowerGarden"] = math.random(1, 1),
-        ["SunflowerGarden"] = math.random(1, 2),
+        ["SunflowerGarden"] = 1,
     },
 
-    room_bg=GROUND.POOPCLOUD,
+    room_bg=GROUND.CLOUDLAND,
     background_room="BGCloud",
     colour={r=.2,g=.2,b=.2,a=1},
       -- The number of neighbors beyond the first that each node links to
       crosslink_factor = 0,
       -- Whether or not to connect the last node to the first
-      make_loop = true, 
+      make_loop = false, 
 })
 
 -------------------------------------------------------------------------------
@@ -72,12 +68,12 @@ TheMod:AddTask("Cloud_Innocent_Snow_Biome", {
     keys_given = {KEYS.TIER2, KEYS.SUSTAINABLE_HEAT},
 
     room_choices = {
-        ["CragLanding"] = math.random(1, 2),
+        ["CragLanding"] = 2,
         ["Thunder_Forest"] = math.random(1, 2),
-        ["Sea_Mimic"] = math.random(0, 1),
+        ["Sea_Mimic"] = 1,
     },
 
-    room_bg=GROUND.FUNGUS,
+    room_bg=GROUND.SNOW,
     background_room="BGSnow",
     colour={r=.8,g=.8,b=.8,a=1},
       -- The number of neighbors beyond the first that each node links to
@@ -91,13 +87,13 @@ TheMod:AddTask("Cloud_Snow_Biome", {
     keys_given = {KEYS.TIER3},
 
     room_choices={
-        ["Thunder_Forest"] = math.random(2, 2),
-        ["Manta_Room"] = math.random(2, 2),
+        ["Thunder_Forest"] = 2,
+        ["Blob_Room"] = 2,
         ["Sea_Mimic"] = math.random(1, 2),
         ["CragLanding"] = math.random(1, 2),	
     },
 
-    room_bg=GROUND.FUNGUS,
+    room_bg=GROUND.SNOWTWO,
     background_room="BGSnow",
     colour={r=.8,g=.8,b=.8,a=1},
       -- The number of neighbors beyond the first that each node links to
@@ -111,16 +107,16 @@ TheMod:AddTask("Gnome_Snow_Biome", {
     keys_given = {KEYS.TIER3},
 
     room_choices={
-        ["Gnome_Forest"] = math.random(1, 2), 
+        ["Gnome_Forest"] = 1, 
     },
 
-    room_bg=GROUND.FUNGUS,
+    room_bg=GROUND.SNOW,
     background_room="BGSnow",
     colour={r=1,g=1,b=1,a=1},
       -- The number of neighbors beyond the first that each node links to
       crosslink_factor = 4,
       -- Whether or not to connect the last node to the first
-      make_loop = true,  
+      make_loop = false,  
 })
 
 -------------------------------------------------------------------------------
@@ -131,14 +127,11 @@ TheMod:AddTask("Cloud_Innocent_Aurora_Biome", {
     keys_given = {KEYS.TIER2, KEYS.SUSTAINABLE_HEAT},
 
     room_choices={
-        ["Bigbird_Nest"] = math.random(1, 2),	
         ["CragLanding"] = math.random(1, 2),
-        ["Vine_Room"] = math.random(0, 1),
-        ["Crystal_Fields"] = math.random(0, 1),		
-        ["SheepHerd"] = math.random(0, 1),
+        ["SheepHerd"] = 1,
     },
 
-    room_bg=GROUND.GRASS,
+    room_bg=GROUND.AURORA,
     background_room="BGAurora",
     colour={r=.8,g=.8,b=.8,a=1},
     -- The number of neighbors beyond the first that each node links to
@@ -153,16 +146,16 @@ TheMod:AddTask("Cloud_Aurora_Biome", {
     keys_given = {KEYS.TIER3},
 
     room_choices={
-        ["CragLanding"] = math.random(0, 1),
-        ["Vine_Room"] = math.random(1, 2),
-        ["Beanlet_Den"] = math.random(1, 2),		
-        ["Crystal_Fields"] = math.random(2, 2),		
-        ["SheepHerd"] = math.random(1, 2),
-        ["Bigbird_Nest"] = math.random(1, 1),
-        ["Vine_Room"] = math.random(2, 2),  
+        ["CragLanding"] = 1,
+        ["Beanlet_Den"] = 3,		
+        ["Crystal_Fields"] = 1,		
+        ["SheepHerd"] = 2,
+        ["Bigbird_Nest"] = 1,
+        ["Vine_Room"] = 3,  
+        ["Blob_Room"] = 2,
     },
 
-    room_bg=GROUND.GRASS,
+    room_bg=GROUND.AURORATWO,
     background_room="BGAurora",
     colour={r=.8,g=.8,b=.8,a=1},
     -- The number of neighbors beyond the first that each node links to
@@ -181,11 +174,10 @@ TheMod:AddTask("Cloud_Innocent_Rainbow_Biome", {
     room_choices={
         ["Rainbow_Room"] = math.random(1, 2),
         ["Fish_Fields"] = math.random(1, 2),
-        ["Crystal_Fields"] = math.random(0, 1),	
-        ["Sea_Mimic"] = math.random(0, 1),	
+        ["Crystal_Fields"] = 1,	
     },
 
-    room_bg=GROUND.MARSH,
+    room_bg=GROUND.RAINBOW,
     background_room="BGRainbow",
     colour={r=.8,g=.8,b=.8,a=1},
     -- The number of neighbors beyond the first that each node links to
@@ -199,13 +191,12 @@ TheMod:AddTask("Cloud_Rainbow_Biome", {
     keys_given = {KEYS.TIER3},
 
     room_choices={
-        ["Rainbow_Room"] = math.random(0, 1),
         ["Fish_Fields"] = math.random(1, 2),
         ["Crystal_Fields"] = math.random(1, 2),	
         ["Sea_Mimic"] = math.random(1, 2),	
     },
 
-    room_bg=GROUND.MARSH,
+    room_bg=GROUND.RAINBOWTWO,
     background_room="BGRainbow",
     colour={r=.8,g=.8,b=.8,a=1},
     -- The number of neighbors beyond the first that each node links to

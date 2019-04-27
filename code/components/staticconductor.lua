@@ -42,11 +42,13 @@ end
 
 function StaticConductor:StartSpreading()
     self.spreading = true
+    TheMod:DebugSay("Static Spreading")
     self:StartUpdating()
 end
 
 function StaticConductor:StopSpreading()
     self.spreading = false
+    TheMod:DebugSay("Static Not Spreading")
     self:StopUpdating()
 end
 
@@ -77,12 +79,15 @@ function StaticConductor:OnUpdate(dt)
 
     if self.spreading then
         
+        TheMod:DebugSay("Static Spreading")
+
         local pos = Vector3(self.inst.Transform:GetWorldPosition())
         local ents = TheSim:FindEntities(pos.x, pos.y, pos.z, self.shockrange)
         local staticresistance = 0
 
         for k,v in pairs(ents) do
             if not v:IsInLimbo() then
+                TheMod:DebugSay("Valid Static Target")
 			    if v.components.staticconductor and v.components.staticconductor.conductive then
                     if v.components.inventory then
                         local inventory = v.components.inventory

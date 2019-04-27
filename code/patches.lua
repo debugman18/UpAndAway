@@ -13,9 +13,7 @@ modrequire "patches.itemtile"
 modrequire "patches.actions"
 modrequire "patches.physics"
 modrequire "patches.nil_inventoryimage"
-
--- Disabling this until we need it.
---modrequire "patches.world_customisation_compat"
+modrequire "patches.world_customisation_compat"
 
 if not Reflection.HasModWithId("memspikefix") then
     --TheMod:Say("MemSpikeFix not enabled, loading 'patches.memspikefix'.")

@@ -14,6 +14,21 @@ local prefabs = CFG.BEAN_GIANT.PREFABS
 
 SetSharedLootTable("bean_giant", CFG.BEAN_GIANT.LOOT)
 
+local function RetargetFn(inst)
+    if inst:HasTag("pod") then return end
+    return FindEntity(inst, CFG.BEAN_GIANT.CHASE_DIST, function(guy)
+        return inst.components.combat:CanTarget(guy)
+               and not guy:HasTag("prey")
+               and not guy:HasTag("smallcreature")
+               and (inst.components.knownlocations:GetLocation("targetbase") == nil or guy.components.combat.target == inst)
+    end)
+end
+
+
+local function KeepTargetFn(inst, target)
+    return inst.components.combat:CanTarget(target)
+end
+
 -- The function run upon static charge.
 local function pod_chargefn(inst)
 
@@ -74,7 +89,7 @@ local function attacked_fn(inst)
 
     if inst and inst:HasTag("pod") then
         -- Do pod shaking here.
-        if not inst.giant then
+        if not inst.giant and inst:HasTag("pod") then
             inst.AnimState:PlayAnimation("pod_shake")
             inst.AnimState:PushAnimation("pod_loop")
         end
@@ -110,12 +125,11 @@ local function giant_fn(inst)
     inst.components.health:SetInvincible(false) end)
 
     -- It can walk now!
-    inst.components.locomotor.walkspeed = CFG.BEAN_GIANT.WALKSPEED
-    inst.components.locomotor.runspeed = CFG.BEAN_GIANT.RUNSPEED
+    inst.components.locomotor.throttle = 1
 
     -- It can heal during static now!
     inst.components.staticchargeable:SetChargedFn(pod_chargefn)
-    inst.components.staticchargeable:SetUnchargedFn(pod_unchargefn)  
+    inst.components.staticchargeable:SetUnchargedFn(pod_unchargefn) 
 
 end
 
@@ -132,7 +146,8 @@ end
 
 -- Tag the player.
 local function OnDeath(data)
-    ThePlayer:AddTag("BeanGiantSlayer")
+    local cause = data and data.cause or nil
+    if cause == ThePlayer then cause:AddTag("BeanGiantSlayer") end
 end
 
 -- Stages of growth.
@@ -186,9 +201,10 @@ local function pod_fn(inst)
 
     local scale = 1
     inst.Transform:SetScale(scale,scale,scale)
+
     inst.Transform:SetFourFaced()
 
-    if not inst.giant then
+    if not inst.giant and inst:HasTag("pod") then
         inst.AnimState:PlayAnimation("pod_loop", true)
     end
 
@@ -209,8 +225,9 @@ local function pod_fn(inst)
 
     -- The pod will not walk, so we'll set this to zero for now.
     inst:AddComponent("locomotor")
-    inst.components.locomotor.walkspeed = 0
-    inst.components.locomotor.runspeed = 0
+    inst.components.locomotor.walkspeed = CFG.BEAN_GIANT.WALKSPEED
+    inst.components.locomotor.runspeed = CFG.BEAN_GIANT.RUNSPEED
+    inst.components.locomotor.throttle = 0
 
     -- This runs after locomotor and before the brain.
     ------------------------------------------
@@ -253,7 +270,16 @@ local function pod_fn(inst)
    
     inst:AddComponent("staticchargeable")
 
+    -- Tune all of this.
     inst:AddComponent("combat")
+    inst.components.combat:SetDefaultDamage(TUNING.DEERCLOPS_DAMAGE)
+    inst.components.combat.playerdamagepercent = .5
+    inst.components.combat:SetRange(8)
+    inst.components.combat:SetAreaDamage(6, 0.8)
+    inst.components.combat.hiteffectsymbol = "deerclops_body"
+    inst.components.combat:SetAttackPeriod(TUNING.DEERCLOPS_ATTACK_PERIOD)
+    inst.components.combat:SetRetargetFunction(3, RetargetFn)
+    inst.components.combat:SetKeepTargetFunction(KeepTargetFn)
 
     inst:ListenForEvent("attacked", attacked_fn)
 

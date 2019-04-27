@@ -9,6 +9,10 @@ Current Development Phase: Horrors in the Sky
 	+ Winston
 	+ Winston's Tool
 	+ Crystal Armor
+	+ Crystal Pickaxe
+	+ Cloud Moss
+	+ Crystal Crown
+	+ Cloud Bomb
 	+ Meat Wall
 	+ Semiconductor
 	+ Radiant Orb
@@ -20,9 +24,17 @@ Current Development Phase: Horrors in the Sky
 	+ Scarecrow
 	+ Super Beans
 	+ Barry
-	+ Cheshire
+	+ Cheshire (Part of the Scarecrow Prefab)
 	+ Bird of Paradise
 	+ Shopkeeper's Umbrella
+	+ Minicopter
+	+ Jellyshroom Fish
+	+ Sky Lemur
+	+ Monolith
+	+ Golden Golem
+	+ Golden Amulet
+	+ Rubber Cap
+	+ Rubber Ducky
 
 + **Current bugs:**
 

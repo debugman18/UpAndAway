@@ -47,8 +47,8 @@ local function FindTile(pt, prefab, tile, iterate)
     local tileatpoint = _G.GetWorld().Map:GetTileAtPoint(place.x, place.y, place.z)    
     local canspawn = tileatpoint == tile
 
-    print(tileatpoint)
-    print(place)
+    --print(tileatpoint)
+    --print(place)
 
     if canspawn then     
         TheMod:DebugSay("Found the specified tile!")

@@ -134,13 +134,14 @@ local function onload(inst, data)
     end
 end
 
+
 local function fn()
     local inst = CreateEntity()
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
 
-    MakeObstaclePhysics(inst, 0.25)
+    MakeObstaclePhysics(inst, 0.3)
 
     inst.AnimState:SetBank("dragonblood_tree")
     inst.AnimState:SetBuild("dragonblood_tree")

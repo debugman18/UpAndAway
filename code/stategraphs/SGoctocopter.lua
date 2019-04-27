@@ -60,7 +60,7 @@ local states=
 
     State{
         name = "hit",
-        tags = {"hit"},
+        tags = {"hit", "nointerrupt"},
         
         onenter = function(inst)
             inst.AnimState:PlayAnimation("hurt")          
@@ -74,7 +74,7 @@ local states=
    
     State{
         name = "attack",
-        tags = {"attack", "nointerrupt"},
+        tags = {"attack", "nointerrupt", "canrotate"},
 
         onenter = function(inst, cb)
             inst.Physics:Stop()

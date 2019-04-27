@@ -10,12 +10,12 @@ local assets =
 
 local prefabs =
 {
-   --"crystal_black_fragment",
+
 }
 
 local loot = 
 {
-   --"crystal_black_fragment",
+
 }
 
 local function fn(Sim)
@@ -44,4 +44,4 @@ local function fn(Sim)
     return inst
 end
 
-return Prefab ("common/inventory/sky_lemur", fn, assets, prefabs) 
+return Prefab ("common/creatures/sky_lemur", fn, assets, prefabs) 

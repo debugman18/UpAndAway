@@ -173,12 +173,12 @@ TheMod:AddRoom("SunflowerGarden", {
     contents = {
         distributepercent = randomness(),
         distributeprefabs = {
-            skyflower = 0.2,
-            golden_sunflower = 0.8,
+            skyflower = 0.5,
+            golden_sunflower = 0.5,
         },
         countprefabs= {
             golden_rose = 1,
-            golden_sunflower = math.random(45,100),
+            golden_sunflower = math.random(15,30),
         }       
     },
 })
@@ -211,13 +211,14 @@ TheMod:AddRoom("Thunder_Forest", {
     contents = {
         distributepercent = randomness(),
         distributeprefabs = {
-            thunder_tree = 0.02,
-            crystal_quartz = 0.0010,
-            skyflower = 0.1,
+            thunder_tree = 0.8,
+            skyflower = 0.2,
         },
         countprefabs= {
+            thunder_tree = 50,
             weavernest = 4,
             crystal_black = 4,
+            crystal_quartz = math.random(4,6),
             live_gnome = 2,
         }
     }
@@ -236,6 +237,7 @@ TheMod:AddRoom("Gnome_Forest", {
             skyflower = 0.2,
         },
         countprefabs= {
+            thunder_tree = 50,
             crystal_black = 1,
             crystal_quartz = 4,
             live_gnome = 4,
@@ -255,7 +257,6 @@ TheMod:AddRoom("Sea_Mimic", {
             cloud_algae = 0.15,
             cloud_coral = 0.15,
             thunder_tree = 0.09,
-            skyflower = 0.2,
         },
         countprefabs = {
             crystal_water = math.random(1,2),
@@ -265,7 +266,7 @@ TheMod:AddRoom("Sea_Mimic", {
 
 -------------------------------------------------------------------------------
 
-TheMod:AddRoom("Manta_Room", {
+TheMod:AddRoom("Blob_Room", {
     colour={r=.2,g=.2,b=.2,a=1},
     value = randomsnow(),
     contents = {
@@ -273,10 +274,9 @@ TheMod:AddRoom("Manta_Room", {
         distributeprefabs = {
             cloud_fruit_tree = 0.025,
             jellyshroom_blue = 0.08,
-            skyflower = 0.1,
         },
         countprefabs = {
-            --mantaspawner = math.random(1,4),
+            cloud_blob = math.random(1,4),
         }
     },
 })
@@ -296,7 +296,7 @@ TheMod:AddRoom("BGAurora", {
                         translate={	{tile=randomaurora(), items={"alien"}, item_count=3},
                                     {tile=randomaurora(), items={"skeleton"}, item_count=5},
                                     {tile=randomaurora(), items={"cloudcrag"}, item_count=17},
-                                    {tile=randomaurora(), items={"dragonblood_tree"}, item_count=6},
+                                    {tile=GROUND.AURORATWO, items={"dragonblood_tree"}, item_count=6},
                                     {tile=randomaurora(), items={"skyflower"}, item_count=30},
                             },
                     centroid= 	{tile=GROUND.SNOW, items={"scarecrow"}, item_count=1},
@@ -308,11 +308,10 @@ TheMod:AddRoom("BGAurora", {
             skeleton = 0.0007,
             gustflower = 0.03,
             dragonblood_tree = 0.07,
-            skyflower = 0.6,
             cloudcrag = 0.04,
         },
         countprefabs = {
-            --mantaspawner = math.random(1,4),
+            cloud_blob = math.random(1,4),
         }
     }
 })
@@ -347,7 +346,7 @@ TheMod:AddRoom("CragLanding", {
         distributepercent = randomness(),
         countprefabs = {
             goose = math.random(1,3),
-            cloud_fruit_tree = math.random(7,10),
+            cloud_fruit_tree = math.random(2,6),
             cloudcrag = math.random(16,20),
         }	
     },
@@ -362,7 +361,6 @@ TheMod:AddRoom("Bigbird_Nest", {
     contents = {
         distributepercent = randomness(),
         distributeprefabs = {
-            goose = 0.00006,
             dragonblood_tree = 0.0001,
             skyflower = 0.1,
         },
@@ -388,6 +386,7 @@ TheMod:AddRoom("Beanlet_Den", {
             goose = 1,
             beanlet_hut = math.random(4,6),
             beanlet = math.random(4,10),
+            bean_giant = 1,
         }
     },
 })
@@ -407,7 +406,6 @@ TheMod:AddRoom("BGRainbow", {
             jellyshroom_red = 0.02,
             jellyshroom_blue = 0.03,
             jellyshroom_green = 0.04,
-            skyflower = 0.1,
         },
         countprefabs= {
             gummybear_den = math.random(2,4),
@@ -456,7 +454,6 @@ TheMod:AddRoom("Crystal_Fields", {
         distributepercent = randomness(),
         distributeprefabs = {
             jellyshroom_green = 0.05,
-            skyflower = 0.1,
             owl = 0.007,
         },
         countprefabs= {
@@ -464,6 +461,7 @@ TheMod:AddRoom("Crystal_Fields", {
             crystal_relic = 1,
             crystal_light = 5,
             crystal_spire = 5,
+            semiconductor = 1,
         }
     },
 })
@@ -479,7 +477,6 @@ TheMod:AddRoom("Fish_Fields", {
         distributeprefabs = {
             cloudcrag = 0.4,
             jellyshroom_blue = 0.05,
-            skyflower = 0.1,
         },
         countprefabs= {
             crystal_water = 4,

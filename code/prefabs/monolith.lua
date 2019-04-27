@@ -7,12 +7,12 @@ local assets =
 
 local prefabs =
 {
-   --"crystal_white_fragment",
+
 }
 
 local loot = 
 {
-   --"crystal_white_fragment",
+
 }
 
 local function fn(Sim)

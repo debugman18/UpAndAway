@@ -7,12 +7,12 @@ local assets =
 
 local prefabs =
 {
-   --"crystal_water_fragment",
+
 }
 
 local loot = 
 {
-   --"crystal_water_fragment",
+
 }
 
 local function fn(Sim)
@@ -40,4 +40,4 @@ local function fn(Sim)
     return inst
 end
 
-return Prefab ("common/inventory/golden_golem", fn, assets, prefabs) 
+return Prefab ("common/monsters/golden_golem", fn, assets, prefabs) 

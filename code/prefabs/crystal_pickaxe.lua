@@ -62,4 +62,4 @@ local function fn(Sim)
     return inst
 end
 
-return Prefab ("common/inventory/crystal_axe", fn, assets) 
+return Prefab ("common/inventory/crystal_pickaxe", fn, assets) 

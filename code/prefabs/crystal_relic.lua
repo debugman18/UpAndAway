@@ -142,7 +142,7 @@ local function fn()
     anim:SetBuild("crystal")
     anim:PlayAnimation("idle_full")
     MakeObstaclePhysics(inst, 1.)
-    inst.AnimState:SetMultColour(1, 1, 1, 0.7)
+    inst.AnimState:SetMultColour(1, 1, 1, CFG.CRYSTAL.ALPHA)
     inst:AddTag("structure")
 
     inst:AddTag("resurrector")

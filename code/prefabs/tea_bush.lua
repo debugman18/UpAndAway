@@ -169,6 +169,8 @@ local function dugfn(inst)
     inst.AnimState:SetBuild("tea_bush")
     inst.AnimState:PlayAnimation("dropped")
 
+    MakeObstaclePhysics(inst, 0.8)
+
 
     ------------------------------------------------------------------------
     SetupNetwork(inst)

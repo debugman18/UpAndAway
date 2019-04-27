@@ -45,6 +45,8 @@ local function fn(Sim)
 
     inst.Transform:SetScale(scale,scale,scale)
 
+    MakeObstaclePhysics(inst, 1)
+
     MakeSnowCovered(inst)
 
 

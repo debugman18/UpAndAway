@@ -45,7 +45,7 @@ local function FindMagnet(inst)
 end	
 
 local function GraphicalUpdateTick(inst)
-    local roll = math.random(1,3)
+    local roll = math.random(1,5)
     if roll == 1 then
         inst.AnimState:SetMultColour(250,250,0,0)
     elseif roll == 2 then	

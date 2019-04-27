@@ -45,6 +45,8 @@ local function fn(Sim)
     inst.AnimState:SetBuild("scarecrow")
     inst.AnimState:PlayAnimation("anim", true)
 
+    MakeObstaclePhysics(inst, 0.3)
+
 
     ------------------------------------------------------------------------
     SetupNetwork(inst)

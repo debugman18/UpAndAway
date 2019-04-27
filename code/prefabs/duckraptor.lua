@@ -3,8 +3,6 @@ BindGlobal()
 local assets=
 {
     -- always have to declare what assets you’re loading and using
-    --Asset("ANIM", "anim/testcritter.zip"),  -- same name as the .scml
-    --Asset("ANIM", "anim/antlion.zip"),  -- same name as the .scml
     Asset("ANIM", "anim/duckraptor.zip"),  -- same name as the .scml
 
     Asset("ANIM", "anim/perd_basic.zip"),    
@@ -51,13 +49,12 @@ local function fn(Sim)
     local shadow = inst.entity:AddDynamicShadow()
     local sound = inst.entity:AddSoundEmitter() 
 
-    shadow:SetSize( 1.5, .75 )
+    shadow:SetSize(1.5, .75)
     inst.Transform:SetFourFaced()
-    --inst.Transform:SetScale(.8, 1, 1.2)
     inst.duckraptorsize = 1.6
     local duckraptorsize = inst.duckraptorsize
     inst.Transform:SetScale(duckraptorsize, duckraptorsize, duckraptorsize)
-    anim:SetMultColour(.9, .9, .9, .6)
+    anim:SetMultColour(0, 0, 0, .6)
     anim:SetBloomEffectHandle("shaders/anim.ksh")
     
     MakeCharacterPhysics(inst, 50, .5)    
@@ -74,14 +71,12 @@ local function fn(Sim)
     inst.components.locomotor.runspeed = 7
     inst.components.locomotor.walkspeed = 7
     
-    --inst:SetStateGraph(SGgoose")
     inst:SetStateGraph("SGduckraptor")
-    --anim:Hide("hat")
 
     inst:AddTag("character")
 
     inst:AddComponent("homeseeker")
-    --local brain = require "brains/goosebrain"
+
     local brain = require "brains/duckraptorbrain"
     inst:SetBrain(brain)
     

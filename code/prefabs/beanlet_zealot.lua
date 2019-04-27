@@ -35,7 +35,7 @@ local function fn(Sim)
     local sound = inst.entity:AddSoundEmitter()
     inst.Transform:SetTwoFaced()
 
-    inst.Transform:SetScale(CFG.BEANLET_ZEALOT.SCALE_INVERT, CFG.BEANLET_ZEALOT.SCALE, CFG.BEANLET_ZEALOT.SCALE)
+    inst.Transform:SetScale(-CFG.BEANLET_ZEALOT.SCALE_INVERT, CFG.BEANLET_ZEALOT.SCALE, -CFG.BEANLET_ZEALOT.SCALE)
 
     MakeCharacterPhysics(inst, 50, .5)  
 

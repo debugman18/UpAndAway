@@ -41,7 +41,7 @@ local function fn(Sim)
     inst.AnimState:SetBuild("crystal")
     inst.AnimState:PlayAnimation("idle_full")
     MakeObstaclePhysics(inst, 1)
-    inst.AnimState:SetMultColour(1, 1, 1, 0.7)
+    inst.AnimState:SetMultColour(1, 1, 1, CFG.CRYSTAL.ALPHA)
     inst:AddTag("crystal")
     inst:AddTag("gnome_crystal")
 

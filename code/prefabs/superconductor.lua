@@ -5,6 +5,12 @@ local assets=
     --Asset("ANIM", "anim/superconductor.zip"),
 }
 
+-- Tag the player.
+local function OnDeath(data)
+    local cause = data and data.cause or nil
+    if cause == ThePlayer then cause:AddTag("SuperconductorSlayer") end
+end
+
 local function fn(Sim)
     local inst = CreateEntity()
     local trans = inst.entity:AddTransform()

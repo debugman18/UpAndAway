@@ -21,7 +21,8 @@ local function fn(Sim)
     SetupNetwork(inst)
     ------------------------------------------------------------------------
 
-
+    MakeObstaclePhysics(inst, 1)
+    
     inst:AddComponent("inspectable")
 
     inst:AddComponent("inventoryitem")

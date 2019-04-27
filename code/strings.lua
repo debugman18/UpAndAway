@@ -50,6 +50,7 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.WINSTON =
 
 Add.Names {
     alien = "Aurora",
+    alchemical_plot = "Alchemical Farmplot",
     ambrosia = "Ambrosia",
     antlion = "Antlion",
     ball_lightning = "Ball Lightning",
@@ -79,6 +80,7 @@ Add.Names {
     chimera = "Chimera",
     cloud_algae = "Cloudy Algae",
     cloud_algae_fragment = "Cloudy Algae",
+    cloud_blob = "Cloudy Blob",
     cloud_bomb = "Cloudbomb",
     cloud_bush = "Cloudbush",
     cloud_coral = "Cloudy Coral",
@@ -88,6 +90,7 @@ Add.Names {
     cloud_fruit_cooked = "Cooked Cloud Fruit",
     cloud_fruit_tree = "Cloudfruit Tree",
     cloud_jelly = "Cloud Jelly",
+    cloud_moss = "Mossy Cloud",
     cloud_storage = "Cloud Chest",
     cloud_turf = "Cloud Turf",
     cloud_wall = "Cloud Wall",
@@ -98,8 +101,10 @@ Add.Names {
     cotton_hat = "Cotton Hat",
     cotton_vest = "Cotton Vest",
     crystal_armor = "Crystal Armor",
+    crystal_pickaxe = "Crystal Pickaxe",
     crystal_black = "Hematite Crystal", --
     crystal_cap = "Crystal Cap",
+    crystal_crown = "Crystal Crown",
     crystal_fragment_black = "Hematite Fragment", --
     crystal_fragment_light = "Peridot Fragment", --
     crystal_fragment_quartz = "Quartz Fragment", --
@@ -152,6 +157,7 @@ Add.Names {
     jellyshroom_blue = "Blue Jellyshroom",
     jellyshroom_green = "Green Jellyshroom",
     jellyshroom_red = "Red Jellyshroom",
+    jellyshroom_fish = "Jellyshroom Fish",
     kettle = "Kettle",
     kettle_item = "Kettle",
     kite = "Kite",
@@ -162,9 +168,8 @@ Add.Names {
     magic_beans = "Magic Beans",
     magic_beans_cooked = "Baked Beans",
     magnet = "Mag Net",
-    manta = "Manta",
-    manta_leather = "Manta Leather",
     marshmallow = "Marshmallow",
+    minicopter = "Minicopter",
     monolith = "Monolith",
     mushroom_hat = "Mushroom Hat",
     octocopter = "Octocopter",
@@ -184,6 +189,9 @@ Add.Names {
     refiner = "Refiner",
     research_lectern = "Cumulocator Station",
     rubber = "Rubber",
+    rubber_armor = "Rubber Suit",
+    rubber_cap = "Rubber Cap",
+    rubber_ducky = "Rubber Ducky",
     scarecrow = "Scarecrow",
     sheep = "Sheep",
     shopkeeper = "Shopkeeper",
@@ -212,6 +220,7 @@ Add.Names {
     winnie_staff = "Shepherd's Staff",
     winnie_flute = "Winnie's Flute",
     winston_tool = "Excavating Brush",
+    quartz_torch = "Quartz Torch",
 
     -- Tea names.
     whitetea = "White Tea",
@@ -247,6 +256,7 @@ Add.Names {
     -- Cooked food names.
     redjelly = "Red Jelly",
     greenjelly = "Green Jelly",
+    bluejelly = "Blue Jelly",
     crystalcandy = "Crystal Candy",
 
     -- Dummy name for morgue tricker.
@@ -2933,6 +2943,10 @@ STRINGS.RECIPE_DESC.MUSHROOM_HAT = "For the fungi in all of us."
 STRINGS.RECIPE_DESC.CLOUD_WALL_ITEM = "Its usefulness is questionable."
 STRINGS.RECIPE_DESC.CRYSTAL_ARMOR = "It's heavier than it looks."
 STRINGS.RECIPE_DESC.QUARTZ_TORCH = "Light your path in style."
+
+STRINGS.RECIPE_DESC.RUBBER_ARMOR = "."
+STRINGS.RECIPE_DESC.RUBBER_CAP = "."
+STRINGS.RECIPE_DESC.RUBBER_DUCKY = "."
 
 STRINGS.POTION_NAMES = {
     "Mysterious",

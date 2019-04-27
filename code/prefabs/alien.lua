@@ -70,11 +70,18 @@ local function fn()
     inst.Physics:SetCollisionGroup(COLLISION.SANITY)
     inst.Physics:CollidesWith(COLLISION.SANITY)
 
-    inst.Transform:SetScale(CFG.ALIEN.SCALE, 0.5, CFG.ALIEN.SCALE)
+    inst.Transform:SetScale(CFG.ALIEN.SCALE, 0.5, 6)
 
     inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
     inst.colour_idx = math.random(#colours)
     anim:SetMultColour(colours[inst.colour_idx][1],colours[inst.colour_idx][2],colours[inst.colour_idx][3],0.7)
+
+    local light = inst.entity:AddLight()
+    light:SetFalloff(1)
+    light:SetRadius(.2)
+    light:SetColour(colours[inst.colour_idx][1],colours[inst.colour_idx][2],colours[inst.colour_idx][3])
+    inst.Light:Enable(true)
+    inst.Light:SetIntensity(.2) 
 
     inst:AddTag("monster")
     inst:AddTag("hostile")
@@ -89,7 +96,7 @@ local function fn()
     anim:SetBank("shadowcreature1")
     anim:SetBuild("shadow_insanity1_color")
     anim:PlayAnimation("idle_loop")
-    --anim:SetMultColour(1, 1, 1, 0.2)
+
     inst:AddComponent("locomotor") -- locomotor must be constructed before the stategraph
     inst.components.locomotor.walkspeed = CFG.ALIEN.WALKSPEED
     inst.sounds = sounds

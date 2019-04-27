@@ -19,11 +19,13 @@ end
 local function onequip(inst, owner) 
     owner.AnimState:OverrideSymbol("swap_body", "beanlet_armor", "swap_body")
     inst:ListenForEvent("blocked", OnBlocked, owner)
+    inst.components.staticconductor:SetResistance(20)
 end
 
 local function onunequip(inst, owner) 
     owner.AnimState:ClearOverrideSymbol("swap_body")
     inst:RemoveEventCallback("blocked", OnBlocked, owner)
+    inst.components.staticconductor:SetResistance(0)
 end
 
 local function fn()
@@ -53,10 +55,9 @@ local function fn()
     
     inst:AddComponent("equippable")
     inst.components.equippable.equipslot = EQUIPSLOTS.BODY
-    inst.components.equippable.walkspeedmult = CFG.BEANLET_ARMOR.WALKMULTIPLIER
     
     inst:AddComponent("staticconductor")
-    inst.components.staticconductor:SetResistance(20)
+    inst.components.staticconductor:SetResistance(0)
 
     inst.components.equippable:SetOnEquip(onequip)
     inst.components.equippable:SetOnUnequip(onunequip)

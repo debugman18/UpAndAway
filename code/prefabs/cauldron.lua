@@ -52,6 +52,8 @@ local function fn()
     inst.entity:AddMiniMapEntity()
     inst.MiniMapEntity:SetIcon("cauldron.tex")	
 
+    MakeObstaclePhysics(inst, 1)
+
     ------------------------------------------------------------------------
     SetupNetwork(inst)
     ------------------------------------------------------------------------

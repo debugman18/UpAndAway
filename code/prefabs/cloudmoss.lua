@@ -2,7 +2,17 @@ BindGlobal()
 
 local assets =
 {
-    Asset("ANIM", "anim/void_placeholder.zip"),
+    Asset("ANIM", "anim/rock_stalagmite.zip"),
+}
+
+local prefabs =
+{
+
+}
+
+local loot = 
+{
+
 }
 
 local function fn(Sim)
@@ -12,9 +22,9 @@ local function fn(Sim)
     inst.entity:AddSoundEmitter()
     MakeInventoryPhysics(inst)
 
-    inst.AnimState:SetBank("marble")
-    inst.AnimState:SetBuild("void_placeholder")
-    inst.AnimState:PlayAnimation("anim")
+    inst.AnimState:SetBank("rock_stalagmite")
+    inst.AnimState:SetBuild("rock_stalagmite")
+    inst.AnimState:PlayAnimation("full")
 
 
     ------------------------------------------------------------------------
@@ -24,9 +34,10 @@ local function fn(Sim)
 
     inst:AddComponent("inspectable")
 
-    inst:AddComponent("inventoryitem")
+    inst:AddComponent("lootdropper")
+    inst.components.lootdropper:SetLoot(loot) 	
 
     return inst
 end
 
-return Prefab ("common/inventory/alchemicalplot", fn, assets)
+return Prefab ("common/monsters/cloudmoss", fn, assets, prefabs) 

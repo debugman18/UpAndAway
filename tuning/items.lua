@@ -1,6 +1,7 @@
 ---------------------------------------
 
 -- Grabber
+
 GRABBER.BONUS = 10
 
 ---------------------------------------
@@ -8,7 +9,7 @@ GRABBER.BONUS = 10
 -- Winnie Staff
 
 -- Max dist for a beefalo to become a follower.
-WINNIE_STAFF.MAX_FOLLOWER_DIST = 20
+WINNIE_STAFF.MAX_FOLLOWER_DIST = 50
 
 -- Max beefalo followers.
 WINNIE_STAFF.MAX_FOLLOWERS = 5
@@ -696,8 +697,8 @@ CLOUD_VEST.INSULATION = TUNING.INSULATION_LARGE * 1.1
 
 -- Crystal Armor
 
-CRYSTAL_ARMOR.ARMOR_HEALTH = 100 --These are just placeholders -Mob
-CRYSTAL_ARMOR.ARMOR_ABSORB = 0.1
+CRYSTAL_ARMOR.ARMOR_HEALTH = 100
+CRYSTAL_ARMOR.ARMOR_ABSORB = 0.5
 
 ---------------------------------------
 
@@ -757,7 +758,8 @@ CRYSTAL_LAMP.EMPTY_VALUE = 2
 
 CRYSTAL.WORK_TIME = TUNING.ROCKS_MINE * 1.1
 
-CRYSTAL.SCALE = function() return math.random(3,4) end
+CRYSTAL.SCALE = function() return 2.8 end
+CRYSTAL.ALPHA = 0.8
 
 CRYSTAL_BLACK.SCALE = 2.4
 CRYSTAL_BLACK.CHILD = "owl"
@@ -916,8 +918,7 @@ DATURA.PICK_SANITY = TUNING.SANITY_TINY + 1
 
 SKYFLOWER.REGEN_PERIOD = 40
 
--- Isn't this a bit much, considering those flowers are always in groups? -Mobb
-SKYFLOWER.SANITY_AURA = SKYFLOWER.PICK_SANITY / 6
+SKYFLOWER.SANITY_AURA = SKYFLOWER.PICK_SANITY / 15
 DATURA.SANITY_AURA = DATURA.PICK_SANITY / 6
 
 -- Loot and Prefabs

@@ -54,7 +54,7 @@ local function fn()
     anim:SetBank("crystal_spire")
     anim:SetBuild("crystal")
     anim:PlayAnimation("idle_full")
-    inst.AnimState:SetMultColour(1, 1, 1, 0.8)
+    inst.AnimState:SetMultColour(1, 1, 1, CFG.CRYSTAL.ALPHA)
 
     --inst.entity:AddMiniMapEntity()
     --inst.MiniMapEntity:SetIcon( "statue_small.png" )

@@ -51,6 +51,7 @@ local function GetNearbyThreatFn(inst)
             and not guy:HasTag("beanlet")
             and not guy:HasTag("smallcreature")
             and not guy:HasTag("gumbear")
+            and not guy:HasTag("weavernest")
         end
     end)
     return invader
@@ -75,7 +76,9 @@ local function GetFaceTargetFn(inst)
 end
 
 local function KeepFaceTargetFn(inst, target)
-    return inst:GetDistanceSqToInst(target) <= 10*10
+    if target:IsValid() then
+        return inst:GetDistanceSqToInst(target) <= 10
+    end
 end
 
 local function ShouldGoHome(inst)

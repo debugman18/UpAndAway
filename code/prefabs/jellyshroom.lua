@@ -74,7 +74,7 @@ local function unpicked_setflipped(inst, flipped)
         TheMod:DebugSay("Flipping jellyshroom.")
         local rx, ry, rz = inst.Transform:GetScale()
         TheMod:DebugSay(rx.." "..ry.." "..rz)
-        inst.Transform:SetScale(-rx, ry, rz)
+        inst.Transform:SetScale(-rx, ry, -rz)
     end
     inst.flipped = flipped
 end
@@ -106,7 +106,7 @@ local function unpickedfn_common(bank, name)
     inst.AnimState:SetBuild("jelly_shrooms")
     inst.AnimState:PlayAnimation("idle")
     inst:DoTaskInTime(math.random(0,2), inst.AnimState:PushAnimation("idle_sway", true))
-    inst.AnimState:SetBloomEffectHandle( "shaders/anim.ksh" )
+    inst.AnimState:SetBloomEffectHandle("shaders/anim.ksh")
 
     unpicked_setcolour(inst, random_colour(name))
 
@@ -115,6 +115,13 @@ local function unpickedfn_common(bank, name)
     inst:DoTaskInTime(1, unpicked_setflipped(inst, math.random(0,2)))
 
     inst:AddComponent("inspectable") 
+
+    local light = inst.entity:AddLight()
+    light:SetFalloff(0.6)
+    light:SetRadius(0.8)
+    inst.Light:Enable(true)
+    inst.Light:SetIntensity(0.3)
+    light:SetColour(random_colour(name)[1],random_colour(name)[2],random_colour(name)[3]) 
 
     inst:AddTag("jelly")
     inst:AddComponent("pickable")
@@ -190,7 +197,7 @@ local function pickedfn_common(bank, name)
     inst.components.perishable.onperishreplacement = "spoiled_food"
 
     inst:AddComponent("cookable")
-    inst.components.cookable.product = "cloud_jelly"     
+    inst.components.cookable.product = "cloud_jelly"   
     
     return inst
 end

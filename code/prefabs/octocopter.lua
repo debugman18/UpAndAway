@@ -123,8 +123,7 @@ local function MakeOctocopter()
         inst.components.locomotor.runspeed = 4
         inst.components.locomotor.directdrive = true
 
-
-        inst.Transform:SetScale(1.4, 1.4, 1.4)
+        inst.Transform:SetScale(1.2, 1.2, 1.2)
         
         inst:SetStateGraph("SGoctocopter")
 

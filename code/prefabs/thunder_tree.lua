@@ -155,6 +155,7 @@ end
 local function chop_down_tree(inst, chopper)
     inst.SoundEmitter:PlaySound("dontstarve/forest/treeCrumble")          
     inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree")
+
     inst.AnimState:PlayAnimation("fall")
     inst.components.lootdropper:DropLoot()
 
@@ -187,7 +188,7 @@ end
 
 local function OnSpawned(inst, child)
     if not GetStaticGenerator() or not GetStaticGenerator():IsCharged() then
-        local lightning = SpawnPrefab("lightning")
+        local lightning = SpawnPrefab("cloud_lightning")
         lightning.Transform:SetPosition(child.Transform:GetWorldPosition())
     end   
 end
@@ -213,7 +214,7 @@ local function fn(Sim)
     inst.components.growable.loopstages = true
     inst.components.growable:StartGrowing()
 
-    MakeObstaclePhysics(inst, .25)   
+    MakeObstaclePhysics(inst, .3)   
     inst:AddTag("tree")
     
     if not inst.components.lootdropper then

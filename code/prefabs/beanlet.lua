@@ -31,7 +31,7 @@ local function fn()
     local sound = inst.entity:AddSoundEmitter()
     inst.Transform:SetTwoFaced()
 
-    inst.Transform:SetScale(CFG.BEANLET.SCALE, CFG.BEANLET.SCALE, CFG.BEANLET.SCALE)
+    inst.Transform:SetScale(-CFG.BEANLET.SCALE, CFG.BEANLET.SCALE, -CFG.BEANLET.SCALE)
 
     MakeCharacterPhysics(inst, 50, .5)  
 
@@ -60,6 +60,8 @@ local function fn()
     inst.data = {}
 
     inst:AddComponent("combat")
+
+    inst.flip = true
 
     inst:AddComponent("health")
     inst.components.health:SetMaxHealth(CFG.BEANLET.HEALTH)

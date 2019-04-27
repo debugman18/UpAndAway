@@ -1,6 +1,9 @@
 --This loads all of the new prefabs.
 
 PrefabFiles = {
+	-- Prefabs
+
+	"staticdummy",
 	"winnie",
 	"winnie_staff",
 	"winnie_flute",
@@ -8,47 +11,6 @@ PrefabFiles = {
 	"kettle",
 	"cauldron",
 	"refiner",
-	--"winston_tool",
-
-	-- Dummy prefab for morgue trickery.
-	"staticdummy",
-
-	-- Stuff in progress.
-	--------------------
-
-	"pineapple_bush",
-	"pineapple",
-	"cloudblob",
-	"alchemy_potions",
-	"potion_tunnel_mound",
-	"colored_corn",
-	"gemcorn",
-	"gnome_wilson",
-	"gnome_decor",
-	"gnome_plot",
-	"cloud_wall",
-	"chest_sky",
-	"live_gnome",
-	"rubber_armor",
-	"shopkeeper_umbrella",
-
-	--"rubber_cap",
-	--"rubber_ducky",
-
-	------------------------------
-
-	-- Bosses and their drops.
-	"superconductor",
-	"radiant_orb",
-
-	"bean_giant",
-	"bean_brain",
-	"super_beans",
-
-	"octocopter",
-
-	------------------------------
-
 	"ua_cave",
 	"cloudrealm",
 	"cloud_mist",
@@ -80,8 +42,7 @@ PrefabFiles = {
 	"alien",
 	"greenbean",
 	"jellyshroom",
-	"refiner",
-	"scarecrow",	
+	"refiner",	
 	"beanstalk_chunk",	
 	"beanstalk_sapling",	
 	"cloud_cotton",		
@@ -89,8 +50,7 @@ PrefabFiles = {
 	"cloud_bush",
 	"cloudcrag",	
 	"golden_egg",
-	"wind_axe",
-	"duckraptor",		
+	"wind_axe",		
 	"lionblob",
 	"owl",
 	"crystal_relic",
@@ -163,32 +123,59 @@ PrefabFiles = {
 	"magic_beans",
 	"crystal_armor",
 	"quartz_torch",
-
-	--Stuff not started.
-	--------------------
-
 	"beanlet_lamp",
-	--"crystal_moss",	
-	--"crystal_crown",
-	--"cloud_bomb",	
-	--"golden_amulet",
-	--"kite",
-	--"cheshire",
-	--"chimera",
-	--'bird_paradise',
-	--"rainbowcoon",	
+	"duckraptor",
+
+	"cloud_egg",
 	"grabber",
-	--"minicopter"
-	--"golden_golem",	
-	--"monolith",	
-	--"mantaspawner",
-	--"crystal_axe",
-	--"sky_lemur",
-	--"jellyshroomfish",
-	--"manta",
-	--"manta_baby",
-	--"manta_leather",
-	
+	"cloud_blob",
+
+	-- Needs implementation.
+	"cloudmoss",	
+	"crystal_crown",
+	"cloud_bomb",	
+	"golden_amulet",
+	"kite",
+	"chimera",
+	'bird_paradise',
+	"rainbowcoon",	
+	"minicopter",
+	"golden_golem",	
+	"monolith",	
+	"crystal_pickaxe",
+	"sky_lemur",
+	"jellyshroomfish",
+	"alchemical_plot",
+	"scarecrow",
+	"rubber_cap",
+	"rubber_ducky",
+	"superconductor",
+	"radiant_orb",
+	"bean_brain",
+	"super_beans",
+	"winston",
+	"winston_tool",
+
+	-- Needs revising (or serious bugfixes.)
+	"shopkeeper_umbrella",
+	"octocopter",
+	"bean_giant",
+	"winnie_staff",
+
+	-- Needs extending but is technically functional.
+	"pineapple_bush",
+	"pineapple",
+	"alchemy_potions",
+	"potion_tunnel_mound",
+	"colored_corn",
+	"gemcorn",
+	"gnome_wilson",
+	"gnome_decor",
+	"gnome_plot",
+	"cloud_wall",
+	"chest_sky",
+	"live_gnome",
+	"rubber_armor",
 }
 
 if GLOBAL.TheSim and GLOBAL.TheSim:GetGameID()=="DST" then

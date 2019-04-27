@@ -2,22 +2,19 @@ BindGlobal()
 
 local assets =
 {
-    Asset("ANIM", "anim/rubber.zip"),
+    Asset("ANIM", "anim/void_placeholder.zip"),
 }
 
 local function fn(Sim)
-
-    local scale = 1
-
     local inst = CreateEntity()
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
+    MakeInventoryPhysics(inst)
 
-    inst.AnimState:SetBank("rubber")
-    inst.AnimState:SetBuild("rubber")
-    inst.AnimState:PlayAnimation("idle")
-    inst.Transform:SetScale(scale,scale,scale)
+    inst.AnimState:SetBank("marble")
+    inst.AnimState:SetBuild("void_placeholder")
+    inst.AnimState:PlayAnimation("anim")
 
 
     ------------------------------------------------------------------------
@@ -27,7 +24,9 @@ local function fn(Sim)
 
     inst:AddComponent("inspectable")
 
+    inst:AddComponent("inventoryitem")
+
     return inst
 end
 
-return Prefab ("common/cloudblob", fn, assets)
+return Prefab ("common/inventory/alchemical_plot", fn, assets)

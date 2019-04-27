@@ -22,7 +22,7 @@ local function fn(Sim)
     inst.AnimState:SetBank("rubber")
     inst.AnimState:SetBuild("rubber")
     inst.AnimState:PlayAnimation("idle")
-    inst.Transform:SetScale(3,3,3)
+    inst.Transform:SetScale(6,6,6)
 
 
     ------------------------------------------------------------------------
