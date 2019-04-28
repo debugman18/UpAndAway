@@ -20,8 +20,7 @@ WICKER_SCRIPT_DIR:=wicker
 # Wicker tools directory.
 WICKER_TOOLS_DIR:=wickertools
 
-
-MOD_VERSION=$(shell $(TOOLS_DIR)/get_modversion.lua modinfo.lua)
+MOD_VERSION=$(shell $(LUA) -e 'dofile("modinfo.lua"); io.write(version)')
 
 
 # Paths to binary programs used for packaging and other purposes.
