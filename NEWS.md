@@ -70,6 +70,9 @@ for quite some time.
 + Fixed Thunder Trees not having "leaves".
 + Fixed Gustflower Seeds planting themselves into Gustflowers even when in the player's inventory.
 + Fixed Gustflowers playing the wrong animations.
++ All cloudrealm turfs can now be dug up and transplanted.
++ Fixed Cloudfruit Trees being buggy (not dropping loot, etc) when chopped.
++ Jellyshrooms now spawn facing various directions.
 
 ### Update 2019-3-1 (alpha 0.2.13 release)
 

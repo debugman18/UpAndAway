@@ -42,7 +42,9 @@ local CURRENT_ID = LAST_KNOWN_COUNT + 1
 for i, v in ipairs(new_tiles) do
     local v_upper = v:upper()
     TheMod:AddTile(v_upper, CURRENT_ID, v, {noise_texture = "noise_" .. v .. ".tex"}, {noise_texture = "mini_noise_" .. v .. ".tex"})
-    Terraforming.MakeTileUndiggable(GROUND[v_upper])
+
+    -- Let there be dirt.
+    -- Terraforming.MakeTileUndiggable(GROUND[v_upper])
 
     CURRENT_ID = CURRENT_ID + 1
 end

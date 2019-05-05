@@ -74,7 +74,7 @@ local function unpicked_setflipped(inst, flipped)
         TheMod:DebugSay("Flipping jellyshroom.")
         local rx, ry, rz = inst.Transform:GetScale()
         TheMod:DebugSay(rx.." "..ry.." "..rz)
-        inst.Transform:SetScale(-rx, ry, -rz)
+        inst.AnimState:SetScale(-rx, ry, -rz)
     end
     inst.flipped = flipped
 end
@@ -101,6 +101,8 @@ local function unpickedfn_common(bank, name)
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
+
+    inst.Transform:SetTwoFaced()
 
     inst.AnimState:SetBank(bank) 
     inst.AnimState:SetBuild("jelly_shrooms")

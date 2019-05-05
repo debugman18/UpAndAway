@@ -46,7 +46,7 @@ PrefabFiles = {
 	"beanstalk_chunk",	
 	"beanstalk_sapling",	
 	"cloud_cotton",		
-	"cloud_turf",	
+	"cloud_turf",
 	"cloud_bush",
 	"cloudcrag",	
 	"golden_egg",

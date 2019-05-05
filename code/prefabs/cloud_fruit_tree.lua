@@ -9,6 +9,20 @@ local assets =
 
 local prefabs = CFG.CLOUD_FRUIT_TREE.PREFABS
 
+local function dug(inst)
+    inst:Remove()
+    inst.components.lootdropper:SpawnLootPrefab("thunder_log")
+end
+
+local function setupstump(inst)
+    inst.stump = true
+    inst:RemoveComponent("pickable")
+    inst.components.workable:SetWorkAction(ACTIONS.DIG)
+    inst.components.workable:SetWorkLeft(1)
+    inst.components.workable:SetOnWorkCallback(dug)
+    inst.AnimState:PlayAnimation("idle_stump")
+end
+
 local function onregenfn(inst)
     inst.AnimState:Show("BANANA") 
     inst.picked = false
@@ -26,27 +40,31 @@ local function chop_tree(inst, chopper, chops)
 end
 
 local function chop_down_tree(inst, chopper)
+    if inst.stump then return end
     inst.SoundEmitter:PlaySound("dontstarve/forest/treeCrumble")          
-    inst.SoundEmitter:PlaySound("dontstarve/wilson/use_axe_tree")
-    inst.AnimState:PlayAnimation("fall")
-    inst.AnimState:PushAnimation("stump", false)
+
     if inst.picked then
-        inst.components.lootdropper:DropLoot()
+        inst.components.lootdropper:SpawnLootPrefab("thunder_log")
+        inst.components.lootdropper:SpawnLootPrefab("thunder_log")
     else 
-        inst.components.lootdropper.loot = CFG.CLOUD_FRUIT_TREE.LOOT_WITH_FRUIT
-        inst.components.lootdropper:DropLoot()
+        inst.components.lootdropper:SpawnLootPrefab("thunder_log")
+        inst.components.lootdropper:SpawnLootPrefab("thunder_log")
+        inst.components.lootdropper:SpawnLootPrefab("cloud_fruit")
     end
-    inst:Remove()
     
-	--inst:AddComponent("workable")
-    --inst.components.workable:SetWorkAction(ACTIONS.DIG)
-    --inst.components.workable:SetOnFinishCallback(dig_up_stump)
-    --inst.components.workable:SetWorkLeft(1)
+	setupstump(inst)
+
+    inst.AnimState:PlayAnimation("fall")
+    inst.AnimState:PushAnimation("idle_stump")
 end
 
 local function onsave(inst, data)
     if inst.picked then
         data.picked = true
+    end
+
+    if inst.stump then
+        data.stump = true
     end
 end
 
@@ -54,6 +72,9 @@ local function onload(inst, data)
     if data and data.picked then
         inst.picked = true
         onpickedfn(inst)
+    elseif data and data.stump then
+        inst.stump = true
+        setupstump(inst)
     end
 end
 
@@ -84,7 +105,6 @@ local function fn(Sim)
     inst.components.pickable:SetOnRegenFn(onregenfn)
 
 	inst:AddComponent("lootdropper")
-	inst.components.lootdropper.loot = CFG.CLOUD_FRUIT_TREE.LOOT
 
     inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.CHOP)
