@@ -301,7 +301,6 @@ end
 
 -- These are played when the shopkeeper gives the player the boss quest, dependant on the boss slain.
 
---This gives the player a hint about the beans.
 SPEECHES.SLAYER_HINT = function(mgr)
     if mgr:EnterCutScene() then
         mgr:MakeNonInterruptible()

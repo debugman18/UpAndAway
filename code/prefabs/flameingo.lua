@@ -1,27 +1,23 @@
 BindGlobal()
 
-local CFG = TheMod:GetConfig()
-
-local assets =
+local assets=
 {
-    -- Nothing yet.
 }
 
 local function fn(Sim)
     local inst = CreateEntity()
-    inst.entity:AddTransform()
-    inst.entity:AddAnimState()
-    inst.entity:AddSoundEmitter()
-
+    local trans = inst.entity:AddTransform()
+    local anim = inst.entity:AddAnimState()
 
     ------------------------------------------------------------------------
+    
     SetupNetwork(inst)
+    
     ------------------------------------------------------------------------
-
 
     inst:AddComponent("inspectable")
-
+ 
     return inst
 end
 
-return Prefab ("common/creatures/barry", fn, assets) 
+return Prefab("creatures/flameingo", fn, assets) 

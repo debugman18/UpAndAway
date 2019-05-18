@@ -10,7 +10,6 @@ local function fn(Sim)
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
-    MakeInventoryPhysics(inst)
 
     inst.AnimState:SetBank("marble")
     inst.AnimState:SetBuild("void_placeholder")

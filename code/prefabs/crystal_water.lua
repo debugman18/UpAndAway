@@ -80,7 +80,6 @@ local function fn(Sim)
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
-    MakeInventoryPhysics(inst)
 
     --local minimap = inst.entity:AddMiniMapEntity()
     --minimap:SetIcon("crystal_water.png")

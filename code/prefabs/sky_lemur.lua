@@ -23,7 +23,6 @@ local function fn(Sim)
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
-    MakeInventoryPhysics(inst)
 
     inst.AnimState:SetBank("kiki")
     inst.AnimState:SetBuild("kiki_basic")

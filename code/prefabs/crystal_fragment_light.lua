@@ -10,6 +10,12 @@ local assets =
     Asset( "IMAGE", inventoryimage_texture("crystal_fragment_light") ),		
 }
 
+local function OnFueled(inst,taker)
+    if not taker:HasTag("tuner") then return end
+
+    taker.color = inst.color
+end
+
 local function fn(Sim)
     local inst = CreateEntity()
     inst.entity:AddTransform()
@@ -21,13 +27,9 @@ local function fn(Sim)
     inst.AnimState:SetBuild("crystal_fragment_light")
     inst.AnimState:PlayAnimation("closed")
 
-
     ------------------------------------------------------------------------
     SetupNetwork(inst)
     ------------------------------------------------------------------------
-
-
-    --inst.Transform:SetScale(.6,.6,.6)
 
     inst:AddComponent("stackable")
     inst.components.stackable.maxsize = CFG.CRYSTAL_FRAGMENT.STACK_SIZE
@@ -42,6 +44,7 @@ local function fn(Sim)
     inst:AddComponent("fuel")
     inst.components.fuel.fueltype = CFG.CRYSTAL_FRAGMENT.FUEL_TYPE
     inst.components.fuel.fuelvalue = CFG.CRYSTAL_FRAGMENT.FUEL_VALUE
+    inst.components.fuel:SetOnTakenFn(OnFueled)
 
     return inst
 end

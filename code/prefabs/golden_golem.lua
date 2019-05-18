@@ -20,7 +20,6 @@ local function fn(Sim)
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
-    MakeInventoryPhysics(inst)
 
     inst.AnimState:SetBank("rock_stalagmite")
     inst.AnimState:SetBuild("rock_stalagmite")

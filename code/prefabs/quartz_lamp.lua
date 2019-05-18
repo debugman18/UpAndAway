@@ -20,34 +20,6 @@ local function onEmpty(inst, owner)
     inst.Light:Enable(false)
 end
 
-local function onequip(inst, owner)
-    owner.AnimState:OverrideSymbol("swap_object", "swap_torch", "swap_torch")
-    owner.AnimState:Show("ARM_carry") 
-    owner.AnimState:Hide("ARM_normal") 
-    
-	if inst.components.fueled and not inst.components.fueled:IsEmpty() then
-		inst.SoundEmitter:PlaySound("dontstarve/wilson/lantern_LP", "torch")
-		inst.SoundEmitter:PlaySound("dontstarve/wilson/torch_swing")
-		--inst.SoundEmitter:SetParameter( "torch", "intensity", 1 )
-		
-		inst.components.fueled:StartConsuming()
-		inst.Light:Enable(true)
-	end
-end
-
-local function onunequip(inst,owner)
-    owner.AnimState:Hide("ARM_carry") 
-    owner.AnimState:Show("ARM_normal")
-    inst.SoundEmitter:KillSound("torch")
-	
-	inst.components.fueled:StopConsuming()
-    inst.Light:Enable(false)
-end
-
-local function OnFueled(inst, item)
- -- Take the color of a crystal, turn the crystal torch light this color.
-end
-
 local function fn(Sim)
     local inst = CreateEntity()
     inst.entity:AddTransform()
@@ -65,8 +37,6 @@ local function fn(Sim)
     inst.AnimState:SetBuild("torch")
     inst.AnimState:PlayAnimation("idle")
 	
-    MakeInventoryPhysics(inst)
-	
     ------------------------------------------------------------------------
     SetupNetwork(inst)
     ------------------------------------------------------------------------
@@ -75,16 +45,10 @@ local function fn(Sim)
     inst.components.weapon:SetDamage(TUNING.TORCH_DAMAGE)
 
     -----------------------------------
-	
-    --This will be changed to 'tuner' which will affect the crystals.
-    --inst:AddComponent("tuner")
 
-    -----------------------------------
-    
-    inst:AddComponent("inventoryitem")
-	--inst.components.inventoryitem.atlasname = inventoryimage_atlas("crystal_fragment_quartz")
-	--InventoryItems automatically enable light when dropped, so counteract that
-	inst:ListenForEvent("ondropped", function(inst) inst.Light:Enable(false) end)
+    --This will be changed to 'tuner' which will affect the crystals.
+    --inst:AddComponent("lighter")
+
     -----------------------------------
     
     inst:AddComponent("inspectable")
@@ -99,17 +63,12 @@ local function fn(Sim)
     -----------------------------------
 	
     inst:AddComponent("fueled")
-	inst.components.fueled.fueltype = CFG.CRYSTAL_FRAGMENT.FUEL_TYPE
+	inst.components.fueled.fueltype = CFG.QUARTZ_TORCH.FUEL_TYPE
 	inst.components.fueled:InitializeFuelLevel(CFG.QUARTZ_TORCH.MAX_FUEL)
     inst.components.fueled:SetDepletedFn(onEmpty)
-    inst.components.fueled.accepting = true
+    inst.components.fueled.accepting = false
     inst.components.fueled.rate = CFG.QUARTZ_TORCH.FUELRATE
-    inst.components.fueled.ontakefuelfn = OnFueled
 
-    -----------------------------------
-	
-    inst:AddComponent("fuel")
-	inst.components.fuel.fueltype = CFG.CRYSTAL_LAMP.FUEL_TYPE
     -----------------------------------
 	
 	inst:AddComponent("staticchargeable")
@@ -123,4 +82,4 @@ local function fn(Sim)
     return inst
 end
 
-return Prefab ("common/inventory/quartz_torch", fn, assets) 
+return Prefab ("common/inventory/quartz_lamp", fn, assets) 

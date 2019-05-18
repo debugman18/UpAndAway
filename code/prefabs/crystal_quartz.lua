@@ -35,7 +35,6 @@ local function fn(Sim)
     inst.entity:AddTransform()
     inst.entity:AddAnimState()
     inst.entity:AddSoundEmitter()
-    MakeInventoryPhysics(inst)
 
     inst.AnimState:SetBank("crystal_quartz")
     inst.AnimState:SetBuild("crystal")
