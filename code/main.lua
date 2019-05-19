@@ -163,6 +163,7 @@ AddMinimapAtlas("images/ua_minimap.xml")
 -- Winnie is now compatible with both DS and DST.
 table.insert(GLOBAL.CHARACTER_GENDERS.FEMALE, "winnie")
 AddModCharacter("winnie", FEMALE)
+AddModCharacter("winston", MALE)
 
 -- I shouldn't have to do this here, but lazyvariableadder isn't working correctly for roads.
 GLOBAL.ShopkeeperRoad = "dummy"

@@ -32,7 +32,7 @@ local assets = {
     Asset( "SOUND", "sound/wilson.fsb" ),
     Asset( "ANIM", "anim/beard.zip" ),
 
-    Asset( "ANIM", "anim/winnie.zip" ),
+    Asset( "ANIM", "anim/winston.zip" ),
     --Asset( "ANIM", "anim/ghost_winnie_build.zip" ),
 }
 

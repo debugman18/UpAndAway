@@ -38,7 +38,7 @@ local tovanilla = {
     },
 }
 
-if not IsDST() then
+if not IsDST() and not _G.SEASONS.AUTUMN then
     --[[
     -- Season start works differently outside of DST, since it's baked right into the
     -- seasonmanager savedata.

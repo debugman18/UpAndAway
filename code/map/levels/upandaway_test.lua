@@ -1,7 +1,21 @@
 local LEVELTYPE = _G.LEVELTYPE
 
 -- FIXME: Replace with a decent method, when possible.
-local has_rog = IsDLCEnabled(REIGN_OF_GIANTS)
+local has_rog = function()
+	if IsDLCEnabled(REIGN_OF_GIANTS) then
+		print("PRESET IS AUTUMN")
+		return true
+	elseif SaveGameIndex:IsSlotROG(SaveGameIndex.current_slot) then
+		print("PRESET IS AUTUMN")
+		return true
+	elseif _G.SEASONS.AUTUMN then
+		print("PRESET IS AUTUMN")
+		return true
+	else
+		print("PRESET IS SUMMER")
+		return false
+	end
+end
 
 local season_start = has_rog and "autumn" or "summer"
 local season_mode = has_rog and "onlyautumn" or "onlysummer"

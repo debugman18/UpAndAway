@@ -44,11 +44,13 @@ elseif is_rog then
 	if SaveGameIndex:IsSlotROG(SaveGameIndex.current_slot) then
 		print("REIGN OF GIANTS SEASONS")
 		SEASON_NAMES = {"autumn", "winter", "spring", "summer", "caves"}
-	else 
+	elseif _G.SEASONS.AUTUMN then
+		print("REIGN OF GIANTS SEASONS")
+		SEASON_NAMES = {"autumn", "winter", "spring", "summer", "caves"}
+	else
 		print("VANILLA SEASONS")
 		SEASON_NAMES = {"winter", "summer", "caves"}
 	end
-	SEASON_NAMES = {"autumn", "winter", "spring", "summer", "caves"}
 else
 	print("VANILLA SEASONS")
 	SEASON_NAMES = {"summer", "winter", "caves"}

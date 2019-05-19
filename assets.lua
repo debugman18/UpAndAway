@@ -57,6 +57,12 @@ Assets = GLOBAL.JoinArrays(
 		--Asset( "ATLAS", "bigportraits/winnie_dst.xml" ),
 		--Asset( "IMAGE", "bigportraits/winnie_none.tex" ),
 		--Asset( "ATLAS", "bigportraits/winnie_none.xml" ),
+
+	},
+
+	{
+		Asset( "IMAGE", "bigportraits/winston.tex" ),
+		Asset( "ATLAS", "bigportraits/winston.xml" ),		
 	},
 
 	-- Dummy end, just so we can put commas after everything.

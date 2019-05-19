@@ -1,3 +1,5 @@
+--[[
+
 local get_inst_gender = (function()
     local cache = {}
 
@@ -43,3 +45,5 @@ end
 SPEECHES.BEANGIANT_HINT = function(mgr)
 
 end
+
+--]]

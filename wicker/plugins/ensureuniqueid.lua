@@ -10,6 +10,7 @@ local id_matches = Lambda.CompactlyFilter(function(mod)
 	end
 end, Reflection.EnabledMods())
 
+-- This is very important. We'll stop bypassing this later. For now, live dangerously.
 assert(#id_matches >= 1)
 
 if #id_matches > 1 then

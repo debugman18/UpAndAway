@@ -203,6 +203,8 @@ local function oninteract(inst, doer)
     local gavebeans = quester:GetFlag(PRIMARY_QUEST, "gotbeans")
     local hasclimbed = quester:GetFlag(PRIMARY_QUEST, "hasclimbed")
 
+    print(hasclimbed)
+
     inst.components.speechgiver:CancelAll()
 
     if quester:GetFlag(PRIMARY_QUEST, "hitshopkeeper") then
@@ -211,11 +213,17 @@ local function oninteract(inst, doer)
 
     if not quester:StartedQuest(PRIMARY_QUEST) then
         if not SaveGameIndex:GetCurrentMode() == "shipwrecked" and not SaveGameIndex:GetCurrentMode() == "porkland" then
-            inst.components.speechgiver:PushSpeech("BEAN_QUEST", doer)
+            TheMod:DebugSay("Primary shipwrecked quest starting.")
+            inst.components.speechgiver:PushSpeech("BEAN_QUEST_SHIPWRECKED", doer)
         elseif SaveGameIndex:GetCurrentMode() == "shipwrecked" then
+            TheMod:DebugSay("Primary shipwrecked quest starting.")
             inst.components.speechgiver:PushSpeech("BEAN_QUEST_SHIPWRECKED", doer)
         elseif SaveGameIndex:GetCurrentMode() == "porkland" then
+            TheMod:DebugSay("Primary hamlet quest starting.")
             inst.components.speechgiver:PushSpeech("BEAN_QUEST_HAMLET", doer)
+        else
+            TheMod:DebugSay("Primary quest starting.")
+            inst.components.speechgiver:PushSpeech("BEAN_QUEST", doer)
         end
         return true
     elseif numbeans > 0 and negotiateCows(inst, doer) then

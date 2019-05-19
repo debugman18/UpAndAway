@@ -37,6 +37,7 @@ local assets = {
     Asset( "ANIM", "anim/beard.zip" ),
 
     Asset( "ANIM", "anim/winnie.zip" ),
+
     --Asset( "ANIM", "anim/ghost_winnie_build.zip" ),
 }
 

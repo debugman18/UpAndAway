@@ -29,7 +29,7 @@ local function flagplayer(inst, player)
         inst.components.speechgiver:PlaySpeech("SEE_PLAYER", player)
     elseif not quester:GetFlag(PRIMARY_QUEST, "got.hint1") then
         inst.components.speechgiver:PlaySpeech("OCTOCOPTER_HINT", player)
-    else then
+    else
         TheMod:DebugSay "La la la, la la."
     end
 end
@@ -51,6 +51,7 @@ local function fn(Sim)
     --inst:AddComponent("talker")
     --inst:AddComponent("playerprox")
     --inst:AddComponent("withdrawable")
+    inst:AddComponent("speechgiver")
 
     ------------------------------------------------------------------------
     SetupNetwork(inst)
