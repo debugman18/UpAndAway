@@ -15,9 +15,6 @@
 + Various Potion Types -- Vivalavie was working on these last I checked.
 + Grilled Pineapple and dropped variant --See miscellanea.
 
-### Atlases (using existing animation banks) in need of attention, in order of priority.
-+ Winnie ghost build.
-
 ### Custom animation banks/builds in need of attention, in order of priority.
 + Sheep -- Needs shaved art.
 + Gnomes. -- Vivalavie was working on this. Battal began animations. Unknown status.

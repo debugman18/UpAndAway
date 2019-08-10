@@ -132,6 +132,7 @@ PrefabFiles = {
 
 	-- Needs implementation.
 	"cloudmoss",	
+	"flameingo",
 	"crystal_crown",
 	"cloud_bomb",	
 	"golden_amulet",

@@ -235,7 +235,7 @@ local function fn()
    
     --Uses our cloudwaves.
     local waves = inst.entity:AddWaveComponent()
-    waves:SetRegionSize(40, 29) --This definitely works.
+    waves:SetRegionSize(40, 29) --This definitely works. --40, 29
     waves:SetRegionNumWaves(12) --8
     waves:SetWaveTexture(GLOBAL.resolvefilepath("images/cloudwave.tex"))   
     waves:SetWaveEffect("shaders/waves.ksh" ) -- texture.ksh   
