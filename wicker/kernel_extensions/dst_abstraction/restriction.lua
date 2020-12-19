@@ -20,8 +20,7 @@ end
 
 local function forbidden_thing(what, k, badcase)
 	badcase = badcase or "multiplayer"
-	--Disabling this until we do DST compatibility, because of Pseudo bugs.
-	--return Lambda.Error("The ", what, " ", k, " is not ", badcase, " friendly. Please report this blasphemy to this mod's author, ", modauthor, ". Make sure to attach your log.txt in the report.")
+	return Lambda.Error("The ", what, " ", k, " is not ", badcase, " friendly. Please report this blasphemy to this mod's author, ", modauthor, ". Make sure to attach your log.txt in the report.")
 end
 
 local forbidden_function = Lambda.BindFirst(forbidden_thing, "function")

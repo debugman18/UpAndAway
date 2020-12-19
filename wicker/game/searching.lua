@@ -123,7 +123,7 @@ local function MakeGenDefaults(gens)
 			local radiussq = radius*radius
 
 			local function p(inst)
-				return inst:GetDistanceSqToPoint(center) < radiussq
+				--return inst:GetDistanceSqToPoint(center) < radiussq
 			end
 
 			return Lambda.iterator.Filter(p, basic_gen(...))

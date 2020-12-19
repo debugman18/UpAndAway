@@ -140,11 +140,8 @@ CommonStates.AddCombatStates(states,
                 inst.bufferedaction.target.components.workable:SetWorkLeft(1)
                 inst:PerformBufferedAction()
             end
- 
-            local x,y,z = inst.Transform:GetWorldPosition()
-            local AllPlayers = TheSim:FindEntities(x,y,z, CFG.BEAN_GIANT.CHASE_DIST, {"player"})
-            for i,v in ipairs(AllPlayers) do
-                --v:ShakeCamera(CAMERASHAKE.FULL, .5, .05, 2, inst, SHAKE_DIST)
+            for i, v in ipairs(AllPlayers) do
+                v:ShakeCamera(CAMERASHAKE.FULL, .5, .05, 2, inst, SHAKE_DIST)
             end
         end),
         TimeEvent(36*FRAMES, function(inst) inst.sg:RemoveStateTag("attack") end),

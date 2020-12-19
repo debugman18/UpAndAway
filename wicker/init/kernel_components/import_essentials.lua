@@ -57,7 +57,7 @@ return function()
 			return oldnext(u, k)
 		end
 
-		local oldipairs = assert( t.ipairs )
+		--[[local oldipairs = assert( t.ipairs )
 		function t.ipairs(u)
 			local m = getmetatable(u)
 			if m ~= nil then
@@ -67,7 +67,7 @@ return function()
 				end
 			end
 			return oldipairs(u)
-		end
+		end]]
 
 		local oldpairs = assert( t.pairs )
 		function t.pairs(u)
