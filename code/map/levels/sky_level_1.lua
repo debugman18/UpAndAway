@@ -12,7 +12,29 @@ local sky_level_1 = {
 	location = "cloudrealm",
 
     overrides={
-        {"location",		"cave"}, -- This is for non-DST only.
+        start_node = "BeanstalkSpawn",
+        start_setpeice = "BeanstalkTop",
+        summer = "noseason",
+        spring = "noseason",
+        autumn = "noseason",
+        wildfires = "never",
+        rain = "never",
+        hounds = "never",
+        deerclops = "never",
+        islands = "few",
+        roads = "never",
+        boons = "always",
+        weather = "never",
+        season = "onlywinter",
+        season_start = "summer",
+        looping = "default",
+        branching = "more",
+        waves = "on",
+        day = "onlydusk",
+        world_size = "small",
+        location = "cave",
+
+        --[[
         {"world_size", 		"small"}, 
 
         {"day", 			"onlydusk"}, 
@@ -46,6 +68,7 @@ local sky_level_1 = {
         
         {"start_setpeice", 	"BeanstalkTop"},				
         {"start_node",		"BeanstalkSpawn"},
+        ]]
     },
     
     tasks = {
@@ -61,7 +84,8 @@ local sky_level_1 = {
         "Gnome_Snow_Biome",
     },
     
-    set_pieces = {
+    --set_pieces = {
+    task_set = {
         -- This is the octocopter.
         ["OctocopterWreckage"] = { count=1, tasks={"Cloud_Aurora_Biome"} },	
         ["Cloudhenge"] = { count=1, tasks={"Cloud_Generic_Biome"} },	
@@ -136,6 +160,45 @@ local survival_sky_level_1 = {
     desc="Jump right into the mod. Experimental. World generation may take a long time.",
     location = "cloudrealm",
     overrides = {
+    
+            start_node = "BeanstalkSpawn",   
+    
+            summer = "noseason", 
+    
+            spring = "noseason", 
+    
+            autumn = "noseason", 
+    
+            wildfires = "never", 
+    
+            rain = "never",  
+    
+            hounds = "never",    
+    
+            deerclops = "never", 
+    
+            islands = "few", 
+    
+            roads = "never", 
+    
+            weather = "never",   
+    
+            season = "onlywinter",   
+    
+            season_start = "summer", 
+    
+            looping = "default", 
+    
+            branching = "more",  
+    
+            waves = "on",    
+    
+            day = "onlydusk",    
+    
+            world_size = "large",    
+    
+            location = "cloudrealm", 
+            --[[
             {"location",        "cloudrealm"},
             {"world_size",      "large"}, 
 
@@ -165,6 +228,7 @@ local survival_sky_level_1 = {
             
             {"start_setpeice",  "BeanstalkTopSurvival"},                
             {"start_node",      "BeanstalkSpawn"},
+            ]]
         },
 
         tasks = {
@@ -180,7 +244,7 @@ local survival_sky_level_1 = {
             "Gnome_Snow_Biome",
         },
         
-        set_pieces = {
+        task_set = {
             -- This is the octocopter.
             ["OctocopterWreckage"] = { count=1, tasks={"Cloud_Aurora_Biome"} }, 
             ["Cloudhenge"] = { count=1, tasks={"Cloud_Generic_Biome"} },    

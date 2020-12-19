@@ -154,7 +154,7 @@ PrefabFiles = {
 	"radiant_orb",
 	"bean_brain",
 	"super_beans",
-	"winston",
+	--"winston",
 	"winston_tool",
 
 	-- Needs revising (or serious bugfixes.)

@@ -27,10 +27,11 @@ local is_rog = function()
 end
 
 -- It doesn't matter if the game mode itself is SW or not. 
-local is_sw = SaveGameIndex:GetCurrentMode() == "shipwrecked"
+if not IsDST then
+	local is_sw = SaveGameIndex:GetCurrentMode() == "shipwrecked"
 
-local is_pork = SaveGameIndex:GetCurrentMode() == "porkland"
-
+	local is_pork = SaveGameIndex:GetCurrentMode() == "porkland"
+end
 ---
 
 local SEASON_NAMES
@@ -40,7 +41,7 @@ if is_pork then
 elseif is_sw then
 	print("SHIPWRECKED SEASONS")
 	SEASON_NAMES = {"autumn", "winter", "spring", "summer", "caves", "mild", "wet", "green", "dry"}
-elseif is_rog then
+elseif is_rog and not IsDST then
 	if SaveGameIndex:IsSlotROG(SaveGameIndex.current_slot) then
 		print("REIGN OF GIANTS SEASONS")
 		SEASON_NAMES = {"autumn", "winter", "spring", "summer", "caves"}

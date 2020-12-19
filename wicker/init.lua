@@ -134,12 +134,14 @@ local function bootstrap(env, boot_params)
 	do
 		local status
 		status, binder = coroutine.resume(kernel_bootstrapper, _PACKAGE)
+
+		-- Fix this later.
 		assert( status, binder )
 	end
 
 	assert( coroutine.status(kernel_bootstrapper) == "dead" )
 
-
+	-- Fix this later.
 	binder(_M)
 
 
@@ -148,7 +150,7 @@ local function bootstrap(env, boot_params)
 
 
 	local modrequire, wickerrequire = assert(modrequire), assert(wickerrequire)
-
+	--local modrequire, wickerrequire = modrequire, wickerrequire
 
 	TheMod = (function()
 		local mod_builder = GetTheMod()

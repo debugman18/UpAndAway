@@ -14,7 +14,7 @@ require "map/level"
 
 local Levels = require "map/levels"
 
---local LevelsList = require "map.levels"
+local LevelsList = require "map.levels"
 
 local Game = wickerrequire "game"
 
@@ -38,7 +38,8 @@ wickerrequire "daemons.shardgraph"
 local LevelSet
 
 if IsDST() then
-    LevelSet = (assert(LevelsList.GetLevelList("forest")))
+    -- Please FIX ME.
+    --LevelSet = (assert(LevelsList.GetLevelList("CUSTOM")))
 else
     LevelSet = (assert(Levels[IfDST("sandbox_levels","cave_levels")]))
 end
@@ -58,6 +59,10 @@ assert( math.abs(LEVEL_NUMBER_DIRECTION) == 1 )
 --[[
 -- start_level is the first level number for cloud levels.
 --]]
+
+--This isn't final, please FIX ME.
+LevelSet = {}
+
 local start_level, current_level
 if LEVEL_NUMBER_DIRECTION > 0 then
     start_level = #LevelSet + 1
@@ -96,6 +101,7 @@ Pred.IsCloudLevelObject = IsCloudLevelObject
 function AddCloudLevel(data)
     TheMod:AddLevel(CLOUD_LEVELTYPE, data)
 
+    --[[
     local L = table.remove(LevelSet)
     current_level = current_level + LEVEL_NUMBER_DIRECTION
     if LevelSet[current_level] ~= nil then
@@ -103,6 +109,7 @@ function AddCloudLevel(data)
     end
     cloud_level_object_set[L] = true
     LevelSet[current_level] = L
+    ]]
     TheMod:DebugSay("Added Cloud Level to cave_levels[", current_level, "]")
 end
 TheMod:EmbedAdder("CloudLevel", AddCloudLevel)

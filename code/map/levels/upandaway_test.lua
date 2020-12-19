@@ -28,6 +28,8 @@ local upandaway_test = {
 	location="forest",
 
 	overrides={
+
+		--[[
 		{"world_size", 		"tiny"},
 		{"day", 			"longday"}, 
 		{"looping",			"more"},
@@ -60,15 +62,13 @@ local upandaway_test = {
 		
 		{"start_setpeice", 	"UpAndAway_TestStart"},				
 		{"start_node",		"Clearing"},
+		]]
 	},
 	
 	tasks = {
 		"UpAndAway_survival_preview_1",
 		"UpAndAway_survival_preview_2",
 		"UpAndAway_survival_preview_3",
-	},
-	
-	set_pieces = {
 	},
 
 	required_prefabs = {

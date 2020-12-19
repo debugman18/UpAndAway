@@ -1,5 +1,6 @@
 -- Do some lazy stuff here.
 
+--[[
 local AllRecipes = _G.GetAllRecipes
 local builder = _G.require "components/builder"
 local hardKnowsRecipe = builder.KnowsRecipe
@@ -23,3 +24,4 @@ local function KnowsRecipe(recname)
 end
 
 TheMod:AddClassPostConstruct("components/builder", KnowsRecipe)
+]]

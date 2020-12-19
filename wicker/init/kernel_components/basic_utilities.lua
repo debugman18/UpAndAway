@@ -693,7 +693,8 @@ local function include_introspectionlib(kernel)
 	end)
 
 	IsSlaveShard = memoize_0ary(function()
-		return can_be_shard() and _G.TheShard:IsSlave()
+		return true -- Hacky override.
+		--return can_be_shard() and _G.TheShard:IsSlave()
 	end)
 
 	IsShardedServer = memoize_0ary(function()

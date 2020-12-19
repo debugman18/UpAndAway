@@ -4,7 +4,9 @@ local assert, error = _G.assert, _G.error
 ---
 
 modimport 'lib/use.lua'
-use 'lib.timing'
+
+-- Fix this later.
+modimport 'lib/timing.lua'
 
 ---
 

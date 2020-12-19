@@ -138,10 +138,14 @@ local function makehole(inst)
 
         inst:AddComponent("trader")
 
-        if SaveGameIndex:GetCurrentMode() == "shipwrecked" or SaveGameIndex:GetCurrentMode() == "porkland" then
-            inst.components.trader:SetAcceptTest(beanstalktest_dlc)
-        elseif not IsDLCEnabled(REIGN_OF_GIANTS) then
-            inst.components.trader:SetAcceptTest(beanstalktest_vanilla)
+        if not IsDST then
+            if SaveGameIndex:GetCurrentMode() and SaveGameIndex() == "shipwrecked" or SaveGameIndex:GetCurrentMode() and SaveGameIndex:GetCurrentMode() == "porkland" then
+                inst.components.trader:SetAcceptTest(beanstalktest_dlc)
+            elseif not IsDLCEnabled(REIGN_OF_GIANTS) then
+                inst.components.trader:SetAcceptTest(beanstalktest_vanilla)
+            end
+        else
+            print("DST beanstalk test goes here.")
         end
 
         inst.components.trader.onaccept = beanstalkaccept
@@ -163,7 +167,7 @@ AddMinimapAtlas("images/ua_minimap.xml")
 -- Winnie is now compatible with both DS and DST.
 table.insert(GLOBAL.CHARACTER_GENDERS.FEMALE, "winnie")
 AddModCharacter("winnie", FEMALE)
-AddModCharacter("winston", MALE)
+--AddModCharacter("winston", MALE)
 
 -- I shouldn't have to do this here, but lazyvariableadder isn't working correctly for roads.
 GLOBAL.ShopkeeperRoad = "dummy"

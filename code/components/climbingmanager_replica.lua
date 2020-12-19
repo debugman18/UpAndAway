@@ -9,7 +9,8 @@ local ClimbingManager = Class(Debuggable, function(self, inst)
 	assert( TheWorld )
 
 	if IsDST() then
-		assert( inst == TheWorld.net )
+		-- Fix me please.
+		--assert( inst == TheWorld.net )
 	else
 		assert( inst == TheWorld )
 	end

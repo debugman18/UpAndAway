@@ -12,6 +12,8 @@ local MAX_ITERATIONS = 100
 
 local road_pos_final = 0,0,0
 
+local saveslot = SaveIndex:GetCurrentSaveSlot()
+
 local function FindTile(pt, prefab, tile, iterate)
 
     do
@@ -86,11 +88,11 @@ local function spawn_shopkeeper_spawner()
 
         -- This way, the shopkeeper will still spawn in worlds without roads, as long as there are road tiles.
         if tostring(road) == "curve from (0.00, 0.00, 0.00) to (0.00, 0.00, 0.00)" then
-            if not SaveGameIndex:GetCurrentMode() == "shipwrecked" and not SaveGameIndex:GetCurrentMode() == "porkland" then
+            if not SaveGameIndex:GetGameMode(saveslot) == "shipwrecked" and not SaveGameIndex:GetGameMode(saveslot) == "porkland" then
                 FindTile(pt, prefab, _G.GROUND.ROAD)
-            elseif SaveGameIndex:GetCurrentMode() == "porkland" then
+            elseif SaveGameIndex:GetGameMode(saveslot) == "porkland" then
                 FindTile(pt, prefab, _G.GROUND.COBBLEROAD)
-            elseif SaveGameIndex:GetCurrentMode() == "shipwrecked "then 
+            elseif SaveGameIndex:GetGameMode(saveslot) == "shipwrecked "then 
                 FindTile(pt, prefab, _G.GROUND.ASH)
             end
         end
@@ -121,27 +123,27 @@ end
 local function shopkeeper_spawner_setup()
     local world = GetWorld()
 
-    TheMod:DebugSay(tostring(SaveGameIndex:GetCurrentMode()))
-
-    if SaveGameIndex:GetCurrentMode() == "survival" then
+    --[[
+    if SaveIndex:GetGameMode() == "survival" then
         --Vanilla or Reign of Giants conditions.
         TheMod:DebugSay("Vanilla or Reign of Giants Shopkeeper")
         if world then
             world:ListenForEvent("rainstart", spawn_shopkeeper_spawner)
         end
-    elseif SaveGameIndex:GetCurrentMode() == "shipwrecked" or SaveGameIndex:GetCurrentMode() == "volcano" then
+    elseif SaveIndex:GetGameMode() and SaveIndex:GetGameMode() == "shipwrecked" or SaveGameIndex:GetGameMode() == "volcano" then
         --Shipwrecked conditions.
         TheMod:DebugSay("Shipwrecked Shopkeeper")
         if world then
             world:ListenForEvent("rainstart", spawn_shopkeeper_spawner)
         end
-    elseif SaveGameIndex:GetCurrentMode() == "porkland" then
+    elseif SaveIndex:GetGameMode() and SaveIndex:GetGameMode() == "porkland" then
         --Hamlet conditions.
         TheMod:DebugSay("Hamlet Shopkeeper")
         if world then
             world:ListenForEvent("rainstart", spawn_shopkeeper_spawner)
         end        
     end
+    ]]
 end
 
 if IsHost() then
